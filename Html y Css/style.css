@@ -1,0 +1,140 @@
+
+
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-image: url('img/library-869061_640.jpg'); /* Ruta a tu imagen de fondo */
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .login-container {
+        background-color: rgba(0, 0, 0, 0.7); /* Fondo negro con opacidad */
+        padding: 20px;
+        border-radius: 10px;
+        color: #fff;
+    }
+    
+    .formulario{
+        text-align: center;
+    }
+    
+    form {
+        text-align: center;
+    }
+    
+    .input-container {
+        margin-bottom: 20px;
+    }
+    
+    .input-field {
+        width: 250px;
+        padding: 10px;
+        border: none;
+        border-radius: 25px;
+        background-color: rgba(255, 255, 255, 0.5); /* Blanco con baja opacidad */
+        outline: none;
+    }
+    
+    .input-field::placeholder {
+        color: #999; /* Color del placeholder */
+    }
+    
+    .form-options {
+        margin-top: 20px;
+    }
+    
+    a {
+        text-decoration: none;
+        color: #999; /* Color del enlace */
+    }
+    
+    button {
+        display: block;
+        margin: 20px auto 0; /* Agrega margen arriba para separar del enlace */
+        padding: 10px 20px;
+        border: none;
+        border-radius: 25px;
+        background-color: rgba(255, 255, 255, 0.5); /* Blanco con baja opacidad */
+        color: #000; /* Color del texto del botón */
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    button:hover {
+        background-color: rgba(255, 255, 255, 0.7); /* Cambia la opacidad al pasar el ratón */
+    }
+    
+    /*recuperar contraseña*/
+   
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-image: url('img/library-869061_640.jpg'); /* Ruta a tu imagen de fondo */
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .container {
+        background-color: rgba(0, 0, 0, 0.479); /* Negro con baja opacidad */
+        padding: 30px;
+        border-radius: 30px;
+        text-align: center;
+        color: #fff;
+        width: 630px; /* Ajusta el ancho según lo necesites */
+        right: 250px;
+    }
+    
+    h1 {
+       
+        margin-bottom: 20px;
+    }
+    
+    .message {
+        
+        margin-bottom: 20px;
+    }
+    
+    input[type="email"] {
+        width: 80%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 20px;
+        background-color: rgba(255, 255, 255, 0.438); 
+        outline: none;
+    }
+    
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    .red {
+        background-color: #ff0000; /* Rojo */
+        
+    }
+    
+    .green {
+        background-color: #008000; /* Verde */
+    }
+    
