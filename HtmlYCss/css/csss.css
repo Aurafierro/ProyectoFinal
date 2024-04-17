@@ -2,7 +2,7 @@ body{
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-image: url('img/library.jpg'); /* Ruta a tu imagen de fondo */
+  background-image: url('library.jpg'); /* Ruta a tu imagen de fondo */
   background-size: cover;
   background-position: center;
  
@@ -72,4 +72,20 @@ nav > p {
 .custom-size {
   font-size: 25px; 
   margin: 10px;
+}
+
+
+
+.contenedor{
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+
+
+span.centrado{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
