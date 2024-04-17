@@ -1,0 +1,100 @@
+/* Estilo para el cuerpo de la página */
+body {
+  
+  background-color: #f0f0f0;
+  background-image: url('../img/library.jpg');
+  background-size: cover; /* Escala la imagen para que cubra todo el contenedor */
+  background-position: center; /* Centra la imagen */
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: "jomhuria";
+  src: url("../Jomhuria-Regural.ttf");
+}
+
+/* Contenedor principal */
+.container {
+  max-width: 600px;
+  margin:80px auto;
+  padding: 40px;
+  background-color: rgba(54, 54, 54, 0.8); /* Agrega un fondo blanco semi-transparente para que el contenido sea legible */
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  color: #f0f0f0;
+
+  
+}
+
+h1#titulo{
+  font-family: "jomhuria";
+  font-weight: bold;
+
+}
+
+/* Títulos */
+h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* Campos de entrada de texto */
+input[type="text"],
+input[type="password"],
+input[type="tel"],
+input[type="email"],
+
+select.form-control {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 0px solid #ccc;
+  border-radius: 30px;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.137);
+  color: #f0f0f0;
+  
+  
+}
+
+/* Botón de envío */
+button[type="submit"] {
+  width: 20%;
+  padding: 12px;
+  background-color: #058a22;
+  color: #d8d4d4;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display:block;
+  margin: 0 auto;
+  font-family: "jomhuria";
+  font-weight: bold;
+
+  
+  
+}
+
+button[type="submit"]:hover {
+  background-color: #058a22;
+  
+  
+}
+
+/* Enlaces */
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+label {
+  font-family: "jomhuria";
+  font-weight: bold;
+}
