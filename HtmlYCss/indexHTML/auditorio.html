@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendario Reservas</title>
+  <a href="./css/bootstrap.css"></a>
+  <a href="./css/personal.css"></a>
+
+  <style>
+    body {
+      text-align: center;
+      /*porqué tiene dos tipos de fuente?*/
+    }
+
+    .calendar {
+      display: inline-block;
+      border: 1px solid #ccc;
+      padding: 10px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .month-selector {
+      margin-bottom: 10px;
+    }
+
+    .calendar-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .calendar-table th,
+    .calendar-table td {
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+
+    .calendar-table th {
+      background-color: #f2f2f2;
+    }
+
+    .selected {
+      background-color: #e3fae3;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container-fluid">
+    <div class="row">
+      <img src="./auditorio.jpg" width="1300px" height="432px" style="filter: brightness(30%);">
+    <h1 cl style="position: absolute;
+    top: 2px;
+    color:white;font-size:180px; margin: 100px 300px;">Auditorio</h1>
+    </div>
+    <div class="row" style="display: flex; justify-content:space-evenly">
+      <div class="col-6">
+        <h4 style="margin:0px 200px">Bienvenido a nuestro auditorio, un espacio versátil diseñado para albergar una amplia gama de eventos y actividades emocionantes. Nuestro auditorio combina un diseño elegante y cómodo para ofrecer una
+          experiencia excepcional tanto para los presentadores como para el público.</h4>
+
+      </div>
+      <div class="row" style="background-color:gray; padding-left: 80px;padding-right: 80px;">
+      <div class="col-6; calendar" style="background-color: black; float:right; margin-top:100px; ">
+        <div class="month-selector">
+          <button onclick="prevMonth()"
+            style="background-color:red; color:white; border-radius:20px; font-size:15px;">&#10094;</button>
+          <strong> <span id="month" style="color: white;"></span> </strong>
+          <button onclick="nextMonth()" style="background-color:red; color:white;  border-radius:20px; font-size:15px;">
+            &#10095;</button>
+        </div>
+        <table class="calendar-table" style="background-color:white;">
+          <thead>
+            <tr>
+              <th style="background-color:red; color:white">Domingo</th>
+              <th style="background-color:red; color:white">Lunes</th>
+              <th style="background-color:red; color:white">Martes</th>
+              <th style="background-color:red; color:white">Miércoles</th>
+              <th style="background-color:red; color:white">Jueves</th>
+              <th style="background-color:red; color:white">Viernes</th>
+              <th style="background-color:red; color:white">Sábado</th>
+            </tr>
+          </thead>
+          <tbody id="calendar-body"></tbody>
+        </table>
+        <div style="display: flex; flex-direction: column;">
+          <input type="text" name="" id="" placeholder="    Tipo de Documento" style="margin: 10px 0px; border-radius: 50px;">
+          <input type="text" name="" id="" placeholder="Número de Documento" style="margin: 5px 0px;">
+          <input type="text" name="" id="" placeholder="Nombre Completo" style="margin: 5px 0px;">
+          <input type="text" name="" id="" placeholder="Nombre del Sitio" style="margin: 5px 0px;">
+          <input type="text" name="" id="" placeholder="Hora de Entrada" style="margin: 5px 0px;">
+          <input type="text" name="" id="" placeholder="Hora de Salida" style="margin: 5px 0px;">
+          <input type="text" name="" id="" placeholder="Teléfono" style="margin: 5px 0px;">
+
+        </div>
+
+        
+      </div>
+    </div>
+
+      <script style="color: white;">
+        const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        let currentDate = new Date();
+        let currentMonth = currentDate.getMonth();
+        let currentYear = currentDate.getFullYear();
+
+        const monthElement = document.getElementById('month');
+        const calendarBody = document.getElementById('calendar-body');
+
+        function generateCalendar() {
+          const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+          const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+          monthElement.textContent = months[currentMonth] + ' ' + currentYear;
+
+          calendarBody.innerHTML = '';
+
+          let date = 1;
+          for (let i = 0; i < 6; i++) {
+            const row = document.createElement('tr');
+            for (let j = 0; j < 7; j++) {
+              if (i === 0 && j < firstDayOfMonth) {
+                const cell = document.createElement('td');
+                row.appendChild(cell);
+              } else if (date > daysInMonth) {
+                break;
+              } else {
+                const cell = document.createElement('td');
+                cell.textContent = date;
+                cell.addEventListener('click', selectDate);
+                if (date === currentDate.getDate() && currentMonth === currentDate.getMonth() && currentYear === currentDate.getFullYear()) {
+                  cell.classList.add('selected');
+                }
+                row.appendChild(cell);
+                date++;
+              }
+            }
+            calendarBody.appendChild(row);
+          }
+        }
+
+        function prevMonth() {
+          currentMonth--;
+          if (currentMonth < 0) {
+            currentMonth = 11;
+            currentYear--;
+          }
+          generateCalendar();
+        }
+
+        function nextMonth() {
+          currentMonth++;
+          if (currentMonth > 11) {
+            currentMonth = 0;
+            currentYear++;
+          }
+          generateCalendar();
+        }
+
+        function selectDate(event) {
+          const selectedDate = event.target.textContent;
+          currentDate = new Date(currentYear, currentMonth, selectedDate);
+          generateCalendar();
+        }
+
+        generateCalendar();
+      </script>
+      
+    </div>
+    
+  </div>
+  
+</body>
+
+</html>
