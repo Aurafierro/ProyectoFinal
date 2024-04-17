@@ -2,7 +2,7 @@ body{
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-image: url('library.jpg'); /* Ruta a tu imagen de fondo */
+  background-image: url('/HtmlYCss/img/library.jpg'); /* Ruta a tu imagen de fondo */
   background-size: cover;
   background-position: center;
  
@@ -15,11 +15,20 @@ header{
   justify-content: center;
   align-items: center;  
   height: 100vh;
-
   
 }
+
+
+@font-face {
+  font-family: "jomhuria";
+  src: url("../Jomhuria-Regular.ttf");
+}
+
 h1{
   text-align: center;
+  font-family:jomhuria ;
+  font-size: 45px;
+  
 }
 
 div{
@@ -51,17 +60,34 @@ nav > p {
 .recu-boton {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; 
+  text-align: center;
+  font-family:jomhuria ;
+  font-size: 18px;
+}
+
+.crear-cuenta {
+  margin-top: 10px; 
+  text-decoration: none; /* Quita el subrayado */
+    color: white; 
+    font-family:jomhuria ;
+    
 }
 
 .buttons {
- border: none;
-  margin-top: 10px; 
-  border-radius: 100px ; 
-  padding: 15px 35px; 
-  background-color: rgba(240, 248, 255, 0.623);
-   text-align: center;
+  border: none;
+  border-radius: 100px;
+  padding: 13px 45px;
+  background-color: rgba(240, 248, 255, 0.452);
+  text-align: center;
+  margin-top: 20px; 
+  color: #fff;
+  font-family:jomhuria ;
+  font-size: 25px;
+  font-weight: bolder;
 }
+
+
 
 .fa-user {
  

@@ -1,0 +1,25 @@
+.contenedor {
+    text-align: center; 
+    
+}
+.cuadros{
+    width: 200px;
+    height: 200px;
+    background-color: black;
+    margin-bottom: 20px;
+    margin-top: 130px; 
+    display: inline-block;
+}
+
+.contenedor2 {
+    text-align: center; 
+}
+
+.cuadross {
+    width: 200px;
+    height: 200px;
+    background-color: black;
+    margin-bottom: 20px;
+    margin-top: 50px; 
+    display: inline-block;
+}
