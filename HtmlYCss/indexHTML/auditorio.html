@@ -5,13 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calendario Reservas</title>
-  <a href="./css/bootstrap.css"></a>
-  <a href="./css/personal.css"></a>
+  <a href="../css/bootstrap.css"></a>
+    <link rel="stylesheet" href="/HtmlYCss/css/personalMarianaCh.css">
 
   <style>
     body {
       text-align: center;
-      /*porqué tiene dos tipos de fuente?*/
     }
 
     .calendar {
@@ -41,7 +40,7 @@
     }
 
     .selected {
-      background-color: #e3fae3;
+      background-color: #ffff00;
     }
   </style>
 </head>
@@ -50,19 +49,18 @@
 
   <div class="container-fluid">
     <div class="row">
-      <img src="./auditorio.jpg" width="1300px" height="432px" style="filter: brightness(30%);">
+      <img src="../img/auditorio.png" width="1800px" height="432px" style="filter: brightness(30%);">
     <h1 cl style="position: absolute;
     top: 2px;
-    color:white;font-size:180px; margin: 100px 300px;">Auditorio</h1>
+    color:white;font-size:180px; margin: 100px 550px;">Auditorio</h1>
     </div>
     <div class="row" style="display: flex; justify-content:space-evenly">
       <div class="col-6">
-        <h4 style="margin:0px 200px">Bienvenido a nuestro auditorio, un espacio versátil diseñado para albergar una amplia gama de eventos y actividades emocionantes. Nuestro auditorio combina un diseño elegante y cómodo para ofrecer una
+        <h4>Bienvenido a nuestro auditorio, un espacio versátil diseñado para albergar una amplia gama de eventos y actividades emocionantes. Nuestro auditorio combina un diseño elegante y cómodo para ofrecer una
           experiencia excepcional tanto para los presentadores como para el público.</h4>
 
       </div>
-      <div class="row" style="background-color:gray; padding-left: 80px;padding-right: 80px;">
-      <div class="col-6; calendar" style="background-color: black; float:right; margin-top:100px; ">
+      <div class="col-6 calendar">
         <div class="month-selector">
           <button onclick="prevMonth()"
             style="background-color:red; color:white; border-radius:20px; font-size:15px;">&#10094;</button>
@@ -85,18 +83,20 @@
           <tbody id="calendar-body"></tbody>
         </table>
         <div style="display: flex; flex-direction: column;">
-          <input type="text" name="" id="" placeholder="    Tipo de Documento" style="margin: 10px 0px; border-radius: 50px;">
-          <input type="text" name="" id="" placeholder="Número de Documento" style="margin: 5px 0px;">
-          <input type="text" name="" id="" placeholder="Nombre Completo" style="margin: 5px 0px;">
-          <input type="text" name="" id="" placeholder="Nombre del Sitio" style="margin: 5px 0px;">
-          <input type="text" name="" id="" placeholder="Hora de Entrada" style="margin: 5px 0px;">
-          <input type="text" name="" id="" placeholder="Hora de Salida" style="margin: 5px 0px;">
-          <input type="text" name="" id="" placeholder="Teléfono" style="margin: 5px 0px;">
+          <input type="text" name="" id="camposReserva" placeholder="    Tipo de Documento">
+          <input type="text" name="" id="camposReserva" placeholder="    Número de Documento" >
+          <input type="text" name="" id="camposReserva" placeholder="    Nombre Completo" >
+          <input type="text" name="" id="camposReserva" placeholder="    Nombre del Sitio" >
+          <input type="text" name="" id="camposReserva" placeholder="    Hora de Entrada" >
+          <input type="text" name="" id="camposReserva" placeholder="    Hora de Salida" >
+          <input type="text" name="" id="camposReserva" placeholder="    Teléfono" >
 
         </div>
-
+        <div> 
+          <button type="button" id="botonReservar">Reservar</button>
+        </div>
         
-      </div>
+      
     </div>
 
       <script style="color: white;">
