@@ -1,6 +1,5 @@
 
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
@@ -13,37 +12,44 @@ body {
     text-align: center;
     background-color: rgba(0, 0, 0, 0.7); /* Negro con un 70% de opacidad */
     color: white; /* Texto blanco */
-    padding: 40px; /* Aumentar el relleno */
+    padding: 100px; /* Aumentar el relleno */
     border-radius: 50px; /* Bordes circulares */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 90%; /* Ancho del contenedor */
     max-width: 800px; /* Ancho máximo del contenedor */
     margin: auto; /* Centrar horizontalmente */
     font-family: "jomhuria";
+
 }
 
 h2 {
     font-family: "jomhuria";
     margin-top: 0; /* Eliminar el margen superior */
-    margin-bottom: 30px; /* Aumentar el espacio entre el encabezado y el párrafo */
+    margin-bottom: 20px; /* Aumentar el espacio entre el encabezado y el párrafo */
+    font-size: 4.0em; /* ajustar el tamaño de la fuente */
+
+}
+p {
+    font-size: 2.0em; /* Ajusta el tamaño de la fuente del elemento <p> según sea necesario */
 }
 
 .input-container {
-    margin-bottom: 20px; /* Aumentar el espacio entre el correo y los botones */
+    margin-bottom: 30px; /* Aumentar el espacio entre el correo y los botones */
 font-family: "jomhuria";
 }
 
 input[type="email"] {
+    background-color :  rgba(107, 104, 104, 0.7);
     width: calc(100% - 22px); /* Ajustar el ancho del correo para tener en cuenta el padding */
-    padding: 10px;
+    padding: 15px;
     margin-bottom: 10px;
-    border-radius: 10px; /* Ajustar los bordes del campo de entrada */
+    border-radius: 50px; /* Ajustar los bordes del campo de entrada */
     box-sizing: border-box;
     font-family: "jomhuria";
 }
 
 input[type="submit"].green-button {
-    background-color: #4CAF50;
+    background-color: #00A86b;
     color: white;
     border: none;
     cursor: pointer;
@@ -57,10 +63,11 @@ button.red-button {
 }
 
 input[type="submit"].green-button, button.red-button {
-    width: 45%; /* Ajustar el ancho de los botones */
+    width: 25%; /* Ajustar el ancho de los botones */
     padding: 12px; /* Aumentar el padding */
-    border-radius: 10px; /* Ajustar los bordes de los botones */
+    border-radius: 50px; /* Ajustar los bordes de los botones */
     box-sizing: border-box;
-    margin: 0 5px; /* Ajustar el margen entre los botones */
+    margin: 40px; /* Ajustar el margen entre los botones */
     font-family: "jomhuria";
+    font-size: 1.5em;
 }
