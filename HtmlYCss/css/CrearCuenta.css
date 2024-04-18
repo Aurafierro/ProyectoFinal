@@ -1,7 +1,7 @@
 /* Estilo para el cuerpo de la página */
 body {
   background-color: #f0f0f0;
-  background-image: url('/HtmlYCss/img/library.jpg');
+ 
   background-size: cover;
   background-position: center;
   margin: 0;
@@ -10,9 +10,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  /**/
-}
+ }
 
 @font-face {
   font-family: "jomhuria";
