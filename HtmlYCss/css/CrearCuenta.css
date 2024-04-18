@@ -81,7 +81,7 @@ select.form-control option {
 }
 
 /* Botón de Enviar */
-.button-enviar {
+.button-guardar {
   width: calc(50% - 10%); /* Calcula el ancho del botón teniendo en cuenta el espacio entre los botones */
   width: 30%;
   padding: 2% 5%; /* Aumenta el relleno para que el botón sea más grande */
