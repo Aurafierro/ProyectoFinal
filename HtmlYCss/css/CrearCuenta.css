@@ -2,7 +2,7 @@
 body {
   
   background-color: #f0f0f0;
-  background-image: url('../img/library.jpg');
+  background-image: url('/HtmlYCss/img/library.jpg');
   background-size: cover; /* Escala la imagen para que cubra todo el contenedor */
   background-position: center; /* Centra la imagen */
   margin: 0;
@@ -16,13 +16,14 @@ body {
 
 /* Contenedor principal */
 .container {
-  max-width: 600px;
+  width: 6px;
   margin:80px auto;
   padding: 40px;
-  background-color: rgba(54, 54, 54, 0.8); /* Agrega un fondo blanco semi-transparente para que el contenido sea legible */
-  border-radius: 40px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.637); /* Agrega un fondo blanco semi-transparente para que el contenido sea legible */
+  border-radius: 60px;
+ 
   color: #f0f0f0;
+ 
 
   
 }
@@ -30,6 +31,7 @@ body {
 h1#titulo{
   font-family: "jomhuria";
   font-weight: bold;
+  font-size: 50px;
 
 }
 
@@ -61,17 +63,18 @@ select.form-control {
 /* Botón de envío */
 button[type="submit"] {
   width: 20%;
-  padding: 12px;
+  padding: 10px;
   background-color: #058a22;
   color: #d8d4d4;
   border: none;
-  border-radius: 50px;
+  border-radius: 60px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   display:block;
-  margin: 0 auto;
+  margin: 30px auto 0; 
   font-family: "jomhuria";
   font-weight: bold;
+  font-size: 24px;
 
   
   
