@@ -1,89 +1,14 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 50px;
-    background-image: url('/HtmlYCss/img/library.jpg'); /* Cambia 'background.jpg' por la URL de tu imagen de fondo */
+    padding: 20px;
+    background-image: url('library.jpg');
     background-size: cover;
     background-position: center;
-    color: white; /* Letras blancas */
-} 
-
-.container {
-    max-width: 500px;
-    margin: 200px auto;
-    background-color: rgba(48, 47, 47, 0.8); /* Fondo semi-transparente para mejorar la legibilidad */
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(66, 66, 66, 0.3);
+    color: white;
+    overflow: hidden; /* Evita el desplazamiento vertical */
 }
 
-h2 {
-    margin-top: 0;
-    text-align: center;
-    color: white; /* Letras blancas */
-    font-family: "jomhuria";
-    font-size: 32px; /* Tamaño de fuente más grande */
-    font-weight: bold; /* Texto más grueso */
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    color: white; /* Letras blancas */
-    font-family: "jomhuria";
-    font-size: 18px; /* Tamaño de fuente más grande */
-    font-weight: bold; /* Texto más grueso */
-}
-
-input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 20px; /* Bordes más redondeados */
-    background-color: rgba(255, 255, 255, 0.5); /* Fondo semi-transparente */
-    color: #333; /* Color de texto */
-}
-
-button {
-    width: calc(50% - 10px); /* Calcula el ancho del botón teniendo en cuenta el espacio entre los botones */
-    width: 50%;
-    padding: 12px 18px; /* Aumenta el relleno para que el botón sea más grande */
-    background-color: #d63031;
-    color: #ffffff;
-    border: none;
-    border-radius: 20px; /* Bordes más redondeados */
-    cursor: pointer;
-    transition: background-color 0.3s;
-    display: block; /* Para centrar */
-    margin: 30px auto 0; /* Mueve el botón más abajo y lo centra */
-    font-family: "jomhuria";
-    font-size: 20px; /* Aumenta el tamaño de fuente */
-    font-weight: bold; /* Texto más grueso */
-}
-
-
-button:hover {
-    background-color: #23a534;
-}
-
-p#message {
-    margin-top: 15px;
-    font-size: 14px;
-    color: white; /* Letras blancas */
-    text-align: center;
-}
-
-@font-face {
-    font-family: "jomhuria";
-    src: url("../Jomhuria-Regural.ttf");
-}
-
-
-/* Estilo para el contenedor del formulario */
 .container {
     max-width: 500px;
     margin: 200px auto;
@@ -93,34 +18,102 @@ p#message {
     box-shadow: 0 10px 20px rgba(66, 66, 66, 0.3);
 }
 
+h2 {
+    margin-top: 0;
+    text-align: center;
+    color: white;
+    font-family: "jomhuria";
+    font-size: 32px;
+    font-weight: bold;
+}
 
-/* Estilo para los botones */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: white;
+    font-family: "jomhuria";
+    font-size: 18px;
+    font-weight: bold;
+}
+
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #333;
+}
+
 button {
-    width: calc(50% - 10px); /* Calcula el ancho del botón teniendo en cuenta el espacio entre los botones */
-    padding: 12px 18px; /* Ajusta el padding para hacer los botones un poco más pequeños */
+    width: calc(50% - 10px);
+    width: 50%;
+    padding: 12px 18px;
+    background-color: #d63031;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block;
+    margin: 30px auto 0;
+    font-family: "jomhuria";
+    font-size: 20px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #23a534;
+}
+
+p#message {
+    margin-top: 15px;
+    font-size: 14px;
+    color: white;
+    text-align: center;
+}
+
+@font-face {
+    font-family: "jomhuria";
+    src: url("../Jomhuria-Regural.ttf");
+}
+
+.container {
+    max-width: 500px;
+    margin: 200px auto;
+    background-color: rgba(48, 47, 47, 0.8);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(66, 66, 66, 0.3);
+}
+
+button {
+    width: calc(50% - 10px);
+    padding: 12px 18px;
     border: none;
     border-radius: 20px;
     cursor: pointer;
     transition: background-color 0.3s;
     font-family: "jomhuria";
-    font-size: 18px; /* Ajusta el tamaño de la fuente */
+    font-size: 18px;
     font-weight: bold;
 }
 
-/* Estilo para el botón verde */
 .red-button {
     background-color: #23a534;
     color: #ffffff;
 }
 
-/* Cambia el color de fondo al pasar el mouse */
 button:hover {
     background-color: black;
 }
 
-/* Estilo para el grupo de botones */
 .button-group {
-    display: flex; /* Usa flexbox */
-    justify-content: space-between; /* Distribuye los botones de manera uniforme */
-    margin-top: 30px; /* Espacio superior entre el grupo de botones y el párrafo de mensaje */
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
 }
