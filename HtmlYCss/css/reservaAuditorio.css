@@ -1,0 +1,75 @@
+@font-face {
+    font-family: "jomhuria";
+    src: url("../Jomhuria-Regural.ttf");
+}
+
+body{
+    font-family: "jomhuria";
+  
+}
+
+
+body>div.container-fluid>div.row>div.calendario>div>input#camposReserva {
+    
+    background-color: gray;
+    margin-top: 30px;
+    border-radius: 50px; 
+    height: 40px;
+    
+    
+}
+
+
+
+#camposReserva::placeholder {
+
+    color:white;
+    font-family: "jomhuria";
+    font-size: 20px;
+    font-weight:bold;
+    
+
+
+
+}
+
+
+body>div.container-fluid>div.row>div>h4{
+    margin-top:80px;
+    font-size: 40px;
+    font-family: "jomhuria";
+    padding-top: 100px;
+    padding-left: 250px;
+    padding-right: 250px;
+   
+
+}
+
+
+button#botonReservar{
+    background-color: green;
+    color: white;
+    font-family: "jomhuria";
+    border-radius: 50px;
+    width: 120px;
+    height: 40px;
+    font-size: 20px;
+    margin-top: 30px;
+    font-weight:bold;
+}
+
+
+body>div.container-fluid>div.row>div.calendario{
+    background-color:rgb(51, 49, 49); 
+    float:right; 
+    margin-top:50px;
+    width: 3500px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top:60px;
+    border-radius: 80px;
+    padding-bottom: 60px;
+
+}
+
+

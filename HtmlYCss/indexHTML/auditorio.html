@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calendario Reservas</title>
   <a href="../css/bootstrap.css"></a>
-    <link rel="stylesheet" href="/HtmlYCss/css/personalMarianaCh.css">
+  <link rel="stylesheet" href="/HtmlYCss/css/reservaAuditorio.css">
+  <link rel="icon" href="/iconos/iconoMASK (1).ico">
 
   <style>
     body {
@@ -48,19 +49,20 @@
 <body>
 
   <div class="container-fluid">
-    <div class="row">
-      <img src="../img/auditorio.png" width="1800px" height="432px" style="filter: brightness(30%);">
-    <h1 cl style="position: absolute;
+    <div class="row col">
+      <img class="col" src="../img/auditorio.png" width="100%" height="auto" style="filter: brightness(30%);">
+      <h1 class="col" cl style="position: absolute;
     top: 2px;
     color:white;font-size:180px; margin: 100px 550px;">Auditorio</h1>
     </div>
     <div class="row" style="display: flex; justify-content:space-evenly">
-      <div class="col-6">
-        <h4>Bienvenido a nuestro auditorio, un espacio versátil diseñado para albergar una amplia gama de eventos y actividades emocionantes. Nuestro auditorio combina un diseño elegante y cómodo para ofrecer una
+      <div>
+        <h4>Bienvenido a nuestro auditorio, un espacio versátil diseñado para albergar una amplia gama de eventos y
+          actividades emocionantes. Nuestro auditorio combina un diseño elegante y cómodo para ofrecer una
           experiencia excepcional tanto para los presentadores como para el público.</h4>
 
       </div>
-      <div class="col-6 calendar">
+      <div class="calendario">
         <div class="month-selector">
           <button onclick="prevMonth()"
             style="background-color:red; color:white; border-radius:20px; font-size:15px;">&#10094;</button>
@@ -84,20 +86,20 @@
         </table>
         <div style="display: flex; flex-direction: column;">
           <input type="text" name="" id="camposReserva" placeholder="    Tipo de Documento">
-          <input type="text" name="" id="camposReserva" placeholder="    Número de Documento" >
-          <input type="text" name="" id="camposReserva" placeholder="    Nombre Completo" >
-          <input type="text" name="" id="camposReserva" placeholder="    Nombre del Sitio" >
-          <input type="text" name="" id="camposReserva" placeholder="    Hora de Entrada" >
-          <input type="text" name="" id="camposReserva" placeholder="    Hora de Salida" >
-          <input type="text" name="" id="camposReserva" placeholder="    Teléfono" >
+          <input type="text" name="" id="camposReserva" placeholder="    Número de Documento">
+          <input type="text" name="" id="camposReserva" placeholder="    Nombre Completo">
+          <input type="text" name="" id="camposReserva" placeholder="    Nombre del Sitio">
+          <input type="text" name="" id="camposReserva" placeholder="    Hora de Entrada">
+          <input type="text" name="" id="camposReserva" placeholder="    Hora de Salida">
+          <input type="text" name="" id="camposReserva" placeholder="    Teléfono">
 
         </div>
-        <div> 
+        <div>
           <button type="button" id="botonReservar">Reservar</button>
         </div>
-        
-      
-    </div>
+
+
+      </div>
 
       <script style="color: white;">
         const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
@@ -166,11 +168,34 @@
 
         generateCalendar();
       </script>
-      
+
     </div>
+
+
     
+    <div>
+
+      <table class="table table-dark table-striped">
+        <thead>
+          <tr>
+            <td style="border: 4px solid white !important">Usuario</td>
+            <td style="border: 4px solid white !important">
+              Ambiente
+            </td>
+            <td style="border: 4px solid white !important">
+              Hora Entrada
+            </td>
+            <td style="border: 4px solid white !important">Hora Salida</td>
+          </tr>
+        </thead>
+             
+        
+        <tbody id="cuerpoTabla"></tbody>
+      </table>
+    </div>
+
   </div>
-  
+
 </body>
 
 </html>
