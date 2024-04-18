@@ -1,7 +1,7 @@
 /* Estilo para el cuerpo de la página */
 body {
   background-color: #f0f0f0;
-  background-image: url('/HtmlYCss/img/library.jpg');
+ 
   background-size: cover;
   background-position: center;
   margin: 0;
@@ -10,7 +10,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+  
+  }
 
 @font-face {
   font-family: "jomhuria";
@@ -19,11 +20,11 @@ body {
 
 /* Contenedor principal */
 .container {
-  max-width: 400px; /* Reduzco la anchura máxima */
-  margin: 150px auto; /* Reduzco el margen vertical */
-  padding: 40px; /* Reduzco el padding interno */
+  max-width: 60%; /* Reduzco la anchura máxima */
+  margin: 50% auto; /* Reduzco el margen vertical */
+  padding: 2%; /* Reduzco el padding interno */
   background-color: rgba(0, 0, 0, 0.637);
-  border-radius: 20px; /* Reduzco el radio del borde */
+  border-radius: 5%; /* Reduzco el radio del borde */
   color: #f0f0f0;
 }
 
@@ -32,7 +33,7 @@ body {
 h1#titulo {
   font-family: "jomhuria";
   font-weight: bold;
-  font-size: 50px; /* Reduzco el tamaño del título */
+  font-size: 300%; /* Reduzco el tamaño del título */
 }
 
 /* Campos de entrada de texto */
@@ -42,10 +43,10 @@ input[type="tel"],
 input[type="email"],
 select.form-control {
   width: 100%;
-  padding: 12px; /* Reduzco el padding */
-  margin-bottom: 8px; /* Reduzco el margen inferior */
-  border: 0px solid #000000;
-  border-radius: 12px; /* Reduzco el radio del borde */
+  padding: 2%; /* Reduzco el padding */
+  margin-bottom: 3%; /* Reduzco el margen inferior */
+  border: 0% solid #000000;
+  border-radius: 15px; /* Reduzco el radio del borde */
   box-sizing: border-box;
   background-color: rgba(255, 255, 255, 0.137);
   color: #f3f1f1;
@@ -63,9 +64,9 @@ select.form-control option {
 
 /* Botón de Volver */
 .button-volver {
-  width: calc(50% - 10px); /* Calcula el ancho del botón teniendo en cuenta el espacio entre los botones */
+  width: calc(50% - 10%); /* Calcula el ancho del botón teniendo en cuenta el espacio entre los botones */
   width: 30%;
-  padding: 12px 18px; /* Aumenta el relleno para que el botón sea más grande */
+  padding: 2% 5%; /* Aumenta el relleno para que el botón sea más grande */
   background-color: #d63031; /* Color rojo para el botón "Volver" */
   color: #ffffff;
   border: none;
@@ -73,17 +74,17 @@ select.form-control option {
   cursor: pointer;
   transition: background-color 0.3s;
   display: block; /* Para centrar */
-  margin: 30px auto 10px; /* Mueve el botón más abajo y lo centra */
+  margin: 20% auto 2%; /* Mueve el botón más abajo y lo centra */
   font-family: "jomhuria";
-  font-size: 20px; /* Aumenta el tamaño de fuente */
+  font-size: 120%; /* Aumenta el tamaño de fuente */
   font-weight: bold; /* Texto más grueso */
 }
 
 /* Botón de Enviar */
 .button-enviar {
-  width: calc(50% - 10px); /* Calcula el ancho del botón teniendo en cuenta el espacio entre los botones */
+  width: calc(50% - 10%); /* Calcula el ancho del botón teniendo en cuenta el espacio entre los botones */
   width: 30%;
-  padding: 12px 10px; /* Aumenta el relleno para que el botón sea más grande */
+  padding: 2% 5%; /* Aumenta el relleno para que el botón sea más grande */
   background-color: #00a86b; /* Color verde para el botón "Enviar" */
   color: #ffffff;
   border: none;
@@ -91,7 +92,7 @@ select.form-control option {
   cursor: pointer;
   transition: background-color 0.3s;
   display: block; /* Para centrar */
-  margin: 30px auto 10px; /* Mueve el botón más abajo y lo centra */
+  margin: 20% auto 2%; /* Mueve el botón más abajo y lo centra */
   font-family: "jomhuria";
   font-size: 20px; /* Aumenta el tamaño de fuente */
   font-weight: bold; /* Texto más grueso */
@@ -100,5 +101,5 @@ select.form-control option {
 .button-container {
   display: flex; /* Establece el contenedor como un flexbox */
   justify-content: space-between; /* Distribuye los elementos de manera uniforme en el contenedor */
-  margin-top: 20px; /* Ajusta el margen superior para separar del resto de contenido */
+  margin-top: 0%; /* Ajusta el margen superior para separar del resto de contenido */
 }

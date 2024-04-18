@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Crear cuenta</title>
-  <link rel="stylesheet" href="/HtmlYCss/css/CrearCuenta.css">
+  <link rel="stylesheet" href="../css/CrearCuenta.css">
  
 </head>
-<body>
+<body style=" background-image: url('/HtmlYCss/img/library.jpg'); background-size: cover; background-position: center;">
 
 <div class="container">
   <div class="row justify-content-center">
@@ -21,19 +21,19 @@
               <option value="">Selecciona...</option>
               <option value="">Cédula de Etranjería</option>
               <option value="Cédula">Cédula Ciudadanía</option>
-
             </select>
-            <label for="documentType">Rol</label>
-            <select class="form-control" id="documentType" required>
-              <option value="">Selecciona...</option>
-              <option value="">Usuario</option>
-              <option value="Cédula">Administrador</option>
-               </select>
           </div>
           <div class="form-group">
             <label for="documentNumber">Número de Documento</label>
             <input type="text" class="form-control" id="documentNumber" required>
           </div>
+        </select>
+        <label for="documentType">Rol</label>
+        <select class="form-control" id="documentType" required>
+          <option value="">Selecciona...</option>
+          <option value="">Usuario</option>
+          <option value="Cédula">Administrador</option>
+           </select>
           <div class="form-group">
             <label for="fullName">Nombre Completo</label>
             <input type="text" class="form-control" id="fullName" required>

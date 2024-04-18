@@ -12,14 +12,14 @@ body {
     text-align: center;
     background-color: rgba(0, 0, 0, 0.7); /* Negro con un 70% de opacidad */
     color: white; /* Texto blanco */
-    padding: 6%; /* Aumentar el relleno */
+    padding: 90px; /* Aumentar el relleno */
     border-radius: 50px; /* Bordes circulares */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 90%; /* Ancho del contenedor */
-    max-width: 800px; /* Ancho máximo del contenedor */
+    width: 70%; /* Ancho del contenedor */
+    max-width: 700px; /* Ancho máximo del contenedor */
     margin: auto; /* Centrar horizontalmente */
     font-family: "jomhuria";
-height: 30vh;
+    height: 40vh;
 }
 
 h2 {
