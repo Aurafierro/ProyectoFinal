@@ -19,7 +19,7 @@ body {
     max-width: 800px; /* Ancho máximo del contenedor */
     margin: auto; /* Centrar horizontalmente */
     font-family: "jomhuria";
-
+height: 30vh;
 }
 
 h2 {
