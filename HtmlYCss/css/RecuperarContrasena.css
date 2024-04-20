@@ -1,0 +1,73 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('../img/library.jpg'); /* Ruta a tu imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: rgba(0, 0, 0, 0.678); /* Negro con baja opacidad */
+    padding: 2%; /* Utilizando porcentajes para el padding */
+    border-radius: 50px; /* Utilizando porcentajes para el border-radius */
+    text-align: center;
+    color: #fff;
+    width: 80vh; /* Utilizando porcentajes para el ancho */
+    max-width: 90vh; /* Limitando el ancho máximo */
+}
+
+h1 {
+    margin-bottom: 5%; /* Utilizando porcentajes para el margen inferior */
+    font-family:jomhuria ;
+    font-size: 240%;
+}
+
+.message {
+    margin-bottom: 5%; /* Utilizando porcentajes para el margen inferior */
+    font-family:jomhuria ;
+    font-size: 140%;
+}
+
+input[type="email"] {
+    width: 90%;
+    padding: 3%; /* Utilizando porcentajes para el padding */
+    margin-bottom: 5%; /* Utilizando porcentajes para el margen inferior */
+    border: none;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.438); 
+    outline: none;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    padding: 2.5% 11%; /* Utilizando porcentajes para el padding */
+    border: none;
+    border-radius: 30px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 140%;
+    font-family:jomhuria ;
+}
+
+.red {
+    background-color: #ff0000; /* Rojo */
+}
+
+.green {
+    background-color: #008000; /* Verde */
+}
+@font-face {
+    font-family: "jomhuria";
+    src: url("../Jomhuria-Regular.ttf");
+  }
+  
