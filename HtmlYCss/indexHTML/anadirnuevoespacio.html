@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agregar Nuevo Evento</title>
+  <link rel="stylesheet" href="../css/anadirnuevoespacio.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Añadir nuevo espacio </h1>
+    <form id="eventoForm">
+      <input type="text" id="nombreEvento" name="nombreEvento" placeholder="Escribe el nombre del nuevo ambiente..." required>
+      <div class="image-upload">
+        <h3>Añadir Imagen</h3>
+        <div id="agregarIcono" class="icon">➕</div>
+        <input type="file" id="imagenEvento" accept="image/*" style="display:none">
+        <img id="imagenSeleccionada" src="" alt="Imagen seleccionada" style="display:none">
+      </div>
+      <div class="btn-container">
+        <button type="submit" class="btnGuardar">Volver</button>
+        <button type="button" class="btnDevolver">Guardar</button>
+      </div>
+    </form>
+  </div>
+  <script src="../js/anadirnuevoespacio.js"></script>
+</body>
+</html>
