@@ -1,93 +1,98 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #f4f4f4;
-    border-radius: 8px;
-  }
-  
-  h1 {
-    text-align: center;
-  }
-  
-  form {
-    margin-top: 20px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    margin-bottom: 15px;
-  }
-  
-  .btn-container {
-    display: flex;
-    align-items: center;
-  }
-  
-  .icon {
-    font-size: 24px;
-    margin-right: 10px;
-  }
-  
-  .btnGuardar {
-    background-color: #e60b0b;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 10px;
-  }
-  
-  .btnDevolver {
-    background-color: #12d13b;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 10px;
-  }
+  font-family: "jomhuria";
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black; /* Fondo negro */
+  color: white; /* Texto blanco */
+}
 
-  
-  .btnGuardar:hover, .btnDevolver:hover {
-    opacity: 0.8;
-  }
+.container {
+  max-width: 30%;
+  margin: 10% auto;
+  padding: 3%;
+  background-color: white; /* Cuadro blanco */
+  border-radius: 8%;
+}
 
-  
+h1 {
+  text-align: center;
+  color: black; /* Texto negro */
+  font-weight: bold; /* Letras más gruesas */
+  font-size: 300%;
+  margin-bottom: 5px; /* Separación adicional debajo del título */
+}
+
+form {
+  margin-top: 20px; /* Separación adicional arriba del formulario */
+}
+
+label {
+  display: block;
+  margin-bottom: 10px; /* Separación adicional entre etiqueta y input */
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 2%;
+  font-size: 120%;
+  border: 1px solid black; /* Borde negro */
+  border-radius: 20px; /* Bordes circulares */
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  border: none;
+  cursor: pointer;
+  color: black;
+  background-color: #f2f2f2; /* Color de fondo gris claro */
+  font-family: "jomhuria";
+  font-weight: bold; /* Letras más gruesas */
+}
+
+.btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Espaciado entre los botones */
+  margin-top: 20px; /* Separación adicional arriba de los botones */
+}
+
+.btnGuardar, .btnVolver {
+  background-color: #096d1f;
+  color: white;
+  padding: 2% 8%; /* Ajusta el tamaño del padding para hacer los botones más largos */
+  border: none;
+  border-radius: 20px; /* Bordes circulares */
+  cursor: pointer;
+  font-family: "jomhuria";
+  font-size: 150%; /* Aumenta el tamaño de la fuente */
+  font-weight: bold; /* Letras más gruesas */
+}
+
+.btnVolver {
+  background-color: #e60b0b;
+}
+
+.btnGuardar:hover, .btnVolver:hover {
+  opacity: 0.8;
+}
 
 .image-upload {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .image-upload h3 {
-    margin-top: 0;
-  }
-  
-  .image-upload .icon {
-    font-size: 48px;
-    cursor: pointer;
-  }
-  
-  #imagenSeleccionada {
-    max-width: 200px;
-    margin-top: 10px;
-  }
-  
+  text-align: center;
+  margin-bottom: 5%;
+}
+
+.image-upload h3 {
+  margin-top: 5%;
+  color: black; /* Texto negro */
+  font-weight: bold; /* Letras más gruesas */
+  font-size: 150%;
+}
+
+.image-upload .icon {
+  font-size: 300%;
+  cursor: pointer;
+}
+
+#imagenSeleccionada {
+  max-width: 100%;
+  margin-top: 5%;
+}
