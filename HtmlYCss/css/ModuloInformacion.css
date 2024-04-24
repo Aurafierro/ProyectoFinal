@@ -1,25 +1,103 @@
-.contenedor {
-    text-align: center; 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffffffa6;
+}
+
+.sidebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 2%;
+    padding-left: 19%;
     
-}
-.cuadros{
-    width: 200px;
-    height: 200px;
-    background-color: black;
-    margin-bottom: 20px;
-    margin-top: 130px; 
-    display: inline-block;
+    font-weight: bold;
+    font-size: 150%;
+    background: black;
+  
 }
 
-.contenedor2 {
-    text-align: center; 
+ul {
+    list-style: none;
+    display: flex;
 }
 
-.cuadross {
-    width: 200px;
-    height: 200px;
-    background-color: black;
-    margin-bottom: 20px;
-    margin-top: 50px; 
-    display: inline-block;
+ul li {
+    padding: 20px;
+}
+
+a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.container__cards {
+    width: 90%;
+    max-width: 1200px; /* Limita el ancho máximo para evitar que las tarjetas se estiren demasiado */
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.card {
+    width: calc(33.33% - 20px); /* Ajusta el tamaño de las tarjetas para mostrar tres en una fila en pantallas más grandes */
+    margin: 10px;
+    padding: 20px;
+    box-shadow: 20px 20px 50px black;
+    background-color: rgb(3, 3, 3);
+    border-radius: 18px;
+    box-sizing: border-box;
+}
+
+.cover__card {
+    width: 100%;
+    height: 160px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.cover__card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta el tamaño y el recorte de la imagen */
+}
+
+.card h2 {
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 20px;
+    color: white;
+    text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2%;
+        font-size: 100%; /* Ajusta el tamaño del texto en la barra lateral */
+    }
+
+    ul {
+        flex-direction: column;
+        margin-top: 10px;
+    }
+
+    ul li {
+        padding: 10px 0;
+    }
+
+    .container__cards {
+        padding: 10px;
+    }
+
+    .card {
+        width: calc(50% - 20px); /* Muestra dos tarjetas por fila en pantallas más pequeñas */
+    }
 }
