@@ -1,0 +1,34 @@
+@font-face {
+    font-family: "jomhuria";
+    src: url("../Jomhuria-Regural.ttf");
+}
+
+
+div.contenedorPadre {
+    display: flex;
+    margin-top: 5%;
+    margin-bottom: 2%;
+    margin-left: 0%;
+    margin-right: 0%;
+}
+
+
+#tituloPrincipal{
+    font-family: "jomhuria";
+    font-weight:bold;
+}
+#imagenSolicitudes {
+    width: 10%;
+}
+
+tr#encabezado>td {
+    font-family: "jomhuria";
+    /*Fuente de la letra*/
+    font-weight: bold;
+    /*Letra en negrita*/
+    width: 25%;
+    font-size: 200%;
+    text-align: center;
+
+}
+
