@@ -176,7 +176,7 @@ tr#encabezado>td {
 
 div.fondoNegroCalendario {
   background-color: black;
-  width: auto;
+  width: 100%;
   height: auto;
   padding: 5% 5%;
 }
