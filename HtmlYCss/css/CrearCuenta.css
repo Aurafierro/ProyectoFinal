@@ -1,106 +1,96 @@
-/* Estilo para el cuerpo de la página */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+}
+
 body {
-  background-color: #f0f0f0;
- 
-  background-size: cover;
-  background-position: center;
-  margin: 0%;
-  padding: 0%;
-  height: 100vh;
+  background-color: #487BFF;
   display: flex;
+  height: 100vh;
   justify-content: center;
   align-items: center;
- 
-  /**/
 }
 
-@font-face {
-  font-family: "jomhuria";
-  src: url("../Jomhuria-Regural.ttf");
-}
-
-/* Contenedor principal */
 .container {
-  max-width: 60%; /* Reduzco la anchura máxima */
-  margin: 50% auto; /* Reduzco el margen vertical */
-  padding: 2%; /* Reduzco el padding interno */
-  background-color: rgba(0, 0, 0, 0.637);
-  border-radius: 5%; /* Reduzco el radio del borde */
-  color: #f0f0f0;
-}
-
-
-/* Títulos */
-h1#titulo {
-  font-family: "jomhuria";
-  font-weight: bold;
-  font-size: 300%; /* Reduzco el tamaño del título */
-}
-
-/* Campos de entrada de texto */
-input[type="text"],
-input[type="password"],
-input[type="tel"],
-input[type="email"],
-select.form-control {
+  max-width: 700px;
   width: 100%;
-  padding: 2%; /* Reduzco el padding */
-  margin-bottom: 3%; /* Reduzco el margen inferior */
-  border: 0% solid #000000;
-  border-radius: 15px; /* Reduzco el radio del borde */
-  box-sizing: border-box;
-  background-color: rgba(255, 255, 255, 0.137);
-  color: #f3f1f1;
+  background-color: black;
+  padding: 25px 30px;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Cambiar el color del texto del select */
-select.form-control::placeholder {
-  color: #ffffff; /* Color del texto en el select */
+.container .title {
+  font-size: 30px;
+  font-weight: 500;
+  position: relative;
+  text-align: center;
 }
 
-/* Anular el color del texto de las opciones */
-select.form-control option {
-  color: #000000; /* Color del texto en las opciones */
+.container form .user {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-/* Botón de Volver */
-.button-volver {
-  width: calc(50% - 10%); /* Calcula el ancho del botón teniendo en cuenta el espacio entre los botones */
-  width: 45%;
-  padding: 2% 5%; /* Aumenta el relleno para que el botón sea más grande */
-  background-color: #d63031; /* Color rojo para el botón "Volver" */
-  color: #ffffff;
+form .user .input-box {
+  margin: 20px 10px 12px 10px;
+  width: calc(50% - 20px);
+}
+
+.user .input-box .clase {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.user .input-box input,
+.user .input-box select {
+  height: 45px;
+  width: 100%;
+  border-radius: 50px;
+  color: black;
+  padding: 0 15px;
+}
+
+.user .input-box select option {
+  color: black;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.button input[type="submit"] {
+  display: block;
+  margin: 0 auto;
+  background-color: green;
+  color: white;
   border: none;
-  border-radius: 20px; /* Bordes más redondeados */
+  padding: 13px 60px;
+  font-size: 18px;
+  border-radius: 40px;
   cursor: pointer;
-  transition: background-color 0.3s;
-  display: block; /* Para centrar */
-  margin: 20% auto; /* Mueve el botón más abajo y lo centra */
-  font-family: "jomhuria";
-  font-size: 120%; /* Aumenta el tamaño de fuente */
-  font-weight: bold; /* Texto más grueso */
 }
 
-/* Botón de Enviar */
-.button-guardar {
-  width: calc(50% - 10%); /* Calcula el ancho del botón teniendo en cuenta el espacio entre los botones */
-  width: 45%;
-  padding: 2% 5%; /* Aumenta el relleno para que el botón sea más grande */
-  background-color: #00a86b; /* Color verde para el botón "Enviar" */
-  color: #ffffff;
-  border: none;
-  border-radius: 20px; /* Bordes más redondeados */
-  cursor: pointer;
-  transition: background-color 0.3s;
-  display: block; /* Para centrar */
-  margin: 20% auto ; /* Mueve el botón más abajo y lo centra */
-  font-family: "jomhuria";
-  font-size: 20px; /* Aumenta el tamaño de fuente */
-  font-weight: bold; /* Texto más grueso */
-}
+/* Media Queries para dispositivos más pequeños */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 15px;
+  }
+  
+  form .user .input-box {
+    width: 100%;
+    margin: 10px 0;
+  }
 
-.button-container {
-  display: flex; /* Establece el contenedor como un flexbox */
-  justify-content: space-between; /* Distribuye los elementos de manera uniforme en el contenedor */
- 
+  .button input[type="submit"] {
+    padding: 13px 30px;
+  }
 }
