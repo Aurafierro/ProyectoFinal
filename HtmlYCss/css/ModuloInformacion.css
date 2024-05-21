@@ -6,19 +6,23 @@
 
 body {
     background-color: #ffffffa6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centra el contenido verticalmente */
+    height: 100vh; /* Asegura que el cuerpo ocupe toda la altura de la ventana */
 }
 
 .sidebar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 2%;
+    width: 100%;
+    padding: 2%;
     padding-left: 19%;
-    
     font-weight: bold;
     font-size: 150%;
     background: black;
-  
 }
 
 ul {
@@ -35,18 +39,36 @@ a {
     text-decoration: none;
 }
 
-.container__cards {
-    width: 90%;
-    max-width: 1200px; /* Limita el ancho máximo para evitar que las tarjetas se estiren demasiado */
-    margin: auto;
+.profile {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+}
+
+.profile__logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.profile__link {
+    font-size: 100%;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.container__cards {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     padding: 20px;
+    gap: 20px; /* Agrega espacio entre las tarjetas */
 }
 
 .card {
-    width: calc(33.33% - 20px); /* Ajusta el tamaño de las tarjetas para mostrar tres en una fila en pantallas más grandes */
+    flex: 1 1 calc(25% - 40px); /* Ajusta el tamaño de las tarjetas para mostrar cuatro en una fila */
+    max-width: calc(25% - 40px); /* Asegura que el tamaño máximo sea el mismo que el tamaño calculado */
     margin: 10px;
     padding: 20px;
     box-shadow: 20px 20px 50px black;
@@ -76,6 +98,26 @@ a {
     text-align: center;
 }
 
+.profile {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.profile__link {
+    font-size: 2.3vw;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 1200px) {
+    .card {
+        flex: 1 1 calc(33.33% - 40px); /* Muestra tres tarjetas por fila en pantallas medianas */
+        max-width: calc(33.33% - 40px);
+    }
+}
+
 @media screen and (max-width: 768px) {
     .sidebar {
         flex-direction: column;
@@ -93,11 +135,24 @@ a {
         padding: 10px 0;
     }
 
+    .profile {
+        align-self: flex-end; /* Mueve el perfil a la parte superior derecha en pantallas pequeñas */
+        margin-top: 10px;
+    }
+
     .container__cards {
         padding: 10px;
     }
 
     .card {
-        width: calc(50% - 20px); /* Muestra dos tarjetas por fila en pantallas más pequeñas */
+        flex: 1 1 calc(50% - 40px); /* Muestra dos tarjetas por fila en pantallas pequeñas */
+        max-width: calc(50% - 40px);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .card {
+        flex: 1 1 100%; /* Muestra una tarjeta por fila en pantallas muy pequeñas */
+        max-width: 100%;
     }
 }
