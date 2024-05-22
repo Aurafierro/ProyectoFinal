@@ -1,120 +1,101 @@
-body{
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background-color: #A5EEA0;
-  background-size: cover;
-  background-position: center;
- 
-  
-}
-
-header{
- 
+body {
   display: flex;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
   height: 100vh;
+  margin: 0;
+  background-color: #487BFF;
+  color: white;
+  overflow: hidden; /* Evita el desplazamiento vertical */
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  margin-bottom: 20px; /* Ajusta el margen inferior */
+  padding-top: 20vh; /* Ajusta el espacio en la parte superior para centrar verticalmente */
+}
+
+
+.logo img {
+  width: 70%;
   
 }
 
-
-@font-face {
-  font-family: "jomhuria";
-  src: url("../Jomhuria-Regular.ttf");
+.logo h1 {
+  font-size: 650%;
+  text-align: left;
+  padding: 5%;
+  margin-top: 10px; /* Ajusta el margen superior si es necesario */
 }
 
-h1{
+
+.sesion {
+  width: 46%;
+  padding: 2%;
+  background-color: rgb(0, 0, 0);
+  border-radius: 70px;
+  color: white;
   text-align: center;
-  font-family:jomhuria ;
-
-  font-size: 300%;
+  margin-left: auto; /* Alinea el elemento hacia la derecha */
 }
 
-div{
-  background-color: rgba(0, 0, 0, 0.712);
-    padding: 2%;
-    padding-bottom: 1%; 
-    border-radius: 8vh;
-    color: #fff;
+.sesion h2{
+  font-size: 290%;
 }
 
-
-nav  {
-  margin-bottom: 11%;
-  
-
-}
-nav > p {
-  text-align:  center;
+.formu {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8%;
 }
 
+.formu i {
+  margin-right: 10px;
+  font-size: 200%;
+}
 
 .fff {
-  width: 76%;
-  padding: 5.5%;
-  border: none;
-  border-radius: 25vh;
-  background-color: rgba(255, 255, 255, 0.5);
-  outline: none;
- 
+  width: 130%;
+  padding: 5%;
+  border-radius: 50px;
+  border: 1px solid #ccc;
 }
 
 .recu-boton {
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
   text-align: center;
-  font-family:jomhuria ;
-  font-size: 115%;
+
+
+}
+.recu-boton a {
+  display: block;
+  margin-bottom: 4%; 
+  color: white;
+  padding: 1.4%;
+  font-size: 130%;
+  text-decoration: none;/* Ajusta el espacio entre los enlaces */
 }
 
-.crear-cuenta {
-  margin-top: 5%; 
-  text-decoration: none; /* Quita el subrayado */
-    color: white; 
-    font-family:jomhuria ;
-    
-}
+
 
 .buttons {
+  padding: 4% 8%;
   border: none;
-  border-radius: 80vh;
-  padding: 4% 15%;
-  background-color: rgba(240, 248, 255, 0.452);
-  text-align: center;
-  margin-top: 8%; 
-  color: #fff;
-  font-family:jomhuria ;
-  font-size: 150%;
-  font-weight: bolder;
-}
-
-.fa-user {
+  background-color: #1B9607;
+  color: white;
+  border-radius: 40px;
+  cursor: pointer;
+  margin-top: 3%;
+  font-size: 190%;
  
- 
-  font-size: 170%; 
-  margin: 1%;
+  /* Agregado para dar espacio entre el enlace "Crear Cuenta" y el botón "Enviar" */
 }
-.custom-size {
-  font-size: 170%; 
-  margin: 1%;
-}
-
-
-
-.contenedor{
-  position: relative;
-  display: inline-block;
-  text-align: center;
-}
-
-
-span.centrado{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-

@@ -1,90 +1,27 @@
-body {
-    font-family: Arial, sans-serif;
+* {
     margin: 0;
-    padding: 20px;
-    background-image: url('../img/library.jpg');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    overflow: hidden; /* Evita el desplazamiento vertical */
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
 }
 
-.container {
-    max-width: 500px;
-    margin: 100px auto; /* Ajusta el margen superior para centrar verticalmente */
-    background-color: rgba(48, 47, 47, 0.8);
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(66, 66, 66, 0.3);
-}
-
-h2 {
-    margin-top: 0;
-    text-align: center;
-    color: white;
-    font-family: "jomhuria";
-    font-size: 32px;
-    font-weight: bold;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    color: white;
-    font-family: "jomhuria";
-    font-size: 18px;
-    font-weight: bold;
-}
-
-input[type="password"] {
+header {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.5);
-    color: #333;
-}
-
-button {
-    width: calc(50% - 10px);
-    padding: 12px 18px;
-    color: #ffffff;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    display: block;
-    margin: 30px auto 0; /* Ajusta el margen superior para centrar verticalmente */
-    font-family: "jomhuria";
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.volver{
-    background-color: red;
-}
-.green-button{
-    background-color: #096d1f;
-}
-
-p#message {
-    margin-top: 15px;
-    font-size: 14px;
-    color: white;
-    text-align: center;
-}
-
-@font-face {
-    font-family: "jomhuria";
-    src: url("../Jomhuria-Regural.ttf");
-}
-
-.button-group {
+    height: 80px;
+    background-color: #202C4A;
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
+    align-items: center;
+    padding: 0 20px; /* Agrega espaciado a los lados del encabezado */
+}
+
+header img {
+    width: 100px; /* Tamaño deseado para el logotipo */
+    margin-right: 20px; /* Espaciado entre el logotipo y el texto */
+}
+
+header h2:last-child {
+    margin-left: auto; /* Mueve este elemento al extremo derecho */
+    color: white;
 }

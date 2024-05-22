@@ -13,4 +13,5 @@ document.getElementById('modifyForm').addEventListener('submit', function(event)
     console.log('Correo:', email);
 
     alert('Datos enviados con éxito');
+    
 });
