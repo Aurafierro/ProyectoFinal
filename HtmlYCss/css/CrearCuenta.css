@@ -79,6 +79,7 @@ form .user .input-box {
   cursor: pointer;
 }
 
+
 /* Media Queries para dispositivos más pequeños */
 @media (max-width: 768px) {
   .container {
