@@ -1,27 +1,141 @@
-* {
+body {
+    background-color: #f5f5f5;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    list-style: none;
-    text-decoration: none;
-    box-sizing: border-box;
 }
 
-header {
-    width: 100%;
-    height: 80px;
-    background-color: #202C4A;
+.navbar {
+    margin-bottom: 0; /* Remove margin to make navbar and sidebar look unified */
+}
+
+.container-fluid {
+    padding: 0; /* Remove container padding */
+}
+
+.row.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.sidebar {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.profile-sidebar {
+    padding: 20px;
+    text-align: center;
+    height: 100vh; /* Full height of the viewport */
+    margin-top: -20px; /* Align with navbar */
+}
+
+.profile-userpic .circle {
+    width: 150px; /* Increase the width */
+    height: 150px; /* Increase the height */
+    border-radius: 50%;
+    background-color: #fff;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 0 20px; /* Agrega espaciado a los lados del encabezado */
+    margin: 0 auto;
 }
 
-header img {
-    width: 100px; /* Tamaño deseado para el logotipo */
-    margin-right: 20px; /* Espaciado entre el logotipo y el texto */
+.profile-userpic .circle i {
+    font-size: 60px; /* Increase the icon size */
+    color: #000;
 }
 
-header h2:last-child {
-    margin-left: auto; /* Mueve este elemento al extremo derecho */
+.profile-usertitle {
+    margin-top: 20px;
+}
+
+.profile-usertitle-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.sidebar-divider {
+    border-top: 1px solid #ddd;
+}
+
+.profile-usermenu {
+    margin-top: 50px; /* Add more margin to push the buttons further down */
+}
+
+.profile-usermenu .nav-link {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.profile-usermenu .nav-link:hover {
+    background-color: #1a252f;
+    color: #fff;
+    text-decoration: none;
+}
+
+.profile-usermenu .nav-item.active .nav-link {
+    background-color: #1a252f;
+    color: #fff;
+    font-weight: 700;
+}
+
+.profile-usermenu .nav-item .nav-link i {
+    margin-right: 10px;
+}
+
+.card {
+    background: #ecf0f1;
+    border-radius: 20px; /* Hace los bordes ligeramente circulares */
+    margin-top: 20px;
+    padding: 100px 60px; /* Aumenta el padding */
+    width: 95%; /* Ajusta el ancho */
+    max-width: 800px; /* Aumenta el máximo ancho */
+    margin: 40px auto; /* Center el contenedor y agrega más margen arriba */
+    text-align: center; /* Centra el texto dentro del contenedor */
+}
+
+.card-title {
+    color: #333;
+    font-weight: bold;
+    font-size: 36px; /* Aumenta el tamaño del título */
+}
+
+.form-container {
+    width: 100%; /* Full width of the container */
+    max-width: 600px; /* Aumenta el máximo ancho */
+    margin: 0 auto; /* Center the container */
+}
+
+.card-body {
+    padding-bottom: 80px; /* Agrega padding extra en la parte inferior */
+}
+
+.form-group input[type="password"] {
+    border-radius: 25px; /* Aumenta el radio de los bordes */
+    background-color: #dcdcdc;
+    border: none;
+    padding: 20px 25px; /* Aumenta el padding */
+    font-size: 20px; /* Aumenta el tamaño de la fuente */
+    width: 100%; /* Full width */
+    box-sizing: border-box; /* Incluye el padding en el ancho total */
+}
+
+.form-group input[type="password"]::placeholder {
+    color: #999; /* Color del placeholder */
+}
+
+button[type="submit"] {
+    background-color: green;
     color: white;
+    border-radius: 25px; /* Reduce el radio de los bordes */
+    width: 150px; /* Ajusta el ancho del botón */
+    height: auto;
+    font-size: 16px; /* Reduce el tamaño de la fuente */
+    padding: 10px 15px; /* Ajusta el padding para hacer el botón más pequeño */
+    margin: 20px auto; /* Centra el botón horizontalmente y agrega margen superior */
+    font-weight: bold;
+    display: block; /* Asegura que el botón sea un bloque para centrarlo */
+    text-align: center; /* Centra el texto dentro del botón */
 }
