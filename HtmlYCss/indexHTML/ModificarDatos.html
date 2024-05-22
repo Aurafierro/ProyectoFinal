@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Datos</title>
+    <link rel="stylesheet" href="../css/Modificardatos.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">AsignaWeb</div>
+        <div class="logout"><a href="#">Cerrar sesión</a></div>
+    </div>
+    <div class="container">
+        <div class="sidebar">
+            <div class="profile">
+                <div class="profile-pic"></div>
+                <span>Juan Camilo</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Modificar datos</a></li>
+                    <li><a href="#">Cambiar contraseña</a></li>
+                    <li><a href="#">Historial</a></li>
+                    <li><a href="#">Eliminar cuenta</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="main-content">
+            <div class="form-container">
+                <h2>Modificar datos</h2>
+                <form id="modifyForm">
+                    <label for="documentType">Tipo de documento</label>
+                    <input type="text" id="documentType" name="documentType">
+                    
+                    <label for="fullName">Nombre Completo</label>
+                    <input type="text" id="fullName" name="fullName">
+                    
+                    <label for="phone">Teléfono</label>
+                    <input type="tel" id="phone" name="phone">
+                    
+                    <label for="email">Correo</label>
+                    <input type="email" id="email" name="email">
+                    
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="../js/Modificar_datos.js"></script>
+</body>
+</html>

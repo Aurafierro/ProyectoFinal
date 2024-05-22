@@ -25,7 +25,7 @@ body {
   margin: 50% auto; /* Reduzco el margen vertical */
   padding: 2%; /* Reduzco el padding interno */
   background-color: rgba(0, 0, 0, 0.637);
-  border-radius: 5%; /* Reduzco el radio del borde */
+  border-radius: 50px; /* Reduzco el radio del borde */
   color: #f0f0f0;
 }
 

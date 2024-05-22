@@ -1,0 +1,184 @@
+/* Estilos para el cuerpo y la cabecera */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #1a3e68; /* Fondo azul */
+}
+
+.header {
+    width: 100vw; /* Ancho completo de la ventana */
+    background-color: #1a3e68;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 35px 20px;
+    box-sizing: border-box;
+}
+
+.header .logo {
+    font-size: 24px;
+}
+
+.header .logout a {
+    color: white;
+    text-decoration: none;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #1a3e68;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    box-sizing: border-box;
+    height: 100%; /* Ajustamos la altura al 100% */
+}
+
+.profile {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-pic {
+    width: 80px;
+    height: 80px;
+    background-color: gray;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+}
+
+.profile span {
+    display: block;
+    font-size: 18px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+}
+
+nav ul li {
+    margin: 15px 0;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+    padding: 10px 0;
+    width: 100%;
+}
+
+nav ul li a.active {
+    font-weight: bold;
+}
+
+/* Añadimos la línea separadora */
+nav ul li:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.main-content {
+    flex-grow: 1;
+    background-color: #f0f0f0;
+    padding: 4%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.form-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 40px;
+    box-shadow: 0 0 10px #505050;
+    width: 100%;
+    max-width: 400px;
+    height: 75%; /* Ajustamos la altura al 100% */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-container h2 {
+    margin-top: 0;
+    text-align: center; /* Centramos el título */
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centramos los elementos del formulario */
+}
+
+.form-container form label {
+    margin: 10px 0 5px;
+}
+
+/* Estilo para los campos de entrada */
+.form-container form input[type="text"],
+.form-container form input[type="tel"],
+.form-container form input[type="email"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 25px; /* Hacemos los bordes redondeados */
+    outline: none; /* Quitamos el borde de enfoque */
+    transition: border-color 0.3s ease-in-out; /* Transición suave para el cambio de color de borde */
+    width: calc(100% - 22px); /* Ajustamos el ancho para que sea igual al resto de los inputs */
+    background-color: black; /* Fondo negro */
+    color: white; /* Texto blanco */
+}
+
+.form-container form input[type="text"]:focus,
+.form-container form input[type="tel"]:focus,
+.form-container form input[type="email"]:focus {
+    border-color: #1a3e68; /* Cambiamos el color del borde al enfocar */
+}
+
+/* Estilo para el botón Enviar */
+.form-container form button {
+    padding: 12px; /* Aumentamos el padding */
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 25px; /* Hacemos los bordes redondeados */
+    cursor: pointer;
+    width: 150px; /* Ancho fijo */
+    margin: 10px auto; /* Centramos el botón y aplicamos margen */
+}
+
+.form-container form button:hover {
+    background-color: #218838;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+}
