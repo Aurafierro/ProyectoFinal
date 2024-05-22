@@ -112,6 +112,7 @@ body {
     padding-bottom: 80px; /* Agrega padding extra en la parte inferior */
 }
 
+
 .form-group input[type="password"] {
     border-radius: 25px; /* Aumenta el radio de los bordes */
     background-color: #dcdcdc;
