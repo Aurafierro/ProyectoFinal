@@ -11,8 +11,9 @@ body {
   max-width: 30%;
   margin: 10% auto;
   padding: 3%;
-  background-color: white; /* Cuadro blanco */
+  background-color: #c7c7c7; /* Cuadro blanco */
   border-radius: 8%;
+  position: relative; /* Posicionamiento relativo para usar posicionamiento absoluto en los botones */
 }
 
 h1 {
@@ -51,20 +52,23 @@ input[type="text"] {
 .btn-container {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Espaciado entre los botones */
+  justify-content: flex-start; /* Alinea el botón de volver a la izquierda */
   margin-top: 20px; /* Separación adicional arriba de los botones */
 }
 
-.btnGuardar, .btnVolver {
+.btnGuardar {
   background-color: #096d1f;
   color: white;
-  padding: 2% 8%; /* Ajusta el tamaño del padding para hacer los botones más largos */
+  padding: 2% 4%; /* Ajusta el tamaño del padding para hacer los botones más largos */
   border: none;
   border-radius: 20px; /* Bordes circulares */
   cursor: pointer;
   font-family: "jomhuria";
   font-size: 150%; /* Aumenta el tamaño de la fuente */
   font-weight: bold; /* Letras más gruesas */
+  position: absolute;
+ 
+  right: 10px;
 }
 
 .btnVolver {
