@@ -1,142 +1,198 @@
+/* Estilos para el cuerpo y la cabecera */
 body {
-    background-color: #f5f5f5;
-    font-family: 'Arial', sans-serif;
     margin: 0;
-    padding: 0;
-}
-
-.navbar {
-    margin-bottom: 0; /* Remove margin to make navbar and sidebar look unified */
-}
-
-.container-fluid {
-    padding: 0; /* Remove container padding */
-}
-
-.row.no-gutters {
-    margin-right: 0;
-    margin-left: 0;
-}
-
-.sidebar {
-    padding-left: 0;
-    padding-right: 0;
-}
-
-.profile-sidebar {
-    padding: 20px;
-    text-align: center;
-    height: 100vh; /* Full height of the viewport */
-    margin-top: -20px; /* Align with navbar */
-}
-
-.profile-userpic .circle {
-    width: 150px; /* Increase the width */
-    height: 150px; /* Increase the height */
-    border-radius: 50%;
-    background-color: #fff;
+    font-family: Arial, sans-serif;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.header {
+    width: 100%; 
+    background-color: #1a3e68;
+    color: white;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    margin: 0 auto;
+    padding: 20px 40px; 
+    box-sizing: border-box;
 }
 
-.profile-userpic .circle i {
-    font-size: 60px; /* Increase the icon size */
-    color: #000;
+.header .logo {
+    font-size: 24px;
+    display: flex;
+    flex-direction: column; /* Cambiamos a columna para apilar imagen y texto verticalmente */
+    align-items: center; /* Centramos los elementos horizontalmente */
 }
 
-.profile-usertitle {
-    margin-top: 20px;
+.header .logo img.logo-img {
+    width: 50px; /* Ajusta el tamaño de la imagen según necesites */
+    height: 50px; /* Ajusta el tamaño de la imagen según necesites */
+    margin-bottom: 5px; /* Espacio entre la imagen y el texto */
 }
 
-.profile-usertitle-name {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 7px;
-}
-
-.sidebar-divider {
-    border-top: 1px solid #ddd;
-}
-
-.profile-usermenu {
-    margin-top: 50px; /* Add more margin to push the buttons further down */
-}
-
-.profile-usermenu .nav-link {
-    font-size: 14px;
-    font-weight: 400;
-}
-
-.profile-usermenu .nav-link:hover {
-    background-color: #1a252f;
-    color: #fff;
+.header .logout a {
+    color: white;
     text-decoration: none;
 }
 
-.profile-usermenu .nav-item.active .nav-link {
-    background-color: #1a252f;
-    color: #fff;
-    font-weight: 700;
+.container {
+    display: flex;
+    flex: 1;
 }
 
-.profile-usermenu .nav-item .nav-link i {
-    margin-right: 10px;
+.sidebar {
+    width: 250px;
+    background-color: #1a3e68;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    box-sizing: border-box;
+    height: 100%;
+    justify-content: center;
 }
 
-.card {
-    background: #ecf0f1;
-    border-radius: 20px; /* Hace los bordes ligeramente circulares */
-    margin-top: 20px;
-    padding: 100px 60px; /* Aumenta el padding */
-    width: 95%; /* Ajusta el ancho */
-    max-width: 800px; /* Aumenta el máximo ancho */
-    margin: 40px auto; /* Center el contenedor y agrega más margen arriba */
-    text-align: center; /* Centra el texto dentro del contenedor */
+.profile {
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: -300px; /* Ajusta este valor según necesites */
+    border-bottom: 1px solid white; /* Añade una línea de separación */
+    padding-bottom: 20px; /* Añade un poco de espacio debajo del perfil */
 }
 
-.card-title {
-    color: #333;
+.profile-pic {
+    width: 160px; /* Aumenta el tamaño del círculo */
+    height: 160px; /* Aumenta el tamaño del círculo */
+    background-color: gray;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+}
+
+.profile span {
+    display: block;
+    font-size: 22px; /* Aumenta el tamaño del nombre */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+}
+
+nav ul li {
+    margin: 15px 0;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    display: flex; /* Permite alinear el icono y el texto horizontalmente */
+    align-items: center; /* Centra verticalmente el icono y el texto */
+    justify-content: center; /* Centra horizontalmente el icono y el texto */
+}
+
+nav ul li a i {
+    margin-right: 8px; /* Agrega un poco de espacio entre el icono y el texto */
+}
+
+nav ul li a.active {
     font-weight: bold;
-    font-size: 36px; /* Aumenta el tamaño del título */
+}
+
+.main-content {
+    flex-grow: 1;
+    background-color: #f0f0f0;
+    padding: 4%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
 }
 
 .form-container {
-    width: 100%; /* Full width of the container */
-    max-width: 600px; /* Aumenta el máximo ancho */
-    margin: 0 auto; /* Center the container */
+    background-color: white;
+    padding: 50px;
+    border-radius: 40px;
+    box-shadow: 0 0 10px #746f6f;
+    width: 100%;
+    max-width: 400px;
+    height: 75%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.card-body {
-    padding-bottom: 80px; /* Agrega padding extra en la parte inferior */
+.form-container h2 {
+    margin-top: 0;
+    text-align: center;
 }
 
-
-.form-group input[type="password"] {
-    border-radius: 25px; /* Aumenta el radio de los bordes */
-    background-color: #dcdcdc;
-    border: none;
-    padding: 20px 25px; /* Aumenta el padding */
-    font-size: 20px; /* Aumenta el tamaño de la fuente */
-    width: 100%; /* Full width */
-    box-sizing: border-box; /* Incluye el padding en el ancho total */
+.password-instructions {
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+    margin: 10px 0 20px;
 }
 
-.form-group input[type="password"]::placeholder {
-    color: #999; /* Color del placeholder */
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-button[type="submit"] {
-    background-color: green;
+.form-container form label {
+    margin: 10px 0 5px;
+}
+
+/* Estilo para los campos de entrada */
+.form-container form input[type="password"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+    width: calc(100% - 22px);
+    background-color: black;
     color: white;
-    border-radius: 25px; /* Reduce el radio de los bordes */
-    width: 150px; /* Ajusta el ancho del botón */
-    height: auto;
-    font-size: 16px; /* Reduce el tamaño de la fuente */
-    padding: 10px 15px; /* Ajusta el padding para hacer el botón más pequeño */
-    margin: 20px auto; /* Centra el botón horizontalmente y agrega margen superior */
-    font-weight: bold;
-    display: block; /* Asegura que el botón sea un bloque para centrarlo */
-    text-align: center; /* Centra el texto dentro del botón */
+}
+
+.form-container form input[type="password"]:focus {
+    border-color: #1a3e68;
+}
+
+/* Estilo para el botón Enviar */
+.form-container form button {
+    padding: 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    width: 150px;
+    margin: 10px auto;
+}
+
+.form-container form button:hover {
+    background-color: #218838;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
 }
