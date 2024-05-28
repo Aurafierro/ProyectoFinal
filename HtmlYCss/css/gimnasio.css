@@ -59,7 +59,7 @@
   
   /*cuadros de los campos reservar*/
   div>input#camposReserva {
-    background-color: rgb(143, 143, 143);
+    background-color: white;
     margin-top: 5%;
     border-radius: 50px;
     height: 40px;
@@ -104,7 +104,7 @@
   
   
   div.calendario {
-    background-color: rgb(87, 82, 82);
+    background-color:#202C4A;
     float: right;
     margin-top: 5%;
     width: 200%;
@@ -158,8 +158,8 @@
   }
   
   table#tablaReservas {
-    background-color: black;
-    color: white;
+    background-color: #D9D9D9;
+    color: rgb(0, 0, 0);
     width: 100%;
   }
   

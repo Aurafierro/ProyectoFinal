@@ -59,7 +59,7 @@ img#imagenPrincipal{
 
 /*cuadros de los campos reservar*/
 div>input#camposReserva {
-  background-color: rgb(143, 143, 143);
+  background-color: rgb(255, 255, 255);
   margin-top: 5%;
   border-radius: 50px;
   height: 40px;
@@ -68,7 +68,7 @@ div>input#camposReserva {
 
 /*letra desde el placeholder de todos los campos para reservar*/
 #camposReserva::placeholder {
-  color: white;
+  color: rgb(0, 0, 0);
   font-family: "jomhuria";
   font-size: 20px;
   font-weight: bold;
