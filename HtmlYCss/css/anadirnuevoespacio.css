@@ -16,6 +16,7 @@ body {
   position: relative; /* Posicionamiento relativo para usar posicionamiento absoluto en los botones */
 }
 
+
 h1 {
   text-align: center;
   color: black; /* Texto negro */

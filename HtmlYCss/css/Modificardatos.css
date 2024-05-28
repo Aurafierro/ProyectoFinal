@@ -5,18 +5,26 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
+<<<<<<< HEAD
     overflow: hidden; /* Evitar el desplazamiento */
     background-color: #1a3e68; /* Fondo azul */
+=======
+
+>>>>>>> 98c86c2d1b92be5ea60b0b46bb57ff5b04a707da
 }
 
 .header {
-    width: 100vw; /* Ancho completo de la ventana */
+    width: 100%; 
     background-color: #1a3e68;
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
+<<<<<<< HEAD
     padding: 1% 1%;
+=======
+    padding: 20px 40px; 
+>>>>>>> 98c86c2d1b92be5ea60b0b46bb57ff5b04a707da
     box-sizing: border-box;
 }
 
@@ -112,11 +120,14 @@ nav ul li a.active {
     font-weight: bold;
 }
 
+<<<<<<< HEAD
 /* Quitamos las líneas separadoras debajo de cada botón */
 nav ul li {
     border-bottom: none;
 }
 
+=======
+>>>>>>> 98c86c2d1b92be5ea60b0b46bb57ff5b04a707da
 .main-content {
     flex-grow: 1;
     background-color: #487BFF; /* Cambiado a fondo azul */
@@ -129,12 +140,21 @@ nav ul li {
 
 .form-container {
     background-color: white;
+<<<<<<< HEAD
     padding: 5%;
     border-radius: 45px;
     box-shadow: 0 0 10px #505050;
     width: 100%;
     max-width: 30%;
     height: 75%; /* Ajustamos la altura al 100% */
+=======
+    padding: 50px;
+    border-radius: 40px;
+    box-shadow: 0 0 10px #746f6f;
+    width: 100%;
+    max-width: 400px;
+    height: 75%; 
+>>>>>>> 98c86c2d1b92be5ea60b0b46bb57ff5b04a707da
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -1,17 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Modificar Contraseña</title>
-<link rel="stylesheet" href="../css/ModificarContraseña.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambiar Contraseña</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../css/ModificarContraseña.css">
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">AsignaWeb</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Cerrar sesión</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container-fluid">
+        <div class="row no-gutters">
+            <div class="col-md-3 sidebar">
+                <div class="profile-sidebar bg-primary text-white">
+                    <div class="profile-userpic">
+                        <div class="circle">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                    </div>
+                    <div class="profile-usertitle">
+                        <div class="profile-usertitle-name">
+                            Juan Camilo
+                        </div>
+                    </div>
+                    <hr class="sidebar-divider my-4"> <!-- Línea separadora -->
+                    <div class="profile-usermenu">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#"><i class="fas fa-user-edit"></i> Modificar datos</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link text-white" href="#"><i class="fas fa-key"></i> Cambiar contraseña</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#"><i class="fas fa-history"></i> Historial</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#"><i class="fas fa-user-times"></i> Eliminar cuenta</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 d-flex justify-content-center align-items-center">
+                <div class="card form-container">
+                    <div class="card-body">
+                        <h3 class="card-title">Cambiar contraseña</h3>
+                        <p>Ingresa una contraseña de fácil recordación. Recuerde un carácter(*,_!), un número y una mayúscula. máximo 20 caracteres.</p>
+                        <form>
+                            <div class="form-group">
+                                <label for="newPassword">Nueva contraseña</label>
+                                <input type="password" class="form-control" id="newPassword" placeholder="Nueva contraseña">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirmar contraseña</label>
+                                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirmar contraseña">
+                            </div>
+                            <hr class="my-4"> <!-- Línea separadora -->
+                            <button type="submit" class="btn btn-success btn-block"><i class="fas fa-check"></i> Enviar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<header>
-  <img src="../img/NuevoLog.png" alt="">
-  <h2>Cerrar sesión</h2>
-</header>
-<script src="../js/ModificarContraseña.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
