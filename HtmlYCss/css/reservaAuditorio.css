@@ -104,7 +104,7 @@ button#botonReservar {
 
 
 div.calendario {
-  background-color: rgb(87, 82, 82);
+  background-color: #202C4A;
   float: right;
   margin-top: 5%;
   width: 200%;
@@ -158,8 +158,8 @@ div.contenedorTabla {
 }
 
 table#tablaReservas {
-  background-color: black;
-  color: white;
+  background-color: #D9D9D9;
+  color: black;
   width: 100%;
 }
 
