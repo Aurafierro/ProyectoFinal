@@ -5,17 +5,17 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background-color: #1a3e68; /* Fondo azul */
+
 }
 
 .header {
-    width: 100vw; /* Ancho completo de la ventana */
+    width: 100%; 
     background-color: #1a3e68;
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 35px 20px;
+    padding: 20px 40px; 
     box-sizing: border-box;
 }
 
@@ -87,11 +87,6 @@ nav ul li a.active {
     font-weight: bold;
 }
 
-/* Añadimos la línea separadora */
-nav ul li:not(:last-child) {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
 .main-content {
     flex-grow: 1;
     background-color: #f0f0f0;
@@ -104,12 +99,12 @@ nav ul li:not(:last-child) {
 
 .form-container {
     background-color: white;
-    padding: 20px;
+    padding: 50px;
     border-radius: 40px;
-    box-shadow: 0 0 10px #505050;
+    box-shadow: 0 0 10px #746f6f;
     width: 100%;
     max-width: 400px;
-    height: 75%; /* Ajustamos la altura al 100% */
+    height: 75%; 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -148,7 +143,6 @@ nav ul li:not(:last-child) {
 .form-container form input[type="text"]:focus,
 .form-container form input[type="tel"]:focus,
 .form-container form input[type="email"]:focus {
-    
     border-color: #1a3e68; /* Cambiamos el color del borde al enfocar */
 }
 

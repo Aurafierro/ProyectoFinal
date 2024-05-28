@@ -1,3 +1,4 @@
+
 * {
   margin: 0;
   padding: 0;
@@ -14,32 +15,7 @@ body {
 }
 
 .container {
-<<<<<<< HEAD
-  max-width: 60%; /* Reduzco la anchura máxima */
-  margin: 50% auto; /* Reduzco el margen vertical */
-  padding: 2%; /* Reduzco el padding interno */
-  background-color: rgba(0, 0, 0, 0.637);
-  border-radius: 50px; /* Reduzco el radio del borde */
-  color: #f0f0f0;
-}
-
-
-/* Títulos */
-h1#titulo {
-  font-family: "jomhuria";
-  font-weight: bold;
-  font-size: 300%; /* Reduzco el tamaño del título */
-}
-
-/* Campos de entrada de texto */
-input[type="text"],
-input[type="password"],
-input[type="tel"],
-input[type="email"],
-select.form-control {
-=======
   max-width: 700px;
->>>>>>> c5b928283d76346132868dedeb80a26adae0f7c8
   width: 100%;
   background-color: black;
   padding: 25px 30px;
