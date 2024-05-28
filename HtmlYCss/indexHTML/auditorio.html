@@ -13,22 +13,20 @@
 
 <body>
 
-  <div class="container">
-    <div class="contenedorImagen">
-      <img id="imagenPrincipal" class="col" src="../img/auditorio.png">
-
+  <div class="container-fluid">
+    <div class="contenedorTitulo">
       <h1 id="tituloPrincipal">Auditorio</h1>
     </div>
 
     <div class="row" style="display: flex; justify-content:space-evenly">
-      <div>
+      <div class="contenedorDescripcion">
         <h4>Bienvenido a nuestro auditorio, un espacio versátil diseñado para albergar una amplia gama de eventos y
           actividades emocionantes. Nuestro auditorio combina un diseño elegante y cómodo para ofrecer una
           experiencia excepcional tanto para los presentadores como para el público.</h4>
 
       </div>
       <div class="calendario">
-        <div class="fondoNegroCalendario">
+        <div class="fondoColorCalendario">
           <div class="month-selector">
             <button onclick="prevMonth()"
               style="background-color:#487BFF; color:white; border-radius:20px; font-size:15px;">&#10094;</button>
@@ -40,13 +38,13 @@
           <table class="calendar-table" style="background-color:white;">
             <thead>
               <tr>
-                <th style="background-color:red; color:white">Domingo</th>
-                <th style="background-color:red; color:white">Lunes</th>
-                <th style="background-color:red; color:white">Martes</th>
-                <th style="background-color:red; color:white">Miércoles</th>
-                <th style="background-color:red; color:white">Jueves</th>
-                <th style="background-color:red; color:white">Viernes</th>
-                <th style="background-color:red; color:white">Sábado</th>
+                <th style="background-color:#487BFF; color:white">Domingo</th>
+                <th style="background-color:#487BFF; color:white">Lunes</th>
+                <th style="background-color:#487BFF; color:white">Martes</th>
+                <th style="background-color:#487BFF; color:white">Miércoles</th>
+                <th style="background-color:#487BFF; color:white">Jueves</th>
+                <th style="background-color:#487BFF; color:white">Viernes</th>
+                <th style="background-color:#487BFF; color:white">Sábado</th>
               </tr>
             </thead>
             <tbody id="calendar-body"></tbody>

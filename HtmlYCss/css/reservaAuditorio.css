@@ -11,73 +11,40 @@ body {
 /*Para el título principal, el grande*/
 h1#tituloPrincipal {
   font-family: "jomhuria";
-  color: black;
-  margin: 10% 25%;
-  font-size: 1200%;
-}
-
-/*imágen principal, la del título
-img#imagenPrincipal{
-    width:"100%";
-    height:"auto"; 
-    filter: brightness(30%);
-}*/
-
-
-/*Para poner el titulo sobre la imagen*/
-
-.contenedorImagen {
-  position: relative;
-  /* Establece el contexto de posición para los elementos hijos */
-}
-
-.contenedorImagen img {
-  display: block;
-  /* Asegura que la imagen se muestre como un bloque */
-  width: 100%;
-  /* Para asegurar que la imagen ocupe todo el ancho del contenedor */
-  height: auto;
-  /* Para mantener la proporción de la imagen */
-  filter: brightness(30%);
-}
-
-.contenedorImagen h1#tituloPrincipal {
-  position: absolute;
-  /* Lo posiciona absolutamente con respecto al contenedor */
-  top: 20%;
-  /* Lo sitúa en la mitad superior del contenedor */
-  left: 30%;
-  /* Lo sitúa en el centro horizontal del contenedor */
-  transform: translate(-50%, -50%);
-  /* Lo desplaza hacia arriba y hacia la izquierda la mitad de su propio tamaño */
   color: white;
-  /* Color del texto */
-  text-align: center;
-  /* Alinea el texto al centro */
+  font-size: 1200%;
+  margin-top: 0%;
 }
+
+.contenedorTitulo{
+  background-color: #202C4A;
+}
+
 
 
 /*cuadros de los campos reservar*/
 div>input#camposReserva {
-  background-color: rgb(143, 143, 143);
+  background-color: white;
   margin-top: 5%;
   border-radius: 50px;
-  height: 40px;
+  height: 60px;
   width: 100%;
+  border:none;
+
 }
 
 /*letra desde el placeholder de todos los campos para reservar*/
 #camposReserva::placeholder {
-  color: white;
+  color:black;
   font-family: "jomhuria";
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bold;
+  
   /*Para poner la letra en negrita*/
 }
 
 /*letra o mensaje del texto de la descripción del ambiente, al lado izquierdo*/
 div>h4 {
-  margin-top: 20%;
   font-size: 220%;
   font-family: "jomhuria";
   padding-top: 10%;
@@ -87,6 +54,9 @@ div>h4 {
   line-height: 200%;
 }
 
+.contenedorDescripcion{
+  background-color: #93bdfd;
+}
 
 button#botonReservar {
   background-color: green;
@@ -95,23 +65,25 @@ button#botonReservar {
   border-radius: 50px;
   width: auto;
   height: auto;
-  font-size: 250%;
+  font-size: 25px;
   margin-top: 10%;
   margin-bottom: 0%;
   font-weight: bold;
+  border:none;
+
 
 }
 
 
 div.calendario {
-  background-color: rgb(87, 82, 82);
+  background-color: #202C4A;
   float: right;
   margin-top: 5%;
   width: 200%;
   padding-left: 5%;
   padding-right: 5%;
   padding-top: 6%;
-  border-radius: 6%;
+  border-radius: 100px;
   padding-bottom: 4%;
 }
 
@@ -149,7 +121,7 @@ body {
 
 /*Color cuando se selecciona un dia*/
 .selected {
-  background-color: #ffff00;
+  background-color: #93bdfd;
 }
 
 div.contenedorTabla {
@@ -175,8 +147,8 @@ tr#encabezado>td {
 }
 
 
-div.fondoNegroCalendario {
-  background-color: black;
+div.fondoColorCalendario {
+  background-color:#00000054;
   width: 100%;
   height: auto;
   padding: 5% 2%;
