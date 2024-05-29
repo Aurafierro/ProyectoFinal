@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AsignaWeb</title>
     <link rel="stylesheet" href="/HtmlYCss/css/historial.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <div class="sidebar">
             <div class="logo">
                 <img src="/HtmlYCss/img/NuevoLog.png" alt="AsignaWeb">
-                <span>AsignaWeb</span>
             </div>
             <div class="profile">
                 <img src="/HtmlYCss/img/perfil.png" alt="Profile Picture">
@@ -19,16 +19,16 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#">Modificar datos</a></li>
-                    <li><a href="#">Cambiar contraseña</a></li>
-                    <li><a href="#">Historial</a></li>
-                    <li><a href="#">Eliminar cuenta</a></li>
+                    <li><a href="#"><i class="fa-solid fa-pencil"></i></i>Modificar datos</a></li>
+                    <li><a href="#"><i class="fas fa-lock"></i></i>Cambiar contraseña</a></li>
+                    <li><a href="#"><i class="fas fa-book"></i></i> Historial</a></li>
+                    <li><a href="#"><i class="fas fa-trash"></i>Eliminar cuenta</a></li>
                 </ul>
             </nav>
         </div>
         <div class="main-content">
             <header>
-                <button class="logout">Cerrar sesión</button>
+                <span class="logout">Cerrar sesión</span> 
             </header>
             <div class="table-container">
                 <table>
@@ -48,7 +48,7 @@
                             <td></td>
                             <td></td>
                             <td>
-                                <button class="edit">Editar</button>
+                                <button class="edit" onclick="openModal()">Editar</button>
                                 <button class="delete">Eliminar</button>
                             </td>
                         </tr>
@@ -70,5 +70,36 @@
             </div>
         </div>
     </div>
+     <!-- Modal de edición -->
+     <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Reservación</h2>
+            <div class="input-container">
+              <label for="usuario">Usuario:</label>
+              <input type="text" id="usuario" name="usuario">
+            </div>
+            <div class="input-container">
+              <label for="entrada">Entrada:</label>
+              <input type="text" id="entrada" name="entrada">
+            </div>
+            <div class="input-container">
+              <label for="salida">Salida:</label>
+              <input type="text" id="salida" name="salida">
+            </div>
+            <button class="save">Guardar</button>
+          </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('editModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('editModal').style.display = 'none';
+        }
+    </script>
+    
 </body>
 </html>
