@@ -1,17 +1,15 @@
 /* Estilos para el cuerpo y la cabecera */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: "jomhuria";
     display: flex;
     flex-direction: column;
     height: 100vh;
-<<<<<<< HEAD
-    overflow: hidden; /* Evitar el desplazamiento */
-    background-color: #1a3e68; /* Fondo azul */
-=======
-
->>>>>>> 98c86c2d1b92be5ea60b0b46bb57ff5b04a707da
 }
+@font-face {
+    font-family: "jomhuria";
+    src: url("../Jomhuria-Regural.ttf");
+  }
 
 .header {
     width: 100%; 
@@ -20,28 +18,24 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-<<<<<<< HEAD
-    padding: 1% 1%;
-=======
-    padding: 20px 40px; 
->>>>>>> 98c86c2d1b92be5ea60b0b46bb57ff5b04a707da
+    padding: 1% 5%; 
     box-sizing: border-box;
 }
 
 .header .logo {
     display: flex;
     align-items: center;
-    font-size: 160%;
+   
 }
 
 .header .logo-img {
-    width: 6%;
+    width: 8%;
 }
 
 .header .logout a {
     color: white;
     text-decoration: none;
-    padding-right: 20%; /* Añadir padding a la derecha */
+    padding-right: 10px; /* Añadir padding a la derecha */
 }
 
 .container {
@@ -50,7 +44,7 @@ body {
 }
 
 .sidebar {
-    width: 15%;
+    width: 13%;
     background-color: #1a3e68;
     color: white;
     display: flex;
@@ -100,7 +94,6 @@ nav ul {
     list-style: none;
     padding: 0;
     width: 100%;
-    text-align: center;
 }
 
 nav ul li {
@@ -120,17 +113,9 @@ nav ul li a.active {
     font-weight: bold;
 }
 
-<<<<<<< HEAD
-/* Quitamos las líneas separadoras debajo de cada botón */
-nav ul li {
-    border-bottom: none;
-}
-
-=======
->>>>>>> 98c86c2d1b92be5ea60b0b46bb57ff5b04a707da
 .main-content {
     flex-grow: 1;
-    background-color: #487BFF; /* Cambiado a fondo azul */
+    background-color: #ffffff; /* Cambiado a fondo azul */
     padding: 4%;
     display: flex;
     justify-content: center;
@@ -140,21 +125,12 @@ nav ul li {
 
 .form-container {
     background-color: white;
-<<<<<<< HEAD
-    padding: 5%;
-    border-radius: 45px;
-    box-shadow: 0 0 10px #505050;
-    width: 100%;
-    max-width: 30%;
-    height: 75%; /* Ajustamos la altura al 100% */
-=======
     padding: 50px;
     border-radius: 40px;
     box-shadow: 0 0 10px #746f6f;
     width: 100%;
     max-width: 400px;
     height: 75%; 
->>>>>>> 98c86c2d1b92be5ea60b0b46bb57ff5b04a707da
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -198,7 +174,7 @@ nav ul li {
 
 /* Estilo para el botón Enviar */
 .form-container form button {
-    padding: 12px; /* Aumentamos el padding */
+    padding: 18px; /* Aumentamos el padding */
     background-color: #28a745;
     color: white;
     border: none;

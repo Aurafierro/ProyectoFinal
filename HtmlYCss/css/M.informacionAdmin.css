@@ -1,7 +1,6 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
@@ -9,8 +8,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Centra el contenido verticalmente */
-    height: 100vh; /* Asegura que el cuerpo ocupe toda la altura de la ventana */
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
 .profile {
@@ -20,28 +21,36 @@ body {
 }
 
 .profile__link {
-    font-size: 2.3vw;
+    font-size: 40px;
     color: black;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: bolder;
+}
+
+.main-content {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 110px;
+    gap: 20px;
 }
 
 .container__cards {
     width: 100%;
-    max-width: 1200px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 20px;
-    gap: 20px; /* Agrega espacio entre las tarjetas */
+    gap: 20px;
 }
 
 .card {
-    flex: 1 1 calc(25% - 40px); /* Ajusta el tamaño de las tarjetas para mostrar cuatro en una fila */
-    max-width: calc(25% - 40px); /* Asegura que el tamaño máximo sea el mismo que el tamaño calculado */
+    flex: 1 1 calc(25% - 40px);
+    max-width: calc(25% - 40px);
     margin: 10px;
-    padding: 20px;
-    box-shadow: 20px 20px 50px black;
+    padding: 22px;
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.3);
     background-color: rgb(3, 3, 3);
     border-radius: 18px;
     box-sizing: border-box;
@@ -57,13 +66,13 @@ body {
 .cover__card img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ajusta el tamaño y el recorte de la imagen */
+    object-fit: cover;
 }
 
 .card h2 {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 400;
-    margin-top: 20px;
+    margin-top: 10px;
     color: white;
     text-align: center;
 }
@@ -71,25 +80,105 @@ body {
 .icon-container {
     display: flex;
     justify-content: center;
-    align-items: center; /* Alinea el contenido verticalmente */
+    align-items: center;
     margin-top: 12%;
 }
+
 .icon {
-    font-size: 45px; /* Tamaño del icono */
+    font-size: 100px;
     color: white;
     cursor: pointer;
     transition: transform 0.3s;
-    background-color: rgb(3, 3, 3); /* Color de fondo */
-    border-radius: 25px; /* Bordes redondeados */
-    width: 20%; /* Ancho del cuadro */
-    height: 180px; /* Alto del cuadro */
+    background-color: rgb(3, 3, 3);
+    border-radius: 25px;
+    width: 290px;
+    height: 280px;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 20px 20px 50px black; /* Sombra */
-    text-decoration: none; /* Para eliminar subrayado del enlace */
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
 }
 
 .icon:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 800px;
+    margin-top: 20px;
+}
+
+.search-bar input[type="text"] {
+    width: calc(100% - 60px);
+    padding: 18px;
+    font-size: 18px;
+    border: 2px solid rgb(3, 3, 3);
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    outline: none;
+}
+
+.search-bar button {
+    width: 60px;
+    height: 60px;
+    background-color: rgb(3, 3, 3);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.search-bar button i {
+    font-size: 24px;
+    color: white;
+}
+
+@media (max-width: 1200px) {
+    .card {
+        flex: 1 1 calc(33.33% - 40px);
+        max-width: calc(33.33% - 40px);
+    }
+}
+
+@media (max-width: 900px) {
+    .card {
+        flex: 1 1 calc(50% - 40px);
+        max-width: calc(50% - 40px);
+    }
+}
+
+@media (max-width: 600px) {
+    .card {
+        flex: 1 1 calc(100% - 40px);
+        max-width: calc(100% - 40px);
+    }
+
+    .profile {
+        position: static;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .profile__link {
+        font-size: 16px;
+    }
+
+    .search-bar input[type="text"] {
+        width: calc(100% - 50px);
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .search-bar button {
+        width: 50px;
+        height: 40px;
+    }
 }

@@ -24,11 +24,7 @@ h1#tituloPrincipal {
 
 /*cuadros de los campos reservar*/
 div>input#camposReserva {
-<<<<<<< HEAD:HtmlYCss/css/reservaSalasDisponibles.css
-  background-color: white;
-=======
   background-color: rgb(255, 255, 255);
->>>>>>> 70d9942c500d326f30e407a66b506ce06bb9301d:HtmlYCss/css/reservaAuditorio.css
   margin-top: 5%;
   border-radius: 50px;
   height: 60px;
@@ -39,11 +35,7 @@ div>input#camposReserva {
 
 /*letra desde el placeholder de todos los campos para reservar*/
 #camposReserva::placeholder {
-<<<<<<< HEAD:HtmlYCss/css/reservaSalasDisponibles.css
-  color:black;
-=======
   color: rgb(0, 0, 0);
->>>>>>> 70d9942c500d326f30e407a66b506ce06bb9301d:HtmlYCss/css/reservaAuditorio.css
   font-family: "jomhuria";
   font-size: 30px;
   font-weight: bold;
