@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffffffa6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centra el contenido verticalmente */
+    height: 100vh; /* Asegura que el cuerpo ocupe toda la altura de la ventana */
+}
+
+.profile {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.profile__link {
+    font-size: 2.3vw;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.container__cards {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    gap: 20px; /* Agrega espacio entre las tarjetas */
+}
+
+.card {
+    flex: 1 1 calc(25% - 40px); /* Ajusta el tamaño de las tarjetas para mostrar cuatro en una fila */
+    max-width: calc(25% - 40px); /* Asegura que el tamaño máximo sea el mismo que el tamaño calculado */
+    margin: 10px;
+    padding: 20px;
+    box-shadow: 20px 20px 50px black;
+    background-color: rgb(3, 3, 3);
+    border-radius: 18px;
+    box-sizing: border-box;
+}
+
+.cover__card {
+    width: 100%;
+    height: 160px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.cover__card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta el tamaño y el recorte de la imagen */
+}
+
+.card h2 {
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 20px;
+    color: white;
+    text-align: center;
+}
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Alinea el contenido verticalmente */
+    margin-top: 12%;
+}
+.icon {
+    font-size: 45px; /* Tamaño del icono */
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s;
+    background-color: rgb(3, 3, 3); /* Color de fondo */
+    border-radius: 25px; /* Bordes redondeados */
+    width: 20%; /* Ancho del cuadro */
+    height: 180px; /* Alto del cuadro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 20px 20px 50px black; /* Sombra */
+    text-decoration: none; /* Para eliminar subrayado del enlace */
+}
+
+.icon:hover {
+    transform: scale(1.2);
+}
