@@ -1,70 +1,104 @@
+/* Variables CSS para colores */
+:root {
+    --primary-color: #1a3e68;
+    --secondary-color: #28a745;
+    --hover-color: #218838;
+    --background-color: #f0f0f0;
+    --white: #ffffff;
+    --gray: #555;
+    --border-radius: 25px;
+    --shadow-color: rgba(116, 111, 111, 0.5);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: "jomhuria";
+    src: url("../Jomhuria-Regural.ttf");
+}
+
 /* Estilos para el cuerpo y la cabecera */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: "jomhuria";
+    font-weight: bold;
     display: flex;
     flex-direction: column;
     height: 100vh;
+    background-color: var(--background-color);
+    overflow: hidden; /* Hace que la página sea estática */
 }
 
 .header {
-    width: 100%; 
-    background-color: #1a3e68;
-    color: white;
+    width: 100%;
+    background-color: var(--primary-color);
+    color: var(--white);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px; 
+    padding: 20px 40px;
     box-sizing: border-box;
 }
 
 .header .logo {
     font-size: 24px;
     display: flex;
-    flex-direction: column; /* Cambiamos a columna para apilar imagen y texto verticalmente */
-    align-items: center; /* Centramos los elementos horizontalmente */
+    flex-direction: column;
+    align-items: center;
 }
 
 .header .logo img.logo-img {
-    width: 50px; /* Ajusta el tamaño de la imagen según necesites */
-    height: 50px; /* Ajusta el tamaño de la imagen según necesites */
-    margin-bottom: 5px; /* Espacio entre la imagen y el texto */
+    width: 50px;
+    height: 50px;
+    margin-bottom: 5px;
 }
 
 .header .logout a {
-    color: white;
+    color: var(--white);
     text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.header .logout a:hover {
+    color: var(--hover-color);
 }
 
 .container {
     display: flex;
     flex: 1;
+    flex-direction: row;
 }
 
 .sidebar {
     width: 250px;
-    background-color: #1a3e68;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--white);
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px 0;
     box-sizing: border-box;
-    height: 100%;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .profile {
     text-align: center;
     margin-bottom: 30px;
-    margin-top: -300px; /* Ajusta este valor según necesites */
-    border-bottom: 1px solid white; /* Añade una línea de separación */
-    padding-bottom: 20px; /* Añade un poco de espacio debajo del perfil */
+    border-bottom: 1px solid black;
+    padding-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    box-sizing: border-box;
+    margin-top: 50px; /* Ajusta este valor para mover el perfil y la línea más abajo */
 }
 
 .profile-pic {
-    width: 160px; /* Aumenta el tamaño del círculo */
-    height: 160px; /* Aumenta el tamaño del círculo */
+    width: 160px;
+    height: 160px;
     background-color: gray;
     border-radius: 50%;
     margin: 0 auto 10px;
@@ -72,7 +106,7 @@ body {
 
 .profile span {
     display: block;
-    font-size: 22px; /* Aumenta el tamaño del nombre */
+    font-size: 22px;
 }
 
 nav ul {
@@ -80,32 +114,40 @@ nav ul {
     padding: 0;
     width: 100%;
     text-align: center;
+    margin-top: 60px; /* Añade un margen superior para mover los botones hacia abajo */
 }
 
 nav ul li {
-    margin: 15px 0;
+    margin: 40px 0; /* Aumenta el espacio entre los botones */
 }
 
 nav ul li a {
-    color: white;
+    color: var(--white);
     text-decoration: none;
     font-size: 18px;
-    display: flex; /* Permite alinear el icono y el texto horizontalmente */
-    align-items: center; /* Centra verticalmente el icono y el texto */
-    justify-content: center; /* Centra horizontalmente el icono y el texto */
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease-in-out;
+    font-weight: bold;
 }
 
 nav ul li a i {
-    margin-right: 8px; /* Agrega un poco de espacio entre el icono y el texto */
+    margin-right: 8px;
 }
 
 nav ul li a.active {
     font-weight: bold;
 }
 
+nav ul li a:hover {
+    color: var(--white); /* Mantén el color de texto blanco al pasar el cursor */
+    text-decoration: none; /* Quita el subrayado al pasar el cursor */
+    background-color: transparent; /* Quita el color de fondo al pasar el cursor */
+}
+
 .main-content {
     flex-grow: 1;
-    background-color: #f0f0f0;
+    background-color: var(--background-color);
     padding: 4%;
     display: flex;
     justify-content: center;
@@ -114,16 +156,17 @@ nav ul li a.active {
 }
 
 .form-container {
-    background-color: white;
-    padding: 50px;
+    background-color: var(--white);
+    padding: 3%;
     border-radius: 40px;
-    box-shadow: 0 0 10px #746f6f;
+    box-shadow: 0 0 10px var(--shadow-color);
     width: 100%;
-    max-width: 400px;
-    height: 75%; 
+    max-width: 500px;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    font-weight: bold;
 }
 
 .form-container h2 {
@@ -133,9 +176,10 @@ nav ul li a.active {
 
 .password-instructions {
     text-align: center;
-    font-size: 14px;
-    color: #555;
-    margin: 10px 0 20px;
+    font-size: 20px;
+    color: #000000;
+    margin: 10% 0 10%;
+    font-weight: bold;
 }
 
 .form-container form {
@@ -146,39 +190,43 @@ nav ul li a.active {
 
 .form-container form label {
     margin: 10px 0 5px;
+    font-size: 30px;
+    align-self: flex-start;
 }
 
-/* Estilo para los campos de entrada */
 .form-container form input[type="password"] {
-    padding: 10px;
+    padding: 15px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
-    border-radius: 25px;
-    outline: none;
+    border-radius: var(--border-radius);
+    outline: none;  
     transition: border-color 0.3s ease-in-out;
-    width: calc(100% - 22px);
-    background-color: black;
+    width: calc(110% - 22px);
+    background-color: rgb(83, 82, 82);
     color: white;
 }
 
 .form-container form input[type="password"]:focus {
-    border-color: #1a3e68;
+    border-color: var(--primary-color);
 }
 
-/* Estilo para el botón Enviar */
 .form-container form button {
-    padding: 12px;
-    background-color: #28a745;
-    color: white;
+    padding: 10px;
+    background-color: var(--secondary-color);
+    color: var(--white);
     border: none;
-    border-radius: 25px;
+    border-radius: var(--border-radius);
     cursor: pointer;
     width: 150px;
     margin: 10px auto;
+    transition: background-color 0.3s ease-in-out;
+    font-family: "jomhuria";
+    font-weight: bold;
+    font-size: 30px; /* Aumenta el tamaño de la letra del botón */
 }
 
 .form-container form button:hover {
-    background-color: #218838;
+    background-color: var(--hover-color);
 }
 
 @media (max-width: 768px) {
@@ -192,7 +240,47 @@ nav ul li a.active {
         padding: 10px 0;
     }
 
+    .header {
+        padding: 10px 20px;
+    }
+
     .main-content {
         padding: 20px;
+    }
+
+    .profile {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .header .logo img.logo-img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .header .logo {
+        font-size: 20px;
+    }
+
+    .header .logout a {
+        font-size: 14px;
+    }
+
+    nav ul li a {
+        font-size: 16px;
+    }
+
+    .form-container {
+        padding: 30px;
+    }
+
+    .form-container form input[type="password"] {
+        padding: 8px;
+    }
+
+    .form-container form button {
+        padding: 10px;
+        width: 120px;
     }
 }
