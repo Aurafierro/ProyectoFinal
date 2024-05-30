@@ -1,8 +1,6 @@
 /* Variables CSS para colores */
 :root {
     --primary-color: #1a3e68;
-    --secondary-color: #28a745;
-    --hover-color: #218838;
     --background-color: #f0f0f0;
     --white: #ffffff;
     --gray: #555;
@@ -60,7 +58,7 @@ body {
 .header .logout a {
     color: var(--white);
     text-decoration: none;
-    transition: color 0.3s ease-in-out;
+    
 }
 
 .header .logout a:hover {
@@ -92,16 +90,50 @@ body {
     padding-bottom: 20px;
     width: 100%;
     box-sizing: border-box;
-    box-sizing: border-box;
     margin-top: 50px; /* Ajusta este valor para mover el perfil y la línea más abajo */
 }
 
 .profile-pic {
+    position: relative;
     width: 160px;
     height: 160px;
-    background-color: gray;
+    background-color: transparent; /* Cambiado a transparente */
     border-radius: 50%;
     margin: 0 auto 10px;
+    overflow: hidden;
+    cursor: pointer; /* Añadido cursor pointer para indicar que se puede hacer clic */
+    border: 3px solid #fff; /* Añadido un borde blanco para dar contraste */
+}
+
+.profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-pic i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 70px;
+    color: #000000;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out; /* Transición suave para la opacidad */
+    z-index: 1; /* Añadido z-index para estar por encima de la imagen */
+    display: none; /* Inicialmente oculto */
+}
+.profile-pic:hover i {
+    opacity: 1;
+}
+.profile-pic input[type="file"] {
+    display: none;
+}
+
+.profile-pic:hover i {
+    display: block; /* Mostrar el ícono al pasar el cursor por encima */
+    z-index: 2; /* Asegurar que el ícono esté por encima de la imagen */
+    color: var(--white); /* Color blanco para el ícono al pasar el cursor */
 }
 
 .profile span {
@@ -212,14 +244,12 @@ nav ul li a:hover {
 
 .form-container form button {
     padding: 10px;
-    background-color: var(--secondary-color);
-    color: var(--white);
+    background-color: #2dcf42;
     border: none;
     border-radius: var(--border-radius);
     cursor: pointer;
     width: 150px;
     margin: 10px auto;
-    transition: background-color 0.3s ease-in-out;
     font-family: "jomhuria";
     font-weight: bold;
     font-size: 30px; /* Aumenta el tamaño de la letra del botón */
