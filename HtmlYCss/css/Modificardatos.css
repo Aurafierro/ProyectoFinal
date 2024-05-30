@@ -2,7 +2,6 @@
 :root {
     --primary-color: #1a3e68;
     --secondary-color: #28a745;
-    --hover-color: #218838;
     --background-color: #f0f0f0;
     --white: #ffffff;
     --gray: #555;
@@ -236,6 +235,7 @@ nav ul li a.active {
     width: 150px; /* Ancho fijo */
     margin: 10px auto; /* Centramos el botón y aplicamos margen */
     font-size: 100%; /* Aumentamos el tamaño de la letra */
+    font-family: "jomhuria";
 }
 
 .form-container form button:hover {

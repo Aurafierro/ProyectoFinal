@@ -7,54 +7,23 @@ body {
   font-family: "jomhuria";
 
 }
+div {
+  display: block;
+  unicode-bidi: isolate;
+}
+
+.contenedortituloPrincipal {
+  background-color: #202C4A;
+}
 
 /*Para el título principal, el grande*/
 h1#tituloPrincipal {
   font-family: "jomhuria";
-  color: black;
-  margin: 10% 25%;
+  color: rgb(255, 255, 255);
   font-size: 1200%;
+  margin: 0%;
 }
 
-/*imágen principal, la del título
-img#imagenPrincipal{
-    width:"100%";
-    height:"auto"; 
-    filter: brightness(30%);
-}*/
-
-
-/*Para poner el titulo sobre la imagen*/
-
-.contenedorImagen {
-  position: relative;
-  /* Establece el contexto de posición para los elementos hijos */
-}
-
-.contenedorImagen img {
-  display: block;
-  /* Asegura que la imagen se muestre como un bloque */
-  width: 100%;
-  /* Para asegurar que la imagen ocupe todo el ancho del contenedor */
-  height: auto;
-  /* Para mantener la proporción de la imagen */
-  filter: brightness(30%);
-}
-
-.contenedorImagen h1#tituloPrincipal {
-  position: absolute;
-  /* Lo posiciona absolutamente con respecto al contenedor */
-  top: 20%;
-  /* Lo sitúa en la mitad superior del contenedor */
-  left: 30%;
-  /* Lo sitúa en el centro horizontal del contenedor */
-  transform: translate(-50%, -50%);
-  /* Lo desplaza hacia arriba y hacia la izquierda la mitad de su propio tamaño */
-  color: white;
-  /* Color del texto */
-  text-align: center;
-  /* Alinea el texto al centro */
-}
 
 /*cuadros de los campos reservar*/
 div>input#camposReserva {
