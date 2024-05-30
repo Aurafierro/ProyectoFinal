@@ -1,4 +1,15 @@
 /* Estilos para el cuerpo y la cabecera */
+:root {
+    --primary-color: #1a3e68;
+    --secondary-color: #28a745;
+    --hover-color: #218838;
+    --background-color: #f0f0f0;
+    --white: #ffffff;
+    --gray: #555;
+    --border-radius: 25px;
+    --shadow-color: rgba(116, 111, 111, 0.5);
+}
+
 body {
     margin: 0;
     font-family: "jomhuria";
@@ -11,102 +22,108 @@ body {
     src: url("../Jomhuria-Regural.ttf");
   }
 
-.header {
-    width: 100%; 
-    background-color: #1a3e68;
-    color: white;
+
+
+  .header {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: var(--white);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1% 5%; 
+    padding: 20px 40px;
     box-sizing: border-box;
 }
 
 .header .logo {
+    font-size: 24px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-   
 }
 
-.header .logo-img {
-    width: 8%;
+.header .logo img.logo-img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 5px;
 }
 
 .header .logout a {
-    color: white;
+    color: var(--white);
     text-decoration: none;
-    padding-right: 10px; /* Añadir padding a la derecha */
+    transition: color 0.3s ease-in-out;
+}
+
+.header .logout a:hover {
+    color: var(--hover-color);
 }
 
 .container {
     display: flex;
     flex: 1;
+    flex-direction: row;
 }
 
 .sidebar {
-    width: 13%;
-    background-color: #1a3e68;
-    color: white;
+    width: 250px;
+    background-color: var(--primary-color);
+    color: var(--white);
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10% 0;
+    padding: 20px 0;
     box-sizing: border-box;
-    height: 100%; /* Ajustamos la altura al 100% */
-    overflow-y: auto; /* Añadimos scroll solo si es necesario */
+    justify-content: flex-start;
 }
 
 .profile {
     text-align: center;
-    margin-bottom: 10%; /* Reducimos el margen */
-}
-
-.divider {
+    margin-bottom: 30px;
+    border-bottom: 1px solid black;
+    padding-bottom: 20px;
     width: 100%;
-    height: 1px;
-    background-color: rgba(0, 0, 0, 0.5);
-    margin-bottom: 20%; /* Añadimos un margen después de la línea separadora */
+    box-sizing: border-box;
+    box-sizing: border-box;
+    margin-top: 50px; /* Ajusta este valor para mover el perfil y la línea más abajo */
 }
 
 .profile-pic {
-    width: 80px;
-    height: 80px;
+    width: 160px;
+    height: 160px;
     background-color: gray;
     border-radius: 50%;
     margin: 0 auto 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.profile-pic img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
 }
 
 .profile span {
     display: block;
-    font-size: 100%;
+    font-size: 22px;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
     width: 100%;
+    text-align: center;
+    margin-top: 60px; /* Añade un margen superior para mover los botones hacia abajo */
 }
 
 nav ul li {
-    margin: 15px 0;
+    margin: 40px 0; /* Aumenta el espacio entre los botones */
 }
 
 nav ul li a {
-    color: white;
+    color: var(--white);
     text-decoration: none;
-    font-size: 110%;
-    display: block;
-    padding: 10px 0;
-    width: 100%;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease-in-out;
+    font-weight: bold;
+}
+
+nav ul li a i {
+    margin-right: 8px;
 }
 
 nav ul li a.active {
