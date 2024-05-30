@@ -17,14 +17,13 @@ body {
     flex-direction: column;
     height: 100vh;
 }
+
 @font-face {
     font-family: "jomhuria";
     src: url("../Jomhuria-Regural.ttf");
-  }
+}
 
-
-
-  .header {
+.header {
     width: 100%;
     background-color: var(--primary-color);
     color: var(--white);
@@ -36,7 +35,7 @@ body {
 }
 
 .header .logo {
-    font-size: 24px;
+    font-size: 35px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -52,6 +51,7 @@ body {
     color: var(--white);
     text-decoration: none;
     transition: color 0.3s ease-in-out;
+    font-size: 155%;
 }
 
 .header .logout a:hover {
@@ -83,16 +83,50 @@ body {
     padding-bottom: 20px;
     width: 100%;
     box-sizing: border-box;
-    box-sizing: border-box;
     margin-top: 50px; /* Ajusta este valor para mover el perfil y la línea más abajo */
 }
 
 .profile-pic {
+    position: relative;
     width: 160px;
     height: 160px;
-    background-color: gray;
+    background-color: transparent; /* Cambiado a transparente */
     border-radius: 50%;
     margin: 0 auto 10px;
+    overflow: hidden;
+    cursor: pointer; /* Añadido cursor pointer para indicar que se puede hacer clic */
+    border: 3px solid #fff; /* Añadido un borde blanco para dar contraste */
+}
+
+.profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-pic i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 70px;
+    color: #000000;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out; /* Transición suave para la opacidad */
+    z-index: 1; /* Añadido z-index para estar por encima de la imagen */
+    display: none; /* Inicialmente oculto */
+}
+.profile-pic:hover i {
+    opacity: 1;
+}
+.profile-pic input[type="file"] {
+    display: none;
+}
+
+.profile-pic:hover i {
+    display: block; /* Mostrar el ícono al pasar el cursor por encima */
+    z-index: 2; /* Asegurar que el ícono esté por encima de la imagen */
+    color: var(--white); /* Color blanco para el ícono al pasar el cursor */
 }
 
 .profile span {
@@ -105,7 +139,7 @@ nav ul {
     padding: 0;
     width: 100%;
     text-align: center;
-    margin-top: 60px; /* Añade un margen superior para mover los botones hacia abajo */
+    margin-top: 150px; /* Añade un margen superior para mover los botones hacia abajo */
 }
 
 nav ul li {
@@ -156,12 +190,13 @@ nav ul li a.active {
 .form-container h2 {
     margin-top: 0;
     text-align: center; /* Centramos el título */
+    font-size: 300%; /* Aumentamos el tamaño de la letra */
 }
 
 .form-container form {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centramos los elementos del formulario */
+    font-size: 145%; /* Aumentamos el tamaño de la letra */
 }
 
 .form-container form label {
@@ -172,14 +207,15 @@ nav ul li a.active {
 .form-container form input[type="text"],
 .form-container form input[type="tel"],
 .form-container form input[type="email"] {
-    padding: 10px;
+    padding: 15px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 25px; /* Hacemos los bordes redondeados */
     outline: none; /* Quitamos el borde de enfoque */
     transition: border-color 0.3s ease-in-out; /* Transición suave para el cambio de color de borde */
     width: calc(100% - 22px); /* Ajustamos el ancho para que sea igual al resto de los inputs */
-    background-color: black; /* Fondo negro */
+    background-color: #000000; /* Fondo negro */
+    opacity: 71%;
     color: white; /* Texto blanco */
 }
 
@@ -199,6 +235,7 @@ nav ul li a.active {
     cursor: pointer;
     width: 150px; /* Ancho fijo */
     margin: 10px auto; /* Centramos el botón y aplicamos margen */
+    font-size: 100%; /* Aumentamos el tamaño de la letra */
 }
 
 .form-container form button:hover {
