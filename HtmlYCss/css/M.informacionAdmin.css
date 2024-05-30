@@ -11,7 +11,7 @@ body {
     justify-content: center;
     min-height: 100vh;
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: "jomhuria";
 }
 
 .profile {
@@ -35,6 +35,15 @@ body {
     align-items: center;
     padding: 110px;
     gap: 20px;
+}
+
+.contenedorParteSuperior{
+    display: flex;
+    justify-content: space-around;
+}
+
+#iconoVolver{
+    width: 20%;
 }
 
 .container__cards {

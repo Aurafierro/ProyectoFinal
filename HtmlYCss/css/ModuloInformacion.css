@@ -2,11 +2,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
 }
 
 body {
     background-color: #ffffffa6;
-    font-family: Arial, sans-serif;
+    font-family: "jomhuria";
+    overflow: hidden;
 }
 
 .profile {
@@ -27,7 +29,7 @@ body {
     width: 100%;
     max-width: 1200px;
     margin: 20px auto;
-    padding: 15%;
+    padding: 10%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,7 +42,7 @@ body {
     justify-content: center;
     width: 100%;
     max-width: 800px;
-    margin-bottom: 100px;
+    margin-bottom: 5%;
 }
 
 .search-bar input[type="text"] {
@@ -71,6 +73,9 @@ body {
     color: white;
 }
 
+#mensajeSeleccionar{
+    font-family: "jomhuria";
+}
 .container__cards {
     width: 250%;
     max-width: 1400%; /* Cambiado de 1200px a 1400px para hacer más ancho */

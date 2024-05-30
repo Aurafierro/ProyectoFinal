@@ -9,44 +9,52 @@
 </head>
 <body>
     
+    <div class="contenedorParteSuperior">
     <div class="profile">
-        <a href="#" class="profile__link"><i class="fas fa-user"></i> Mi perfil</a>
+        <a href="../indexHTML/" class="profile__link"><i class="fas fa-user"></i> Mi perfil</a>
     </div>
 
+    <div>
+        <a href="../indexHTML/InicioSesión.html"> <img src="/iconos/volver.svg" alt="" id="iconoVolver"> </a>
+    </div>
     <div class="search-bar">
         <input type="text" placeholder="Ingresa el nombre del espacio que deseas buscar">
         <button><i class="fas fa-search"></i></button>
     </div>
-
+</div>
+    
     <div class="main-content">
+        <div>
+            <h2 id="mensajeSeleccionar">Selecciona un espacio dando clic en el título</h2>
+        </div>
         <div class="container__cards">
             <div class="card">
                 <div class="cover__card">
                     <img src="../img/auditorio.png" alt="">
                 </div>
-                <h2>Auditorio</h2>
+                <a href="../indexHTML/auditorio.html"><h2>Auditorio</h2></a>
             </div>
 
             <div class="card">
                 <div class="cover__card">
                     <img src="../img/biblioteca.jpeg" alt="">
                 </div>
-                <h2>Biblioteca</h2>    
-            </div>
-
-            <div class="card">
-                <div class="cover__card">
-                    <img src="../img/gimnasio.jpg" alt="">
-                </div>
-                <h2>Canchas</h2>
-          
+                <a href="../indexHTML/biblioteca.html"><h2>Biblioteca</h2></a> 
             </div>
 
             <div class="card">
                 <div class="cover__card">
                     <img src="../img/cancha.jpeg" alt="">
                 </div>
-                <h2>Gym</h2>
+                <a href="../indexHTML/cancha.html"><h2>Cancha</h2></a>
+          
+            </div>
+
+            <div class="card">
+                <div class="cover__card">
+                    <img src="../img/gimnasio.jpg" alt="">
+                </div>
+                <a href="../indexHTML/gimnasio.html"><h2>Gimnasio</h2></a>
             </div>   
         </div>
         <div class="icon-container">
