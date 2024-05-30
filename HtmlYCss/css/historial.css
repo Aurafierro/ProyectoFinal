@@ -42,24 +42,49 @@ body {
 }
 
 /* Estilos para la sección de perfil */
-.profile {
-    margin-top: 10px; /* Reducido el margen superior */
-    margin-bottom: 20px; /* Añadido margen inferior */
-}
-
-.profile img {
+.profile-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
     border-radius: 50%;
-    width: 140px;
-    height: 140px;
+    overflow: hidden;
+    cursor: pointer;
 }
 
-.profile h2 {
-    margin: 20px 0 20px;
+.profile-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-container .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 50%;
+}
+
+.profile-container:hover .overlay {
+    opacity: 1;
+}
+
+.profile-container .overlay i {
+    font-size: 24px;
 }
 
 /* Estilos para la navegación */
 nav {
-    margin-top: 50px; /* Ajuste del margen superior */
+    margin-top: 150px; /* Ajuste del margen superior */
 }
 
 nav ul {
@@ -79,7 +104,7 @@ nav ul li a {
     padding: 15px; /* Padding aumentado */
     display: flex;
     align-items: center;
-    justify-content: center;
+    
 }
 
 nav ul li a i {
@@ -93,7 +118,7 @@ nav ul li a:hover {
 /* Estilos para el contenido principal */
 .main-content {
     flex: 1;
-    background-color: #487BFF; /* Fondo azul claro */
+    background-color: #f3f3f3; /* Fondo azul claro */
     display: flex;
     flex-direction: column;
 }
@@ -147,6 +172,7 @@ td button {
     border: none;
     border-radius: 3px;
     cursor: pointer;
+    font-family: Jomhuria;
 }
 
 .edit {
@@ -173,7 +199,7 @@ td button {
 .pdf-download {
     padding: 20px;
     text-align: right;
-    background-color: #487BFF; /* Fondo azul claro */
+    background-color: #f3f3f3; /* Fondo azul claro */
 }
 
 /* Estilos para el botón de descarga de PDF */
@@ -184,6 +210,7 @@ td button {
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 20px;
+    font-family: Jomhuria;
 }
 
 .pdf-download button:hover {
@@ -191,9 +218,10 @@ td button {
 }
 
 
-/* Estilos para el modal de edición */
+
+/* Estilos para el modal */
 .modal {
-    display: none; /* Ocultar por defecto */
+    display: none; /* Ocultar el modal por defecto */
     position: fixed;
     z-index: 1;
     left: 0;
@@ -201,66 +229,80 @@ td button {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
+    background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro con opacidad */
+    justify-content: center;
+    align-items: center;
 }
 
+/* Estilos para el contenido del modal */
 .modal-content {
-    background-color: #f1e2e2;
+    background-color: #ffffff; /* Fondo rosa claro */
     padding: 20px;
-    border: 1px solid #888;
-    width: 50%;
-    border-radius: 10px;
-    box-sizing: border-box;
+    border-radius: 20px;
+    width: 800px; /* Ancho del modal aumentado */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: relative;
 }
 
+/* Estilos para el título centrado */
 .modal-content h2 {
-    margin-top: 0;
+    text-align: center;
 }
 
-.modal-content label {
-    display: block;
-    margin-top: 10px;
-}
-
-.modal-content input {
-    width: calc(20% - 20px); /* 50% width minus padding */
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-.modal-content .save {
-    background-color: #2ecc71;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 20px;
-}
-
-.modal-content .save:hover {
-    background-color: #27ae60;
-}
-
+/* Estilos para el botón de cierre del modal */
 .close {
     position: absolute;
     top: 10px;
     right: 20px;
-    font-size: 28px;
-    font-weight: bold;
-    color: #aaa;
+    font-size: 24px;
     cursor: pointer;
 }
 
-.close:hover, .close:focus {
-    color: black;
-    text-decoration: none;
+/* Estilos para el formulario dentro del modal */
+.modal-content form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Distribuir elementos con espacio entre ellos */
+    align-items: flex-start; /* Alinear elementos al inicio */
+}
+
+.modal-content .form-group {
+    flex: 0 0 48%; /* Cada grupo de formulario ocupará el 48% del ancho del contenedor */
+    margin: 10px 0; /* Márgenes para los elementos del formulario */
+}
+
+.modal-content label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 8px;
+    border : 1px solid #ddd;
+    border-radius: 20px;
+    background-color: #d6d6d6; /* Color de fondo gris */
+}
+
+/* Estilos para el contenedor del botón guardar */
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; /* Alinear el botón al final a la derecha */
+    
+}
+
+.save {
+    background-color: #28a745; /* Color de fondo verde */
+    color: white;
+    border: none;
+    padding: 10px 20px;
     cursor: pointer;
+    border-radius: 20Px;
+    margin-top: 20px;
+}
+
+.save:hover {
+    background-color: #218838;
 }

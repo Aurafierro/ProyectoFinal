@@ -13,22 +13,27 @@
             <div class="logo">
                 <img src="/HtmlYCss/img/NuevoLog.png" alt="AsignaWeb">
             </div>
-            <div class="profile">
-                <img src="/HtmlYCss/img/perfil.png" alt="Profile Picture">
-                <h2>Juan Camilo</h2>
+            <div class="profile-container">
+                <img id="profilePic" src="profile.jpg" alt="Profile Picture">
+                <div class="overlay">
+                    <i class="fa fa-camera"></i>
+                </div>
+                <input type="file" id="profileInput" accept="image/*" style="display: none;">
             </div>
             <nav>
                 <ul>
-                    <li><a href="#"><i class="fa-solid fa-pencil"></i></i>Modificar datos</a></li>
-                    <li><a href="#"><i class="fas fa-lock"></i></i>Cambiar contraseña</a></li>
-                    <li><a href="#"><i class="fas fa-book"></i></i> Historial</a></li>
-                    <li><a href="#"><i class="fas fa-trash"></i>Eliminar cuenta</a></li>
+                    <li><a href="#"><i class="fas fa-user-edit"></i>Modificar datos</a></li> <!-- Icono de lápiz -->
+                    <li><a href="#"><i class="fas fa-key"></i>Cambiar contraseña</a></li> <!-- Icono de candado -->
+                    <li><a href="#"><i class="fas fa-history"></i>Historial</a></li> <!-- Icono de libreta -->
+                    <li><a href="#"><i class="fas fa-trash-alt"></i>Eliminar cuenta</a></li> <!-- Icono de bote de basura -->
                 </ul>
             </nav>
         </div>
+        
+        <!-- Contenido principal -->
         <div class="main-content">
             <header>
-                <span class="logout">Cerrar sesión</span> 
+                <span class="logout">Cerrar sesión</span>
             </header>
             <div class="table-container">
                 <table>
@@ -42,23 +47,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <!-- Filas de ejemplo -->
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>Juan</td>
+                            <td>Reserva 1</td>
+                            <td>10:00</td>
+                            <td>12:00</td>
                             <td>
                                 <button class="edit" onclick="openModal()">Editar</button>
-                                <button class="delete">Eliminar</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <button class="edit">Editar</button>
                                 <button class="delete">Eliminar</button>
                             </td>
                         </tr>
@@ -70,36 +66,73 @@
             </div>
         </div>
     </div>
-     <!-- Modal de edición -->
-     <div id="editModal" class="modal">
+
+    <!-- Modal de edición -->
+    <div id="editModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Reservación</h2>
-            <div class="input-container">
-              <label for="usuario">Usuario:</label>
-              <input type="text" id="usuario" name="usuario">
-            </div>
-            <div class="input-container">
-              <label for="entrada">Entrada:</label>
-              <input type="text" id="entrada" name="entrada">
-            </div>
-            <div class="input-container">
-              <label for="salida">Salida:</label>
-              <input type="text" id="salida" name="salida">
-            </div>
-            <button class="save">Guardar</button>
-          </div>
+            <h2>Editar reservación</h2>
+            <form>
+                <div class="form-group">
+                    <label for="usuario">Usuario</label>
+                    <input type="text" id="usuario" name="usuario">
+                </div>
+                <div class="form-group">
+                    <label for="hentrada">H.entrada</label>
+                    <input type="text" id="hentrada" name="hentrada">
+                </div>
+                <div class="form-group">
+                    <label for="reservacion">Reservación</label>
+                    <input type="text" id="reservacion" name="reservacion">
+                </div>
+                <div class="form-group">
+                    <label for="hsalida">H.salida</label>
+                    <input type="text" id="hsalida" name="hsalida">
+                    <div class="button-container">
+                        <button type="submit" class="save">Guardar</button>
+                    </div>
+            </form>
+        </div>
     </div>
 
     <script>
+        // Función para abrir el modal
         function openModal() {
-            document.getElementById('editModal').style.display = 'block';
+            document.getElementById('editModal').style.display = 'flex';
         }
 
+        // Función para cerrar el modal
         function closeModal() {
             document.getElementById('editModal').style.display = 'none';
         }
+
+        // Cerrar el modal al hacer clic fuera del contenido del modal
+        window.onclick = function(event) {
+            const modal = document.getElementById('editModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Manejar el cambio de la foto de perfil
+var profileContainer = document.querySelector('.profile-container');
+var profilePic = document.getElementById('profilePic');
+var profileInput = document.getElementById('profileInput');
+
+profileContainer.addEventListener('click', function() {
+    profileInput.click();
+});
+
+profileInput.addEventListener('change', function(event) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+        profilePic.src = e.target.result;
+    }
+    reader.readAsDataURL(event.target.files[0]);
+});
     </script>
-    
+    <script>
+        
+    </script>
 </body>
 </html>
