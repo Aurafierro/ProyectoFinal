@@ -174,15 +174,15 @@ nav ul li a.active {
 .central-container {
     text-align: center;
     background-color: #487BFF; /* Fondo azul */
-    padding: 20px;
+    padding: 150px;
     border-radius: var(--border-radius);
     box-shadow: 0 0 10px var(--shadow-color);
-    width: 100%;
+    width: 150%;
 }
 
 .central-image {
     width: 100%;
-    max-width: 500px; /* Tamaño máximo de la imagen */
+    max-width: 700px; /* Tamaño máximo de la imagen */
     height: auto;
     border-radius: var(--border-radius);
 }
