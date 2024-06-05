@@ -14,10 +14,13 @@ body {
     font-family: "jomhuria";
 }
 
+/* CSS para ajustar el ícono de la flecha hacia la izquierda y hacerlo más grande */
+
+/* Estilos para el ícono de retroceso */
 .profile {
     position: absolute;
     top: 20px;
-    right: 20px;
+    right: 20px; /* Mantener el ícono de perfil en la esquina derecha */
 }
 
 .profile__link {
@@ -25,6 +28,15 @@ body {
     color: black;
     text-decoration: none;
     font-weight: bolder;
+}
+
+/* Ajustes para el ícono de la flecha */
+.fa-circle-chevron-left {
+    font-size: 80px; /* Ajustar el tamaño del ícono */
+    color: black; /* Color del ícono */
+    position: absolute;
+    top: 20px;
+    left: 20px; /* Mover el ícono hacia la izquierda */
 }
 
 .main-content {
@@ -113,6 +125,7 @@ body {
     transform: scale(1.1);
 }
 
+/* Barra de búsqueda */
 .search-bar {
     display: flex;
     align-items: center;
@@ -123,18 +136,19 @@ body {
 }
 
 .search-bar input[type="text"] {
-    width: calc(100% - 60px);
-    padding: 18px;
-    font-size: 18px;
+    width: calc(300% - 60px);
+    padding: 0%; /* Aumenta el padding para hacerlo más alto */
+    font-size: 15px;
     border: 2px solid rgb(3, 3, 3);
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
     outline: none;
+    height: 70px; /* Aumenta la altura */
 }
 
 .search-bar button {
-    width: 60px;
-    height: 60px;
+    width: 210px; /* Aumenta la altura y el ancho */
+    height: 72px; /* Aumenta la altura */
     background-color: rgb(3, 3, 3);
     border: none;
     cursor: pointer;
@@ -149,6 +163,7 @@ body {
     font-size: 24px;
     color: white;
 }
+
 
 @media (max-width: 1200px) {
     .card {
