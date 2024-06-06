@@ -1,0 +1,242 @@
+/* Estilos para el cuerpo y la cabecera */
+:root {
+    --primary-color: #1a3e68;
+    --secondary-color: #28a745;
+    --background-color: #f0f0f0;
+    --white: #ffffff;
+    --gray: #555;
+    --border-radius: 25px;
+    --shadow-color: rgba(116, 111, 111, 0.5);
+}
+
+body {
+    margin: 0;
+    font-family: "jomhuria";
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+@font-face {
+    font-family: "jomhuria";
+    src: url("../Jomhuria-Regural.ttf");
+}
+
+.header {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    box-sizing: border-box;
+}
+
+.header .logo {
+    font-size: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header .logo img.logo-img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 5px;
+}
+
+.header .logout a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+    font-size: 155%;
+}
+
+.header .logout a:hover {
+    color: var(--hover-color);
+}
+
+.container {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    box-sizing: border-box;
+    justify-content: flex-start;
+}
+
+.profile {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid black;
+    padding-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 50px; /* Ajusta este valor para mover el perfil y la línea más abajo */
+}
+
+.profile-pic {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    background-color: transparent; /* Cambiado a transparente */
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    overflow: hidden;
+    cursor: pointer; /* Añadido cursor pointer para indicar que se puede hacer clic */
+    border: 3px solid #fff; /* Añadido un borde blanco para dar contraste */
+}
+
+.profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-pic i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 70px;
+    color: #000000;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out; /* Transición suave para la opacidad */
+    z-index: 1; /* Añadido z-index para estar por encima de la imagen */
+    display: none; /* Inicialmente oculto */
+}
+.profile-pic:hover i {
+    opacity: 1;
+}
+.profile-pic input[type="file"] {
+    display: none;
+}
+
+.profile-pic:hover i {
+    display: block; /* Mostrar el ícono al pasar el cursor por encima */
+    z-index: 2; /* Asegurar que el ícono esté por encima de la imagen */
+    color: var(--white); /* Color blanco para el ícono al pasar el cursor */
+}
+
+.profile span {
+    display: block;
+    font-size: 22px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 150px; /* Añade un margen superior para mover los botones hacia abajo */
+}
+
+nav ul li {
+    margin: 40px 0; /* Aumenta el espacio entre los botones */
+}
+
+nav ul li a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease-in-out;
+    font-weight: bold;
+}
+
+nav ul li a i {
+    margin-right: 8px;
+}
+
+nav ul li a.active {
+    font-weight: bold;
+}
+
+.main-content {
+    flex-grow: 1;
+    background-color: #ffffff; /* Cambiado a fondo azul */
+    padding: 4%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.form-container {
+    background-color: white;
+    padding: 50px;
+    border-radius: 40px;
+    box-shadow: 0 0 10px #746f6f;
+    width: 100%;
+    max-width: 400px;
+    height: auto; /* Ajustado para que crezca según el contenido */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Ajustado para alinear el contenido al inicio */
+}
+
+.form-container h2 {
+    margin-top: 0;
+    text-align: center; /* Centramos el título */
+    font-size: 300%; /* Aumentamos el tamaño de la letra */
+}
+
+.subtitulo {
+    text-align: center; /* Centramos el subtítulo */
+    font-size: 150%; /* Ajustamos el tamaño de la letra del subtítulo */
+    margin-bottom: 20px; /* Añadimos un margen inferior */
+}
+
+.warning-message {
+    text-align: center; /* Centramos el mensaje */
+    font-size: 120%; /* Ajustamos el tamaño de la letra */
+    margin-bottom: 20px; /* Añadimos un margen inferior */
+}
+
+/* Estilo para el botón Enviar */
+.form-container button {
+    padding: 18px; /* Aumentamos el padding */
+    background-color: #AF0000;
+    color: white;
+    border: none;
+    border-radius: 25px; /* Hacemos los bordes redondeados */
+    cursor: pointer;
+    width: 150px; /* Ancho fijo */
+    margin: 20px auto 0; /* Centramos el botón y aplicamos margen superior para bajarlo */
+    font-size: 100%; /* Aumentamos el tamaño de la letra */
+    font-family: "jomhuria";
+}
+
+
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+    
+    /* Agrega estilos específicos para los íconos en el menú */
+    .sidebar nav ul li i {
+        margin-right: 10px;
+    }
+}
