@@ -50,7 +50,9 @@ body {
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
+    border: 4px solid white; /* Añadir borde blanco */
 }
+
 
 .profile-container img {
     width: 100%;
@@ -64,14 +66,14 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color:transparent;
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     opacity: 0;
     transition: opacity 0.3s ease;
-    border-radius: 50%;
+    border-radius: 50% ;
 }
 
 .profile-container:hover .overlay {
@@ -305,4 +307,75 @@ td button {
 
 .save:hover {
     background-color: #218838;
+}
+
+
+/* Estilos para la sección de búsqueda y opciones */
+.search-options {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.search-bar-wrapper {
+    display: flex;
+    align-items: center;
+    width: 70%;
+    margin-bottom: 10px;
+}
+
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 70%;
+}
+
+.search-bar input[type="text"] {
+    width: 100%;
+    padding: 18px;
+    font-size: 16px;
+    border: 2px solid rgb(3, 3, 3);
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    outline: none;
+}
+
+.search-bar button {
+    width: 60px;
+    height: 60px;
+    background-color: rgb(3, 3, 3);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.search-bar button i {
+    font-size: 24px;
+    color: white;
+}
+
+#mensajeSeleccionar {
+    font-family: "jomhuria";
+    margin-bottom: 10px;
+}
+
+.selector-container {
+    margin-left: auto; /* Colocar el selector completamente a la derecha */
+}
+.selector-container select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: "jomhuria";
 }
