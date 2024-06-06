@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AsignaWeb</title>
-    <link rel="stylesheet" href="/HtmlYCss/css/historial.css">
+    <title>Solicitudes</title>
+    <link rel="stylesheet" href="../css/Solicitudes.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <div class="sidebar">
             <div class="logo">
-                <img src="/HtmlYCss/img/NuevoLog.png" alt="AsignaWeb">
+                <img src="../img/5613765 [Recuperado].png" alt="AsignaWeb">
             </div>
             <div class="profile-container">
                 <img id="profilePic" src="profile.jpg">
@@ -19,13 +19,14 @@
                     <i class="fa fa-camera"></i>
                 </div>
                 <input type="file" id="profileInput" accept="image/*" style="display: none;">
-                
             </div>
+            <div class="separator"></div> <!-- Línea añadida para el espacio -->
             <nav>
                 <ul>
                     <li><a href="../indexHTML/ModificarDatos.html"><i class="fas fa-user-edit"></i>Modificar datos</a></li>
                     <li><a href="../indexHTML/CambiarContraseña.html"><i class="fas fa-key"></i>Cambiar contraseña</a></li>
-                    <li><a href="../indexHTML/historial.html"><i class="fas fa-history"></i>Historial</a></li>
+                    <li><a href="../indexHTML/Solicitudes.html"><i class="fas fa-check"></i>Solicitudes</a></li>
+                    <li><a href="../indexHTML/InicioSesión.html"><i class="fas fa-history"></i>Historial</a></li>
                     <li><a href="#"><i class="fas fa-trash-alt"></i>Eliminar cuenta</a></li>
                 </ul>
             </nav>
@@ -43,14 +44,7 @@
                         <input type="text" placeholder="Ingresa el nombre que deseas buscar">
                         <button><i class="fas fa-search"></i></button>
                     </div>
-                    <div class="selector-container">
-                        <select>
-                            <option>Mis reservas</option>
-                            <option>Todas las reservas</option>
-                        </select>
-                    </div>
                 </div>
-                <div id="mensajeSeleccionar">Seleccione una opción para descargar el pdf, puede elegir descargar solo sus propias reservas o todas las reservas disponibles.</div>
             </div>
             
             <div class="table-container">
@@ -73,14 +67,11 @@
                             <td>12:00</td>
                             <td>
                                 <button class="edit" onclick="openModal()">Editar</button>
-                                <button class="delete">Eliminar</button>
+                                <button class="delete">Denegar</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-            </div>
-            <div class="pdf-download">
-                <button>Descargar pdf</button>
             </div>
         </div>
     </div>
@@ -114,41 +105,6 @@
         </div>
     </div>
 
-    <script>
-        // Función para abrir el modal
-        function openModal() {
-            document.getElementById('editModal').style.display = 'flex';
-        }
-
-        // Función para cerrar el modal
-        function closeModal() {
-            document.getElementById('editModal').style.display = 'none';
-        }
-
-        // Cerrar el modal al hacer clic fuera del contenido del modal
-        window.onclick = function(event) {
-            const modal = document.getElementById('editModal');
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
-        }
-
-        // Manejar el cambio de la foto de perfil
-        var profileContainer = document.querySelector('.profile-container');
-        var profilePic = document.getElementById('profilePic');
-        var profileInput = document.getElementById('profileInput');
-
-        profileContainer.addEventListener('click', function() {
-            profileInput.click();
-        });
-
-        profileInput.addEventListener('change', function(event) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                profilePic.src = e.target.result;
-            }
-            reader.readAsDataURL(event.target.files[0]);
-        });
-    </script>
+    <script src="../js/Solicitudes.js"></script>
 </body>
 </html>

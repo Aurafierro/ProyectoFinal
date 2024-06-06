@@ -1,0 +1,333 @@
+/* Estilo global para el cuerpo del documento */
+body {
+    margin: 0;
+    font-family: Jomhuria;
+}
+
+/* Contenedor principal que usa flexbox para la disposición de la barra lateral y el contenido principal */
+.container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden; /* Evita el desplazamiento */
+}
+
+/* Estilos para la barra lateral */
+.sidebar {
+    width: 250px;
+    background-color: #1a3e68;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Estilos para el logo */
+.logo {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    width: 120px;
+    height: 90px;
+    margin-right: 10px;
+}
+
+/* Estilos para la sección de perfil */
+.profile-container {
+    position: relative;
+    width: 150px;
+    height: 160px;
+    margin: 0 auto 20px; /* Añadir margen inferior de 20px */
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    border: 4px solid white; /* Añadir borde blanco */
+}
+
+.profile-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-container .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 50%;
+}
+
+.profile-container:hover .overlay {
+    opacity: 1;
+}
+
+.profile-container .overlay i {
+    font-size: 24px;
+}
+
+/* Estilos para la navegación */
+nav {
+    margin-top: 80%; /* Ajuste del margen superior para mayor separación */
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 10px 0; /* Ajustar el margen entre los elementos de la navegación */
+    text-align: center;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px; /* Tamaño de fuente aumentado */
+    padding: 15px; /* Padding aumentado */
+    display: flex;
+    align-items: center;
+}
+
+nav ul li a i {
+    margin-right: 10px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para el contenido principal */
+.main-content {
+    flex: 1;
+    background-color: #f3f3f3; /* Fondo azul claro */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos para el encabezado */
+header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #1a3e68;
+    color: white;
+    padding: 35px 20px;
+}
+
+/* Estilos para el texto de cerrar sesión */
+.logout {
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* Contenedor de la tabla */
+.table-container {
+    padding: 20px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Estilos para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #f4f5f7; /* color de tabla  */
+}
+
+th, td {
+    padding: 20px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #D9D9D9;
+    color: rgb(0, 0, 0);
+}
+
+/* Estilos para los botones de la tabla */
+td button {
+    padding: 14px 12px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: Jomhuria;
+}
+
+.edit {
+    background-color: #1B9607;
+    color: white;
+    border-radius: 20px;
+}
+
+.edit:hover {
+    background-color: #1B9607;
+}
+
+.delete {
+    background-color: #AF0000;
+    color: white;
+    border-radius: 20px;
+}
+
+.delete:hover {
+    background-color: #AF0000;
+}
+
+/* Estilos para el modal */
+.modal {
+    display: none; /* Ocultar el modal por defecto */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro con opacidad */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilos para el contenido del modal */
+.modal-content {
+    background-color: #ffffff; /* Fondo rosa claro */
+    padding: 20px;
+    border-radius: 20px;
+    width: 800px; /* Ancho del modal aumentado */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+/* Estilos para el título centrado */
+.modal-content h2 {
+    text-align: center;
+}
+
+/* Estilos para el botón de cierre del modal */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Estilos para el formulario dentro del modal */
+.modal-content form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Distribuir elementos con espacio entre ellos */
+    align-items: flex-start; /* Alinear elementos al inicio */
+}
+
+.modal-content .form-group {
+    flex: 0 0 48%; /* Cada grupo de formulario ocupará el 48% del ancho del contenedor */
+    margin: 10px 0; /* Márgenes para los elementos del formulario */
+}
+
+.modal-content label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background-color: #d6d6d6; /* Color de fondo gris */
+}
+
+/* Estilos para el contenedor del botón guardar */
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; /* Alinear el botón al final a la derecha */
+}
+
+.save {
+    background-color: #28a745; /* Color de fondo verde */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.save:hover {
+    background-color: #218838;
+}
+
+/* Estilos para la sección de búsqueda y opciones */
+.search-options {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    align-items: center; /* Centrar el contenido */
+}
+
+.search-bar-wrapper {
+    display: flex;
+    align-items: center;
+    width: 70%;
+    margin-bottom: 10px;
+    justify-content: center; /* Centrar la barra de búsqueda */
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 70%;
+}
+
+.search-bar input[type="text"] {
+    width: 60%;
+    padding: 18px;
+    font-size: 16px;
+    border: 2px solid rgb(3, 3, 3);
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    outline: none;
+}
+
+.search-bar button {
+    width: 60px;
+    height: 60px;
+    background-color: rgb(3, 3, 3);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.search-bar button i {
+    font-size: 24px;
+    color: white;
+}
