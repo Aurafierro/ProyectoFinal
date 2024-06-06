@@ -15,8 +15,9 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    overflow: hidden; /* Evita el scroll de la página */
+    overflow: hidden; /* Evita el desplazamiento */
 }
+
 
 @font-face {
     font-family: "jomhuria";
@@ -62,7 +63,6 @@ body {
     display: flex;
     flex: 1;
     flex-direction: row;
-    overflow: hidden; /* Evita el scroll en el contenedor principal */
 }
 
 .sidebar {
@@ -115,15 +115,19 @@ body {
     cursor: pointer;
     transition: opacity 0.3s ease-in-out; /* Transición suave para la opacidad */
     z-index: 1; /* Añadido z-index para estar por encima de la imagen */
-    opacity: 0; /* Inicialmente oculto */
+    display: none; /* Inicialmente oculto */
 }
-
 .profile-pic:hover i {
     opacity: 1;
 }
-
 .profile-pic input[type="file"] {
     display: none;
+}
+
+.profile-pic:hover i {
+    display: block; /* Mostrar el ícono al pasar el cursor por encima */
+    z-index: 2; /* Asegurar que el ícono esté por encima de la imagen */
+    color: var(--white); /* Color blanco para el ícono al pasar el cursor */
 }
 
 .profile span {
@@ -136,7 +140,7 @@ nav ul {
     padding: 0;
     width: 100%;
     text-align: center;
-    margin-top: 150px; /* Añade un margen superior para mover los botones hacia abajo */
+    margin-top: 90px; /* Añade un margen superior para mover los botones hacia abajo */
 }
 
 nav ul li {
@@ -163,7 +167,7 @@ nav ul li a.active {
 
 .main-content {
     flex-grow: 1;
-    background-color: #ffffff; /* Cambiado a fondo blanco */
+    background-color: #ffffff; /* Cambiado a fondo azul */
     padding: 4%;
     display: flex;
     justify-content: center;
@@ -171,50 +175,73 @@ nav ul li a.active {
     box-sizing: border-box;
 }
 
-.central-container {
-    text-align: center;
-    background-color: #487BFF; /* Fondo azul */
-    padding: 120px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 0 10px var(--shadow-color);
-    width: 150%;
-}
-
-.central-image {
+.form-container {
+    background-color: white;
+    padding: 50px;
+    border-radius: 40px;
+    box-shadow: 0 0 10px #746f6f;
     width: 100%;
-    max-width: 700px; /* Tamaño máximo de la imagen */
-    height: auto;
-    border-radius: var(--border-radius);
+    max-width: 400px;
+    height: 75%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.central-title {
+.form-container h2 {
+    margin-top: 0;
+    text-align: center; /* Centramos el título */
+    font-size: 300%; /* Aumentamos el tamaño de la letra */
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    font-size: 145%; /* Aumentamos el tamaño de la letra */
+}
+
+.form-container form label {
+    margin: 10px 0 5px;
+}
+
+/* Estilo para los campos de entrada */
+.form-container form input[type="text"],
+.form-container form input[type="tel"],
+.form-container form input[type="email"] {
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 25px; /* Hacemos los bordes redondeados */
+    outline: none; /* Quitamos el borde de enfoque */
+    transition: border-color 0.3s ease-in-out; /* Transición suave para el cambio de color de borde */
+    width: calc(100% - 22px); /* Ajustamos el ancho para que sea igual al resto de los inputs */
+    background-color: #000000; /* Fondo negro */
+    opacity: 71%;
+    color: white; /* Texto blanco */
+}
+
+.form-container form input[type="text"]:focus,
+.form-container form input[type="tel"]:focus,
+.form-container form input[type="email"]:focus {
+    border-color: #1a3e68; /* Cambiamos el color del borde al enfocar */
+}
+
+/* Estilo para el botón Enviar */
+.form-container form button {
+    padding: 18px; /* Aumentamos el padding */
+    background-color: #28a745;
     color: white;
-    font-size: 2rem;
-    margin-top: 20px;
+    border: none;
+    border-radius: 25px; /* Hacemos los bordes redondeados */
+    cursor: pointer;
+    width: 150px; /* Ancho fijo */
+    margin: 10px auto; /* Centramos el botón y aplicamos margen */
+    font-size: 100%; /* Aumentamos el tamaño de la letra */
+    font-family: "jomhuria";
 }
 
-@media (max-width: 1200px) {
-    .header .logo {
-        font-size: 30px;
-    }
-
-    .header .logout a {
-        font-size: 140%;
-    }
-}
-
-@media (max-width: 992px) {
-    .header {
-        padding: 20px;
-    }
-
-    .header .logo {
-        font-size: 25px;
-    }
-
-    .header .logout a {
-        font-size: 130%;
-    }
+.form-container form button:hover {
+    background-color: #218838;
 }
 
 @media (max-width: 768px) {
@@ -232,34 +259,9 @@ nav ul li a.active {
         padding: 20px;
     }
     
-    .sidebar nav ul {
-        margin-top: 50px;
+    /* Agrega estilos específicos para los íconos en el menú */
+    .sidebar nav ul li i {
+        margin-right: 10px;
     }
-
-    .sidebar nav ul li {
-        margin: 20px 0;
-    }
-}
-
-@media (max-width: 576px) {
-    .header .logo {
-        font-size: 20px;
-    }
-
-    .header .logo img.logo-img {
-        width: 40px;
-        height: 40px;
-    }
-
-    .header .logout a {
-        font-size: 120%;
-    }
-
-    .sidebar nav ul {
-        margin-top: 30px;
-    }
-
-    .sidebar nav ul li {
-        margin: 15px 0;
-    }
+  
 }
