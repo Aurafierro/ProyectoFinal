@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AsignaWeb</title>
     <link rel="stylesheet" href="/HtmlYCss/css/historial.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <div class="container">
@@ -14,18 +14,19 @@
                 <img src="/HtmlYCss/img/NuevoLog.png" alt="AsignaWeb">
             </div>
             <div class="profile-container">
-                <img id="profilePic" src="profile.jpg" alt="Profile Picture">
+                <img id="profilePic" src="profile.jpg">
                 <div class="overlay">
                     <i class="fa fa-camera"></i>
                 </div>
                 <input type="file" id="profileInput" accept="image/*" style="display: none;">
+                
             </div>
             <nav>
                 <ul>
-                    <li><a href="#"><i class="fas fa-user-edit"></i>Modificar datos</a></li> <!-- Icono de lápiz -->
-                    <li><a href="#"><i class="fas fa-key"></i>Cambiar contraseña</a></li> <!-- Icono de candado -->
-                    <li><a href="#"><i class="fas fa-history"></i>Historial</a></li> <!-- Icono de libreta -->
-                    <li><a href="#"><i class="fas fa-trash-alt"></i>Eliminar cuenta</a></li> <!-- Icono de bote de basura -->
+                    <li><a href="#"><i class="fas fa-user-edit"></i>Modificar datos</a></li>
+                    <li><a href="#"><i class="fas fa-key"></i>Cambiar contraseña</a></li>
+                    <li><a href="#"><i class="fas fa-history"></i>Historial</a></li>
+                    <li><a href="#"><i class="fas fa-trash-alt"></i>Eliminar cuenta</a></li>
                 </ul>
             </nav>
         </div>
@@ -35,6 +36,23 @@
             <header>
                 <span class="logout">Cerrar sesión</span>
             </header>
+            <!-- Contenido busqueda y demas -->
+            <div class="search-options">
+                <div class="search-bar-wrapper">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Ingresa el nombre que deseas buscar">
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="selector-container">
+                        <select>
+                            <option>Mis reservas</option>
+                            <option>Todas las reservas</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="mensajeSeleccionar">Seleccione una opción para descargar el pdf, puede elegir descargar solo sus propias reservas o todas las reservas disponibles.</div>
+            </div>
+            
             <div class="table-container">
                 <table>
                     <thead>
@@ -88,9 +106,10 @@
                 <div class="form-group">
                     <label for="hsalida">H.salida</label>
                     <input type="text" id="hsalida" name="hsalida">
-                    <div class="button-container">
-                        <button type="submit" class="save">Guardar</button>
-                    </div>
+                </div>
+                <div class="button-container">
+                    <button type="submit" class="save">Guardar</button>
+                </div>
             </form>
         </div>
     </div>
@@ -115,24 +134,21 @@
         }
 
         // Manejar el cambio de la foto de perfil
-var profileContainer = document.querySelector('.profile-container');
-var profilePic = document.getElementById('profilePic');
-var profileInput = document.getElementById('profileInput');
+        var profileContainer = document.querySelector('.profile-container');
+        var profilePic = document.getElementById('profilePic');
+        var profileInput = document.getElementById('profileInput');
 
-profileContainer.addEventListener('click', function() {
-    profileInput.click();
-});
+        profileContainer.addEventListener('click', function() {
+            profileInput.click();
+        });
 
-profileInput.addEventListener('change', function(event) {
-    var reader = new FileReader();
-    reader.onload = function(e) {
-        profilePic.src = e.target.result;
-    }
-    reader.readAsDataURL(event.target.files[0]);
-});
-    </script>
-    <script>
-        
+        profileInput.addEventListener('change', function(event) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                profilePic.src = e.target.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        });
     </script>
 </body>
 </html>
