@@ -1,7 +1,12 @@
-@font-face {
-  font-family: "jomhuria";
-  src: url("../Jomhuria-Regural.ttf");
+@font-face  {
+  
+    font-family: 'Jomhuria';
+    src: url('/path/to/fonts/Jomhuria-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
+
+
 
 body {
   font-family: "jomhuria";

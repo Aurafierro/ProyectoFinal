@@ -20,7 +20,7 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: left;
+  align-items: flex-start;
   margin-bottom: 20px; /* Ajusta el margen inferior */
   padding-top: 20vh; /* Ajusta el espacio en la parte superior para centrar verticalmente */
 }
@@ -54,6 +54,7 @@ header {
   display: flex;
   align-items: center;
   margin-bottom: 8%;
+  justify-content: center; /* Centra horizontalmente los inputs */
 }
 
 .formu i {
@@ -62,10 +63,11 @@ header {
 }
 
 .fff {
-  width: 110%;
-  padding: 3%;
+  width: 100%;
+  padding: 5%;
   border-radius: 50px;
   border: 1px solid #ccc;
+  text-align: center;
 }
 
 .recu-boton {
@@ -74,7 +76,7 @@ header {
 
 .recu-boton a {
   display: block;
-  margin-bottom: 4%;
+  margin-bottom: 2%; /* Reduce el margen inferior para acercar los enlaces */
   color: white;
   padding: 1.4%;
   font-size: 130%;
@@ -89,7 +91,7 @@ header {
   border-radius: 40px;
   cursor: pointer;
   margin-top: 3%;
-  font-size: 190%;
+  font-size: 120%;
 }
 
 /* Consultas de medios para pantallas más pequeñas */
