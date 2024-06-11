@@ -1,4 +1,4 @@
-package com.sena.jwt_security.controller;
+package com.sena.jwt_security.controller.Security;
 
 
 

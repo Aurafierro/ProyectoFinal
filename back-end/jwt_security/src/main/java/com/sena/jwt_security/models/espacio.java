@@ -1,6 +1,7 @@
 package com.sena.jwt_security.models;
 
-import java.sql.Blob;
+//import java.sql.Blob;
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,8 +33,8 @@ public class espacio {
 	@Column (name="nombre_del_espacio", nullable= false, length = 40)
 	private String nombre_del_espacio;
 	
-	@Column (name="imagen_espacio", nullable= true)
-	private String imagen_espacio;
+	//@Column (name="imagen_espacio", nullable= true)
+	//private String imagen_espacio;
 	
 	@Column (name="descripcion", nullable= false, length = 36)
 	private String descripcion;
@@ -42,11 +43,11 @@ public class espacio {
 		super();
 	}
 
-	public espacio(String id_espacio, String nombre_del_espacio, Blob imagen_espacio, String descripcion) {
+	public espacio(String id_espacio, String nombre_del_espacio, /*Blob imagen_espacio,*/ String descripcion) {
 		super();
 		this.id_espacio = id_espacio;
 		this.nombre_del_espacio = nombre_del_espacio;
-		this.imagen_espacio = "data:image/jpeg;base64,"+ imagen_espacio;
+		//this.imagen_espacio = "data:image/jpeg;base64,"+ imagen_espacio;
 		this.descripcion = descripcion;
 	}
 
@@ -66,13 +67,13 @@ public class espacio {
 		this.nombre_del_espacio = nombre_del_espacio;
 	}
 
-	public Blob getImagen_espacio() {
-		return imagen_espacio;
-	}
+	//public Blob getImagen_espacio() {
+		//return imagen_espacio;
+	//}
 
-	public void setImagen_espacio(Blob imagen_espacio) {
-		this.imagen_espacio = imagen_espacio;
-	}
+	//public void setImagen_espacio(Blob imagen_espacio) {
+		//this.imagen_espacio = imagen_espacio;
+	//}
 
 	public String getDescripcion() {
 		return descripcion;

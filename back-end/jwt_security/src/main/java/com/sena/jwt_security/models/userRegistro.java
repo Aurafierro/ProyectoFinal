@@ -1,5 +1,12 @@
 package com.sena.jwt_security.models;
 
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import jakarta.persistence.Column;
 
 import jakarta.persistence.Entity;
@@ -23,7 +30,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 
-public class userRegistro {
+public class userRegistro implements UserDetails{
 
 	
 	@Id
@@ -55,6 +62,9 @@ public class userRegistro {
 	@Enumerated(EnumType.STRING)
 	@Column(name="rol", nullable= false, length = 100)
 	private rol  rol;
+	
+	@Column (name="enabled",nullable=true)
+	private boolean enabled;
 
 	public userRegistro() {
 		super();
@@ -145,6 +155,49 @@ public class userRegistro {
 
 	public void setRol(rol rol) {
 		this.rol = rol;
+	}
+
+	//este metodo es el encargado de indicar los permisos del usuario, se obtine e rol del usuario
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		
+		return List.of (new SimpleGrantedAuthority(this.rol.name()));
+		
+	}
+
+	@Override
+	public String getPassword() {
+		
+		//metodo de reornar la contraseña y por seguridad se retornará vacío
+		
+		return "";
+	}
+
+	@Override
+	public String getUsername() {
+		//metodo para teronar el userName, en este caso es el correo
+		return this.correo;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
 	}
 
 	
