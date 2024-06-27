@@ -1,7 +1,13 @@
+@font-face {
+    font-family: 'Rubik';
+    src: url('/Fuentes/Rubik-VariableFont_wght.ttf'); 
+}
+
+
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+   
     
     background-size: cover;
     background-position: center;
@@ -25,11 +31,12 @@ h1 {
     margin-bottom: 5%; /* Utilizando porcentajes para el margen inferior */
     font-family:jomhuria ;
     font-size: 240%;
+    font-family: 'Rubik';
 }
 
 .message {
     margin-bottom: 5%; /* Utilizando porcentajes para el margen inferior */
-    font-family:jomhuria ;
+    font-family: 'Rubik';
     font-size: 140%;
 }
 
@@ -55,7 +62,7 @@ input[type="email"] {
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-size: 140%;
-    font-family:jomhuria ;
+    font-family: 'Rubik';
 }
 
 .red {
@@ -65,8 +72,5 @@ input[type="email"] {
 .green {
     background-color: #008000; /* Verde */
 }
-@font-face {
-    font-family: "jomhuria";
-    src: url("../Jomhuria-Regular.ttf");
-  }
+
   

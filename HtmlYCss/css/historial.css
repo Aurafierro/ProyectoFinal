@@ -5,11 +5,11 @@
 
 body {
     margin: 0;
-    font-family: 'Rubik';
+    font-family: 'Rubik', sans-serif; /* Usa 'Rubik' como fuente principal y sans-serif como alternativa */
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Cambiado a min-height para asegurar que el cuerpo se extienda al menos al 100% de la altura de la ventana de visualización */
-    overflow-x: hidden; /* Evita el desplazamiento horizontal en dispositivos pequeños */
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .header {
@@ -32,9 +32,9 @@ body {
 .header .logo img.logo-img {
     width: 80px;
     height: 70px;
-    margin-top: 5px; /* Ajusta este valor según lo necesites */
+    margin-top: 5px;
     margin-bottom: 5px;
-    padding-left: 50px; 
+    padding-left: 50px;
 }
 
 .header .logout a {
@@ -42,14 +42,14 @@ body {
     text-decoration: none;
     transition: color 0.3s ease-in-out;
     font-size: 120%;
-    padding-right: 20px; 
+    padding-right: 20px;
     font-family: 'Rubik';
     color: white;
 }
 
 .header .logout a:hover {
     color: var(--hover-color);
-    font-family: 'Rubik';  
+    font-family: 'Rubik';
 }
 
 .container {
@@ -68,7 +68,7 @@ body {
     padding: 20px 0;
     box-sizing: border-box;
     justify-content: flex-start;
-    overflow-y: hidden; 
+    overflow-y: hidden;
 }
 
 .profile {
@@ -78,21 +78,21 @@ body {
     padding-bottom: 20px;
     width: 100%;
     box-sizing: border-box;
-    margin-top: 10px; 
+    margin-top: 10px;
     color: white;
-    font-family: 'Rubik';  
+    font-family: 'Rubik';
 }
 
 .profile-pic {
     position: relative;
     width: 160px;
     height: 160px;
-    background-color: transparent; /* Cambiado a transparente */
+    background-color: transparent;
     border-radius: 50%;
     margin: 0 auto 10px;
     overflow: hidden;
-    cursor: pointer; /* Añadido cursor pointer para indicar que se puede hacer clic */
-    border: 3px solid #fff; /* Añadido un borde blanco para dar contraste */
+    cursor: pointer;
+    border: 3px solid #fff;
 }
 
 .profile-pic img {
@@ -109,9 +109,9 @@ body {
     font-size: 70px;
     color: #000000;
     cursor: pointer;
-    transition: opacity 0.3s ease-in-out; /* Transición suave para la opacidad */
-    z-index: 1; /* Añadido z-index para estar por encima de la imagen */
-    display: none; /* Inicialmente oculto */
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1;
+    display: none;
 }
 
 .profile-pic:hover i {
@@ -123,8 +123,9 @@ body {
 }
 
 .profile-pic:hover i {
-    z-index: 2; /* Asegurar que el ícono esté por encima de la imagen */
-    color: white; /* Color blanco para el ícono al pasar el cursor */
+    display: block;
+    z-index: 2;
+    color: var(--white);
 }
 
 .profile span {
@@ -143,7 +144,7 @@ nav ul {
 }
 
 nav ul li {
-    margin: 20px 0; /* Adjusted this value to reduce the space between buttons */
+    margin: 20px 0;
 }
 
 nav ul li a {
