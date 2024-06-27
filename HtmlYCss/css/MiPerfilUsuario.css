@@ -1,73 +1,69 @@
-/* Estilos para el cuerpo y la cabecera */
-:root {
-    --primary-color: #1a3e68;
-    --secondary-color: #28a745;
-    --background-color: #f0f0f0;
-    --white: #ffffff;
-    --gray: #555;
-    --border-radius: 25px;
-    --shadow-color: rgba(116, 111, 111, 0.5);
+@font-face {
+    font-family: 'Rubik';
+    src: url('/Fuentes/Rubik-VariableFont_wght.ttf'); 
 }
 
 body {
     margin: 0;
-    font-family: "jomhuria";
+    font-family: 'Rubik';
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    overflow: hidden; /* Evita el scroll de la página */
-}
-
-@font-face {
-    font-family: "jomhuria";
-    src: url("../Jomhuria-Regural.ttf");
+    min-height: 100vh; /* Cambiado a min-height para asegurar que el cuerpo se extienda al menos al 100% de la altura de la ventana de visualización */
+    
+    overflow-x: hidden; /* Evita el desplazamiento horizontal en dispositivos pequeños */
 }
 
 .header {
     width: 100%;
-    background-color: var(--primary-color);
+    background-color: #1a3e68;
     color: var(--white);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
     box-sizing: border-box;
 }
 
 .header .logo {
-    font-size: 35px;
+    font-size: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .header .logo img.logo-img {
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 70px;
+    margin-top: 5px; /* Ajusta este valor según lo necesites */
     margin-bottom: 5px;
+    padding-left: 50px; 
 }
 
 .header .logout a {
     color: var(--white);
     text-decoration: none;
     transition: color 0.3s ease-in-out;
-    font-size: 155%;
+    font-size: 120%;
+    padding-right: 20px; 
+    font-family: 'Rubik';
+    color: white;
 }
 
 .header .logout a:hover {
     color: var(--hover-color);
+    font-family: 'Rubik';
+    
 }
+
 
 .container {
     display: flex;
     flex: 1;
     flex-direction: row;
-    overflow: hidden; /* Evita el scroll en el contenedor principal */
 }
 
 .sidebar {
     width: 250px;
-    background-color: var(--primary-color);
+    background-color: #1a3e68;
     color: var(--white);
     display: flex;
     flex-direction: column;
@@ -75,7 +71,9 @@ body {
     padding: 20px 0;
     box-sizing: border-box;
     justify-content: flex-start;
+    overflow-y: hidden; 
 }
+
 
 .profile {
     text-align: center;
@@ -84,8 +82,12 @@ body {
     padding-bottom: 20px;
     width: 100%;
     box-sizing: border-box;
-    margin-top: 50px; /* Ajusta este valor para mover el perfil y la línea más abajo */
+    margin-top: 10px; 
+    color: white;
+    font-family: 'Rubik';
+    
 }
+
 
 .profile-pic {
     position: relative;
@@ -115,7 +117,7 @@ body {
     cursor: pointer;
     transition: opacity 0.3s ease-in-out; /* Transición suave para la opacidad */
     z-index: 1; /* Añadido z-index para estar por encima de la imagen */
-    opacity: 0; /* Inicialmente oculto */
+    display: none; /* Inicialmente oculto */
 }
 
 .profile-pic:hover i {
@@ -126,9 +128,16 @@ body {
     display: none;
 }
 
+.profile-pic:hover i {
+
+    z-index: 2; /* Asegurar que el ícono esté por encima de la imagen */
+    color: white; /* Color blanco para el ícono al pasar el cursor */
+}
+
 .profile span {
     display: block;
     font-size: 22px;
+    font-family: 'Rubik';
 }
 
 nav ul {
@@ -136,11 +145,22 @@ nav ul {
     padding: 0;
     width: 100%;
     text-align: center;
-    margin-top: 150px; /* Añade un margen superior para mover los botones hacia abajo */
+    margin-top: 10px;
+    color: white;
+}
+
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    color: white;
 }
 
 nav ul li {
-    margin: 40px 0; /* Aumenta el espacio entre los botones */
+    margin: 20px 0; /* Adjusted this value to reduce the space between buttons */
 }
 
 nav ul li a {
@@ -160,7 +180,6 @@ nav ul li a i {
 nav ul li a.active {
     font-weight: bold;
 }
-
 .main-content {
     flex-grow: 1;
     background-color: #ffffff; /* Cambiado a fondo blanco */
@@ -169,97 +188,27 @@ nav ul li a.active {
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
+    
 }
 
 .central-container {
     text-align: center;
     background-color: #487BFF; /* Fondo azul */
-    padding: 120px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 0 10px var(--shadow-color);
+    padding: 8px;
+    border-radius: 40px;
+   
     width: 150%;
 }
 
 .central-image {
     width: 100%;
-    max-width: 700px; /* Tamaño máximo de la imagen */
+    max-width: 570px; 
     height: auto;
-    border-radius: var(--border-radius);
+  
 }
 
 .central-title {
     color: white;
     font-size: 2rem;
     margin-top: 20px;
-}
-
-@media (max-width: 1200px) {
-    .header .logo {
-        font-size: 30px;
-    }
-
-    .header .logout a {
-        font-size: 140%;
-    }
-}
-
-@media (max-width: 992px) {
-    .header {
-        padding: 20px;
-    }
-
-    .header .logo {
-        font-size: 25px;
-    }
-
-    .header .logout a {
-        font-size: 130%;
-    }
-}
-
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-
-    .sidebar {
-        width: 100%;
-        height: auto;
-        padding: 10px 0;
-    }
-
-    .main-content {
-        padding: 20px;
-    }
-    
-    .sidebar nav ul {
-        margin-top: 50px;
-    }
-
-    .sidebar nav ul li {
-        margin: 20px 0;
-    }
-}
-
-@media (max-width: 576px) {
-    .header .logo {
-        font-size: 20px;
-    }
-
-    .header .logo img.logo-img {
-        width: 40px;
-        height: 40px;
-    }
-
-    .header .logout a {
-        font-size: 120%;
-    }
-
-    .sidebar nav ul {
-        margin-top: 30px;
-    }
-
-    .sidebar nav ul li {
-        margin: 15px 0;
-    }
 }

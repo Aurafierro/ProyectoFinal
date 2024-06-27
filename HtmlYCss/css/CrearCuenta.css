@@ -1,19 +1,15 @@
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   color: white;
-  font-family: "jomhuria";
-  font-size: 109%;
+  font-family: 'Rubik';
  
-
 }
+
 @font-face {
-  font-family: 'Jomhuria';
-  src: url('/Fuentes/jomhuria/Jomhuria-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+  font-family: 'Rubik';
+  src: url('/Fuentes/Rubik-VariableFont_wght.ttf');
 }
 
 body {
@@ -33,13 +29,15 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 20px; /* Ajuste para separación del borde superior */
 }
 
 .container .title {
-  font-size: 30px;
+  font-size: 50px;
   font-weight: 500;
   position: relative;
   text-align: center;
+  margin-bottom: 20px; /* Espacio inferior del título */
 }
 
 .container form .user {
@@ -49,12 +47,12 @@ body {
 }
 
 form .user .input-box {
-  margin: 20px 10px 12px 10px;
+  margin-bottom: 20px; /* Espacio entre cada input-box */
   width: calc(50% - 20px);
 }
 
 .user .input-box .clase {
-  font-weight: 500;
+  font-weight: 400;
   margin-bottom: 5px;
 }
 
@@ -88,9 +86,7 @@ form .user .input-box {
   font-size: 18px;
   border-radius: 40px;
   cursor: pointer;
-  font-size: 150%;
 }
-
 
 /* Media Queries para dispositivos más pequeños */
 @media (max-width: 768px) {

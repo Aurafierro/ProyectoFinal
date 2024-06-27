@@ -8,36 +8,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
+    <header class="header">
+        <div class="logo">
+            <img src="../img/logori.png" alt="Logo" class="logo-img">
+         
+        </div>
+        <div class="logout"><a href="#">Cerrar sesión</a></div>
+    </header>
     <div class="container">
-        <div class="sidebar">
-            <div class="logo">
-                <img src="../img/5613765 [Recuperado].png" alt="AsignaWeb">
-            </div>
-            <div class="profile-container">
-                <img id="profilePic" src="profile.jpg">
-                <div class="overlay">
-                    <i class="fa fa-camera"></i>
+        <aside class="sidebar">
+            <div class="profile">
+                <div class="profile-pic">
+                    <img id="profileImageDisplay" src="" alt="">
+                    <i class="fas fa-camera"></i>
+                    <input type="file" id="profileImage" accept="image/*">
                 </div>
-                <input type="file" id="profileInput" accept="image/*" style="display: none;">
+                <span>Paula Bustos</span>
             </div>
-            <div class="separator"></div> <!-- Línea añadida para el espacio -->
             <nav>
                 <ul>
                     <li><a href="../indexHTML/ModificarDatos.html"><i class="fas fa-user-edit"></i>Modificar datos</a></li>
-                    <li><a href="../indexHTML/CambiarContraseña.html"><i class="fas fa-key"></i>Cambiar contraseña</a></li>
-                    <li><a href="../indexHTML/Solicitudes.html"><i class="fas fa-check"></i>Solicitudes</a></li>
-                    <li><a href="../indexHTML/InicioSesión.html"><i class="fas fa-history"></i>Historial</a></li>
+                    <li><a href="../indexHTML/CambiarContraseña.html" class="active"><i class="fas fa-key"></i>Cambiar contraseña</a></li>
+                    <li><a href="../indexHTML/historial.html"><i class="fas fa-history"></i>Historial</a></li>
+                    <li><a href="#"><i class="fas fa-check"></i>Solicitudes</a></li>
                     <li><a href="#"><i class="fas fa-trash-alt"></i>Eliminar cuenta</a></li>
                 </ul>
             </nav>
-        </div>
-        
+        </aside>
         <!-- Contenido principal -->
         <div class="main-content">
-            <header>
-                <span class="logout">Cerrar sesión</span>
-            </header>
-            <!-- Contenido busqueda y demas -->
+            
             <div class="search-options">
                 <div class="search-bar-wrapper">
                     <div class="search-bar">
@@ -46,7 +46,6 @@
                     </div>
                 </div>
             </div>
-            
             <div class="table-container">
                 <table>
                     <thead>
@@ -59,7 +58,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Filas de ejemplo -->
                         <tr>
                             <td>Juan</td>
                             <td>Reserva 1</td>

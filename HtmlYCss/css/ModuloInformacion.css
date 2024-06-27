@@ -1,12 +1,17 @@
+@font-face {
+    font-family: 'Rubik';
+    src: url('/Fuentes/Rubik-VariableFont_wght.ttf');
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;
 }
 
 body {
     background-color: #ffffffa6;
-    font-family: "jomhuria";
     overflow: hidden;
 }
 
@@ -18,10 +23,16 @@ body {
 }
 
 .profile__link {
-    font-size: 35px;
+    font-size: 25px; /* Tamaño inicial */
     color: black;
     text-decoration: none;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.profile__link i {
+    margin-right: 5px;
 }
 
 .search-container {
@@ -37,10 +48,13 @@ body {
     justify-content: center;
     width: 100%;
     max-width: 580px;
+    position: relative; /* Añadido para controlar la superposición */
+    z-index: 1; /* Añadido para controlar la superposición */
+    margin-top: 20px; /* Espacio entre barra de búsqueda y perfil */
 }
 
 .search-bar input[type="text"] {
-    width: calc(100% - 2%);
+    width: calc(100% - 60px);
     padding: 18px;
     font-size: 16px;
     border: 2px solid rgb(3, 3, 3);
@@ -68,31 +82,34 @@ body {
 }
 
 #mensajeSeleccionar {
-    font-family: "jomhuria";
+    font-family: 'Rubik', sans-serif;
+    margin-top: 10px;
+    text-align: center;
 }
 
 .main-content {
     width: 100%;
     max-width: 1200px;
-    margin: 20px auto;
-    padding: 10%;
+    margin: 10px auto;
+    padding: 2%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    position: relative; /* Añadido para controlar la superposición */
 }
 
 .container__cards {
-    width: 150%;
+    width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 2px;
-   
 }
 
 .card {
-    flex: 1 1 calc(25% - 40px);
-    max-width: calc(25% - 40px);
+    flex: 1 1 calc(30% - 20px); /* Aumenta el ancho de las cartas y ajusta según sea necesario */
+    max-width: calc(30% - 20px); /* Ajusta el ancho máximo de las cartas */
     margin: 10px;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -123,8 +140,8 @@ body {
 
 @media screen and (max-width: 1200px) {
     .card {
-        flex: 1 1 calc(33.33% - 40px);
-        max-width: calc(33.33% - 40px);
+        flex: 1 1 calc(33.33% - 20px);
+        max-width: calc(33.33% - 20px);
     }
 }
 
@@ -136,20 +153,26 @@ body {
     .search-bar {
         max-width: 600px;
         margin-bottom: 20px;
+        margin-top: 40px; /* Ajuste para pantallas más pequeñas */
     }
 
     .card {
         flex: 1 1 calc(50% - 20px);
         max-width: calc(50% - 20px);
     }
+
+    .profile {
+        top: 10px; /* Ajuste para pantallas más pequeñas */
+        right: 10px; /* Ajuste para pantallas más pequeñas */
+        z-index: 2; /* Asegura que esté encima del search-bar */
+    }
+
+    .profile__link {
+        font-size: 20px; /* Ajuste el tamaño para pantallas más pequeñas */
+    }
 }
 
 @media screen and (max-width: 480px) {
-    .card {
-        flex: 1 1 100%;
-        max-width: 100%;
-    }
-
     .search-bar input[type="text"] {
         padding: 12px;
         font-size: 14px;
@@ -160,6 +183,11 @@ body {
         height: 50px;
     }
 
+    .card {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
     .card h2 {
         font-size: 16px;
     }
@@ -167,19 +195,10 @@ body {
     .profile {
         top: 10px;
         right: 10px;
+        z-index: 2; /* Asegura que esté encima del search-bar */
     }
-}
 
-/* Estilos para el ícono de retroceso */
-.back-icon {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 999;
-}
-
-.back-icon__link {
-    font-size: 80px; /* Ajustar el tamaño del ícono */
-    color: black; /* Color del ícono */
-    text-decoration: none;
+    .profile__link {
+        font-size: 18px; /* Ajuste el tamaño para pantallas más pequeñas */
+    }
 }

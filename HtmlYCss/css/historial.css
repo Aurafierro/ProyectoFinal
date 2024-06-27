@@ -1,123 +1,169 @@
-/* Estilo global para el cuerpo del documento */
+@font-face {
+    font-family: 'Rubik';
+    src: url('/Fuentes/Rubik-VariableFont_wght.ttf'); 
+}
+
 body {
     margin: 0;
-    font-family: Jomhuria;
-}
-
-/* Contenedor principal que usa flexbox para la disposición de la barra lateral y el contenido principal */
-.container {
-    display: flex;
-    height: 100vh;
-}
-
-/* Estilos para la barra lateral */
-.sidebar {
-    width: 250px;
-    background-color: #202c4a;
-    color: white;
+    font-family: 'Rubik';
     display: flex;
     flex-direction: column;
+    min-height: 100vh; /* Cambiado a min-height para asegurar que el cuerpo se extienda al menos al 100% de la altura de la ventana de visualización */
+    overflow-x: hidden; /* Evita el desplazamiento horizontal en dispositivos pequeños */
+}
+
+.header {
+    width: 100%;
+    background-color: #1a3e68;
+    color: var(--white);
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 20px;
     box-sizing: border-box;
 }
 
-/* Estilos para el logo */
-.logo {
+.header .logo {
+    font-size: 20px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    width: 100%;
-    margin-bottom: 20px;
 }
 
-.logo img {
+.header .logo img.logo-img {
     width: 80px;
-    height: 80px;
-    margin-right: 10px;
+    height: 70px;
+    margin-top: 5px; /* Ajusta este valor según lo necesites */
+    margin-bottom: 5px;
+    padding-left: 50px; 
 }
 
-.logo span {
-    font-size: 22px;
-    font-weight: bold;
+.header .logout a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+    font-size: 120%;
+    padding-right: 20px; 
+    font-family: 'Rubik';
+    color: white;
 }
 
-/* Estilos para la sección de perfil */
-.profile-container {
+.header .logout a:hover {
+    color: var(--hover-color);
+    font-family: 'Rubik';  
+}
+
+.container {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #1a3e68;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    overflow-y: hidden; 
+}
+
+.profile {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid black;
+    padding-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 10px; 
+    color: white;
+    font-family: 'Rubik';  
+}
+
+.profile-pic {
     position: relative;
-    width: 150px;
-    height: 150px;
-    margin: 0 auto;
+    width: 160px;
+    height: 160px;
+    background-color: transparent; /* Cambiado a transparente */
     border-radius: 50%;
+    margin: 0 auto 10px;
     overflow: hidden;
-    cursor: pointer;
-    border: 4px solid white; /* Añadir borde blanco */
+    cursor: pointer; /* Añadido cursor pointer para indicar que se puede hacer clic */
+    border: 3px solid #fff; /* Añadido un borde blanco para dar contraste */
 }
 
-
-.profile-container img {
+.profile-pic img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.profile-container .overlay {
+.profile-pic i {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color:transparent;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: 50% ;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 70px;
+    color: #000000;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out; /* Transición suave para la opacidad */
+    z-index: 1; /* Añadido z-index para estar por encima de la imagen */
+    display: none; /* Inicialmente oculto */
 }
 
-.profile-container:hover .overlay {
+.profile-pic:hover i {
     opacity: 1;
 }
 
-.profile-container .overlay i {
-    font-size: 24px;
+.profile-pic input[type="file"] {
+    display: none;
 }
 
-/* Estilos para la navegación */
-nav {
-    margin-top: 150px; /* Ajuste del margen superior */
+.profile-pic:hover i {
+    z-index: 2; /* Asegurar que el ícono esté por encima de la imagen */
+    color: white; /* Color blanco para el ícono al pasar el cursor */
+}
+
+.profile span {
+    display: block;
+    font-size: 22px;
+    font-family: 'Rubik';
 }
 
 nav ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    color: white;
 }
 
 nav ul li {
-    margin: 10px 0; /* Ajustar el margen entre los elementos de la navegación */
-    text-align: center;
+    margin: 20px 0; /* Adjusted this value to reduce the space between buttons */
 }
 
 nav ul li a {
-    color: white;
+    color: var(--white);
     text-decoration: none;
-    font-size: 18px; /* Tamaño de fuente aumentado */
-    padding: 15px; /* Padding aumentado */
+    font-size: 18px;
     display: flex;
     align-items: center;
-    
+    transition: color 0.3s ease-in-out;
+    font-weight: bold;
 }
 
 nav ul li a i {
-    margin-right: 10px;
+    margin-right: 8px;
 }
 
-nav ul li a:hover {
-    text-decoration: underline;
+nav ul li a.active {
+    font-weight: bold;
 }
 
-/* Estilos para el contenido principal */
 .main-content {
     flex: 1;
     background-color: #f3f3f3; /* Fondo azul claro */
@@ -125,31 +171,12 @@ nav ul li a:hover {
     flex-direction: column;
 }
 
-/* Estilos para el encabezado */
-header {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    background-color: #202c4a;
-    color: white;
-    padding: 35px 20px;
-}
-
-/* Estilos para el texto de cerrar sesión */
-.logout {
-    color: white;
-    cursor: pointer;
-    font-size:20px;
-}
-
-/* Contenedor de la tabla */
 .table-container {
     padding: 20px;
     flex: 1;
     overflow-y: auto;
 }
 
-/* Estilos para la tabla */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -157,24 +184,22 @@ table {
 }
 
 th, td {
-    padding: 15px;
+    padding: 20px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
 
 th {
-    background-color: #D9D9D9
-    ;
+    background-color: #D9D9D9;
     color: rgb(0, 0, 0);
 }
 
-/* Estilos para los botones de la tabla */
 td button {
-    padding: 5px 10px;
+    padding: 14px 12px;
     border: none;
     border-radius: 3px;
     cursor: pointer;
-    font-family: Jomhuria;
+    font-family: 'Rubik', sans-serif; /* Aplicando la fuente Rubik */
 }
 
 .edit {
@@ -197,31 +222,6 @@ td button {
     background-color: #AF0000;
 }
 
-/* Estilos para el contenedor de descarga de PDF */
-.pdf-download {
-    padding: 20px;
-    text-align: right;
-    background-color: #f3f3f3; /* Fondo azul claro */
-}
-
-/* Estilos para el botón de descarga de PDF */
-.pdf-download button {
-    background-color: #1B9607;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 20px;
-    font-family: Jomhuria;
-}
-
-.pdf-download button:hover {
-    background-color: #1B9607;
-}
-
-
-
-/* Estilos para el modal */
 .modal {
     display: none; /* Ocultar el modal por defecto */
     position: fixed;
@@ -236,7 +236,6 @@ td button {
     align-items: center;
 }
 
-/* Estilos para el contenido del modal */
 .modal-content {
     background-color: #ffffff; /* Fondo rosa claro */
     padding: 20px;
@@ -246,12 +245,10 @@ td button {
     position: relative;
 }
 
-/* Estilos para el título centrado */
 .modal-content h2 {
     text-align: center;
 }
 
-/* Estilos para el botón de cierre del modal */
 .close {
     position: absolute;
     top: 10px;
@@ -260,7 +257,6 @@ td button {
     cursor: pointer;
 }
 
-/* Estilos para el formulario dentro del modal */
 .modal-content form {
     display: flex;
     flex-wrap: wrap;
@@ -282,17 +278,15 @@ td button {
 .modal-content input {
     width: 100%;
     padding: 8px;
-    border : 1px solid #ddd;
+    border: 1px solid #ddd;
     border-radius: 20px;
     background-color: #d6d6d6; /* Color de fondo gris */
 }
 
-/* Estilos para el contenedor del botón guardar */
 .button-container {
     width: 100%;
     display: flex;
     justify-content: flex-end; /* Alinear el botón al final a la derecha */
-    
 }
 
 .save {
@@ -301,7 +295,7 @@ td button {
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    border-radius: 20Px;
+    border-radius: 20px;
     margin-top: 20px;
 }
 
@@ -309,16 +303,15 @@ td button {
     background-color: #218838;
 }
 
-
-/* Estilos para la sección de búsqueda y opciones */
 .search-options {
     display: flex;
     flex-direction: column;
     padding: 10px;
     background-color: #f3f3f3;
     border-radius: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     width: 100%;
+    align-items: center; /* Centrar el contenido */
 }
 
 .search-bar-wrapper {
@@ -326,8 +319,8 @@ td button {
     align-items: center;
     width: 70%;
     margin-bottom: 10px;
+    justify-content: center; /* Centrar la barra de búsqueda */
 }
-
 
 .search-bar {
     display: flex;
@@ -337,7 +330,7 @@ td button {
 }
 
 .search-bar input[type="text"] {
-    width: 100%;
+    width: 60%;
     padding: 18px;
     font-size: 16px;
     border: 2px solid rgb(3, 3, 3);
@@ -347,35 +340,51 @@ td button {
 }
 
 .search-bar button {
-    width: 60px;
-    height: 60px;
-    background-color: rgb(3, 3, 3);
+    padding: 22px 20px;
+    background-color: #000000; /* Color de fondo azul */
     border: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
-}
-
-.search-bar button i {
-    font-size: 24px;
     color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    outline: none;
 }
 
-#mensajeSeleccionar {
-    font-family: "jomhuria";
-    margin-bottom: 10px;
+
+.download-button {
+    position: fixed; /* Posición fija para mantenerlo en la esquina */
+    bottom: 20px; /* Distancia desde abajo */
+    right: 20px; /* Distancia desde la derecha */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
 }
 
-.selector-container {
-    margin-left: auto; /* Colocar el selector completamente a la derecha */
-}
-.selector-container select {
-    width: 100%;
-    padding: 10px;
-    border-radius: 10px;
+.download-button button {
+    padding: 18px 26px; /* Aumento del relleno */
+    background-color: #06a12a; /* Color de fondo verde */
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transición suave */
     font-size: 16px;
-    font-family: "jomhuria";
+}
+
+
+
+
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column-reverse; /* Cambia el orden de la columna en dispositivos más pequeños */
+    }
+
+    .sidebar {
+        width: 100%;
+        padding-bottom: 20px;
+    }
+
+    .main-content {
+        width: 100%;
+    }
 }

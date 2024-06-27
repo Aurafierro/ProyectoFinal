@@ -1,9 +1,7 @@
 
- @font-face {
-  font-family: 'Jomhuria';
-  src: url('/Fuentes/jomhuria/Jomhuria-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+@font-face {
+  font-family: 'Rubik';
+  src: url('/Fuentes/Rubik-VariableFont_wght.ttf');
 }
 
 body {
@@ -14,6 +12,7 @@ body {
   margin: 0;
   background-color: #487BFF;
   color: white;
+  font-family: 'Rubik';
 
 }
 
@@ -62,12 +61,13 @@ body {
   justify-content: center;
   margin-top: -20px; 
   margin-bottom: -20px;  
+  font-family: 'Rubik';
 }
 
 .inicio_sesion h2 {
   font-size: 2.2rem;
   margin-bottom: 2rem;
-
+  font-family: 'Rubik';
 }
 
 .formulario {
@@ -85,13 +85,14 @@ body {
   color: rgb(252, 252, 252); 
   top: 70%; 
   transform: translateY(-50%); 
-  z-index: 1; 
+  z-index: 1;
+   
 }
 
 .input {
-  width: 80%; 
-  padding: 20px 30px 14px 10px; 
-  border-radius: 30px;
+  width: 82%; 
+  padding: 15px 30px 14px 10px; 
+  border-radius: 40px;
   border:1px solid #ccc;
   margin-bottom: -1rem; 
   margin-left: 50px;
@@ -99,26 +100,17 @@ body {
   text-align: left;
   box-sizing: border-box;
   position: relative; 
+  font-family: 'Rubik';
 }
 
-.input1 {
-  width: 80%; 
-  padding: 20px 30px 14px 10px; 
-  border-radius: 30px;
-  border:1px solid #ccc;
-  margin-bottom: 1rem; 
-  margin-left: 50px;
-  font-size: 1rem;
-  text-align: left;
-  box-sizing: border-box;
-  position: relative; 
-}
+
 
 
 .recu-boton {
   text-align: center;
   margin-bottom: 1rem;
-  margin-top: 1rem; 
+  margin-top: 1rem;
+  font-family: 'Rubik'; 
 }
 
 .recu-boton a {
@@ -128,7 +120,7 @@ body {
   color: #ffffff;
   font-size: 1.2rem;
   text-decoration: none;
-
+  font-family: 'Rubik';
 }
 
 .buttons {
@@ -140,9 +132,10 @@ body {
   border-radius: 30px;
   cursor: pointer;
   margin: 0.0rem auto 0; 
-  font-size: 3rem;
+  font-size: 1.6rem;
   display: block; 
-  font-family: 'Jomhuria', sans-serif; 
+  font-family: 'Rubik';
+
 }
 
 

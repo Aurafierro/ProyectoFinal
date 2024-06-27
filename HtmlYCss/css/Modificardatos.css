@@ -1,62 +1,59 @@
-/* Estilos para el cuerpo y la cabecera */
-:root {
-    --primary-color: #1a3e68;
-    --secondary-color: #28a745;
-    --background-color: #f0f0f0;
-    --white: #ffffff;
-    --gray: #555;
-    --border-radius: 25px;
-    --shadow-color: rgba(116, 111, 111, 0.5);
+@font-face {
+    font-family: 'Rubik';
+    src: url('/Fuentes/Rubik-VariableFont_wght.ttf'); 
 }
 
 body {
     margin: 0;
-    font-family: "jomhuria";
+    font-family: 'Rubik';
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    overflow: hidden; /* Evita el desplazamiento */
-}
-
-@font-face {
-    font-family: "jomhuria";
-    src: url("../Jomhuria-Regural.ttf");
+    min-height: 100vh; /* Cambiado a min-height para asegurar que el cuerpo se extienda al menos al 100% de la altura de la ventana de visualización */
+    
+    overflow-x: hidden; /* Evita el desplazamiento horizontal en dispositivos pequeños */
 }
 
 .header {
     width: 100%;
-    background-color: var(--primary-color);
+    background-color: #1a3e68;
     color: var(--white);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
     box-sizing: border-box;
 }
 
 .header .logo {
-    font-size: 35px;
+    font-size: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .header .logo img.logo-img {
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 70px;
+    margin-top: 5px; /* Ajusta este valor según lo necesites */
     margin-bottom: 5px;
+    padding-left: 50px; 
 }
 
 .header .logout a {
     color: var(--white);
     text-decoration: none;
     transition: color 0.3s ease-in-out;
-    font-size: 155%;
+    font-size: 120%;
+    padding-right: 20px; 
+    font-family: 'Rubik';
+    color: white;
 }
 
 .header .logout a:hover {
     color: var(--hover-color);
+    font-family: 'Rubik';
+    
 }
+
 
 .container {
     display: flex;
@@ -66,7 +63,7 @@ body {
 
 .sidebar {
     width: 250px;
-    background-color: var(--primary-color);
+    background-color: #1a3e68;
     color: var(--white);
     display: flex;
     flex-direction: column;
@@ -74,7 +71,9 @@ body {
     padding: 20px 0;
     box-sizing: border-box;
     justify-content: flex-start;
+    overflow-y: hidden; 
 }
+
 
 .profile {
     text-align: center;
@@ -83,8 +82,12 @@ body {
     padding-bottom: 20px;
     width: 100%;
     box-sizing: border-box;
-    margin-top: 50px; /* Ajusta este valor para mover el perfil y la línea más abajo */
+    margin-top: 10px; 
+    color: white;
+    font-family: 'Rubik';
+    
 }
+
 
 .profile-pic {
     position: relative;
@@ -116,22 +119,25 @@ body {
     z-index: 1; /* Añadido z-index para estar por encima de la imagen */
     display: none; /* Inicialmente oculto */
 }
+
 .profile-pic:hover i {
     opacity: 1;
 }
+
 .profile-pic input[type="file"] {
     display: none;
 }
 
 .profile-pic:hover i {
-    display: block; /* Mostrar el ícono al pasar el cursor por encima */
+
     z-index: 2; /* Asegurar que el ícono esté por encima de la imagen */
-    color: var(--white); /* Color blanco para el ícono al pasar el cursor */
+    color: white; /* Color blanco para el ícono al pasar el cursor */
 }
 
 .profile span {
     display: block;
     font-size: 22px;
+    font-family: 'Rubik';
 }
 
 nav ul {
@@ -139,11 +145,22 @@ nav ul {
     padding: 0;
     width: 100%;
     text-align: center;
-    margin-top: 120px; /* Añade un margen superior para mover los botones hacia abajo */
+    margin-top: 10px;
+    color: white;
+}
+
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    color: white;
 }
 
 nav ul li {
-    margin: 40px 0; /* Aumenta el espacio entre los botones */
+    margin: 20px 0; /* Adjusted this value to reduce the space between buttons */
 }
 
 nav ul li a {
@@ -166,100 +183,135 @@ nav ul li a.active {
 
 .main-content {
     flex-grow: 1;
-    background-color: #ffffff; /* Cambiado a fondo azul */
+    background-color: #ffffff;
     padding: 4%;
     display: flex;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
 }
-
 .form-container {
     background-color: white;
-    padding: 50px;
+    padding: 45px;
     border-radius: 40px;
     box-shadow: 0 0 10px #746f6f;
     width: 100%;
-    max-width: 400px;
-    height: 75%; 
+    max-width: 300px;
+    height: 76%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-top: -30px;; /* Ajusta el margen superior del contenedor */
+    overflow-y: hidden; /* Oculta la barra de desplazamiento vertical */
+    scrollbar-width: none; /* Oculta la flecha de subir y bajar */
 }
+
 
 .form-container h2 {
     margin-top: 0;
     text-align: center; /* Centramos el título */
-    font-size: 300%; /* Aumentamos el tamaño de la letra */
+    font-size: 220%; /* Aumentamos el tamaño de la letra */
 }
+form-container form {
+    display: flex;
+    flex-direction: column;
+    font-size: 1%; /* Aumentamos el tamaño de la letra */
+}
+
+.form-container form label {
+    margin: 1px 0 5px;
+}
+/* Agrega estilos adicionales al formulario */
 
 .form-container form {
     display: flex;
     flex-direction: column;
-    font-size: 145%; /* Aumentamos el tamaño de la letra */
+    font-size: 15px; /* Reduce el tamaño de la letra del formulario */
 }
 
 .form-container form label {
-    margin: 10px 0 5px;
+    margin: 10px 0; /* Ajusta el margen superior e inferior de las etiquetas */
+    font-weight: bold; /* Añade negrita a las etiquetas */
 }
-
-/* Estilo para los campos de entrada */
 .form-container form input[type="text"],
 .form-container form input[type="tel"],
 .form-container form input[type="email"] {
-    padding: 15px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 25px; /* Hacemos los bordes redondeados */
-    outline: none; /* Quitamos el borde de enfoque */
-    transition: border-color 0.3s ease-in-out; /* Transición suave para el cambio de color de borde */
-    width: calc(100% - 22px); /* Ajustamos el ancho para que sea igual al resto de los inputs */
-    background-color: #000000; /* Fondo negro */
-    opacity: 71%;
-    color: white; /* Texto blanco */
+    padding: 10px; /* Aumenta el espacio interno de los campos de entrada */
+    margin-bottom: 0px; /* Ajusta el margen inferior de los campos de entrada */
+    border: 1px solid #ccc; /* Añade un borde a los campos de entrada */
+    border-radius: 20px; /* Añade esquinas redondeadas a los campos de entrada */
+   margin-top: -8px;
 }
-
 .form-container form input[type="text"]:focus,
 .form-container form input[type="tel"]:focus,
 .form-container form input[type="email"]:focus {
-    border-color: #1a3e68; /* Cambiamos el color del borde al enfocar */
+    border-color: blue; /* Cambia el color del borde al enfocar el campo de entrada */
 }
-
-/* Estilo para el botón Enviar */
 .form-container form button {
-    padding: 18px; /* Aumentamos el padding */
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 25px; /* Hacemos los bordes redondeados */
+    width: 70%;
+    padding: 10px; /* Aumenta el espacio interno del botón */
+    margin: 9px auto 0; /* Centra el botón y ajusta el margen superior */
+    background-color: #1B9607; /* Cambia el color de fondo del botón */
+    color: white; /* Cambia el color del texto del botón a blanco */
+    border: none; /* Elimina el borde del botón */
+    border-radius: 50px; /* Añade esquinas redondeadas al botón */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s ease-in-out; /* Agrega una transición suave para el color de fondo del botón */
+}
+   
+
+.profile {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid black;
+    padding-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 10px; /* Ajusta este valor para mover el perfil y la línea más abajo */
+}
+
+.profile-pic {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    background-color: transparent; /* Cambiado a transparente */
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    overflow: hidden;
+    cursor: pointer; /* Añadido cursor pointer para indicar que se puede hacer clic */
+    border: 3px solid #fff; /* Añadido un borde blanco para dar contraste */
+}
+
+.profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.profile-pic i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 70px;
+    color: #000000;
     cursor: pointer;
-    width: 150px; /* Ancho fijo */
-    margin: 10px auto; /* Centramos el botón y aplicamos margen */
-    font-size: 100%; /* Aumentamos el tamaño de la letra */
-    font-family: "jomhuria";
+    transition: opacity 0.3s ease-in-out; /* Transición suave para la opacidad */
+    z-index: 1; /* Añadido z-index para estar por encima de la imagen */
+    display: none; /* Inicialmente oculto */
+}
+.profile-pic:hover i {
+    opacity: 1;
+}
+.profile-pic input[type="file"] {
+    display: none;
 }
 
-.form-container form button:hover {
-    background-color: #218838;
+.profile-pic:hover i {
+    display: block; /* Mostrar el ícono al pasar el cursor por encima */
+    z-index: 2; /* Asegurar que el ícono esté por encima de la imagen */
+    color: var(--white); /* Color blanco para el ícono al pasar el cursor */
 }
-
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-
-    .sidebar {
-        width: 100%;
-        height: auto;
-        padding: 10px 0;
-    }
-
-    .main-content {
-        padding: 20px;
-    }
-    
-    /* Agrega estilos específicos para los íconos en el menú */
-    .sidebar nav ul li i {
-        margin-right: 10px;
-    }
+profile span {
+    display: block;
+    font-size: 22px;
 }

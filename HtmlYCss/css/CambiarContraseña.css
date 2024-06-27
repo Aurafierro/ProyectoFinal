@@ -15,14 +15,13 @@
 }
 
 @font-face {
-    font-family: "jomhuria";
-    src: url("../Jomhuria-Regural.ttf");
-}
-
+    font-family: 'Rubik';
+    src: url('/Fuentes/Rubik-VariableFont_wght.ttf') 
+  }
 /* Estilos para el cuerpo y la cabecera */
 body {
     margin: 0;
-    font-family: "jomhuria";
+    font-family: 'Rubik';
     font-weight: bold;
     display: flex;
     flex-direction: column;
