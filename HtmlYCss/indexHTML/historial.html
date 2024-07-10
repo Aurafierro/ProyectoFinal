@@ -3,106 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historial</title>
-    <link rel="stylesheet" href="../css/historial.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Recuperar Contraseña - AsignaWeb</title>
+    <link rel="stylesheet" href="css/historial.css"> <!-- Enlace al archivo CSS -->
 </head>
 <body>
-    <header class="header">
-        <div class="logo">
-            <img src="../img/logori.png" alt="Logo" class="logo-img">
-        </div>
-        <div class="logout"><a href="#">Cerrar sesión</a></div>
-    </header>
     <div class="container">
-        <aside class="sidebar">
-            <div class="profile">
-                <div class="profile-pic">
-                    <img id="profileImageDisplay" src="" alt="">
-                    <i class="fas fa-camera"></i>
-                    <input type="file" id="profileImage" accept="image/*">
-                </div>
-                <span>Paula Bustos</span>
+        <div class="form-container" id="form-container">
+            <h1>Recuperar contraseña</h1>
+            <p>Introduce el correo electrónico asociado a tu cuenta para cambiar tu contraseña.</p>
+            <input type="email" placeholder="Correo electrónico" class="input-email">
+            <div class="buttons">
+                <button class="btn red">Volver</button>
+                <button class="btn green">Enviar</button>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="../indexHTML/ModificarDatos.html"><i class="fas fa-user-edit"></i>Modificar datos</a></li>
-                    <li><a href="../indexHTML/CambiarContraseña.html" class="active"><i class="fas fa-key"></i>Cambiar contraseña</a></li>
-                    <li><a href="../indexHTML/historial.html"><i class="fas fa-history"></i>Historial</a></li>
-                    <li><a href="#"><i class="fas fa-trash-alt"></i>Eliminar cuenta</a></li>
-                </ul>
-            </nav>
-        </aside>
-        <!-- Contenido principal -->
-        <div class="main-content">
-            <div class="search-options">
-                <div class="search-bar-wrapper">
-                    <div class="search-bar">
-                        <input type="text" placeholder="Ingresa el nombre que deseas buscar">
-                        <button><i class="fas fa-search"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Usuario</th>
-                            <th>Reservación</th>
-                            <th>H.entrada</th>
-                            <th>H.salida</th>
-                            <th>Modificación</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Juan</td>
-                            <td>Reserva 1</td>
-                            <td>10:00</td>
-                            <td>12:00</td>
-                            <td>
-                                <button class="edit" onclick="openModal()">Editar</button>
-                                <button class="delete">Denegar</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="download-button">
-                    <button>Descargar PDF</button>
-                </div>
-            </div>
+        </div>
+        <div class="image-container" id="image-container">
+            <img src="img/Sin título-1.png" alt="AsignaWeb Logo">
         </div>
     </div>
 
-    <!-- Modal de edición -->
-    <div id="editModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Editar reservación</h2>
-            <form>
-                <div class="form-group">
-                    <label for="usuario">Usuario</label>
-                    <input type="text" id="usuario" name="usuario">
-                </div>
-                <div class="form-group">
-                    <label for="hentrada">H.entrada</label>
-                    <input type="text" id="hentrada" name="hentrada">
-                </div>
-                <div class="form-group">
-                    <label for="reservacion">Reservación</label>
-                    <input type="text" id="reservacion" name="reservacion">
-                </div>
-                <div class="form-group">
-                    <label for="hsalida">H.salida</label>
-                    <input type="text" id="hsalida" name="hsalida">
-                </div>
-                <div class="button-container">
-                    <button type="submit" class="save">Guardar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <script src="../js/Solicitudes.js"></script>
+    <script src="js/script.js"></script> <!-- Enlace al archivo JavaScript -->
 </body>
 </html>
