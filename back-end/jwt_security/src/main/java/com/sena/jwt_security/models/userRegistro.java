@@ -1,6 +1,7 @@
 package com.sena.jwt_security.models;
 
 import java.util.Collection;
+
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
