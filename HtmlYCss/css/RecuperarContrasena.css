@@ -18,7 +18,7 @@ body {
 }
 /* gggg */
 .container {
-    background-color: rgb(0, 0, 0); /* Negro con baja opacidad */
+    background-color: #1a3e68;
     padding: 2%; /* Utilizando porcentajes para el padding */
     border-radius: 50px; /* Utilizando porcentajes para el border-radius */
     text-align: center;
