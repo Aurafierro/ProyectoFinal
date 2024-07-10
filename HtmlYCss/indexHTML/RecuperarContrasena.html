@@ -3,20 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recuperar Contraseña</title>
-    <link rel="stylesheet" href="../css/RecuperarContrasena.css">
+    <title>Recuperar Contraseña - AsignaWeb</title>
+    <link rel="stylesheet" href="../css/RecuperarContrasena.css"> <!-- Enlace al archivo CSS -->
 </head>
 <body>
     <div class="container">
-        <h1>Recuperar Contraseña</h1>
-        <p class="message">Introduce el correo electrónico asociado a tu cuenta para cambiar contraseña.</p>
-        <form >
-            <input type="email" placeholder="Correo electrónico" required>
-            <div class="button-container">
-                <a href="../indexHTML/InicioSesión.html"><button type="button" class="btn red">Volver</button></a>
-                <button type="submit" class="btn green">Enviar</button>
+        <div class="form-container" id="form-container">
+            <h1>Recuperar contraseña</h1>
+            <p>Introduce el correo electrónico asociado a tu cuenta para cambiar tu contraseña.</p>
+            <input type="email" placeholder="Correo electrónico" class="input-email">
+            <div class="buttons">
+                <button class="btn red">Volver</button>
+                <button class="btn green">Enviar</button>
             </div>
-        </form>
+        </div>
+        <div class="image-container" id="image-container">
+            <img src="../img/Sin título-1.png" alt="AsignaWeb Logo">
+        </div>
     </div>
+
+    <script src="../js/RecuperarContraseña.js"></script> <!-- Enlace al archivo JavaScript -->
 </body>
 </html>
