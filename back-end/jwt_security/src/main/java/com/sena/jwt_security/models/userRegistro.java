@@ -54,10 +54,10 @@ public class userRegistro implements UserDetails{
 	@Column(name="correo", nullable= false, length = 100)
 	private String correo;
 
-	@Column(name="contrasena", nullable= false, length = 100)
+	@Column(name="contrasena", nullable= false, length = 16)
 	private String contrasena;
 	
-	@Column(name="confirmar_contrasena", nullable= false, length = 100)
+	@Column(name="confirmar_contrasena", nullable= false, length = 16)
 	private String confirmar_contrasena;
 	
 	@Enumerated(EnumType.STRING)

@@ -4,6 +4,7 @@ package com.sena.jwt_security.controller.Security;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,7 +35,7 @@ public class userController {
 private IUserService userService;
 
 @PostMapping("/")
-public ResponseEntity<Object> save(@ModelAttribute("userRegistro") userRegistro userRegistro) {
+public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	    
     List<userRegistro> user = userService.filtroIngresoUser(userRegistro.getNumero_documento());
 	    if (!user.isEmpty()) {

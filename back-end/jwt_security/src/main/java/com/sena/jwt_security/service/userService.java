@@ -2,19 +2,20 @@ package com.sena.jwt_security.service;
 
 import java.util.List;
 
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.authentication.AuthenticationManager;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.sena.jwt_security.interfaceService.IUserService;
 import com.sena.jwt_security.interfaces.Iuser;
 import com.sena.jwt_security.models.userRegistro;
-import com.sena.jwt_security.models.seguridad.authResponse;
-import com.sena.jwt_security.models.seguridad.loginRequest;
-import com.sena.jwt_security.service.jwt.jwtServices;
+//import com.sena.jwt_security.models.seguridad.authResponse;
+//import com.sena.jwt_security.models.seguridad.loginRequest;
+//import com.sena.jwt_security.service.jwt.jwtServices;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,12 +30,12 @@ public class userService implements IUserService {
 
 	// se implementa 
 	
-	private final jwtServices datajwt;
+	//private final jwtServices datajwt;
 	
 	// se implementa el administrador de autenticacion
-	private final AuthenticationManager authManager;
+	//private final AuthenticationManager authManager;
 	// se implementa el servicio de codificaion y 
-	private final PasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+	//private final PasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
 	@Override
 	public String save(userRegistro userRegistro) {
 		data.save(userRegistro);
@@ -75,10 +76,10 @@ public class userService implements IUserService {
 	}
 
 	
-	@Override
-	public authResponse login (loginRequest request) {
+	//@Override
+	//public authResponse login (loginRequest request) {
 		
-	}
+	//}
 	
 }
 

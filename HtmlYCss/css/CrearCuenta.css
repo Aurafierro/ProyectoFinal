@@ -72,6 +72,13 @@ body {
   margin-top: 20px;
 }
 
+.colorBotonAzul:hover{
+  background-color: #005cb8ce;
+}
+
+.colorBotonAzul{
+  background-color: #1E90FF;
+}
 button {
   padding: 15px 30px; /* Ajustar el padding del botón */
   background-color: #28a745;
@@ -106,3 +113,22 @@ button:hover {
   font-family: "jomhuria";
   src: url("../Jomhuria-Regural.ttf");
 }
+
+#tipo_documento{
+  width: 90%; /* Ajustar el ancho de los inputs */
+  padding: 10px;
+  border: none;
+  border-radius: 50px; /* Bordes redondeados */
+  font-family: "jomhuria";
+  font-weight: bold;
+}
+
+#rol{
+  width: 90%; /* Ajustar el ancho de los inputs */
+  padding: 10px;
+  border: none;
+  border-radius: 50px; /* Bordes redondeados */
+  font-family: "jomhuria";
+  font-weight: bold;
+}
+
