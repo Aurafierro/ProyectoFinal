@@ -1,113 +1,108 @@
-@font-face {
-  font-family: 'Rubik';
-  src: url('/Fuentes/Rubik-VariableFont_wght.ttf');
-}
-
 body {
+  font-family: "jomhuria";
+  background-color: #50A0FF;
+  margin: 0;
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin: 0;
-  background-color: #487BFF;
-  color: white;
-  font-family: 'Rubik';
+  font-size: 120%; /* Aumentar el tamaño de la fuente */
 }
 
 .container {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 70%; 
-  max-width: 1000px; 
-  background-color: #000000;
-  padding: 18px;
-  border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 0; 
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5%;
+  overflow: hidden;
+  width: 900px; /* Ajustar el ancho del contenedor */
 }
 
-.form-section {
-  width: 60%;
-  padding: 2%;
-  background-color: #202C4A;
-  border-radius: 20px;
+.form-container {
+  padding: 5%; /* Aumentar el padding */
+  background-color: #1a3365;
   color: white;
+  width: 90%; /* Ajustar el ancho del contenedor del formulario */
+}
+
+.form-container h2 {
+  margin-top: 0; /* Ajustar el margen superior */
+  margin-bottom: 40px;
+  font-size: 200%; /* Aumentar el tamaño de la fuente */
   text-align: center;
-  font-family: 'Rubik';
+  font-family: "jomhuria";
 }
 
-.form-section h2 {
-  font-size: 2.2rem;
-  margin-bottom: 2rem;
-  font-family: 'Rubik';
-}
-
-.formulario {
+.form-container form {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 2rem;
-  position: relative;
+  flex-direction: column;
 }
 
-.input {
-  width: 82%; 
-  padding: 15px 30px 14px 10px; 
-  border-radius: 40px;
-  border:1px solid #ccc;
-  margin-bottom: -1rem; 
-  margin-left: 50px;
-  font-size: 1rem;
-  text-align: left;
-  box-sizing: border-box;
-  position: relative; 
-  font-family: 'Rubik';
+.columns {
+  display: flex;
+  justify-content: space-between;
 }
 
-.buttons {
-  padding: 8px;
-  width: 50%;
+.column {
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+}
+
+.input-group {
+  margin-bottom: 20px; /* Aumentar el margen inferior */
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  width: 90%; /* Ajustar el ancho de los inputs */
+  padding: 10px;
   border: none;
-  background-color: #1B9607;
-  color: white;
-  border-radius: 30px;
-  cursor: pointer;
-  margin: 0.0rem auto 0; 
-  font-size: 1.6rem;
-  display: block; 
-  font-family: 'Rubik';
+  border-radius: 50px; /* Bordes redondeados */
 }
 
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
 
+button {
+  padding: 15px 30px; /* Ajustar el padding del botón */
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 50px; /* Bordes redondeados */
+  cursor: pointer;
+  font-size: 130%; /* Ajustar el tamaño de la fuente */
+  width: 50%; /* Hacer el botón más corto de ancho */
+  font-family: "jomhuria";
+}
 
+button:hover {
+  background-color: #218838;
+}
 
+.image-container {
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  padding: 20px;
+}
 
-@media screen and (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    align-items: center;
-    width: 90%;
-    padding: 10px;
-  }
+.image-container img {
+  max-width: 100%; /* Ajustar el ancho máximo de la imagen */
+  height: auto;
+}
 
- 
-
-  .form-section {
-    width: 100%;
-    margin: 0;
-    border-radius: 0 20px 20px 20px;
-    padding: 20px 10px;
-  }
-
-  .input {
-    width: calc(100% - 60px);
-    margin-left: 0;
-    padding: 15px 15px 15px 40px;
-  }
-
-  .buttons {
-    width: 80%;
-    font-size: 2rem;
-  }
+@font-face {
+  font-family: "jomhuria";
+  src: url("../Jomhuria-Regural.ttf");
 }
