@@ -1,7 +1,7 @@
 /* Variables CSS para colores */
 :root {
     --primary-color: #1a3e68;
-    --background-color: #f0f0f0;
+    --background-color: #487BFF;
     --white: #ffffff;
     --gray: #555;
     --border-radius: 25px;
@@ -17,7 +17,8 @@
 @font-face {
     font-family: 'Rubik';
     src: url('/Fuentes/Rubik-VariableFont_wght.ttf') 
-  }
+}
+
 /* Estilos para el cuerpo y la cabecera */
 body {
     margin: 0;
@@ -45,19 +46,18 @@ body {
     font-size: 24px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    
 }
 
 .header .logo img.logo-img {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 5px;
+    width: 7%;
+    height: 7%;
+    margin-bottom: 1px;
 }
 
 .header .logout a {
     color: var(--white);
     text-decoration: none;
-    
 }
 
 .header .logout a:hover {
@@ -104,8 +104,6 @@ body {
     border: 3px solid #fff; /* Añadido un borde blanco para dar contraste */
 }
 
-
-
 .profile-pic i {
     position: absolute;
     top: 50%;
@@ -118,9 +116,11 @@ body {
     z-index: 1; /* Añadido z-index para estar por encima de la imagen */
     display: none; /* Inicialmente oculto */
 }
+
 .profile-pic:hover i {
     opacity: 1;
 }
+
 .profile-pic input[type="file"] {
     display: none;
 }
@@ -184,7 +184,7 @@ nav ul li a:hover {
 
 .form-container {
     background-color: var(--white);
-    padding: 3%;
+    padding: 1.8%;
     border-radius: 40px;
     box-shadow: 0 0 10px var(--shadow-color);
     width: 100%;
@@ -251,7 +251,7 @@ nav ul li a:hover {
 }
 
 .form-container form button:hover {
-    background-color: var(--hover-color);
+    background-color: #2dcf42; /* Mantiene el color verde cuando se pasa el cursor */
 }
 
 @media (max-width: 768px) {

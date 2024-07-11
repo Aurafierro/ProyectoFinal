@@ -28,6 +28,7 @@
                 <ul>
                     <li><a href="../indexHTML/ModificarDatos.html"><i class="fas fa-user-edit"></i>Modificar datos</a></li>
                     <li><a href="../indexHTML/CambiarContraseña.html" class="active"><i class="fas fa-key"></i>Cambiar contraseña</a></li>
+                    <li><a href="#"><i class="fas fa-clipboard-list"></i>Solicitudes</a></li>
                     <li><a href="../indexHTML/historial.html"><i class="fas fa-history"></i>Historial</a></li>
                     <li><a href="#"><i class="fas fa-trash-alt"></i>Eliminar cuenta</a></li>
                 </ul>
@@ -35,13 +36,16 @@
         </aside>
         <main class="main-content">
             <div class="form-container">
-                <h2>Modificar Contraseña</h2>
+                <h2>Cambiar Contraseña</h2>
                 <div class="password-instructions">
                     <br> Ingresa una contraseña de fácil recordación.<br>
                     <br> Recuerde un carácter(*_!), un número y una mayúscula.<br>
                     <br>Máximo 20 caracteres.<br>
                 </div>
                 <form id="modifyForm">
+                    <label for="current-password">Contraseña Actual</label>
+                    <input type="password" id="Current password" name="Current password" required>
+
                     <label for="new-password">Nuevo Contraseña</label>
                     <input type="password" id="new-password" name="new-password" required>
                     
