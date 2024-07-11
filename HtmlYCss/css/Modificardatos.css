@@ -185,6 +185,11 @@ nav ul li a.active {
     justify-content: space-evenly;
 }
 
+.contenedor-titulos {
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+}
 .separador {
     height: 1%;
     width: 100%;
@@ -207,9 +212,6 @@ nav ul li a.active {
     margin-left: 5%;
 }
 
-.titulos-datos {
-    margin-top: 6%;
-}
 
 /* Estilos específicos para el formulario de Modificar datos */
 
@@ -234,4 +236,3 @@ nav ul li a.active {
     margin-bottom: 20px;
     text-align: center;
 }
-
