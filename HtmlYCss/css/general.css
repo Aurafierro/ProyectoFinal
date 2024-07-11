@@ -1,0 +1,71 @@
+@font-face {
+    font-family: "jomhuria";
+    src: url("../Jomhuria-Regural.ttf");
+}
+
+.botonRojo {
+    margin: 0 10px; /* Espacio entre botones */
+    padding: 15px 45px; /* Ajuste en el padding horizontal para agrandar los botones */
+    border: none;
+    border-radius: 40px; /* Bordes redondos */
+    cursor: pointer;
+    font-size: 1.2rem; /* Tamaño más grande para el texto del botón */
+    background-color: #dc3545;
+    color: white;
+    font-family: "jomhuria";
+    font-weight: bold;
+    margin-top: 3%;
+}
+
+.botonVerde {
+    margin: 0 10px; /* Espacio entre botones */
+    padding: 15px 45px; /* Ajuste en el padding horizontal para agrandar los botones */
+    border: none;
+    border-radius: 40px; /* Bordes redondos */
+    cursor: pointer;
+    font-size: 1.2rem; /* Tamaño más grande para el texto del botón */
+    background-color: green;
+    color: white;
+    font-family: "jomhuria";
+    font-weight: bold;
+    margin-top: 3%;
+}
+
+.colorLetraNegro{
+    color: black;
+}
+
+.colorLetraRojo{
+    color: red;
+}
+
+.cuadroDeTexto{
+    border-radius: 50px;
+    height: 30px;
+}
+
+
+.enlace{
+    color: white;
+    text-decoration: none;
+}
+
+.logoAtencion{
+    height: 70px;
+    width: 70px;
+
+}
+
+.mensajeAtencion{
+    display: flex;
+    align-items: center;
+    margin-left: 3%;
+
+}
+
+.letraGrande{
+    font-size: 300%;
+    font-family: "jomhuria";
+    font-weight: bold;
+}
+

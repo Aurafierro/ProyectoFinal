@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi perfil</title>
     <link rel="stylesheet" href="../css/MiPerfilUsuario.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
-    <link rel="stylesheet" href="../css/styles.css"> 
+
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/general.css">
     <!-- Agrega el archivo CSS común -->
 </head>
+
 <body>
     <header class="header">
         <div class="logo">
@@ -27,8 +30,10 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="../indexHTML/ModificarDatos.html"><i class="fas fa-user-edit"></i>Modificar datos</a></li>
-                    <li><a href="../indexHTML/CambiarContraseña.html" class="active"><i class="fas fa-key"></i>Cambiar contraseña</a></li>
+                    <li><a href="../indexHTML/ModificarDatos.html"><i class="fas fa-user-edit"></i>Modificar datos</a>
+                    </li>
+                    <li><a href="../indexHTML/CambiarContraseña.html" class="active"><i class="fas fa-key"></i>Cambiar
+                            contraseña</a></li>
                     <li><a href="../indexHTML/historial.html"><i class="fas fa-history"></i>Historial</a></li>
                     <li><a href="#"><i class="fas fa-trash-alt"></i>Eliminar cuenta</a></li>
                 </ul>
@@ -38,47 +43,59 @@
             <div class="contenedor-azul">
                 <div class="contenedor-titulos">
                     <div class="ancho">
-                        <a href="../indexHTML/MiPerfilUsuario.html"><h1>Perfil</h1></a>
+                        <a href="../indexHTML/MiPerfilUsuario.html" class="enlace">
+                            <h1>Perfil</h1>
+                        </a>
                     </div>
                     <div class="opcion ancho">
-                        <a href="../indexHTML/ModificarDatos.html"><h1>Modificar datos</h1></a>
+                        <a href="../indexHTML/ModificarDatos.html" class="enlace">
+                            <h1>Modificar datos</h1>
+                        </a>
                     </div>
                     <div class="opcion ancho">
-                       <a href="../indexHTML/desactivarCuentaUsuario.html"><h1> Desactivar cuenta</h1></a>
+                        <a href="../indexHTML/desactivarCuentaUsuario.html" class="enlace">
+                            <h1> Desactivar cuenta</h1>
+                        </a>
                     </div>
                 </div>
                 <div class="separador">
                 </div>
                 <div class="contenedor-blanco">
 
-                    <center> <h1>Modificar datos</h1></center>
+                    <center>
+                        <h1>Modificar datos</h1>
+                    </center>
                     <div class="datos">
-                     <h2>Información</h2>
-                     <div class="titulos-datos">
-                     <h3>Tipo de documento: </h1>
-                        <input type="text">
-
-                     <h3>Número de documento: </h1>
-                        <input type="text">
-
-                     <h3>Rol: </h1>
-                        <input type="text">
-
-                     <h3>Nombre completo: </h1>
-                        <input type="text">
-
-                     <h3>Número de teléfono: </h1>
-                        <input type="text">
-                        
-                     <h3>Correo electrónico: </h1>
-                        <input type="text">
-                     </div>
+                        <h2>Información</h2>
+                        <div class="contenedor-titulos">
+                            <div class="ancho">
+                                <h3 class="colorLetraNegro">Tipo de documento: </h3>
+                                    <input type="text" class="cuadroDeTexto">
+    
+                                    <h3 class="colorLetraNegro">Número de documento: </h3>
+                                        <input type="text" class="cuadroDeTexto">
+    
+                                        <h3 class="colorLetraNegro">Rol: </h3>
+                                            <input type="text" class="cuadroDeTexto">
+                            </div>
+                            <div class="opcion ancho">
+                                            <h3 class="colorLetraNegro">Nombre completo: </h3>
+                                                <input type="text" class="cuadroDeTexto">
+    
+                                                <h3 class="colorLetraNegro">Número de teléfono: </h3>
+                                                    <input type="text" class="cuadroDeTexto">
+    
+                                                    <h3 class="colorLetraNegro">Correo electrónico: </h3>
+                                                        <input type="text" class="cuadroDeTexto">
+                            </div>
+                        </div>
                     </div>
-                    <button>Enviar</button>
+                    <center><button class="botonVerde">Guardar cambios</button></center>
                 </div>
             </div>
         </div>
     </div>
     <script src="../js/MiPerfilUsuario.js"></script>
 </body>
+
 </html>
