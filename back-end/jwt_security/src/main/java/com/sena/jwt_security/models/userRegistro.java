@@ -64,8 +64,8 @@ public class userRegistro implements UserDetails{
 	@Column(name="rol", nullable= false, length = 100)
 	private rol  rol;
 	
-	@Column (name="enabled",nullable=true)
-	private boolean enabled;
+	//@Column (name="enabled",nullable=true)
+	//private boolean enabled;
 
 	public userRegistro() {
 		super();
