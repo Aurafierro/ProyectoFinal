@@ -5,122 +5,387 @@
 
 body {
     margin: 0;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Rubik', sans-serif; /* Usa 'Rubik' como fuente principal y sans-serif como alternativa */
     display: flex;
-    justify-content: center; /* Centra el contenido horizontalmente */
-    align-items: center; /* Centra el contenido verticalmente */
+    flex-direction: column;
     min-height: 100vh;
-    background-color: #487BFF; /* Fondo azul claro */
-    color: white; /* Color de texto blanco */
+    overflow-x: hidden;
+}
+
+.header {
+    width: 100%;
+    background-color: #1a3e68;
+    color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.header .logo {
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header .logo img.logo-img {
+    width: 80px;
+    height: 70px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 50px;
+}
+
+.header .logout a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+    font-size: 120%;
+    padding-right: 20px;
+    font-family: 'Rubik';
+    color: white;
+}
+
+.header .logout a:hover {
+    color: var(--hover-color);
+    font-family: 'Rubik';
 }
 
 .container {
     display: flex;
-    width: 80%; /* Ancho del contenedor principal */
-    max-width: 1200px; /* Máximo ancho del contenedor */
-    background-color: #1a3e68;
-    border-radius: 20px; /* Bordes redondos */
-    overflow: hidden; /* Evita que los bordes redondeados se vean afectados por los elementos internos */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-}
-
-.form-container {
     flex: 1;
-    padding: 10%;
+    flex-direction: row;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #1a3e68;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
     box-sizing: border-box;
-    color: white; /* Color de texto blanco */
-    text-align: center; /* Centra el contenido */
+    justify-content: flex-start;
+    overflow-y: hidden;
 }
 
-.form-container h1 {
-    font-size: 2.5rem; /* Tamaño más grande para el título */
-    margin-bottom: 9%;
-}
-
-.form-container p {
-    font-size: 1.2rem; /* Tamaño más grande para el texto */
-    margin-bottom: 7%;
-}
-
-.input-email {
+.profile {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid black;
+    padding-bottom: 20px;
     width: 100%;
-    padding: 15px;
-    font-size: 1rem; /* Tamaño más grande para el input */
-    border: 1px solid #ddd;
-    border-radius: 40px; /* Bordes redondos */
     box-sizing: border-box;
-    margin-bottom: 18px;
+    margin-top: 10px;
+    color: white;
+    font-family: 'Rubik';
 }
 
-.buttons {
-    display: flex;
-    justify-content: center; /* Centra los botones horizontalmente */
-}
-
-.buttons .btn {
-    margin: 0 10px; /* Espacio entre botones */
-    padding: 15px 45px; /* Ajuste en el padding horizontal para agrandar los botones */
-    border: none;
-    border-radius: 40px; /* Bordes redondos */
+.profile-pic {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    background-color: transparent;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    overflow: hidden;
     cursor: pointer;
-    font-size: 1.2rem; /* Tamaño más grande para el texto del botón */
+    border: 3px solid #fff;
 }
 
-.buttons .btn.red {
-    background-color: #dc3545;
+.profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-pic i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 70px;
+    color: #000000;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1;
+    display: none;
+}
+
+.profile-pic:hover i {
+    opacity: 1;
+}
+
+.profile-pic input[type="file"] {
+    display: none;
+}
+
+.profile-pic:hover i {
+    display: block;
+    z-index: 2;
+    color: var(--white);
+}
+
+.profile span {
+    display: block;
+    font-size: 22px;
+    font-family: 'Rubik';
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
     color: white;
 }
 
-.buttons .btn.green {
-    background-color: #28a745;
-    color: white;
+nav ul li {
+    margin: 20px 0;
 }
 
-.image-container {
-    flex: 1.2;
+nav ul li a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 18px;
     display: flex;
+    align-items: center;
+    transition: color 0.3s ease-in-out;
+    font-weight: bold;
+}
+
+nav ul li a i {
+    margin-right: 8px;
+}
+
+nav ul li a.active {
+    font-weight: bold;
+}
+
+.main-content {
+    flex: 1;
+    background-color: #f3f3f3; /* Fondo azul claro */
+    display: flex;
+    flex-direction: column;
+}
+
+.table-container {
+    padding: 20px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #f4f5f7; /* color de tabla  */
+}
+
+th, td {
+    padding: 20px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #D9D9D9;
+    color: rgb(0, 0, 0);
+}
+
+td button {
+    padding: 14px 12px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: 'Rubik', sans-serif; /* Aplicando la fuente Rubik */
+}
+
+.edit {
+    background-color: #1B9607;
+    color: white;
+    border-radius: 20px;
+}
+
+.edit:hover {
+    background-color: #1B9607;
+}
+
+.delete {
+    background-color: #AF0000;
+    color: white;
+    border-radius: 20px;
+}
+
+.delete:hover {
+    background-color: #AF0000;
+}
+
+.modal {
+    display: none; /* Ocultar el modal por defecto */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro con opacidad */
     justify-content: center;
     align-items: center;
-    background-color: black; /* Color de fondo del lado derecho */
 }
 
-.image-container img {
-    width: 80%; /* Ajusta el tamaño de la imagen */
-    max-width: 400px; /* Tamaño máximo de la imagen */
-    height: auto;
-    margin: 20px; /* Espaciado alrededor de la imagen */
+.modal-content {
+    background-color: #ffffff; /* Fondo rosa claro */
+    padding: 20px;
+    border-radius: 20px;
+    width: 800px; /* Ancho del modal aumentado */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
 }
 
-@media screen and (max-width: 768px) {
+.modal-content h2 {
+    text-align: center;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.modal-content form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Distribuir elementos con espacio entre ellos */
+    align-items: flex-start; /* Alinear elementos al inicio */
+}
+
+.modal-content .form-group {
+    flex: 0 0 48%; /* Cada grupo de formulario ocupará el 48% del ancho del contenedor */
+    margin: 10px 0; /* Márgenes para los elementos del formulario */
+}
+
+.modal-content label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background-color: #d6d6d6; /* Color de fondo gris */
+}
+
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; /* Alinear el botón al final a la derecha */
+}
+
+.save {
+    background-color: #28a745; /* Color de fondo verde */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.save:hover {
+    background-color: #218838;
+}
+
+.search-options {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    align-items: center; /* Centrar el contenido */
+}
+
+.search-bar-wrapper {
+    display: flex;
+    align-items: center;
+    width: 70%;
+    margin-bottom: 10px;
+    justify-content: center; /* Centrar la barra de búsqueda */
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 70%;
+}
+
+.search-bar input[type="text"] {
+    width: 60%;
+    padding: 18px;
+    font-size: 16px;
+    border: 2px solid rgb(3, 3, 3);
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    outline: none;
+}
+
+.search-bar button {
+    padding: 22px 20px;
+    background-color: #000000; /* Color de fondo azul */
+    border: none;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    outline: none;
+}
+
+
+.download-button {
+    position: fixed; /* Posición fija para mantenerlo en la esquina */
+    bottom: 20px; /* Distancia desde abajo */
+    right: 20px; /* Distancia desde la derecha */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+.download-button button {
+    padding: 18px 26px; /* Aumento del relleno */
+    background-color: #06a12a; /* Color de fondo verde */
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transición suave */
+    font-size: 16px;
+}
+
+
+
+
+
+@media (max-width: 768px) {
     .container {
-        flex-direction: column;
-        align-items: center;
-        width: 90%;
-        padding: 10px;
+        flex-direction: column-reverse; /* Cambia el orden de la columna en dispositivos más pequeños */
     }
 
-    .form-container {
+    .sidebar {
         width: 100%;
-        padding: 20px;
-        border-radius: 20px; /* Bordes redondos */
-        margin-bottom: 20px;
+        padding-bottom: 20px;
     }
 
-    .input-email {
-        padding: 15px 20px;
-        font-size: 1rem;
-    }
-
-    .buttons {
-        justify-content: center;
-    }
-
-    .buttons .btn {
-        padding: 12px 28px; /* Ajuste en el padding horizontal para dispositivos móviles */
-        font-size: 1rem;
-    }
-
-    .image-container img {
+    .main-content {
         width: 100%;
     }
 }
