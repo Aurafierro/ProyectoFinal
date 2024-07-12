@@ -1,67 +1,55 @@
-/* Variables CSS para colores */
-:root {
-    --primary-color: #1a3e68;
-    --background-color: #487BFF;
-    --white: #ffffff;
-    --gray: #555;
-    --border-radius: 25px;
-    --shadow-color: rgba(116, 111, 111, 0.5);
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 @font-face {
     font-family: 'Rubik';
-    src: url('/Fuentes/Rubik-VariableFont_wght.ttf') 
+    src: url('/Fuentes/Rubik-VariableFont_wght.ttf'); 
 }
 
-/* Estilos para el cuerpo y la cabecera */
 body {
     margin: 0;
     font-family: 'Rubik';
-    font-weight: bold;
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    background-color: var(--background-color);
-    overflow: hidden; /* Hace que la página sea estática */
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .header {
     width: 100%;
-    background-color: var(--primary-color);
+    background-color: #1a3e68;
     color: var(--white);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
     box-sizing: border-box;
 }
 
 .header .logo {
-    font-size: 24px;
+    font-size: 20px;
     display: flex;
     flex-direction: column;
-    
+    align-items: center;
 }
 
 .header .logo img.logo-img {
-    width: 7%;
-    height: 7%;
-    margin-bottom: 1px;
+    width: 80px;
+    height: 70px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 50px;
 }
 
 .header .logout a {
     color: var(--white);
     text-decoration: none;
+    transition: color 0.3s ease-in-out;
+    font-size: 120%;
+    padding-right: 20px;
+    font-family: 'Rubik';
+    color: white;
 }
 
 .header .logout a:hover {
     color: var(--hover-color);
+    font-family: 'Rubik';
 }
 
 .container {
@@ -72,7 +60,7 @@ body {
 
 .sidebar {
     width: 250px;
-    background-color: var(--primary-color);
+    background-color: #1a3e68;
     color: var(--white);
     display: flex;
     flex-direction: column;
@@ -80,6 +68,7 @@ body {
     padding: 20px 0;
     box-sizing: border-box;
     justify-content: flex-start;
+    overflow-y: hidden;
 }
 
 .profile {
@@ -89,19 +78,27 @@ body {
     padding-bottom: 20px;
     width: 100%;
     box-sizing: border-box;
-    margin-top: 50px; /* Ajusta este valor para mover el perfil y la línea más abajo */
+    margin-top: 10px;
+    color: white;
+    font-family: 'Rubik';
 }
 
 .profile-pic {
     position: relative;
     width: 160px;
     height: 160px;
-    background-color: transparent; /* Cambiado a transparente */
+    background-color: transparent;
     border-radius: 50%;
     margin: 0 auto 10px;
     overflow: hidden;
-    cursor: pointer; /* Añadido cursor pointer para indicar que se puede hacer clic */
-    border: 3px solid #fff; /* Añadido un borde blanco para dar contraste */
+    cursor: pointer;
+    border: 3px solid #fff;
+}
+
+.profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .profile-pic i {
@@ -112,9 +109,9 @@ body {
     font-size: 70px;
     color: #000000;
     cursor: pointer;
-    transition: opacity 0.3s ease-in-out; /* Transición suave para la opacidad */
-    z-index: 1; /* Añadido z-index para estar por encima de la imagen */
-    display: none; /* Inicialmente oculto */
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1;
+    display: none;
 }
 
 .profile-pic:hover i {
@@ -126,14 +123,14 @@ body {
 }
 
 .profile-pic:hover i {
-    display: block; /* Mostrar el ícono al pasar el cursor por encima */
-    z-index: 2; /* Asegurar que el ícono esté por encima de la imagen */
-    color: var(--white); /* Color blanco para el ícono al pasar el cursor */
+    z-index: 2;
+    color: white;
 }
 
 .profile span {
     display: block;
     font-size: 22px;
+    font-family: 'Rubik';
 }
 
 nav ul {
@@ -141,11 +138,21 @@ nav ul {
     padding: 0;
     width: 100%;
     text-align: center;
-    margin-top: 60px; /* Añade un margen superior para mover los botones hacia abajo */
+    margin-top: 10px;
+    color: white;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    color: white;
 }
 
 nav ul li {
-    margin: 40px 0; /* Aumenta el espacio entre los botones */
+    margin: 20px 0;
 }
 
 nav ul li a {
@@ -166,10 +173,67 @@ nav ul li a.active {
     font-weight: bold;
 }
 
-nav ul li a:hover {
-    color: var(--white); /* Mantén el color de texto blanco al pasar el cursor */
-    text-decoration: none; /* Quita el subrayado al pasar el cursor */
-    background-color: transparent; /* Quita el color de fondo al pasar el cursor */
+.central-container {
+    text-align: center;
+    background-color: #487BFF;
+    padding: 8px;
+    border-radius: 40px;
+    width: 150%;
+}
+
+.central-image {
+    width: 100%;
+    max-width: 570px;
+    height: auto;
+}
+
+.central-title {
+    color: white;
+    font-size: 2rem;
+    margin-top: 20px;
+}
+
+.contenedor-azul {
+    background-color: #3EBFFF;
+    height: 105%;
+    width: 100%;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contenedor-titulos {
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.separador {
+    height: 1%;
+    width: 100%;
+    background-color: white;
+}
+
+.contenedor-blanco {
+    height: auto; /* Ajustar la altura automáticamente según el contenido */
+    width: 30%;
+    background-color: white;
+    margin-top: 2%;
+    border-radius: 50px;
+    padding: 2%; /* Añadir padding para evitar que el contenido toque los bordes */
+}
+
+.opcion {
+    margin-left: 20%;
+}
+
+.datos {
+    margin-left: 5%;
+}
+
+.titulos-datos {
+    margin-top: 6%;
 }
 
 .main-content {
@@ -189,23 +253,24 @@ nav ul li a:hover {
     box-shadow: 0 0 10px var(--shadow-color);
     width: 100%;
     max-width: 500px;
-    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     font-weight: bold;
+    margin: auto; /* Centrar el formulario dentro del contenedor blanco */
 }
 
 .form-container h2 {
     margin-top: 0;
     text-align: center;
+    font-size: 200%; /* Aumentar el tamaño de la fuente */
 }
 
 .password-instructions {
     text-align: center;
-    font-size: 20px;
+    font-size: 120%;
     color: #000000;
-    margin: 10% 0 10%;
+    margin: 0% 0 5%;
     font-weight: bold;
 }
 
@@ -222,13 +287,13 @@ nav ul li a:hover {
 }
 
 .form-container form input[type="password"] {
-    padding: 15px;
-    margin-bottom: 15px;
+    padding: 3%;
+    margin-bottom: 5%;
     border: 1px solid #ccc;
-    border-radius: var(--border-radius);
-    outline: none;  
+    border-radius: 20px; /* Hacer los bordes circulares */
+    outline: none;
     transition: border-color 0.3s ease-in-out;
-    width: calc(110% - 22px);
+    width: calc(100% - 32px); /* Ajustar el ancho */
     background-color: rgb(83, 82, 82);
     color: white;
 }
@@ -241,17 +306,17 @@ nav ul li a:hover {
     padding: 10px;
     background-color: #2dcf42;
     border: none;
-    border-radius: var(--border-radius);
+    border-radius: 20px; /* Hacer los bordes circulares */
     cursor: pointer;
     width: 150px;
     margin: 10px auto;
     font-family: "jomhuria";
     font-weight: bold;
-    font-size: 30px; /* Aumenta el tamaño de la letra del botón */
+    font-size: 20px; /* Ajustar el tamaño de la letra del botón */
 }
 
 .form-container form button:hover {
-    background-color: #2dcf42; /* Mantiene el color verde cuando se pasa el cursor */
+    background-color: #2dcf42;
 }
 
 @media (max-width: 768px) {
