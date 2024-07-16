@@ -1,32 +1,32 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const searchBar = document.querySelector('.search-bar');
-    const searchInput = searchBar.querySelector('input[type="text"]');
-    const searchButton = searchBar.querySelector('button');
+document.addEventListener('DOMContentLoaded', () => {
+    const prevButton = document.querySelector('.carousel-button.prev');
+    const nextButton = document.querySelector('.carousel-button.next');
     const cards = document.querySelectorAll('.card');
+    let currentIndex = 0;
 
-    searchButton.addEventListener('click', function() {
-        const searchTerm = searchInput.value.trim().toLowerCase();
-
-        cards.forEach(card => {
-            const title = card.querySelector('h2').textContent.toLowerCase();
-            if (title.includes(searchTerm)) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
+    const updateVisibility = () => {
+        cards.forEach((card, index) => {
+            card.style.display = index === currentIndex ? 'flex' : 'none';
         });
+    };
+
+    prevButton.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+        } else {
+            currentIndex = cards.length - 1;
+        }
+        updateVisibility();
     });
 
-    searchInput.addEventListener('keyup', function(event) {
-        const searchTerm = searchInput.value.trim().toLowerCase();
-
-        cards.forEach(card => {
-            const title = card.querySelector('h2').textContent.toLowerCase();
-            if (title.includes(searchTerm)) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        });
+    nextButton.addEventListener('click', () => {
+        if (currentIndex < cards.length - 1) {
+            currentIndex++;
+        } else {
+            currentIndex = 0;
+        }
+        updateVisibility();
     });
+
+    updateVisibility(); // Inicializar visibilidad
 });
