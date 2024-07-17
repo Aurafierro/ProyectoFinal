@@ -1,34 +1,140 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="../css/InicioSesion.css">
-    <title>Inicio de Sesión</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iniciar Sesion</title>
+  <link rel="stylesheet" href="../css/InicioSesion.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
 </head>
 <body>
-    <div class="container">
-        <div class="logoweb">
-            <img src="../img/Sin título-1.png" alt="LogoAsignaWeb">
+  <div class="container" id="container">
+    <div class="form-container register-container">
+      <form>
+        <h1>Regístrate aquí</h1>
+        <div class="form-control">
+          <input type="text" id="username" placeholder="Nombre" />
+          <small id="username-error"></small>
+          <span></span>
         </div>
-        <div class="inicio_sesion">
-            <h2>Inicio de sesión</h2>
-            <div class="formulario">    
-                <i class="fas fa-user"></i>
-                <input class="input" type="text" placeholder="Usuario">
-            </div>
-            <div class="formulario">
-                <i class="fas fa-lock custom-size"></i>
-                <input class="input" type="password" placeholder="Contraseña">
-            </div>
-            <div class="recu-boton">
-                <a href="../indexHTML/RecuperarContrasena.html">Recuperar contraseña</a>
-                <a href="../indexHTML/CrearCuenta.html">Crear cuenta</a>
-            </div>
-            <button class="buttons">Iniciar sesión</button>
-            
+        <div class="form-control">
+          <input type="email" id="email" placeholder="Correo electrónico" />
+          <small id="email-error"></small>
+          <span></span>
         </div>
+        <div class="form-control">
+          <input type="password" id="password" placeholder="Contraseña" />
+          <small id="password-error"></small>
+          <span></span>
+        </div>
+        <div class="form-control">
+          <input type="text" id="fullname" placeholder="Nombre completo" />
+          <small id="fullname-error"></small>
+          <span></span>
+        </div>
+        <div class="form-control">
+          <input type="text" id="document-type" placeholder="Tipo de documento" />
+          <small id="document-type-error"></small>
+          <span></span>
+        </div>
+        <div class="form-control">
+          <input type="text" id="document-number" placeholder="Número de documento" />
+          <small id="document-number-error"></small>
+          <span></span>
+        </div>
+        <div class="form-control">
+          <input type="text" id="phone-number" placeholder="Número de teléfono" />
+          <small id="phone-number-error"></small>
+          <span></span>
+        </div>
+        <div class="form-control">
+          <input type="text" id="role" placeholder="Rol" />
+          <small id="role-error"></small>
+          <span></span>
+        </div>
+        <div class="form-control">
+          <input type="password" id="password-confirm" placeholder="Confirmar contraseña" />
+          <small id="password-confirm-error"></small>
+          <span></span>
+        </div>
+        <button type="submit">Registrar</button> 
+        <div class="social-container">
+            <a href="https://www.google.com/maps" target="_blank" class="social"><i class="fa-solid fa-map-marker-alt"></i></a>
+          <a href="mailto:asignaweb@gmail.com" class="social"><i class="fa-solid fa-envelope"></i></a>
+          <a href="https://wa.me/3222606275" class="social"><i class="fa-brands fa-whatsapp"></i></a> <!-- Reemplaza "1234567890" con el número de WhatsApp -->
+        </div>
+      </form>
     </div>
+
+    <div class="form-container login-container">
+      <form class="form-lg">
+        <h1>Inicia sesión aquí</h1>
+        <div class="form-control2">
+          <input type="email" class="email-2" placeholder="Correo electrónico" />
+          <small class="email-error-2"></small>
+          <span></span>
+        </div>
+        <div class="form-control2">
+          <input type="password" class="password-2" placeholder="Contraseña" />
+          <small class="password-error-2"></small>
+          <span></span>
+        </div>
+
+        <div class="content">
+          <div class="checkbox">
+            <input type="checkbox" name="checkbox" id="checkbox" />
+            <label for="">Recuérdame</label>
+          </div>
+          <div class="pass-link">
+            <a href="../indexHTML/RecuperarContrasena.html">¿Olvidaste la contraseña?</a>
+          </div>
+        </div>
+        <button type="submit">Iniciar sesión</button>
+        <div class="social-container">
+            <a href="https://www.google.com/maps" target="_blank" class="social"><i class="fa-solid fa-map-marker-alt"></i></a>
+          <a href="mailto:asignaweb@gmail.com" class="social"><i class="fa-solid fa-envelope"></i></a>
+          <a href="https://wa.me/3222606275" class="social"><i class="fa-brands fa-whatsapp"></i></a> <!-- Reemplaza "1234567890" con el número de WhatsApp -->
+        </div>
+      </form>
+    </div>
+
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1 class="title">
+            Si tienes una cuenta, <br />
+            inicia sesión aquí
+          </h1>
+          <p></p>
+          <button class="ghost" id="login">
+            Iniciar sesión
+            <i class="fa-solid fa-arrow-left"></i>
+          </button>
+        </div>
+
+        <div class="overlay-panel overlay-right">
+          <h1 class="title">
+            Crea tu <br />
+            cuenta ahora
+          </h1>
+          <p>
+            Si aún no tienes una cuenta, únete a nosotros
+          </p>
+          <button class="ghost" id="register">
+            Registrarse
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/inicioSesion.js"></script>
 </body>
 </html>
