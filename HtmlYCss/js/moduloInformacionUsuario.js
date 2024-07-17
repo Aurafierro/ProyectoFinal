@@ -29,4 +29,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     updateVisibility(); // Inicializar visibilidad
+
+    // Lógica de notificaciones
+    const notificationLink = document.querySelector('.notification__link');
+    const notificationCount = document.querySelector('.notification__count');
+    let notifications = 0;
+
+    // Función para simular la llegada de una nueva notificación
+    const addNotification = (message) => {
+        notifications++;
+        notificationCount.textContent = notifications;
+        alert(message);
+    };
+
+    // Ejemplo de uso: Simular una notificación cuando se reserva un ambiente
+    // Puedes reemplazar esto con tu lógica real de reserva
+    const simulateReservation = () => {
+        setTimeout(() => {
+            addNotification('¡Tu sala ha sido reservada!');
+        }, 3000); // Simula una reserva después de 3 segundos
+    };
+
+    simulateReservation();
+    document.addEventListener('DOMContentLoaded', function() {
+    const numBubbles = 30; // Número de burbujas
+    const bubblesContainer = document.querySelector('.bubbles-container');
+
+    for (let i = 0; i < numBubbles; i++) {
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        bubble.style.width = `${Math.random() * 20}px`; // Tamaño aleatorio
+        bubble.style.height = bubble.style.width;
+        bubble.style.left = `${Math.random() * 100}%`; // Posición horizontal aleatoria
+        bubble.style.animationDuration = `${Math.random() * 6 + 5}s`; // Duración aleatoria de la animación
+        bubble.style.bottom = `${-Math.random() * 100}%`; // Posición inicial aleatoria en la pantalla
+        bubblesContainer.appendChild(bubble);
+    }
+});
+
 });

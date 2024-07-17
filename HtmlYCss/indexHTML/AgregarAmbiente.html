@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Nuevo Ambiente - AsignaWeb</title>
+    <link rel="stylesheet" href="../css/RecuperarContrasena.css"> <!-- Enlace al archivo CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Iconos Font Awesome -->
+    <style>
+        /* Aquí puedes añadir tu CSS personalizado */
+        body {
+            /* Estilos de fondo, color de texto, etc. */
+            background-color: #487BFF;
+            color: white;
+        }
+
+        .container {
+            /* Estilos del contenedor principal */
+            display: flex;
+            background-color: #000000;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px;
+        }
+
+        .form-container {
+            /* Estilos del contenedor del formulario */
+            flex: 1;
+            color: white;
+            text-align: center;
+            padding: 5%;
+        }
+
+        .form-container h1 {
+            /* Estilos del título */
+            font-size: 2.5rem;
+            margin-bottom: 9%;
+        }
+
+        .form-container p {
+            /* Estilos del texto descriptivo */
+            font-size: 1.2rem;
+            margin-bottom: 7%;
+        }
+
+        .input-email {
+            /* Estilos del input */
+            width: 100%;
+            padding: 15px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 40px;
+            box-sizing: border-box;
+            margin-bottom: 18px;
+        }
+
+        .buttons {
+            /* Estilos del contenedor de botones */
+            display: flex;
+            justify-content: center;
+            margin-top: 20px; /* Ajuste según necesites */
+        }
+
+        .buttons .btn {
+            /* Estilos de los botones */
+            margin: 0 10px;
+            padding: 15px 45px;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .buttons .btn.red {
+            /* Estilos del botón Volver */
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .buttons .btn.green {
+            /* Estilos del botón Guardar */
+            background-color: #28a745;
+            color: white;
+        }
+
+        .image-container {
+            /* Estilos del contenedor de imagen/icono */
+            flex: 1;
+            background-color: #1a3e68;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .image-container .add-icon {
+            /* Estilos del icono */
+            font-size: 11rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        .image-preview {
+            /* Estilos de la vista previa de la imagen */
+            display: none;
+            max-width: 100%;
+            max-height: 300px;
+            margin-top: 20px;
+            border-radius: 15px;
+        }
+
+        @media screen and (max-width: 768px) {
+            /* Media queries para ajustes responsivos */
+            .container {
+                flex-direction: column;
+            }
+
+            .form-container, .image-container {
+                width: 100%;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+
+            .input-email {
+                padding: 15px 20px;
+            }
+
+            .buttons .btn {
+                padding: 12px 28px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container vertical">
+        <div class="form-container" id="form-container">
+            <h1>Agregar espacios</h1>
+            <input type="text" placeholder="Nombre del nuevo ambiente" class="input-email">
+            <input type="text" placeholder="Descripción del nuevo espacio" class="input-email">
+            <div class="buttons">
+                <button class="btn red">Volver</button>
+                <button class="btn green">Guardar</button>
+            </div>
+        </div>
+        <div class="image-container" id="image-container">
+            <i class="fas fa-plus-circle add-icon" id="add-icon"></i> <!-- Icono de Font Awesome para agregar -->
+            <input type="file" id="file-input" style="display: none;" accept="image/*">
+            <img id="image-preview" class="image-preview" src="" alt="Vista previa de la imagen">
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('add-icon').addEventListener('click', function() {
+            document.getElementById('file-input').click();
+        });
+
+        document.getElementById('file-input').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('image-preview').src = e.target.result;
+                    document.getElementById('image-preview').style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,3 +1,5 @@
+/* ModuloInformacion.css */
+
 * {
     margin: 0;
     padding: 0;
@@ -19,74 +21,51 @@ body {
 
 .profile {
     position: absolute;
-    top: 20px;
+    top: 7.5%;
     right: 20px;
     z-index: 999;
+    display: flex;
+    align-items: center;
 }
 
-.profile__link {
+.profile__link,
+.notification__link {
     font-size: 25px;
-    color: black;
+    color: rgb(255, 255, 255);
     text-decoration: none;
     font-weight: bold;
     display: flex;
     align-items: center;
+    margin-left: 15px;
 }
 
-.profile__link i {
+.notification__link {
+    margin-left: 0; /* Elimina el margen izquierdo para la campana */
+    margin-right: 15px; /* Añade margen derecho a la campana */
+}
+
+.profile__link i,
+.notification__link i {
     margin-right: 5px;
 }
 
-.search-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.search-bar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 580px;
-    position: relative;
-    z-index: 1;
-    margin-top: 20px;
-}
-
-.search-bar input[type="text"] {
-    width: calc(100% - 60px);
-    padding: 18px;
-    font-size: 16px;
-    border: 2px solid rgb(3, 3, 3);
-    border-top-left-radius: 25px;
-    border-bottom-left-radius: 25px;
-    outline: none;
-}
-
-.search-bar button {
-    width: 60px;
-    height: 60px;
-    background-color: rgb(3, 3, 3);
-    border: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
-}
-
-.search-bar button i {
-    font-size: 24px;
+.notification__count {
+    background-color: red;
     color: white;
+    border-radius: 50%;
+    padding: 2px 8px;
+    font-size: 14px;
+    margin-left: 5px;
 }
 
-#mensajeSeleccionar {
-    font-family: 'Rubik', sans-serif;
-    margin-top: 12%;
-    text-align: center;
+.notification__link {
+    position: relative;
+}
+
+.notification__count {
+    position: absolute;
+    top: -10px;
+    right: -10px;
 }
 
 .carousel-container {
@@ -197,7 +176,7 @@ body {
 
 h4 {
     color: #ffffff;
-    text-transform: uppercase;
+  
     letter-spacing: 2px;
     font-size: 60px; /* Ajuste del tamaño de fuente */
     text-align: center; /* Centrado horizontal */
@@ -206,13 +185,12 @@ h4 {
 
 h2 {
     color: #ffffff;
-    text-transform: capitalize;
     margin-top: 10%;
 }
 
 h5 {
     color: #00c3ff;
-    text-transform: uppercase;
+  
     margin-top: 8px;
 }
 
@@ -220,7 +198,6 @@ p {
     color: #ffffff;
     margin-top: 12px;
 }
-
 
 @media screen and (max-width: 1200px) {
     .card {
@@ -275,4 +252,5 @@ p {
     .profile__link {
         font-size: 18px;
     }
+    
 }
