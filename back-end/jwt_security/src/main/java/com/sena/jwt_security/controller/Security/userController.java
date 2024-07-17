@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sena.jwt_security.interfaceService.IUserService;
 import com.sena.jwt_security.models.userRegistro;
+import com.sena.jwt_security.service.emailService;
 
 @RestController
 @RequestMapping("/api/v1/user")
@@ -31,8 +32,9 @@ public class userController {
 	
 
 @Autowired
-
 private IUserService userService;
+@Autowired
+private emailService emailService;
 
 @PostMapping("/")
 public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
@@ -77,6 +79,7 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
         
         
 		userService.save(userRegistro);
+		emailService.enviarNotificacionCuenta(userRegistro.getCorreo());
 		return new ResponseEntity<>(userRegistro,HttpStatus.OK);
 	}
 	
