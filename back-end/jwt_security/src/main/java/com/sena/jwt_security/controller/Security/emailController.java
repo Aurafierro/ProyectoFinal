@@ -38,7 +38,7 @@ public class emailController {
 	@GetMapping("/enviar-correo-avanzado")
 	public String enviarCorreoAvanzado() {
 		try {
-			String destinatario="asignaweb@gmail.com";
+			String destinatario="marianamayaya@gmail.com";
 			String asunto="Bienvenid@s a AsignaWeb";
 			String cuerpo=""
 				   	+"<div style='background-color: #CCCCCC;'>"

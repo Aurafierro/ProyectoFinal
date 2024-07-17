@@ -93,7 +93,7 @@ public ResponseEntity<Object> save(@RequestBody reserva reserva) {
 	   
 	
 	@PutMapping("/{id_reserva}")
-	public ResponseEntity<Object> update(@RequestBody reserva reservaUpdate) {
+	public ResponseEntity<Object> update(@RequestBody reserva reservaUpdate,@PathVariable String id_reserva) {
 	   
 		
 		var reserva = reservaService.findOne(id_reserva).get();
