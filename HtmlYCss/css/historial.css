@@ -22,6 +22,33 @@ body {
     box-sizing: border-box;
 }
 
+.botonVerde{
+    padding: 15px 30px; /* Ajustar el padding del botón */
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 50px; /* Bordes redondeados */
+    cursor: pointer;
+    font-size: 100%; /* Ajustar el tamaño de la fuente */
+    width: 30%; /* Hacer el botón más corto de ancho */
+    margin-top: 5%;
+    
+    font-weight: bold;
+}
+
+.botonRojo{
+    padding: 15px 30px; /* Ajustar el padding del botón */
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50px; /* Bordes redondeados */
+    cursor: pointer;
+    font-size: 100%; /* Ajustar el tamaño de la fuente */
+    width: 30%; /* Hacer el botón más corto de ancho */
+    margin-left: 65%;
+    font-weight: bold;
+}
+
 .header .logo {
     font-size: 20px;
     display: flex;
