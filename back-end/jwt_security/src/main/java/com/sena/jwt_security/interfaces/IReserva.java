@@ -2,6 +2,7 @@ package com.sena.jwt_security.interfaces;
 
 import java.util.List;
 
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -16,4 +17,7 @@ public interface IReserva extends CrudRepository<reserva,String> {
 			+ "r.hora_entrada LIKE %?1% OR "
 			+ "r.hora_salida LIKE %?1%")
 	List<reserva>filtroReserva (String filtro);
+	
+	@Query("SELECT r FROM reserva r WHERE r.nombre_espacio = LIKE %?1%")
+	List<reserva> filtroIngresoReserva(String nombre_espacio );
 }
