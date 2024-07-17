@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservaciones</title>
+    <link rel="stylesheet" href="/HtmlYCss/css/Reservaciones.css">
+</head>
+</head>
+<body>
+    <header class="title">
+        Reservaciones
+    </header>
+    <div class="container">
+        <div class="calendar">
+            <div class="calendar-header">
+                <button id="prev-month">&lt;</button>
+                <span id="month-year"></span>
+                <button id="next-month">&gt;</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Domingo</th>
+                        <th>Lunes</th>
+                        <th>Martes</th>
+                        <th>Miércoles</th>
+                        <th>Jueves</th>
+                        <th>Viernes</th>
+                        <th>Sábado</th>
+                    </tr>
+                </thead>
+                <tbody id="calendar-body">
+                    <!-- Calendar dates will be injected here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        <div class="form">
+            <label for="nombre-completo">Nombre completo:</label>
+            <input type="text" id="nombre-completo">
+            
+            <label for="nombre-espacio">Nombre espacio:</label>
+            <input type="text" id="nombre-espacio">
+            
+            <label for="hora-entrada">Hora de Entrada:</label>
+            <input type="time" id="hora-entrada">
+            
+            <label for="hora-salida">Hora de Salida:</label>
+            <input type="time" id="hora-salida">
+            
+            <button id="reservar">Reservar</button>
+        </div>
+    </div>
+    <script src="/HtmlYCss/js/Reservaciones.js"></script>
+</body>
+</html>

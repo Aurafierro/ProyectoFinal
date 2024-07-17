@@ -1,0 +1,167 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #3EBFFF;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    padding: 20px;
+}
+
+header.title {
+    background-color: #202C4A;
+    color: white;
+    padding: 40px;
+    font-size: 3em;
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 160px; /* Increased top margin to lower both elements */
+    width: 90%;
+    max-width: 1200px;
+}
+
+.calendar {
+    width: 70%; /* Adjusted width */
+    height: 400px; /* Reduced height */
+    background-color: #f8f8f8;
+    border-radius: 0; /* Remove border-radius for the calendar */
+    box-shadow: none; /* Remove box-shadow for the calendar */
+    margin-right: 20px; /* Space between calendar and form */
+    margin-left: -20%; /* Move the calendar more to the left */
+    margin-top: 6%; /* Move the calendar further down */
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.form {
+    width: 30%; /* Reduced width */
+    height: 540px; /* Increased height */
+    background-color: #202C4A;
+    color: white;
+    border-radius: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: -15%;
+    display: flex;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.calendar-header button {
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.calendar-header span {
+    font-size: 1.2em;
+}
+
+.calendar table {
+    width: 100%;
+    border-collapse: collapse;
+    flex-grow: 1;
+}
+
+.calendar th, .calendar td {
+    padding: 10px;
+    text-align: center;
+}
+
+.calendar th {
+    background-color: #ff0000;
+    color: white;
+}
+
+.calendar td {
+    border: 1px solid #ddd;
+    cursor: pointer;
+    position: relative;
+}
+
+.calendar .current-day {
+    background-color: #98FB98;
+}
+
+.calendar .occupied, .calendar .pending {
+    position: relative;
+    z-index: 1;
+}
+
+.calendar .occupied::after, .calendar .pending::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: inherit;
+    z-index: -1;
+}
+
+.calendar .occupied {
+    background-color: red;
+    color: white;
+}
+
+.calendar .pending {
+    background-color: yellow;
+    color: black;
+}
+
+.calendar td:not(.occupied):not(.pending):hover {
+    background-color: #32CD32;
+    color: white;
+}
+
+.form label {
+    width: 83%;
+    margin-top: 10px;
+    font-size: 140%;
+}
+
+.form input {
+    width: calc(100% - 80px);
+    padding: 15px;
+    margin: 10px 0; /* Reduced margin */
+    border: none;
+    border-radius: 30px;
+    text-align: center; /* Center the input text */
+   
+}
+
+.form button {
+    padding: 15px 30px; /* Smaller button */
+    background-color: #32CD32;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    cursor: pointer;
+    margin-top: 25px; /* Adjust margin to ensure the button is slightly separated from the inputs */
+    font-size: 1em;
+    display: flex;
+}
+
