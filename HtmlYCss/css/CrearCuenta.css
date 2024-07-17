@@ -79,6 +79,10 @@ body {
 .colorBotonAzul{
   background-color: #1E90FF;
 }
+
+.colorBotonRojo{
+  background-color: red;
+}
 button {
   padding: 15px 30px; /* Ajustar el padding del botón */
   background-color: #28a745;
@@ -86,10 +90,11 @@ button {
   border: none;
   border-radius: 50px; /* Bordes redondeados */
   cursor: pointer;
-  font-size: 130%; /* Ajustar el tamaño de la fuente */
-  width: 50%; /* Hacer el botón más corto de ancho */
+  font-size: 100%; /* Ajustar el tamaño de la fuente */
   font-family: "jomhuria";
 }
+
+
 
 button:hover {
   background-color: #218838;

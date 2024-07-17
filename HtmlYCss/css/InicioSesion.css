@@ -21,8 +21,8 @@ h1 {
   font-weight: 700;
   letter-spacing: -1.5px;
   margin: 0;
-  margin-bottom: 15px;
   color: white; /* Cambia el color a blanco */
+  margin-top: 10%;
 }
 
 h1.title {
@@ -166,9 +166,9 @@ button.ghost i {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 0px 10px rgba(0, 0, 0, 0.22);
   position: relative;
   overflow: hidden;
-  width: 1000px; /* Aumenta el ancho */
+  width:1200px; /* Aumenta el ancho */
   max-width: 100%;
-  min-height: 820px; /* Aumenta la altura mínima */
+  min-height: 920px; /* Aumenta la altura mínima */
 }
 
 .form-container form {
@@ -291,9 +291,10 @@ button.ghost i {
   transform: translateX(20%);
 }
 
+
 .form-control {
   position: relative;
-  margin: 0 0 20px 0;
+  margin: 0 0 0px 0;
   width: 100%;
 }
 
@@ -303,6 +304,7 @@ button.ghost i {
   border-radius: 20px;
   padding: 12px 15px;
   width: 100%;
+  margin-top: 1%;
 }
 
 .form-control small {
@@ -376,3 +378,132 @@ button.ghost i {
   color: red;
   visibility: visible;
 }
+
+.camposTitulos{
+  color: white;
+  margin-right: 64%;
+  margin-bottom: 0%;
+}
+
+.form-control{
+  margin-top: 0%;
+}
+
+h4{
+  margin-bottom: -5px;
+}
+
+#tipo_documento{
+  width: 100%; /* Ajustar el ancho de los inputs */
+  padding: 10px;
+  border: none;
+  border-radius: 50px; /* Bordes redondeados */
+  font-family: "jomhuria";
+  font-weight: bold;
+  margin-top: 5%;
+}
+
+#rol{
+  width: 100%; /* Ajustar el ancho de los inputs */
+  padding: 10px;
+  border: none;
+  border-radius: 50px; /* Bordes redondeados */
+  font-family: "jomhuria";
+  font-weight: bold;
+  margin-top: 5%;
+}
+
+
+.columns {
+  display: flex;
+  justify-content: space-between;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+}
+
+.input-group {
+  margin-bottom: 20px; /* Aumentar el margen inferior */
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  width: 90%; /* Ajustar el ancho de los inputs */
+  padding: 10px;
+  border: none;
+  border-radius: 50px; /* Bordes redondeados */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.colorBotonAzul:hover{
+  background-color: #005cb8ce;
+}
+
+.colorBotonAzul{
+  background-color: #1E90FF;
+}
+button {
+  padding: 15px 30px; /* Ajustar el padding del botón */
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 50px; /* Bordes redondeados */
+  cursor: pointer;
+  font-size: 130%; /* Ajustar el tamaño de la fuente */
+  width: 50%; /* Hacer el botón más corto de ancho */
+  font-family: "jomhuria";
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+.image-container {
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  padding: 20px;
+}
+
+.image-container img {
+  max-width: 100%; /* Ajustar el ancho máximo de la imagen */
+  height: auto;
+}
+
+@font-face {
+  font-family: "jomhuria";
+  src: url("../Jomhuria-Regural.ttf");
+}
+
+#tipo_documento{
+  width: 90%; /* Ajustar el ancho de los inputs */
+  padding: 10px;
+  border: none;
+  border-radius: 50px; /* Bordes redondeados */
+  font-family: "jomhuria";
+  font-weight: bold;
+}
+
+#rol{
+  width: 90%; /* Ajustar el ancho de los inputs */
+  padding: 10px;
+  border: none;
+  border-radius: 50px; /* Bordes redondeados */
+  font-family: "jomhuria";
+  font-weight: bold;
+}
+
