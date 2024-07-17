@@ -1,168 +1,213 @@
-@font-face {
-    font-family: "jomhuria";
-    src: url("../Jomhuria-Regural.ttf");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.botonRojo {
-    margin: 0 10px; /* Espacio entre botones */
-    padding: 15px 45px; /* Ajuste en el padding horizontal para agrandar los botones */
-    border: none;
-    border-radius: 40px; /* Bordes redondos */
-    cursor: pointer;
-    font-size: 1.2rem; /* Tamaño más grande para el texto del botón */
-    background-color: #dc3545;
-    color: white;
-    font-family: "jomhuria";
-    font-weight: bold;
-    margin-top: 3%;
+body {
+    background: #202C4A;
+    overflow-x: hidden; /* Para evitar scroll horizontal si los círculos se salen del viewport */
+    font-family: Arial, sans-serif; /* Establece una fuente genérica */
 }
 
-.botonVerde {
-    margin: 0 10px; /* Espacio entre botones */
-    padding: 15px 45px; /* Ajuste en el padding horizontal para agrandar los botones */
-    border: none;
-    border-radius: 40px; /* Bordes redondos */
-    cursor: pointer;
-    font-size: 1.2rem; /* Tamaño más grande para el texto del botón */
-    background-color: green;
-    color: white;
-    font-family: "jomhuria";
-    font-weight: bold;
-    margin-top: 3%;
-}
-
-.botonAzul {
-    margin: 0 10px; /* Espacio entre botones */
-    padding: 30px 65px; /* Ajuste en el padding horizontal para agrandar los botones */
-    border: none;
-    border-radius: 50px; /* Bordes redondos */
-    cursor: pointer;
-    font-size: 250%; /* Aumento del tamaño del texto del botón */
-    background-color: #3EBFFF;
-    color: white;
-    font-family: "jomhuria";
-    font-weight: bold;
-    margin-top: 3%;
-}
-
-body{
-    margin: 0px;
-    background-color: #202C4A;
-}
-
-.colorLetraNegro{
-    color: black;
-}
-
-.colorLetraRojo{
-    color: red;
-}
-
-.cuadroDeTexto{
-    border-radius: 50px;
-    height: 30px;
-}
-
-
-.enlace{
-    color: white;
-    text-decoration: none;
-}
-
-.logoAtencion{
-    height: 70px;
-    width: 70px;
-    
-
-}
-
-.mensajeAtencion{
+section {
     display: flex;
+    justify-content: center;
     align-items: center;
-    margin-left: 3%;
-
+    height: 100vh;
+    position: relative;
+    padding-top: 80px; /* Ajusta el padding-top para alinear el contenido */
 }
 
-.letraGrande{
-    font-size: 300%;
-    font-family: "jomhuria";
-    font-weight: bold;
-}
-
-.imagenAtencion{
-    margin-right: 3%;
-}
-
-.mensajeDesactivar{
-    margin-top: 10%;
-}
-
-.contenedorPrimero{
+.contenido {
+    position: relative;
+    width: 100%;
+    max-width: 1200px; /* Limita el ancho máximo del contenido */
     display: flex;
-    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    color: white;
+    z-index: 2;
+}
+
+.tituloBox {
+    max-width: 500px;
+    text-align: center;
+}
+
+.contenido .tituloBox h1 {
+    color: #3EBFFF;
+    font-size: 3.2em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.contenido .tituloBox p {
+    font-size: 1.5em;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.contenido .boton {
+    background-color: #3EBFFF;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 15px 30px;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 40px;
+    border: none;
+}
+
+
+
+.contenido .imgBox {
+    width: 50%;
+    text-align: center;
+}
+
+.contenido .imgBox img {
+    max-width: 100%;
+}
+
+/* Estilos y animaciones para los círculos */
+section::before,
+section::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(62, 191, 255, 0.3);
+    animation: move 10s infinite alternate;
+}
+
+section::before {
+    width: 120px;
+    height: 120px;
+    top: 10%;
+    left: 10%;
+    animation-duration: 12s;
+}
+
+section::after {
+    width: 180px;
+    height: 180px;
+    top: 60%;
+    right: 5%;
+    animation-duration: 15s;
+}
+
+@keyframes move {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(30px, 30px); /* Ajusta la distancia de la animación */
+    }
+}
+
+.contenedor {
+    background-color: #fff;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Alinea verticalmente todo el contenido */
+    padding-top: 15px; /* Ajusta el padding superior */
+    padding-bottom: 20px; /* Ajusta el padding inferior */
+    margin: 0 auto; /* Centra horizontalmente */
+    z-index: 2;
+}
+
+
+
+.titulo {
+    max-width: 500px;
+    text-align: center; /* Centra el texto */
+    margin: 0 auto; /* Centra horizontalmente */
+}
+
+.contenedor .titulo h1 {
+    color: #3EBFFF;
+    font-size: 3.2em;
+    text-transform: uppercase;
+    margin-bottom: 40px; /* Reducido el margen inferior */
+}
+
+.contenedor .titulo p {
+    font-size: 1.5em;
+    line-height: 1.6;
+    margin-bottom: 20px; /* Reducido el margen inferior */
+}
+
+.contenedor .imgcal {
+    width: 47%;
+    text-align: center; /* Centra la imagen */
+}
+
+.contenedor .imgcal img {
+    max-width: 100%;
+}
+/* Estilos para la sección de Aplicación móvil */
+.app-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 50px; /* Ajusta según necesites */
+    padding: 20px;
     
 }
 
-.ladoIzquierdo{
-    background-color: #3EBFFF;
-    font-family: "jomhuria";
-    width: 100%;
-    padding-bottom: 4%;
+.app-title {
+    flex: 1;
+    padding: 20px;
 }
 
-.ladoDerecho{
-    width: 100%;
-}
-
-.logoLanding{
-    height: 500px;
-    width: 700px;
-    margin-top: 35%;
-
-}
-
-.tituloAsigna{
-    font-size: 800%;
-    font-family: "jomhuria";
-    font-weight: bold;
-    color: white;
-}
-.tipoLetra{
-
-    font-family: "jomhuria";
-    font-weight: bold;
-}
-
-.tituloBienvenido{
-    font-family: "jomhuria";
-    font-weight: bold;
-    font-size: 400%;
+.app-title h1 {
+    font-size: 2em; /* Tamaño del título */
+    margin-bottom: 10px; /* Espacio debajo del título */
     color: #3EBFFF;
+    text-align: center;
 }
 
-.lineaAzul{
-    height: 20%;
-    background-color: #202C4A;
-    width: 100%;
-}
-.mensajeBienvenido{
-    color: white;
-    font-family: "jomhuria";
-    font-size: 200%;
+.app-title p {
+    font-size: 1.1em; /* Tamaño del texto */
+    color: #fff;
+    text-align: center;
 }
 
-.botonInicioSesion{
-    margin-top: 10%;
-    margin-bottom: 10%;
-    color: #202C4A;
+.app-image {
+    flex: 1;
+    text-align: center;
 }
 
-.contenedorMensajeBienvenido{
-    margin-top: 8%;
-    padding: 0% 15%;
+.app-image img {
+    max-width: 80%; /* Ajusta el tamaño máximo de la imagen */
+    height: auto; /* Altura automática */
+    display: block; /* Para centrar la imagen */
+    margin: 0 auto; /* Centrar la imagen horizontalmente */
 }
 
-.contenedorTituloLanding{
-    margin-top: 15%;
+/* Estilos para el contenedor principal */
+.contenedor-info {
+    display: flex;
+    justify-content: space-between; /* Distribuye los elementos uniformemente */
+ 
+    padding: 50px; /* Espaciado interno */
+}
 
+/* Estilos para cada bloque de información */
+.inf {
+    padding: 10px; /* Espaciado interno dentro de cada bloque */
+   color: #fff;
+    flex: 3; 
+    margin-bottom: 20px; /* Espacio inferior entre bloques */
+}
+
+/* Estilos para los últimos bloques de información */
+.inf:last-child {
+    margin-bottom: 0; /* Elimina el espacio inferior del último bloque */
+}
+.inf2{
+    color: #fff;
 }
