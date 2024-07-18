@@ -36,21 +36,29 @@
             </table>
         </div>
         <div class="form">
-            <label for="nombre-completo">Nombre completo:</label>
-            <input type="text" id="nombre-completo">
+            <label for="nombre_completo">Nombre completo:</label>
+            <input type="text" id="nombre_completo" onfocusout="validarNombre_completo(this);">
             
-            <label for="nombre-espacio">Nombre espacio:</label>
-            <input type="text" id="nombre-espacio">
+            <label for="nombre_espacio">Nombre espacio:</label>
+            <select name="" id="nombre_espacio" class="form-select">
+                <option value="" selected disabled>Selecciona una opción</option>
+                <option value="cancha">Cancha</option>
+                <option value="gimnasio">Gimnasio</option>
+                <option value="auditorio">Auditorio</option>
+                <option value="biblioteca">Biblioteca</option>
+              </select>
             
-            <label for="hora-entrada">Hora de Entrada:</label>
-            <input type="time" id="hora-entrada">
+            <label for="hora_entrada">Hora de Entrada:</label>
+            <input type="time" id="hora_entrada" onfocusout="validarHora_entrada(this);">
             
-            <label for="hora-salida">Hora de Salida:</label>
-            <input type="time" id="hora-salida">
+            <label for="hora_salida">Hora de Salida:</label>
+            <input type="time" id="hora_salida" onfocusout="validarHora_salida(this);">
             
-            <button id="reservar">Reservar</button>
+            <button id="reservar" onclick="crearReserva();">Reservar</button>
         </div>
     </div>
     <script src="/HtmlYCss/js/Reservaciones.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

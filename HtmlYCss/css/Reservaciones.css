@@ -1,4 +1,4 @@
-body {
+ body {
     font-family: Arial, sans-serif;
     background-color: #3EBFFF;
     margin: 0;
@@ -22,6 +22,14 @@ header.title {
     left: 0;
 }
 
+#nombre_espacio{
+    width: 90%; /* Ajustar el ancho de los inputs */
+    padding: 10px;
+    border: none;
+    border-radius: 50px; /* Bordes redondeados */
+     
+    font-weight: bold;
+  }
 .container {
     display: flex;
     justify-content: space-between;

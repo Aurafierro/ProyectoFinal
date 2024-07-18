@@ -158,6 +158,10 @@ body {
     overflow: hidden;
 }
 
+/*Para quitarle la línea de los hipervínculos*/
+a{
+    text-decoration: none;
+}
 .image img {
     width: 100%;
     height: 100%;
