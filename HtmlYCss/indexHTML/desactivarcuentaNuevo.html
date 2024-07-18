@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambiar Contraseña Admin</title>
+    <link rel="stylesheet" href="../css/desactivarcuentaNuevo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="../img/logori.png" alt="Logo" class="logo-img">
+        </div>
+        <div class="logout"><a href="#">Cerrar sesión</a></div>
+    </header>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="profile">   
+                <div class="profile-pic">
+                    <img id="profileImageDisplay" src="" alt="">
+                </div>
+                <span>Juan Camilo</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#"><i class="fas fa-user-edit"></i>Mi perfil</a></li>
+                    <li><a href="../indexHTML/CambiarContraseñaAdmin.html" class="active"><i class="fas fa-key"></i>Cambiar contraseña</a></li>
+                    <li><a href="#"><i class="fas fa-history"></i>Historial</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <div class="profile-info">
+                <div class="profile-pic">
+                    <i class="fas fa-user-circle fa-5x"></i> <!-- Icono de usuario para subir foto -->
+                    <i class="fas fa-camera profile-camera-icon"></i> <!-- Icono de cámara para subir foto -->
+                    <input type="file" id="profilePictureInput" accept="image/*"> <!-- Input para cargar foto -->
+                </div>
+                <div class="info-details">
+                    <p>Tipo de documento</p>
+                    <p>Número de documento</p>
+                    <p>Nombre Completo</p>
+                    <p>Rol</p>
+                    <p>Contraseña</p>
+                    <p>Número de teléfono</p>
+                    <p>Correo Electrónico</p>
+                </div>
+            </div>
+            <div class="modify-info">
+                <h2>Modificar datos</h2>
+                <form>
+                    <label for="document-type">Tipo de documento</label>
+                    <input type="text" id="document-type" name="document-type">
+                    <label for="full-name">Nombre Completo</label>
+                    <input type="text" id="full-name" name="full-name">
+                    <label for="phone">Teléfono</label>
+                    <input type="text" id="phone" name="phone">
+                    <label for="email">Correo</label>
+                    <input type="text" id="email" name="email">
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+            <div class="deactivate-account">
+                <h2>¿Deseas desactivar la cuenta?</h2>
+                <p>Para activar tu cuenta en AsignaWeb, envía un correo electrónico a [correo de soporte] con el asunto "Solicitud de Activación de Cuenta"</p>
+                <p>Ten en cuenta que, aunque tu cuenta esté desactivada, tu información permanecerá en nuestra base de datos.</p>
+                <p>Te notificaremos una vez que la activación se haya completado.</p>
+                <button type="button">Desactivar</button>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
