@@ -79,7 +79,7 @@
 <body>
     <div class="profile">
         <a href="#" class="notification__link"><i class="fas fa-bell"></i><span class="notification__count">0</span></a>
-        <a href="#" class="profile__link"><i class="fas fa-user"></i> Mi perfil</a>
+        <a href="../indexHTML/desactivarcuentaNuevo.html" class="profile__link"><i class="fas fa-user"></i> Mi perfil</a>
     </div>
     <div>
         <h2 id="mensajeSeleccionar">Selecciona un espacio para realizar una reserva</h2>
@@ -93,7 +93,7 @@
                     <div class="add-new-card" id="add-new-card">
                         <div class="inner-container">
                             <i class="fa-solid fa-plus"></i>
-                            <span>Agrega un nuevo ambiente</span>
+                            <span>Agrega un nuevo espacio</span>
                         </div>
                     </div>
                 </div>
@@ -181,7 +181,7 @@
             // Evento para redireccionar al hacer clic en "Agregar nuevo ambiente"
             const addNewCard = document.getElementById('add-new-card');
             addNewCard.addEventListener('click', function() {
-                window.location.href = 'AgregarAmbiente.html'; // Cambia aquí la ruta según tu estructura de archivos
+                window.location.href = 'AgregarEspacio.html'; // Cambia aquí la ruta según tu estructura de archivos
             });
         });
 
