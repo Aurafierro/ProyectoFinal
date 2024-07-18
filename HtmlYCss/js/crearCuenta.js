@@ -152,13 +152,13 @@ function validarConfirmarContrasena(elemento) {
   
   function limpiarFormulario() {
     document.getElementById("tipo_documento").className="form-control";
-    document.getElementById("rol").className="form-control";
-    document.getElementById("contrasena").className="form-control";
-    document.getElementById("telefono").className="form-control";
     document.getElementById("numero_documento").className="form-control";
     document.getElementById("nombre_completo").className="form-control";
+    document.getElementById("telefono").className="form-control";
+    document.getElementById("correo").className="form-control";
+    document.getElementById("contrasena").className="form-control";
     document.getElementById("confirmar_contrasena").className="form-control";
-    document.getElementById("correo_electronico").className="form-control";
+    document.getElementById("rol").className="form-control";
   
   
     document.getElementById("tipo_documento").value = "";
