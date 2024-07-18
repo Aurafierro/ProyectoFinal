@@ -168,5 +168,5 @@ function validarConfirmarContrasena(elemento) {
     document.getElementById("numero_documento").value = "";
     document.getElementById("nombre_completo").value = "";
     document.getElementById("confirmar_contrasena").value = "";
-    document.getElementById("correo_electronico").value = "";
+    document.getElementById("correo").value = "";
   }

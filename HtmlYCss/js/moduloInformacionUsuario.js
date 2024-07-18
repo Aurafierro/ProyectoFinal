@@ -42,13 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
         alert(message);
     };
 
-    // Ejemplo de uso: Simular una notificación cuando se reserva un ambiente
-    // Puedes reemplazar esto con tu lógica real de reserva
-    const simulateReservation = () => {
-        setTimeout(() => {
-            addNotification('¡Tu sala ha sido reservada!');
-        }, 3000); // Simula una reserva después de 3 segundos
-    };
 
     simulateReservation();
     document.addEventListener('DOMContentLoaded', function() {
