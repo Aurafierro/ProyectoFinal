@@ -172,15 +172,16 @@ nav ul li a.active {
 }
 
 .modify-info {
-    width: 45%; /* Aumentar el ancho para ocupar más espacio */
-    margin-right: 5%; /* Separación del siguiente contenedor */
-    margin-left: 0; /* Eliminar el margen izquierdo para que esté más a la izquierda */
+    width: 30%; /* Ajustar el ancho para hacer más angosto */
+    height: 90%; /* Ajustar la altura para hacer más largo */
+    margin-right: 15%; /* Reducir el margen derecho para disminuir el espacio entre los contenedores */
+    
     text-align: center; /* Centrar el contenido */
 }
 
 .modify-info h2 {
     text-align: center; /* Centrar el título */
-    margin: 5%; /* Aumentar el espacio entre párrafos */
+    margin: 10%; /* Aumentar el espacio entre párrafos */
 }
 
 .modify-info, .profile-info, .deactivate-account {
@@ -188,19 +189,14 @@ nav ul li a.active {
     border-radius: 20px; /* Redondear más los bordes */
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px; /* Espacio entre los contenedores */
-}
-
-.modify-info {
-    width: 45%; /* Aumentar el ancho para ocupar más espacio */
-    margin-right: 5%; /* Separación del siguiente contenedor */
-    margin-left: 0; /* Eliminar el margen izquierdo para que esté más a la izquierda */
+    margin-bottom: 40px; /* Espacio entre los contenedores */
 }
 
 .profile-info {
-    width: 45%; /* Ocupa menos espacio a la derecha */
+    width: 30%; /* Ajustar el ancho para hacer más angosto */
+    height: 90%; /* Ajustar la altura para hacer más largo */
     text-align: center;
-    margin-top: 1%; /* Espacio superior aumentado */
+    margin-left: 15%;
 }
 
 .profile-info i {
@@ -219,22 +215,12 @@ nav ul li a.active {
 }
 
 .info-details {
-    text-align: center;
+    text-align: left;
     letter-spacing: 2px; /* Aumentar el espacio entre letras */
 }
 
 .info-details p {
-    margin: 10px 0; /* Aumentar el espacio entre párrafos */
-}
-
-.deactivate-account {
-    width: 100%; /* Ocupa todo el ancho disponible */
-    max-width: 700px; /* Máximo ancho para no ser tan largo */
-    text-align: center;
-}
-
-.deactivate-account h2 {
-    color: #ff0000; /* Color rojo para resaltar */
+    margin: 20px 0; /* Aumentar el espacio entre párrafos */
 }
 
 .deactivate-account p {
@@ -249,12 +235,13 @@ nav ul li a.active {
 
 .modify-info label {
     font-size: 18px;
-    margin-bottom: 8px;
+    margin-bottom: 20px;
+text-align: left;
 }
 
 .modify-info input[type="text"] {
-    width: 80%;
-    padding: 10px;
+    width: 90%;
+    padding: 16px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 20px; /* Hacer los campos circulares */
@@ -275,21 +262,4 @@ nav ul li a.active {
 
 .modify-info button[type="submit"]:hover {
     background-color: darkgreen; /* Cambiar color de fondo al pasar el cursor */
-}
-
-.deactivate-account button {
-    width: 150px;
-    padding: 10px;
-    background-color: #ff0000; /* Color rojo para el botón de desactivar */
-    color: white;
-    border: none;
-    border-radius: 30px; /* Hacer el botón circular */
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 20px; /* Espacio superior para separar del párrafo anterior */
-}
-
-.deactivate-account button:hover {
-    background-color: #cc0000; /* Cambiar color de fondo al pasar el cursor */
 }
