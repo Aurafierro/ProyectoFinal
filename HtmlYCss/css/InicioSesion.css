@@ -1,510 +1,148 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
-* {
-  /* margin: 0;
-    padding: 0; */
-  box-sizing: border-box;
+@font-face {
+  font-family: "jomhuria";
+  src: url("Jomhuria-Regular.ttf");
 }
 
 body {
-  background-color: #3EBFFF;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  font-family: "Poppins", sans-serif;
-  overflow: hidden;
-  height: 100vh;
-}
-
-h1 {
-  font-weight: 700;
-  letter-spacing: -1.5px;
   margin: 0;
-  color: white; /* Cambia el color a blanco */
-  margin-top: 10%;
-}
-
-h1.title {
-  font-size: 45px;
-  line-height: 45px;
-  margin: 0;
-  text-shadow: 0 0 10px rgba(16, 64, 74, 0.5);
-}
-
-p {
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 20px;
-  letter-spacing: 0.5px;
-  margin: 20px 0 30px;
-  text-shadow: 0 0 10px rgba(16, 64, 74, 0.5);
-}
-
-span {
-  font-size: 14px;
-  margin-top: 20px;
-}
-
-a {
-  color: #f40505;
-  font-size: 14px;
-  text-decoration: none;
-  margin: 15px 0;
-  transition: 0.3s ease-in-out;
-}
-
-a:hover {
-  color: #4bb6b7;
-}
-
-.content {
-  display: flex;
-  width: 100%;
-  height: 50px;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.content .checkbox {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.content input {
-  accent-color: #333;
-  width: 12px;
-  height: 12px;
-}
-
-.content label {
-  font-size: 14px;
-  user-select: none;
-  padding: 5px;
-  color: white; /* Cambia el color a blanco */
-}
-
-button {
-  position: relative;
-  border-radius: 20px;
-  border: 1px solid #1B9607;
-  background-color: #1B9607;
-  color: #fff;
-  font-size: 15px;
-  font-weight: 700;
-  margin: 20px;
-  padding: 12px 80px;
-  letter-spacing: 1px;
-  text-transform: capitalize;
-  transition: 0.3s ease-in-out;
-  cursor: pointer;
-}
-
-button:hover {
-  letter-spacing: 3px;
-}
-
-button:active {
-  transform: scale(0.95);
-}
-
-button:focus {
-  outline: none;
-}
-
-button.ghost {
-  background-color: rgba(0, 0, 0, 0.59);
-  border: 2px solid #fff;
-  width: 80%;
-  color: #fff;
-}
-
-#login i {
-  position: absolute;
-  left: 50px;
-}
-
-#register i {
-  position: absolute;
-  right: 50px;
-}
-
-button.ghost i {
-  position: absolute;
-  font-size: 12px;
-}
-
-.social-container {
+  font-family: "jomhuria", sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px 0;
-}
-
-.social-container a {
-  border: 1px solid #070707;
-  border-radius: 50%;
-  color: #fcf8f8;
-  margin: 0 5px;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: 0.3s ease-in-out;
-}
-
-.social-container a:hover {
-  background-color: #686c78;
-  border: 1px solid #686c78;
-  color: #fff;
+  min-height: 100vh;
+  background-color: #487BFF;
+  color: white;
 }
 
 .container {
-  background-color: #000000;
-  border-radius: 25px;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 0px 10px rgba(0, 0, 0, 0.22);
-  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  max-width: 1200px;
+  background-color: #1a3e68;
+  border-radius: 20px;
   overflow: hidden;
-  width:1200px; /* Aumenta el ancho */
-  max-width: 100%;
-  min-height: 920px; /* Aumenta la altura mínima */
+  box-shadow: 0 8px 16px rgba(225, 225, 225, 0.651);
+  font-family: "jomhuria";
 }
 
-.form-container form {
-  background-color: #293860;
-  display: flex;
-  flex-direction: column;
-  padding: 0 50px;
-  height: 100%;
-  text-align: center;
+.form-container, .image-container {
+  flex: 1;
+  width: 50%;
   justify-content: center;
   align-items: center;
+  transition: transform 0.8s ease-in-out;
 }
 
 .form-container {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  transition: all 0.6s ease-in-out;
-}
-
-.login-container {
-  left: 0;
-  width: 50%;
-  z-index: 2;
-}
-
-.container.right-panel-active .login-container {
-  transform: translateX(100%);
-}
-
-.register-container {
-  left: 0;
-  width: 50%;
-  opacity: 0;
-  z-index: 1;
-}
-
-.container.right-panel-active .register-container {
-  transform: translateX(100%);
-  opacity: 1;
-  z-index: 5;
-  animation: show 0.6s;
-}
-
-@keyframes show {
-  0%,
-  49.99% {
-    opacity: 0;
-    z-index: 1;
-  }
-
-  50%,
-  100% {
-    opacity: 1;
-    z-index: 5;
-  }
-}
-
-.overlay-container {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 50%;
-  height: 100%;
-  overflow: hidden;
-  transition: transform 0.6s ease-in-out;
-  z-index: 100;
-}
-
-.container.right-panel-active .overlay-container {
-  transform: translateX(-100%);
-}
-
-.overlay {
-  background-image: url("../img/logori.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 0 0;
-  color: #fff;
-  position: relative;
-  left: -100%;
-  height: 90%;
-  width: 200%;
-  transform: translateX(0);
-  transition: transform 0.6s ease-in-out;
-}
-
-.container.right-panel-active .overlay {
-  transform: translateX(50%);
-}
-
-.overlay-panel {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  top: 0;
-  height: 100%;
-  width: 50%;
-  transform: translateX(0);
-  transition: transform 0.6s ease-in-out;
-}
-
-.overlay-left {
-  transform: translateX(-20%);
-}
-
-.container.right-panel-active .overlay-left {
-  transform: translateX(0);
-}
-
-.overlay-right {
-  right: 0;
-  transform: translateX(0);
-}
-
-.container.right-panel-active .overlay-right {
-  transform: translateX(20%);
-}
-
-
-.form-control {
-  position: relative;
-  margin: 0 0 0px 0;
-  width: 100%;
-}
-
-.form-control input {
-  background-color: #fff;
-  border: none;
-  border-radius: 20px;
-  padding: 12px 15px;
-  width: 100%;
-  margin-top: 1%;
-}
-
-.form-control small {
-  position: absolute;
-  bottom: -25px;
-  left: 15px;
-  visibility: hidden;
-}
-
-.form-control span {
-  position: absolute;
-  right: 15px;
-  bottom: 10px;
-  visibility: hidden;
-}
-
-.form-control.success span {
-  color: green;
-  visibility: visible;
-}
-
-.form-control.error span {
-  color: red;
-  visibility: visible;
-}
-
-.form-control.error small {
-  color: red;
-  visibility: visible;
-}
-
-.form-control2 {
-  position: relative;
-  margin: 0 0 20px 0;
-  width: 100%;
-}
-
-.form-control2 input {
-  background-color: #fff;
-  border: none;
-  border-radius: 20px;
-  padding: 12px 15px;
-  width: 100%;
-}
-
-.form-control2 small {
-  position: absolute;
-  bottom: -25px;
-  left: 15px;
-  visibility: hidden;
-}
-
-.form-control2 span {
-  position: absolute;
-  right: 15px;
-  bottom: 10px;
-  visibility: hidden;
-}
-
-.form-control2.success span {
-  color: green;
-  visibility: visible;
-}
-
-.form-control2.error span {
-  color: red;
-  visibility: visible;
-}
-
-.form-control2.error small {
-  color: red;
-  visibility: visible;
-}
-
-.camposTitulos{
+  padding: 5%;
+  box-sizing: border-box;
   color: white;
-  margin-right: 64%;
-  margin-bottom: 0%;
+  text-align: center;
 }
 
-.form-control{
-  margin-top: 0%;
+.form-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2%;
 }
 
-h4{
-  margin-bottom: -5px;
-}
-
-#tipo_documento{
-  width: 100%; /* Ajustar el ancho de los inputs */
-  padding: 10px;
-  border: none;
-  border-radius: 50px; /* Bordes redondeados */
-  font-family: "jomhuria";
-  font-weight: bold;
-  margin-top: 5%;
-}
-
-#rol{
-  width: 100%; /* Ajustar el ancho de los inputs */
-  padding: 10px;
-  border: none;
-  border-radius: 50px; /* Bordes redondeados */
-  font-family: "jomhuria";
-  font-weight: bold;
-  margin-top: 5%;
-}
-
-
-.columns {
-  display: flex;
-  justify-content: space-between;
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
-  width: 48%;
+.form-container p {
+  font-size: 1.2rem;
+  margin-bottom: 4%;
 }
 
 .input-group {
-  margin-bottom: 20px; /* Aumentar el margen inferior */
+  display: flex;
+  align-items: center;
+  margin-bottom: 2%;
+  width: 100%;
 }
 
-.input-group label {
+.input-group .icon {
+  font-size: 1.5rem;
+  margin-right: 10px;
+  color: #ccc;
+}
+
+.input-field {
+  width: calc(100% - 34px);
+  padding: 15px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 40px;
+  box-sizing: border-box;
+}
+
+.recover-link {
   display: block;
-  margin-bottom: 5px;
+  color: #ccc;
+  text-decoration: none;
+  margin: 2% 0;
 }
 
-.input-group input {
-  width: 90%; /* Ajustar el ancho de los inputs */
-  padding: 10px;
-  border: none;
-  border-radius: 50px; /* Bordes redondeados */
+.recover-link:hover {
+  color: #fff;
 }
 
-.button-container {
+.buttons {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 2%;
 }
 
-.colorBotonAzul:hover{
-  background-color: #005cb8ce;
+.buttons .btn {
+  margin: 0 10px;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
-.colorBotonAzul{
-  background-color: #1E90FF;
+.buttons .btn.red {
+  background-color: #dc3545;
+  color: white;
 }
-button {
-  padding: 15px 30px; /* Ajustar el padding del botón */
+
+.buttons .btn.green {
   background-color: #28a745;
   color: white;
-  border: none;
-  border-radius: 50px; /* Bordes redondeados */
-  cursor: pointer;
-  font-size: 130%; /* Ajustar el tamaño de la fuente */
-  width: 50%; /* Hacer el botón más corto de ancho */
-  font-family: "jomhuria";
-}
-
-button:hover {
-  background-color: #218838;
 }
 
 .image-container {
-  background-color: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 70%;
-  padding: 20px;
+  background-color: black;
 }
 
 .image-container img {
-  max-width: 100%; /* Ajustar el ancho máximo de la imagen */
+  width: 80%;
+  max-width: 400px;
   height: auto;
+  margin: 65px;
 }
 
-@font-face {
-  font-family: "jomhuria";
-  src: url("../Jomhuria-Regural.ttf");
-}
+@media screen and (max-width: 768px) {
+  .container {
+      flex-direction: column;
+  }
 
-#tipo_documento{
-  width: 90%; /* Ajustar el ancho de los inputs */
-  padding: 10px;
-  border: none;
-  border-radius: 50px; /* Bordes redondeados */
-  font-family: "jomhuria";
-  font-weight: bold;
-}
+  .form-container, .image-container {
+      width: 100%;
+  }
 
-#rol{
-  width: 90%; /* Ajustar el ancho de los inputs */
-  padding: 10px;
-  border: none;
-  border-radius: 50px; /* Bordes redondeados */
-  font-family: "jomhuria";
-  font-weight: bold;
-}
+  .form-container {
+      padding: 20px;
+  }
 
+  .input-field {
+      padding: 10px;
+  }
+
+  .buttons .btn {
+      padding: 10px 20px;
+      font-size: 0.9rem;
+  }
+
+  .image-container img {
+      width: 100%;
+  }
+}
