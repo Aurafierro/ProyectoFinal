@@ -25,19 +25,23 @@ public class reserva {
 	
 	@Column(name="hora_salida", nullable= false, length = 36)
 	private String hora_salida;
+	
+	@Column(name="fecha", nullable= false, length = 36)
+	private String fecha;
 
 	public reserva() {
 		super();
 	}
 
 	public reserva(String id_reserva, String nombre_completo, String nombre_espacio, String hora_entrada,
-			String hora_salida) {
+			String hora_salida, String fecha) {
 		super();
 		this.id_reserva = id_reserva;
 		this.nombre_completo = nombre_completo;
 		this.nombre_espacio = nombre_espacio;
 		this.hora_entrada = hora_entrada;
 		this.hora_salida = hora_salida;
+		this.fecha = fecha;
 	}
 
 	public String getId_reserva() {
@@ -79,11 +83,15 @@ public class reserva {
 	public void setHora_salida(String hora_salida) {
 		this.hora_salida = hora_salida;
 	}
-	
-	
-	
-	
-	
+
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
 	
 
 }

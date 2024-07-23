@@ -62,6 +62,12 @@ body {
     flex-direction: row;
 }
 
+.contenedorReserva{
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    width: 120%;
+}
 .sidebar {
     width: 15%;
     background-color: #1a3e68;
@@ -293,3 +299,166 @@ nav ul li a.active {
 .deactivate-account button:hover {
     background-color: #cc0000; /* Cambiar color de fondo al pasar el cursor */
 }
+
+.contenedorPrincipalReserva{
+    display: flex;
+    width: 50%;
+    margin-top: 5%;
+}
+
+/*Modificaciones del formulario de las reservas*/
+.form {
+    width: 30%; /* Reduced width */
+    height: 540px; /* Increased height */
+    background-color: #202C4A;
+    color: white;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: -15%;
+    display: flex;
+}
+
+.form label {
+    width: 83%;
+    margin-top: 10px;
+    font-size: 140%;
+}
+
+#month-year{
+    font-size: 200%;
+}
+.form input {
+    width: calc(100% - 80px);
+    padding: 15px;
+    margin: 10px 0; /* Reduced margin */
+    border: none;
+    border-radius: 30px;
+    text-align: center; /* Center the input text */
+   
+}
+
+.form button {
+    padding: 15px 30px; /* Smaller button */
+    background-color: #3EBFFF;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    cursor: pointer;
+    margin-top: 25px; /* Adjust margin to ensure the button is slightly separated from the inputs */
+    font-size: 1em;
+    display: flex;
+}
+
+/*Modificar el input del select para el espacio*/
+#nombre_espacio{
+    width: 80%; /* Ajustar el ancho de los inputs */
+    padding: 10px;
+    border: none;
+    border-radius: 50px; /* Bordes redondeados */
+     
+    font-weight: bold;
+  }
+
+.form{
+    margin-left: 10%;
+    width: 80%;
+}
+
+  /* Estilos modificados para el calendario */
+
+.calendar {
+    background-color: #f2f2f2;
+    border-radius: 8px;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 200%; /* Ajustar el ancho del calendario */
+    max-width: 800px; /* Establecer un máximo para evitar que se extienda demasiado */
+    margin: 0 auto; /* Centrar el calendario horizontalmente */
+
+    
+  }
+  
+  .month {
+    background-color: #3EBFFF;
+    color: white;
+    text-align: center;
+    padding: 20px 0; /* Ajustar el espacio alrededor del mes */
+  }
+  
+  .weekdays {
+    display: flex;
+    justify-content: space-around;
+    background-color: #ddd;
+    padding: 10px 0; /* Ajustar el espacio alrededor de los días de la semana */
+  }
+  
+  .weekdays div {
+    text-align: center;
+    width: calc(100% / 7);
+    padding: 10px 0; /* Ajustar el espacio dentro de cada día de la semana */
+  }
+  
+  .days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    padding: 20px 0; /* Ajustar el espacio alrededor de los días */
+  }
+  
+  .days div {
+    text-align: center;
+    padding: 50px 0; /* Ajustar el espacio dentro de cada día */
+  }
+  
+  .empty {
+    visibility: hidden;
+  }
+
+  .calendar{
+    margin-left: 10%;
+  }
+  
+  /*diseño del calendario:*/
+
+  .days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    padding: 20px 0;
+}
+
+.day {
+    text-align: center;
+    padding: 20px 0;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.day:hover {
+    background-color: #3EBFFF;
+    color: #fff;
+}
+
+
+.month {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.botonesFecha {
+    background-color: #1a3e68;
+    color: #ffffff;
+    border: none;
+    font-size: 1.5em;
+    padding: 0.5em;
+    cursor: pointer;
+    margin: 0 100px; /* Ajusta el margen entre los botones */
+    border-radius: 20px;
+}
+
+

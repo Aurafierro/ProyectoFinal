@@ -2,13 +2,13 @@ package com.sena.jwt_security.controller.Security;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -60,6 +60,11 @@ public ResponseEntity<Object> save(@RequestBody reserva reserva) {
             return new ResponseEntity<>("La hora de salida es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }   
         
+if (reserva.getFecha().equals("")) {
+            
+            return new ResponseEntity<>("La fecha es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }   
+        
         
         
 		reservaService.save(reserva);
@@ -106,6 +111,8 @@ public ResponseEntity<Object> save(@RequestBody reserva reserva) {
 			reserva.setNombre_espacio(reservaUpdate.getNombre_espacio());
 			reserva.setHora_entrada(reservaUpdate.getHora_entrada());
 			reserva.setHora_salida(reservaUpdate.getHora_salida());
+			reserva.setFecha(reservaUpdate.getFecha());
+			
 
 			reservaService.save(reserva);
 			return new ResponseEntity<>("Guardado", HttpStatus.OK);

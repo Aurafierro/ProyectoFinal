@@ -1,77 +1,62 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const calendarBody = document.getElementById('calendar-body');
-    const monthYear = document.getElementById('month-year');
-    const prevMonthBtn = document.getElementById('prev-month');
-    const nextMonthBtn = document.getElementById('next-month');
 
-    let currentDate = new Date();
 
-    // Sample data for occupied and pending days
-    const occupiedDays = [5, 12, 19];
-    const pendingDays = [10, 20, 25];
+//funcionalidad del calendario:
+// Variables globales para el calendario
+var currentDate = new Date(); // Fecha actual
+var currentMonth = currentDate.getMonth(); // Mes actual (0-indexed)
+var currentYear = currentDate.getFullYear(); // Año actual
+var monthNames = [
+    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+];
 
-    function renderCalendar() {
-        calendarBody.innerHTML = '';
-        const currentMonth = currentDate.getMonth();
-        const currentYear = currentDate.getFullYear();
+// Función para actualizar el título del mes y año
+function updateMonthTitle() {
+    document.getElementById('month-year').textContent = monthNames[currentMonth] + ' ' + currentYear;
+}
 
-        const firstDay = new Date(currentYear, currentMonth, 1).getDay();
-        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+// Función para actualizar los días del calendario según el mes y año actuales
+function updateCalendar() {
+    var daysContainer = document.querySelector('.days');
+    daysContainer.innerHTML = '';
 
-        monthYear.textContent = `${currentDate.toLocaleString('default', { month: 'long' })} ${currentYear}`;
+    // Obtener el número de días en el mes actual
+    var daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
-        let date = 1;
-        for (let i = 0; i < 6; i++) {
-            const row = document.createElement('tr');
-
-            for (let j = 0; j < 7; j++) {
-                const cell = document.createElement('td');
-                if (i === 0 && j < firstDay) {
-                    cell.innerHTML = '';
-                } else if (date > daysInMonth) {
-                    break;
-                } else {
-                    cell.innerHTML = date;
-                    cell.classList.add('selectable-day');
-                    if (
-                        date === new Date().getDate() &&
-                        currentYear === new Date().getFullYear() &&
-                        currentMonth === new Date().getMonth()
-                    ) {
-                        cell.classList.add('current-day');
-                    }
-                    if (occupiedDays.includes(date)) {
-                        cell.classList.add('occupied');
-                    } else if (pendingDays.includes(date)) {
-                        cell.classList.add('pending');
-                    }
-                    date++;
-                }
-                row.appendChild(cell);
-            }
-
-            calendarBody.appendChild(row);
-        }
+    // Crear los días del mes
+    for (var i = 1; i <= daysInMonth; i++) {
+        var dayElement = document.createElement('div');
+        dayElement.textContent = i;
+        dayElement.classList.add('day');
+        daysContainer.appendChild(dayElement);
     }
+}
 
-    prevMonthBtn.addEventListener('click', function() {
-        currentDate.setMonth(currentDate.getMonth() - 1);
-        renderCalendar();
-    });
-
-    nextMonthBtn.addEventListener('click', function() {
-        currentDate.setMonth(currentDate.getMonth() + 1);
-        renderCalendar();
-    });
-
-    calendarBody.addEventListener('click', function(event) {
-        if (event.target.classList.contains('selectable-day')) {
-            alert(`Día seleccionado: ${event.target.innerHTML}`);
-        }
-    });
-
-    renderCalendar();
+// Función para cambiar al mes anterior
+document.getElementById('prev-month').addEventListener('click', function() {
+    currentMonth--;
+    if (currentMonth < 0) {
+        currentMonth = 11;
+        currentYear--;
+    }
+    updateMonthTitle();
+    updateCalendar();
 });
+
+// Función para cambiar al mes siguiente
+document.getElementById('next-month').addEventListener('click', function() {
+    currentMonth++;
+    if (currentMonth > 11) {
+        currentMonth = 0;
+        currentYear++;
+    }
+    updateMonthTitle();
+    updateCalendar();
+});
+
+// Inicialización del calendario
+updateMonthTitle();
+updateCalendar();
 
 var url = "http://localhost:8080/api/v1/reserva/";
 function crearReserva() {
