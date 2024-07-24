@@ -1,72 +1,13 @@
-
-
-//funcionalidad del calendario:
-// Variables globales para el calendario
-var currentDate = new Date(); // Fecha actual
-var currentMonth = currentDate.getMonth(); // Mes actual (0-indexed)
-var currentYear = currentDate.getFullYear(); // Año actual
-var monthNames = [
-    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-];
-
-// Función para actualizar el título del mes y año
-function updateMonthTitle() {
-    document.getElementById('month-year').textContent = monthNames[currentMonth] + ' ' + currentYear;
-}
-
-// Función para actualizar los días del calendario según el mes y año actuales
-function updateCalendar() {
-    var daysContainer = document.querySelector('.days');
-    daysContainer.innerHTML = '';
-
-    // Obtener el número de días en el mes actual
-    var daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-
-    // Crear los días del mes
-    for (var i = 1; i <= daysInMonth; i++) {
-        var dayElement = document.createElement('div');
-        dayElement.textContent = i;
-        dayElement.classList.add('day');
-        daysContainer.appendChild(dayElement);
-    }
-}
-
-// Función para cambiar al mes anterior
-document.getElementById('prev-month').addEventListener('click', function() {
-    currentMonth--;
-    if (currentMonth < 0) {
-        currentMonth = 11;
-        currentYear--;
-    }
-    updateMonthTitle();
-    updateCalendar();
-});
-
-// Función para cambiar al mes siguiente
-document.getElementById('next-month').addEventListener('click', function() {
-    currentMonth++;
-    if (currentMonth > 11) {
-        currentMonth = 0;
-        currentYear++;
-    }
-    updateMonthTitle();
-    updateCalendar();
-});
-
-// Inicialización del calendario
-updateMonthTitle();
-updateCalendar();
-
 var url = "http://localhost:8080/api/v1/reserva/";
+
 function crearReserva() {
-
-
     let formData = {
       "nombre_completo": document.getElementById("nombre_completo").value,
       "nombre_espacio": document.getElementById("nombre_espacio").value,
       "hora_entrada": document.getElementById("hora_entrada").value,
       "hora_salida": document.getElementById("hora_salida").value,
+      "fecha_entrada": document.getElementById("hora_salida").value,
+      "fecha_salida": document.getElementById("hora_salida").value
       
   
     };
@@ -77,6 +18,8 @@ function crearReserva() {
         "nombre_espacio",
         "hora_entrada",
         "hora_salida",
+        "fecha_entrada",
+        "fecha_salida"
         
     ];
   
@@ -190,4 +133,73 @@ function crearReserva() {
     }
     return valido;
   
+  }
+
+  //función de la tabla, la lista de todas las reservas realizadas
+
+  function tablaReservas() {
+    //METODO PARA LISTAR LOS CLIENTES
+    //SE CREA LA PETICION AJAX
+    //var capturarFiltro = document.getElementById("inputSearch").value;
+    //var urlLocal=url;
+    //if (capturarFiltro!=""){
+    //  urlLocal+="busquedafiltro/"+capturarFiltro;
+    //}
+    
+    $.ajax({
+      url: url,
+      type: "GET",
+      success: function (result) {
+        //success: funcion que se ejecuta
+        //cuando la peticion tiene exito
+        console.log(result);
+  
+        var cuerpoTabla = document.getElementById("cuerpoTabla");
+        //Se limpia el cuepro de la tabla
+        cuerpoTabla.innerHTML = "";
+        //se hace un ciclo que recorra l arreglo con los datos
+        for (var i = 0; i < result.length; i++) {
+          //UNA ETIQUETA tr por cada registro
+          var trResgistro = document.createElement("tr");
+  
+          //var celdaId = document.createElement("td");
+          let celdaNombreCompleto = document.createElement("td")
+          let celdaNombreEspacio = document.createElement("td")
+          let celdaHoraEntrada = document.createElement("td")
+          let celdaHoraSalida = document.createElement("td")
+          let celdaFechaEntrada = document.createElement("td")
+          let celdaFechaSalida = document.createElement("td")
+  
+          
+          //celdaId.innerText = result[i]["id_reserva"];
+          celdaNombreCompleto.innerText = result[i]["nombre_completo"];
+          celdaNombreEspacio.innerText = result[i]["nombre_espacio"];
+          celdaHoraEntrada.innerText = result[i]["hora_entrada"];
+          celdaHoraSalida.innerText = result[i]["hora_salida"];
+          celdaFechaEntrada.innerText = result[i]["fecha_entrada"];
+          celdaFechaSalida.innerText = result[i]["fecha_salida"];
+  
+          //trResgistro.appendChild(celdaId);
+          trResgistro.appendChild(celdaNombreCompleto);
+          trResgistro.appendChild(celdaNombreEspacio);
+          trResgistro.appendChild(celdaHoraEntrada);
+          trResgistro.appendChild(celdaHoraSalida);
+          trResgistro.appendChild(celdaFechaEntrada);
+          trResgistro.appendChild(celdaFechaSalida);
+  
+          cuerpoTabla.appendChild(trResgistro);
+  
+  
+          //creamos un td por cada campo de resgistro
+  
+        }
+      },
+      error: function (error) {
+        /*
+        ERROR: funcion que se ejecuta cuando la peticion tiene un error
+        */
+        alert("Error en la petición " + error);
+      }
+    })
+    
   }

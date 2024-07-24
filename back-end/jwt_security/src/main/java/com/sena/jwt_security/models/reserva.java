@@ -1,5 +1,7 @@
 package com.sena.jwt_security.models;
 
+import java.sql.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,22 +28,26 @@ public class reserva {
 	@Column(name="hora_salida", nullable= false, length = 36)
 	private String hora_salida;
 	
-	@Column(name="fecha", nullable= false, length = 36)
-	private String fecha;
+	@Column(name="fecha_entrada", nullable= false, length = 36)
+	private Date fecha_entrada;
+
+	@Column(name="fecha_salida", nullable= false, length = 36)
+	private Date fecha_salida;
 
 	public reserva() {
 		super();
 	}
 
 	public reserva(String id_reserva, String nombre_completo, String nombre_espacio, String hora_entrada,
-			String hora_salida, String fecha) {
+			String hora_salida, Date fecha_entrada, Date fecha_salida) {
 		super();
 		this.id_reserva = id_reserva;
 		this.nombre_completo = nombre_completo;
 		this.nombre_espacio = nombre_espacio;
 		this.hora_entrada = hora_entrada;
 		this.hora_salida = hora_salida;
-		this.fecha = fecha;
+		this.fecha_entrada = fecha_entrada;
+		this.fecha_salida = fecha_salida;
 	}
 
 	public String getId_reserva() {
@@ -84,14 +90,21 @@ public class reserva {
 		this.hora_salida = hora_salida;
 	}
 
-	public String getFecha() {
-		return fecha;
+	public Date getFecha_entrada() {
+		return fecha_entrada;
 	}
 
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
+	public void setFecha_entrada(Date fecha_entrada) {
+		this.fecha_entrada = fecha_entrada;
+	}
+
+	public Date getFecha_salida() {
+		return fecha_salida;
+	}
+
+	public void setFecha_salida(Date fecha_salida) {
+		this.fecha_salida = fecha_salida;
 	}
 
 	
-
 }

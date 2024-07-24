@@ -1,0 +1,383 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #3EBFFF;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    padding: 20px;
+}
+
+header.title {
+    background-color: #202C4A;
+    color: white;
+    padding: 40px;
+    font-size: 3em;
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#nombre_espacio{
+    width: 90%; /* Ajustar el ancho de los inputs */
+    padding: 10px;
+    border: none;
+    border-radius: 50px; /* Bordes redondeados */
+     
+    font-weight: bold;
+  }
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 160px; /* Increased top margin to lower both elements */
+    width: 90%;
+    max-width: 1200px;
+}
+
+
+.form {
+    width: 30%; /* Reduced width */
+    height: 540px; /* Increased height */
+    background-color: #202C4A;
+    color: white;
+    border-radius: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: -15%;
+    display: flex;
+}
+
+
+.form label {
+    width: 83%;
+    margin-top: 10px;
+    font-size: 140%;
+}
+
+.form input {
+    width: calc(100% - 80px);
+    padding: 15px;
+    margin: 10px 0; /* Reduced margin */
+    border: none;
+    border-radius: 30px;
+    text-align: center; /* Center the input text */
+   
+}
+
+.form button {
+    padding: 15px 30px; /* Smaller button */
+    background-color: #32CD32;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    cursor: pointer;
+    margin-top: 25px; /* Adjust margin to ensure the button is slightly separated from the inputs */
+    font-size: 1em;
+    display: flex;
+}
+
+
+/* Estilos para el cuerpo y la cabecera */
+body {
+    margin: 0;
+    font-family: 'Rubik';
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Asegura que el cuerpo se extienda al menos al 100% de la altura de la ventana de visualización */
+    background-color: #3EBFFF;
+    overflow-x: hidden; /* Evita el desplazamiento horizontal en dispositivos pequeños */
+}
+
+.header {
+    width: 100%;
+    background-color: #1a3e68;
+    color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.header .logo {
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header .logo img.logo-img {
+    width: 100% ;
+    height: 80px;
+    margin-top: 1px; /* Ajusta este valor según lo necesites */
+    margin-bottom: 5px;
+    padding-left: 20px;
+}
+
+.header .logout a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+    font-size: 120%;
+    padding-right: 20px;
+    font-family: 'Rubik';
+    color: white;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+}
+
+.sidebar {
+    width: 15%;
+    background-color: #1a3e68;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    overflow-y: hidden;
+}
+
+.profile {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid black;
+    padding-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 10px;
+    color: white;
+    font-family: 'Rubik';
+}
+
+.profile-pic {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    background-color: transparent; /* Cambiado a transparente */
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    overflow: hidden;
+    cursor: pointer; /* Añadido cursor pointer para indicar que se puede hacer clic */
+    border: 3px solid #fff; /* Añadido un borde blanco para dar contraste */
+}
+
+.profile-pic i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px; /* Tamaño del icono de cámara */
+    color: #555; /* Color del icono de cámara */
+    cursor: pointer;
+}
+
+.profile-pic input[type="file"] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.profile-pic:hover i {
+    color: #000; /* Cambia el color del icono al pasar el cursor */
+}
+
+.profile span {
+    display: block;
+    font-size: 22px;
+    font-family: 'Rubik';
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    color: white;
+}
+
+nav ul li {
+    margin: 10px 0; /* Reduce el espacio entre los botones */
+}
+
+nav ul li a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease-in-out;
+    font-weight: bold;
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+@font-face {
+    font-family: 'Rubik';
+    src: url('/Fuentes/Rubik-VariableFont_wght.ttf');
+}
+
+/* Estilos para el cuerpo y la cabecera */
+body {
+    margin: 0;
+    font-family: 'Rubik';
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Asegura que el cuerpo se extienda al menos al 100% de la altura de la ventana de visualización */
+    background-color: #3EBFFF;
+    overflow-x: hidden; /* Evita el desplazamiento horizontal en dispositivos pequeños */
+}
+
+.header {
+    width: 100%;
+    background-color: #1a3e68;
+    color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.header .logo {
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header .logo img.logo-img {
+    width: 100% ;
+    height: 80px;
+    margin-top: 1px; /* Ajusta este valor según lo necesites */
+    margin-bottom: 5px;
+    padding-left: 20px;
+}
+
+.header .logout a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+    font-size: 120%;
+    padding-right: 20px;
+    font-family: 'Rubik';
+    color: white;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+}
+
+.sidebar {
+    width: 15%;
+    background-color: #1a3e68;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    overflow-y: hidden;
+}
+
+.profile {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid black;
+    padding-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 10px;
+    color: white;
+    font-family: 'Rubik';
+}
+
+.profile-pic {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    background-color: transparent; /* Cambiado a transparente */
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    overflow: hidden;
+    cursor: pointer; /* Añadido cursor pointer para indicar que se puede hacer clic */
+    border: 3px solid #fff; /* Añadido un borde blanco para dar contraste */
+}
+
+.profile-pic i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px; /* Tamaño del icono de cámara */
+    color: #555; /* Color del icono de cámara */
+    cursor: pointer;
+}
+
+.profile-pic input[type="file"] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.profile-pic:hover i {
+    color: #000; /* Cambia el color del icono al pasar el cursor */
+}
+
+.profile span {
+    display: block;
+    font-size: 22px;
+    font-family: 'Rubik';
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    color: white;
+}
+
+nav ul li {
+    margin: 10px 0; /* Reduce el espacio entre los botones */
+}
+
+nav ul li a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease-in-out;
+    font-weight: bold;
+}

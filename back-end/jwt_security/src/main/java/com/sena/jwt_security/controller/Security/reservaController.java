@@ -32,7 +32,7 @@ private IReservaService reservaService;
 @PostMapping("/")
 public ResponseEntity<Object> save(@RequestBody reserva reserva) {
 	    
-    List<reserva> user = reservaService.filtroIngresoReserva(reserva.getNombre_espacio());
+    List<reserva> user = reservaService.filtroIngresoReserva(reserva.getNombre_completo());
 	    if (!user.isEmpty()) {
 	        return new ResponseEntity<>("La reserva ya tiene un ingreso activo", HttpStatus.BAD_REQUEST);
 	    }
@@ -60,10 +60,15 @@ public ResponseEntity<Object> save(@RequestBody reserva reserva) {
             return new ResponseEntity<>("La hora de salida es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }   
         
-if (reserva.getFecha().equals("")) {
+if (reserva.getFecha_entrada().equals("")) {
             
-            return new ResponseEntity<>("La fecha es un campo obligatorio", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("La fecha de entrada es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }   
+
+if (reserva.getFecha_salida().equals("")) {
+    
+    return new ResponseEntity<>("La fecha de salida es un campo obligatorio", HttpStatus.BAD_REQUEST);
+}   
         
         
         
@@ -111,8 +116,8 @@ if (reserva.getFecha().equals("")) {
 			reserva.setNombre_espacio(reservaUpdate.getNombre_espacio());
 			reserva.setHora_entrada(reservaUpdate.getHora_entrada());
 			reserva.setHora_salida(reservaUpdate.getHora_salida());
-			reserva.setFecha(reservaUpdate.getFecha());
-			
+			reserva.setFecha_entrada(reservaUpdate.getFecha_entrada());
+			reserva.setFecha_salida(reservaUpdate.getFecha_salida());
 
 			reservaService.save(reserva);
 			return new ResponseEntity<>("Guardado", HttpStatus.OK);

@@ -1,61 +1,177 @@
- body {
-    font-family: Arial, sans-serif;
-    background-color: #3EBFFF;
+/* Reset de estilos y fuente personalizada */
+* {
+    box-sizing: border-box;
     margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
-    padding: 20px;
+    padding: 0;
 }
-
-header.title {
-    background-color: #202C4A;
-    color: white;
-    padding: 40px;
-    font-size: 3em;
-    width: 100%;
-    text-align: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-}
-
-#nombre_espacio{
-    width: 90%; /* Ajustar el ancho de los inputs */
-    padding: 10px;
-    border: none;
-    border-radius: 50px; /* Bordes redondeados */
-     
+/* Estilos para el cuerpo y la cabecera */
+body {
+    margin: 0;
+    font-family: 'Rubik';
     font-weight: bold;
-  }
-.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Asegura que el cuerpo se extienda al menos al 100% de la altura de la ventana de visualización */
+    background-color: #3EBFFF;
+    overflow-x: hidden; /* Evita el desplazamiento horizontal en dispositivos pequeños */
+}
+
+.header {
+    width: 100%;
+    background-color: #1a3e68;
+    color: var(--white);
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    margin-top: 160px; /* Increased top margin to lower both elements */
-    width: 90%;
-    max-width: 1200px;
+    align-items: center;
+    box-sizing: border-box;
 }
 
-.calendar {
-    width: 70%; /* Adjusted width */
-    height: 400px; /* Reduced height */
-    background-color: #f8f8f8;
-    border-radius: 0; /* Remove border-radius for the calendar */
-    box-shadow: none; /* Remove box-shadow for the calendar */
-    margin-right: 20px; /* Space between calendar and form */
-    margin-left: -20%; /* Move the calendar more to the left */
-    margin-top: 6%; /* Move the calendar further down */
+.header .logo {
+    font-size: 20px;
     display: flex;
     flex-direction: column;
-    
+    align-items: center;
 }
 
+.header .logo img.logo-img {
+    width: 100% ;
+    height: 80px;
+    margin-top: 1px; /* Ajusta este valor según lo necesites */
+    margin-bottom: 5px;
+    padding-left: 20px;
+}
+
+.header .logout a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+    font-size: 120%;
+    padding-right: 20px;
+    font-family: 'Rubik';
+    color: white;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+}
+
+.sidebar {
+    width: 15%;
+    background-color: #1a3e68;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    overflow-y: hidden;
+}
+
+.profile {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid black;
+    padding-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 10px;
+    color: white;
+    font-family: 'Rubik';
+}
+
+.profile-pic {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    background-color: transparent; /* Cambiado a transparente */
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    overflow: hidden;
+    cursor: pointer; /* Añadido cursor pointer para indicar que se puede hacer clic */
+    border: 3px solid #fff; /* Añadido un borde blanco para dar contraste */
+}
+
+.profile-pic i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px; /* Tamaño del icono de cámara */
+    color: #555; /* Color del icono de cámara */
+    cursor: pointer;
+}
+
+.profile-pic input[type="file"] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.profile-pic:hover i {
+    color: #000; /* Cambia el color del icono al pasar el cursor */
+}
+
+.profile span {
+    display: block;
+    font-size: 22px;
+    font-family: 'Rubik';
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    color: white;
+}
+
+nav ul li {
+    margin: 10px 0; /* Reduce el espacio entre los botones */
+}
+
+nav ul li a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease-in-out;
+    font-weight: bold;
+}
+
+.cotenedorPadre{
+    display: flex;
+    margin-top: 2%;
+    display: flex;
+    width: 100%;
+}
+
+.tituloReservas{
+    color: #ffffff;
+    font-size: 300%;
+}
+
+.contenedorTitulo{
+    width: 100%;
+    margin-top: 2%;
+}
+
+.contenedorContenido{
+    width: 100%;
+}
+
+/*Modificaciones del formulario de la reserva:*/
 .form {
-    width: 30%; /* Reduced width */
-    height: 540px; /* Increased height */
+    width: 200%; /* Reduced width */
+    height: 100%; /* Increased height */
     background-color: #202C4A;
     color: white;
     border-radius: 50px;
@@ -64,86 +180,11 @@ header.title {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-right: -15%;
     display: flex;
+    margin-top: 10%;
+    margin-left: 30%;
 }
 
-.calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.calendar-header button {
-    background-color: #ff0000;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-.calendar-header span {
-    font-size: 1.2em;
-}
-
-.calendar table {
-    width: 100%;
-    border-collapse: collapse;
-    flex-grow: 1;
-}
-
-.calendar th, .calendar td {
-    padding: 10px;
-    text-align: center;
-}
-
-.calendar th {
-    background-color: #ff0000;
-    color: white;
-}
-
-.calendar td {
-    border: 1px solid #ddd;
-    cursor: pointer;
-    position: relative;
-}
-
-.calendar .current-day {
-    background-color: #98FB98;
-}
-
-.calendar .occupied, .calendar .pending {
-    position: relative;
-    z-index: 1;
-}
-
-.calendar .occupied::after, .calendar .pending::after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: inherit;
-    z-index: -1;
-}
-
-.calendar .occupied {
-    background-color: red;
-    color: white;
-}
-
-.calendar .pending {
-    background-color: yellow;
-    color: black;
-}
-
-.calendar td:not(.occupied):not(.pending):hover {
-    background-color: #32CD32;
-    color: white;
-}
 
 .form label {
     width: 83%;
@@ -158,12 +199,11 @@ header.title {
     border: none;
     border-radius: 30px;
     text-align: center; /* Center the input text */
-   
 }
 
 .form button {
     padding: 15px 30px; /* Smaller button */
-    background-color: #32CD32;
+    background-color: #3EBFFF;
     border: none;
     border-radius: 30px;
     color: white;
@@ -173,3 +213,58 @@ header.title {
     display: flex;
 }
 
+/*Modificaciones del select del espacio:*/
+#nombre_espacio{
+    width: 90%; /* Ajustar el ancho de los inputs */
+    padding: 10px;
+    border: none;
+    border-radius: 50px; /* Bordes redondeados */
+    font-weight: bold;
+}
+
+/*modificaciones inputs type date (calendarios)*/
+
+#fecha_entrada{
+    color:#202C4A;
+
+}
+
+#fecha_salida{
+
+    color:#202C4A;
+
+}
+
+.tabla{
+    margin-left: 20%;
+    color: white;
+}
+
+.campoTitulosTabla{
+    background-color: #202C4A;
+    border-radius: 50%;
+
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.campoTitulosTabla {
+    background-color: #202C4A;
+    text-align: left;
+}
+
+.campoTabla {
+    padding: 20px;
+    border: 1px solid #202C4A; /* Añade un borde alrededor de cada celda */
+}
+
+tbody tr:nth-child(even) {
+    background-color:#202C4A; /* Alterna colores de fondo para las filas */
+}
+
+tbody tr:hover {
+    background-color: #202C4A; /* Añade un color de fondo al pasar el ratón por encima de una fila */
+}
