@@ -31,6 +31,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 
+
 public class userRegistro implements UserDetails{
 
 	

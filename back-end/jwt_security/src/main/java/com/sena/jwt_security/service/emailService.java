@@ -5,6 +5,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import com.sena.jwt_security.models.userRegistro;
+
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 
@@ -14,11 +16,11 @@ public class emailService {
 	@Autowired
 	private JavaMailSender javaMailSender;
 	
-	public String enviarNotificacionCuenta(String destinatario ) {
+	public String enviarNotificacionCuenta(String destinatario, String nombre_completo, String correo, String contrasena ) {
 
 		try {
-			//String destinatario="marianamayaya@gmail.com";
-			String asunto="Bienvenid@s a AsignaWeb";
+			
+			String asunto="Bienvenid@s " +nombre_completo + " a AsignaWeb";
 			String cuerpo=""
 					+"<body style='margin: 0; padding: 0; background-color: #CCCCCC;'>" 
 			      +  "  <div style='background-color: #CCCCCC;'>" 
@@ -37,6 +39,11 @@ public class emailService {
 			    +    "      </p>" 
 			   +     "      <br>" 
 			       + "    <center>" 
+			       +" <ul>\r\n"
+                   + "          <li><strong>Nombre de Usuario: </strong> " + correo + "</li>\r\n"
+                   + "          <li><strong>Contraseña: " + contrasena + "</strong> </li>\r\n"
+                   + "      </ul>\r\n"
+			     
 			      +  "         <a href='http://127.0.0.1:5502/HtmlYCss/indexHTML/index.html' style='text-decoration: none;'>" 
 			      +  "             <button style='background-color:#2B56C5; color:white; padding:10px 20px; border:none; border-radius:14px; font-size:16px; cursor:pointer; margin-bottom:5%;'>Inicio de sesión</button>" 
 			      +  "         </a>" 
