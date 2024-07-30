@@ -1,10 +1,14 @@
 /* ModuloInformacion.css */
+@font-face {
+    font-family: "Candal";
+    src: url("/Fuentes/Candal/Candal-Regular.ttf");
+  }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Rubik', sans-serif;
+    font-family: "Candal";
 }
 
 body {
@@ -117,7 +121,7 @@ body {
     height: 35em;
     background-color: #202C4a;
     border-radius: 32px;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Candal', sans-serif;
     position: relative;
     display: flex;
     justify-content: center;
@@ -159,9 +163,10 @@ body {
 }
 
 /*Para quitarle la línea de los hipervínculos*/
-a{
+a {
     text-decoration: none;
 }
+
 .image img {
     width: 100%;
     height: 100%;
@@ -180,7 +185,6 @@ a{
 
 h4 {
     color: #ffffff;
-  
     letter-spacing: 2px;
     font-size: 60px; /* Ajuste del tamaño de fuente */
     text-align: center; /* Centrado horizontal */
@@ -194,7 +198,6 @@ h2 {
 
 h5 {
     color: #00c3ff;
-  
     margin-top: 8px;
 }
 
@@ -213,48 +216,91 @@ p {
     .main-content {
         padding: 10px;
     }
-    .search-bar {
-        max-width: 600px;
-        margin-bottom: 20px;
-        margin-top: 40px;
+
+    .carousel-container {
+        height: auto;
     }
+
     .card {
-        flex: 1 1 calc(50% - 20px);
-        max-width: calc(50% - 20px);
+        width: 100%;
+        height: auto;
+        flex-direction: column;
     }
-    .profile {
-        top: 10px;
-        right: 10px;
-        z-index: 2;
+
+    .image {
+        width: 100%;
+        height: 200px;
     }
-    .profile__link {
+
+    .content {
+        width: 100%;
+        padding: 20px;
+    }
+
+    h4 {
+        font-size: 30px; /* Ajuste del tamaño de fuente */
+    }
+
+    h2 {
         font-size: 20px;
+        margin-top: 10px;
+    }
+
+    h5 {
+        font-size: 16px;
+        margin-top: 8px;
+    }
+
+    p {
+        font-size: 14px;
+        margin-top: 8px;
+    }
+
+    .carousel-button {
+        font-size: 1.5em;
+        padding: 0 5px;
     }
 }
 
 @media screen and (max-width: 480px) {
-    .search-bar input[type="text"] {
-        padding: 12px;
-        font-size: 14px;
-    }
-    .search-bar button {
-        width: 50px;
-        height: 50px;
-    }
     .card {
-        flex: 1 1 100%;
-        max-width: 100%;
+        width: 100%;
+        height: auto;
+        flex-direction: column;
     }
-    .card h2 {
-        font-size: 16px;
+
+    .image {
+        width: 100%;
+        height: 150px;
     }
-    .profile {
-        top: 10px;
-        right: 10px;
-        z-index: 2;
+
+    .content {
+        width: 100%;
+        padding: 15px;
     }
-    .profile__link {
+
+    h4 {
+        font-size: 24px; /* Ajuste del tamaño de fuente */
+    }
+
+    h2 {
         font-size: 18px;
+        margin-top: 5px;
     }
-    
+
+    h5 {
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    p {
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    .carousel-button {
+        font-size: 1em;
+        padding: 0 5px;
+    }
 }
+
