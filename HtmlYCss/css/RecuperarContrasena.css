@@ -1,11 +1,11 @@
 @font-face {
     font-family: "Candal";
-    src: url("Candal-Regular.ttf");
+    src: url("/Fuentes/Candal/Candal-Regular.ttf");
 }
 
 body {
     margin: 0;
-    font-family: "Candal";
+    font-family: "candal";
     display: flex;
     justify-content: center;
     align-items: center;
