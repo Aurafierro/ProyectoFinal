@@ -1,11 +1,11 @@
 @font-face {
-    font-family: "jomhuria";
-    src: url("Jomhuria-Regular.ttf");
+    font-family: "Candal";
+    src: url("Candal-Regular.ttf");
 }
 
 body {
     margin: 0;
-    font-family: "jomhuria", sans-serif;
+    font-family: "Candal";
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,7 +60,7 @@ header img {
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 8px 16px rgba(225, 225, 225, 0.651); /* Aquí se ajusta la sombra */
-    font-family: "jomhuria";
+    font-family: "Candal";
     position: relative;
     transition: all 0.5s ease;
 }
