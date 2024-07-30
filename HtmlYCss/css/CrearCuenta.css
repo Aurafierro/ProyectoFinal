@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Candal";
+  src: url("/Fuentes/Candal/Candal-Regular.ttf");
+}
+
 body {
 
   background-color: #3EBFFF;
@@ -24,6 +29,7 @@ body {
   background-color: #1a3365;
   color: white;
   width: 90%; /* Ajustar el ancho del contenedor del formulario */
+  font-family: "Candal";
 }
 
 .form-container h2 {
@@ -31,7 +37,7 @@ body {
   margin-bottom: 40px;
   font-size: 200%; /* Aumentar el tamaño de la fuente */
   text-align: center;
-  font-family: "jomhuria";
+  font-family: "Candal";
 }
 
 .form-container form {
