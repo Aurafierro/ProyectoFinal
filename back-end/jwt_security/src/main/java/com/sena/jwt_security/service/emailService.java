@@ -28,7 +28,8 @@ public class emailService {
 			   +     "       <div style='background-color: #202C4A; padding: 11px; text-align: center;'>" 
 			    +    "           <img style='width: 110px; height: 100px;' src='https://i.postimg.cc/L8hJKpjP/5613765-Recuperado.png' alt='Logo'>" 
 			    +    "       </div>" 
-			      +  "       <h1 style='color: #2B56C5; text-align: center; font-size: 24px; margin-top: 20p'>¡Bienvenido a AsignaWeb!</h1>" 
+			      +  "<h1 style='color: #2B56C5; text-align: center; font-size: 24px; margin-top: 20px;'>¡Bienvenido, " + nombre_completo + " a AsignaWeb!</h1>"
+
 			    +    "      <p style='color: #000; font-size: 16px; line-height: 1.5; margin-top: 20px;'>" 
 			      +  "          Explora nuestra plataforma dedicada a facilitar la reserva" 
 			     +   "          de sitios educativos de manera eficiente y conveniente. Con AsignaWeb," 
