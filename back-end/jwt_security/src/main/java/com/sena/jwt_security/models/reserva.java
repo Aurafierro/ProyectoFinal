@@ -28,10 +28,10 @@ public class reserva {
 	@Column(name="hora_salida", nullable= false, length = 36)
 	private String hora_salida;
 	
-	@Column(name="fecha_entrada", nullable= false, length = 36)
+	@Column(name="fecha_entrada", nullable= true)
 	private Date fecha_entrada;
 
-	@Column(name="fecha_salida", nullable= false, length = 36)
+	@Column(name="fecha_salida", nullable= true)
 	private Date fecha_salida;
 
 	public reserva() {
