@@ -8,17 +8,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="../css/general.css">
     <style>
-        /* Estilo para el contenedor del logout y el menú desplegable */
-        .logout-container {
-            position: relative;
+        /* Estilo para el contenedor del menú desplegable */
+        .menu-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
             display: inline-block;
+        }
+
+        /* Estilo para el botón del menú desplegable */
+        .menu-btn {
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 150px;
         }
 
         /* Estilo para el ícono de la flecha desplegable */
         .dropdown-icon {
-            cursor: pointer;
             margin-left: 10px;
-            background-color: white;
         }
 
         /* Estilo para el menú desplegable */
@@ -28,9 +41,9 @@
             top: 100%;
             right: 0;
             background-color: white;
-            color: var(--white);
+            border: 1px solid #ccc;
             border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.459);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             z-index: 1000;
             min-width: 160px;
             text-align: left;
@@ -40,17 +53,36 @@
             display: block;
             padding: 10px 15px;
             text-decoration: none;
-            color: var(--white);
+            color: #333;
             font-size: 16px;
         }
 
         .dropdown-menu a:hover {
-            background-color: #005b8c6c;
+            background-color: #f0f0f0;
         }
 
         /* Mostrar el menú desplegable cuando el contenedor está en foco */
-        .logout-container:hover .dropdown-menu {
+        .menu-container:hover .dropdown-menu {
             display: block;
+        }
+
+        .main-content {
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Estilo para el enlace de cerrar sesión */
+        .logout-link {
+            display: block;
+            margin-top: 10px;
+            text-align: right;
+            font-size: 16px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .logout-link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -58,16 +90,6 @@
     <header class="header">
         <div class="logo">
             <img src="../img/logori.png" alt="Logo" class="logo-img">
-        </div>
-        <div class="logout-container">
-            <div class="logout">
-                <a href="#">Cerrar sesión</a>
-                <i class="fas fa-chevron-down dropdown-icon"></i>
-            </div>
-            <div class="dropdown-menu">
-                <a href="../indexHTML/misReservas.html">Mis reservas</a>
-                <a href="../indexHTML/todasReservas.html">Todas las reservas</a>
-            </div>
         </div>
     </header>
     <div class="container">
@@ -90,6 +112,17 @@
         </aside>
         <!-- Contenido principal -->
         <div class="main-content">
+            <a href="../indexHTML/login.html" class="logout-link">Cerrar sesión</a>
+            <div class="menu-container">
+                <div class="menu-btn">
+                    <span>Mis reservas</span>
+                    <i class="fas fa-chevron-down dropdown-icon"></i>
+                </div>
+                <div class="dropdown-menu">
+                    <a href="../indexHTML/misReservas.html">Mis reservas</a>
+                    <a href="../indexHTML/todasReservas.html">Todas las reservas</a>
+                </div>
+            </div>
             <div class="search-options">
                 <div class="search-bar-wrapper">
                     <div class="search-bar">
