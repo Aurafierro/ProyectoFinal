@@ -40,10 +40,10 @@ public class emailService {
 			    +    "      </p>" 
 			   +     "      <br>" 
 			       + "    <center>" 
-			       +" <ul>\r\n"
-                   + "          <li><strong>Nombre de Usuario: </strong> " + correo + "</li>\r\n"
-                   + "          <li><strong>Contraseña: " + contrasena + "</strong> </li>\r\n"
-                   + "      </ul>\r\n"
+			       
+                   + "          <strong>Nombre de Usuario: </strong> " + correo + " "
+                   + "          <strong>Contraseña: " + contrasena + "</strong>"
+                        
 			     
 			      +  "         <a href='http://127.0.0.1:5502/HtmlYCss/indexHTML/index.html' style='text-decoration: none;'>" 
 			      +  "             <button style='background-color:#2B56C5; color:white; padding:10px 20px; border:none; border-radius:14px; font-size:16px; cursor:pointer; margin-bottom:5%;'>Inicio de sesión</button>" 
