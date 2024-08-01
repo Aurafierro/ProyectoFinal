@@ -86,7 +86,7 @@
         }
     </style>
 </head>
-<body onload="listaReserva();">
+<body onload="tablaReservas();">
     <header class="header">
         <div class="logo">
             <img src="../img/logori.png" alt="Logo" class="logo-img">
@@ -137,17 +137,14 @@
                         <tr>
                             <th>Nombre completo</th>
                             <th>Nombre espacio</th>
-                            <th>Fecha</th>
+                            <th>Fecha entrada</th>
+                            <th>Fecha salida</th>
                             <th>H.entrada</th>
                             <th>H.salida</th>
                             <th>Opciones</th>
                         </tr>
                     </thead>
-                    <tbody id="cuerpoTabla"> 
-                        <!--<tr>
-                            <th> <Button onclick="actualizarReserva();"></Button></th>
-                        </tr>-->
-                    </tbody>
+                    <tbody id="cuerpoTabla"></tbody>
                 </table>
                 <div class="download-button">
                     <button>Descargar PDF</button>
@@ -207,6 +204,6 @@
         </div>
     </div>
 
-    <script src="../js/reserva.js"></script>
+    <script src="../js/Reservaciones.js"></script>
 </body>
 </html>

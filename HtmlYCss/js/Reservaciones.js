@@ -43,7 +43,7 @@ function crearReserva() {
                     text: "Se guardó correctamente",
                     icon: "success"
                 });
-                //limpiarLibro();
+                //limpiarFormulario();
             },
             error: function (error) {
                 Swal.fire("Error", "Error al guardar, " + error.responseText, "error");
