@@ -4,7 +4,6 @@
 }
 
 body {
-
   background-color: #3EBFFF;
   margin: 0;
   padding: 0;
@@ -57,12 +56,14 @@ body {
 }
 
 .input-group {
-  margin-bottom: 20px; /* Aumentar el margen inferior */
+  margin-bottom: 20px; 
+ /* Aumentar el margen inferior */
 }
 
 .input-group label {
   display: block;
   margin-bottom: 5px;
+  
 }
 
 .input-group input {
@@ -75,21 +76,11 @@ body {
 .button-container {
   display: flex;
   justify-content: center;
+  gap: 20px; /* Espacio entre los botones */
   margin-top: 20px;
 }
 
-.colorBotonAzul:hover{
-  background-color: #005cb8ce;
-}
-
-.colorBotonAzul{
-  background-color: #1E90FF;
-}
-
-.colorBotonRojo{
-  background-color: red;
-}
-button {
+.crear-cuenta-btn {
   padding: 15px 30px; /* Ajustar el padding del botón */
   background-color: #28a745;
   color: white;
@@ -97,13 +88,24 @@ button {
   border-radius: 50px; /* Bordes redondeados */
   cursor: pointer;
   font-size: 100%; /* Ajustar el tamaño de la fuente */
-  
 }
 
-
-
-button:hover {
+.crear-cuenta-btn:hover {
   background-color: #218838;
+}
+
+.volver-btn {
+  padding: 15px 38px; /* Ajustar el padding del botón */
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 50px; /* Bordes redondeados */
+  cursor: pointer;
+  font-size: 100%; /* Ajustar el tamaño de la fuente */
+}
+
+.volver-btn:hover {
+  background-color: darkred;
 }
 
 .image-container {
@@ -120,22 +122,14 @@ button:hover {
   height: auto;
 }
 
-
-#tipo_documento{
+#tipo_documento, #rol {
   width: 90%; /* Ajustar el ancho de los inputs */
   padding: 10px;
   border: none;
   border-radius: 50px; /* Bordes redondeados */
- 
   font-weight: bold;
 }
-
-#rol{
-  width: 90%; /* Ajustar el ancho de los inputs */
-  padding: 10px;
-  border: none;
-  border-radius: 50px; /* Bordes redondeados */
- 
-  font-weight: bold;
+#Campo-correo{
+  margin-top: 25px;
 }
 
