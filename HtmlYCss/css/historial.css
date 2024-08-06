@@ -194,7 +194,7 @@ nav ul li a.active {
 
 .main-content {
     flex: 1;
-    background-color: #f3f3f3; /* Fondo azul claro */
+    background-color: #3EBFFF; /* Fondo azul claro */
     display: flex;
     flex-direction: column;
 }
@@ -335,7 +335,7 @@ td button {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    background-color: #f3f3f3;
+    background-color: #3EBFFF;
     border-radius: 10px;
     margin-bottom: 15px;
     width: 100%;
