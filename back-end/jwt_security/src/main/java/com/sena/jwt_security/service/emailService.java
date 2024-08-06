@@ -20,7 +20,7 @@ public class emailService {
 
 		try {
 			
-			String asunto="Bienvenid@s " +nombre_completo + " a AsignaWeb";
+			String asunto="Bienvenid@ " +nombre_completo + " a AsignaWeb";
 			String cuerpo=""
 					+"<body style='margin: 0; padding: 0; background-color: #CCCCCC;'>" 
 			      +  "  <div style='background-color: #CCCCCC;'>" 
@@ -28,7 +28,7 @@ public class emailService {
 			   +     "       <div style='background-color: #202C4A; padding: 11px; text-align: center;'>" 
 			    +    "           <img style='width: 110px; height: 100px;' src='https://i.postimg.cc/L8hJKpjP/5613765-Recuperado.png' alt='Logo'>" 
 			    +    "       </div>" 
-			      +  "<h1 style='color: #2B56C5; text-align: center; font-size: 24px; margin-top: 20px;'>¡Bienvenido, " + nombre_completo + " a AsignaWeb!</h1>"
+			      +  "<h1 style='color: #2B56C5; text-align: center; font-size: 24px; margin-top: 20px;'>¡Bienvenid@, " + nombre_completo + " a AsignaWeb!</h1>"
 
 			    +    "      <p style='color: #000; font-size: 16px; line-height: 1.5; margin-top: 20px;'>" 
 			      +  "          Explora nuestra plataforma dedicada a facilitar la reserva" 
@@ -40,13 +40,18 @@ public class emailService {
 			    +    "      </p>" 
 			   +     "      <br>" 
 			       + "    <center>" 
+			   +" <strong> Tus credenciales son las siguientes: </strong>"
+			       +"<br>"
+			       +"<br>"
 			       
                    + "          <strong>Nombre de Usuario: </strong> " + correo + " "
+                   +"<br>"
                    + "          <strong>Contraseña: " + contrasena + "</strong>"
+                   +"<br>"
                         
 			     
 			      +  "         <a href='http://127.0.0.1:5502/HtmlYCss/indexHTML/index.html' style='text-decoration: none;'>" 
-			      +  "             <button style='background-color:#2B56C5; color:white; padding:10px 20px; border:none; border-radius:14px; font-size:16px; cursor:pointer; margin-bottom:5%;'>Inicio de sesión</button>" 
+			      +  "             <button style='background-color:#2B56C5; color:white; padding:10px 20px; border:none; border-radius:14px; font-size:16px; cursor:pointer; margin-bottom:3%; margin-top:3%;'>Inicio de sesión</button>" 
 			      +  "         </a>" 
 			     +   "    </center>" 
 			     +   "       <p style='text-align:center; font-size: 16px;'>¡Te esperamos pronto!</p>" 

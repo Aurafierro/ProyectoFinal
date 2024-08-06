@@ -65,26 +65,24 @@ public class userRegistro implements UserDetails{
 	@Column(name="rol", nullable= false, length = 100)
 	private rol  rol;
 	
+	@Column (name="verificar_contrasena")
+	private boolean verificar_contrasena;
+	
+	
 	//@Column (name="enabled",nullable=true)
 	//private boolean enabled;
 
-	public userRegistro() {
-		super();
-	}
+	
+	//constructor vacío, con todos los parámetros y los getters and setters
+	
+	
 
-	public userRegistro(String id_user, String tipo_documento, String numero_documento, String nombre_completo,
-			String telefono, String correo, String contrasena, String confirmar_contrasena,
-			com.sena.jwt_security.models.rol rol) {
-		super();
-		this.id_user = id_user;
-		this.tipo_documento = tipo_documento;
-		this.numero_documento = numero_documento;
-		this.nombre_completo = nombre_completo;
-		this.telefono = telefono;
-		this.correo = correo;
-		this.contrasena = contrasena;
-		this.confirmar_contrasena = confirmar_contrasena;
-		this.rol = rol;
+	//este metodo es el encargado de indicar los permisos del usuario, se obtine e rol del usuario
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		
+		return List.of (new SimpleGrantedAuthority(this.rol.name()));
+		
 	}
 
 	public String getId_user() {
@@ -159,12 +157,32 @@ public class userRegistro implements UserDetails{
 		this.rol = rol;
 	}
 
-	//este metodo es el encargado de indicar los permisos del usuario, se obtine e rol del usuario
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		
-		return List.of (new SimpleGrantedAuthority(this.rol.name()));
-		
+	public boolean isVerificar_contrasena() {
+		return verificar_contrasena;
+	}
+
+	public void setVerificar_contrasena(boolean verificar_contrasena) {
+		this.verificar_contrasena = verificar_contrasena;
+	}
+
+	public userRegistro(String id_user, String tipo_documento, String numero_documento, String nombre_completo,
+			String telefono, String correo, String contrasena, String confirmar_contrasena,
+			com.sena.jwt_security.models.rol rol, boolean verificar_contrasena) {
+		super();
+		this.id_user = id_user;
+		this.tipo_documento = tipo_documento;
+		this.numero_documento = numero_documento;
+		this.nombre_completo = nombre_completo;
+		this.telefono = telefono;
+		this.correo = correo;
+		this.contrasena = contrasena;
+		this.confirmar_contrasena = confirmar_contrasena;
+		this.rol = rol;
+		this.verificar_contrasena = verificar_contrasena;
+	}
+
+	public userRegistro() {
+		super();
 	}
 
 	@Override

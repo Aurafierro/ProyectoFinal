@@ -45,9 +45,9 @@ private static int numeroAleatorioEnRango(int minimo, int maximo) {
 }
 
 private String codigoAleatorio() {
-	int longitud =6;
+	int longitud =10;
 	
-	String banco ="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	String banco ="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@$%#";
 	
 	//CADENA EN DONDE  SE VA IR AGREGANDO UN CÁCTER ALEATORIO
 	
@@ -103,7 +103,7 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
         }
         
         
-        
+        userRegistro.setContrasena(codigoAleatorio());
 		userService.save(userRegistro);
 		emailService.enviarNotificacionCuenta(userRegistro.getCorreo(),userRegistro.getNombre_completo(),userRegistro.getCorreo(),userRegistro.getContrasena());
 		return new ResponseEntity<>(userRegistro,HttpStatus.OK);
