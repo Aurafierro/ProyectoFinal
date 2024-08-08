@@ -2,6 +2,7 @@ package com.sena.jwt_security.controller.Security;
 
 
 
+
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -114,6 +115,9 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 		var ListaUserRegistro = userService.findAll();
 		return new ResponseEntity<>(ListaUserRegistro, HttpStatus.OK);
 	}
+	
+
+	
 	
 	@GetMapping("/busquedafiltro/{filtro}")
 	public ResponseEntity<Object>findFiltro(@PathVariable String filtro){
