@@ -1,10 +1,16 @@
 package com.sena.jwt_security.controller.Security;
 
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,6 +22,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.sena.jwt_security.interfaceService.IReservaService;
 import com.sena.jwt_security.models.reserva;
 
@@ -81,6 +97,75 @@ if (reserva.getFecha_salida().equals("")) {
 		var ListaReserva = reservaService.findAll();
 		return new ResponseEntity<>(ListaReserva, HttpStatus.OK);
 	}
+	@GetMapping("/pdf")
+    public ResponseEntity<byte[]> downloadPdf() throws MalformedURLException, IOException {
+        Document document = new Document();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy"); // Formato de fecha
+
+        try {
+            PdfWriter.getInstance(document, out);
+            document.open();
+
+            // Para añadir el logo de nuestro sitio web
+            String logoPath = "D:/Datos/Descargas/bibliotecaR/Gestion_Biblioteca/back/logo.png";
+            Image logo = Image.getInstance(logoPath);
+            logo.scaleToFit(100, 100); // AJUSTARLE EL TAMAÑO
+            logo.setAlignment(Image.ALIGN_CENTER);
+            document.add(logo);
+
+            // PARA AÑADIR TITULO AL PDF
+            Paragraph title = new Paragraph("Reservaciones realizadas",
+                    FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18, Font.BOLD, BaseColor.BLACK));
+            title.setAlignment(Element.ALIGN_CENTER);
+            document.add(title);
+
+            // Añadir un espacio después del título
+            document.add(new Paragraph(" "));
+
+            // Crear una tabla con las columnas especificadas
+            PdfPTable table = new PdfPTable(6); // Número de columnas
+            table.setWidthPercentage(100);
+
+            // Añadir encabezados a la tabla
+            table.addCell("Nombre completo");
+            table.addCell("Nombre del espacio");
+            table.addCell("Fecha de la reservación");
+            table.addCell("Fecha finalizada");
+            table.addCell("Hora entrada");
+            table.addCell("Hora salida");
+
+            // Añadir contenido a la tabla
+            List<reserva> reservas = reservaService.findAll();
+            for (reserva reserva : reservas) {
+                table.addCell(reserva.getNombre_completo());
+                table.addCell(reserva.getNombre_espacio());
+                table.addCell(dateFormat.format(reserva.getFecha_entrada())); // Convertir fecha a String
+                table.addCell(dateFormat.format(reserva.getFecha_salida())); // Convertir fecha a String
+                table.addCell(reserva.getHora_entrada());
+                table.addCell(reserva.getHora_salida());
+            }
+
+            // Añadir la tabla al documento
+            document.add(table);
+
+            document.close();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+        // Configurar encabezados para la descarga del archivo
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDispositionFormData("attachment", "reservas.pdf");
+
+        return ResponseEntity.ok()
+                .headers(headers)
+                .body(out.toByteArray());
+    }
+
+	
 	
 	@GetMapping("/busquedafiltro/{filtro}")
 	public ResponseEntity<Object>findFiltro(@PathVariable String filtro){
