@@ -55,11 +55,10 @@ public class userRegistro implements UserDetails{
 	@Column(name="correo", nullable= false, length = 100)
 	private String correo;
 
-	@Column(name="contrasena", nullable= false, length = 16)
+	@Column(name="contrasena", nullable= true, length = 16)
 	private String contrasena;
 	
-	@Column(name="confirmar_contrasena", nullable= false, length = 16)
-	private String confirmar_contrasena;
+
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name="rol", nullable= false, length = 100)
@@ -141,14 +140,7 @@ public class userRegistro implements UserDetails{
 		this.contrasena = contrasena;
 	}
 
-	public String getConfirmar_contrasena() {
-		return confirmar_contrasena;
-	}
-
-	public void setConfirmar_contrasena(String confirmar_contrasena) {
-		this.confirmar_contrasena = confirmar_contrasena;
-	}
-
+	
 	public rol getRol() {
 		return rol;
 	}
@@ -165,9 +157,11 @@ public class userRegistro implements UserDetails{
 		this.verificar_contrasena = verificar_contrasena;
 	}
 
+	
+
 	public userRegistro(String id_user, String tipo_documento, String numero_documento, String nombre_completo,
-			String telefono, String correo, String contrasena, String confirmar_contrasena,
-			com.sena.jwt_security.models.rol rol, boolean verificar_contrasena) {
+			String telefono, String correo, String contrasena, com.sena.jwt_security.models.rol rol,
+			boolean verificar_contrasena) {
 		super();
 		this.id_user = id_user;
 		this.tipo_documento = tipo_documento;
@@ -176,7 +170,6 @@ public class userRegistro implements UserDetails{
 		this.telefono = telefono;
 		this.correo = correo;
 		this.contrasena = contrasena;
-		this.confirmar_contrasena = confirmar_contrasena;
 		this.rol = rol;
 		this.verificar_contrasena = verificar_contrasena;
 	}

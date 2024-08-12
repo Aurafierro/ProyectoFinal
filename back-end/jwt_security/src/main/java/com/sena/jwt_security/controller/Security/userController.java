@@ -87,15 +87,14 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
         }
         
 
-        if (userRegistro.getContrasena().equals("")) {
-            
+       /* if (userRegistro.getContrasena() == null || userRegistro.getContrasena().isEmpty()) {
             return new ResponseEntity<>("La contraseña es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
-        
-        if (userRegistro.getConfirmar_contrasena().equals("")) {
-            
+
+        if (userRegistro.getConfirmar_contrasena() == null || userRegistro.getConfirmar_contrasena().isEmpty()) {
             return new ResponseEntity<>("Confirmar contraseña es un campo obligatorio", HttpStatus.BAD_REQUEST);
-        }   
+        }
+  */
 
         if (userRegistro.getCorreo().equals("")) {
             
@@ -157,7 +156,7 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 			user.setCorreo(userUpdate.getCorreo());
 			user.setRol(userUpdate.getRol());
 			user.setContrasena(userUpdate.getContrasena());
-			user.setConfirmar_contrasena(userUpdate.getConfirmar_contrasena());
+		
 
 			userService.save(user);
 			return new ResponseEntity<>("Guardado", HttpStatus.OK);

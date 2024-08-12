@@ -12,8 +12,6 @@ function crearCuenta() {
       "nombre_completo": document.getElementById("nombre_completo").value,
       "telefono": document.getElementById("telefono").value,
       "correo": document.getElementById("correo").value,
-      "contrasena": document.getElementById("contrasena").value,
-      "confirmar_contrasena": document.getElementById("confirmar_contrasena").value,
       "rol": document.getElementById("rol").value
 
   
@@ -26,8 +24,6 @@ function crearCuenta() {
         "nombre_completo",
         "telefono",
         "correo",
-        "contrasena",
-        "confirmar_contrasena",
         "rol"
 
     ];
@@ -101,21 +97,8 @@ function validarNombre_completo(elemento) {
   }
 }
 
-// Función para validar la contraseña
-function validarContrasena(elemento) {
-  var valor = elemento.value.trim();
-  if (valor.length < 8) {
-      Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'La contraseña debe tener al menos 8 caracteres.'
-      }).then((result) => {
-          if (result.isConfirmed) {
-              elemento.focus();
-          }
-      });
-  }
-}
+
+
 
 // Función para validar el número de teléfono
 function validarTelefono(elemento) {
@@ -133,22 +116,6 @@ function validarTelefono(elemento) {
   }
 }
 
-// Función para validar la confirmación de contraseña
-function validarConfirmarContrasena(elemento) {
-  var contrasena = document.getElementById('contrasena').value;
-  var confirmarContrasena = elemento.value.trim();
-  if (contrasena !== confirmarContrasena) {
-      Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'Las contraseñas no coinciden.'
-      }).then((result) => {
-          if (result.isConfirmed) {
-              elemento.focus();
-          }
-      });
-  }
-}
   
   function limpiarFormulario() {
     document.getElementById("tipo_documento").className="form-control";
@@ -156,17 +123,13 @@ function validarConfirmarContrasena(elemento) {
     document.getElementById("nombre_completo").className="form-control";
     document.getElementById("telefono").className="form-control";
     document.getElementById("correo").className="form-control";
-    document.getElementById("contrasena").className="form-control";
-    document.getElementById("confirmar_contrasena").className="form-control";
     document.getElementById("rol").className="form-control";
   
   
     document.getElementById("tipo_documento").value = "";
     document.getElementById("rol").value = "";
-    document.getElementById("contrasena").value = "";
     document.getElementById("telefono").value = "";
     document.getElementById("numero_documento").value = "";
     document.getElementById("nombre_completo").value = "";
-    document.getElementById("confirmar_contrasena").value = "";
     document.getElementById("correo").value = "";
   }
