@@ -10,7 +10,7 @@
     <div class="container">
         <div class="form-container">
             <h2>Crear una cuenta</h2>
-            <form>
+            <form id="crearCuentaForm">
                 <div class="columns">
                     <div class="column">
                         <div class="input-group">
@@ -22,6 +22,7 @@
                                 <option value="CC">Cédula de Ciudadanía</option>
                                 <option value="CE">Cédula de Extranjería</option>
                             </select>
+                            <small class="error-message" id="error-tipo_documento"></small>
                         </div>
                         <div class="input-group">
                             <label for="role">Rol</label>
@@ -30,24 +31,29 @@
                                 <option value="User">Usuario</option>
                                 <option value="Admin">Administrador</option>
                             </select>
+                            <small class="error-message" id="error-rol"></small>
                         </div>  
                         <div class="input-group">
                             <label for="phone-number">Número de teléfono</label>
-                            <input type="number" id="telefono" step="1" class="form-control" onfocusout="validarTelefono(this);" name="phone-number">
+                            <input type="number" id="telefono" step="1" class="form-control" name="phone-number">
+                            <small class="error-message" id="error-telefono"></small>
                         </div>
                     </div>
                     <div class="column">
                         <div class="input-group">
                             <label for="document-number">Número de documento</label>
-                            <input type="number" id="numero_documento" step="1" class="form-control" tabindex="1" onfocusout="validarNumero_documento(this);" name="document-number"> 
+                            <input type="number" id="numero_documento" step="1" class="form-control" tabindex="1" name="document-number"> 
+                            <small class="error-message" id="error-numero_documento"></small>
                         </div>
                         <div class="input-group">
                             <label for="full-name">Nombre Completo</label>
-                            <input type="text" id="nombre_completo" class="form-control" onfocusout="validarNombre_completo(this);" name="full-name">
+                            <input type="text" id="nombre_completo" class="form-control" name="full-name">
+                            <small class="error-message" id="error-nombre_completo"></small>
                         </div>
                         <div class="input-group">
                             <label for="email" id="Campo-correo">Correo Electrónico</label>
-                            <input type="email" id="correo" name="email" class="form-control" onfocusout="validarCorreo(this);">
+                            <input type="email" id="correo" name="email" class="form-control">
+                            <small class="error-message" id="error-correo"></small>
                         </div>
                     </div>
                 </div>

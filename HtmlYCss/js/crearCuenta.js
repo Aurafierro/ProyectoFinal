@@ -1,41 +1,17 @@
 var url = "http://localhost:8080/api/v1/user/";
 
-
-
-
 function crearCuenta() {
-
-
     let formData = {
-      "tipo_documento": document.getElementById("tipo_documento").value,
-      "numero_documento": document.getElementById("numero_documento").value,
-      "nombre_completo": document.getElementById("nombre_completo").value,
-      "telefono": document.getElementById("telefono").value,
-      "correo": document.getElementById("correo").value,
-      "rol": document.getElementById("rol").value
-
-  
+        "tipo_documento": document.getElementById("tipo_documento").value,
+        "numero_documento": document.getElementById("numero_documento").value,
+        "nombre_completo": document.getElementById("nombre_completo").value,
+        "telefono": document.getElementById("telefono").value,
+        "correo": document.getElementById("correo").value,
+        "rol": document.getElementById("rol").value
     };
-  
-    let camposValidos = true;
-    let camposRequeridos = [
-        "tipo_documento",
-        "numero_documento",
-        "nombre_completo",
-        "telefono",
-        "correo",
-        "rol"
 
-    ];
-  
-    camposRequeridos.forEach(function(campo) {
-        let valorCampo = document.getElementById(campo).value.trim();
-        if (valorCampo === "") {
-            camposValidos = false;
-            return false; // Terminar la iteración si se encuentra un campo vacío
-        }
-    });
-  
+    let camposValidos = validarCampos(formData);
+
     if (camposValidos) {
         $.ajax({
             url: url,
@@ -54,7 +30,6 @@ function crearCuenta() {
                 Swal.fire("Error", "Error al guardar, " + error.responseText, "error");
             },
         });
-  
     } else {
         Swal.fire({
             title: "¡Error!",
@@ -62,74 +37,77 @@ function crearCuenta() {
             icon: "error"
         });
     }
-  
-  }
-  
- // Función para validar el número de documento
-function validarNumero_documento(elemento) {
-  var valor = elemento.value;
-  if (valor.length < 5) {
-      Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'El número de documento debe tener al menos 5 caracteres.'
-      }).then((result) => {
-          if (result.isConfirmed) {
-              elemento.focus();
-          }
-      });
-  }
 }
 
-// Función para validar el nombre completo
-function validarNombre_completo(elemento) {
-  var valor = elemento.value.trim();
-  if (valor === "") {
-      Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'Por favor, ingresa tu nombre completo.'
-      }).then((result) => {
-          if (result.isConfirmed) {
-              elemento.focus();
-          }
-      });
-  }
+function validarCampos(formData) {
+    let camposRequeridos = [
+        "tipo_documento",
+        "numero_documento",
+        "nombre_completo",
+        "telefono",
+        "correo",
+        "rol"
+    ];
+
+    let camposValidos = true;
+
+    // Validación de cada campo
+    camposRequeridos.forEach(function(campo) {
+        let elemento = document.getElementById(campo);
+        let errorElemento = document.getElementById(`error-${campo}`);
+        if (elemento.value.trim() === "") {
+            errorElemento.textContent = `Este campo es obligatorio.`;
+            errorElemento.classList.add('error-message');
+            camposValidos = false;
+        } else {
+            errorElemento.textContent = "";
+            errorElemento.classList.remove('error-message');
+        }
+    });
+
+    // Validación adicional para número de documento
+    let numeroDocumento = document.getElementById("numero_documento").value.trim();
+    if (numeroDocumento.length < 5) {
+        document.getElementById("error-numero_documento").textContent = "El número de documento debe tener al menos 5 dígitos.";
+        document.getElementById("error-numero_documento").classList.add('error-message');
+        camposValidos = false;
+    } else {
+        document.getElementById("error-numero_documento").textContent = "";
+        document.getElementById("error-numero_documento").classList.remove('error-message');
+    }
+
+    // Validación adicional para número de teléfono
+    let telefono = document.getElementById("telefono").value.trim();
+    if (telefono.length !== 10) {
+        document.getElementById("error-telefono").textContent = "El número de teléfono debe tener exactamente 10 dígitos.";
+        document.getElementById("error-telefono").classList.add('error-message');
+        camposValidos = false;
+    } else {
+        document.getElementById("error-telefono").textContent = "";
+        document.getElementById("error-telefono").classList.remove('error-message');
+    }
+
+    return camposValidos;
 }
 
-
-
-
-// Función para validar el número de teléfono
-function validarTelefono(elemento) {
-  var valor = elemento.value.trim();
-  if (valor.length !== 10) {
-      Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'El número de teléfono debe tener 10 dígitos.'
-      }).then((result) => {
-          if (result.isConfirmed) {
-              elemento.focus();
-          }
-      });
-  }
+function limpiarFormulario() {
+    document.getElementById("crearCuentaForm").reset();
+    document.querySelectorAll('.error-message').forEach(function(el) {
+        el.textContent = '';
+        el.classList.remove('error-message');
+    });
 }
 
-  
-  function limpiarFormulario() {
-    document.getElementById("tipo_documento").className="form-control";
-    document.getElementById("numero_documento").className="form-control";
-    document.getElementById("nombre_completo").className="form-control";
-    document.getElementById("telefono").className="form-control";
-    document.getElementById("correo").className="form-control";
-    document.getElementById("rol").className="form-control";
-  
-  
-    document.getElementById("tipo_documento").value = "";
-    document.getElementById("rol").value = "";
-    document.getElementById("telefono").value = "";
-    document.getElementById("numero_documento").value = "";
-    document.getElementById("nombre_completo").value = "";
-    document.getElementById("correo").value = "";
-  }
+// Validación en tiempo real
+document.querySelectorAll('.form-control, .form-select').forEach(function(el) {
+    el.addEventListener('input', function() {
+        validarCampos({
+            "tipo_documento": document.getElementById("tipo_documento").value,
+            "numero_documento": document.getElementById("numero_documento").value,
+            "nombre_completo": document.getElementById("nombre_completo").value,
+            "telefono": document.getElementById("telefono").value,
+            "correo": document.getElementById("correo").value,
+            "rol": document.getElementById("rol").value
+        });
+    });
+});
