@@ -6,50 +6,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cambiar contraseña</title>
     <link rel="stylesheet" href="../css/miPerfil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Enlace a Font Awesome -->
 </head>
 
 <body>
-    <div class="franjaSuperior">
-        <div id="iconoMenu">
-            <a href="#"> <img src="../img/menu-svgrepo-com.png" alt="" id="iconoMenuH"></a>
+    <header>
+        <div class="header-container">
+            <i class="fas fa-bars menu-icon"></i>
+            <a href="" class="logout-link">Cerrar sesión</a>
+            <img src="../img/Recurso 2@72x.png" alt="">
+
         </div>
-        <div id="logo">
-            <img src="../img/logo.png" alt="" id="imagenLogo">
+    </header>
+    
+    
+    
+    <div class="sidebar">
+        <div class="sidebar-item">
+            <i class="fas fa-user"></i>
+         <a href="../indexHTML/miPerfil.html"class="logout-linku">Mi perfil</a> 
         </div>
-        <div id="nombre">
-            <span id="letraNombre">Asigna Web</span>
+        <div class="sidebar-item">
+            <i class="fas fa-edit"></i>
+            <a href="../indexHTML/modificarDatos.html"class="logout-linku">Modificar datos</a>
         </div>
-        <div id="div_cerrar_sesion">
-            <a href="#"> <span id="cerrar_sesion">Cerrar sesión</span> </a>
+        <div class="sidebar-item">
+            <i class="fas fa-key"></i>
+            <a href="../indexHTML/CambiarContrasena.html"class="logout-linku">Cambiar contraseña</a>
+        </div>
+        <div class="sidebar-item">
+            <i class="fas fa-user-slash"></i>
+            <a href="../indexHTML/CambiarContrasena.html"class="logout-linku">Desactivar cuenta</a>
         </div>
     </div>
 
-    <!--Menú superior opciones-->
-    <div class="menuOpciones">
-        <a href="../indexHTML/miPerfil.html"> <div> <span>Mi perfil</span></div></a>
-        <a href="../indexHTML/modificarDatos.html"> <div> <span>Modificar datos</span></div></a>
-        <a href="../indexHTML/cambiarContrasena.html"> <div> <span>Cambiar contraseña</span></div></a>
-        <a href="../indexHTML/desactivarCuenta.html"> <div> <span>Desactivar cuenta</span></div></a>
+    <div class="profile-containertres">
+        <div class="modifi-contraseña">
+            <h2>Cambiar contraseña</h2>
+        </div> 
+        <p>Ingresa una contraseña de fácil recordación</p>
+        <form>
+            <label for="current-password">Contraseña actual:</label>
+            <input type="password" id="current-password" name="current-password">
+    
+            <label for="new-password">Nueva contraseña:</label>
+            <input type="password" id="new-password" name="new-password">
+    
+            <label for="confirm-password">Confirmar contraseña:</label>
+            <input type="password" id="confirm-password" name="confirm-password">
+    
+            <button type="submit">Enviar</button>
+        </form>
     </div>
-
-    <!--Linea separadora-->
-    <div class="lineaSeparadora">
-        <span>Linea separadora </span>
-    </div>
-    <!--Contenedor sección de mi perfil-->
-    <div class="contenedorSeccion">
-        <div class="contenedorBlanco">
-            <span id="tituloMiPerfil">Cambiar contraseña</span>
-            <span id="mensajeCambiarContra">Ingresa una contraseña de fácil recordación y de máximo 20 carácteres.</span>
-            <span id="textosFormCambiarContra">Contraseña actual:</span>
-            <input type="text" id="campos">
-            <span id="textosFormCambiarContra">Contraseña nueva:</span>
-            <input type="text" id="campos">
-            <span id="confirmarContra">Confirmar contraseña nueva:</span>
-            <input type="text" id="campos">
-
-        </div>
-    </div>
+    
 </body>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

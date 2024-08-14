@@ -2,7 +2,6 @@
   font-family: "Candal";
   src: url("/Fuentes/Candal/Candal-Regular.ttf");
 }
-
 body {
   background-color: #3EBFFF;
   margin: 0;
@@ -11,9 +10,8 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  font-size: 120%; /* Aumentar el tamaño de la fuente */
+  font-size: 120%; 
 }
-
 .container {
   display: flex;
   background-color: #fff;
@@ -22,9 +20,8 @@ body {
   overflow: hidden;
   width: 900px; /* Ajustar el ancho del contenedor */
 }
-
 .form-container {
-  padding: 5%; /* Aumentar el padding */
+  padding: 5%; 
   background-color: #1a3365;
   color: white;
   width: 90%; /* Ajustar el ancho del contenedor del formulario */

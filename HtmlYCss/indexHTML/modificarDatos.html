@@ -6,45 +6,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificar datos</title>
     <link rel="stylesheet" href="../css/miPerfil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Enlace a Font Awesome -->
 </head>
 
 <body>
-    <div class="franjaSuperior">
-        <div id="iconoMenu">
-            <a href="#"> <img src="../img/menu-svgrepo-com.png" alt="" id="iconoMenuH"></a>
+    <header>
+        <div class="header-container">
+            <i class="fas fa-bars menu-icon"></i>
+            <a href="" class="logout-link">Cerrar sesión</a>
+            <img src="../img/Recurso 2@72x.png" alt="">
+
         </div>
-        <div id="logo">
-            <img src="../img/logo.png" alt="" id="imagenLogo">
+    </header>
+    
+    
+    
+    <div class="sidebar">
+        <div class="sidebar-item">
+            <i class="fas fa-user"></i>
+         <a href="../indexHTML/miPerfil.html"class="logout-linku">Mi perfil</a> 
         </div>
-        <div id="nombre">
-            <span id="letraNombre">Asigna Web</span>
+        <div class="sidebar-item">
+            <i class="fas fa-edit"></i>
+            <a href="../indexHTML/mo"class="logout-linku">Modificar datos</a>
         </div>
-        <div id="div_cerrar_sesion">
-            <a href="#"> <span id="cerrar_sesion">Cerrar sesión</span> </a>
+        <div class="sidebar-item">
+            <i class="fas fa-key"></i>
+            <a href="../indexHTML/CambiarContrasena.html"class="logout-linku">Cambiar contraseña</a>
+        </div>
+        <div class="sidebar-item">
+            <i class="fas fa-user-slash"></i>
+            <a href="../indexHTML/CambiarContrasena.html"class="logout-linku">Desactivar cuenta</a>
         </div>
     </div>
 
-    <!--Menú superior opciones-->
-    <div class="menuOpciones">
-        <a href="../indexHTML/miPerfil.html"> <div> <span>Mi perfil</span></div></a>
-        <a href="../indexHTML/modificarDatos.html"> <div> <span>Modificar datos</span></div></a>
-        <a href="../indexHTML/cambiarContrasena.html"> <div> <span>Cambiar contraseña</span></div></a>
-        <a href="../indexHTML/desactivarCuenta.html"> <div> <span>Desactivar cuenta</span></div></a>
-    </div>
+    <div class="profile-containers">
+       <div class="modifi"><h2>Modificar datos</h2></div> 
+        
 
-    <!--Linea separadora-->
-    <div class="lineaSeparadora">
-        <span>Linea separadora </span>
-    </div>
-    <!--Contenedor sección de mi perfil-->
-    <div class="contenedorSeccion">
-        <div class="contenedorBlanco">
-            <span id="tituloMiPerfil">Modificar datos</span>
-
-            <div class="formulario">
+         
+            
+            <div class="profile-details">
+                <div class="left-column">
+                    <label for="tipo-documento">Tipo documento:</label>
+                    <input type="text" id="tipo-documento" name="tipo-documento">
+                    
+                    <label for="numero-documento">Número documento:</label>
+                    <input type="text" id="numero-documento" name="numero-documento">
+                    
+                    <label for="nombre-completo">Nombre completo:</label>
+                    <input type="text" id="nombre-completo" name="nombre-completo">
+                </div>
+                
+                <div class="right-column">
+                    <label for="rol">Rol:</label>
+                    <select id="rol" name="rol">
+                        <option value="usuario">Usuario</option>
+                        <option value="administrador">Administrador</option>
+                    </select>
+                    
+                    <label for="correo">Correo:</label>
+                    <input type="email" id="correo" name="correo">
+                    
+                    <label for="telefono">Teléfono:</label>
+                    <input type="tel" id="telefono" name="telefono">
+                </div>
             </div>
+        
+            <button class="submit-button">Enviar</button>
+    </div>
+    
+            
+         
+           
         </div>
     </div>
-</body>
+        
 
+
+        </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>
