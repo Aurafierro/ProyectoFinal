@@ -6,52 +6,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Desactivar cuenta</title>
     <link rel="stylesheet" href="../css/miPerfil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Enlace a Font Awesome -->
 </head>
 
 <body>
-    <div class="franjaSuperior">
-        <div id="iconoMenu">
-            <a href="#"> <img src="../img/menu-svgrepo-com.png" alt="" id="iconoMenuH"></a>
+    <header>
+        <div class="header-container">
+            <i class="fas fa-bars menu-icon"></i>
+            <a href="" class="logout-link">Cerrar sesión</a>
+            <img src="../img/Recurso 2@72x.png" alt="">
+
         </div>
-        <div id="logo">
-            <img src="../img/logo.png" alt="" id="imagenLogo">
+    </header>
+    
+    
+    
+    <div class="sidebar">
+        <div class="sidebar-item">
+            <i class="fas fa-user"></i>
+         <a href="../indexHTML/miPerfil.html"class="logout-linku">Mi perfil</a> 
         </div>
-        <div id="nombre">
-            <span id="letraNombre">Asigna Web</span>
+        <div class="sidebar-item">
+            <i class="fas fa-edit"></i>
+            <a href="../indexHTML/modificarDatos.html"class="logout-linku">Modificar datos</a>
         </div>
-        <div id="div_cerrar_sesion">
-            <a href="#"> <span id="cerrar_sesion">Cerrar sesión</span> </a>
+        <div class="sidebar-item">
+            <i class="fas fa-key"></i>
+            <a href="../indexHTML/CambiarContrasena.html"class="logout-linku">Cambiar contraseña</a>
+        </div>
+        <div class="sidebar-item">
+            <i class="fas fa-user-slash"></i>
+            <a href="../indexHTML/DesactivarCuenta.html"class="logout-linku">Desactivar cuenta</a>
         </div>
     </div>
 
-    <!--Menú superior opciones-->
-    <div class="menuOpciones">
-        <a href="../indexHTML/miPerfil.html"> <div> <span>Mi perfil</span></div></a>
-        <a href="../indexHTML/modificarDatos.html"> <div> <span>Modificar datos</span></div></a>
-        <a href="../indexHTML/cambiarContrasena.html"> <div> <span>Cambiar contraseña</span></div></a>
-        <a href="../indexHTML/desactivarCuenta.html"> <div> <span>Desactivar cuenta</span></div></a>
+    <div class="profile-container-desactivar">
+        <div class="desactivar-cuenta">
+            <h2>Desactivar cuenta</h2>
+        </div> 
+        <p>Para activar tu cuenta en AsignaWeb, envía un correo electrónico a  
+            asignaweb@gmail.comcon el asunto"Solicitud de Activación de Cuenta" 
+             Ten en cuenta que, aunque tu cuenta esté desactivada, tu información
+             permanecerá en nuestra base de datos.
+            
+            </p>
+       
+            <p>Te notificaremos una vez que la activación se haya completado.</p>
+            <button type="button"> Desactivar cuenta</button>
     </div>
-
-    <!--Linea separadora-->
-    <div class="lineaSeparadora">
-        <span>linea separadora</span>
-    </div>
-    <!--Contenedor sección de mi perfil-->
-    <div class="contenedorSeccion">
-        <div class="contenedorBlanco">
-            <span id="tituloMiPerfil">Desactivar cuenta</span>
-            <span id="preguntaDesactivar">¿Deseas desactivar la cuenta?</span>
-            <span id="mensajeDesactivar">Para activar tu cuenta en AsignaWeb, envía un correo electrónico a  
-                asignaweb@gmail.comcon el asunto"Solicitud de Activación de Cuenta" 
-                 Ten en cuenta que, aunque tu cuenta esté desactivada, tu información
-                 permanecerá en nuestra base de datos.
-                
-                </span>
-                <span id="mensajeDesactivar">Te notificaremos una vez que la activación se haya completado.</span>
-
-                <button type="button" id="botonDesactivarCuenta">Desactivar cuenta</button>
-        </div>
-    </div>
+    
 </body>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

@@ -227,7 +227,7 @@ header img {
     font-size: 14px;
     color: #000000;
     text-align: center;
-    margin: 0 auto; /* Centra el label horizontalmente */
+    margin: 0 auto; 
 }
 
 .profile-containertres input {
@@ -237,11 +237,11 @@ header img {
     border-radius: 12px;
     background-color: #3ebfff85;
     font-family: 'Candal', Arial, sans-serif;
-    margin: 0 auto; /* Centra el input horizontalmente */
+    margin: 0 auto; 
 }
 
 .profile-containertres button {
-    width: 147px; /* Ajusta el ancho según tus necesidades */
+    width: 147px; 
     padding: 9px;
     font-size: 16px;
     color: white;
@@ -249,9 +249,53 @@ header img {
     border: none;
     border-radius: 20px;
     font-family: 'Candal', Arial, sans-serif;
-    margin: 0 auto; /* Centra el botón horizontalmente */
+    margin: 0 auto; 
 }
 
+
+
+/*  DESACTIVAR CUENTA*/
+.profile-container-desactivar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    font-size: 14px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 550px;
+    margin:30px auto;
+}
+
+.desactivar-cuenta h2 {
+    margin: 1;
+    font-size: 30px;
+    color: #000000;
+    text-align: center;
+}
+
+.profile-container-desactivar p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #000000;
+    text-align: center;
+    line-height: 1.5; 
+}
+
+.profile-container-desactivar button {
+    width: 200px; 
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    background-color: #1a3e68;
+    border: none;
+    border-radius: 20px;
+    font-family: 'Candal', Arial, sans-serif;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+}
 
 
 
