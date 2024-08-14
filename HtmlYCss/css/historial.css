@@ -14,6 +14,7 @@ body {
 
 .header {
     width: 100%;
+    height: 100px;
     background-color: #1a3e68;
     color: var(--white);
     display: flex;
@@ -58,10 +59,9 @@ body {
 
 .header .logo img.logo-img {
     width: 100%;
-    height: 100px;
+    height: 75px;
     margin-top: 5px;
     margin-bottom: 5px;
-    padding-left: 50px;
 }
 
 .header .logout a {
@@ -105,7 +105,7 @@ body {
     padding-bottom: 20px;
     width: 100%;
     box-sizing: border-box;
-    margin-top: 10px;
+    margin-top: 85%;
     color: white;
     font-family: 'Rubik';
 }
@@ -120,6 +120,7 @@ body {
     overflow: hidden;
     cursor: pointer;
     border: 3px solid #fff;
+    margin-top: 10%
 }
 
 .profile-pic img {
@@ -192,35 +193,44 @@ nav ul li a.active {
     font-weight: bold;
 }
 
-.main-content {
-    flex: 1;
-    background-color: #3EBFFF; /* Fondo azul claro */
-    display: flex;
-    flex-direction: column;
+/* Adjustments for sidebar visibility */
+.main-content.shifted {
+    margin-left: 250px; /* Ajusta el margen para dejar espacio para el sidebar */
+    transition: margin-left 0.3s; /* Transición suave para el cambio de margen */
 }
 
+/* Container for the table */
 .table-container {
-    padding: 20px;
+    padding: 30px;
     flex: 1;
-    overflow-y: auto;
+    overflow-y: auto; /* Permite el desplazamiento si el contenido excede el contenedor */
+    box-sizing: border-box; /* Incluye padding en el tamaño total del contenedor */
 }
 
+
+/* General table styles */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #f4f5f7; /* color de tabla  */
+    width: 100%; /* Asegura que la tabla ocupe todo el ancho del contenedor */
+    border-collapse: collapse; /* Elimina el espacio entre celdas */
+    background-color: #f4f5f7; /* Color de fondo de la tabla */
+    box-sizing: border-box; /* Incluye padding y border en el tamaño total del elemento */
 }
 
-th, td {
-    padding: 20px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
+/* Table header styles */
 th {
     background-color: #D9D9D9;
     color: rgb(0, 0, 0);
+    padding: 15px; /* Ajusta el padding para una mejor visualización */
+    text-align: left;
+    border-bottom: 1px solid #ddd; /* Línea divisoria inferior */
 }
+
+/* Table cell styles */
+td {
+    padding: 15px; /* Ajusta el padding para una mejor visualización */
+    border-bottom: 1px solid #ddd; /* Línea divisoria inferior */
+}
+
 
 td button {
     padding: 14px 12px;
@@ -339,15 +349,15 @@ td button {
     border-radius: 10px;
     margin-bottom: 15px;
     width: 100%;
-    align-items: center; /* Centrar el contenido */
+    align-items: center; /* Centrar el contenido horizontalmente */
 }
-
+/* Ajustes para la barra de búsqueda */
 .search-bar-wrapper {
     display: flex;
     align-items: center;
     width: 70%;
     margin-bottom: 10px;
-    justify-content: center; /* Centrar la barra de búsqueda */
+    justify-content: end; /* Centra la barra de búsqueda */
 }
 
 .search-bar {
@@ -362,10 +372,9 @@ td button {
     padding: 18px;
     font-size: 16px;
     border: 2px solid rgb(3, 3, 3);
-    border-top-left-radius: 25px;
-    border-bottom-left-radius: 25px;
-    outline: none;
+    border-radius: 5px;
 }
+
 
 .search-bar button {
     padding: 22px 20px;
@@ -399,20 +408,109 @@ td button {
 }
 
 
-
-
-
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    .container {
-        flex-direction: column-reverse; /* Cambia el orden de la columna en dispositivos más pequeños */
+    .table-container {
+        padding: 20px; /* Reduce el padding en pantallas más pequeñas */
+    }
+    
+    .main-content {
+        margin-left: 0; /* Elimina el margen en pantallas más pequeñas */
+        padding-left: 0;
     }
 
     .sidebar {
-        width: 100%;
-        padding-bottom: 20px;
+        width: 100%; /* Hace que el sidebar ocupe todo el ancho en pantallas pequeñas */
+        transform: translateX(-100%); /* Oculta el sidebar en pantallas más pequeñas */
     }
 
-    .main-content {
-        width: 100%;
+    .sidebar.visible {
+        transform: translateX(0); /* Muestra el sidebar en pantallas más pequeñas */
     }
+}
+/* Estilo para el contenedor del menú hamburguesa */
+.menu-toggle {
+    position: relative; /* Fijo en la pantalla */
+    top: 8px;
+    left: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 40px;
+    color: #ffffff;
+    z-index: 1001; /* Asegura que esté encima de otros elementos */
+}
+
+/* Estilo para el contenedor del menú desplegable */
+.menu-container {
+    position: fixed; /* Fijo en la pantalla */
+    top: 20px;
+    right: 20px;
+    display: none; /* Ocultar el menú por defecto */
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 160px;
+    text-align: left;
+}
+
+.menu-container.active {
+    display: block; /* Mostrar el menú cuando está activo */
+}
+
+.menu-container a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+}
+
+.menu-container a:hover {
+    background-color: #f0f0f0;
+}
+
+/* Estilo para el contenedor izquierdo oculto */
+.sidebar {
+    width: 250px;
+    background-color: #1a3e68;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    box-sizing: border-box;
+    position: fixed; /* Fijo en la pantalla */
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    transition: transform 0.3s; /* Transición para animar el cambio de posición */
+    z-index: 1000; /* Asegura que esté encima de otros elementos */
+}
+
+.sidebar.hidden {
+    transform: translateX(-100%); /* Oculta el contenedor al desplazarlo fuera de la vista */
+}
+
+.sidebar.visible {
+    transform: translateX(0); /* Muestra el contenedor */
+}
+
+/* Ajustes específicos para dispositivos móviles */
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0; /* Ajuste del margen en dispositivos móviles */
+        padding-left: 0;
+    }
+}
+.logo-container {
+    margin-bottom: 15px; /* Espacio entre el logo y la barra de búsqueda */
+}
+
+.logo-img {
+    max-width: 100%; /* Ajusta el tamaño del logo según sea necesario */
+    height: auto;
 }
