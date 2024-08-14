@@ -74,48 +74,37 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar reserva</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <center> <h1 class="modal-title fs-5" id="exampleModalLabel">Editar reserva</h1></center>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <h6>Todos los campos con asterisco son obligatorios *</h6>
-                        <input id="id_libro" type="hidden">
-                        <div class="col col-xl-6 col-12">
-                            <b><label for="">Título libro *</label></b>
-                            <input type="text" id="titulo_libro" class="form-control" onfocusout="validarTitulo_libro(this);" />
-                        </div>
+                    <div class="form">
+                        <label for="nombre_completo">Nombre completo:</label>
+                        <input type="text" id="nombre_completo" onfocusout="validarNombre_completo(this);">
 
-                        <div class="col col-xl-6 col-12">
-                            <b><label for="">Autor libro *</label></b>
-                            <input type="text" id="autor_libro" class="form-control" onfocusout="validarAutor_libro(this);" />
-                        </div>
+                        <label for="nombre_espacio">Nombre espacio:</label>
+                        <select name="" id="nombre_espacio" class="form-select">
+                            <option value="" selected disabled>Selecciona un espacio</option>
+                            <option value="cancha">Cancha</option>
+                            <option value="gimnasio">Gimnasio</option>
+                            <option value="auditorio">Auditorio</option>
+                            <option value="biblioteca">Biblioteca</option>
+                        </select>
 
-                        <div class="col col-xl-6 col-12">
-                            <b><label for="">ISBN libro *</label></b>
-                            <input type="number" id="isbn_libro" step="1" class="form-control"
-                                onfocusout="validarIsbn_libro(this);" />
-                        </div>
-                        <div class="col col-xl-6 col-12">
-                            <b><label for="">Genero libro *</label></b>
-                            <input type="text" id="genero_libro" class="form-control" onfocusout="validarGenero_libro(this);" />
-                        </div>
-                        <div class="col col-xl-6 col-12">
-                            <b><label for="">Numero ejemplares disponibles *</label></b>
-                            <input type="number" id="numero_ejemplares_disponibles" step="1" class="form-control"
-                                onfocusout="validarNumero_ejemplares_disponibles(this);" />
-                        </div>
-                        <div class="col col-xl-6 col-12">
-                            <b><label for="">Numero ejemplares ocupados *</label></b>
-                            <input type="text" id="numero_ejemplares_ocupados" class="form-control"
-                                onfocusout="validarNumero_ejemplares_ocupados(this);" />
-                        </div>
+                        <label for="hora_entrada">Hora de Entrada:</label>
+                        <input type="time" id="hora_entrada" onfocusout="validarHora_entrada(this);">
+
+                        <label for="hora_salida">Hora de Salida:</label>
+                        <input type="time" id="hora_salida" onfocusout="validarHora_salida(this);">
+
+                        <label for="fecha_entrada">Fecha entrada:</label>
+                        <input type="date" name="" id="fecha_entrada">
+                        <label for="fecha_salida">Fecha salida:</label>
+                        <input type="date" name="" id="fecha_salida">
                     </div>
-                    <button type="button" class="botonVerde" onclick="actualizarReserva();">Actualizar</button>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="botonVerde" onclick="actualizarReserva();">Guardar cambios</button>
                     <button type="button" class="botonRojo" onclick="closeModal();" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="botonVerde" onclick="guardarReserva()">Guardar cambios</button>
                 </div>
             </div>
         </div>

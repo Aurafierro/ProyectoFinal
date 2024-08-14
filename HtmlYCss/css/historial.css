@@ -24,30 +24,33 @@ body {
 }
 
 .botonVerde{
-    padding: 15px 30px; /* Ajustar el padding del botón */
+    padding: 15px; /* Ajustar el padding del botón */
     background-color: #28a745;
     color: white;
     border: none;
     border-radius: 50px; /* Bordes redondeados */
     cursor: pointer;
-    font-size: 100%; /* Ajustar el tamaño de la fuente */
-    width: 30%; /* Hacer el botón más corto de ancho */
+    font-size: 125%; /* Ajustar el tamaño de la fuente */
+    width: 50%; /* Hacer el botón más corto de ancho */
     margin-top: 5%;
-    
     font-weight: bold;
+    white-space: nowrap; 
+    margin-bottom: 10%;
 }
 
 .botonRojo{
-    padding: 15px 30px; /* Ajustar el padding del botón */
+    padding: 15px 20px; /* Ajustar el padding del botón */
     background-color: red;
     color: white;
     border: none;
     border-radius: 50px; /* Bordes redondeados */
     cursor: pointer;
-    font-size: 100%; /* Ajustar el tamaño de la fuente */
-    width: 30%; /* Hacer el botón más corto de ancho */
-    margin-left: 65%;
+    font-size: 125%; /* Ajustar el tamaño de la fuente */
+    width: 50%; /* Hacer el botón más corto de ancho */
+    margin-left: 1%;
     font-weight: bold;
+    margin-top: 5%;
+    margin-bottom: 10%;
 }
 
 .header .logo {
@@ -275,7 +278,7 @@ td button {
 }
 
 .modal-content {
-    background-color: #ffffff; /* Fondo rosa claro */
+    background-color: #ffffff;
     padding: 20px;
     border-radius: 20px;
     width: 800px; /* Ancho del modal aumentado */
@@ -318,7 +321,7 @@ td button {
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 20px;
-    background-color: #d6d6d6; /* Color de fondo gris */
+    background-color: #ffffff; /* Color de fondo gris */
 }
 
 .button-container {
@@ -513,4 +516,50 @@ td button {
 .logo-img {
     max-width: 100%; /* Ajusta el tamaño del logo según sea necesario */
     height: auto;
+}
+
+/* Asegúrate de que el modal esté centrado vertical y horizontalmente */
+.modal-dialog {
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 1rem);
+    margin: 0; /* Elimina el margen por defecto si es necesario */
+  }
+  
+  .modal-content {
+    width: auto;
+    border-radius: 30px;/* Ajusta si deseas bordes redondeados */
+    width: 30%;
+    background-color: #202C4A;
+  }
+
+  .modal-footer{
+    display: flex;
+  }
+  
+label{
+    margin-top: 4%;
+    font-size: 125%;
+}
+
+.modal-title{
+    margin-top: 4%;
+}
+
+#nombre_espacio{
+    width: 100%;
+    border-radius: 40px;
+    height: 35px;
+}
+
+#nombre_espacio{
+    font-weight: bold;
+    font-size: 90%;
+}
+
+option{
+    font-size: 90%;
+    font-weight: bold;
 }
