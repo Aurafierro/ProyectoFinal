@@ -9,48 +9,55 @@
 </head>
 
 <body>
-    <div class="franjaSuperior">
-        <div id="iconoMenu">
-            <a href="#"> <img src="../img/menu-svgrepo-com.png" alt="" id="iconoMenuH"></a>
+    <header>
+        <div class="header-container">
+            <i class="fas fa-bars menu-icon"></i>
+            <a href="" class="logout-link">Cerrar sesión</a>
+            <img src="./img/Recurso 2@72x.png" alt="">
         </div>
-        <div id="logo">
-            <img src="../img/logo.png" alt="" id="imagenLogo">
+    </header>
+    
+    
+    
+    <div class="sidebar">
+        <div class="sidebar-item">
+            <i class="fas fa-user"></i>
+            <span>Mi perfil</span>
         </div>
-        <div id="nombre">
-            <span id="letraNombre">Asigna Web</span>
+        <div class="sidebar-item">
+            <i class="fas fa-edit"></i>
+            <span>Modificar datos</span>
         </div>
-        <div id="div_cerrar_sesion">
-            <a href="#"> <span id="cerrar_sesion">Cerrar sesión</span> </a>
+        <div class="sidebar-item">
+            <i class="fas fa-key"></i>
+            <span>Cambiar contraseña</span>
+        </div>
+        <div class="sidebar-item">
+            <i class="fas fa-user-slash"></i>
+            <span>Desactivar cuenta</span>
         </div>
     </div>
 
-    <!--Menú superior opciones-->
-    <div class="menuOpciones">
-        <a href="../indexHTML/miPerfil.html"> <div> <span>Mi perfil</span></div></a>
-        <a href="../indexHTML/modificarDatos.html"> <div> <span>Modificar datos</span></div></a>
-        <a href="../indexHTML/cambiarContrasena.html"> <div> <span>Cambiar contraseña</span></div></a>
-        <a href="../indexHTML/desactivarCuenta.html"> <div> <span>Desactivar cuenta</span></div></a>
-    </div>
-
-    <!--Linea separadora-->
-    <div class="lineaSeparadora">
-        <span>Linea separadora </span>
-    </div>
-    <!--Contenedor sección de mi perfil-->
-    <div class="contenedorSeccion">
-        <div class="contenedorBlanco">
-            <span id="tituloMiPerfil">Mi perfil</span>
-            <img src="../img/circle-svgrepo-com.png" alt="" width="40%">
-            <span id="nombre_completo">Mariana Charry</span>
-
-            <div class="formulario">
-                <span>Tipo documento:</span>
-                <span>Número documento:</span>
-                <span>Nombre completo:</span>
-                <span>Rol:</span>
-                <span>Correo:</span>
-                <span>Teléfono:</span>
-            </div>
+    <div class="profile-container">
+        <h2>Mi perfil</h2>
+        <div class="profile-photo">
+            <label for="photoInput" class="photo-label">
+                <input type="file" id="photoInput" accept="image/*">
+                <i class="fas fa-camera camera-icon"></i>
+            </label>
+            <p><strong>Mariana Charry</strong></p>
+        </div>
+       
+       
+        <div class="profile-details">
+            
+         
+            <p>Tipo documento:</p>
+            <p>Número documento:</p>
+            <p>Nombre completo:</p>
+            <p>Rol:</p>
+            <p>Correo:</p>
+            <p>Teléfono:</p>
         </div>
     </div>
 </body>
