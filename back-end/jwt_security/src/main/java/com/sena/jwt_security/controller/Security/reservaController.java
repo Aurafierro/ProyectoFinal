@@ -107,12 +107,13 @@ if (reserva.getFecha_salida().equals("")) {
             PdfWriter.getInstance(document, out);
             document.open();
 
+            /*
             // Para añadir el logo de nuestro sitio web
-            String logoPath = "D:/Datos/Descargas/bibliotecaR/Gestion_Biblioteca/back/logo.png";
+            String logoPath = "";
             Image logo = Image.getInstance(logoPath);
             logo.scaleToFit(100, 100); // AJUSTARLE EL TAMAÑO
             logo.setAlignment(Image.ALIGN_CENTER);
-            document.add(logo);
+            document.add(logo);*/
 
             // PARA AÑADIR TITULO AL PDF
             Paragraph title = new Paragraph("Reservaciones realizadas",

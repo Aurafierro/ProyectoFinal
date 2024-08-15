@@ -1,4 +1,4 @@
-var url = "http://localhost:8080/api/v1/user/";
+var url = "http://10.192.66.24:8080/api/v1/user/";
 
 function crearCuenta() {
     let formData = {

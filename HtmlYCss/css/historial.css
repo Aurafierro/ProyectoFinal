@@ -347,7 +347,7 @@ td button {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    background-color: #3EBFFF;
+
     border-radius: 10px;
     margin-bottom: 15px;
     width: 100%;
@@ -569,4 +569,8 @@ option{
 
 th{
     font-family: 'Candal';
+}
+
+.btnEditar{
+    background-color: yellow;
 }
