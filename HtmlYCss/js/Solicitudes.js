@@ -1,25 +1,19 @@
-// Función para abrir el modal
-function openModal() {
-    document.getElementById('editModal').style.display = 'flex';
-}
+// Archivo: ../js/Solicitudes.js
+document.addEventListener('DOMContentLoaded', function () {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
 
-// Función para cerrar el modal
-function closeModal() {
-    document.getElementById('editModal').style.display = 'none';
-}
+    menuToggle.addEventListener('click', function () {
+        sidebar.classList.toggle('active');
+        // Asegurarse de que el contenido principal se ajuste correctamente
+        document.querySelector('.main-content').classList.toggle('active');
+    });
 
-// Manejo del cambio de la imagen de perfil
-document.querySelector('.profile-container').addEventListener('click', function () {
-    document.getElementById('profileInput').click();
-});
-
-document.getElementById('profileInput').addEventListener('change', function (event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            document.getElementById('profilePic').src = e.target.result;
+    // Para cerrar el menú cuando se hace clic fuera de él (opcional)
+    document.addEventListener('click', function (event) {
+        if (!sidebar.contains(event.target) && !menuToggle.contains(event.target) && sidebar.classList.contains('active')) {
+            sidebar.classList.remove('active');
+            document.querySelector('.main-content').classList.remove('active');
         }
-        reader.readAsDataURL(file);
-    }
+    });
 });

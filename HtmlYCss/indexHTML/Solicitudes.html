@@ -9,9 +9,11 @@
 </head>
 <body>
     <header class="header">
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
         <div class="logo">
             <img src="../img/logori.png" alt="Logo" class="logo-img">
-         
         </div>
         <div class="logout"><a href="#">Cerrar sesión</a></div>
     </header>
@@ -27,17 +29,16 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="../indexHTML/ModificarDatos.html"><i class="fas fa-user-edit"></i>Modificar datos</a></li>
-                    <li><a href="../indexHTML/CambiarContraseña.html" class="active"><i class="fas fa-key"></i>Cambiar contraseña</a></li>
+                    <li><a href="../indexHTML/miPerfil.html"><i class="fas fa-user-edit"></i>Mi perfil</a></li>
+                    <li><a href="../indexHTML/Reservaciones.html" class="active"><i class="fas fa-key"></i>Reservar espacios</a></li>
                     <li><a href="../indexHTML/historial.html"><i class="fas fa-history"></i>Historial</a></li>
                     <li><a href="#"><i class="fas fa-check"></i>Solicitudes</a></li>
-                    <li><a href="#"><i class="fas fa-trash-alt"></i>Eliminar cuenta</a></li>
+                    
                 </ul>
             </nav>
         </aside>
         <!-- Contenido principal -->
         <div class="main-content">
-            
             <div class="search-options">
                 <div class="search-bar-wrapper">
                     <div class="search-bar">
@@ -64,42 +65,13 @@
                             <td>10:00</td>
                             <td>12:00</td>
                             <td>
-                                <button class="edit" onclick="openModal()">Editar</button>
+                                <button class="edit">Aceptar</button>
                                 <button class="delete">Denegar</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-        </div>
-    </div>
-
-    <!-- Modal de edición -->
-    <div id="editModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Editar reservación</h2>
-            <form>
-                <div class="form-group">
-                    <label for="usuario">Usuario</label>
-                    <input type="text" id="usuario" name="usuario">
-                </div>
-                <div class="form-group">
-                    <label for="hentrada">H.entrada</label>
-                    <input type="text" id="hentrada" name="hentrada">
-                </div>
-                <div class="form-group">
-                    <label for="reservacion">Reservación</label>
-                    <input type="text" id="reservacion" name="reservacion">
-                </div>
-                <div class="form-group">
-                    <label for="hsalida">H.salida</label>
-                    <input type="text" id="hsalida" name="hsalida">
-                </div>
-                <div class="button-container">
-                    <button type="submit" class="save">Guardar</button>
-                </div>
-            </form>
         </div>
     </div>
 

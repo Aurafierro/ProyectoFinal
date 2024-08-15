@@ -8,9 +8,8 @@ body {
     font-family: 'Rubik';
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Cambiado a min-height para asegurar que el cuerpo se extienda al menos al 100% de la altura de la ventana de visualización */
-    
-    overflow-x: hidden; /* Evita el desplazamiento horizontal en dispositivos pequeños */
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .header {
@@ -21,6 +20,16 @@ body {
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
+    padding: 10px;
+    position: relative;
+    z-index: 1000;
+}
+
+.menu-toggle {
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    display: none; /* Ocultar por defecto en pantallas grandes */
 }
 
 .header .logo {
@@ -33,9 +42,8 @@ body {
 .header .logo img.logo-img {
     width: 80px;
     height: 70px;
-    margin-top: 5px; /* Ajusta este valor según lo necesites */
+    margin-top: 5px;
     margin-bottom: 5px;
-    padding-left: 50px; 
 }
 
 .header .logout a {
@@ -44,21 +52,17 @@ body {
     transition: color 0.3s ease-in-out;
     font-size: 120%;
     padding-right: 20px; 
-    font-family: 'Rubik';
-    color: white;
 }
 
 .header .logout a:hover {
     color: var(--hover-color);
-    font-family: 'Rubik';
-    
 }
-
 
 .container {
     display: flex;
     flex: 1;
     flex-direction: row;
+    transition: margin-left 0.3s ease-in-out;
 }
 
 .sidebar {
@@ -70,8 +74,18 @@ body {
     align-items: center;
     padding: 20px 0;
     box-sizing: border-box;
-    justify-content: flex-start;
-    overflow-y: hidden; 
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.sidebar.active {
+    transform: translateX(0);
 }
 
 .profile {
@@ -83,21 +97,18 @@ body {
     box-sizing: border-box;
     margin-top: 10px; 
     color: white;
-    font-family: 'Rubik';
-    
 }
-
 
 .profile-pic {
     position: relative;
     width: 160px;
     height: 160px;
-    background-color: transparent; /* Cambiado a transparente */
+    background-color: transparent;
     border-radius: 50%;
     margin: 0 auto 10px;
     overflow: hidden;
-    cursor: pointer; /* Añadido cursor pointer para indicar que se puede hacer clic */
-    border: 3px solid #fff; /* Añadido un borde blanco para dar contraste */
+    cursor: pointer;
+    border: 3px solid #fff;
 }
 
 .profile-pic img {
@@ -114,40 +125,25 @@ body {
     font-size: 70px;
     color: #000000;
     cursor: pointer;
-    transition: opacity 0.3s ease-in-out; /* Transición suave para la opacidad */
-    z-index: 1; /* Añadido z-index para estar por encima de la imagen */
-    display: none; /* Inicialmente oculto */
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1;
+    display: none;
 }
 
 .profile-pic:hover i {
     opacity: 1;
+    color: white;
+    z-index: 2;
 }
 
 .profile-pic input[type="file"] {
     display: none;
 }
 
-.profile-pic:hover i {
-
-    z-index: 2; /* Asegurar que el ícono esté por encima de la imagen */
-    color: white; /* Color blanco para el ícono al pasar el cursor */
-}
-
 .profile span {
     display: block;
     font-size: 22px;
-    font-family: 'Rubik';
 }
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    width: 100%;
-    text-align: center;
-    margin-top: 10px;
-    color: white;
-}
-
 
 nav ul {
     list-style: none;
@@ -159,7 +155,7 @@ nav ul {
 }
 
 nav ul li {
-    margin: 20px 0; /* Adjusted this value to reduce the space between buttons */
+    margin: 20px 0;
 }
 
 nav ul li a {
@@ -179,142 +175,73 @@ nav ul li a i {
 nav ul li a.active {
     font-weight: bold;
 }
-/* Estilos para el contenido principal */
+
 .main-content {
     flex: 1;
-    background-color: #f3f3f3; /* Fondo azul claro */
+    background-color: #f3f3f3;
     display: flex;
     flex-direction: column;
+    margin-left: 250px;
+    transition: margin-left 0.3s ease-in-out;
 }
-  /* Contenedor de la tabla */
+
+.sidebar.active ~ .main-content {
+    margin-left: 0;
+}
+
 .table-container {
     padding: 20px;
     flex: 1;
     overflow-y: auto;
 }
-  
-/* Estilos para la tabla */
+
 table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #f4f5f7; /* color de tabla  */
+    background-color: #f4f5f7;
 }
-  
+
 th, td {
     padding: 20px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
-  
+
 th {
     background-color: #D9D9D9;
     color: rgb(0, 0, 0);
 }
-  
-/* Estilos para los botones de la tabla */
+
 td button {
     padding: 14px 12px;
     border: none;
     border-radius: 3px;
     cursor: pointer;
-    font-family: 'Rubik', sans-serif; /* Aplicando la fuente Rubik */
+    font-family: 'Rubik', sans-serif;
 }
-  
+
 .edit {
     background-color: #1B9607;
     color: white;
     border-radius: 20px;
 }
-  
+
 .edit:hover {
     background-color: #1B9607;
 }
-  
+
 .delete {
     background-color: #AF0000;
     color: white;
     border-radius: 20px;
 }
-  
+
 .delete:hover {
     background-color: #AF0000;
 }
-  
-/* Estilos para el modal */
-.modal {
-    display: none; /* Ocultar el modal por defecto */
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro con opacidad */
-    justify-content: center;
-    align-items: center;
-}
-  
-/* Estilos para el contenido del modal */
-.modal-content {
-    background-color: #ffffff; /* Fondo rosa claro */
-    padding: 20px;
-    border-radius: 20px;
-    width: 800px; /* Ancho del modal aumentado */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    position: relative;
-}
-  
-/* Estilos para el título centrado */
-.modal-content h2 {
-    text-align: center;
-}
-  
-/* Estilos para el botón de cierre del modal */
-.close {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 24px;
-    cursor: pointer;
-}
-  
-/* Estilos para el formulario dentro del modal */
-.modal-content form {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between; /* Distribuir elementos con espacio entre ellos */
-    align-items: flex-start; /* Alinear elementos al inicio */
-}
-  
-.modal-content .form-group {
-    flex: 0 0 48%; /* Cada grupo de formulario ocupará el 48% del ancho del contenedor */
-    margin: 10px 0; /* Márgenes para los elementos del formulario */
-}
-  
-.modal-content label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-  
-.modal-content input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    background-color: #d6d6d6; /* Color de fondo gris */
-}
-  
-/* Estilos para el contenedor del botón guardar */
-.button-container {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end; /* Alinear el botón al final a la derecha */
-}
-  
+
 .save {
-    background-color: #28a745; /* Color de fondo verde */
+    background-color: #28a745;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -322,12 +249,11 @@ td button {
     border-radius: 20px;
     margin-top: 20px;
 }
-  
+
 .save:hover {
     background-color: #218838;
 }
-  
-/* Estilos para la sección de búsqueda y opciones */
+
 .search-options {
     display: flex;
     flex-direction: column;
@@ -336,24 +262,24 @@ td button {
     border-radius: 10px;
     margin-bottom: 15px;
     width: 100%;
-    align-items: center; /* Centrar el contenido */
+    align-items: center;
 }
-  
+
 .search-bar-wrapper {
     display: flex;
     align-items: center;
     width: 70%;
     margin-bottom: 10px;
-    justify-content: center; /* Centrar la barra de búsqueda */
+    justify-content: center;
 }
-  
+
 .search-bar {
     display: flex;
     align-items: center;
     width: 100%;
     max-width: 70%;
 }
-  
+
 .search-bar input[type="text"] {
     width: 60%;
     padding: 18px;
@@ -363,7 +289,7 @@ td button {
     border-bottom-left-radius: 25px;
     outline: none;
 }
-  
+
 .search-bar button {
     width: 60px;
     height: 60px;
@@ -376,8 +302,46 @@ td button {
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
 }
-  
+
 .search-bar button i {
     font-size: 24px;
     color: white;
+}
+
+/* Estilos para el menú hamburguesa en pantallas pequeñas */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+}
+
+/* Estilos adicionales para pantallas grandes */
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none;
+    }
+
+    .sidebar {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 250px;
+    }
 }
