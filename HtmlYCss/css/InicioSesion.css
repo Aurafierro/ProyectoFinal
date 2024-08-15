@@ -10,7 +10,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #3EBFFF;
+  background-color: #FFFFFF;
   color: white;
 }
 
@@ -19,7 +19,7 @@ body {
   flex-direction: row;
   width: 80%;
   max-width: 1200px;
-  background-color: #1a3e68;
+  background-color: #202C4A;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 8px 16px rgba(225, 225, 225, 0.651);

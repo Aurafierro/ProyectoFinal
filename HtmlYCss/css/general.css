@@ -55,7 +55,7 @@ section {
 }
 
 .contenido .boton {
-    background-color: #3EBFFF;
+    background-color: #EDEDED;
     color: #fff;
     text-decoration: none;
     text-transform: uppercase;
@@ -64,6 +64,8 @@ section {
     transition: background-color 0.3s ease;
     margin-bottom: 10px;
     border: none;
+    font-family:'Candal';
+    margin-top: 4%;
 }
 
 .contenido .boton a {

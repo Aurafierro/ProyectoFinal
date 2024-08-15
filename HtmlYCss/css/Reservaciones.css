@@ -16,7 +16,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh; /* Asegura que el cuerpo se extienda al menos al 100% de la altura de la ventana de visualización */
-    background-color: #3EBFFF;
+    background-color: #EDEDED;
     overflow-x: hidden; /* Evita el desplazamiento horizontal en dispositivos pequeños */
 }
 
@@ -159,7 +159,7 @@ nav ul li a {
 }
 
 .tituloReservas{
-    color: #ffffff;
+    color: #000000;
     font-size: 300%;
 }
 
@@ -207,7 +207,7 @@ nav ul li a {
 
 .form button {
     padding: 15px 30px; /* Smaller button */
-    background-color: #3EBFFF;
+    background-color: #EDEDED;
     border: none;
     border-radius: 30px;
     color: white;
@@ -216,6 +216,7 @@ nav ul li a {
     font-size: 1em;
     display: flex;
     font-family: 'Candal';
+    color: #000000;
 }
 
 /*Modificaciones del select del espacio:*/
@@ -229,27 +230,11 @@ nav ul li a {
 
 /*modificaciones inputs type date (calendarios)*/
 
-#fecha_entrada{
-    color:#202C4A;
-
-}
-
-#fecha_salida{
-
-    color:#202C4A;
-
-}
-
 .tabla{
     margin-left: 20%;
-    color: white;
+    color: black;
 }
 
-.campoTitulosTabla{
-    background-color: #202C4A;
-    border-radius: 50%;
-
-}
 
 .table {
     width: 100%;
@@ -257,19 +242,28 @@ nav ul li a {
 }
 
 .campoTitulosTabla {
-    background-color: #202C4A;
+    background-color: #8a8a8a;
     text-align: left;
+    color: #ffffff;
 }
 
 .campoTabla {
     padding: 20px;
-    border: 1px solid #202C4A; /* Añade un borde alrededor de cada celda */
+    border: 1px solid #ffffff; /* Añade un borde alrededor de cada celda */
 }
 
 tbody tr:nth-child(even) {
-    background-color:#202C4A; /* Alterna colores de fondo para las filas */
+    background-color:#8a8a8a; /* Alterna colores de fondo para las filas */
 }
 
-tbody tr:hover {
-    background-color: #202C4A; /* Añade un color de fondo al pasar el ratón por encima de una fila */
+
+
+option{
+    font-weight: bold;
+    font-family: 'Candal';
+}
+
+td{
+    color: rgb(0, 0, 0);
+    padding: 1%;
 }

@@ -1,5 +1,9 @@
+@font-face {
+  font-family: "Candal";
+  src: url("/Fuentes/Candal/Candal-Regular.ttf");
+}
 body {
-  font-family: "jomhuria";
+  font-family: "Candal";
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -12,7 +16,7 @@ body {
   margin: 10% auto;
   padding: 3%;
   background-color: #c7c7c7; /* Cuadro blanco */
-  border-radius: 8%;
+  border-radius: 1000px;
   position: relative; /* Posicionamiento relativo para usar posicionamiento absoluto en los botones */
 }
 
