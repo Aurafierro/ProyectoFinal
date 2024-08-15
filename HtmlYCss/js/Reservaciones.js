@@ -378,6 +378,7 @@ function historial() {
         botonEditarReserva.className = "btnEditar";
         celdaOpcionEditar.appendChild(botonEditarReserva);
 
+
         let celdaOpcionEliminar = document.createElement("td");
         let botonEliminarReserva = document.createElement("button");
         botonEliminarReserva.value = result[i]["id_reserva"];
@@ -387,8 +388,8 @@ function historial() {
           // Puedes usar una función separada para realizar la eliminación
           eliminarReserva(this.value);
         }
-        botonEliminarReserva.className = "btn btn-danger eliminar-reserva";
-        celdaOpcionEliminar.appendChild(botonEliminarReserva);
+        botonEliminarReserva.className = "btnEliminar";
+        celdaOpcionEditar.appendChild(botonEliminarReserva);
 
 
         //trResgistro.appendChild(celdaId);

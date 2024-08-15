@@ -229,13 +229,13 @@ th {
 
 /* Table cell styles */
 td {
-    padding: 15px; /* Ajusta el padding para una mejor visualización */
+    padding: 3px; /* Ajusta el padding para una mejor visualización */
     border-bottom: 1px solid #ddd; /* Línea divisoria inferior */
 }
 
 
 td button {
-    padding: 14px 12px;
+    padding: 14px 18px;
     border: none;
     border-radius: 3px;
     cursor: pointer;
@@ -572,5 +572,14 @@ th{
 }
 
 .btnEditar{
-    background-color: yellow;
+    background-color: #202C4A;
+    color: #FFFFFF;
+    border-radius: 20px;
+}
+
+.btnEliminar{
+    background-color: red;
+    color: #FFFFFF;
+    border-radius: 20px;
+    margin-left: 3%;
 }
