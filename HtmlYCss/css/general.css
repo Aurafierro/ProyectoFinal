@@ -3,11 +3,15 @@
     padding: 0;
     box-sizing: border-box;
 }
+@font-face {
+    font-family: "Candal";
+    src: url("/Fuentes/Candal/Candal-Regular.ttf");
+}
 
 body {
     background: #3EBFFF;
     overflow-x: hidden;
-    font-family: Arial, sans-serif;
+    font-family: 'Candal';
 }
 
 section {

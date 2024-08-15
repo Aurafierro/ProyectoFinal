@@ -1,11 +1,11 @@
 @font-face {
-    font-family: 'Rubik';
-    src: url('/Fuentes/Rubik-VariableFont_wght.ttf'); 
+    font-family: "Candal";
+    src: url("/Fuentes/Candal/Candal-Regular.ttf");
 }
 
 body {
     margin: 0;
-    font-family: 'Rubik';
+    font-family: 'Candal';
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -344,4 +344,8 @@ td button {
     .main-content {
         margin-left: 250px;
     }
+}
+
+#mensajeDeCerrarSesion{
+    color: #ffffff;
 }

@@ -82,9 +82,14 @@ header img {
     font-size: 14px; 
     border-radius: 40px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    max-width: 480px; 
-    margin: 10px auto; 
+    max-width: 50%; 
+    margin: 10px auto;
+    margin-top: 4%;
+    padding-bottom: 4%;
+    padding-top: 4%;
 }
+
+
 .profile-photo {
     position: relative; 
     margin-bottom: 20px; 
@@ -147,8 +152,11 @@ header img {
     font-size: 14px; 
     border-radius: 40px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    max-width: 480px; 
-    margin: 10px auto; 
+    max-width: 50%; 
+    margin: 10px auto;
+    margin-top: 4%;
+    padding-bottom: 4%;
+    padding-top: 4%;
 }
 
 .modifi {
@@ -175,19 +183,18 @@ header img {
     box-sizing: border-box; 
 }
 
-.submit-button {
-    margin-top: 20px; 
-    padding: 10px 50px; 
-    font-size: 18px; 
-    color: white; 
-    background-color: #1a3e68; 
-    border: none; 
-    border-radius: 22px;
-    cursor: pointer; 
+.profile-containers button {
+    width: 147px; 
+    padding: 9px;
+    font-size: 16px;
+    color: white;
+    background-color: #1a3e68;
+    border: none;
+    border-radius: 20px;
     font-family: 'Candal', Arial, sans-serif;
-    transition: background-color 0.3s ease; 
+    margin: 0 auto; 
+    margin-top: 3%;
 }
-
 .profile-containertres {
     display: flex;
     flex-direction: column;
@@ -197,8 +204,11 @@ header img {
     font-size: 14px;
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 300px;
-    margin: 9px auto;
+    max-width: 40%; 
+    margin: 10px auto;
+    margin-top: 4%;
+    padding-bottom: 4%;
+    padding-top: 4%;
 }
 
 .modifi-contraseña h2 {
@@ -264,8 +274,11 @@ header img {
     font-size: 14px;
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 550px;
-    margin:30px auto;
+    max-width: 50%; 
+    margin: 10px auto;
+    margin-top: 4%;
+    padding-bottom: 4%;
+    padding-top: 4%;
 }
 
 .desactivar-cuenta h2 {

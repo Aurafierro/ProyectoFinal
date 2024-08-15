@@ -118,11 +118,13 @@ header img {
 .buttons .btn.red {
     background-color: #dc3545;
     color: white;
+    font-family: 'Candal';
 }
 
 .buttons .btn.green {
     background-color: #28a745;
     color: white;
+    font-family: 'Candal';
 }
 
 .image-container {

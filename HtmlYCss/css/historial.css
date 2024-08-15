@@ -1,11 +1,10 @@
 @font-face {
-    font-family: 'Rubik';
-    src: url('/Fuentes/Rubik-VariableFont_wght.ttf'); 
+    font-family: "Candal";
+    src: url("/Fuentes/Candal/Candal-Regular.ttf");
 }
-
 body {
     margin: 0;
-    font-family: 'Rubik', sans-serif; /* Usa 'Rubik' como fuente principal y sans-serif como alternativa */
+    font-family: 'Candal';
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -73,13 +72,13 @@ body {
     transition: color 0.3s ease-in-out;
     font-size: 120%;
     padding-right: 20px;
-    font-family: 'Rubik';
+    font-family: 'Candal';
     color: white;
 }
 
 .header .logout a:hover {
     color: var(--hover-color);
-    font-family: 'Rubik';
+    font-family: 'Candal';
 }
 
 .container {
@@ -110,7 +109,7 @@ body {
     box-sizing: border-box;
     margin-top: 85%;
     color: white;
-    font-family: 'Rubik';
+    font-family: 'Candal';
 }
 
 .profile-pic {
@@ -162,7 +161,7 @@ body {
 .profile span {
     display: block;
     font-size: 22px;
-    font-family: 'Rubik';
+    font-family: 'Candal';
 }
 
 nav ul {
@@ -240,7 +239,7 @@ td button {
     border: none;
     border-radius: 3px;
     cursor: pointer;
-    font-family: 'Rubik', sans-serif; /* Aplicando la fuente Rubik */
+    font-family: 'Candal';
 }
 
 .edit {
@@ -562,4 +561,12 @@ label{
 option{
     font-size: 90%;
     font-weight: bold;
+}
+
+#botonDescargarPDF{
+    font-family: 'Candal';
+}
+
+th{
+    font-family: 'Candal';
 }

@@ -5,14 +5,14 @@
     padding: 0;
 }
 @font-face {
-    font-family: 'Rubik';
-    src: url('/Fuentes/Rubik-VariableFont_wght.ttf');
+    font-family: "Candal";
+    src: url("/Fuentes/Candal/Candal-Regular.ttf");
 }
 
 /* Estilos para el cuerpo y la cabecera */
 body {
     margin: 0;
-    font-family: 'Rubik';
+    font-family: 'Candal';
     font-weight: bold;
     display: flex;
     flex-direction: column;
@@ -52,7 +52,7 @@ body {
     transition: color 0.3s ease-in-out;
     font-size: 120%;
     padding-right: 20px;
-    font-family: 'Rubik';
+    font-family: 'Candal';
     color: white;
 }
 
@@ -84,7 +84,7 @@ body {
     box-sizing: border-box;
     margin-top: 10px;
     color: white;
-    font-family: 'Rubik';
+    font-family: 'Candal';
 }
 
 .profile-pic {
@@ -126,7 +126,7 @@ body {
 .profile span {
     display: block;
     font-size: 22px;
-    font-family: 'Rubik';
+    font-family: 'Candal';
 }
 
 nav ul {

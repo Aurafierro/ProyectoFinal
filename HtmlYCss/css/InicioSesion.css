@@ -10,7 +10,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #487BFF;
+  background-color: #3EBFFF;
   color: white;
 }
 
@@ -104,11 +104,13 @@ body {
 .buttons .btn.red {
   background-color: #dc3545;
   color: white;
+  font-family: 'Candal';
 }
 
 .buttons .btn.green {
   background-color: #28a745;
   color: white;
+  font-family: 'Candal';
 }
 
 .image-container {

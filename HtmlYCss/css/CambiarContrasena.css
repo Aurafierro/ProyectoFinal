@@ -1,11 +1,11 @@
 @font-face {
-    font-family: 'Rubik';
-    src: url('/Fuentes/Rubik-VariableFont_wght.ttf'); 
+    font-family: "Candal";
+    src: url("/Fuentes/Candal/Candal-Regular.ttf");
 }
 
 body {
     margin: 0;
-    font-family: 'Rubik';
+    font-family: 'Candal';
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -80,7 +80,7 @@ body {
     box-sizing: border-box;
     margin-top: 10px;
     color: white;
-    font-family: 'Rubik';
+    font-family: 'Candal';
 }
 
 .profile-pic {
@@ -130,7 +130,7 @@ body {
 .profile span {
     display: block;
     font-size: 22px;
-    font-family: 'Rubik';
+    font-family: 'Candal';
 }
 
 nav ul {
@@ -310,7 +310,7 @@ nav ul li a.active {
     cursor: pointer;
     width: 150px;
     margin: 10px auto;
-    font-family: "jomhuria";
+    font-family: "Candal";
     font-weight: bold;
     font-size: 20px; /* Ajustar el tamaño de la letra del botón */
 }
