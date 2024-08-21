@@ -18,6 +18,13 @@ body {
     min-height: 100vh; /* Asegura que el cuerpo se extienda al menos al 100% de la altura de la ventana de visualización */
     background-color: #EDEDED;
     overflow-x: hidden; /* Evita el desplazamiento horizontal en dispositivos pequeños */
+    transition: margin-left 0.3s; /* Transición para el cambio en el margen izquierdo */
+}
+.main-content {
+    flex: 1;
+    padding: 20px;
+    margin-left: 0; /* Inicia con margen 0 */
+    transition: margin-left 0.3s ease-in-out; /* Transición suave en el margen izquierdo */
 }
 
 .header {
@@ -61,19 +68,6 @@ body {
     flex-direction: row;
 }
 
-.sidebar {
-    width: 15%;
-    background-color: #1a3e68;
-    color: var(--white);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-    box-sizing: border-box;
-    justify-content: flex-start;
-    overflow-y: hidden;
-}
-
 .profile {
     text-align: center;
     margin-bottom: 30px;
@@ -96,6 +90,7 @@ body {
     overflow: hidden;
     cursor: pointer; /* Añadido cursor pointer para indicar que se puede hacer clic */
     border: 3px solid #fff; /* Añadido un borde blanco para dar contraste */
+    margin-top: 70%;
 }
 
 .profile-pic i {
@@ -133,7 +128,7 @@ nav ul {
     padding: 0;
     width: 100%;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 20px;
     color: white;
 }
 
@@ -149,6 +144,7 @@ nav ul li a {
     align-items: center;
     transition: color 0.3s ease-in-out;
     font-weight: bold;
+    margin-top: 10%;
 }
 
 .cotenedorPadre{
@@ -186,7 +182,7 @@ nav ul li a {
     justify-content: center;
     display: flex;
     margin-top: 10%;
-    margin-left: 30%;
+    margin-left: 165%;
 }
 
 
@@ -231,7 +227,7 @@ nav ul li a {
 /*modificaciones inputs type date (calendarios)*/
 
 .tabla{
-    margin-left: 20%;
+    margin-left: 34%;
     color: black;
 }
 
@@ -266,4 +262,84 @@ option{
 td{
     color: rgb(0, 0, 0);
     padding: 1%;
+}
+
+/* Estilo para el contenedor del menú hamburguesa */
+.menu-toggle {
+    position: relative; /* Fijo en la pantalla */
+    top: 8px;
+    left: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 40px;
+    color: #ffffff;
+    z-index: 1001; /* Asegura que esté encima de otros elementos */
+}
+
+
+/* Estilo para el contenedor del menú desplegable */
+.menu-container {
+    position: fixed; /* Fijo en la pantalla */
+    top: 20px;
+    right: 20px;
+    display: none; /* Ocultar el menú por defecto */
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 160px;
+    text-align: left;
+}
+.menu-container.active {
+    display: block; /* Mostrar el menú cuando está activo */
+}
+
+.menu-container a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+}
+
+.menu-container a:hover {
+    background-color: #f0f0f0;
+}
+
+/* Estilo para el contenedor izquierdo oculto */
+.sidebar {
+    width: 250px;
+    background-color: #1a3e68;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    box-sizing: border-box;
+    position: fixed; /* Fijo en la pantalla */
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    transition: transform 0.3s; /* Transición para animar el cambio de posición */
+    z-index: 1000; /* Asegura que esté encima de otros elementos */
+}
+
+.sidebar.hidden {
+    transform: translateX(-100%); /* Oculta el contenedor al desplazarlo fuera de la vista */
+}
+
+.sidebar.visible {
+    transform: translateX(0); /* Muestra el contenedor */
+}
+
+/* Estilos adicionales */
+.menu-open .sidebar {
+    transform: translateX(0); /* Mostrar la barra lateral */
+}
+
+.menu-open .main-content {
+    margin-left: 250px; /* Desplazar el contenido principal a la derecha para hacer espacio para la barra lateral */
 }

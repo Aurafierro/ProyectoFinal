@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,16 +7,16 @@
     <link rel="stylesheet" href="../css/Reservaciones.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-
 <body onload="tablaReservas();">
     <header class="header">
+        <div class="menu-toggle"><i class="fas fa-bars"></i></div> <!-- Menú hamburguesa -->
         <div class="logo">
             <img src="../img/logori.png" alt="Logo" class="logo-img">
         </div>
         <div class="logout"><a href="#">Cerrar sesión</a></div>
     </header>
     <div class="container">
-        <aside class="sidebar">
+        <aside class="sidebar hidden"> <!-- Agrega la clase hidden por defecto -->
             <div class="profile">
                 <div class="profile-pic">
                     <img id="profileImageDisplay" src="" alt="">
@@ -34,7 +33,7 @@
         </aside>
         <div class="contenedorContenido">
             <div class="contenedorTitulo">
-                <center> <span class="tituloReservas">Reservas</span></center>
+                <center><span class="tituloReservas">Reservas</span></center>
             </div>
 
             <div class="cotenedorPadre">
@@ -65,7 +64,6 @@
 
                         <button id="reservar" onclick="crearReserva();">Reservar</button>
                     </div>
-
                 </div>
 
                 <!--Div del listado de todas las reservas-->
@@ -81,18 +79,32 @@
                                 <td class="campoTabla">Fecha salida</td>
                             </tr>
                         </thead>
-
-
                         <tbody id="cuerpoTabla"></tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-    </div>
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+    const sidebar = document.querySelector('.sidebar');
+    const mainContent = document.querySelector('.main-content');
+    
+    // Alterna la visibilidad de la barra lateral
+    sidebar.classList.toggle('visible');
+
+    // Ajusta el margen izquierdo del contenido principal dependiendo del estado del menú
+    if (sidebar.classList.contains('visible')) {
+        mainContent.style.marginLeft = '250px'; // Desplaza el contenido principal
+    } else {
+        mainContent.style.marginLeft = '0'; // Restaura el margen original
+    }
+});
+
+    </script>
     <script src="/HtmlYCss/js/Reservaciones.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/menu.js"></script> <!-- Agrega el archivo de JavaScript para el menú hamburguesa -->
 </body>
-
 </html>

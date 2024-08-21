@@ -176,8 +176,8 @@ if (reserva.getFecha_salida().equals("")) {
 	
 	@GetMapping("/{id_reserva}")
 	public ResponseEntity<Object> findOne ( @PathVariable String id_reserva ){
-		var user= reservaService.findOne(id_reserva);
-		return new ResponseEntity<>(user, HttpStatus.OK);
+		var reserva= reservaService.findOne(id_reserva);
+		return new ResponseEntity<>(reserva, HttpStatus.OK);
 	}
 	
 	

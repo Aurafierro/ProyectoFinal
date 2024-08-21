@@ -1,4 +1,4 @@
-var url = "http://10.192.66.24:8080/api/v1/reserva/";
+var url = "http://10.192.80.205:8080/api/v1/reserva/";
 
 document.getElementById("nombre_completo").addEventListener("keypress", soloLetras);
 document.getElementById("nombre_espacio").addEventListener("keypress", soloLetras);
@@ -328,14 +328,14 @@ function tablaReservas() {
 function historial() {
   //METODO PARA LISTAR LOS CLIENTES
   //SE CREA LA PETICION AJAX
-  //var capturarFiltro = document.getElementById("inputSearch").value;
-  //var urlLocal=url;
-  //if (capturarFiltro!=""){
-  //  urlLocal+="busquedafiltro/"+capturarFiltro;
-  //}
+  var capturarFiltro = document.getElementById("inputSearch").value;
+  var urlLocal=url;
+  if (capturarFiltro!=""){
+  urlLocal+="busquedafiltro/"+capturarFiltro;
+  }
 
   $.ajax({
-    url: url,
+    url: urlLocal,
     type: "GET",
     success: function (result) {
       //success: funcion que se ejecuta
@@ -426,3 +426,4 @@ function limpiarFormulario() {
   document.getElementById("fecha_entrada").className = "form-control";
   document.getElementById("fecha_salida").className = "form-control";
 }
+

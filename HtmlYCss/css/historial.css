@@ -411,7 +411,7 @@ td button {
 
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 400px) {
     .table-container {
         padding: 20px; /* Reduce el padding en pantallas más pequeñas */
     }
@@ -508,6 +508,7 @@ td button {
         padding-left: 0;
     }
 }
+
 .logo-container {
     margin-bottom: 15px; /* Espacio entre el logo y la barra de búsqueda */
 }
@@ -525,61 +526,81 @@ td button {
     align-items: center;
     min-height: calc(100vh - 1rem);
     margin: 0; /* Elimina el margen por defecto si es necesario */
-  }
-  
-  .modal-content {
+}
+
+.modal-content {
     width: auto;
-    border-radius: 30px;/* Ajusta si deseas bordes redondeados */
+    border-radius: 30px; /* Ajusta si deseas bordes redondeados */
     width: 30%;
     background-color: #202C4A;
-  }
+}
 
-  .modal-footer{
+.modal-footer {
     display: flex;
-  }
-  
-label{
+}
+
+label {
     margin-top: 4%;
     font-size: 125%;
 }
 
-.modal-title{
+.modal-title {
     margin-top: 4%;
 }
 
-#nombre_espacio{
+#nombre_espacio {
     width: 100%;
     border-radius: 40px;
     height: 35px;
 }
 
-#nombre_espacio{
+#nombre_espacio {
     font-weight: bold;
     font-size: 90%;
 }
 
-option{
+option {
     font-size: 90%;
     font-weight: bold;
 }
 
-#botonDescargarPDF{
+#botonDescargarPDF {
     font-family: 'Candal';
 }
 
-th{
+th {
     font-family: 'Candal';
 }
 
-.btnEditar{
+.btnEditar {
     background-color: #202C4A;
     color: #FFFFFF;
     border-radius: 20px;
 }
 
-.btnEliminar{
+.btnEliminar {
     background-color: red;
     color: #FFFFFF;
     border-radius: 20px;
     margin-left: 3%;
+}
+
+/* Estilo para el contenedor de la tabla con desplazamiento horizontal */
+.table-wrapper {
+    overflow-x: auto; /* Permite el desplazamiento horizontal si la tabla es más ancha que el contenedor */
+    width: 100vw; /* Ocupa el ancho completo de la pantalla */
+}
+
+table {
+    width: 100%; /* Ajusta según sea necesario, pero asegúrate de que la tabla sea lo suficientemente ancha para demostrar el desplazamiento */
+    border-collapse: collapse; /* Opcional: mejora la apariencia de las tablas */
+}
+
+th, td {
+    padding: 8px; /* Espaciado interno para celdas */
+    text-align: left; /* Alineación de texto en celdas */
+}
+
+th {
+    background-color: #f2f2f2; /* Fondo de encabezado de la tabla */
 }
