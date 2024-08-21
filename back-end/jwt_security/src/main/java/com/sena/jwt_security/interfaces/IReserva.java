@@ -1,5 +1,6 @@
 package com.sena.jwt_security.interfaces;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -22,5 +23,6 @@ public interface IReserva extends CrudRepository<reserva,String> {
 	
 	@Query("SELECT r FROM reserva r WHERE r.nombre_espacio LIKE %?1% ")
 	List<reserva> filtroIngresoReserva(String nombre_completo );
+	
 	
 }

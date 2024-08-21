@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi perfil</title>
     <link rel="stylesheet" href="../css/miPerfil.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Enlace a Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Enlace a Font Awesome -->
 </head>
 
 <body>
@@ -18,25 +19,25 @@
 
         </div>
     </header>
-    
-    
-    
+
+
+
     <div class="sidebar">
         <div class="sidebar-item">
             <i class="fas fa-user"></i>
-         <a href="../indexHTML/miPerfil.html"class="logout-linku">Mi perfil</a> 
+            <a href="../indexHTML/miPerfil.html" class="logout-linku">Mi perfil</a>
         </div>
         <div class="sidebar-item">
             <i class="fas fa-edit"></i>
-            <a href="../indexHTML/modificarDatos.html"class="logout-linku">Modificar datos</a>
+            <a href="../indexHTML/modificarDatos.html" class="logout-linku">Modificar datos</a>
         </div>
         <div class="sidebar-item">
             <i class="fas fa-key"></i>
-            <a href="../indexHTML/CambiarContrasena.html"class="logout-linku">Cambiar contraseña</a>
+            <a href="../indexHTML/CambiarContrasena.html" class="logout-linku">Cambiar contraseña</a>
         </div>
         <div class="sidebar-item">
             <i class="fas fa-user-slash"></i>
-            <a href="../indexHTML/DesactivarCuenta.html"class="logout-linku">Desactivar cuenta</a>
+            <a href="../indexHTML/DesactivarCuenta.html" class="logout-linku">Desactivar cuenta</a>
         </div>
     </div>
 
@@ -47,26 +48,27 @@
                 <input type="file" id="photoInput" accept="image/*">
                 <i class="fas fa-camera camera-icon"></i>
             </label>
-            <p><strong>Mariana Charry</strong></p>
+            <p id="nombre_completo"><strong>Mariana Charry</strong></p>
         </div>
 
         <div class="profile-details">
-            <p id="tipo_documento">Tipo documento:</p>
-            C.C
-            <p id="numero_documento">Número documento:</p>
-            1212344556
-            <p id="nombre_completo">Nombre completo:</p>
-            Mariana Charry
-            <p id="rol">Rol:</p>
-            Usuario
-            <p id="correo">Correo:</p>
-            maria213@gmail.com
-            <p id="telefono">Teléfono:</p>
-            312345676
+            <p>Tipo documento:</p>
+            <p id="tipo_documento"></p>
+            <p>Número documento:</p>
+            <p id="numero_documento"></p>
+            <p>Nombre completo:</p>
+            <p id="nombre_completo"></p>
+            <p>Rol:</p>
+            <p id="rol"></p>
+            <p>Correo:</p>
+            <p id="correo"></p>
+            <p>Teléfono:</p>
+            <p id="telefono"></p>
         </div>
     </div>
 </body>
 <script src="../js/miPerfilUsuario.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </html>
