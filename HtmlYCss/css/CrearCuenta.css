@@ -3,7 +3,7 @@
   src: url("/Fuentes/Candal/Candal-Regular.ttf");
 }
 body {
-  background-color: #3EBFFF;
+  background-color: #FFFFFF;
   margin: 0;
   padding: 0;
   display: flex;
@@ -22,7 +22,7 @@ body {
 }
 .form-container {
   padding: 5%; 
-  background-color: #1a3365;
+  background-color: #202C4A;
   color: white;
   width: 90%; /* Ajustar el ancho del contenedor del formulario */
   font-family: "Candal";

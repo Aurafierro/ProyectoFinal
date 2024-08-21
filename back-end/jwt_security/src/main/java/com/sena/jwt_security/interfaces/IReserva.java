@@ -20,6 +20,7 @@ public interface IReserva extends CrudRepository<reserva,String> {
 			+ "r.fecha_salida = ?1")
 	List<reserva>filtroReserva (String filtro);
 	
-	@Query("SELECT r FROM reserva r WHERE r.nombre_espacio LIKE %?1%")
+	@Query("SELECT r FROM reserva r WHERE r.nombre_espacio LIKE %?1% ")
 	List<reserva> filtroIngresoReserva(String nombre_completo );
+	
 }
