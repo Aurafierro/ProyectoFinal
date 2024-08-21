@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   });
 
-  // Restablecer la imagen de perfil al hacer clic en la cámara cuando ya hay una imagen
+  // Restablecer la imagen de perfil al hacer clic en la cámara i cioo  ie  in eod ijv kl9e k0oe 
   cameraIcon.addEventListener('click', function() {
       profileImageInput.value = null; // Limpiar el input para poder volver a seleccionar la misma imagen
       profileImageDisplay.src = ''; // Limpiar la imagen actual

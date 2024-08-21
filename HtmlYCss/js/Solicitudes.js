@@ -1,19 +1,17 @@
-// Archivo: ../js/Solicitudes.js
-document.addEventListener('DOMContentLoaded', function () {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const sidebar = document.querySelector('.sidebar');
-
-    menuToggle.addEventListener('click', function () {
-        sidebar.classList.toggle('active');
-        // Asegurarse de que el contenido principal se ajuste correctamente
-        document.querySelector('.main-content').classList.toggle('active');
-    });
-
-    // Para cerrar el menú cuando se hace clic fuera de él (opcional)
-    document.addEventListener('click', function (event) {
-        if (!sidebar.contains(event.target) && !menuToggle.contains(event.target) && sidebar.classList.contains('active')) {
-            sidebar.classList.remove('active');
-            document.querySelector('.main-content').classList.remove('active');
-        }
-    });
-});
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.querySelector('.main-content');
+    if (sidebar.classList.contains('hidden')) {
+        sidebar.classList.remove('hidden');
+        sidebar.classList.add('visible');
+        mainContent.classList.add('shifted'); // Ajuste del margen
+    } else {
+        sidebar.classList.remove('visible');
+        sidebar.classList.add('hidden');
+        mainContent.classList.remove('shifted'); // Ajuste del margen
+    }
+    function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("hidden");
+    }
+}

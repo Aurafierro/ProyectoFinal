@@ -7,74 +7,70 @@
     <link rel="stylesheet" href="../css/Solicitudes.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-<body>
+<body onload="solicitudes();">
     <header class="header">
-        <div class="menu-toggle" onclick="toggleMenu()">
+        <div class="menu-toggle" onclick="toggleSidebar();">
             <i class="fas fa-bars"></i>
         </div>
         <div class="logo">
-            <img src="../img/logori.png" alt="Logo" class="logo-img">
+            <!-- Imagen del logo -->
+            <img src="../img/Recurso 2@72x.png" alt="Logo" class="logo-img">
         </div>
-        <div class="logout"><a href="#" id="mensajeDeCerrarSesion">Cerrar sesión</a></div>
+        <div class="logout">
+            <a href="../indexHTML/login.html" class="logout-link">Cerrar sesión</a>
+        </div>
     </header>
-    <div class="container">
-        <aside class="sidebar">
-            <div class="profile">
-                <div class="profile-pic">
-                    <img id="profileImageDisplay" src="" alt="">
-                    <i class="fas fa-camera"></i>
-                    <input type="file" id="profileImage" accept="image/*">
-                </div>
-                <span>Paula Bustos</span>
+    <aside class="sidebar hidden" id="sidebar">
+        <div class="profile">
+            <div class="profile-pic">
+                <img id="profileImageDisplay" src="" alt="">
+                <i class="fas fa-camera"></i>
+                <input type="file" id="profileImage" accept="image/*">
             </div>
-            <nav>
-                <ul>
-                    <li><a href="../indexHTML/miPerfil.html"><i class="fas fa-user-edit"></i>Mi perfil</a></li>
-                    <li><a href="../indexHTML/Reservaciones.html" class="active"><i class="fas fa-key"></i>Reservar espacios</a></li>
-                    <li><a href="../indexHTML/historial.html"><i class="fas fa-history"></i>Historial</a></li>
-                    <li><a href="#"><i class="fas fa-check"></i>Solicitudes</a></li>
-                    
-                </ul>
-            </nav>
-        </aside>
-        <!-- Contenido principal -->
-        <div class="main-content">
-            <div class="search-options">
-                <div class="search-bar-wrapper">
-                    <div class="search-bar">
-                        <input type="text" placeholder="Ingresa el nombre que deseas buscar">
-                        <button><i class="fas fa-search"></i></button>
-                    </div>
+            <span>Paula Bustos</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../indexHTML/miPerfil.html" class="active"><i class="fas fa-user"></i>Mi perfil</a></li>
+                <li><a href="../indexHTML/crearReserva.html" class="active"><i class="fas fa-key"></i>Reservar espacios</a></li>
+                <li><a href="../indexHTML/Solicitudes.html" class="active"><i class="fas fa-check"></i>Solicitudes</a></li>
+                <li><a href="../indexHTML/historial.html"><i class="fas fa-history"></i>Historial</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <!-- Contenido principal -->
+    <div class="main-content">
+        <div class="search-options">
+            <div class="search-bar-wrapper">
+                <div class="search-bar">
+                    <input type="text" placeholder="Ingresa el nombre que deseas buscar" id="inputSearch">
+                    <button><i class="fas fa-search" onclick="solicitudes();"></i></button>
                 </div>
             </div>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Usuario</th>
-                            <th>Reservación</th>
-                            <th>H.entrada</th>
-                            <th>H.salida</th>
-                            <th>Modificación</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Juan</td>
-                            <td>Reserva 1</td>
-                            <td>10:00</td>
-                            <td>12:00</td>
-                            <td>
-                                <button class="edit">Aceptar</button>
-                                <button class="delete">Denegar</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="select_reservas">
+                <select name="" id="Reservas" class="form-select" tabindex="3">
+                    <option value="User">Mis Reservas</option>
+                    <option value="Admin">Todas las reservas</option>
+                </select>
+            </div>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Espacio</th>
+                        <th>H. Entrada</th>
+                        <th>H. Salida</th>
+                        <th>Modificaciones</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoTabla"></tbody>
+            </table>
+            <div class="download-button">
+                <button id="botonDescargarPDF">Descargar PDF</button>
             </div>
         </div>
     </div>
-
-    <script src="../js/Solicitudes.js"></script>
-</body>
-</html>
+    <script src="/HtmlYCss/js/Solicitudes.js"></script>
+    </html>

@@ -107,7 +107,7 @@ body {
     padding-bottom: 20px;
     width: 100%;
     box-sizing: border-box;
-    margin-top: 60%;
+    margin-top: 85%;
     color: white;
     font-family: 'Candal';
 }
@@ -345,11 +345,13 @@ td button {
 
 .search-options {
     display: flex;
+    flex-direction: column;
     padding: 10px;
+
     border-radius: 10px;
     margin-bottom: 15px;
     width: 100%;
-  
+    align-items: center; /* Centrar el contenido horizontalmente */
 }
 /* Ajustes para la barra de búsqueda */
 .search-bar-wrapper {
@@ -580,25 +582,4 @@ th{
     color: #FFFFFF;
     border-radius: 20px;
     margin-left: 3%;
-}
-
-.form-select{
-display: flex;
-    padding: 18px;
-    font-size: 16px;
-    background-color: #000; /* Fondo negro */
-    color: #ffffff; /* Texto blanco */
-    border: 1px solid #000000;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: 'Candal';
-   
-}
-
-.select_reservas select option{
-
-     background-color: #fff; /* Fondo blanco para las opciones */
-    color: #000; /* Texto negro para las opciones */
-    font-family: 'Candal';
-    display: flex;
 }
