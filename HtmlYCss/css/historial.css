@@ -2,6 +2,7 @@
     font-family: "Candal";
     src: url("/Fuentes/Candal/Candal-Regular.ttf");
 }
+
 body {
     margin: 0;
     font-family: 'Candal';
@@ -10,74 +11,73 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
 }
-
 .header {
-    width: 100%;
     height: 100px;
     background-color: #1a3e68;
     color: var(--white);
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
     box-sizing: border-box;
+    position: relative; /* Necesario para posicionar elementos hijos absolutamente */
 }
-
-.botonVerde{
-    padding: 15px; /* Ajustar el padding del botón */
+.botonVerde {
+    padding: 15px;
     background-color: #28a745;
     color: white;
     border: none;
-    border-radius: 50px; /* Bordes redondeados */
+    border-radius: 50px;
     cursor: pointer;
-    font-size: 125%; /* Ajustar el tamaño de la fuente */
-    width: 100%; /* Hacer el botón más corto de ancho */
+    font-size: 125%;
+    width: 100%;
     font-weight: bold;
     white-space: nowrap; 
     margin-bottom: 10%;
 }
 
-.botonRojo{
-    padding: 15px 20px; /* Ajustar el padding del botón */
+.botonRojo {
+    padding: 15px 20px;
     background-color: red;
     color: white;
     border: none;
-    border-radius: 50px; /* Bordes redondeados */
+    border-radius: 50px;
     cursor: pointer;
-    font-size: 125%; /* Ajustar el tamaño de la fuente */
-    width: 100%; /* Hacer el botón más corto de ancho */
+    font-size: 125%;
+    width: 100%;
     font-weight: bold;
-    margin-left: 25%;
+    margin-left: 20%;
 }
-
 .header .logo {
-    font-size: 20px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center; /* Asegura que el logo esté centrado */
+    align-items: center; /* Centra verticalmente el logo */
 }
 
 .header .logo img.logo-img {
-    width: 100%;
-    height: 75px;
+    height: 75px; /* Ajusta la altura de la imagen si es necesario */
+    width: auto; /* Mantiene la proporción de la imagen */
     margin-top: 5px;
     margin-bottom: 5px;
 }
+.header .logout {
+    position: absolute; /* Posiciona el contenedor de cerrar sesión de manera absoluta */
+    right: 20px; /* Distancia desde el borde derecho del header */
+    top: 50%; /* Centra verticalmente en el header */
+    transform: translateY(-50%); /* Ajusta el centrado vertical */
+}
 
 .header .logout a {
-    color: var(--white);
+    color: #ffffff;
     text-decoration: none;
     transition: color 0.3s ease-in-out;
     font-size: 120%;
     padding-right: 20px;
     font-family: 'Candal';
-    color: white;
 }
 
 .header .logout a:hover {
     color: var(--hover-color);
-    font-family: 'Candal';
 }
-
 .container {
     display: flex;
     flex: 1;
@@ -95,6 +95,20 @@ body {
     box-sizing: border-box;
     justify-content: flex-start;
     overflow-y: hidden;
+    position: fixed; /* Fijo en la pantalla */
+    top: 0;
+    left: 0;
+    height: 100vh;
+    transition: transform 0.3s; /* Transición para animar el cambio de posición */
+    z-index: 1000; /* Asegura que esté encima de otros elementos */
+}
+
+.sidebar.hidden {
+    transform: translateX(-100%); /* Oculta el contenedor al desplazarlo fuera de la vista */
+}
+
+.sidebar.visible {
+    transform: translateX(0); /* Muestra el contenedor */
 }
 
 .profile {
@@ -119,7 +133,7 @@ body {
     overflow: hidden;
     cursor: pointer;
     border: 3px solid #fff;
-    margin-top: 10%
+    margin-top: 10%;
 }
 
 .profile-pic img {
@@ -192,43 +206,37 @@ nav ul li a.active {
     font-weight: bold;
 }
 
-/* Adjustments for sidebar visibility */
 .main-content.shifted, .header.shifted {
     margin-left: 250px; /* Ajusta el margen para dejar espacio para el sidebar */
     transition: margin-left 0.3s; /* Transición suave para el cambio de margen */
 }
-/* Container for the table */
+
 .table-container {
     padding: 30px;
     flex: 1;
-    overflow-y: auto; /* Permite el desplazamiento si el contenido excede el contenedor */
-    box-sizing: border-box; /* Incluye padding en el tamaño total del contenedor */
+    overflow-y: auto;
+    box-sizing: border-box;
 }
 
-
-/* General table styles */
 table {
-    width: 100%; /* Asegura que la tabla ocupe todo el ancho del contenedor */
-    border-collapse: collapse; /* Elimina el espacio entre celdas */
-    background-color: #f4f5f7; /* Color de fondo de la tabla */
-    box-sizing: border-box; /* Incluye padding y border en el tamaño total del elemento */
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #f4f5f7;
+    box-sizing: border-box;
 }
 
-/* Table header styles */
 th {
     background-color: #D9D9D9;
     color: rgb(0, 0, 0);
-    padding: 15px; /* Ajusta el padding para una mejor visualización */
+    padding: 15px;
     text-align: left;
-    border-bottom: 1px solid #ddd; /* Línea divisoria inferior */
+    border-bottom: 1px solid #ddd;
 }
 
-/* Table cell styles */
 td {
-    padding: 3px; /* Ajusta el padding para una mejor visualización */
-    border-bottom: 1px solid #ddd; /* Línea divisoria inferior */
+    padding: 3px;
+    border-bottom: 1px solid #ddd;
 }
-
 
 td button {
     padding: 14px 18px;
@@ -259,7 +267,7 @@ td button {
 }
 
 .modal {
-    display: none; /* Ocultar el modal por defecto */
+    display: none;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -267,7 +275,7 @@ td button {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro con opacidad */
+    background-color: rgba(0, 0, 0, 0.4);
     justify-content: center;
     align-items: center;
 }
@@ -275,7 +283,7 @@ td button {
 .modal-content {
     padding: 20px;
     border-radius: 20px;
-    width: 800px; /* Ancho del modal aumentado */
+    width: 800px;
     position: relative;
 }
 
@@ -292,10 +300,11 @@ td button {
 }
 
 .modal-content .form-group {
-    flex: 0 0 48%; /* Cada grupo de formulario ocupará el 48% del ancho del contenedor */
-    margin: 10px 0; /* Márgenes para los elementos del formulario */
+    flex: 0 0 48%;
+    margin: 10px 0;
 }
-.form{
+
+.form {
     display: flex;
     margin-top: 5%;
 }
@@ -311,24 +320,26 @@ td button {
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 20px;
-    background-color: #f4f5f7; /* Color de fondo gris */
-}
-.modal-content select{
     background-color: #f4f5f7;
-    border:none;
 }
 
-.divIzquierdo{
+.modal-content select {
+    background-color: #f4f5f7;
+    border: none;
+}
+
+.divIzquierdo {
     margin-left: 15%;
 }
+
 .button-container {
     width: 100%;
     display: flex;
-    justify-content: flex-end; /* Alinear el botón al final a la derecha */
+    justify-content: flex-end;
 }
 
 .save {
-    background-color: #28a745; /* Color de fondo verde */
+    background-color: #28a745;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -345,19 +356,18 @@ td button {
     display: flex;
     flex-direction: column;
     padding: 10px;
-
     border-radius: 10px;
     margin-bottom: 15px;
     width: 100%;
-    align-items: center; /* Centrar el contenido horizontalmente */
+    align-items: center;
 }
-/* Ajustes para la barra de búsqueda */
+
 .search-bar-wrapper {
     display: flex;
     align-items: center;
     width: 70%;
     margin-bottom: 10px;
-    justify-content: end; /* Centra la barra de búsqueda */
+    justify-content: end;
 }
 
 .search-bar {
@@ -375,78 +385,34 @@ td button {
     border-radius: 5px;
 }
 
-
 .search-bar button {
     padding: 22px 20px;
-    background-color: #000000; /* Color de fondo azul */
+    background-color: #000000;
     border: none;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
     color: white;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    outline: none;
-}
-
-
-.download-button {
-    position: fixed; /* Posición fija para mantenerlo en la esquina */
-    bottom: 20px; /* Distancia desde abajo */
-    right: 20px; /* Distancia desde la derecha */
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
-}
-
-.download-button button {
-    padding: 18px 26px; /* Aumento del relleno */
-    background-color: #06a12a; /* Color de fondo verde */
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* Transición suave */
     font-size: 16px;
 }
 
-
-/* Responsive adjustments */
-@media (max-width: 400px) {
-    .table-container {
-        padding: 20px; /* Reduce el padding en pantallas más pequeñas */
-    }
-    
-    .main-content {
-        margin-left: 0; /* Elimina el margen en pantallas más pequeñas */
-        padding-left: 0;
-    }
-
-    .sidebar {
-        width: 100%; /* Hace que el sidebar ocupe todo el ancho en pantallas pequeñas */
-        transform: translateX(-100%); /* Oculta el sidebar en pantallas más pequeñas */
-    }
-
-    .sidebar.visible {
-        transform: translateX(0); /* Muestra el sidebar en pantallas más pequeñas */
-    }
-}
-/* Estilo para el contenedor del menú hamburguesa */
 .menu-toggle {
-    position: relative; /* Fijo en la pantalla */
-    top: 8px;
+    position: fixed;
+    top: 20px;
     left: 20px;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 40px;
     color: #ffffff;
-    z-index: 1001; /* Asegura que esté encima de otros elementos */
+    z-index: 1001;
 }
 
-/* Estilo para el contenedor del menú desplegable */
 .menu-container {
-    position: fixed; /* Fijo en la pantalla */
+    position: fixed;
     top: 20px;
-    right: 20px;
-    display: none; /* Ocultar el menú por defecto */
+    left: 20px;
+    display: none;
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -456,171 +422,38 @@ td button {
     text-align: left;
 }
 
-.menu-container.active {
-    display: block; /* Mostrar el menú cuando está activo */
-}
-
-.menu-container a {
-    display: block;
-    padding: 10px 15px;
-    text-decoration: none;
-    color: #333;
-    font-size: 16px;
-}
-
-.menu-container a:hover {
-    background-color: #f0f0f0;
-}
-
-/* Estilo para el contenedor izquierdo oculto */
-.sidebar {
-    width: 250px;
-    background-color: #1a3e68;
-    color: var(--white);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-    box-sizing: border-box;
+/* Estilo para el botón de descargar PDF */
+.download-pdf-button {
     position: fixed; /* Fijo en la pantalla */
-    top: 0;
-    left: 0;
-    height: 100vh;
-    overflow-y: auto;
-    transition: transform 0.3s; /* Transición para animar el cambio de posición */
-    z-index: 1000; /* Asegura que esté encima de otros elementos */
+    bottom: 20px; /* Distancia desde el borde inferior de la página */
+    right: 20px; /* Distancia desde el borde derecho de la página */
+    background-color: #28a745; /* Color verde */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 50px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor en forma de mano */
+    font-size: 16px; /* Tamaño de la fuente */
+    font-family: 'Candal'; /* Fuente personalizada */
+    text-align: center; /* Centra el texto */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
+    transition: background-color 0.3s ease; /* Transición para el color de fondo */
 }
 
-.sidebar.hidden {
-    transform: translateX(-100%); /* Oculta el contenedor al desplazarlo fuera de la vista */
+.download-pdf-button:hover {
+    background-color: #218838; /* Color verde más oscuro al pasar el cursor */
+}
+.footer {
+    background-color: #1a3e68; /* Color de fondo azul */
+    color: white; /* Color del texto */
+    padding: 20px 0; /* Espaciado interno */
+    text-align: center; /* Centra el texto */
+    position: relative; /* Posiciona el footer relativo al resto del contenido */
+    width: 100%; /* Asegura que el footer ocupe todo el ancho */
 }
 
-.sidebar.visible {
-    transform: translateX(0); /* Muestra el contenedor */
-}
-
-/* Ajustes específicos para dispositivos móviles */
-@media (max-width: 768px) {
-    .main-content {
-        margin-left: 0; /* Ajuste del margen en dispositivos móviles */
-        padding-left: 0;
-    }
-}
-
-.logo-container {
-    margin-bottom: 15px; /* Espacio entre el logo y la barra de búsqueda */
-}
-
-.logo-img {
-    max-width: 100%; /* Ajusta el tamaño del logo según sea necesario */
-    height: auto;
-}
-
-/* Asegúrate de que el modal esté centrado vertical y horizontalmente */
-.modal-dialog {
-    color: #000000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - 1rem);
-    margin: 0; /* Elimina el margen por defecto si es necesario */
-}
-
-.modal-content {
-    width: auto;
-    border-radius: 30px; /* Ajusta si deseas bordes redondeados */
-    width: 30%;
-    background-color:#EDEDED;
-}
-
-.modal-footer {
-    display: flex;
-}
-
-label {
-    margin-top: 4%;
-    font-size: 125%;
-}
-
-.modal-title {
-    margin-top: 4%;
-}
-
-#nombre_espacio {
-    width: 100%;
-    border-radius: 40px;
-    height: 35px;
-}
-
-#nombre_espacio {
-    font-weight: bold;
-}
-
-option {
-    font-size: 90%;
-    font-weight: bold;
-}
-
-#botonDescargarPDF {
-    font-family: 'Candal';
-}
-
-th {
-    font-family: 'Candal';
-}
-
-.btnEditar {
-    background-color: #202C4A;
-    color: #FFFFFF;
-    border-radius: 20px;
-}
-
-.btnEliminar {
-    background-color: red;
-    color: #FFFFFF;
-    border-radius: 20px;
-    margin-left: 3%;
-}
-
-/* Estilo para el contenedor de la tabla con desplazamiento horizontal */
-.table-wrapper {
-    overflow-x: auto; /* Permite el desplazamiento horizontal si la tabla es más ancha que el contenedor */
-    width: 100vw; /* Ocupa el ancho completo de la pantalla */
-}
-
-table {
-    width: 100%; /* Ajusta según sea necesario, pero asegúrate de que la tabla sea lo suficientemente ancha para demostrar el desplazamiento */
-    border-collapse: collapse; /* Opcional: mejora la apariencia de las tablas */
-}
-
-th, td {
-    padding: 8px; /* Espaciado interno para celdas */
-    text-align: left; /* Alineación de texto en celdas */
-}
-
-th {
-    background-color: #f2f2f2; /* Fondo de encabezado de la tabla */
-}
-
-.divBotones{
-    display: flex;
-    margin-top: 5%;
-    margin-left: 30%;
-}
-
-#titulonombre_espacio{
-    white-space: nowrap; 
-    font-size: 125%;
-}
-
-#hora_entrada{
-    white-space: nowrap; 
-}
-
-#hora_salida{
-    white-space: nowrap; 
-}
-
-.divDerecho{
-    margin-left: 10%;
+.footer-container {
+    max-width: 1200px; /* Ancho máximo para el contenido */
+    margin: 0 auto; /* Centra el contenedor */
+    padding: 0 20px; /* Espaciado interno */
 }
