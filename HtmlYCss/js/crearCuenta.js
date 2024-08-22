@@ -66,8 +66,8 @@ function validarCampos(formData) {
     });
 
     // Validación adicional para número de documento
-    let numeroDocumento = document.getElementById("numero_documento").value.trim();
-    if (numeroDocumento.length < 5) {
+    let numeroDocumento = parseInt(document.getElementById("numero_documento").value.trim());
+    if (numeroDocumento < 100000) {
         document.getElementById("error-numero_documento").textContent = "El número de documento debe tener al menos 5 dígitos.";
         document.getElementById("error-numero_documento").classList.add('error-message');
         camposValidos = false;
@@ -78,7 +78,7 @@ function validarCampos(formData) {
 
     // Validación adicional para número de teléfono
     let telefono = document.getElementById("telefono").value.trim();
-    if (telefono.length !== 10) {
+    if (telefono.length !== 10) {//3000000000    3999999999
         document.getElementById("error-telefono").textContent = "El número de teléfono debe tener exactamente 10 dígitos.";
         document.getElementById("error-telefono").classList.add('error-message');
         camposValidos = false;

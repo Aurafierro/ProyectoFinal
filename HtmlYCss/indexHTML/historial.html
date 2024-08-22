@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="../css/historial.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
+
 <body onload="historial();">
     <header class="header">
         <div class="menu-toggle" onclick="toggleSidebar();">
@@ -31,8 +33,10 @@
         </div>
         <nav>
             <ul>
-                <li><a href="../indexHTML/miPerfil.html" class="active"><i class="fas fa-user-edit"></i>Mi perfil</a></li>
-                <li><a href="../indexHTML/crearReserva.html" class="active"><i class="fas fa-key"></i>Reservar espacios</a></li>
+                <li><a href="../indexHTML/miPerfil.html" class="active"><i class="fas fa-user-edit"></i>Mi perfil</a>
+                </li>
+                <li><a href="../indexHTML/crearReserva.html" class="active"><i class="fas fa-key"></i>Reservar
+                        espacios</a></li>
                 <li><a href="../indexHTML/historial.html"><i class="fas fa-history"></i>Historial</a></li>
             </ul>
         </nav>
@@ -47,25 +51,25 @@
                 </div>
             </div>
         </div>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nombre completo</th>
-                        <th>Nombre espacio</th>
-                        <th>Hora entrada</th>
-                        <th>Hora salida</th>
-                        <th>Fecha entrada</th>
-                        <th>Fecha salida</th>
-                        <th>Opciones</th>
-
-                    </tr>
-                    
-                </thead>
-                <tbody id="cuerpoTabla"></tbody>
-            </table>
-            <div class="download-button">
-                <button id="botonDescargarPDF">Descargar PDF</button>
+        <div class="table-wrapper">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre completo</th>
+                            <th>Nombre espacio</th>
+                            <th>Hora entrada</th>
+                            <th>Hora salida</th>
+                            <th>Fecha entrada</th>
+                            <th>Fecha salida</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpoTabla"></tbody>
+                </table>
+                <div class="download-button">
+                    <button id="botonDescargarPDF">Descargar PDF</button>
+                </div>
             </div>
         </div>
     </div>
@@ -75,37 +79,47 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <center> <h1 class="modal-title fs-5" id="exampleModalLabel">Editar reserva</h1></center>
+                    <center>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar reservación</h1>
+                    </center>
                 </div>
                 <div class="modal-body">
                     <div class="form">
-                        <label for="nombre_completo">Nombre completo:</label>
-                        <input type="text" id="nombre_completo" onfocusout="validarNombre_completo(this);">
+                        <div class="divIzquierdo">
+                            <label for="nombre_espacio" id="titulonombre_espacio">Nombre espacio:</label>
+                            <select name="" id="nombre_espacio" class="form-select">
+                                <option value="" selected disabled>Selecciona un espacio</option>
+                                <option value="cancha">Cancha</option>
+                                <option value="gimnasio">Gimnasio</option>
+                                <option value="auditorio">Auditorio</option>
+                                <option value="biblioteca">Biblioteca</option>
+                            </select>
 
-                        <label for="nombre_espacio">Nombre espacio:</label>
-                        <select name="" id="nombre_espacio" class="form-select">
-                            <option value="" selected disabled>Selecciona un espacio</option>
-                            <option value="cancha">Cancha</option>
-                            <option value="gimnasio">Gimnasio</option>
-                            <option value="auditorio">Auditorio</option>
-                            <option value="biblioteca">Biblioteca</option>
-                        </select>
+                            <label for="hora_entrada" id="hora_entrada">Hora de Entrada:</label>
+                            <input type="time" id="hora_entrada" onfocusout="validarHora_entrada(this);">
 
-                        <label for="hora_entrada">Hora de Entrada:</label>
-                        <input type="time" id="hora_entrada" onfocusout="validarHora_entrada(this);">
+                            <label for="hora_salida">Hora de Salida:</label>
+                            <input type="time" id="hora_salida" onfocusout="validarHora_salida(this);">
+                        </div>
+                        <div class="divDerecho">
+                            <label for="fecha_entrada">Fecha entrada:</label>
+                            <input type="date" name="" id="fecha_entrada">
+                            <label for="fecha_salida">Fecha salida:</label>
+                            <input type="date" name="" id="fecha_salida">
 
-                        <label for="hora_salida">Hora de Salida:</label>
-                        <input type="time" id="hora_salida" onfocusout="validarHora_salida(this);">
-
-                        <label for="fecha_entrada">Fecha entrada:</label>
-                        <input type="date" name="" id="fecha_entrada">
-                        <label for="fecha_salida">Fecha salida:</label>
-                        <input type="date" name="" id="fecha_salida">
+                        </div>
+                    </div>
+                    <div class="divBotones">
+                        <div>
+                            <button type="button" class="botonVerde" onclick="actualizarReserva();">Guardar</button>
+                        </div>
+                        <div>
+                            <button type="button" class="botonRojo" onclick="closeModal();"
+                                data-bs-dismiss="modal">Cerrar</button>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="botonVerde" onclick="actualizarReserva();">Guardar cambios</button>
-                    <button type="button" class="botonRojo" onclick="closeModal();" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
@@ -119,16 +133,21 @@
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const mainContent = document.querySelector('.main-content');
+            const header = document.querySelector('.header');
             if (sidebar.classList.contains('hidden')) {
                 sidebar.classList.remove('hidden');
                 sidebar.classList.add('visible');
                 mainContent.classList.add('shifted'); // Ajuste del margen
+                header.classList.add('shifted'); // Ajuste del margen para el header
             } else {
                 sidebar.classList.remove('visible');
                 sidebar.classList.add('hidden');
                 mainContent.classList.remove('shifted'); // Ajuste del margen
+                header.classList.remove('shifted'); // Ajuste del margen para el header
             }
         }
+
     </script>
 </body>
+
 </html>

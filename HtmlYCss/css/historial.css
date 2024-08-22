@@ -30,8 +30,7 @@ body {
     border-radius: 50px; /* Bordes redondeados */
     cursor: pointer;
     font-size: 125%; /* Ajustar el tamaño de la fuente */
-    width: 50%; /* Hacer el botón más corto de ancho */
-    margin-top: 5%;
+    width: 100%; /* Hacer el botón más corto de ancho */
     font-weight: bold;
     white-space: nowrap; 
     margin-bottom: 10%;
@@ -45,11 +44,9 @@ body {
     border-radius: 50px; /* Bordes redondeados */
     cursor: pointer;
     font-size: 125%; /* Ajustar el tamaño de la fuente */
-    width: 50%; /* Hacer el botón más corto de ancho */
-    margin-left: 1%;
+    width: 100%; /* Hacer el botón más corto de ancho */
     font-weight: bold;
-    margin-top: 5%;
-    margin-bottom: 10%;
+    margin-left: 25%;
 }
 
 .header .logo {
@@ -196,11 +193,10 @@ nav ul li a.active {
 }
 
 /* Adjustments for sidebar visibility */
-.main-content.shifted {
+.main-content.shifted, .header.shifted {
     margin-left: 250px; /* Ajusta el margen para dejar espacio para el sidebar */
     transition: margin-left 0.3s; /* Transición suave para el cambio de margen */
 }
-
 /* Container for the table */
 .table-container {
     padding: 30px;
@@ -277,11 +273,9 @@ td button {
 }
 
 .modal-content {
-    background-color: #ffffff;
     padding: 20px;
     border-radius: 20px;
     width: 800px; /* Ancho del modal aumentado */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: relative;
 }
 
@@ -297,16 +291,13 @@ td button {
     cursor: pointer;
 }
 
-.modal-content form {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between; /* Distribuir elementos con espacio entre ellos */
-    align-items: flex-start; /* Alinear elementos al inicio */
-}
-
 .modal-content .form-group {
     flex: 0 0 48%; /* Cada grupo de formulario ocupará el 48% del ancho del contenedor */
     margin: 10px 0; /* Márgenes para los elementos del formulario */
+}
+.form{
+    display: flex;
+    margin-top: 5%;
 }
 
 .modal-content label {
@@ -320,9 +311,16 @@ td button {
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 20px;
-    background-color: #ffffff; /* Color de fondo gris */
+    background-color: #f4f5f7; /* Color de fondo gris */
+}
+.modal-content select{
+    background-color: #f4f5f7;
+    border:none;
 }
 
+.divIzquierdo{
+    margin-left: 15%;
+}
 .button-container {
     width: 100%;
     display: flex;
@@ -336,7 +334,7 @@ td button {
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 20px;
-    margin-top: 20px;
+    margin-top: 3px;
 }
 
 .save:hover {
@@ -520,7 +518,7 @@ td button {
 
 /* Asegúrate de que el modal esté centrado vertical y horizontalmente */
 .modal-dialog {
-    color: #ffffff;
+    color: #000000;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -532,7 +530,7 @@ td button {
     width: auto;
     border-radius: 30px; /* Ajusta si deseas bordes redondeados */
     width: 30%;
-    background-color: #202C4A;
+    background-color:#EDEDED;
 }
 
 .modal-footer {
@@ -556,7 +554,6 @@ label {
 
 #nombre_espacio {
     font-weight: bold;
-    font-size: 90%;
 }
 
 option {
@@ -603,4 +600,27 @@ th, td {
 
 th {
     background-color: #f2f2f2; /* Fondo de encabezado de la tabla */
+}
+
+.divBotones{
+    display: flex;
+    margin-top: 5%;
+    margin-left: 30%;
+}
+
+#titulonombre_espacio{
+    white-space: nowrap; 
+    font-size: 125%;
+}
+
+#hora_entrada{
+    white-space: nowrap; 
+}
+
+#hora_salida{
+    white-space: nowrap; 
+}
+
+.divDerecho{
+    margin-left: 10%;
 }
