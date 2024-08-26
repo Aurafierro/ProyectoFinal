@@ -10,8 +10,8 @@ public enum rol {
   *  ADMIN
   *  USER
   */
-Admin,
-User,
+Administrador,
+Usuario,
 Invitado
 	
 }

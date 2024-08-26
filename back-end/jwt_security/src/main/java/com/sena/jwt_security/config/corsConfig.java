@@ -22,8 +22,6 @@ public class corsConfig {
 		 * no en producción
 		 */
 		config.addAllowedOrigin("*");
-		//config.addAllowedOrigin("http://127.0.0.1:5500/");
-		//config.addAllowedOrigin("http://localhost:5500/");
 		
 		//Permitir solicitudes con estos metodos HTTP
 		config.addAllowedMethod("GET");

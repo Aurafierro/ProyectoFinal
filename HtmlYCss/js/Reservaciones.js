@@ -1,4 +1,4 @@
-var url = "http://10.192.80.205:8080/api/v1/reserva/";
+var url = "http://10.192.80.173:8080/api/v1/reserva/";
 
 document.getElementById("nombre_completo").addEventListener("keypress", soloLetras);
 document.getElementById("nombre_espacio").addEventListener("keypress", soloLetras);
@@ -425,5 +425,15 @@ function limpiarFormulario() {
   document.getElementById("hora_salida").className = "form-control";
   document.getElementById("fecha_entrada").className = "form-control";
   document.getElementById("fecha_salida").className = "form-control";
+}
+
+
+//funcion para cerrar el modal
+function closeModal() {
+  // Obtén el modal por su ID
+  var modal = document.getElementById('exampleModal');
+
+  // Cambia la propiedad display del modal a "none" para ocultarlo
+  modal.style.display = "none";
 }
 

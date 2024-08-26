@@ -85,8 +85,8 @@
                 <div class="modal-body">
                     <div class="form">
                         <div class="divIzquierdo">
-                            <label for="nombre_espacio" id="titulonombre_espacio">Nombre espacio:</label>
-                            <select name="" id="nombre_espacio" class="form-select">
+                            <label for="nombre_espacio" id="titulonombre_espacio">Nombre de espacio:</label>
+                            <select name="" id="select_nombre_espacio" class="form-select">
                                 <option value="" selected disabled>Selecciona un espacio</option>
                                 <option value="cancha">Cancha</option>
                                 <option value="gimnasio">Gimnasio</option>
@@ -94,16 +94,18 @@
                                 <option value="biblioteca">Biblioteca</option>
                             </select>
 
-                            <label for="hora_entrada" id="hora_entrada">Hora de Entrada:</label>
+                            <label for="hora_entrada" id="hora_entrada">Hora de entrada:</label>
                             <input type="time" id="hora_entrada" onfocusout="validarHora_entrada(this);">
 
-                            <label for="hora_salida">Hora de Salida:</label>
-                            <input type="time" id="hora_salida" onfocusout="validarHora_salida(this);">
+                            <label for="fecha_entrada">Fecha de entrada:</label>
+                            <input type="date" name="" id="fecha_entrada">
+                            
                         </div>
                         <div class="divDerecho">
-                            <label for="fecha_entrada">Fecha entrada:</label>
-                            <input type="date" name="" id="fecha_entrada">
-                            <label for="fecha_salida">Fecha salida:</label>
+                            
+                            <label for="hora_salida">Hora de salida:</label>
+                            <input type="time" id="hora_salida" onfocusout="validarHora_salida(this);">
+                            <label for="fecha_salida">Fecha de salida:</label>
                             <input type="date" name="" id="fecha_salida">
 
                         </div>
@@ -126,7 +128,7 @@
     <button class="download-pdf-button">Descargar PDF</button>
     <footer class="footer">
         <div class="footer-container">
-            <p>&copy; 2024 Tu Empresa. Todos los derechos reservados.</p>
+            <p>&copy; 2024 Asigna Web - Todos los derechos reservados.</p>
         </div>
     </footer>
 

@@ -1,4 +1,4 @@
-var url = "http://10.192.80.205/api/v1/user/";
+var url = "http://10.192.80.173/api/v1/user/";
 
 function crearCuenta() {
     let formData = {
