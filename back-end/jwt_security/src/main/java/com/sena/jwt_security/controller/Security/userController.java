@@ -116,6 +116,12 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	}
 	
 
+	//Simula un endpoint privado para acceder al perfil del usuario.
+	
+	@GetMapping("/profile")
+	public ResponseEntity<String>getProfile(){
+		return new ResponseEntity<>("end-point privado profile",HttpStatus.OK);
+	}
 	
 	
 	@GetMapping("/busquedafiltro/{filtro}")

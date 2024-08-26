@@ -13,17 +13,17 @@ import lombok.RequiredArgsConstructor;
 
 
 
-//Se indica que es un archivo de configuración 
-@Configuration
 
-//configurar la seguridad del proyecto
-@EnableWebSecurity
+@Configuration //Se indica que es un archivo de configuración 
+@EnableWebSecurity  //configurar la seguridad del proyecto
 
-//se incluye el constructor de lombok
+
 @RequiredArgsConstructor
 
 public class securityConfig {
 	//el filterchein =es el encargado de filtrar las peticiones e indicar el acceso a los end point
+	
+	//versión basica con el formulario login
 	@Bean
 	public SecurityFilterChain securityFilterChain(
 			HttpSecurity http
