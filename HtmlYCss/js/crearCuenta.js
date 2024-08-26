@@ -1,5 +1,7 @@
 var url = "http://10.192.80.173/api/v1/user/";
 
+
+
 function crearCuenta() {
     let formData = {
         "tipo_documento": document.getElementById("tipo_documento").value,

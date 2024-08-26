@@ -73,58 +73,7 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <center>
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar reservación</h1>
-                    </center>
-                </div>
-                <div class="modal-body">
-                    <div class="form">
-                        <div class="divIzquierdo">
-                            <label for="nombre_espacio" id="titulonombre_espacio">Nombre de espacio:</label>
-                            <select name="" id="select_nombre_espacio" class="form-select">
-                                <option value="" selected disabled>Selecciona un espacio</option>
-                                <option value="cancha">Cancha</option>
-                                <option value="gimnasio">Gimnasio</option>
-                                <option value="auditorio">Auditorio</option>
-                                <option value="biblioteca">Biblioteca</option>
-                            </select>
-
-                            <label for="hora_entrada" id="hora_entrada">Hora de entrada:</label>
-                            <input type="time" id="hora_entrada" onfocusout="validarHora_entrada(this);">
-
-                            <label for="fecha_entrada">Fecha de entrada:</label>
-                            <input type="date" name="" id="fecha_entrada">
-                            
-                        </div>
-                        <div class="divDerecho">
-                            
-                            <label for="hora_salida">Hora de salida:</label>
-                            <input type="time" id="hora_salida" onfocusout="validarHora_salida(this);">
-                            <label for="fecha_salida">Fecha de salida:</label>
-                            <input type="date" name="" id="fecha_salida">
-
-                        </div>
-                    </div>
-                    <div class="divBotones">
-                        <div>
-                            <button type="button" class="botonVerde" onclick="actualizarReserva();">Guardar</button>
-                        </div>
-                        <div>
-                            <button type="button" class="botonRojo" onclick="closeModal();"
-                                data-bs-dismiss="modal">Cerrar</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                </div>
-            </div>
-        </div>
-    </div>
+  
     <button class="download-pdf-button">Descargar PDF</button>
     <footer class="footer">
         <div class="footer-container">
