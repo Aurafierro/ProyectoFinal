@@ -68,15 +68,25 @@ function validarCampos(formData) {
     });
 
     // Validación adicional para número de documento
-    let numeroDocumento = parseInt(document.getElementById("numero_documento").value.trim());
-    if (numeroDocumento < 100000) {
-        document.getElementById("error-numero_documento").textContent = "El número de documento debe tener al menos 5 dígitos.";
-        document.getElementById("error-numero_documento").classList.add('error-message');
-        camposValidos = false;
-    } else {
-        document.getElementById("error-numero_documento").textContent = "";
-        document.getElementById("error-numero_documento").classList.remove('error-message');
-    }
+let numeroDocumento = document.getElementById("numero_documento").value.trim();
+let numeroDocumentoValue = parseInt(numeroDocumento);
+
+if (numeroDocumento === '') {
+    // Mensaje si el campo está vacío
+    document.getElementById("error-numero_documento").textContent = "El número de documento es obligatorio.";
+    document.getElementById("error-numero_documento").classList.add('error-message');
+    camposValidos = false;
+} else if (numeroDocumentoValue < 100000) {
+    // Mensaje si el número de documento es menor a 100000
+    document.getElementById("error-numero_documento").textContent = "El número de documento debe tener al menos 5 dígitos.";
+    document.getElementById("error-numero_documento").classList.add('error-message');
+    camposValidos = false;
+} else {
+    // Limpia el mensaje de error si el número de documento es válido
+    document.getElementById("error-numero_documento").textContent = "";
+    document.getElementById("error-numero_documento").classList.remove('error-message');
+}
+
 
     // Validación adicional para número de teléfono
     let telefono = document.getElementById("telefono").value.trim();
@@ -90,6 +100,11 @@ function validarCampos(formData) {
     }
 
     return camposValidos;
+}
+   // Validación de correo
+   if (!correo.includes('@') || !correo.includes('.')) {
+    document.getElementById('error-correo').textContent = 'El correo electrónico no es válido.';
+    camposValidos = false;
 }
 
 function limpiarFormulario() {

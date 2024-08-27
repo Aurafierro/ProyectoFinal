@@ -2,241 +2,131 @@
   font-family: "Candal";
   src: url("/Fuentes/Candal/Candal-Regular.ttf");
 }
+
 body {
-  background-color: #FFFFFF;
   margin: 0;
-  padding: 0;
+  font-family: "Candal";
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  font-size: 120%; 
+  min-height: 100vh;
+  background-color: #FFFFFF;
+  color: black;
 }
+
 .container {
   display: flex;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 5%;
-  overflow: hidden;
-  width: 900px; /* Ajustar el ancho del contenedor */
-}
-.form-container {
-  padding: 5%; 
+  flex-direction: row;
+  width: 90%;
+  max-width: 1000px;
   background-color: #202C4A;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.form-container {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
   color: white;
-  width: 90%; /* Ajustar el ancho del contenedor del formulario */
-  font-family: "Candal";
+  border-radius: 15px 0 0 15px;
+  position: relative;
 }
 
 .form-container h2 {
-  margin-top: 0; /* Ajustar el margen superior */
-  margin-bottom: 40px;
-  font-size: 200%; /* Aumentar el tamaño de la fuente */
-  text-align: center;
-  font-family: "Candal";
-}
-
-.form-container form {
-  display: flex;
-  flex-direction: column;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  text-align: center; /* Centra el título */
 }
 
 .columns {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .column {
-  display: flex;
-  flex-direction: column;
-  width: 48%;
+  flex: 1;
+  min-width: 250px;
 }
 
 .input-group {
-  margin-bottom: 20px; 
- /* Aumentar el margen inferior */
+  margin-bottom: 15px;
 }
 
 .input-group label {
   display: block;
   margin-bottom: 5px;
-  
 }
 
+.input-group select, 
 .input-group input {
-  width: 90%; /* Ajustar el ancho de los inputs */
+  width: 100%;
   padding: 10px;
-  border: none;
-  border-radius: 50px; /* Bordes redondeados */
+  font-size: 0.875rem;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  box-sizing: border-box;
 }
 
-.button-container {
-  display: flex;
-  justify-content: center;
-  gap: 20px; /* Espacio entre los botones */
-  margin-top: 20px;
-}
-
-.crear-cuenta-btn {
-  padding: 15px 30px; /* Ajustar el padding del botón */
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 50px; /* Bordes redondeados */
-  cursor: pointer;
-  font-size: 100%; /* Ajustar el tamaño de la fuente */
-  font-family: 'Candal';
-}
-
-.crear-cuenta-btn:hover {
-  background-color: #218838;
-}
-
-.volver-btn {
-  padding: 15px 38px; /* Ajustar el padding del botón */
-  background-color: red;
-  color: white;
-  border: none;
-  border-radius: 50px; /* Bordes redondeados */
-  cursor: pointer;
-  font-size: 100%; /* Ajustar el tamaño de la fuente */
-  font-family: 'Candal';
-}
-
-.volver-btn:hover {
-  background-color: darkred;
-}
-
-.image-container {
-  background-color: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 70%;
-  padding: 20px;
-}
-
-.image-container img {
-  max-width: 100%; /* Ajustar el ancho máximo de la imagen */
-  height: auto;
-}
-
-#tipo_documento, #rol {
-  width: 90%; /* Ajustar el ancho de los inputs */
-  padding: 10px;
-  border: none;
-  border-radius: 50px; /* Bordes redondeados */
-  font-weight: bold;
-}
-#Campo-correo{
-  margin-top: 25px;
+.input-group input[type="number"] {
+  width: 100%;
 }
 
 .error-message {
   color: red;
-  font-size: 0.6em; /* Smaller font size for error messages */
-  margin-top: 4px;
-  display: block;
+  font-size: 0.75rem;
 }
 
-
-/* DISEÑO DEL INDEX*/
-body {
-    margin: 0;
-    font-family: 'Candal', sans-serif;
+.button-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around; 
 }
 
-.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #202C4A;
-    color: white;
-    padding: 60px 20px;
-    box-sizing: border-box;
-    flex-wrap: wrap;
+.volver-btn, 
+.crear-cuenta-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.875rem;
 }
 
-.text-content {
-    max-width: 60%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-    flex: 1 1 300px;
+.volver-btn {
+  background-color: #ccc;
+  color: black;
 }
 
-.text-content h1 {
-    margin: 0 0 30px 0;
-    font-size: 3.9em;
+.crear-cuenta-btn {
+  background-color: #28a745;
+  color: white;
 }
 
-.text-content p {
-    margin: 30px 0;
-    font-size: 1.8em;
-    line-height: 1.6;
+.image-container {
+  background-color: black;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 15px 15px 0;
+  padding: 20px;
 }
 
-.text-content button {
-    background-color: #EBECED;
-    color: black;
-    border: none;
-    padding: 20px 45px;
-    font-size: 1.6em;
-    cursor: pointer;
-    margin-top: 20px;
-    border-radius: 40px;
-    font-family: 'Candal', sans-serif;
+.image-container img {
+  width: 80%;
+  max-width: 300px;
+  height: auto;
 }
 
-.text-content button:hover {
-    background-color: #D6D6D6;
+@media screen and (max-width: 768px) {
+  .container {
+      flex-direction: column;
+  }
+
+  .image-container {
+      width: 100%;
+      border-radius: 15px 15px 0 0;
+  }
 }
-
-img {
-    max-width: 38%;
-    height: auto;
-    object-fit: cover;
-    margin-top: 20px;
-    transform: translateX(-70px);
-}
-
-@media (max-width: 1200px) {
-    .text-content h1 {
-        font-size: 3em;
-    }
-
-    .text-content p {
-        font-size: 1.8em;
-    }
-
-    .text-content button {
-        font-size: 1em;
-    }
-
-    img {
-        max-width: 40%;
-        transform: translateX(-30px);
-    }
-}
-
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .text-content {
-        max-width: 100%;
-        text-align: left;
-    }
-
-    img {
-        max-width: 100%;
-        transform: none;
-        margin-top: 20px;
-    }
-}
-
