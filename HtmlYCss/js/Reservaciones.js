@@ -1,4 +1,4 @@
-var url = "http://10.192.80.173:8080/api/v1/reserva/";
+var url = "http://192.168.20.181:8080/api/v1/reserva/";
 
 document.getElementById("nombre_completo").addEventListener("keypress", soloLetras);
 document.getElementById("nombre_espacio").addEventListener("keypress", soloLetras);

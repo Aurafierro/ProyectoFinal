@@ -1,5 +1,123 @@
-var url = "http://10.192.80.173/api/v1/user/";
+var url = "http://192.168.20.181:8080/api/v1/user/";
 
+document.getElementById("nombre_completo").addEventListener("keypress", soloLetras);
+document.getElementById("nombre_espacio").addEventListener("keypress", soloLetras);
+document.getElementById("hora_entrada").addEventListener("keypress", numerosYcaracteres);
+document.getElementById("hora_salida").addEventListener("keypress", numerosYcaracteres);
+
+
+function soloLetras(event) {
+  console.log("Llave presionada: " + event.key);
+  console.log("Código tecla: " + event.keyCode);
+
+  const letrasPermitidas = [
+    //letras en minúsculas
+    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "u", "v", "x", "y", "w", "o", "z", "ñ", "Ñ",
+    //LETRAS EN MAYÚSCULAS
+    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", " ",
+    //letras con tildes, mayusculas y minusculas
+    "á", "é", "í", "ó", "ú", "Á", "É", "Í", "Ó", "Ú"
+  ];
+
+  if (!(letrasPermitidas.includes(event.key))) {
+    event.preventDefault();
+    return;
+  }
+}
+
+
+//función para que el titulo del libro permita solamente numeros y letras
+function letrasYnumeros(event) {
+  console.log("Llave presionada: " + event.key);
+  console.log("Código tecla: " + event.keyCode);
+
+  const letrasPermitidas = [
+    //letras en minúsculas
+    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "u", "v", "x", "y", "w", "o", "z", "ñ", "Ñ",
+    //LETRAS EN MAYÚSCULAS
+    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", " ",
+    //letras con tildes, mayusculas y minusculas
+    "á", "é", "í", "ó", "ú", "Á", "É", "Í", "Ó", "Ú"
+
+  ];
+  const numeroPermitidos = [
+    '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'
+  ];
+
+
+  if (
+    !(letrasPermitidas.includes(event.key)) &&
+    !(numeroPermitidos.includes(event.key))
+  ) {
+    event.preventDefault();
+    return;
+  }
+
+
+}
+
+function soloNumeros(event) {
+  console.log("Llave presionada: " + event.key);
+  console.log("Código tecla: " + event.keyCode);
+
+  const numeroPermitidos = [
+    '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'
+  ];
+
+  if (!(numeroPermitidos.includes(event.key))) {
+    event.preventDefault();
+    return;
+  }
+}
+
+function letrasNumerosCaracteres(event) {
+  console.log("Llave presionada: " + event.key);
+  console.log("Código tecla: " + event.keyCode);
+
+  const letrasPermitidas = [
+    //letras en minúsculas
+    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "u", "v", "x", "y", "w", "o", "z", "ñ", "Ñ",
+    //LETRAS EN MAYÚSCULAS
+    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", " ",
+    //letras con tildes, mayusculas y minusculas
+    "á", "é", "í", "ó", "ú", "Á", "É", "Í", "Ó", "Ú"
+
+  ];
+  const numeroPermitidos = [
+    '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'
+  ];
+  const caracteresPermitidos = [
+    '@', '_', '-', '.'
+  ];
+
+
+  if (!(numeroPermitidos.includes(event.key)) && (letrasPermitidas.includes(event.key)) && (caracteresPermitidos.includes(event.key))) {
+    event.preventDefault();
+    return;
+  }
+
+
+}
+
+function numerosYcaracteres(event) {
+  console.log("Llave presionada: " + event.key);
+  console.log("Código tecla: " + event.keyCode);
+
+  const numeroPermitidos = [
+    '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'
+  ];
+  const caracteresPermitidos = [
+    ':'
+  ];
+
+
+  if (!(numeroPermitidos.includes(event.key)) && (caracteresPermitidos.includes(event.key))) {
+    event.preventDefault();
+    return;
+  }
+
+
+}
 
 
 function crearCuenta() {
