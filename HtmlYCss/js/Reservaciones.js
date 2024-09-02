@@ -1,4 +1,4 @@
-var url = "http://192.168.20.181:8080/api/v1/reserva/";
+var url = "http://10.192.80.183:8080/api/v1/reserva/";
 
 document.getElementById("nombre_completo").addEventListener("keypress", soloLetras);
 document.getElementById("nombre_espacio").addEventListener("keypress", soloLetras);
@@ -326,6 +326,7 @@ function tablaReservas() {
 
 
 function historial() {
+  
   //METODO PARA LISTAR LOS CLIENTES
   //SE CREA LA PETICION AJAX
   var capturarFiltro = document.getElementById("inputSearch").value;
@@ -372,7 +373,7 @@ function historial() {
         botonEditarReserva.value = result[i]["id_reserva"];
         botonEditarReserva.innerHTML = "Editar";
         botonEditarReserva.onclick = function (e) {
-          $('#exampleModal').modal('show');
+          $('#myModal').modal('show');
           consultarReservaID(this.value);
         }
         botonEditarReserva.className = "btnEditar";
@@ -436,4 +437,52 @@ function closeModal() {
   // Cambia la propiedad display del modal a "none" para ocultarlo
   modal.style.display = "none";
 }
+
+
+function openModal() {
+  const modal = document.getElementById('editModal');
+  modal.style.display = 'block';
+}
+
+function closeModal() {
+  const modal = document.getElementById('editModal');
+  modal.style.display = 'none';
+}
+
+// Cierra el modal si el usuario hace clic fuera de él
+window.onclick = function(event) {
+  const modal = document.getElementById('editModal');
+  if (event.target == modal) {
+      modal.style.display = 'none';
+  }
+}
+
+// Obtener el modal
+var modal = document.getElementById("myModal");
+
+// Obtener el botón que abre el modal
+var opcionesButtons = document.querySelectorAll(".opciones-btn");
+
+// Obtener el <span> que cierra el modal
+var span = document.getElementsByClassName("close")[0];
+
+// Cuando el usuario hace clic en el botón, se abre el modal
+opcionesButtons.forEach(button => {
+    button.onclick = function() {
+        modal.style.display = "block";
+    };
+});
+
+// Cuando el usuario hace clic en <span> (x), se cierra el modal
+span.onclick = function() {
+    modal.style.display = "none";
+};
+
+// Cuando el usuario hace clic en cualquier lugar fuera del modal, se cierra
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+};
+
 

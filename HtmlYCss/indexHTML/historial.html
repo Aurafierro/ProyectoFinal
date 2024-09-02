@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="../css/historial.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="icon" href="/iconos/logo.ico" type="image/x-icon">
-
 </head>
 
 <body onload="historial();">
@@ -17,7 +16,6 @@
             <i class="fas fa-bars"></i>
         </div>
         <div class="logo">
-            <!-- Imagen del logo -->
             <img src="../img/logori.png" alt="Logo" class="logo-img">
         </div>
         <div class="logout">
@@ -36,15 +34,12 @@
          
         <nav>
             <ul>
-                <li><a href="../indexHTML/miPerfil.html" class="active"><i class="fas fa-user-edit"></i>Mi perfil</a>
-                </li>
-                <li><a href="../indexHTML/crearReserva.html" class="active"><i class="fas fa-key"></i>Reservar
-                        espacios</a></li>
+                <li><a href="../indexHTML/miPerfil.html" class="active"><i class="fas fa-user-edit"></i>Mi perfil</a></li>
+                <li><a href="../indexHTML/crearReserva.html" class="active"><i class="fas fa-key"></i>Reservar espacios</a></li>
                 <li><a href="../indexHTML/historial.html"><i class="fas fa-history"></i>Historial</a></li>
             </ul>
         </nav>
     </aside>
-    <!-- Contenido principal -->
     <div class="main-content">
         <div class="search-options">
             <div class="search-bar-wrapper">
@@ -70,23 +65,45 @@
                     </thead>
                     <tbody id="cuerpoTabla"></tbody>
                 </table>
-                
             </div>
         </div>
     </div>
 
+    <!-- Modal -->
+    <div id="myModal" class="modal hidden">
+        <div class="modal-content">
+            <h1 id="titulo">Editar reservación</h1>
+            <div class="modal-body">
+                <div class="left-column">
+                    <label for="nombreEspacio">Nombre de espacio:</label>
+                    <input type="text" id="nombreEspacio">
+                    <label for="horaEntrada">Hora de entrada:</label>
+                    <input type="time" id="horaEntrada">
+                    <label for="fechaEntrada">Fecha de entrada:</label>
+                    <input type="date" id="fechaEntrada">
+                </div>
+                <div class="right-column">
+                    <label for="horaSalida" id="titulohoraSalida">Hora de salida:</label>
+                    <input type="time" id="horaSalida">
+                    <label for="fechaSalida">Fecha de salida:</label>
+                    <input type="date" id="fechaSalida">
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button class="save-btn">Guardar</button>
+                <a href="../indexHTML/historial.html"button class="delete-btn">Cerrar</button></a>
+            </div>
+        </div>
+    </div>
 
     <footer class="footer">
-        
         <div class="footer-container">
             <p>&copy; 2024 Asigna Web - Todos los derechos reservados.</p>
             <button class="download-pdf-button">Descargar PDF</button>
         </div>
     </footer>
 
-    
-
-    <script src="../js/Reservaciones.js"></script>
+    <script src="../js/historialAdmin.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
@@ -98,16 +115,15 @@
             if (sidebar.classList.contains('hidden')) {
                 sidebar.classList.remove('hidden');
                 sidebar.classList.add('visible');
-                mainContent.classList.add('shifted'); // Ajuste del margen
-                header.classList.add('shifted'); // Ajuste del margen para el header
+                mainContent.classList.add('shifted');
+                header.classList.add('shifted');
             } else {
                 sidebar.classList.remove('visible');
                 sidebar.classList.add('hidden');
-                mainContent.classList.remove('shifted'); // Ajuste del margen
-                header.classList.remove('shifted'); // Ajuste del margen para el header
+                mainContent.classList.remove('shifted');
+                header.classList.remove('shifted');
             }
         }
-
     </script>
 </body>
 </html>

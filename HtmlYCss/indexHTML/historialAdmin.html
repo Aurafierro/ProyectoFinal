@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/HistorialAdmin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-<body onload="historialAdmin();">
+<body onload="historial();">
     <header class="header">
         <div class="menu-toggle" onclick="toggleSidebar();">
             <i class="fas fa-bars"></i>
@@ -52,11 +52,13 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Usuario</th>
-                        <th>Espacio</th>
-                        <th>H. Entrada</th>
-                        <th>H. Salida</th>
-                        <th>Modificaciones</th>
+                        <th>Nombre usuario</th>
+                        <th>Nombre espacio</th>
+                        <th>Hora Entrada</th>
+                        <th>Hora Salida</th>
+                        <th>Fecha entrada</th>
+                        <th>Fecha salida</th>
+                        <th>Opciones</th>
                     </tr>
                 </thead>
                 <tbody id="cuerpoTabla"></tbody>
@@ -67,36 +69,32 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <center> <h1 class="modal-title fs-5" id="exampleModalLabel">Editar reserva</h1></center>
+    <div id="myModal" class="modal hidden">
+        <div class="modal-content">
+            <h1 id="titulo">Editar reservación</h1>
+            <div class="modal-body">
+                <div class="left-column">
+                    <label for="nombreEspacio">Nombre de espacio:</label>
+                    <input type="text" id="nombreEspacio">
+                    <label for="horaEntrada">Hora de entrada:</label>
+                    <input type="time" id="horaEntrada">
+                    <label for="fechaEntrada">Fecha de entrada:</label>
+                    <input type="date" id="fechaEntrada">
                 </div>
-                <div class="modal-body">
-                    <div class="form" 
-                
-
-                        <label for="hora_entrada">Hora de Entrada:</label>
-                        <input type="time" id="hora_entrada" onfocusout="validarHora_entrada(this);">
-
-                        <label for="hora_salida">Hora de Salida:</label>
-                        <input type="time" id="hora_salida" onfocusout="validarHora_salida(this);">
-
-                        <label for="fecha_entrada">Fecha entrada:</label>
-                        <input type="date" name="" id="fecha_entrada">
-                        <label for="fecha_salida">Fecha salida:</label>
-                        <input type="date" name="" id="fecha_salida">
-                    </div>
+                <div class="right-column">
+                    <label for="horaSalida" id="titulohoraSalida">Hora de salida:</label>
+                    <input type="time" id="horaSalida">
+                    <label for="fechaSalida">Fecha de salida:</label>
+                    <input type="date" id="fechaSalida">
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="botonVerde" onclick="actualizarReserva();">Guardar cambios</button>
-                    <button type="button" class="botonRojo" onclick="closeModal();" data-bs-dismiss="modal">Cerrar</button>
-                </div>
+            </div>
+            <div class="modal-buttons">
+                <button class="save-btn">Guardar</button>
+                <a href="../indexHTML/historialAdmin.html"button class="delete-btn">Cerrar</button></a>
             </div>
         </div>
     </div>
+
 
 
     <footer class="footer">
@@ -106,7 +104,10 @@
         
         </div>
     </footer>
-
+    <script src="../js/Reservaciones.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 
 <script>
 
