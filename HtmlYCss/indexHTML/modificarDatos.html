@@ -10,35 +10,59 @@
 </head>
 
 <body>
-    <header>
-        <div class="header-container">
-            <i class="fas fa-bars menu-icon"></i>
-            <a href="" class="logout-link">Cerrar sesión</a>
-            <img src="../img/Recurso 2@72x.png" alt="">
-
+    <header class="header">
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
         </div>
+        <div class="logo">
+            <img src="/HtmlYCss/img/logori.png" alt="Logo" class="logo-img">
+        </div>
+        <nav class="logout">
+            <a href="logout.html">Cerrar Sesión</a>
+        </nav>
     </header>
-    
-    
-    
+
+     <!-- Barra lateral con clase sidebarj -->
+     <aside class="sidebarj" id="sidebarj">
+        <div class="profile">
+            <div class="profile-pic">
+                <img id="profileImageDisplay" src="profile.jpg">
+                <i class="fas fa-camera"></i>
+                <input type="file" id="profileImage" accept="image/*">
+            </div>
+            <span>Paula Bustos</span>
+        </div>
+        <nav>
+            <ul>
+                <li class="sidebars-item"><a href="../indexHTML/miPerfil.html"><i class="fas fa-user"></i>Mi perfil</a></li>
+                <li class="sidebars-item"><a href="../indexHTML/crearReserva.html"><i class="fas fa-key"></i>Reservar espacios</a></li>
+                <li class="sidebars-item"><a href="../indexHTML/Solicitudes.html"><i class="fas fa-check"></i>Solicitudes</a></li>
+                <li class="sidebars-item"><a href="../indexHTML/historial.html"><i class="fas fa-history"></i>Historial</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+
     <div class="sidebar">
         <div class="sidebar-item">
             <i class="fas fa-user"></i>
-         <a href="../indexHTML/miPerfil.html"class="logout-linku">Mi perfil</a> 
+            <a href="../indexHTML/miPerfil.html" class="logout-linku">Mi perfil</a>
         </div>
         <div class="sidebar-item">
             <i class="fas fa-edit"></i>
-            <a href="../indexHTML/mo"class="logout-linku">Modificar datos</a>
+            <a href="../indexHTML/modificarDatos.html" class="logout-linku">Modificar datos</a>
         </div>
         <div class="sidebar-item">
             <i class="fas fa-key"></i>
-            <a href="../indexHTML/CambiarContrasena.html"class="logout-linku">Cambiar contraseña</a>
+            <a href="../indexHTML/CambiarContrasena.html" class="logout-linku">Cambiar contraseña</a>
         </div>
         <div class="sidebar-item">
             <i class="fas fa-user-slash"></i>
-            <a href="../indexHTML/DesactivarCuenta.html"class="logout-linku">Desactivar cuenta</a>
+            <a href="../indexHTML/DesactivarCuenta.html" class="logout-linku">Desactivar cuenta</a>
         </div>
     </div>
+
+
 
     <div class="profile-containers">
        <div class="modifi"><h2>Modificar datos</h2></div> 
@@ -88,4 +112,12 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const menuToggle = document.getElementById('menuToggle');
+const sidebar = document.getElementById('sidebarj');
+
+menuToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('visible');
+});
+</script>
 </html>
