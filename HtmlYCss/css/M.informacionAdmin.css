@@ -18,7 +18,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #3EBFFF;
+    background-color: white; 
     color: white;
     overflow-y: hidden;
 }
@@ -35,7 +35,7 @@ body {
 .profile__link,
 .notification__link {
     font-size: 25px;
-    color: rgb(255, 255, 255);
+    color: #000000;
     text-decoration: none;
     font-weight: bold;
     display: flex;
@@ -192,7 +192,7 @@ h4 {
 }
 
 h2 {
-    color: #ffffff;
+    color:#ffffff;
     margin-top: 10%;
 }
 
@@ -302,5 +302,24 @@ p {
         font-size: 1em;
         padding: 0 5px;
     }
+}
+#mensajeSeleccionar{
+    color: #000000;
+}
+.footer {
+    background-color: #1a3e68; /* Color de fondo azul */
+    color: white; /* Color del texto */
+    text-align: center; /* Centra el texto */
+    width: 100%; /* Asegura que el footer ocupe todo el ancho */
+    bottom: 0;
+    margin-top: auto;
+    padding: 45px 0; /* Agrega espaciado interno */
+}
+
+.footer-container {
+    max-width: 1200px; /* Ancho máximo para el contenido */
+    margin: 0 auto; /* Centra el contenedor */
+    padding: 0 20px; /* Espaciado interno */
+    
 }
 
