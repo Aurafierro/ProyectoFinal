@@ -10,6 +10,9 @@ body {
     flex-direction: column;
     min-height: 100vh;
     overflow: hidden;
+    position: relative;
+    padding-bottom: 20px;
+    min-height: 100vh;
 }
 .header {
     height: 100px;
@@ -312,9 +315,9 @@ td button {
 }
 /* Estilo para el botón de descargar PDF */
 .download-pdf-button {
-    position: fixed; /* Fijo en la pantalla */
-    bottom: 20px; /* Distancia desde el borde inferior de la página */
-    right: 20px; /* Distancia desde el borde derecho de la página */
+    position: fixed; /* Asegura que esté fijo en la pantalla */
+    bottom: 26px; /* Ajusta la distancia desde el borde inferior */
+    right: 20px; /* Mantiene la distancia desde el borde derecho */
     background-color: #28a745; /* Color verde */
     color: white; /* Color del texto */
     padding: 10px 20px; /* Espaciado interno */
@@ -334,16 +337,18 @@ td button {
 .footer {
     background-color: #1a3e68; /* Color de fondo azul */
     color: white; /* Color del texto */
-    padding: 20px 0; /* Espaciado interno */
-    text-align: center; /* Centra el texto */ /* Posiciona el footer relativo al resto del contenido */
+    text-align: center; /* Centra el texto */
     width: 100%; /* Asegura que el footer ocupe todo el ancho */
-    margin-top:21%;
+    bottom: 0;
+    margin-top: auto;
+    padding: 20px 0; /* Agrega espaciado interno */
 }
 
 .footer-container {
     max-width: 1200px; /* Ancho máximo para el contenido */
     margin: 0 auto; /* Centra el contenedor */
     padding: 0 20px; /* Espaciado interno */
+    
 }
 
 .btnEditar{
