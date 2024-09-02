@@ -3,52 +3,17 @@
     src: url("/Fuentes/Candal/Candal-Regular.ttf");
 }
 
+
+
 body {
     margin: 0;
-    font-family: "candal";
+    font-family: "Candal";
     display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    flex-direction: column;
+    justify-content: space-between; /* Distribuye el espacio restante entre los elementos */
+    min-height: 100vh; /* Ocupa toda la altura de la pantalla */
     background-color:#FFFFFF;
     color: white;
-}
-
-header {
-    position: fixed;
-    width: 100%;
-    height: 70px;
-    background-color: #F7F9FA;
-}
-
-nav {
-    max-width: 1024px;
-    margin: 0 auto;
-}
-
-header img {
-    padding: 18px 10px;
-}
-
-.animacionLogo {
-    animation-duration: 5s;
-    animation-name: animacionLogo;
-    animation-iteration-count: infinite;
-}
-
-@keyframes animacionLogo {
-    from {
-        -webkit-transform: rotate(0deg);
-        transform: rotateY(0deg);
-    }
-    50% {
-        -webkit-transform: rotate(180deg);
-        transform: rotateY(180deg);
-    }
-    to {
-        -webkit-transform: rotate(360deg);
-        transform: rotateY(360deg);
-    }
 }
 
 .container {
@@ -63,8 +28,24 @@ header img {
     font-family: "Candal";
     position: relative;
     transition: all 0.5s ease;
+    margin: auto; /* Centra el contenedor */
+    
 }
 
+.footer {
+    background-color: #1a3e68;
+    color: white;
+    text-align: center;
+    width: 100%;
+    padding: 20px 0;
+    flex-shrink: 0; /* Evita que el footer se reduzca */
+}
+  
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
 .form-container, .image-container {
     flex: 1;

@@ -343,3 +343,17 @@ td{
 .menu-open .main-content {
     margin-left: 250px; /* Desplazar el contenido principal a la derecha para hacer espacio para la barra lateral */
 }
+.footer {
+    background-color: #1a3e68;
+    color: white;
+    text-align: center;
+    width: 100%;
+    padding: 20px 0;
+    flex-shrink: 0; /* Evita que el footer se reduzca */
+}
+  
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}

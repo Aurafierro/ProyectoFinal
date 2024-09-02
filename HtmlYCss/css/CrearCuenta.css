@@ -7,9 +7,8 @@ body {
   margin: 0;
   font-family: "Candal";
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  flex-direction: column; /* Organiza el contenido en columnas (vertical) */
+  min-height: 100vh; /* Ocupa toda la altura de la pantalla */
   background-color: #FFFFFF;
   color: black;
 }
@@ -23,6 +22,7 @@ body {
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: auto; /* Centra el contenedor */
 }
 
 .form-container {
@@ -129,4 +129,19 @@ body {
       width: 100%;
       border-radius: 15px 15px 0 0;
   }
+}
+
+.footer {
+  background-color: #1a3e68;
+  color: white;
+  text-align: center;
+  width: 100%;
+  padding: 15px 0;
+  flex-shrink: 0; /* Evita que el footer se reduzca */
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
