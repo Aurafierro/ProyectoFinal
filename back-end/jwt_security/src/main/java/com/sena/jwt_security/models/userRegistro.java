@@ -213,6 +213,7 @@ public class userRegistro implements UserDetails{
 		return true;
 	}
 
+
 	
 	
 

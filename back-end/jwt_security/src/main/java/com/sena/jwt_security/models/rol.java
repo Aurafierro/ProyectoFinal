@@ -12,6 +12,6 @@ public enum rol {
   */
 Administrador,
 Usuario,
-Invitado
+
 	
 }
