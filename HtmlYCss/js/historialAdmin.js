@@ -1,4 +1,4 @@
-var url = "http://10.192.80.183:8080/api/v1/reserva/";
+var url = "http://192.168.20.181:8080/api/v1/reserva/";
 
 function historial() {
   

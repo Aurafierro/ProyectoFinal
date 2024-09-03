@@ -1,9 +1,9 @@
 var url = "http://192.168.20.181:8080/api/v1/user/";
 
+document.getElementById("numero_documento").addEventListener("keypress", soloNumeros);
 document.getElementById("nombre_completo").addEventListener("keypress", soloLetras);
-document.getElementById("nombre_espacio").addEventListener("keypress", soloLetras);
-document.getElementById("hora_entrada").addEventListener("keypress", numerosYcaracteres);
-document.getElementById("hora_salida").addEventListener("keypress", numerosYcaracteres);
+document.getElementById("telefono").addEventListener("keypress", soloNumeros);
+document.getElementById("correo").addEventListener("keypress", letrasNumerosCaracteres);
 
 
 function soloLetras(event) {
