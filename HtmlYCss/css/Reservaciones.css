@@ -15,16 +15,17 @@ body {
     font-weight: bold;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Asegura que el cuerpo se extienda al menos al 100% de la altura de la ventana de visualización */
+    min-height: 100vh;
     background-color: #EDEDED;
-    overflow-x: hidden; /* Evita el desplazamiento horizontal en dispositivos pequeños */
-    transition: margin-left 0.3s; /* Transición para el cambio en el margen izquierdo */
+    overflow-x: hidden;
+    transition: margin-left 0.3s;
 }
+
 .main-content {
     flex: 1;
     padding: 20px;
-    margin-left: 0; /* Inicia con margen 0 */
-    transition: margin-left 0.3s ease-in-out; /* Transición suave en el margen izquierdo */
+    margin-left: 0;
+    transition: margin-left 0.3s ease-in-out;
 }
 
 .header {
@@ -45,29 +46,30 @@ body {
 }
 
 .header .logo img.logo-img {
-    width: 100% ;
+    width: 100%;
     height: 80px;
-    margin-top: 1px; /* Ajusta este valor según lo necesites */
+    margin-top: 1px;
     margin-bottom: 5px;
     padding-left: 20px;
 }
 
 .header .logout a {
-    color: var(--white);
+    color: white;
     text-decoration: none;
     transition: color 0.3s ease-in-out;
     font-size: 120%;
     padding-right: 20px;
     font-family: 'Candal';
-    color: white;
 }
 
+/* Contenedor principal */
 .container {
     display: flex;
     flex: 1;
     flex-direction: row;
 }
 
+/* Perfil */
 .profile {
     text-align: center;
     margin-bottom: 30px;
@@ -84,12 +86,12 @@ body {
     position: relative;
     width: 160px;
     height: 160px;
-    background-color: transparent; /* Cambiado a transparente */
+    background-color: transparent;
     border-radius: 50%;
     margin: 0 auto 10px;
     overflow: hidden;
-    cursor: pointer; /* Añadido cursor pointer para indicar que se puede hacer clic */
-    border: 3px solid #fff; /* Añadido un borde blanco para dar contraste */
+    cursor: pointer;
+    border: 3px solid #fff;
     margin-top: 70%;
 }
 
@@ -98,8 +100,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 24px; /* Tamaño del icono de cámara */
-    color: #555; /* Color del icono de cámara */
+    font-size: 24px;
+    color: #555;
     cursor: pointer;
 }
 
@@ -114,7 +116,7 @@ body {
 }
 
 .profile-pic:hover i {
-    color: #000; /* Cambia el color del icono al pasar el cursor */
+    color: #000;
 }
 
 .profile span {
@@ -123,6 +125,7 @@ body {
     font-family: 'Candal';
 }
 
+/* Navegación */
 nav ul {
     list-style: none;
     padding: 0;
@@ -133,7 +136,7 @@ nav ul {
 }
 
 nav ul li {
-    margin: 10px 0; /* Reduce el espacio entre los botones */
+    margin: 10px 0;
 }
 
 nav ul li a {
@@ -147,31 +150,32 @@ nav ul li a {
     margin-top: 10%;
 }
 
-.cotenedorPadre{
+/* Contenedor padre */
+.cotenedorPadre {
     display: flex;
     margin-top: 2%;
-    display: flex;
     width: 100%;
 }
 
-.tituloReservas{
+/* Título de reservas */
+.tituloReservas {
     color: #000000;
     font-size: 300%;
 }
 
-.contenedorTitulo{
+.contenedorTitulo {
     width: 100%;
     margin-top: 2%;
 }
 
-.contenedorContenido{
+.contenedorContenido {
     width: 100%;
 }
 
-/*Modificaciones del formulario de la reserva:*/
+/* Formulario */
 .form {
-    width: 200%; /* Reduced width */
-    height: 100%; /* Increased height */
+    width: 200%;
+    height: 100%;
     background-color: #202C4A;
     color: white;
     border-radius: 50px;
@@ -180,11 +184,9 @@ nav ul li a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    display: flex;
     margin-top: 10%;
     margin-left: 165%;
 }
-
 
 .form label {
     width: 83%;
@@ -195,42 +197,38 @@ nav ul li a {
 .form input {
     width: calc(100% - 80px);
     padding: 15px;
-    margin: 10px 0; /* Reduced margin */
+    margin: 10px 0;
     border: none;
     border-radius: 30px;
-    text-align: center; /* Center the input text */
+    text-align: center;
 }
 
 .form button {
-    padding: 15px 30px; /* Smaller button */
+    padding: 15px 30px;
     background-color: #EDEDED;
     border: none;
     border-radius: 30px;
-    color: white;
-    cursor: pointer;
-    margin-top: 25px; /* Adjust margin to ensure the button is slightly separated from the inputs */
-    font-size: 1em;
-    display: flex;
-    font-family: 'Candal';
     color: #000000;
+    cursor: pointer;
+    margin-top: 25px;
+    font-size: 1em;
+    font-family: 'Candal';
 }
 
-/*Modificaciones del select del espacio:*/
-#nombre_espacio{
-    width: 90%; /* Ajustar el ancho de los inputs */
+/* Select */
+#nombre_espacio {
+    width: 90%;
     padding: 10px;
     border: none;
-    border-radius: 50px; /* Bordes redondeados */
+    border-radius: 50px;
     font-weight: bold;
 }
 
-/*modificaciones inputs type date (calendarios)*/
-
-.tabla{
+/* Tabla */
+.tabla {
     margin-left: 34%;
     color: black;
 }
-
 
 .table {
     width: 100%;
@@ -245,28 +243,26 @@ nav ul li a {
 
 .campoTabla {
     padding: 20px;
-    border: 1px solid #ffffff; /* Añade un borde alrededor de cada celda */
+    border: 1px solid #ffffff;
 }
 
 tbody tr:nth-child(even) {
-    background-color:#8a8a8a; /* Alterna colores de fondo para las filas */
+    background-color: #8a8a8a;
 }
 
-
-
-option{
+option {
     font-weight: bold;
     font-family: 'Candal';
 }
 
-td{
+td {
     color: rgb(0, 0, 0);
     padding: 1%;
 }
 
-/* Estilo para el contenedor del menú hamburguesa */
+/* Menú hamburguesa */
 .menu-toggle {
-    position: relative; /* Fijo en la pantalla */
+    position: relative;
     top: 8px;
     left: 20px;
     padding: 10px;
@@ -274,16 +270,15 @@ td{
     cursor: pointer;
     font-size: 40px;
     color: #ffffff;
-    z-index: 1001; /* Asegura que esté encima de otros elementos */
+    z-index: 1001;
 }
 
-
-/* Estilo para el contenedor del menú desplegable */
+/* Menú desplegable */
 .menu-container {
-    position: fixed; /* Fijo en la pantalla */
+    position: fixed;
     top: 20px;
     right: 20px;
-    display: none; /* Ocultar el menú por defecto */
+    display: none;
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -292,8 +287,9 @@ td{
     min-width: 160px;
     text-align: left;
 }
+
 .menu-container.active {
-    display: block; /* Mostrar el menú cuando está activo */
+    display: block;
 }
 
 .menu-container a {
@@ -308,7 +304,7 @@ td{
     background-color: #f0f0f0;
 }
 
-/* Estilo para el contenedor izquierdo oculto */
+/* Sidebar */
 .sidebar {
     width: 250px;
     background-color: #1a3e68;
@@ -318,42 +314,84 @@ td{
     align-items: center;
     padding: 20px 0;
     box-sizing: border-box;
-    position: fixed; /* Fijo en la pantalla */
+    position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
     overflow-y: auto;
-    transition: transform 0.3s; /* Transición para animar el cambio de posición */
-    z-index: 1000; /* Asegura que esté encima de otros elementos */
+    transition: transform 0.3s;
+    z-index: 1000;
 }
 
 .sidebar.hidden {
-    transform: translateX(-100%); /* Oculta el contenedor al desplazarlo fuera de la vista */
+    transform: translateX(-100%);
 }
 
 .sidebar.visible {
-    transform: translateX(0); /* Muestra el contenedor */
+    transform: translateX(0);
 }
 
 /* Estilos adicionales */
 .menu-open .sidebar {
-    transform: translateX(0); /* Mostrar la barra lateral */
+    transform: translateX(0);
 }
 
 .menu-open .main-content {
-    margin-left: 250px; /* Desplazar el contenido principal a la derecha para hacer espacio para la barra lateral */
+    margin-left: 250px;
 }
+
+/* Footer */
 .footer {
     background-color: #1a3e68;
     color: white;
     text-align: center;
     width: 100%;
     padding: 20px 0;
-    flex-shrink: 0; /* Evita que el footer se reduzca */
+    flex-shrink: 0;
 }
-  
+
 .footer-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
+
+/* Media Queries */
+
+/* Dispositivos pequeños (pantallas de hasta 768px) */
+@media (max-width: 768px) {
+    .header .logo img.logo-img {
+        width: 70%;
+        height: auto;
+    }
+
+    .form {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 10%;
+    }
+
+    .main-content {
+        padding: 10px;
+    }
+
+    .sidebar {
+        width: 200px;
+    }
+
+    .menu-open .main-content {
+        margin-left: 200px;
+    }
+
+    .tituloReservas {
+        font-size: 200%;
+    }
+
+    .tabla {
+        margin-left: 0;
+    }
+}
+
+/* Dispositivos muy pequeños (pantallas de hasta 480px) */
+@media (max-width: 480px) {
+    .

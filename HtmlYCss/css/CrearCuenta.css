@@ -7,8 +7,8 @@ body {
   margin: 0;
   font-family: "Candal";
   display: flex;
-  flex-direction: column; /* Organiza el contenido en columnas (vertical) */
-  min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+  flex-direction: column;
+  min-height: 100vh;
   background-color: #FFFFFF;
   color: black;
 }
@@ -22,7 +22,7 @@ body {
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  margin: auto; /* Centra el contenedor */
+  margin: auto;
 }
 
 .form-container {
@@ -37,7 +37,7 @@ body {
 .form-container h2 {
   font-size: 1.8rem;
   margin-bottom: 15px;
-  text-align: center; /* Centra el título */
+  text-align: center;
 }
 
 .columns {
@@ -60,7 +60,7 @@ body {
   margin-bottom: 5px;
 }
 
-.input-group select, 
+.input-group select,
 .input-group input {
   width: 100%;
   padding: 10px;
@@ -82,10 +82,10 @@ body {
 .button-container {
   margin-top: 20px;
   display: flex;
-  justify-content: space-around; 
+  justify-content: space-around;
 }
 
-.volver-btn, 
+.volver-btn,
 .crear-cuenta-btn {
   padding: 10px 20px;
   border: none;
@@ -120,14 +120,51 @@ body {
   height: auto;
 }
 
+@media screen and (max-width: 1024px) {
+  .container {
+    width: 95%;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .container {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .image-container {
-      width: 100%;
-      border-radius: 15px 15px 0 0;
+    width: 100%;
+    border-radius: 15px 15px 0 0;
+  }
+
+  .form-container {
+    border-radius: 0 0 15px 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .form-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .input-group input, 
+  .input-group select {
+    font-size: 0.75rem;
+    padding: 8px;
+  }
+
+  .volver-btn, 
+  .crear-cuenta-btn {
+    font-size: 0.75rem;
+    padding: 8px 15px;
+  }
+
+  .button-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .image-container img {
+    width: 70%;
   }
 }
 
@@ -137,7 +174,7 @@ body {
   text-align: center;
   width: 100%;
   padding: 15px 0;
-  flex-shrink: 0; /* Evita que el footer se reduzca */
+  flex-shrink: 0;
 }
 
 .footer-container {

@@ -25,8 +25,8 @@ body {
 
 .profile {
     position: absolute;
-    top: 7.5%;
-    right: 20px;
+    top: 5%;
+    right: 10px;
     z-index: 999;
     display: flex;
     align-items: center;
@@ -34,7 +34,7 @@ body {
 
 .profile__link,
 .notification__link {
-    font-size: 25px;
+    font-size: 18px;
     color: #000000;
     text-decoration: none;
     font-weight: bold;
@@ -44,8 +44,8 @@ body {
 }
 
 .notification__link {
-    margin-left: 0; /* Elimina el margen izquierdo para la campana */
-    margin-right: 15px; /* Añade margen derecho a la campana */
+    margin-left: 18; /* Elimina el margen izquierdo para la campana */
+    margin-right: 10px; /* Añade margen derecho a la campana */
 }
 
 .profile__link i,
@@ -57,8 +57,8 @@ body {
     background-color: red;
     color: white;
     border-radius: 50%;
-    padding: 2px 8px;
-    font-size: 14px;
+    padding: 1px 5px;
+    font-size: 12px;
     margin-left: 5px;
 }
 
