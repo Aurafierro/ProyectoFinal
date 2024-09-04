@@ -1,4 +1,4 @@
-var url = "http://192.168.20.181:8080/api/v1/reserva/";
+var url = "http://10.192.80.159:8080/api/v1/reserva/";
 
 function historial() {
   
@@ -93,4 +93,72 @@ function historial() {
       }
     })
   
+  }
+
+
+  function actualizarReserva() { 
+    var id_reserva=document.getElementById("id_reserva").value
+    let formData={
+        "nombre_completo": document.getElementById("nombre_completo").value,
+        "nombre_espacio": document.getElementById("nombre_espacio").value,
+        "hora_entrada": document.getElementById("hora_entrada").value,
+        "hora_salida": document.getElementById("hora_salida").value,
+        "fecha_entrada": document.getElementById("fecha_entrada").value,
+        "fecha_salida": document.getElementById("fecha_salida").value
+  };
+  
+  if (validarCampos()) {
+    $.ajax({
+        url:url+id_reserva,
+        type: "PUT",
+        data: formData,
+      
+        
+        success: function(result) {
+          
+            // Manejar la respuesta exitosa según necesites
+            Swal.fire({
+                title: "¡Excelente!",
+                text: "Se guardó correctamente",
+                icon: "success"
+              });
+            // Puedes hacer algo adicional como recargar la lista de libros
+            listarLibro();
+        },
+        error: function(error) {
+            // Manejar el error de la petición
+            Swal.fire({
+                title: "¡Error!",
+                text: "No se guardó",
+                icon: "error"
+              });
+        },
+        error: function (error) {
+          Swal.fire("Error", "Error al guardar, " + error.responseText, "error");
+      }
+    });
+    } else {
+    Swal.fire({
+        title: "¡Error!",
+        text: "Llene todos los campos correctamente",
+        icon: "error"
+      });
+    }
+    function validarCampos() {
+      // Obtener los valores de los campos
+      var nombre_completo = document.getElementById("nombre_completo").value;
+      var nombre_espacio = document.getElementById("nombre_espacio").value;
+      var hora_entrada = document.getElementById("hora_entrada").value;
+      var hora_salida = document.getElementById("hora_salida").value;
+      var fecha_entrada = document.getElementById("fecha_entrada").value;
+      var fecha_salida = document.getElementById("fecha_salida").value
+    
+      // Verificar si algún campo está vacío
+      if (nombre_completo === '' || nombre_espacio === '' || hora_entrada === '' || hora_salida === '' || fecha_entrada === '' || fecha_salida === '') {
+        return false; // Al menos un campo está vacío
+      } else {
+        return true; // Todos los campos están llenos
+      }
+    }
+    
   }
