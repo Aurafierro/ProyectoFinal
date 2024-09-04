@@ -1,9 +1,9 @@
 var url = "http://10.192.80.159:8080/api/v1/reserva/";
 
-document.getElementById("nombre_completo").addEventListener("keypress", soloLetras);
-document.getElementById("nombre_espacio").addEventListener("keypress", soloLetras);
-document.getElementById("hora_entrada").addEventListener("keypress", numerosYcaracteres);
-document.getElementById("hora_salida").addEventListener("keypress", numerosYcaracteres);
+//document.getElementById("nombre_completo").addEventListener("keypress", soloLetras);
+//document.getElementById("nombre_espacio").addEventListener("keypress", soloLetras);
+//document.getElementById("hora_entrada").addEventListener("keypress", numerosYcaracteres);
+//document.getElementById("hora_salida").addEventListener("keypress", numerosYcaracteres);
 
 
 function soloLetras(event) {
@@ -385,8 +385,6 @@ function historial() {
         botonEliminarReserva.value = result[i]["id_reserva"];
         botonEliminarReserva.innerHTML = "Eliminar";
         botonEliminarReserva.onclick = function (e) {
-          // Aquí deberías escribir la lógica para eliminar el libro con el id correspondiente
-          // Puedes usar una función separada para realizar la eliminación
           eliminarReserva(this.value);
         }
         botonEliminarReserva.className = "btnEliminar";
@@ -485,70 +483,42 @@ window.onclick = function(event) {
     }
 };
 
+function actualizarReserva() {
+  var id_reserva = document.getElementById("id_reserva").value;
+  let formData = {
+    "nombre_completo": document.getElementById("nombre_completo").value,
+    "nombre_espacio": document.getElementById("nombre_espacio").value,
+    "hora_entrada": document.getElementById("hora_entrada").value,
+    "hora_salida": document.getElementById("hora_salida").value,
+    "fecha_entrada": document.getElementById("fecha_entrada").value,
+    "fecha_salida": document.getElementById("fecha_salida").value
+  };
 
-function actualizarReserva() { 
-  var id_reserva=document.getElementById("id_reserva").value
-  let formData={
-      "nombre_completo": document.getElementById("nombre_completo").value,
-      "nombre_espacio": document.getElementById("nombre_espacio").value,
-      "hora_entrada": document.getElementById("hora_entrada").value,
-      "hora_salida": document.getElementById("hora_salida").value,
-      "fecha_entrada": document.getElementById("fecha_entrada").value,
-      "fecha_salida": document.getElementById("fecha_salida").value
-};
-
-if (validarCampos()) {
-  $.ajax({
-      url:url+id_reserva,
+  if (validarCampos()) {
+    $.ajax({
+      url: url + id_reserva,
       type: "PUT",
       data: formData,
-    
-      
       success: function(result) {
-        
-          // Manejar la respuesta exitosa según necesites
-          Swal.fire({
-              title: "¡Excelente!",
-              text: "Se guardó correctamente",
-              icon: "success"
-            });
-          // Puedes hacer algo adicional como recargar la lista de libros
-          listarLibro();
+        Swal.fire({
+          title: "¡Excelente!",
+          text: "Se guardó correctamente",
+          icon: "success"
+        });
+        // Cierra el modal
+        document.getElementById("modalEditarReserva").style.display = "none";
+        // Puedes hacer algo adicional como recargar la lista de reservas
+        listarReservas(); // Asumiendo que tienes una función para listar reservas
       },
       error: function(error) {
-          // Manejar el error de la petición
-          Swal.fire({
-              title: "¡Error!",
-              text: "No se guardó",
-              icon: "error"
-            });
-      },
-      error: function (error) {
         Swal.fire("Error", "Error al guardar, " + error.responseText, "error");
-    }
-  });
+      }
+    });
   } else {
-  Swal.fire({
+    Swal.fire({
       title: "¡Error!",
       text: "Llene todos los campos correctamente",
       icon: "error"
     });
   }
-  function validarCampos() {
-    // Obtener los valores de los campos
-    var nombre_completo = document.getElementById("nombre_completo").value;
-    var nombre_espacio = document.getElementById("nombre_espacio").value;
-    var hora_entrada = document.getElementById("hora_entrada").value;
-    var hora_salida = document.getElementById("hora_salida").value;
-    var fecha_entrada = document.getElementById("fecha_entrada").value;
-    var fecha_salida = document.getElementById("fecha_salida").value
-  
-    // Verificar si algún campo está vacío
-    if (nombre_completo === '' || nombre_espacio === '' || hora_entrada === '' || hora_salida === '' || fecha_entrada === '' || fecha_salida === '') {
-      return false; // Al menos un campo está vacío
-    } else {
-      return true; // Todos los campos están llenos
-    }
-  }
-  
 }
