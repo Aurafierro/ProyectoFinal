@@ -3,16 +3,14 @@
     src: url("/Fuentes/Candal/Candal-Regular.ttf");
 }
 
-
-
 body {
     margin: 0;
     font-family: "Candal";
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Distribuye el espacio restante entre los elementos */
-    min-height: 100vh; /* Ocupa toda la altura de la pantalla */
-    background-color:#FFFFFF;
+    justify-content: space-between; 
+    min-height: 100vh; 
+    background-color: #FFFFFF;
     color: white;
 }
 
@@ -22,14 +20,12 @@ body {
     width: 80%;
     max-width: 1200px;
     background-color: #202C4A;
-    border-radius: 20px;
+    border-radius: 40px;
     overflow: hidden;
-    box-shadow: 0 8px 16px rgba(225, 225, 225, 0.651); /* Aquí se ajusta la sombra */
+    box-shadow: 0 8px 16px rgba(225, 225, 225, 0.651);
     font-family: "Candal";
     position: relative;
-    transition: all 0.5s ease;
-    margin: auto; /* Centra el contenedor */
-    
+    margin: auto; 
 }
 
 .footer {
@@ -37,14 +33,14 @@ body {
     color: white;
     text-align: center;
     width: 100%;
-    padding: 20px 0;
-    flex-shrink: 0; /* Evita que el footer se reduzca */
+    padding: 1% 0; 
+    flex-shrink: 0;
 }
-  
+
 .footer-container {
-    max-width: 1200px;
+    max-width: 1200px; 
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 20%;
 }
 
 .form-container, .image-container {
@@ -52,7 +48,6 @@ body {
     width: 50%;
     justify-content: center;
     align-items: center;
-    transition: transform 0.8s ease-in-out;
 }
 
 .form-container {
@@ -116,12 +111,17 @@ body {
     width: 80%;
     max-width: 400px;
     height: auto;
-    margin: 65px;
+    display: block; 
+    margin: 65px auto; 
+  
 }
 
 @media screen and (max-width: 768px) {
     .container {
         flex-direction: column;
+        max-width: 90%;
+        margin: 0 auto; 
+        margin-bottom: 50px; 
     }
 
     .form-container, .image-container {
@@ -142,6 +142,7 @@ body {
     }
 
     .image-container img {
-        width: 100%;
+        width: 80%; 
+        margin-left: 7%; 
     }
 }

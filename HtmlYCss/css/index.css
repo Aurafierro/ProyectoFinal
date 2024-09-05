@@ -32,7 +32,7 @@ body {
 
 .container-tres {
     background-color: #202C4A;
-    padding: 300px 20px;
+    padding: 240px 20px;
 }
 
 .container-cuatro {
@@ -204,8 +204,8 @@ img {
 /* Tarjetas flip animadas */
 .flip-card {
     background-color: transparent;
-    width: 300px;
-    height: 400px;
+    width: 240px;
+    height: 370px;
     perspective: 1000px;
     font-family: sans-serif;
 }
