@@ -97,15 +97,15 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
         }
   */
 
-        if (userRegistro.getCorreo().equals("")) {
+        if (userRegistro.getUsername().equals("")) {
             
             return new ResponseEntity<>("El correo es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
         
         
-        userRegistro.setContrasena(codigoAleatorio());
+        userRegistro.setPassword(codigoAleatorio());
 		userService.save(userRegistro);
-		emailService.enviarNotificacionCuenta(userRegistro.getCorreo(),userRegistro.getNombre_completo(),userRegistro.getCorreo(),userRegistro.getContrasena());
+		emailService.enviarNotificacionCuenta(userRegistro.getUsername(),userRegistro.getNombre_completo(),userRegistro.getUsername(),userRegistro.getPassword());
 		return new ResponseEntity<>(userRegistro,HttpStatus.OK);
 	}
 	
@@ -163,9 +163,9 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 			user.setNumero_documento(userUpdate.getNumero_documento());
 			user.setNombre_completo(userUpdate.getNombre_completo());
 			user.setTelefono(userUpdate.getTelefono());
-			user.setCorreo(userUpdate.getCorreo());
+			user.setUsername(userUpdate.getUsername());
 			user.setRol(userUpdate.getRol());
-			user.setContrasena(userUpdate.getContrasena());
+			user.setPassword(userUpdate.getPassword());
 		
 
 			userService.save(user);

@@ -23,10 +23,7 @@ public class securityConfig {
 	
 	//versión basica con el formulario login
 	@Bean
-	public SecurityFilterChain securityFilterChain(
-			HttpSecurity http
-			)throws Exception
-	{
+	public SecurityFilterChain securityFilterChain(HttpSecurity http)throws Exception{
 		return http
 		 .csrf(csrf->csrf.disable())
 		 .authorizeHttpRequests(

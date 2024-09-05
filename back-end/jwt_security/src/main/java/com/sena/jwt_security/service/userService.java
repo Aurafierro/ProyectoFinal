@@ -80,8 +80,8 @@ public class userService implements IUserService {
 	}
 
 	 @Override
-	    public Optional<userRegistro> findByUsername(String correo) {
-	        return data.findByCorreo(correo);
+	    public Optional<userRegistro> findByUsername(String username) {
+	        return data.findByUsername(username);
 
 	    }
 	//@Override

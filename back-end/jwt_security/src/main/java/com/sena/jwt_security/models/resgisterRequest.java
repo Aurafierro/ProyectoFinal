@@ -10,16 +10,16 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class resgisterRequest {
 
 	private String tipo_documento;
 	private String numero_documento;
 	private String nombre_completo;
 	private String telefono;
-	private String correo;
-	private String contrasena;
+	private String username;
+	private String password;
 	private rol  rol;
+	
 	
 	
 }

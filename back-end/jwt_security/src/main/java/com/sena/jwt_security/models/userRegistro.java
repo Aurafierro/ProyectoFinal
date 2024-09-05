@@ -52,11 +52,11 @@ public class userRegistro implements UserDetails{
 	@Column(name="telefono", nullable= false, length = 15)
 	private String telefono;
 
-	@Column(name="correo", nullable= false, length = 100)
-	private String correo;
+	@Column(name="username", nullable= false, length = 100)
+	private String username;
 
-	@Column(name="contrasena", nullable= true, length = 16)
-	private String contrasena;
+	@Column(name="password", nullable= true, length = 16)
+	private String password;
 	
 
 	
@@ -68,9 +68,7 @@ public class userRegistro implements UserDetails{
 	private boolean verificar_contrasena;
 	
 	
-	//@Column (name="enabled",nullable=true)
-	//private boolean enabled;
-	
+
 	
 
 	//este metodo es el encargado de indicar los permisos del usuario, se obtine e rol del usuario
@@ -82,85 +80,13 @@ public class userRegistro implements UserDetails{
 	}
 	
 
-
-	public String getId_user() {
-		return id_user;
+	public userRegistro() {
+		super();
 	}
 
-	public void setId_user(String id_user) {
-		this.id_user = id_user;
-	}
-
-	public String getTipo_documento() {
-		return tipo_documento;
-	}
-
-	public void setTipo_documento(String tipo_documento) {
-		this.tipo_documento = tipo_documento;
-	}
-
-	public String getNumero_documento() {
-		return numero_documento;
-	}
-
-	public void setNumero_documento(String numero_documento) {
-		this.numero_documento = numero_documento;
-	}
-
-	public String getNombre_completo() {
-		return nombre_completo;
-	}
-
-	public void setNombre_completo(String nombre_completo) {
-		this.nombre_completo = nombre_completo;
-	}
-
-	public String getTelefono() {
-		return telefono;
-	}
-
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
-
-	
-	public String getCorreo() {
-		return correo;
-	}
-
-	public void setCorreo(String correo) {
-		this.correo = correo;
-	}
-
-	public String getContrasena() {
-		return contrasena;
-	}
-
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
-	}
-
-	
-	public rol getRol() {
-		return rol;
-	}
-
-	public void setRol(rol rol) {
-		this.rol = rol;
-	}
-
-	public boolean isVerificar_contrasena() {
-		return verificar_contrasena;
-	}
-
-	public void setVerificar_contrasena(boolean verificar_contrasena) {
-		this.verificar_contrasena = verificar_contrasena;
-	}
-
-	
 
 	public userRegistro(String id_user, String tipo_documento, String numero_documento, String nombre_completo,
-			String telefono, String correo, String contrasena, com.sena.jwt_security.models.rol rol,
+			String telefono, String username, String password, com.sena.jwt_security.models.rol rol,
 			boolean verificar_contrasena) {
 		super();
 		this.id_user = id_user;
@@ -168,63 +94,121 @@ public class userRegistro implements UserDetails{
 		this.numero_documento = numero_documento;
 		this.nombre_completo = nombre_completo;
 		this.telefono = telefono;
-		this.correo = correo;
-		this.contrasena = contrasena;
+		this.username = username;
+		this.password = password;
 		this.rol = rol;
 		this.verificar_contrasena = verificar_contrasena;
 	}
 
-	public userRegistro() {
-		super();
+	public String getId_user() {
+		return id_user;
 	}
 
 
-
-	@Override
-	public String getPassword() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setId_user(String id_user) {
+		this.id_user = id_user;
 	}
 
 
-
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getTipo_documento() {
+		return tipo_documento;
 	}
 
 
-
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
+	public void setTipo_documento(String tipo_documento) {
+		this.tipo_documento = tipo_documento;
 	}
 
 
-
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return false;
+	public String getNumero_documento() {
+		return numero_documento;
 	}
 
 
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
+	public void setNumero_documento(String numero_documento) {
+		this.numero_documento = numero_documento;
 	}
 
 
-
-	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return false;
+	public String getNombre_completo() {
+		return nombre_completo;
 	}
+
+
+	public void setNombre_completo(String nombre_completo) {
+		this.nombre_completo = nombre_completo;
+	}
+
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+
+	public rol getRol() {
+		return rol;
+	}
+
+
+	public void setRol(rol rol) {
+		this.rol = rol;
+	}
+
+
+	public boolean isVerificar_contrasena() {
+		return verificar_contrasena;
+	}
+
+
+	public void setVerificar_contrasena(boolean verificar_contrasena) {
+		this.verificar_contrasena = verificar_contrasena;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	 @Override
+	    public String getPassword() {
+	        return this.password;
+	    }
+
+	    @Override
+	    public String getUsername() {
+	        return this.username;
+	    }
+
+	    @Override
+	    public boolean isAccountNonExpired() {
+	        return true; 
+	    }
+
+	    @Override
+	    public boolean isAccountNonLocked() {
+	        return true; 
+	    }
+
+	    @Override
+	    public boolean isCredentialsNonExpired() {
+	        return true; 
+	    }
+
+	    @Override
+	    public boolean isEnabled() {
+	        return true; 
+	    }
 
 	
 

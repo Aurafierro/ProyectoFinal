@@ -16,7 +16,7 @@ public class emailService {
 	@Autowired
 	private JavaMailSender javaMailSender;
 	
-	public String enviarNotificacionCuenta(String destinatario, String nombre_completo, String correo, String contrasena ) {
+	public String enviarNotificacionCuenta(String destinatario, String nombre_completo, String username, String password ) {
 
 		try {
 			
@@ -44,9 +44,9 @@ public class emailService {
 			       +"<br>"
 			       +"<br>"
 			       
-                   + "          <strong>Nombre de Usuario: </strong> " + correo + " "
+                   + "          <strong>Nombre de Usuario: </strong> " + username + " "
                    +"<br>"
-                   + "          <strong>Contraseña: " + contrasena + "</strong>"
+                   + "          <strong>Contraseña: " + password + "</strong>"
                    +"<br>"
                         
 			     
