@@ -6,10 +6,10 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import com.sena.jwt_security.interfaceService.IUserService;
 import com.sena.jwt_security.interfaces.Iuser;
+import com.sena.jwt_security.models.AuthResponse;
+import com.sena.jwt_security.models.loginRequest;
+import com.sena.jwt_security.models.resgisterRequest;
 import com.sena.jwt_security.models.userRegistro;
-import com.sena.jwt_security.models.seguridad.AuthResponse;
-import com.sena.jwt_security.models.seguridad.loginRequest;
-import com.sena.jwt_security.models.seguridad.resgisterRequest;
 
 import lombok.RequiredArgsConstructor;
 

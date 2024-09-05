@@ -12,11 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.sena.jwt_security.interfaceService.IUserService;
 import com.sena.jwt_security.interfaces.Iuser;
+import com.sena.jwt_security.models.resgisterRequest;
 import com.sena.jwt_security.models.userRegistro;
-//import com.sena.jwt_security.models.seguridad.authResponse;
-//import com.sena.jwt_security.models.seguridad.loginRequest;
-//import com.sena.jwt_security.service.jwt.jwtServices;
-import com.sena.jwt_security.models.seguridad.resgisterRequest;
 
 import lombok.RequiredArgsConstructor;
 
@@ -78,13 +75,13 @@ public class userService implements IUserService {
 
 	@Override
 	public userRegistro register(resgisterRequest request) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	 @Override
-	    public Optional<userRegistro> findByUsername(String nombre_completo) {
-	        return data.findByNombreCompleto(nombre_completo);
+	    public Optional<userRegistro> findByUsername(String correo) {
+	        return data.findByCorreo(correo);
 
 	    }
 	//@Override

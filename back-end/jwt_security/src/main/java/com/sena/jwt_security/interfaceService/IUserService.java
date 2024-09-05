@@ -5,10 +5,8 @@ import java.util.List;
 
 import java.util.Optional;
 
+import com.sena.jwt_security.models.resgisterRequest;
 import com.sena.jwt_security.models.userRegistro;
-import com.sena.jwt_security.models.seguridad.resgisterRequest;
-//import com.sena.jwt_security.models.seguridad.authResponse;
-//import com.sena.jwt_security.models.seguridad.loginRequest;
 
 public interface IUserService {
 
@@ -20,6 +18,6 @@ public interface IUserService {
 	public Optional<userRegistro> findOne(String id_user);
 	public int delete (String id_user);
 	public userRegistro register(resgisterRequest request);
-	public Optional<userRegistro>findByUsername(String nombre_completo);
+	public Optional<userRegistro>findByUsername(String correo);
 
 }

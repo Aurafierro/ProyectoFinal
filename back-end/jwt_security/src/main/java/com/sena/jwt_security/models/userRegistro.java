@@ -70,9 +70,6 @@ public class userRegistro implements UserDetails{
 	
 	//@Column (name="enabled",nullable=true)
 	//private boolean enabled;
-
-	
-	//constructor vacío, con todos los parámetros y los getters and setters
 	
 	
 
@@ -83,6 +80,8 @@ public class userRegistro implements UserDetails{
 		return List.of (new SimpleGrantedAuthority(this.rol.name()));
 		
 	}
+	
+
 
 	public String getId_user() {
 		return id_user;
@@ -124,6 +123,7 @@ public class userRegistro implements UserDetails{
 		this.telefono = telefono;
 	}
 
+	
 	public String getCorreo() {
 		return correo;
 	}
@@ -178,40 +178,60 @@ public class userRegistro implements UserDetails{
 		super();
 	}
 
+
+
 	@Override
 	public String getPassword() {
-		
-		//metodo de reornar la contraseña y por seguridad se retornará vacío
-		
-		return "";
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+
 
 	@Override
 	public String getUsername() {
-		//metodo para teronar el userName, en este caso es el correo
-		return this.correo;
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+
 
 	@Override
 	public boolean isAccountNonExpired() {
-		
-		return true;
+		// TODO Auto-generated method stub
+		return false;
 	}
+
+
 
 	@Override
 	public boolean isAccountNonLocked() {
-		return true;
+		// TODO Auto-generated method stub
+		return false;
 	}
+
+
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		return true;
+		// TODO Auto-generated method stub
+		return false;
 	}
+
+
 
 	@Override
 	public boolean isEnabled() {
-		return true;
+		// TODO Auto-generated method stub
+		return false;
 	}
+
+	
+
+
+
+
+	
 
 
 	

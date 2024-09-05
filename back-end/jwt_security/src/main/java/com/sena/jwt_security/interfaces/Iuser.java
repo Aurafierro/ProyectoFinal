@@ -15,8 +15,10 @@ public interface Iuser extends CrudRepository<userRegistro, String> {
 
   
 
-    // Consulta personalizada usando JPQL
-    @Query("SELECT u FROM userRegistro u WHERE u.nombre_completo = :nombreCompleto")
-    Optional<userRegistro> findByNombreCompleto(String nombreCompleto);
+    
+    
+    @Query("SELECT u FROM userRegistro u WHERE u.correo = :correo")
+    Optional<userRegistro> findByCorreo(String correo);
+
 }
 

@@ -1,4 +1,4 @@
-package com.sena.jwt_security.models.seguridad;
+package com.sena.jwt_security.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Response {
-
-	String status;
-	String message;
+public class loginRequest {
+	String email;
+	String password;
 
 }

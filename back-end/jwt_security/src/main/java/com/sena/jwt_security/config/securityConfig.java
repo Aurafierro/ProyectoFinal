@@ -16,8 +16,6 @@ import lombok.RequiredArgsConstructor;
 
 @Configuration //Se indica que es un archivo de configuración 
 @EnableWebSecurity  //configurar la seguridad del proyecto
-
-
 @RequiredArgsConstructor
 
 public class securityConfig {
@@ -37,10 +35,11 @@ public class securityConfig {
 				  * Todas las peticiones que comiencen por /api/v1/public
 				  * van hacer permitidas sin restricción de usuario
 				  */
-				 .requestMatchers("/api/v1/public/**")
-				 .permitAll()
-				 .anyRequest().permitAll()
-				 ).build();
+				 .requestMatchers("/api/v1/public/**").permitAll()
+				 .anyRequest().authenticated()
+				 )
+		 . formLogin(withDefaults())
+		 .build();
 	}
 
 }
