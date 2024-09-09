@@ -20,6 +20,7 @@ public interface IUserService {
 	public Optional<userRegistro> findOne(String id_user);
 	public int delete (String id_user);
 
+	
 	public AuthResponse register(resgisterRequest request);
 
 	public Optional<userRegistro>findByUsername(String username);

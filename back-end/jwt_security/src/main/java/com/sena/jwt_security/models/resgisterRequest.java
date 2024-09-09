@@ -26,6 +26,7 @@ public class resgisterRequest {
 		super();
 	}
 
+	
 	public resgisterRequest(String tipo_documento, String numero_documento, String nombre_completo, String telefono,
 			String username, String password, com.sena.jwt_security.models.rol rol) {
 		super();

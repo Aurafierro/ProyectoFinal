@@ -22,3 +22,4 @@ public interface Iuser extends CrudRepository<userRegistro, String> {
 
 }
 
+

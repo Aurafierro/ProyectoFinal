@@ -14,6 +14,7 @@ public class AuthResponse {
         super();
         this.token = token;
     }
+    
 
     // Getter para el token
     public String getToken() {

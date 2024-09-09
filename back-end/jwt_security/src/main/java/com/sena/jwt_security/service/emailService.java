@@ -20,6 +20,7 @@ public class emailService {
 
 		try {
 			
+			
 			String asunto="Bienvenid@ " +nombre_completo + " a AsignaWeb";
 			String cuerpo=""
 					+"<body style='margin: 0; padding: 0; background-color: #CCCCCC;'>" 

@@ -17,6 +17,7 @@ public class jwtService {
 
     private static final String SECRET_KEY = "Bw0mtfRa9WhRJuXHmpbtKnYlgR6Wov9lyEa7NUsUPCI=";
 
+    
     public String getToken(UserDetails userData) {
         return getToken(new HashMap<>(), userData);
     }

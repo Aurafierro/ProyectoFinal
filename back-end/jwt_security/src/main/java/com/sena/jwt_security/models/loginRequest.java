@@ -14,3 +14,4 @@ public class loginRequest {
 	String password;
 
 }
+

@@ -90,6 +90,7 @@ public class reserva {
 		this.hora_salida = hora_salida;
 	}
 
+	
 	public Date getFecha_entrada() {
 		return fecha_entrada;
 	}

@@ -108,6 +108,7 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 		emailService.enviarNotificacionCuenta(userRegistro.getUsername(),userRegistro.getNombre_completo(),userRegistro.getUsername(),userRegistro.getPassword());
 		return new ResponseEntity<>(userRegistro,HttpStatus.OK);
 	}
+
 	
 	@GetMapping("/")
 	public ResponseEntity<Object>findAll(){
@@ -116,6 +117,7 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	}
 	
 
+	
 	//Simula un endpoint privado para acceder al perfil del usuario.
 	
 	@GetMapping("/profile")

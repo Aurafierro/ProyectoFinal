@@ -35,6 +35,7 @@ public class userService implements IUserService {
 		return userRegistro.getId_user();
 	}
 
+	
 	@Override
 	public List<userRegistro> findAll() {
 		List <userRegistro> listaUserRegistro = (List<userRegistro>) data.findAll() ;

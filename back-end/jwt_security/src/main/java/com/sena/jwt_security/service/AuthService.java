@@ -39,6 +39,8 @@ public class AuthService implements IUserService {
         userData.setPassword(passwordEncoder.encode(request.getPassword(/* metodo de generacion de contraseña*/)));
         userData.setRol(request.getRol());
 
+        
+        
         data.save(userData);
 
         // Generar el token JWT

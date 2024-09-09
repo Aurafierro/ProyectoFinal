@@ -89,7 +89,6 @@ public class userRegistro implements UserDetails{
 
 
 
-
 	public userRegistro(String id_user, String tipo_documento, String numero_documento, String nombre_completo,
 			String telefono, String username, String password, com.sena.jwt_security.models.rol rol,
 			boolean verificar_contrasena) {

@@ -40,6 +40,8 @@ public class securityConfig {
 				 ).build();
 	}
 
+	
+
 	  @Bean
 	    public PasswordEncoder passwordEncoder() {
 	        return new BCryptPasswordEncoder();
