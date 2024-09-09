@@ -1,169 +1,195 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Nuevo Ambiente - AsignaWeb</title>
-    <link rel="stylesheet" href="../css/RecuperarContraseña.css"> <!-- Enlace al archivo CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Iconos Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Iconos Font Awesome -->
     <link rel="icon" href="/iconos/logo.ico" type="image/x-icon">
     <style>
         /* Aquí puedes añadir tu CSS personalizado */
         body {
-            /* Estilos de fondo, color de texto, etc. */
             background-color: #FFFFFF;
             color: white;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .content {
+            flex: 1; /* Permite que el contenido principal ocupe el espacio restante */
         }
 
         .container {
-            /* Estilos del contenedor principal */
             display: flex;
+            flex: 1;
             background-color: #000000;
-            padding: 50px;
-            border-radius: 50px;
-            margin: 20px;
+            padding: 40px; /* Aumenta el padding para hacer el contenedor más grande */
+            border-radius: 30px;
+            margin: 20px auto; /* Centra el contenedor y agrega margen automático */
+            max-width: 900px; /* Aumenta el ancho máximo del contenedor */
+            max-height: 700px; /* Aumenta la altura máxima del contenedor */
+            box-sizing: border-box;
+            overflow: auto; /* Permite el desplazamiento si el contenido excede la altura máxima */
         }
 
         .form-container {
-            /* Estilos del contenedor del formulario */
             flex: 1;
             color: white;
             text-align: center;
-            padding: 5%;
+            padding: 3%; /* Aumenta el padding interno */
         }
 
         .form-container h1 {
-            /* Estilos del título */
-            font-size: 2.5rem;
-            margin-bottom: 9%;
+            font-size: 2rem; /* Aumenta el tamaño del título */
+            margin-bottom: 5%;
         }
 
         .form-container p {
-            /* Estilos del texto descriptivo */
-            font-size: 1.2rem;
-            margin-bottom: 7%;
+            font-size: 1.1rem; /* Aumenta el tamaño del texto descriptivo */
+            margin-bottom: 5%;
         }
 
         .input-email {
-            /* Estilos del input */
             width: 100%;
-            padding: 15px;
-            font-size: 1rem;
+            padding: 12px; /* Aumenta el padding */
+            font-size: 1rem; /* Aumenta el tamaño del texto del input */
             border: 1px solid #ddd;
-            border-radius: 40px;
+            border-radius: 30px;
             box-sizing: border-box;
-            margin-bottom: 18px;
+            margin-bottom: 15px; /* Aumenta el margen inferior */
         }
 
         .buttons {
-            /* Estilos del contenedor de botones */
             display: flex;
             justify-content: center;
-            margin-top: 20px; /* Ajuste según necesites */
+            margin-top: 20px; /* Aumenta el margen superior */
         }
 
         .buttons .btn {
-            /* Estilos de los botones */
             margin: 0 10px;
-            padding: 15px 45px;
+            padding: 12px 35px; /* Aumenta el padding de los botones */
             border: none;
-            border-radius: 40px;
+            border-radius: 30px;
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 1rem; /* Aumenta el tamaño del texto del botón */
         }
 
         .buttons .btn.red {
-            /* Estilos del botón Volver */
             background-color: #dc3545;
             color: white;
         }
 
         .buttons .btn.green {
-            /* Estilos del botón Guardar */
             background-color: #28a745;
             color: white;
         }
 
         .image-container {
-            /* Estilos del contenedor de imagen/icono */
             flex: 1;
             background-color: #1a3e68;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
-            border-radius: 50px;
+            padding: 20px; /* Aumenta el padding */
+            border-radius: 30px;
         }
 
         .image-container .add-icon {
-            /* Estilos del icono */
-            font-size: 11rem;
+            font-size: 8rem; /* Aumenta el tamaño del icono */
             color: white;
             cursor: pointer;
         }
 
         .image-preview {
-            /* Estilos de la vista previa de la imagen */
             display: none;
             max-width: 100%;
-            max-height: 300px;
+            max-height: 250px; /* Aumenta la altura máxima de la imagen */
             margin-top: 20px;
             border-radius: 15px;
         }
 
         @media screen and (max-width: 768px) {
-            /* Media queries para ajustes responsivos */
             .container {
                 flex-direction: column;
+                padding: 20px; /* Ajusta el padding para pantallas pequeñas */
             }
 
-            .form-container, .image-container {
+            .form-container,
+            .image-container {
                 width: 100%;
             }
 
             .form-container {
-                padding: 20px;
+                padding: 15px;
             }
 
             .input-email {
-                padding: 15px 20px;
+                padding: 12px 18px;
             }
 
             .buttons .btn {
-                padding: 12px 28px;
-                font-size: 1rem;
+                padding: 10px 25px;
+                font-size: 0.9rem; /* Ajusta el tamaño del texto para pantallas pequeñas */
             }
+        }
+
+        .footer {
+            background-color: #1a3e68;
+            color: white;
+            text-align: center;
+            width: 100%;
+            padding: 15px 0;
+            box-sizing: border-box;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
     </style>
 </head>
+
 <body>
-    <div class="container vertical">
-        <div class="form-container" id="form-container">
-            <h1>Agregar espacios</h1>
-            <input type="text" placeholder="Nombre del nuevo espacio" class="input-email">
-            <input type="text" placeholder="Descripción del nuevo espacio" class="input-email">
-            <div class="buttons">
-                <button class="btn red">Volver</button>
-                <button class="btn green">Guardar</button>
+    <div class="content">
+        <div class="container vertical">
+            <div class="form-container" id="form-container">
+                <h1>Agregar espacios</h1>
+                <input type="text" placeholder="Nombre del nuevo espacio" class="input-email">
+                <input type="text" placeholder="Descripción del nuevo espacio" class="input-email">
+                <div class="buttons">
+                    <button class="btn red">Volver</button>
+                    <button class="btn green">Guardar</button>
+                </div>
             </div>
-        </div>
-        <div class="image-container" id="image-container">
-            <i class="fas fa-plus-circle add-icon" id="add-icon"></i> <!-- Icono de Font Awesome para agregar -->
-            <input type="file" id="file-input" style="display: none;" accept="image/*">
-            <img id="image-preview" class="image-preview" src="" alt="Vista previa de la imagen">
+            <div class="image-container" id="image-container">
+                <i class="fas fa-plus-circle add-icon" id="add-icon"></i> <!-- Icono de Font Awesome para agregar -->
+                <input type="file" id="file-input" style="display: none;" accept="image/*">
+                <img id="image-preview" class="image-preview" src="" alt="Vista previa de la imagen">
+            </div>
         </div>
     </div>
 
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2024 Asigna Web - Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
     <script>
-        document.getElementById('add-icon').addEventListener('click', function() {
+        document.getElementById('add-icon').addEventListener('click', function () {
             document.getElementById('file-input').click();
         });
 
-        document.getElementById('file-input').addEventListener('change', function(event) {
+        document.getElementById('file-input').addEventListener('change', function (event) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     document.getElementById('image-preview').src = e.target.result;
                     document.getElementById('image-preview').style.display = 'block';
                 };
@@ -172,4 +198,5 @@
         });
     </script>
 </body>
+
 </html>
