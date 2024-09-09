@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reservas</title>
+    <title>Reservaciones</title>
     <link rel="stylesheet" href="../css/Reservaciones.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="icon" href="/iconos/logo.ico" type="image/x-icon">
@@ -20,7 +20,7 @@
         <aside class="sidebar hidden"> <!-- Agrega la clase hidden por defecto -->
             <div class="profile">
                 <div class="profile-pic">
-                    <img id="profileImageDisplay" src="" alt="">
+                    <img id="profileImageDisplay" src="" alt="Imagen de perfil">
                 </div>
                 <span>Juan Camilo</span>
             </div>
@@ -32,19 +32,19 @@
                 </ul>
             </nav>
         </aside>
-        <div class="contenedorContenido">
+        <main class="contenedorContenido">
             <div class="contenedorTitulo">
-                <center><span class="tituloReservas">Reservas</span></center>
+                <center><span class="tituloReservas">Reservaciones</span></center>
             </div>
 
             <div class="cotenedorPadre">
                 <div>
                     <div class="form">
                         <label for="nombre_completo">Nombre completo:</label>
-                        <input type="text" id="nombre_completo" onfocusout="validarNombre_completo(this);">
+                        <input type="text" id="nombre_completo" name="nombre_completo" onfocusout="validarNombre_completo(this);">
 
                         <label for="nombre_espacio">Nombre espacio:</label>
-                        <select name="" id="nombre_espacio" class="form-select">
+                        <select id="nombre_espacio" name="nombre_espacio" class="form-select">
                             <option value="" selected disabled>Selecciona una opción</option>
                             <option value="cancha">Cancha</option>
                             <option value="gimnasio">Gimnasio</option>
@@ -53,15 +53,16 @@
                         </select>
 
                         <label for="hora_entrada">Hora de Entrada:</label>
-                        <input type="time" id="hora_entrada" onfocusout="validarHora_entrada(this);">
+                        <input type="time" id="hora_entrada" name="hora_entrada" onfocusout="validarHora_entrada(this);">
 
                         <label for="hora_salida">Hora de Salida:</label>
-                        <input type="time" id="hora_salida" onfocusout="validarHora_salida(this);">
+                        <input type="time" id="hora_salida" name="hora_salida" onfocusout="validarHora_salida(this);">
 
                         <label for="fecha_entrada">Fecha entrada:</label>
-                        <input type="date" name="" id="fecha_entrada">
+                        <input type="date" id="fecha_entrada" name="fecha_entrada">
+
                         <label for="fecha_salida">Fecha salida:</label>
-                        <input type="date" name="" id="fecha_salida">
+                        <input type="date" id="fecha_salida" name="fecha_salida">
 
                         <button id="reservar" onclick="crearReserva();">Reservar</button>
                     </div>
@@ -84,35 +85,33 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </main>
     </div>
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2024 Asigna Web - Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
     <script>
         document.querySelector('.menu-toggle').addEventListener('click', function() {
-    const sidebar = document.querySelector('.sidebar');
-    const mainContent = document.querySelector('.main-content');
-    
-    // Alterna la visibilidad de la barra lateral
-    sidebar.classList.toggle('visible');
+            const sidebar = document.querySelector('.sidebar');
+            const contenedorContenido = document.querySelector('.contenedorContenido');
+            
+            // Alterna la visibilidad de la barra lateral
+            sidebar.classList.toggle('visible');
 
-    // Ajusta el margen izquierdo del contenido principal dependiendo del estado del menú
-    if (sidebar.classList.contains('visible')) {
-        mainContent.style.marginLeft = '250px'; // Desplaza el contenido principal
-    } else {
-        mainContent.style.marginLeft = '0'; // Restaura el margen original
-    }
-});
-
+            // Ajusta el margen izquierdo del contenido principal dependiendo del estado del menú
+            if (sidebar.classList.contains('visible')) {
+                contenedorContenido.style.marginLeft = '250px'; // Desplaza el contenido principal
+            } else {
+                contenedorContenido.style.marginLeft = '0'; // Restaura el margen original
+            }
+        });
     </script>
+    
     <script src="/HtmlYCss/js/Reservaciones.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../js/menu.js"></script> <!-- Agrega el archivo de JavaScript para el menú hamburguesa -->
 </body>
-<footer class="footer">
-        
-    <div class="footer-container">
-        <p>&copy; 2024 Asigna Web - Todos los derechos reservados.</p>
-        
-    </div>
-</footer>
 </html>

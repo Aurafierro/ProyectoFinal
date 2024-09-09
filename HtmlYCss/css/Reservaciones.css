@@ -217,8 +217,8 @@ nav ul li a {
 
 /* Select */
 #nombre_espacio {
-    width: 90%;
-    padding: 10px;
+    width: 82%;
+    padding: 15px;
     border: none;
     border-radius: 50px;
     font-weight: bold;
@@ -394,4 +394,5 @@ td {
 
 /* Dispositivos muy pequeños (pantallas de hasta 480px) */
 @media (max-width: 480px) {
-    .
+    
+}

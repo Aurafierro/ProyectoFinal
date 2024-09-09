@@ -1,4 +1,4 @@
-var url = "http://10.192.80.159:8080/api/v1/reserva/";
+var url = "http://localhost:8080/api/v1/reserva/";
 
 //document.getElementById("nombre_completo").addEventListener("keypress", soloLetras);
 //document.getElementById("nombre_espacio").addEventListener("keypress", soloLetras);
@@ -163,6 +163,7 @@ function crearReserva() {
           icon: "success"
         });
         limpiarFormulario();
+        tablaReservas();
       },
       error: function (error) {
         Swal.fire("Error", "Error al guardar, " + error.responseText, "error");
@@ -257,13 +258,6 @@ function validarHora_salida(cuadroNumero) {
 //función de la tabla, la lista de todas las reservas realizadas
 
 function tablaReservas() {
-  //METODO PARA LISTAR LOS CLIENTES
-  //SE CREA LA PETICION AJAX
-  //var capturarFiltro = document.getElementById("inputSearch").value;
-  //var urlLocal=url;
-  //if (capturarFiltro!=""){
-  //  urlLocal+="busquedafiltro/"+capturarFiltro;
-  //}
 
   $.ajax({
     url: url,
@@ -417,13 +411,23 @@ function historial() {
   })
 
 }
+
+//funcion para que el formulario quede vacío de nuevo, después de realizar un registro
 function limpiarFormulario() {
-  document.getElementById("nombre_completo").className = "form-control";
-  document.getElementById("nombre_espacio").className = "form-control";
-  document.getElementById("hora_entrada").className = "form-control";
-  document.getElementById("hora_salida").className = "form-control";
-  document.getElementById("fecha_entrada").className = "form-control";
-  document.getElementById("fecha_salida").className = "form-control";
+  document.getElementById("nombre_completo").className="form-control";
+  document.getElementById("nombre_espacio").className="form-control";
+  document.getElementById("hora_entrada").className="form-control";
+  document.getElementById("hora_salida").className="form-control";
+  document.getElementById("fecha_entrada").className="form-control";
+  document.getElementById("fecha_salida").className="form-control";
+
+
+  document.getElementById("nombre_completo").value = "";
+  document.getElementById("nombre_espacio").value = "";
+  document.getElementById("hora_entrada").value = "";
+  document.getElementById("hora_salida").value = "";
+  document.getElementById("fecha_entrada").value = "";
+  document.getElementById("fecha_salida").value = "";
 }
 
 
@@ -471,10 +475,7 @@ opcionesButtons.forEach(button => {
     };
 });
 
-// Cuando el usuario hace clic en <span> (x), se cierra el modal
-span.onclick = function() {
-    modal.style.display = "none";
-};
+
 
 // Cuando el usuario hace clic en cualquier lugar fuera del modal, se cierra
 window.onclick = function(event) {

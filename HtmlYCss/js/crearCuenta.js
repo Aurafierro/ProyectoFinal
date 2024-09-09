@@ -1,9 +1,9 @@
-var url = "http://192.168.20.181:8080/api/v1/user/";
+var url = "http://localhost:8080/api/v1/user/";
 
 document.getElementById("numero_documento").addEventListener("keypress", soloNumeros);
 document.getElementById("nombre_completo").addEventListener("keypress", soloLetras);
 document.getElementById("telefono").addEventListener("keypress", soloNumeros);
-document.getElementById("correo").addEventListener("keypress", letrasNumerosCaracteres);
+document.getElementById("username").addEventListener("keypress", letrasNumerosCaracteres);
 
 
 function soloLetras(event) {
@@ -126,7 +126,7 @@ function crearCuenta() {
         "numero_documento": document.getElementById("numero_documento").value,
         "nombre_completo": document.getElementById("nombre_completo").value,
         "telefono": document.getElementById("telefono").value,
-        "correo": document.getElementById("correo").value,
+        "username": document.getElementById("username").value,
         "rol": document.getElementById("rol").value
     };
 
@@ -165,7 +165,7 @@ function validarCampos(formData) {
         "numero_documento",
         "nombre_completo",
         "telefono",
-        "correo",
+        "username",
         "rol"
     ];
 
@@ -219,9 +219,9 @@ if (numeroDocumento === '') {
 
     return camposValidos;
 }
-   // Validación de correo
-   if (!correo.includes('@') || !correo.includes('.')) {
-    document.getElementById('error-correo').textContent = 'El correo electrónico no es válido.';
+   // Validación de username
+   if (!username.includes('@') || !username.includes('.')) {
+    document.getElementById('error-username').textContent = 'El username electrónico no es válido.';
     camposValidos = false;
 }
 
@@ -241,7 +241,7 @@ document.querySelectorAll('.form-control, .form-select').forEach(function(el) {
             "numero_documento": document.getElementById("numero_documento").value,
             "nombre_completo": document.getElementById("nombre_completo").value,
             "telefono": document.getElementById("telefono").value,
-            "correo": document.getElementById("correo").value,
+            "username": document.getElementById("username").value,
             "rol": document.getElementById("rol").value
         });
     });
