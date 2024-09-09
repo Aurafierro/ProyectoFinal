@@ -7,8 +7,10 @@ import javax.crypto.SecretKey;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+
+import io.jsonwebtoken.SignatureAlgorithm;
+
 
 @SpringBootApplication
 public class JwtSecurityApplication {

@@ -5,6 +5,8 @@ import java.util.List;
 
 import java.util.Optional;
 
+import com.sena.jwt_security.models.AuthResponse;
+import com.sena.jwt_security.models.loginRequest;
 import com.sena.jwt_security.models.resgisterRequest;
 import com.sena.jwt_security.models.userRegistro;
 
@@ -17,7 +19,10 @@ public interface IUserService {
 	public List<userRegistro> filtroIngresoUser(String numero_documento );
 	public Optional<userRegistro> findOne(String id_user);
 	public int delete (String id_user);
-	public userRegistro register(resgisterRequest request);
+
+	public AuthResponse register(resgisterRequest request);
+
 	public Optional<userRegistro>findByUsername(String username);
+	AuthResponse login(loginRequest request);
 
 }

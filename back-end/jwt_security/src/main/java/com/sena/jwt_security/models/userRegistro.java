@@ -55,7 +55,7 @@ public class userRegistro implements UserDetails{
 	@Column(name="username", nullable= false, length = 100)
 	private String username;
 
-	@Column(name="password", nullable= true, length = 16)
+	@Column(name="password", nullable= true, length = 60)
 	private String password;
 	
 
@@ -69,7 +69,6 @@ public class userRegistro implements UserDetails{
 	
 	
 
-	
 
 	//este metodo es el encargado de indicar los permisos del usuario, se obtine e rol del usuario
 	@Override
@@ -80,9 +79,15 @@ public class userRegistro implements UserDetails{
 	}
 	
 
-	public userRegistro() {
+	
+
+
+	 public userRegistro() {
 		super();
 	}
+
+
+
 
 
 	public userRegistro(String id_user, String tipo_documento, String numero_documento, String nombre_completo,
@@ -100,9 +105,16 @@ public class userRegistro implements UserDetails{
 		this.verificar_contrasena = verificar_contrasena;
 	}
 
+
+
+
+
 	public String getId_user() {
 		return id_user;
 	}
+
+
+
 
 
 	public void setId_user(String id_user) {
@@ -110,9 +122,15 @@ public class userRegistro implements UserDetails{
 	}
 
 
+
+
+
 	public String getTipo_documento() {
 		return tipo_documento;
 	}
+
+
+
 
 
 	public void setTipo_documento(String tipo_documento) {
@@ -120,9 +138,15 @@ public class userRegistro implements UserDetails{
 	}
 
 
+
+
+
 	public String getNumero_documento() {
 		return numero_documento;
 	}
+
+
+
 
 
 	public void setNumero_documento(String numero_documento) {
@@ -130,9 +154,15 @@ public class userRegistro implements UserDetails{
 	}
 
 
+
+
+
 	public String getNombre_completo() {
 		return nombre_completo;
 	}
+
+
+
 
 
 	public void setNombre_completo(String nombre_completo) {
@@ -140,9 +170,15 @@ public class userRegistro implements UserDetails{
 	}
 
 
+
+
+
 	public String getTelefono() {
 		return telefono;
 	}
+
+
+
 
 
 	public void setTelefono(String telefono) {
@@ -150,9 +186,15 @@ public class userRegistro implements UserDetails{
 	}
 
 
+
+
+
 	public rol getRol() {
 		return rol;
 	}
+
+
+
 
 
 	public void setRol(rol rol) {
@@ -160,9 +202,15 @@ public class userRegistro implements UserDetails{
 	}
 
 
+
+
+
 	public boolean isVerificar_contrasena() {
 		return verificar_contrasena;
 	}
+
+
+
 
 
 	public void setVerificar_contrasena(boolean verificar_contrasena) {
@@ -170,9 +218,15 @@ public class userRegistro implements UserDetails{
 	}
 
 
+
+
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
+
+
 
 
 	public void setPassword(String password) {
@@ -180,7 +234,10 @@ public class userRegistro implements UserDetails{
 	}
 
 
-	 @Override
+
+
+
+	@Override
 	    public String getPassword() {
 	        return this.password;
 	    }
@@ -190,25 +247,7 @@ public class userRegistro implements UserDetails{
 	        return this.username;
 	    }
 
-	    @Override
-	    public boolean isAccountNonExpired() {
-	        return true; 
-	    }
 
-	    @Override
-	    public boolean isAccountNonLocked() {
-	        return true; 
-	    }
-
-	    @Override
-	    public boolean isCredentialsNonExpired() {
-	        return true; 
-	    }
-
-	    @Override
-	    public boolean isEnabled() {
-	        return true; 
-	    }
 
 	
 

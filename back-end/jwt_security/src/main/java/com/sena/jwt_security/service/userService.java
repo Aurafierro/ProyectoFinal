@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.sena.jwt_security.interfaceService.IUserService;
 import com.sena.jwt_security.interfaces.Iuser;
+import com.sena.jwt_security.models.AuthResponse;
+import com.sena.jwt_security.models.loginRequest;
 import com.sena.jwt_security.models.resgisterRequest;
 import com.sena.jwt_security.models.userRegistro;
 
@@ -26,14 +28,7 @@ public class userService implements IUserService {
 	@Autowired
 	private Iuser data;
 
-	// se implementa 
 	
-	//private final jwtServices datajwt;
-	
-	// se implementa el administrador de autenticacion
-	//private final AuthenticationManager authManager;
-	// se implementa el servicio de codificaion y 
-	//private final PasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
 	@Override
 	public String save(userRegistro userRegistro) {
 		data.save(userRegistro);
@@ -74,7 +69,7 @@ public class userService implements IUserService {
 	}
 
 	@Override
-	public userRegistro register(resgisterRequest request) {
+	public AuthResponse  register(resgisterRequest request) {
 		
 		return null;
 	}
@@ -84,8 +79,13 @@ public class userService implements IUserService {
 	        return data.findByUsername(username);
 
 	    }
-	//@Override
-	//public authResponse login (loginRequest request) {
+
+
+	@Override
+	public AuthResponse login(loginRequest request) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 		
 	//}
 	
