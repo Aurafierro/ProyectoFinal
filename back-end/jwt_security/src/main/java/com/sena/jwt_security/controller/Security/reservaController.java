@@ -34,6 +34,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.sena.jwt_security.interfaceService.IReservaService;
 import com.sena.jwt_security.models.reserva;
+import com.sena.jwt_security.service.emailService;
 
 @RestController
 @RequestMapping("/api/v1/reserva")
@@ -42,8 +43,9 @@ public class reservaController {
 	
 
 @Autowired
-
 private IReservaService reservaService;
+@Autowired
+private emailService emailService;
 
 @PostMapping("/")
 public ResponseEntity<Object> save(@RequestBody reserva reserva) {
@@ -86,9 +88,14 @@ if (reserva.getFecha_salida().equals("")) {
     return new ResponseEntity<>("La fecha de salida es un campo obligatorio", HttpStatus.BAD_REQUEST);
 }   
         
+if (reserva.getUsername().equals("")) {
+    
+    return new ResponseEntity<>("El correo es un campo obligatorio", HttpStatus.BAD_REQUEST);
+}
         
         
 		reservaService.save(reserva);
+		emailService.enviarNotificacionReservaRealizada(reserva.getUsername(),reserva.getNombre_completo(),reserva.getNombre_espacio(),reserva.getHora_entrada(),reserva.getHora_salida(),reserva.getFecha_entrada(),reserva.getFecha_salida());
 		return new ResponseEntity<>(reserva,HttpStatus.OK);
 	}
 	

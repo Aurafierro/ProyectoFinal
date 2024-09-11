@@ -121,22 +121,26 @@ function numerosYcaracteres(event) {
 
 function crearReserva() {
   let formData = {
+    "nombre_completo": document.getElementById("nombre_completo").value,
     "nombre_espacio": document.getElementById("nombre_espacio").value,
     "hora_entrada": document.getElementById("hora_entrada").value,
     "hora_salida": document.getElementById("hora_salida").value,
     "fecha_entrada": document.getElementById("fecha_entrada").value,
-    "fecha_salida": document.getElementById("fecha_salida").value
+    "fecha_salida": document.getElementById("fecha_salida").value,
+    "username": document.getElementById("username").value
 
 
   };
 
   let camposValidos = true;
   let camposRequeridos = [
+    "nombre_completo",
     "nombre_espacio",
     "hora_entrada",
     "hora_salida",
     "fecha_entrada",
-    "fecha_salida"
+    "fecha_salida",
+    "username"
 
   ];
 

@@ -1,5 +1,7 @@
 package com.sena.jwt_security.service;
 
+import java.sql.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -158,6 +160,58 @@ public class emailService {
 	}
 	
 	
+	public String enviarNotificacionReservaRealizada(String destinatario, String nombre_completo, String nombre_espacio, String hora_entrada, String hora_salida,Date fecha_entrada, Date fecha_salida) {
+
+		try {
+			
+			
+			String asunto="Confirmación de reservación en Asigna Web";
+			String cuerpo=""
+					+"<body style='margin: 0; padding: 0; background-color: #CCCCCC;'>" 
+			      +  "  <div style='background-color: #CCCCCC;'>" 
+			       + "   <div style='background-color: white; max-width: 600px; margin: auto; padding: 20px; box-sizing: border-box;'>" 
+			   +     "       <div style='background-color: #202C4A; padding: 11px; text-align: center;'>" 
+			    +    "           <img style='width: 110px; height: 100px;' src='https://i.postimg.cc/L8hJKpjP/5613765-Recuperado.png' alt='Logo'>" 
+			    +    "       </div>" 
+			      +  "<h1 style='color: #2B56C5; text-align: center; font-size: 24px; margin-top: 20px;'>Hola, " + nombre_completo + " confirmamos tu reservación</h1>"
+
+			    +    "      <p style='color: #000; font-size: 16px; line-height: 1.5; margin-top: 20px;'>" 
+			      +  "          Esperamos que te encuentres bien. Por medio de este correo, queremos confirmar tu reserva realizada en Asigna Web" 
+			    +    "      </p>" 
+			   +     "      <br>"
+			   +" <strong> Detalles de la reserva: </strong>"
+			       +"<br>"
+                   + "          <strong>Realizada por: </strong> " + nombre_completo + " "
+                   +"<br>"
+                   + "          <strong>Espacio reservado: " + nombre_espacio + "</strong>"
+                   +"<br>"
+                   + "          <strong>Hora de entrada: </strong> " + hora_entrada + " "
+                   +"<br>"
+                   + "          <strong>Hora de salida: </strong> " + hora_salida + " "
+                   +"<br>"
+                   + "          <strong>Fecha de entrada: </strong> " + fecha_entrada + " "
+                   +"<br>"
+                   + "          <strong>Fecha de salida: </strong> " + fecha_salida + " "
+                   +"<br>"
+			     +   "       <p style='text-align:center; font-size: 16px;'>¡Te esperamos pronto!</p>" 
+			      +  "       <div style='background-color: #202C4A; margin: auto; padding: 35px;'>" 
+			      +  "       </div>" 
+			      +  "      </div>" 
+			     +   "   </div>" 
+			     +   "</body>";
+			        
+			var retorno=enviarCorreo(destinatario,asunto,cuerpo);
+			if(retorno) {
+				return "Se envió correctamente";
+			}else {
+				return "No se pudo enviar";
+			}
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			return "Error al envíar "+e.getMessage();
+		}
+	}
 	
 	
 	private boolean enviarCorreo(String destinatario,String asunto,String cuerpo) throws MessagingException {

@@ -33,13 +33,18 @@ public class reserva {
 
 	@Column(name="fecha_salida", nullable= true)
 	private Date fecha_salida;
+	
+	@Column(name="username", nullable= false, length = 100)
+	private String username;
 
+	
 	public reserva() {
 		super();
 	}
 
+	
 	public reserva(String id_reserva, String nombre_completo, String nombre_espacio, String hora_entrada,
-			String hora_salida, Date fecha_entrada, Date fecha_salida) {
+			String hora_salida, Date fecha_entrada, Date fecha_salida, String username) {
 		super();
 		this.id_reserva = id_reserva;
 		this.nombre_completo = nombre_completo;
@@ -48,6 +53,7 @@ public class reserva {
 		this.hora_salida = hora_salida;
 		this.fecha_entrada = fecha_entrada;
 		this.fecha_salida = fecha_salida;
+		this.username = username;
 	}
 
 	public String getId_reserva() {
@@ -90,7 +96,6 @@ public class reserva {
 		this.hora_salida = hora_salida;
 	}
 
-	
 	public Date getFecha_entrada() {
 		return fecha_entrada;
 	}
@@ -106,6 +111,17 @@ public class reserva {
 	public void setFecha_salida(Date fecha_salida) {
 		this.fecha_salida = fecha_salida;
 	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+	
 
 	
 }
