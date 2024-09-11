@@ -92,11 +92,15 @@ body {
   border-radius: 20px;
   cursor: pointer;
   font-size: 0.875rem;
+  font-family: 'Candal';
+  margin-left: 10%;
 }
 
 .volver-btn {
-  background-color: #ccc;
-  color: black;
+  background-color: red;
+  color: white;
+  margin-left: 18%;
+  font-family: 'Candal';
 }
 
 .crear-cuenta-btn {

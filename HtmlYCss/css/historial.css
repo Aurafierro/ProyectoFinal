@@ -472,7 +472,7 @@ td button {
 /* Estilos para el contenido del modal */
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
@@ -595,3 +595,49 @@ td button {
     display: block;
 }
 
+#botonActualizarReserva{
+    background-color: #28a745;
+    color: white;
+    font-family: 'Candal';
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-family: 'Candal';
+}
+
+.boton{
+    text-align: center;
+}
+
+.inputCamposEditarReserva{
+    width: 100%;
+    padding: 10px;
+    font-size: 0.875rem;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    box-sizing: border-box;
+    background-color: #D9D9D9;
+}
+
+.titulo{
+    text-align: center;
+}
+
+.contenedorPadre{
+    display: flex;
+    margin-bottom: 5%;
+}
+
+.divIzquierdo{
+    margin-left: 15%;
+}
+
+.divDerecho{
+    margin-right: 15%;
+}
+
+.divTituloModal{
+    margin-top: 5%;
+}

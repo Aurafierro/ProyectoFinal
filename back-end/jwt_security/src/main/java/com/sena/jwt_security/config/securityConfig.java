@@ -33,7 +33,7 @@ public class securityConfig {
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(authRequest -> authRequest
                 .requestMatchers("/api/v1/public/**").permitAll() // Permitir acceso sin autenticación
-                .anyRequest().authenticated() // Requiere autenticación para otras solicitudes
+                .anyRequest().permitAll() // Requiere autenticación para otras solicitudes
             )
             .sessionManagement(sessionManager -> sessionManager
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))

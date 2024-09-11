@@ -206,55 +206,6 @@ function validarNombre_completo(cuadroNumero) {
 
 }
 
-
-//Valida la hora de entrada
-function validarCampos() {
-  var hora_entrada = document.getElementById("hora_entrada");
-  return validarHora_entrada(hora_entrada);
-}
-function validarHora_entrada(cuadroNumero) {
-
-  var valor = cuadroNumero.value;
-  var valido = true;
-  if (valor.length < 5 || valor.length > 36) {
-    valido = false
-  }
-
-  if (valido) {
-    //cuadro de texto cumple
-    cuadroNumero.className = "form-control is-valid";
-  } else {
-    //cuadro de texto no cumple
-    cuadroNumero.className = "form-control is-invalid";
-  }
-  return valido;
-
-}
-
-//Valida la hora de salida
-function validarCampos() {
-  var hora_salida = document.getElementById("hora_salida");
-  return validarHora_salida(hora_salida);
-}
-function validarHora_salida(cuadroNumero) {
-
-  var valor = cuadroNumero.value;
-  var valido = true;
-  if (valor.length < 1 || valor.length > 36) {
-    valido = false
-  }
-
-  if (valido) {
-    //cuadro de texto cumple
-    cuadroNumero.className = "form-control is-valid";
-  } else {
-    //cuadro de texto no cumple
-    cuadroNumero.className = "form-control is-invalid";
-  }
-  return valido;
-
-}
-
 //función de la tabla, la lista de todas las reservas realizadas
 
 function tablaReservas() {
@@ -367,7 +318,7 @@ function historial() {
         botonEditarReserva.value = result[i]["id_reserva"];
         botonEditarReserva.innerHTML = "Editar";
         botonEditarReserva.onclick = function (e) {
-          $('#myModal').modal('show');
+          $('#exampleModal').modal('show');
           consultarReservaID(this.value);
         }
         botonEditarReserva.className = "btnEditar";
@@ -482,44 +433,85 @@ window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
+}
+
+function consultarReservaID(id){
+  //alert(id);
+  $.ajax({
+      url:url+id,
+      type:"GET",
+      success: function(result){
+          document.getElementById("id_reserva").value=result["id_reserva"];
+          document.getElementById("nombre_espacio").value=result["nombre_espacio"];
+          document.getElementById("hora_entrada").value=result["hora_entrada"];
+          document.getElementById("hora_salida").value=result["hora_salida"];
+          document.getElementById("fecha_entrada").value=result["fecha_entrada"];
+          document.getElementById("fecha_salida").value=result["fecha_salida"];
+      }
+  });
+}
+
+function actualizarReserva() { 
+  var id_reserva=document.getElementById("id_reserva").value
+  let formData={
+      "nombre_espacio": document.getElementById("nombre_espacio").value,
+      "hora_entrada": document.getElementById("hora_entrada").value,
+      "hora_salida": document.getElementById("hora_salida").value,
+      "fecha_entrada": document.getElementById("fecha_entrada").value,
+      "fecha_salida": document.getElementById("fecha_salida").value
 };
 
-function actualizarReserva() {
-  var id_reserva = document.getElementById("id_reserva").value;
-  let formData = {
-    "nombre_completo": document.getElementById("nombre_completo").value,
-    "nombre_espacio": document.getElementById("nombre_espacio").value,
-    "hora_entrada": document.getElementById("hora_entrada").value,
-    "hora_salida": document.getElementById("hora_salida").value,
-    "fecha_entrada": document.getElementById("fecha_entrada").value,
-    "fecha_salida": document.getElementById("fecha_salida").value
-  };
-
-  if (validarCampos()) {
-    $.ajax({
-      url: url + id_reserva,
+if (validarCampos()) {
+  $.ajax({
+      url:url+id_reserva,
       type: "PUT",
       data: formData,
+    
+      
       success: function(result) {
-        Swal.fire({
-          title: "¡Excelente!",
-          text: "Se guardó correctamente",
-          icon: "success"
-        });
-        // Cierra el modal
-        document.getElementById("modalEditarReserva").style.display = "none";
-        // Puedes hacer algo adicional como recargar la lista de reservas
-        listarReservas(); // Asumiendo que tienes una función para listar reservas
+        
+          // Manejar la respuesta exitosa según necesites
+          Swal.fire({
+              title: "¡Excelente!",
+              text: "Se guardó correctamente",
+              icon: "success"
+            });
+          // Puedes hacer algo adicional como recargar la lista de libros
+          historial();
       },
       error: function(error) {
+          // Manejar el error de la petición
+          Swal.fire({
+              title: "¡Error!",
+              text: "No se guardó",
+              icon: "error"
+            });
+      },
+      error: function (error) {
         Swal.fire("Error", "Error al guardar, " + error.responseText, "error");
-      }
-    });
+    }
+  });
   } else {
-    Swal.fire({
+  Swal.fire({
       title: "¡Error!",
       text: "Llene todos los campos correctamente",
       icon: "error"
     });
   }
+  function validarCampos() {
+    // Obtener los valores de los campos
+    var nombre_espacio = document.getElementById("nombre_espacio").value;
+    var hora_entrada = document.getElementById("hora_entrada").value;
+    var hora_salida = document.getElementById("hora_salida").value;
+    var fecha_entrada = document.getElementById("fecha_entrada").value;
+    var fecha_salida = document.getElementById("fecha_salida").value
+  
+    // Verificar si algún campo está vacío
+    if (nombre_espacio === '' || hora_entrada === '' || hora_salida === '' || fecha_entrada === '' || fecha_salida === '') {
+      return false; // Al menos un campo está vacío
+    } else {
+      return true; // Todos los campos están llenos
+    }
+  }
+  
 }

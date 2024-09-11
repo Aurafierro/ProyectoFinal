@@ -40,7 +40,7 @@ public class userRegistro implements UserDetails{
 	@Column(name="id_user", nullable= false, length = 36)
 	private String id_user;
 
-	@Column(name="tipo_documento", nullable= false, length = 2)
+	@Column(name="tipo_documento", nullable= false, length = 30)
 	private String tipo_documento;
 
 	@Column(name="numero_documento", nullable= false, length = 11)

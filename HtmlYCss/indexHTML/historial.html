@@ -31,11 +31,13 @@
             </div>
             <span>Paula Bustos</span>
         </div>
-         
+
         <nav>
             <ul>
-                <li><a href="../indexHTML/miPerfil.html" class="active"><i class="fas fa-user-edit"></i>Mi perfil</a></li>
-                <li><a href="../indexHTML/crearReserva.html" class="active"><i class="fas fa-key"></i>Reservar espacios</a></li>
+                <li><a href="../indexHTML/miPerfil.html" class="active"><i class="fas fa-user-edit"></i>Mi perfil</a>
+                </li>
+                <li><a href="../indexHTML/crearReserva.html" class="active"><i class="fas fa-key"></i>Reservar
+                        espacios</a></li>
                 <li><a href="../indexHTML/historial.html"><i class="fas fa-history"></i>Historial</a></li>
             </ul>
         </nav>
@@ -70,31 +72,57 @@
     </div>
 
     <!-- Modal -->
-    <div id="myModal" class="modal hidden">
-        <div class="modal-content">
-            <h1 id="titulo">Editar reservación</h1>
-            
-            <div class="modal-body">
-                
-                <div class="left-column">
-                    <input id="id_reserva" type="hidden">
-                    <label for="nombreEspacio">Nombre de espacio:</label>
-                    <input type="text" id="nombre_espacio">
-                    <label for="horaEntrada">Hora de entrada:</label>
-                    <input type="time" id="hora_entrada">
-                    <label for="fechaEntrada">Fecha de entrada:</label>
-                    <input type="date" id="fecha_entrada">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header divTituloModal">
+                    <h1 class="modal-title fs-5 titulo" id="exampleModalLabel">Editar reservación</h1>
                 </div>
-                <div class="right-column">
-                    <label for="horaSalida" id="titulohoraSalida">Hora de salida:</label>
-                    <input type="time" id="hora_salida">
-                    <label for="fechaSalida">Fecha de salida:</label>
-                    <input type="date" id="fecha_salida">
+                <br>
+                <div class="modal-body contenedorFormModal">
+                    <div class="row contenedorPadre">
+                        <input id="id_reserva" type="hidden">
+                        <div class="divIzquierdo">
+                            <div class="col col-xl-6 col-12">
+                                <b><label for="">Nombre espacio:</label></b>
+                                <input type="text" id="nombre_espacio" class="form-control inputCamposEditarReserva" />
+                            </div>
+                            <br>
+                            <div class="col col-xl-6 col-12">
+                                <b><label for="">Hora salida:</label></b>
+                                <input type="time" id="hora_salida" step="1"
+                                    class="form-control inputCamposEditarReserva" />
+                            </div>
+                            <br>
+                            <div class="col col-xl-6 col-12">
+                                <b><label for="">Fecha salida:</label></b>
+                                <input type="date" id="fecha_salida" step="1"
+                                    class="form-control inputCamposEditarReserva" />
+                            </div>
+                        </div>
+                        <div class="divDerecho">
+                            <div class="col col-xl-6 col-12">
+                                <b><label for="">Hora entrada:</label></b>
+                                <input type="time" id="hora_entrada" class="form-control inputCamposEditarReserva" />
+                            </div>
+                            <br>
+                            <br>
+                            <div class="col col-xl-6 col-12">
+                                <b><label for="">Fecha entrada:</label></b>
+                                <input type="date" id="fecha_entrada" class="form-control inputCamposEditarReserva" />
+                            </div>
+                            <br>
+                            <br>
+                            <div class="row boton">
+                                <button type="button" id="botonActualizarReserva"
+                                    onclick="actualizarReserva();">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="modal-buttons">
-                <button class="save-btn" onclick="actualizarReserva();">Guardar</button>
-                <a href="../indexHTML/historial.html"button class="delete-btn" >Cerrar</button></a>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
@@ -129,4 +157,5 @@
         }
     </script>
 </body>
+
 </html>

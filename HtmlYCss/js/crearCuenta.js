@@ -220,7 +220,7 @@ if (numeroDocumento === '') {
     return camposValidos;
 }
    // Validación de username
-   if (!username.includes('@') || !username.includes('.')) {
+  if (!username.includes('@') || !username.includes('.')) {
     document.getElementById('error-username').textContent = 'El username electrónico no es válido.';
     camposValidos = false;
 }
