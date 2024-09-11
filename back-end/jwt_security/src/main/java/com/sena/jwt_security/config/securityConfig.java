@@ -1,49 +1,41 @@
-//package com.sena.jwt_security.config;
 package com.sena.jwt_security.config;
-
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import lombok.RequiredArgsConstructor;
+import com.sena.jwt_security.jwt.jwtAuthenticationFilter;
 
-
-
-
-
-@Configuration //Se indica que es un archivo de configuración 
-@EnableWebSecurity  //configurar la seguridad del proyecto
-@RequiredArgsConstructor
-
+@Configuration
+@EnableWebSecurity
 public class securityConfig {
-	//el filterchein =es el encargado de filtrar las peticiones e indicar el acceso a los end point
-	
-	//versión basica con el formulario login
-	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http)throws Exception{
-		return http
-		 .csrf(csrf->csrf.disable())
-		 .authorizeHttpRequests(
-				 authRequest->authRequest
-				 /*
-				  * Todas las peticiones que comiencen por /api/v1/public
-				  * van hacer permitidas sin restricción de usuario
-				  */
-				 .requestMatchers("/api/v1/public/**").permitAll()
-				 .anyRequest().permitAll()//authenticated()
-				// . formLogin(withDefaults())
-				 ).build();
-	}
 
-	
+    private final jwtAuthenticationFilter jwtAuthenticationFilter;
+    private final AuthenticationProvider authProvider;
 
-	  @Bean
-	    public PasswordEncoder passwordEncoder() {
-	        return new BCryptPasswordEncoder();
-	    }
+    public securityConfig(jwtAuthenticationFilter jwtAuthenticationFilter, AuthenticationProvider authProvider) {
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+        this.authProvider = authProvider;
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http
+            .csrf(csrf -> csrf.disable())
+            .authorizeHttpRequests(authRequest -> authRequest
+                .requestMatchers("/api/v1/public/**").permitAll()
+                .anyRequest().authenticated()
+            )
+            .sessionManagement(sessionManager -> sessionManager
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .authenticationProvider(authProvider)
+            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+            .build();
+    }
 }

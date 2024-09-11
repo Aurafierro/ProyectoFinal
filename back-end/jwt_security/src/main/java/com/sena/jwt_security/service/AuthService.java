@@ -13,6 +13,7 @@ import com.sena.jwt_security.models.userRegistro;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class AuthService implements IUserService {
@@ -36,23 +37,48 @@ public class AuthService implements IUserService {
         userData.setNombre_completo(request.getNombre_completo());
         userData.setTelefono(request.getTelefono());
         userData.setUsername(request.getUsername());
-        userData.setPassword(passwordEncoder.encode(request.getPassword(/* metodo de generacion de contraseña*/)));
+        userData.setPassword(passwordEncoder.encode(codigoAleatorio()));
+
         userData.setRol(request.getRol());
 
         
         
         data.save(userData);
-
-        // Generar el token JWT
-        String token = jwtService.getToken(userData);
-
-        // Devolver la respuesta con el token
-        return new AuthResponse(token);
+      
+        return new AuthResponse.builder()
+                .token(jwtService.getToken(userData))
+                .build();
     }
 
+    private static int numeroAleatorioEnRango(int minimo, int maximo) {
+    	
+    	//nextInt regresa en rango pero con limite superior exclusivo.
+    	
+    	return  ThreadLocalRandom.current().nextInt(minimo, maximo +1);
+    	
+    }
+
+    private String codigoAleatorio() {
+    	int longitud =10;
+    	
+    	String banco ="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@$%#";
+    	
+    	//CADENA EN DONDE  SE VA IR AGREGANDO UN CÁCTER ALEATORIO
+    	
+    	String cadena ="";
+    	for (int x = 0; x < longitud; x++) {
+    		int indiceAleatorio =numeroAleatorioEnRango(0, banco.length()-1);
+    		char caracterAleatorio = banco.charAt(indiceAleatorio);
+    		cadena += caracterAleatorio;
+    	}
+    	
+    	return cadena;
+    }
+    
+    
+    
     @Override
     public AuthResponse login(loginRequest request) {
-        // Implementa la lógica de inicio de sesión aquí
         return new AuthResponse();
     }
 

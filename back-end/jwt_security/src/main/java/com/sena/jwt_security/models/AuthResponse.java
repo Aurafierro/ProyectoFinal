@@ -14,7 +14,6 @@ public class AuthResponse {
         super();
         this.token = token;
     }
-    
 
     // Getter para el token
     public String getToken() {
@@ -32,5 +31,19 @@ public class AuthResponse {
         return "AuthResponse{" +
                 "token='" + token + '\'' +
                 '}';
+    }
+
+    // Builder para AuthResponse
+    public static class builder {
+        private String token;
+
+        public builder token(String token) {
+            this.token = token;
+            return this;
+        }
+
+        public AuthResponse build() {
+            return new AuthResponse(this.token);
+        }
     }
 }
