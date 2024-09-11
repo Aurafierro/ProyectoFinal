@@ -129,7 +129,7 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	   
 	
 	@PutMapping("/{id_user}")
-	public ResponseEntity<Object> update(@PathVariable String id_user, @ModelAttribute("userRegistro") userRegistro userUpdate) {
+	public ResponseEntity<Object> update(@PathVariable String id_user, @RequestBody userRegistro userUpdate) {
 	   
 		
 		var user = userService.findOne(id_user).get();

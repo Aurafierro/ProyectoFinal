@@ -641,3 +641,19 @@ td button {
 .divTituloModal{
     margin-top: 5%;
 }
+
+/* Select del nombre espacio*/
+.SELECTnombre_espacio {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 50px;
+    background-color: #D9D9D9;
+    width: 100%;
+    padding: 10px;
+    font-size: 0.875rem;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    box-sizing: border-box;
+    background-color: #D9D9D9;
+}

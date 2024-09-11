@@ -121,7 +121,6 @@ function numerosYcaracteres(event) {
 
 function crearReserva() {
   let formData = {
-    "nombre_completo": document.getElementById("nombre_completo").value,
     "nombre_espacio": document.getElementById("nombre_espacio").value,
     "hora_entrada": document.getElementById("hora_entrada").value,
     "hora_salida": document.getElementById("hora_salida").value,
@@ -133,7 +132,6 @@ function crearReserva() {
 
   let camposValidos = true;
   let camposRequeridos = [
-    "nombre_completo",
     "nombre_espacio",
     "hora_entrada",
     "hora_salida",
@@ -177,32 +175,6 @@ function crearReserva() {
       icon: "error"
     });
   }
-
-}
-
-//se ejecuta la peticion
-//Validar nombre completo
-
-function validarCampos() {
-  var nombre_completo = document.getElementById("nombre_completo");
-  return validarNombre_completo(nombre_completo);
-}
-function validarNombre_completo(cuadroNumero) {
-
-  var valor = cuadroNumero.value;
-  var valido = true;
-  if (valor.length < 3 || valor.length > 36) {
-    valido = false
-  }
-
-  if (valido) {
-    //cuadro de texto cumple
-    cuadroNumero.className = "form-control is-valid";
-  } else {
-    //cuadro de texto no cumple
-    cuadroNumero.className = "form-control is-invalid";
-  }
-  return valido;
 
 }
 
@@ -465,7 +437,8 @@ if (validarCampos()) {
   $.ajax({
       url:url+id_reserva,
       type: "PUT",
-      data: formData,
+      contentType: "application/json",
+            data: JSON.stringify(formData),
     
       
       success: function(result) {

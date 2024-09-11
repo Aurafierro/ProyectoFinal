@@ -189,16 +189,12 @@ if (reserva.getFecha_salida().equals("")) {
 	   
 	
 	@PutMapping("/{id_reserva}")
-	public ResponseEntity<Object> update(@RequestBody reserva reservaUpdate,@PathVariable String id_reserva) {
+	public ResponseEntity<Object> update(@PathVariable String id_reserva,@RequestBody reserva reservaUpdate) {
 	   
 		
 		var reserva = reservaService.findOne(id_reserva).get();
 		if (reserva != null) {
-			
-			
-
-
-			reserva.setNombre_completo(reservaUpdate.getNombre_completo());
+		
 			reserva.setNombre_espacio(reservaUpdate.getNombre_espacio());
 			reserva.setHora_entrada(reservaUpdate.getHora_entrada());
 			reserva.setHora_salida(reservaUpdate.getHora_salida());
