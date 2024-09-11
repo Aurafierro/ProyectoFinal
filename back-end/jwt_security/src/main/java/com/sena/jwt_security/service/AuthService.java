@@ -1,6 +1,7 @@
 package com.sena.jwt_security.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,11 @@ import com.sena.jwt_security.models.AuthResponse;
 import com.sena.jwt_security.models.loginRequest;
 import com.sena.jwt_security.models.resgisterRequest;
 import com.sena.jwt_security.models.userRegistro;
+import org.springframework.security.authentication.AuthenticationManager;
+
+import org.springframework.security.core.Authentication;
+
+
 
 import java.util.List;
 import java.util.Optional;
@@ -21,12 +27,14 @@ public class AuthService implements IUserService {
     private final Iuser data;
     private final jwtService jwtService;
     private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
 
-    @Autowired
-    public AuthService(Iuser data, jwtService jwtService, PasswordEncoder passwordEncoder) {
+  
+    public AuthService(Iuser data, jwtService jwtService, PasswordEncoder passwordEncoder,AuthenticationManager authenticationManager) {
         this.data = data;
         this.jwtService = jwtService;
         this.passwordEncoder = passwordEncoder;
+        this.authenticationManager = authenticationManager;
     }
 
     @Override
@@ -50,6 +58,26 @@ public class AuthService implements IUserService {
                 .build();
     }
 
+    public AuthResponse loginRequest(loginRequest request) {
+       
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getUsername(), 
+                        request.getPassword() 
+                )
+        );
+
+
+        userRegistro user = findByUsername(request.getUsername()).orElseThrow();
+      
+        String token = jwtService.getToken(user);
+
+        return AuthResponse.builder()
+                .token(token)
+                .build();
+    }
+
+    
     private static int numeroAleatorioEnRango(int minimo, int maximo) {
     	
     	//nextInt regresa en rango pero con limite superior exclusivo.

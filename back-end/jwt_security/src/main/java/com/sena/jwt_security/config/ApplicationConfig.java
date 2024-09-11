@@ -14,7 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.sena.jwt_security.interfaces.Iuser;
 
-@Configuration
+@Configuration // Añadir esta anotación
 public class ApplicationConfig {
 
     private final Iuser userRegistro;

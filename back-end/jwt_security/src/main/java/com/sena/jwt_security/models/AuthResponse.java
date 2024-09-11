@@ -4,28 +4,28 @@ public class AuthResponse {
 
     private String token;
 
-    // Constructor sin argumentos
+ 
     public AuthResponse() {
         super();
     }
 
-    // Constructor con el token
+   
     public AuthResponse(String token) {
         super();
         this.token = token;
     }
 
-    // Getter para el token
+  
     public String getToken() {
         return token;
     }
 
-    // Setter para el token
+ 
     public void setToken(String token) {
         this.token = token;
     }
 
-    // Método toString opcional para representar el objeto como una cadena
+   
     @Override
     public String toString() {
         return "AuthResponse{" +
@@ -46,4 +46,9 @@ public class AuthResponse {
             return new AuthResponse(this.token);
         }
     }
+
+	public static builder builder() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
