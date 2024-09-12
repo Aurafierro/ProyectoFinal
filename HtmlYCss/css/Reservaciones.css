@@ -154,6 +154,7 @@ nav ul li a {
 .cotenedorPadre {
     display: flex;
     margin-top: 2%;
+    padding-left: 15%;
     width: 100%;
 }
 
@@ -175,7 +176,6 @@ nav ul li a {
 /* Formulario */
 .form {
     width: 20%;
-    height: 100%;
     background-color: #202C4A;
     color: white;
     border-radius: 50px;
@@ -184,7 +184,8 @@ nav ul li a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-left: 15%;
+    /* margin-left: 15%; */
+    position: sticky;
 }
 
 .form label {
@@ -372,7 +373,7 @@ table {
     border-collapse: collapse;
     background-color: #f4f5f7;
     box-sizing: border-box;
-    margin-left: 10%;
+    /* margin-left: 100%; */
 }
 
 th {
