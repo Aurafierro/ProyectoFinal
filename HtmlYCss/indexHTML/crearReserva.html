@@ -37,45 +37,42 @@
         </aside>
         <main class="contenedorContenido">
             <div class="contenedorTitulo">
-                <center><span class="tituloReservas">Reservaciones</span></center>
+                <center><span class="tituloReservas">Reservar espacio</span></center>
             </div>
 
             <div class="cotenedorPadre">
-                <div>
-                    <div class="form">
-                        <label for="nombre_completo">Nombre completo:</label>
-                        <input type="text" id="nombre_completo" name="nombre_completo"
-                            onfocusout="validarNombre_completo(this);">
+                <div class="form">
+                    <label for="nombre_completo">Nombre completo:</label>
+                    <input type="text" id="nombre_completo" name="nombre_completo"
+                        onfocusout="validarNombre_completo(this);">
 
-                        <label for="nombre_espacio">Nombre espacio:</label>
-                        <select id="nombre_espacio" name="nombre_espacio" class="form-select">
-                            <option value="" selected disabled>Selecciona una opción</option>
-                            <option value="cancha">Cancha</option>
-                            <option value="gimnasio">Gimnasio</option>
-                            <option value="auditorio">Auditorio</option>
-                            <option value="biblioteca">Biblioteca</option>
-                        </select>
+                    <label for="nombre_espacio">Nombre espacio:</label>
+                    <select id="nombre_espacio" name="nombre_espacio" class="form-select">
+                        <option value="" selected disabled>Selecciona una opción</option>
+                        <option value="cancha">Cancha</option>
+                        <option value="gimnasio">Gimnasio</option>
+                        <option value="auditorio">Auditorio</option>
+                        <option value="biblioteca">Biblioteca</option>
+                    </select>
 
-                        <label for="hora_entrada">Hora de Entrada:</label>
-                        <input type="time" id="hora_entrada" name="hora_entrada"
-                            onfocusout="validarHora_entrada(this);">
+                    <label for="hora_entrada">Hora de Entrada:</label>
+                    <input type="time" id="hora_entrada" name="hora_entrada" onfocusout="validarHora_entrada(this);">
 
-                        <label for="hora_salida">Hora de Salida:</label>
-                        <input type="time" id="hora_salida" name="hora_salida" onfocusout="validarHora_salida(this);">
+                    <label for="hora_salida">Hora de Salida:</label>
+                    <input type="time" id="hora_salida" name="hora_salida" onfocusout="validarHora_salida(this);">
 
-                        <label for="fecha_entrada">Fecha entrada:</label>
-                        <input type="date" id="fecha_entrada" name="fecha_entrada">
+                    <label for="fecha_entrada">Fecha entrada:</label>
+                    <input type="date" id="fecha_entrada" name="fecha_entrada">
 
-                        <label for="fecha_salida">Fecha salida:</label>
-                        <input type="date" id="fecha_salida" name="fecha_salida">
+                    <label for="fecha_salida">Fecha salida:</label>
+                    <input type="date" id="fecha_salida" name="fecha_salida">
 
-                        <label for="username">Correo:</label>
-                        <input type="text" id="username" name="username">
+                    <label for="username">Correo:</label>
+                    <input type="text" id="username" name="username">
 
-                        <button id="reservar" onclick="crearReserva();">Reservar</button>
-                    </div>
-
+                    <button id="reservar" onclick="crearReserva();">Reservar</button>
                 </div>
+
                 <div>
                     <div class="table-wrapper">
                         <div class="table-container">
@@ -96,7 +93,8 @@
                     </div>
                 </div>
             </div>
-        </main>
+    </div>
+    </main>
     </div>
     <footer class="footer">
         <div class="footer-container">

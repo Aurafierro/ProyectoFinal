@@ -347,6 +347,7 @@ function limpiarFormulario() {
   document.getElementById("hora_salida").className="form-control";
   document.getElementById("fecha_entrada").className="form-control";
   document.getElementById("fecha_salida").className="form-control";
+  document.getElementById("username").className="form-control";
 
 
   document.getElementById("nombre_completo").value = "";
@@ -355,6 +356,7 @@ function limpiarFormulario() {
   document.getElementById("hora_salida").value = "";
   document.getElementById("fecha_entrada").value = "";
   document.getElementById("fecha_salida").value = "";
+  document.getElementById("username").value = "";
 }
 
 
