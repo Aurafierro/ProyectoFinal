@@ -17,8 +17,9 @@ body {
     flex-direction: column;
     min-height: 100vh;
     background-color: #EDEDED;
-    overflow-x: hidden;
+    overflow: hidden;
     transition: margin-left 0.3s;
+
 }
 
 .main-content {
@@ -159,13 +160,13 @@ nav ul li a {
 
 /* Título de reservas */
 .tituloReservas {
-    color: #000000;
-    font-size: 300%;
+    color: #202C4A;
+    font-size: 150%;
 }
 
 .contenedorTitulo {
     width: 100%;
-    margin-top: 2%;
+    margin-top: 1%;
 }
 
 .contenedorContenido {
@@ -184,14 +185,14 @@ nav ul li a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 10%;
-    margin-left: 165%;
+    margin-top: 2%;
+    margin-left: 60%;
 }
 
 .form label {
     width: 83%;
     margin-top: 10px;
-    font-size: 140%;
+    font-size: 100%;
 }
 
 .form input {
@@ -204,15 +205,15 @@ nav ul li a {
 }
 
 .form button {
-    padding: 15px 30px;
-    background-color: #EDEDED;
+    padding: 10px 20px;
     border: none;
-    border-radius: 30px;
-    color: #000000;
+    border-radius: 20px;
     cursor: pointer;
-    margin-top: 25px;
-    font-size: 1em;
+    font-size: 0.875rem;
     font-family: 'Candal';
+    background-color: #28a745;
+    color: white;
+    margin-bottom: 2%;
 }
 
 /* Select */
@@ -222,42 +223,6 @@ nav ul li a {
     border: none;
     border-radius: 50px;
     font-weight: bold;
-}
-
-/* Tabla */
-.tabla {
-    margin-left: 34%;
-    color: black;
-}
-
-.table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.campoTitulosTabla {
-    background-color: #8a8a8a;
-    text-align: left;
-    color: #ffffff;
-}
-
-.campoTabla {
-    padding: 20px;
-    border: 1px solid #ffffff;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #8a8a8a;
-}
-
-option {
-    font-weight: bold;
-    font-family: 'Candal';
-}
-
-td {
-    color: rgb(0, 0, 0);
-    padding: 1%;
 }
 
 /* Menú hamburguesa */
@@ -395,4 +360,28 @@ td {
 /* Dispositivos muy pequeños (pantallas de hasta 480px) */
 @media (max-width: 480px) {
     
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #f4f5f7;
+    box-sizing: border-box;
+}
+
+.table-container {
+    padding: 30px;
+    flex: 1;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+table {
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    unicode-bidi: isolate;
+    border-spacing: 2px;
+    border-color: gray;
 }

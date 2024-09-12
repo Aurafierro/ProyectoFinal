@@ -45,7 +45,8 @@ public class AuthService implements IUserService {
         userData.setNombre_completo(request.getNombre_completo());
         userData.setTelefono(request.getTelefono());
         userData.setUsername(request.getUsername());
-        userData.setPassword(passwordEncoder.encode(codigoAleatorio()));
+        var contrasena=codigoAleatorio();
+        userData.setPassword(passwordEncoder.encode(contrasena));
 
         userData.setRol(request.getRol());
 
