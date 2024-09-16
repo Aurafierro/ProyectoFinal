@@ -58,25 +58,23 @@ public class AuthService implements IUserService {
                 .token(jwtService.getToken(userData))
                 .build();
     }
-
     public AuthResponse loginRequest(loginRequest request) {
-       
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getUsername(), 
-                        request.getPassword() 
-                )
+            new UsernamePasswordAuthenticationToken(
+                request.getUsername(), 
+                request.getPassword()
+            )
         );
 
-
         userRegistro user = findByUsername(request.getUsername()).orElseThrow();
-      
+
         String token = jwtService.getToken(user);
 
         return AuthResponse.builder()
                 .token(token)
                 .build();
     }
+
 
     
     private static int numeroAleatorioEnRango(int minimo, int maximo) {
@@ -108,8 +106,27 @@ public class AuthService implements IUserService {
     
     @Override
     public AuthResponse login(loginRequest request) {
-        return new AuthResponse();
+        // Autenticar al usuario con el AuthenticationManager
+        Authentication authentication = authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(
+                request.getUsername(),
+                request.getPassword()
+            )
+        );
+
+        // Buscar el usuario autenticado en la base de datos
+        userRegistro user = findByUsername(request.getUsername())
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        // Generar el token JWT
+        String token = jwtService.getToken(user);
+
+        // Retornar la respuesta con el token
+        return AuthResponse.builder()
+                .token(token)
+                .build();
     }
+
 
     @Override
     public String save(userRegistro userRegistro) {

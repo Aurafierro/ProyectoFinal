@@ -47,8 +47,8 @@ public class AuthResponse {
         }
     }
 
-	public static builder builder() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public static builder builder() {
+        return new builder();
+    }
+
 }
