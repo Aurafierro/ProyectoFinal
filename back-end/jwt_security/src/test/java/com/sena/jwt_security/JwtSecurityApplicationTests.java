@@ -20,11 +20,11 @@ import com.sena.jwt_security.JwtSecurityApplication;
 
 import static org.mockito.Mockito.*;
 
-@SpringBootTest(classes = JwtSecurityApplication.class) 
+@SpringBootTest(classes = JwtSecurityApplication.class)
 class JwtSecurityApplicationTests {
 
     @MockBean
-    private userService data; 
+    private userService data;
 
     @Test
     void testuserRegistro() {
@@ -68,7 +68,7 @@ class JwtSecurityApplicationTests {
        
         List<userRegistro> listaSimulada = new ArrayList<>();
         listaSimulada.add(user1);
-      
+     
         String filtro = "John";
         when(data.filtroIngresoUser(filtro)).thenReturn(listaSimulada);
 

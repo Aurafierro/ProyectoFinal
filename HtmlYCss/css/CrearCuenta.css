@@ -82,25 +82,25 @@ body {
 .button-container {
   margin-top: 20px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center; /* Centra los botones */
+  gap: 20px; /* Espacio entre los botones */
 }
 
 .volver-btn,
 .crear-cuenta-btn {
-  padding: 10px 20px;
+  padding: 12px 20px;
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-family: 'Candal';
-  margin-left: 10%;
+  
+  max-width: 300px; /* Limita el ancho máximo de los botones */
 }
 
 .volver-btn {
   background-color: red;
   color: white;
-  margin-left: 18%;
-  font-family: 'Candal';
 }
 
 .crear-cuenta-btn {
@@ -143,6 +143,20 @@ body {
   .form-container {
     border-radius: 0 0 15px 15px;
   }
+  
+  .footer {
+    margin-top: 40px;
+  }
+
+  .button-container {
+    flex-wrap: wrap;
+  }
+
+  .volver-btn, .crear-cuenta-btn {
+    width: 45%; /* Ajusta el ancho en pantallas medianas */
+    font-size: 1rem;
+  }
+
 }
 
 @media screen and (max-width: 480px) {
@@ -159,12 +173,14 @@ body {
   .volver-btn, 
   .crear-cuenta-btn {
     font-size: 0.75rem;
-    padding: 8px 15px;
+    padding: 10px 15px;
+    width: 100%; 
   }
 
   .button-container {
     flex-direction: column;
     gap: 10px;
+    align-items: center; /* Centra los botones en la columna */
   }
 
   .image-container img {

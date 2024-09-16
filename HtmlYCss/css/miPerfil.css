@@ -9,13 +9,38 @@ body {
    display: grid;
    min-height: 100vh;
 }
-header {
-    background-color: #202C4A;
-    color: white;
+.header {
+    width: 100%;
+    background-color: #1a3e68;
+    color: var(--white);
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    position: relative; 
+    align-items: center;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.header .menu-icon {
+    font-size: 30px;
+    margin-right: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.header .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-grow: 1;
+}
+
+
+.header .logout-link {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    margin-right: 20px;
 }
 .header-container {
     display: flex;
@@ -44,10 +69,10 @@ h1 {
     margin-left: auto; 
 }
 header img {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    max-height: 50%;
+    width: 100%; /* Asegura que las imágenes ocupen el 100% del ancho de su contenedor */
+    height: auto; /* Mantiene la proporción de aspecto original */
+    max-width: 100px; /* Limita el tamaño máximo para que no se vean demasiado grandes */
+    object-fit: cover; /* Asegura que la imagen cubra el contenedor sin distorsionar */
 }
 .sidebar {
     display: flex;
@@ -149,7 +174,7 @@ header img {
     flex-direction: column;
     align-items: center; 
     background-color: #EDEDED; 
-    padding: 30px 60px;
+    padding: 30px 90px;
     font-size: 14px; 
     border-radius: 40px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
@@ -174,7 +199,7 @@ header img {
 }
 
 .profile-details input, .profile-details select {
-    width: 100%;
+    width: 105%;
     padding: 7px;
     border: 1px solid #c0c0c0;
     border-radius: 12px;
@@ -196,26 +221,23 @@ header img {
     margin: 0 auto; 
     margin-top: 3%;
 }
+
+/* Cambiar contraseña */
 .profile-containertres {
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #EDEDED;
-    padding: 10px 10px;
-    font-size: 14px;
+    padding: 10px;
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 40%; 
-
-    margin-top: 4%;
-    padding-bottom: 4%;
-    padding-top: 4%;
-    margin-left: 30%;
+    width: 40%;
+    margin: 4% auto; /* Centramos el contenedor horizontalmente */
 }
 
 .modifi-contraseña h2 {
     margin: 0;
-    font-size: 20px;
+    font-size: 30px;
     color: #000000;
     text-align: center;
 }
@@ -238,21 +260,22 @@ header img {
     font-size: 14px;
     color: #000000;
     text-align: center;
-    margin: 0 auto; 
 }
 
 .profile-containertres input {
-    width: 50%;
+    width: 100%; /* Ajustamos el ancho para que sea responsive */
+    max-width: 400px; /* Máximo ancho para el campo de entrada */
     padding: 7px;
     border: 1px solid #c0c0c0;
     border-radius: 12px;
     background-color: #979292;
     font-family: 'Candal', Arial, sans-serif;
-    margin: 0 auto; 
+    margin: 0 auto; /* Centramos los inputs */
 }
 
-.profile-containertres button {
-    width: 147px; 
+.button-contrasena {
+    width: 100%; /* Ajustamos el ancho para que sea responsive */
+    max-width: 140px; /* Máximo ancho para el botón */
     padding: 9px;
     font-size: 16px;
     color: white;
@@ -260,12 +283,55 @@ header img {
     border: none;
     border-radius: 20px;
     font-family: 'Candal', Arial, sans-serif;
-    margin: 0 auto; 
+    margin: 0 auto;
+    display: block; /* Aseguramos que el botón se centre correctamente */
+}
+
+/* Estilos Responsive */
+@media (max-width: 1280px) {
+    .profile-containertres {
+        max-width: 80%;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-containertres {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-containertres {
+        max-width: 95%;
+    }
+
+    .profile-containertres input {
+        padding: 5px;
+    }
+
+    .button-contrasena {
+        padding: 8px;
+    }
+    @media (max-width: 375px) {
+        .profile-containertres {
+    width: 260px;
+        }
+    
+        .profile-containertres input {
+            padding: 5px;
+            width: 200px;
+        }
+    
+        .button-contrasena {
+            padding: 8px;
+        }
+    }
 }
 
 
 
-/*  DESACTIVAR CUENTA*/
+
+/* DESACTIVAR CUENTA */
 .profile-container-desactivar {
     display: flex;
     flex-direction: column;
@@ -311,92 +377,60 @@ header img {
     transition: background-color 0.3s ease; 
 }
 
-
-
-
-@media (max-width: 1024px) {
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px 20px;
-    }
-    .header-container {
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-    }
-    .menu-icon {
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
-    header img {
-        position: static;
-        transform: none;
-        margin: 10px 0;
-        max-height: 30%;
-    }
-    h1 {
-        font-size: 14px;
-    }
-    .logout-link {
-        margin-left: 0;
-        margin-top: 10px;
-    }
-    .sidebar {
-        flex-direction: column;
-        padding: 15px;
-    }
-    .sidebar-item {
-        margin-right: 0;
-        margin-bottom: 10px;
-        font-size: 14px;
-    }
-    .sidebar::after {
-        width: 90%;
-    }
-    .profile-container {
-        max-width: 100%;
-        margin: 10px;
-        padding: 15px;
-    }
-    .profile-details {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-}
+/* Responsive para pantallas pequeñas */
 @media (max-width: 768px) {
-    header {
-        padding: 10px 15px;
+    .profile-container-desactivar {
+        max-width: 90%; /* Aumenta el ancho del contenedor en pantallas pequeñas */
+        margin: 20px auto; /* Centra el contenedor y ajusta el margen */
     }
-    .menu-icon {
-        font-size: 25px;
+
+    .desactivar-cuenta h2 {
+        font-size: 24px; /* Reduce el tamaño del encabezado en pantallas más pequeñas */
     }
-    header img {
-        max-height: 25px;
+
+    .profile-container-desactivar p {
+        font-size: 12px; /* Reduce el tamaño del texto en pantallas más pequeñas */
     }
-    .sidebar-item {
-        font-size: 14px;
-    }
-    .profile-details {
-        gap: 15px;
+
+    .profile-container-desactivar button {
+        width: 100%; /* Botón se ajusta al ancho del contenedor */
+        max-width: 300px; /* Establece un ancho máximo para el botón */
+        font-size: 14px; /* Reduce el tamaño de la fuente del botón */
     }
 }
+
 @media (max-width: 480px) {
-    .menu-icon {
-        font-size: 20px;
+    .profile-container-desactivar {
+        padding: 15px; /* Ajusta el padding para pantallas muy pequeñas */
+        margin: 20px auto; /* Asegura que el contenedor esté centrado */
     }
-    header img {
-        max-height: 20px;
+
+    .desactivar-cuenta h2 {
+        font-size: 20px; /* Reduce aún más el tamaño del encabezado */
     }
-    .profile-container {
-        padding: 10px;
+
+    .profile-container-desactivar p {
+        font-size: 11px; /* Reduce aún más el tamaño del texto */
     }
-    .profile-details {
-        gap: 10px;
+
+    .profile-container-desactivar button {
+        font-size: 12px; /* Reduce aún más el tamaño de la fuente del botón */
     }
-    .profile-details p {
-        font-size: 12px;
-    }
+}
+
+/* Asegura que el footer esté al fondo en pantallas móviles */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto; /* Empuja el footer al fondo */
 }
 
 /*  MENU HAMBURGUESA*/
@@ -422,14 +456,15 @@ header img {
 }
 
 .profile-pic {
-    position: relative;
-    width: 160px;
-    height: 160px;
+  
+    width: 130px;
+    height: 130px;
     margin: 0 auto 10px;
     border-radius: 50%;
     overflow: hidden;
     background-color: transparent;
     border: 3px solid #fff;;
+   right: 14%;
 }
 
 .profile-pic img {
@@ -438,16 +473,7 @@ header img {
     object-fit: cover;
 }
 
-.profile-pic i {
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
-    background-color: #1a3e68;
-    color: white;
-    padding: 5px;
-    border-radius: 50%;
-    cursor: pointer;
-}
+
 
 .profile-pic input[type="file"] {
     display: none;
@@ -456,6 +482,7 @@ header img {
 .profile span {
     font-size: 18px;
     font-weight: bold;
+    text-align: center;
 }
 
 nav ul {

@@ -1,8 +1,9 @@
-/* ModuloInformacion.css */
+/* Módulo Informacion CSS */
+
 @font-face {
     font-family: "Candal";
     src: url("/Fuentes/Candal/Candal-Regular.ttf");
-  }
+}
 
 * {
     margin: 0;
@@ -34,7 +35,7 @@ body {
 
 .profile__link,
 .notification__link {
-    font-size: 25px;
+    font-size: 1.5em; /* Tamaño ajustado */
     color: #000000;
     text-decoration: none;
     font-weight: bold;
@@ -50,16 +51,16 @@ body {
 
 .profile__link i,
 .notification__link i {
-    margin-right: 5px;
+    margin-right: 0.5em; /* Tamaño ajustado */
 }
 
 .notification__count {
     background-color: red;
     color: rgb(0, 0, 0);
     border-radius: 50%;
-    padding: 2px 8px;
-    font-size: 14px;
-    margin-left: 5px;
+    padding: 0.2em 0.5em; 
+    font-size: 0.6em; /* Tamaño ajustado */
+    margin-left: 0.5em; /* Tamaño ajustado */
 }
 
 .notification__link {
@@ -68,8 +69,8 @@ body {
 
 .notification__count {
     position: absolute;
-    top: -10px;
-    right: -10px;
+    top: -0.7em; /* Tamaño ajustado */
+    right: -0.7em; /* Tamaño ajustado */
 }
 
 .carousel-container {
@@ -114,6 +115,8 @@ body {
 
 .container__cards {
     display: flex;
+    flex-wrap: wrap; /* Permite que las cartas se envuelvan en múltiples líneas */
+    justify-content: center; /* Centra las cartas en la fila */
 }
 
 .card {
@@ -129,6 +132,7 @@ body {
     padding: 15px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 10px; /* Espacio entre cartas */
 }
 
 .card::before {
@@ -162,7 +166,7 @@ body {
     overflow: hidden;
 }
 
-/*Para quitarle la línea de los hipervínculos*/
+/* Para quitarle la línea de los hipervínculos */
 a {
     text-decoration: none;
 }
@@ -209,6 +213,7 @@ p {
 @media screen and (max-width: 1200px) {
     .card {
         width: 100%;
+        height: auto;
     }
 }
 
@@ -260,6 +265,20 @@ p {
         font-size: 1.5em;
         padding: 0 5px;
     }
+
+    .profile__link,
+    .notification__link {
+        font-size: 1.2em; /* Ajuste del tamaño de fuente */
+        margin-left: 10px; /* Ajuste del margen */
+    }
+
+    .notification__count {
+        padding: 0.1em 0.6em; /* Ajuste del tamaño */
+        font-size: 0.8em; /* Ajuste del tamaño de fuente */
+        margin-left: 0.3em; /* Ajuste del margen */
+        top: -0.5em; /* Ajuste de la posición */
+        right: -0.5em; /* Ajuste de la posición */
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -302,11 +321,29 @@ p {
         font-size: 1em;
         padding: 0 5px;
     }
+
+    .profile__link,
+    .notification__link {
+        font-size: 1em; /* Ajuste del tamaño de fuente */
+        margin-left: 5px; /* Ajuste del margen */
+        margin-top: 20px;
+    }
+
+    .notification__count {
+        padding: 0.1em 0.4em; /* Ajuste del tamaño */
+        font-size: 0.7em; /* Ajuste del tamaño de fuente */
+        margin-left: 0.2em; /* Ajuste del margen */
+        top: -0.4em; /* Ajuste de la posición */
+        right: -0.4em; /* Ajuste de la posición */
+    }
 }
 
-#mensajeSeleccionar{
+#mensajeSeleccionar {
     color: #000000;
+    padding: 30px;
+    margin-top: 1px;
 }
+
 .footer {
     background-color: #1a3e68; /* Color de fondo azul */
     color: white; /* Color del texto */
@@ -314,12 +351,11 @@ p {
     width: 100%; /* Asegura que el footer ocupe todo el ancho */
     bottom: 0;
     margin-top: auto;
-    padding: 45px 0; /* Agrega espaciado interno */
+    padding: 20px 0; /* Agrega espaciado interno */
 }
 
 .footer-container {
     max-width: 1200px; /* Ancho máximo para el contenido */
     margin: 0 auto; /* Centra el contenedor */
     padding: 0 20px; /* Espaciado interno */
-    
 }

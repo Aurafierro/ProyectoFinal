@@ -3,7 +3,6 @@
   src: url("/Fuentes/Candal/Candal-Regular.ttf");
 }
 
-
 body {
   margin: 0;
   font-family: "Candal", sans-serif;
@@ -66,6 +65,7 @@ body {
   font-size: 2.5rem;
   margin-bottom: 2%;
   margin: 6%;
+  color: white; /* Cambiado el color del título a blanco */
 }
 
 .form-container p {
@@ -87,7 +87,7 @@ body {
 }
 
 .input-field {
-  width: 100%; /* Cambiado a 100% para que ocupe todo el ancho disponible */
+  width: 100%;
   padding: 15px;
   font-size: 1rem;
   border: 1px solid #ddd;
@@ -110,12 +110,14 @@ body {
 .buttons {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap; /* Permite que los botones se alineen correctamente en pantallas pequeñas */
+  flex-wrap: wrap;
   margin-top: 6%;
+  gap: 20px; /* Ajusta el valor de acuerdo con el espacio que quieras */
 }
 
+
 .buttons .btn {
-  margin: 10px 0; /* Aumentado para asegurar espacio en pantallas pequeñas */
+  margin: 10px 0;
   padding: 12px 40px;
   border: none;
   border-radius: 40px;
@@ -161,12 +163,13 @@ body {
   }
 
   .form-container h1 {
-      font-size: 2rem; /* Ajustado para pantallas pequeñas */
+      font-size: 2rem;
       margin: 10px 0;
+      color: white; /* Asegura que el título también sea blanco en pantallas pequeñas */
   }
 
   .form-container p {
-      font-size: 1rem; /* Reducido para pantallas pequeñas */
+      font-size: 1rem;
       margin-bottom: 20px;
   }
 
@@ -180,7 +183,14 @@ body {
   }
 
   .image-container img {
-      width: 100%;
+      width: 70%;
+      position: relative;
+      left: -10px;
+      margin-bottom: 20px;
+  }
+
+  .footer {
+      margin-top: 40px;
   }
 }
 
