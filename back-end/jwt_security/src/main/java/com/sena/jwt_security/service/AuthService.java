@@ -11,6 +11,8 @@ import com.sena.jwt_security.models.AuthResponse;
 import com.sena.jwt_security.models.loginRequest;
 import com.sena.jwt_security.models.resgisterRequest;
 import com.sena.jwt_security.models.userRegistro;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 
 import org.springframework.security.core.Authentication;
@@ -24,6 +26,8 @@ import java.util.concurrent.ThreadLocalRandom;
 @Service
 public class AuthService implements IUserService {
 
+	@Autowired
+	private emailService emailService;
     private final Iuser data;
     private final jwtService jwtService;
     private final PasswordEncoder passwordEncoder;
@@ -53,7 +57,8 @@ public class AuthService implements IUserService {
         
         
         data.save(userData);
-      
+		emailService.enviarNotificacionCuenta(userData.getUsername(),userData.getNombre_completo(),userData.getUsername(),userData.getPassword());
+
         return new AuthResponse.builder()
                 .token(jwtService.getToken(userData))
                 .build();
