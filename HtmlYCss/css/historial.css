@@ -9,62 +9,54 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    position: relative;
-    padding-bottom: 20px;
-    min-height: 100vh;
 }
+
 .header {
     height: 100px;
     background-color: #1a3e68;
     color: var(--white);
     display: flex;
-    justify-content: center; /* Centra los elementos horizontalmente */
-    align-items: center; /* Centra los elementos verticalmente */
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
     box-sizing: border-box;
-    position: relative; /* Necesario para posicionar elementos hijos absolutamente */
-}
-
-
-#select_nombre_espacio{
-    border-radius: 20px;
-    height: 25%;
-    width: 110%;
-    border-color: #a39f9f;
-    font-family: 'Candal';
-    margin-bottom: 10%;
+    position: relative;
 }
 
 .header .logo {
     display: flex;
-    justify-content: center; /* Asegura que el logo esté centrado */
-    align-items: center; /* Centra verticalmente el logo */
+    justify-content: center;
+    align-items: center;
 }
 
 .header .logo img.logo-img {
-    height: 75px; /* Ajusta la altura de la imagen si es necesario */
-    width: auto; /* Mantiene la proporción de la imagen */
+    width: 100%;
+    height: 75px;
     margin-top: 5px;
     margin-bottom: 5px;
 }
+
 .header .logout {
-    position: absolute; /* Posiciona el contenedor de cerrar sesión de manera absoluta */
-    right: 20px; /* Distancia desde el borde derecho del header */
-    top: 50%; /* Centra verticalmente en el header */
-    transform: translateY(-50%); /* Ajusta el centrado vertical */
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
 }
 
 .header .logout a {
     color: #ffffff;
     text-decoration: none;
     transition: color 0.3s ease-in-out;
-    font-size: 120%;
-    padding-right: 20px;
+    font-size: 90%;
     font-family: 'Candal';
 }
 
 .header .logout a:hover {
     color: var(--hover-color);
 }
+
 .container {
     display: flex;
     flex: 1;
@@ -79,48 +71,40 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 20px 0;
-    box-sizing: border-box;
-    justify-content: flex-start;
-    overflow-y: hidden;
-    position: fixed; /* Fijo en la pantalla */
+    position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
-    transition: transform 0.3s; /* Transición para animar el cambio de posición */
-    z-index: 1000; /* Asegura que esté encima de otros elementos */
+    transition: transform 0.3s;
+    z-index: 1000;
 }
 
 .sidebar.hidden {
-    transform: translateX(-100%); /* Oculta el contenedor al desplazarlo fuera de la vista */
+    transform: translateX(-100%);
 }
 
 .sidebar.visible {
-    transform: translateX(0); /* Muestra el contenedor */
+    transform: translateX(0);
 }
 
 .profile {
     text-align: center;
-    margin-bottom: 30px;
+    margin: 85% 0 30px;
     border-bottom: 1px solid black;
     padding-bottom: 20px;
     width: 100%;
-    box-sizing: border-box;
-    margin-top: 85%;
     color: white;
-    font-family: 'Candal';
 }
 
 .profile-pic {
-    position: relative;
     width: 160px;
     height: 160px;
     background-color: transparent;
     border-radius: 50%;
-    margin: 0 auto 10px;
+    margin: 10% auto 10px;
     overflow: hidden;
     cursor: pointer;
     border: 3px solid #fff;
-    margin-top: 10%;
 }
 
 .profile-pic img {
@@ -135,27 +119,16 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 70px;
-    color: #000000;
-    cursor: pointer;
-    transition: opacity 0.3s ease-in-out;
-    z-index: 1;
-    display: none;
-}
-
-.profile-pic:hover i {
-    opacity: 1;
-}
-
-.profile-pic input[type="file"] {
     display: none;
 }
 
 .profile-pic:hover i {
     display: block;
-    z-index: 2;
-    color: var(--white);
 }
 
+.profile-pic input[type="file"] {
+    display: none;
+}
 
 nav ul {
     list-style: none;
@@ -184,27 +157,21 @@ nav ul li a i {
     margin-right: 8px;
 }
 
-nav ul li a.active {
-    font-weight: bold;
-}
-
 .main-content.shifted, .header.shifted {
-    margin-left: 250px; /* Ajusta el margen para dejar espacio para el sidebar */
-    transition: margin-left 0.3s; /* Transición suave para el cambio de margen */
+    margin-left: 250px;
+    transition: margin-left 0.3s;
 }
 
 .table-container {
     padding: 30px;
     flex: 1;
     overflow-y: auto;
-    box-sizing: border-box;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     background-color: #f4f5f7;
-    box-sizing: border-box;
 }
 
 th {
@@ -225,23 +192,18 @@ td button {
     border: none;
     border-radius: 3px;
     cursor: pointer;
-    font-family: 'Candal';
 }
 
-.divBotones{
+.divBotones {
     display: flex;
     margin-top: 10%;
     justify-content: center;
 }
+
 .button-container {
     width: 100%;
     display: flex;
     justify-content: flex-end;
-}
-
-.divDerecho{
-    margin-left: 20%;
-    margin-top: auto;
 }
 
 .search-options {
@@ -253,6 +215,7 @@ td button {
     width: 100%;
     align-items: center;
 }
+
 .search-bar-wrapper {
     display: flex;
     align-items: center;
@@ -260,12 +223,14 @@ td button {
     margin-bottom: 10px;
     justify-content: end;
 }
+
 .search-bar {
     display: flex;
     align-items: center;
     width: 100%;
     max-width: 70%;
 }
+
 .search-bar input[type="text"] {
     width: 60%;
     padding: 18px;
@@ -273,182 +238,91 @@ td button {
     border: 2px solid rgb(3, 3, 3);
     border-radius: 5px;
 }
+
 .search-bar button {
     padding: 22px 20px;
     background-color: #000000;
     border: none;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
+    border-radius: 0 25px 25px 0;
     color: white;
     cursor: pointer;
     font-size: 16px;
 }
+
 .menu-toggle {
     position: fixed;
     top: 20px;
     left: 20px;
     padding: 10px;
     border-radius: 5px;
-    cursor: pointer;
     font-size: 40px;
     color: #ffffff;
     z-index: 1001;
 }
-.menu-container {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    display: none;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    min-width: 160px;
-    text-align: left;
-}
-/* Estilo para el botón de descargar PDF */
+
 .download-pdf-button {
-    position: fixed; /* Asegura que esté fijo en la pantalla */
-    bottom: 26px; /* Ajusta la distancia desde el borde inferior */
-    right: 20px; /* Mantiene la distancia desde el borde derecho */
-    background-color: #28a745; /* Color verde */
-    color: white; /* Color del texto */
-    padding: 10px 20px; /* Espaciado interno */
-    border: none; /* Sin borde */
-    border-radius: 50px; /* Bordes redondeados */
-    cursor: pointer; /* Cursor en forma de mano */
-    font-size: 16px; /* Tamaño de la fuente */
-    font-family: 'Candal'; /* Fuente personalizada */
-    text-align: center; /* Centra el texto */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
-    transition: background-color 0.3s ease; /* Transición para el color de fondo */
+    position: fixed;
+    bottom: 160px;
+    right: 20px;
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
 }
 
 .download-pdf-button:hover {
-    background-color: #218838; /* Color verde más oscuro al pasar el cursor */
+    background-color: #218838;
 }
+
 .footer {
-    background-color: #1a3e68; /* Color de fondo azul */
-    color: white; /* Color del texto */
-    text-align: center; /* Centra el texto */
-    width: 100%; /* Asegura que el footer ocupe todo el ancho */
+    background-color: #1a3e68;
+    color: white;
+    text-align: center;
+    width: 100%;
+    padding: 20px 0;
+    position: relative;
     bottom: 0;
+    left: 0;
     margin-top: auto;
-    padding: 20px 0; /* Agrega espaciado interno */
 }
 
 .footer-container {
-    max-width: 1200px; /* Ancho máximo para el contenido */
-    margin: 0 auto; /* Centra el contenedor */
-    padding: 0 20px; /* Espaciado interno */
-    
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-.btnEditar{
+.btnEditar {
     background-color: #1a3e68;
     border-radius: 20px;
     color: white;
 }
 
-.btnEliminar{
+.btnEliminar {
     background-color: rgb(179, 0, 0);
     border-radius: 20px;
     margin-left: 3%;
     color: white;
-
-}
-
-
-
-.header .logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.header .logo img.logo-img {
-    height: 75px;
-    width: auto;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-.header .logout {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.header .logout a {
-    color: #ffffff;
-    text-decoration: none;
-    transition: color 0.3s ease-in-out;
-    font-size: 120%;
-    padding-right: 20px;
-    font-family: 'Candal';
-}
-
-/* Estilos básicos para el botón */
-#editButton {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-
-/* Estilos para el botón de cerrar */
-.close-button {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.close-button:hover,
-.close-button:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.hidden {
-    display: none;
-}
-
-.visible {
-    display: block;
 }
 
 .edit-btn, .delete-btn {
     margin-top: 10px;
     padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
     border: none;
     cursor: pointer;
 }
 
+.edit-btn {
+    background-color: #007bff;
+    color: white;
+}
+
 .delete-btn {
     background-color: #dc3545;
-    text-decoration: none;
+    color: white;
 }
 
 .edit-btn:hover, .delete-btn:hover {
@@ -457,54 +331,25 @@ td button {
 
 /* Modal */
 .modal {
-    display: none; /* Ocultar por defecto */
+    display: none;
     position: fixed;
     z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo negro con opacidad */
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* Estilos para el contenido del modal */
 .modal-content {
     background-color: #fefefe;
     margin: 10% auto;
     padding: 20px;
-    border: 1px solid #888;
     width: 80%;
-    max-width: 600px; /* Ancho máximo del modal */
-    display: flex;
-    flex-direction: column;
+    max-width: 600px;
     border-radius: 20px;
 }
 
-/* Estilos para el botón de cerrar */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.hidden {
-    display: none;
-}
-
-.visible {
-    display: block;
-}
-
-/* Estilos para el contenido del modal */
 .modal-body {
     display: flex;
     justify-content: space-between;
@@ -513,146 +358,36 @@ td button {
 
 .left-column, .right-column {
     width: 48%;
-    margin-top: 2%;
 }
 
-.left-column label, .right-column label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.left-column input, .right-column input {
+.left-column input, .right-column input,
+.SELECTnombre_espacio,
+.inputCamposEditarReserva {
     width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
-    border-radius: 4px;
+    padding: 10px;
+    font-size: 0.875rem;
     border: 1px solid #ddd;
-    border-radius: 15px;
+    border-radius: 20px;
+    background-color: #D9D9D9;
 }
 
-.modal-buttons {
-   margin-left: 30%;
-}
-
-.save-btn, .delete-btn {
-    margin-left: 10px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 16px;
-    cursor: pointer;
-    font-size: 18px;
-}
-
-.save-btn {
-    background-color: #007bff;
-    color: white;
-    font-family: candal; 
-}
-
-.delete-btn {
-    background-color: #dc3545;
-    color: white;
-
-}
-
-.save-btn:hover {
-    background-color: #0056b3;
-}
-
-.delete-btn:hover {
-    background-color: #c82333;
-}
-
-#titulohoraSalida{
-    margin-top: 26%;
-}
-#titulo{
+.boton {
     text-align: center;
 }
-/* Estilos para el botón de cerrar */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.hidden {
-    display: none;
-}
-
-.visible {
-    display: block;
-}
-
-#botonActualizarReserva{
+#botonActualizarReserva {
     background-color: #28a745;
     color: white;
-    font-family: 'Candal';
     padding: 10px 20px;
-    border: none;
     border-radius: 20px;
     cursor: pointer;
-    font-size: 0.875rem;
-    font-family: 'Candal';
 }
 
-.boton{
-    text-align: center;
-}
-
-.inputCamposEditarReserva{
-    width: 100%;
-    padding: 10px;
-    font-size: 0.875rem;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    box-sizing: border-box;
-    background-color: #D9D9D9;
-}
-
-.titulo{
-    text-align: center;
-}
-
-.contenedorPadre{
-    display: flex;
-    margin-bottom: 5%;
-}
-
-.divIzquierdo{
-    margin-left: 15%;
-}
-
-.divDerecho{
-    margin-right: 15%;
-}
-
-.divTituloModal{
-    margin-top: 5%;
-}
-
-/* Select del nombre espacio*/
-.SELECTnombre_espacio {
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 50px;
-    background-color: #D9D9D9;
-    width: 100%;
-    padding: 10px;
-    font-size: 0.875rem;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    box-sizing: border-box;
-    background-color: #D9D9D9;
+@media screen and (max-width: 768px) {
+    .header .logo {
+        flex-grow: 0;
+    }
+    .header .logout {
+        right: 10px;
+    }
 }

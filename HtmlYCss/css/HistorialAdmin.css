@@ -399,14 +399,16 @@ td button {
 }
 
 .download-button button {
-    padding: 18px 26px; /* Aumento del relleno */
-    background-color: #06a12a; /* Color de fondo verde */
+    position: fixed;
+    bottom: 160px;
+    right: 20px;
+    background-color: #28a745;
     color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* Transición suave */
+    padding: 10px 20px;
+    border-radius: 50px;
     font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
 }
 
 
