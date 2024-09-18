@@ -81,9 +81,9 @@ public class TestReservas {
     }
 
     // Método auxiliar para crear fechas
-    private Date createDate(String dateString) throws ParseException {
-        return dateFormat.parse(dateString);
+   // private Date createDate(String dateString) throws ParseException {
+   //     return dateFormat.parse(dateString);
     }
-}
+//}
 
 

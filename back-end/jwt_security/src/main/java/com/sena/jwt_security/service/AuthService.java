@@ -13,6 +13,7 @@ import com.sena.jwt_security.models.resgisterRequest;
 import com.sena.jwt_security.models.userRegistro;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.AuthenticationManager;
 
 import org.springframework.security.core.Authentication;
@@ -32,15 +33,15 @@ public class AuthService implements IUserService {
     private final jwtService jwtService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
-
+    private final JavaMailSender javaMailSender; 
   
-    public AuthService(Iuser data, jwtService jwtService, PasswordEncoder passwordEncoder,AuthenticationManager authenticationManager) {
+    public AuthService(Iuser data, jwtService jwtService, PasswordEncoder passwordEncoder,AuthenticationManager authenticationManager,JavaMailSender javaMailSender) {
         this.data = data;
         this.jwtService = jwtService;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
+        this.javaMailSender = javaMailSender; 
     }
-
     @Override
     public AuthResponse register(resgisterRequest request) {
         userRegistro userData = new userRegistro();
@@ -49,20 +50,31 @@ public class AuthService implements IUserService {
         userData.setNombre_completo(request.getNombre_completo());
         userData.setTelefono(request.getTelefono());
         userData.setUsername(request.getUsername());
-        var contrasena=codigoAleatorio();
-        userData.setPassword(passwordEncoder.encode(contrasena));
+
+        // Generar contraseña aleatoria
+        String contrasena = codigoAleatorio();  // Almacena la contraseña original
+        userData.setPassword(passwordEncoder.encode(contrasena));  // Almacena la versión encriptada
 
         userData.setRol(request.getRol());
 
-        
-        
+        // Guardar el usuario en la base de datos
         data.save(userData);
-		emailService.enviarNotificacionCuenta(userData.getUsername(),userData.getNombre_completo(),userData.getUsername(),userData.getPassword());
+        
+        // Enviar la contraseña original por correo en texto plano
+        emailService.enviarNotificacionCuenta(
+            userData.getUsername(), 
+            userData.getNombre_completo(), 
+            userData.getUsername(), 
+            contrasena  // Enviar la contraseña original
+        );
 
         return new AuthResponse.builder()
                 .token(jwtService.getToken(userData))
                 .build();
     }
+
+    
+    
     public AuthResponse loginRequest(loginRequest request) {
         Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(
@@ -104,7 +116,7 @@ public class AuthService implements IUserService {
     		cadena += caracterAleatorio;
     	}
     	
-    	return cadena;
+    	return cadena.toString(); 
     }
     
     
