@@ -9,6 +9,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.sena.jwt_security.interfaceService.IUserService;
+import com.sena.jwt_security.models.rol;
 import com.sena.jwt_security.models.userRegistro;
 import com.sena.jwt_security.service.emailService;
 
@@ -96,10 +99,20 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 
 	
 	@GetMapping("/profile")
-	public ResponseEntity<String>getProfile(){
-		return new ResponseEntity<>("end-point privado profile",HttpStatus.OK);
+	public ResponseEntity<userRegistro>getProfile(){
+		Authentication auth=SecurityContextHolder.getContext().getAuthentication();
+		userRegistro user=(userRegistro) auth.getPrincipal();
+		return new ResponseEntity<userRegistro>(user,HttpStatus.OK);
 	}
 	
+	@GetMapping("/admin/findAll/")
+	public ResponseEntity<String>findAllAdmin(){
+		Authentication auth=SecurityContextHolder.getContext().getAuthentication();
+		var user =(userRegistro)auth.getPrincipal();
+		if (user.getRol()!=rol.Administrador)
+			return new ResponseEntity<String>("No tiene permiso",HttpStatus.FORBIDDEN);
+		return new ResponseEntity<String>("Método administrador",HttpStatus.OK);
+	}
 	
 	@GetMapping("/busquedafiltro/{filtro}")
 	public ResponseEntity<Object>findFiltro(@PathVariable String filtro){
