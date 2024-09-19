@@ -25,5 +25,10 @@ public interface IUserService {
 
 	public Optional<userRegistro>findByUsername(String username);
 	AuthResponse login(loginRequest request);
+	
+	//public List<userRegistro>enviarNotificacionCuenta();
+	
+	
 
+	
 }
