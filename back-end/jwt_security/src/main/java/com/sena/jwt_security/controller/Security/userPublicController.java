@@ -26,11 +26,12 @@ public class userPublicController {
         return ResponseEntity.ok(response);
     }
 
+   /*
     @PostMapping("/register/")
     public ResponseEntity<AuthResponse> register(@RequestBody resgisterRequest request) {
         AuthResponse response = authService.register(request);
         return ResponseEntity.ok(response);
-    }
+    }*/
 }
 
 

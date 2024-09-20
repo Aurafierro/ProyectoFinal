@@ -15,7 +15,7 @@ public interface Iuser extends CrudRepository<userRegistro, String> {
 
   
 
-    
+   
     
     @Query("SELECT u FROM userRegistro u WHERE u.username = :username")
     Optional<userRegistro> findByUsername(String username);
