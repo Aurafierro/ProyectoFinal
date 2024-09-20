@@ -192,8 +192,14 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	        return new ResponseEntity<>("La contraseña actual es incorrecta", HttpStatus.BAD_REQUEST);
 	    }
 
-	    // Establecer la nueva contraseña como texto plano
-	    user.setPassword(request.getNuevaContrasena()); // Guarda la nueva contraseña en texto plano
+	    // Validaciones para la nueva contraseña
+	    String nuevaContrasena = request.getNuevaContrasena();
+	    if (!esContraseñaValida(nuevaContrasena)) {
+	        return new ResponseEntity<>("La nueva contraseña debe tener al menos 8 caracteres, incluir una letra mayúscula, un número y un carácter especial.", HttpStatus.BAD_REQUEST);
+	    }
+
+	    // Establecer la nueva contraseña
+	    user.setPassword(passwordEncoder.encode(nuevaContrasena));
 	    userService.save(user);
 
 	    // Enviar correo de confirmación
@@ -202,6 +208,18 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	    return new ResponseEntity<>("Contraseña cambiada exitosamente", HttpStatus.OK);
 	}
 
+	// Método de validación de contraseña
+	private boolean esContraseñaValida(String contraseña) {
+	    if (contraseña.length() < 8) {
+	        return false;
+	    }
+
+	    boolean tieneMayuscula = contraseña.chars().anyMatch(Character::isUpperCase);
+	    boolean tieneNumero = contraseña.chars().anyMatch(Character::isDigit);
+	    boolean tieneCaracterEspecial = contraseña.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?].*");
+
+	    return tieneMayuscula && tieneNumero && tieneCaracterEspecial;
+	}
 
 	
 	@GetMapping("/busquedafiltro/{filtro}")
