@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.sena.jwt_security.interfaceService.IUserService;
 import com.sena.jwt_security.models.AuthResponse;
+import com.sena.jwt_security.models.CambiarContrasenaRequest;
 import com.sena.jwt_security.models.resgisterRequest;
 import com.sena.jwt_security.models.rol;
 import com.sena.jwt_security.models.userRegistro;
@@ -44,6 +46,10 @@ private emailService emailService;
 
 @Autowired
 private AuthService AuthService;
+
+
+@Autowired
+private PasswordEncoder passwordEncoder; // Injecting PasswordEncoder
 
 
 @PostMapping("/")
@@ -176,6 +182,27 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 			return new ResponseEntity<String>("No tiene permiso",HttpStatus.FORBIDDEN);
 		return new ResponseEntity<String>("Método administrador",HttpStatus.OK);
 	}
+	@PutMapping("/cambiar-contrasena")
+	public ResponseEntity<Object> cambiarContraseña(@RequestBody CambiarContrasenaRequest request) {
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    userRegistro user = (userRegistro) auth.getPrincipal();
+
+	    // Verifica que la contraseña actual sea correcta
+	    if (!passwordEncoder.matches(request.getContrasenaActual(), user.getPassword())) {
+	        return new ResponseEntity<>("La contraseña actual es incorrecta", HttpStatus.BAD_REQUEST);
+	    }
+
+	    // Establecer la nueva contraseña como texto plano
+	    user.setPassword(request.getNuevaContrasena()); // Guarda la nueva contraseña en texto plano
+	    userService.save(user);
+
+	    // Enviar correo de confirmación
+	    emailService.enviarCorreoPasswordModificada(user.getUsername());
+
+	    return new ResponseEntity<>("Contraseña cambiada exitosamente", HttpStatus.OK);
+	}
+
+
 	
 	@GetMapping("/busquedafiltro/{filtro}")
 	public ResponseEntity<Object>findFiltro(@PathVariable String filtro){
