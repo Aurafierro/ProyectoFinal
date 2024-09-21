@@ -3,9 +3,11 @@ package com.sena.jwt_security.controller.Security;
 
 
 
+import java.util.Base64;
 import java.util.List;
+import java.util.UUID;
 
-
+import org.apache.el.stream.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sena.jwt_security.interfaceService.IUserService;
 import com.sena.jwt_security.models.AuthResponse;
 import com.sena.jwt_security.models.CambiarContrasenaRequest;
+import com.sena.jwt_security.models.RecuperarContrasenaRequest;
 import com.sena.jwt_security.models.resgisterRequest;
 import com.sena.jwt_security.models.rol;
 import com.sena.jwt_security.models.userRegistro;
@@ -115,29 +118,21 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	@PreAuthorize("hasRole('Administrador')")
 	@PostMapping("/register/")
 	public ResponseEntity<Object> register(@RequestBody resgisterRequest request) {
-	    // Validaciones
 	    if (request.getNumero_documento().isEmpty()) {
 	        return new ResponseEntity<>("El número de identidad es un campo obligatorio", HttpStatus.BAD_REQUEST);
 	    }
-
 	    if (request.getNombre_completo().isEmpty()) {
 	        return new ResponseEntity<>("El nombre completo es un campo obligatorio", HttpStatus.BAD_REQUEST);
 	    }
-
 	    if (request.getTelefono().isEmpty()) {
 	        return new ResponseEntity<>("El número de teléfono es un campo obligatorio", HttpStatus.BAD_REQUEST);
 	    }
-
 	    if (request.getUsername().isEmpty()) {
 	        return new ResponseEntity<>("El correo es un campo obligatorio", HttpStatus.BAD_REQUEST);
 	    }
-
-	    // Validar formato del correo electrónico
 	    if (!isValidEmail(request.getUsername())) {
 	        return new ResponseEntity<>("El correo electrónico debe estar completo y en un formato válido", HttpStatus.BAD_REQUEST);
 	    }
-
-	  
 
 	    // Verificar si ya existe un usuario con el mismo número de documento
 	    List<userRegistro> existingUserByDoc = userService.filtroIngresoUser(request.getNumero_documento());
@@ -184,23 +179,16 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    userRegistro user = (userRegistro) auth.getPrincipal();
 
-	    // Verifica que la contraseña actual sea correcta
-	    if (!passwordEncoder.matches(request.getContrasenaActual(), user.getPassword())) {
-	        return new ResponseEntity<>("La contraseña actual es incorrecta", HttpStatus.BAD_REQUEST);
-	    }
-
-	    // Verifica que la nueva contraseña no sea igual a la anterior
 	    String nuevaContrasena = request.getNuevaContrasena();
+
 	    if (passwordEncoder.matches(nuevaContrasena, user.getPassword())) {
 	        return new ResponseEntity<>("La nueva contraseña no puede ser igual a la anterior", HttpStatus.BAD_REQUEST);
 	    }
 
-	    // Verifica que la nueva contraseña y la confirmación coincidan
 	    if (!nuevaContrasena.equals(request.getConfirmarContrasena())) {
 	        return new ResponseEntity<>("La nueva contraseña y la confirmación no coinciden", HttpStatus.BAD_REQUEST);
 	    }
 
-	    // Validaciones para la nueva contraseña
 	    if (!esContraseñaValida(nuevaContrasena)) {
 	        return new ResponseEntity<>("La nueva contraseña debe tener al menos 8 caracteres, incluir una letra mayúscula, un número y un carácter especial.", HttpStatus.BAD_REQUEST);
 	    }
@@ -214,27 +202,51 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 
 	    return new ResponseEntity<>("Contraseña cambiada exitosamente", HttpStatus.OK);
 	}
+
 	private boolean esContraseñaValida(String contraseña) {
-	    // Verificar que la contraseña tenga al menos 8 caracteres
 	    if (contraseña.length() < 8) {
 	        return false;
 	    }
 
-	    // Verificar si contiene al menos una letra mayúscula
 	    boolean tieneMayuscula = contraseña.chars().anyMatch(Character::isUpperCase);
-
-	    // Verificar si contiene al menos un número
 	    boolean tieneNumero = contraseña.chars().anyMatch(Character::isDigit);
-
-	    // Verificar si contiene al menos un carácter especial
 	    boolean tieneCaracterEspecial = contraseña.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?].*");
 
-	    // Retornar verdadero si cumple con todas las condiciones
 	    return tieneMayuscula && tieneNumero && tieneCaracterEspecial;
 	}
 
+	@PostMapping("/recuperar-contrasena")
+	public ResponseEntity<Object> recuperarContrasena(@RequestBody RecuperarContrasenaRequest request) {
+	    if (request.getUsername() == null || request.getUsername().isEmpty()) {
+	        return new ResponseEntity<>("El correo es un campo obligatorio", HttpStatus.BAD_REQUEST);
+	    }
+
+	    if (!isValidEmail(request.getUsername())) {
+	        return new ResponseEntity<>("El correo electrónico debe estar completo y en un formato válido", HttpStatus.BAD_REQUEST);
+	    }
+
+	  
+	    java.util.Optional<userRegistro> optionalUser = userService.findByUsername(request.getUsername());
+
+	    if (!optionalUser.isPresent()) {
+	        return new ResponseEntity<>("El usuario no existe", HttpStatus.NOT_FOUND);
+	    }
+
+	    userRegistro user = optionalUser.get(); 
 
 	
+	    String token = UUID.randomUUID().toString();
+
+	    userService.savePasswordResetToken(user, token);
+	    String enlace = "http://tu_dominio/cambiar_contrasena?u=" + Base64.getEncoder().encodeToString(user.getUsername().getBytes()) + "&t=" + token;
+
+	    emailService.enviarCorreoRecuperarPassword(user.getUsername(), enlace);
+
+	    return new ResponseEntity<>("Se ha enviado un enlace para recuperar la contraseña", HttpStatus.OK);
+	}
+
+	
+
 	@GetMapping("/busquedafiltro/{filtro}")
 	public ResponseEntity<Object>findFiltro(@PathVariable String filtro){
 		var ListaUserRegistro = userService.filtroIngresoUser(filtro);

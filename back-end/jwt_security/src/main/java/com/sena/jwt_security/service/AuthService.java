@@ -185,4 +185,9 @@ public class AuthService implements IUserService {
     public Optional<userRegistro> findByUsername(String username) {
         return data.findByUsername(username);
     }
+	@Override
+	public void savePasswordResetToken(userRegistro user, String token) {
+		// TODO Auto-generated method stub
+		
+	}
 }

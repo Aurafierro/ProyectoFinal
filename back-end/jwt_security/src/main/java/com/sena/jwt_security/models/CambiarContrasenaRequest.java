@@ -11,54 +11,41 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CambiarContrasenaRequest {
 
-   private String contrasenaActual;
-   private String nuevaContrasena;
-   private String confirmarContrasena;
-   
-   
-public CambiarContrasenaRequest() {
-	super();
-}
+	  private String nuevaContrasena;
+	   private String confirmarContrasena;
+	   
+	   
+	public CambiarContrasenaRequest() {
+		super();
+	}
 
 
-public CambiarContrasenaRequest(String contrasenaActual, String nuevaContrasena, String confirmarContrasena) {
-	super();
-	this.contrasenaActual = contrasenaActual;
-	this.nuevaContrasena = nuevaContrasena;
-	this.confirmarContrasena = confirmarContrasena;
-}
+	public CambiarContrasenaRequest(String nuevaContrasena, String confirmarContrasena) {
+		super();
+		this.nuevaContrasena = nuevaContrasena;
+		this.confirmarContrasena = confirmarContrasena;
+	}
 
 
-public String getContrasenaActual() {
-	return contrasenaActual;
-}
+	public String getNuevaContrasena() {
+		return nuevaContrasena;
+	}
 
 
-public void setContrasenaActual(String contrasenaActual) {
-	this.contrasenaActual = contrasenaActual;
-}
+	public void setNuevaContrasena(String nuevaContrasena) {
+		this.nuevaContrasena = nuevaContrasena;
+	}
 
 
-public String getNuevaContrasena() {
-	return nuevaContrasena;
-}
+	public String getConfirmarContrasena() {
+		return confirmarContrasena;
+	}
 
 
-public void setNuevaContrasena(String nuevaContrasena) {
-	this.nuevaContrasena = nuevaContrasena;
-}
-
-
-public String getConfirmarContrasena() {
-	return confirmarContrasena;
-}
-
-
-public void setConfirmarContrasena(String confirmarContrasena) {
-	this.confirmarContrasena = confirmarContrasena;
-}
-	    
-	  
-   
+	public void setConfirmarContrasena(String confirmarContrasena) {
+		this.confirmarContrasena = confirmarContrasena;
+	}
+	   
+	   
    
 }
