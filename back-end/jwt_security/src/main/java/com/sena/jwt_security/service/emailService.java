@@ -130,21 +130,30 @@ public class emailService {
 			//String destinatario="asignaweb@gmail.com";
 			String asunto="Modificación de contraseña";
 			String cuerpo=""
-				+"	<div style='background-color: #FFFF;'>"
-				+"  <div style='background-color: white; width: 40%; margin: auto; padding: 20px;'>"
-	       +"     <div style='background-color: #202C4A; padding: 11px;'>"
-	           +"     <center><img style='width: 110px; height: 100px;' src='https://i.postimg.cc/L8hJKpjP/5613765-Recuperado.png'></center>"
-	           +"  </div>"
-	          +"  <p style='color: #000;'>¡Excelente! Has modificado tu ontraseña.</p>"
-	          +"     <p>  Queremos informarte que has modificado tu "
-	          +"      contraseña correctamente. Este es un paso"
-	          +"       importante para mantener la seguridad de tu"
-	          +"       cuenta y asegurarnos de que solo tú tengas acceso"
-	          +"       a ella.</p>"
-	    
-	        +"    </div>"
-	      +"  </div>"
-	  +"  </div>";
+				
+				+"	<body style='margin: 0; padding: 0; background-color: #CCCCCC;'>"
+				+"    <div style='background-color: #CCCCCC;'>"
+		+"        <div style='background-color: white; max-width: 600px; margin: auto; padding: 20px; box-sizing: border-box;'>"
+		+"            <div style='background-color: #202C4A; padding: 11px; text-align: center;'>"
+		+"                <img style='width: 90px; height: 70px;' src='https://i.postimg.cc/L8hJKpjP/5613765-Recuperado.png' alt='Logo'>"
+		+"            </div>"
+		+"            <h1 style='color: #2B56C5; text-align: center; font-size: 24px; margin-top: 20px;'>¡Excelente! Has modificado tu contraseña.</h1>"
+		+"            <p style='color: #000; font-size: 16px; line-height: 1.5; margin-top: 20px;'>"
+		+"                Queremos informarte que has modificado tu contraseña correctamente. Este es un paso importante para mantener la seguridad de tu cuenta y asegurarnos de que solo tú tengas acceso a ella."
+		+"            </p>"
+		+"            <br>"
+		+"            <p style='color: #000; font-size: 16px; line-height: 1.5; margin-top: 20px;'>"
+		+"                Recuerda utilizar una contraseña fuerte, que contenga una combinación de letras, números y símbolos para mejorar la protección de tu cuenta."
+		+"            </p>"
+		           
+		            
+		+"            <div style='background-color: #202C4A; margin: auto; padding: 5px;'>"
+		 +"               <center><p style='font-size: 1em; color: white;'>Gracias por confiar en nosotros.</p></center>"
+		+"            </div>"
+		            
+		+"        </div>"
+		+"    </div>"
+		+"</body>";
 			
 			var retorno=enviarCorreo(destinatario,asunto,cuerpo);
 			if(retorno) {

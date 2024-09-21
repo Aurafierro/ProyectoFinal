@@ -137,12 +137,7 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	        return new ResponseEntity<>("El correo electrónico debe estar completo y en un formato válido", HttpStatus.BAD_REQUEST);
 	    }
 
-	    // Validaciones de caracteres inusuales
-	    if (containsInvalidCharacters(request.getNumero_documento()) ||
-	        containsInvalidCharacters(request.getNombre_completo()) ||
-	        containsInvalidCharacters(request.getTelefono())) {
-	        return new ResponseEntity<>("Los campos no deben contener caracteres inválidos", HttpStatus.BAD_REQUEST);
-	    }
+	  
 
 	    // Verificar si ya existe un usuario con el mismo número de documento
 	    List<userRegistro> existingUserByDoc = userService.filtroIngresoUser(request.getNumero_documento());
@@ -182,6 +177,8 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 			return new ResponseEntity<String>("No tiene permiso",HttpStatus.FORBIDDEN);
 		return new ResponseEntity<String>("Método administrador",HttpStatus.OK);
 	}
+	
+	
 	@PutMapping("/cambiar-contrasena")
 	public ResponseEntity<Object> cambiarContraseña(@RequestBody CambiarContrasenaRequest request) {
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -192,8 +189,18 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	        return new ResponseEntity<>("La contraseña actual es incorrecta", HttpStatus.BAD_REQUEST);
 	    }
 
-	    // Validaciones para la nueva contraseña
+	    // Verifica que la nueva contraseña no sea igual a la anterior
 	    String nuevaContrasena = request.getNuevaContrasena();
+	    if (passwordEncoder.matches(nuevaContrasena, user.getPassword())) {
+	        return new ResponseEntity<>("La nueva contraseña no puede ser igual a la anterior", HttpStatus.BAD_REQUEST);
+	    }
+
+	    // Verifica que la nueva contraseña y la confirmación coincidan
+	    if (!nuevaContrasena.equals(request.getConfirmarContrasena())) {
+	        return new ResponseEntity<>("La nueva contraseña y la confirmación no coinciden", HttpStatus.BAD_REQUEST);
+	    }
+
+	    // Validaciones para la nueva contraseña
 	    if (!esContraseñaValida(nuevaContrasena)) {
 	        return new ResponseEntity<>("La nueva contraseña debe tener al menos 8 caracteres, incluir una letra mayúscula, un número y un carácter especial.", HttpStatus.BAD_REQUEST);
 	    }
@@ -207,19 +214,25 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 
 	    return new ResponseEntity<>("Contraseña cambiada exitosamente", HttpStatus.OK);
 	}
-
-	// Método de validación de contraseña
 	private boolean esContraseñaValida(String contraseña) {
+	    // Verificar que la contraseña tenga al menos 8 caracteres
 	    if (contraseña.length() < 8) {
 	        return false;
 	    }
 
+	    // Verificar si contiene al menos una letra mayúscula
 	    boolean tieneMayuscula = contraseña.chars().anyMatch(Character::isUpperCase);
+
+	    // Verificar si contiene al menos un número
 	    boolean tieneNumero = contraseña.chars().anyMatch(Character::isDigit);
+
+	    // Verificar si contiene al menos un carácter especial
 	    boolean tieneCaracterEspecial = contraseña.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?].*");
 
+	    // Retornar verdadero si cumple con todas las condiciones
 	    return tieneMayuscula && tieneNumero && tieneCaracterEspecial;
 	}
+
 
 	
 	@GetMapping("/busquedafiltro/{filtro}")
