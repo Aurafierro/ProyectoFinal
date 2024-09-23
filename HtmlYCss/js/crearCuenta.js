@@ -17,27 +17,6 @@ function soloLetras(event) {
     }
 }
 
-function letrasYnumeros(event) {
-    const letrasPermitidas = [
-        "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "u", "v", "x", "y", "w", "o", "z", "ñ", "Ñ",
-        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", " ",
-        "á", "é", "í", "ó", "ú", "Á", "É", "Í", "Ó", "Ú"
-    ];
-    const numeroPermitidos = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
-
-    if (!(letrasPermitidas.includes(event.key)) && !(numeroPermitidos.includes(event.key))) {
-        event.preventDefault();
-    }
-}
-
-function soloNumeros(event) {
-    const numeroPermitidos = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
-
-    if (!numeroPermitidos.includes(event.key)) {
-        event.preventDefault();
-    }
-}
-
 function letrasNumerosCaracteres(event) {
     const letrasPermitidas = [
         "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "u", "v", "x", "y", "w", "o", "z", "ñ", "Ñ",
@@ -47,7 +26,15 @@ function letrasNumerosCaracteres(event) {
     const numeroPermitidos = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
     const caracteresPermitidos = ['@', '_', '-', '.'];
 
-    if (!(numeroPermitidos.includes(event.key)) && !(letrasPermitidas.includes(event.key)) && !(caracteresPermitidos.includes(event.key))) {
+    if (!(letrasPermitidas.includes(event.key)) && !(numeroPermitidos.includes(event.key)) && !(caracteresPermitidos.includes(event.key))) {
+        event.preventDefault();
+    }
+}
+
+function soloNumeros(event) {
+    const numeroPermitidos = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+
+    if (!numeroPermitidos.includes(event.key)) {
         event.preventDefault();
     }
 }
@@ -71,11 +58,21 @@ function crearCuenta() {
             contentType: "application/json",
             data: JSON.stringify(formData),
             success: function (result) {
+                const token = result.token; // Ajusta según la respuesta de tu API
+                let tokens = JSON.parse(localStorage.getItem('authTokens')) || [];
+                tokens.push(token);
+                localStorage.setItem('authTokens', JSON.stringify(tokens)); // Almacena todos los tokens
+
                 Swal.fire({
-                    title: "¡Excelente!",
-                    text: "Se guardó correctamente",
-                    icon: "success"
-                });
+                  title: "¡Excelente!",
+                  text: "Se guardó correctamente",
+                  icon: "success"
+              }).then(() => {
+                  // Redirige al usuario al inicio de sesión después de que se cierre la alerta
+                  window.location.href = "http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html"; // Ruta correcta
+              });
+              
+
                 limpiarFormulario();
             },
             error: function (error) {
@@ -103,7 +100,6 @@ function validarCampos(formData) {
 
     let camposValidos = true;
 
-    // Validación de cada campo
     camposRequeridos.forEach(function(campo) {
         let elemento = document.getElementById(campo);
         let errorElemento = document.getElementById(`error-${campo}`);
@@ -117,7 +113,6 @@ function validarCampos(formData) {
         }
     });
 
-    // Validación adicional para número de documento
     let numeroDocumento = document.getElementById("numero_documento").value.trim();
     let numeroDocumentoValue = parseInt(numeroDocumento);
 
@@ -134,7 +129,6 @@ function validarCampos(formData) {
         document.getElementById("error-numero_documento").classList.remove('error-message');
     }
 
-    // Validación adicional para número de teléfono
     let telefono = document.getElementById("telefono").value.trim();
     if (telefono.length !== 10) {
         document.getElementById("error-telefono").textContent = "El número de teléfono debe tener exactamente 10 dígitos.";
@@ -145,7 +139,6 @@ function validarCampos(formData) {
         document.getElementById("error-telefono").classList.remove('error-message');
     }
 
-    // Validación de username
     let username = document.getElementById("username").value.trim();
     if (!username.includes('@') || !username.includes('.')) {
         document.getElementById('error-username').textContent = 'El username electrónico no es válido.';
