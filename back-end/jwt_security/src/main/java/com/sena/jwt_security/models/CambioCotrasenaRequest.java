@@ -57,7 +57,7 @@ public class CambioCotrasenaRequest {
 
 	public void setConfirmarContrasena(String confirmarContrasena) {
 		this.confirmarContrasena = confirmarContrasena;
-	}
+	}  
 	   
 	   
 }

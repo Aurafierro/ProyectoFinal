@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sena.jwt_security.interfaceService.IUserService;
 import com.sena.jwt_security.models.AuthResponse;
 import com.sena.jwt_security.models.CambiarContrasenaRequest;
+import com.sena.jwt_security.models.CambioCotrasenaRequest;
 import com.sena.jwt_security.models.RecuperarContrasenaRequest;
 import com.sena.jwt_security.models.resgisterRequest;
 import com.sena.jwt_security.models.rol;
@@ -245,6 +246,41 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 
 	    return new ResponseEntity<>("Se ha enviado un enlace para recuperar la contraseña", HttpStatus.OK);
 	}
+	
+	@PutMapping("/cambio-contrasena")
+	public ResponseEntity<Object> cambiarContrasena(@RequestBody CambioCotrasenaRequest request) {
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    userRegistro user = (userRegistro) auth.getPrincipal();
+
+	    // Verificar la contraseña antigua
+	    if (!passwordEncoder.matches(request.getAntiguaContrasena(), user.getPassword())) {
+	        return new ResponseEntity<>("La contraseña antigua no es correcta", HttpStatus.BAD_REQUEST);
+	    }
+
+	    String nuevaContrasena = request.getNuevaContrasena();
+
+	    if (passwordEncoder.matches(nuevaContrasena, user.getPassword())) {
+	        return new ResponseEntity<>("La nueva contraseña no puede ser igual a la antigua", HttpStatus.BAD_REQUEST);
+	    }
+
+	    if (!nuevaContrasena.equals(request.getConfirmarContrasena())) {
+	        return new ResponseEntity<>("La nueva contraseña y la confirmación no coinciden", HttpStatus.BAD_REQUEST);
+	    }
+
+	    if (!esContraseñaValida(nuevaContrasena)) {
+	        return new ResponseEntity<>("La nueva contraseña debe tener al menos 8 caracteres, incluir una letra mayúscula, un número y un carácter especial.", HttpStatus.BAD_REQUEST);
+	    }
+
+	    // Actualizar la contraseña
+	    user.setPassword(passwordEncoder.encode(nuevaContrasena));
+	    userService.save(user);
+
+	    // Enviar correo de confirmación
+	    emailService.enviarCorreoPasswordModificada(user.getUsername());
+
+	    return new ResponseEntity<>("Contraseña cambiada exitosamente", HttpStatus.OK);
+	}
+
 
 	@PostMapping("/cerrar-sesion")
 	public ResponseEntity<String> logout() {
