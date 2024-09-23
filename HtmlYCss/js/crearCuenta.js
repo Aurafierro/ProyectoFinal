@@ -1,124 +1,56 @@
-var url = "http://localhost:8080/api/v1/user/";
+var url = "http://localhost:8080/api/v1/user/register/";
 
 document.getElementById("numero_documento").addEventListener("keypress", soloNumeros);
 document.getElementById("nombre_completo").addEventListener("keypress", soloLetras);
 document.getElementById("telefono").addEventListener("keypress", soloNumeros);
 document.getElementById("username").addEventListener("keypress", letrasNumerosCaracteres);
 
-
 function soloLetras(event) {
-  console.log("Llave presionada: " + event.key);
-  console.log("Código tecla: " + event.keyCode);
+    const letrasPermitidas = [
+        "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "u", "v", "x", "y", "w", "o", "z", "ñ", "Ñ",
+        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", " ",
+        "á", "é", "í", "ó", "ú", "Á", "É", "Í", "Ó", "Ú"
+    ];
 
-  const letrasPermitidas = [
-    //letras en minúsculas
-    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "u", "v", "x", "y", "w", "o", "z", "ñ", "Ñ",
-    //LETRAS EN MAYÚSCULAS
-    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", " ",
-    //letras con tildes, mayusculas y minusculas
-    "á", "é", "í", "ó", "ú", "Á", "É", "Í", "Ó", "Ú"
-  ];
-
-  if (!(letrasPermitidas.includes(event.key))) {
-    event.preventDefault();
-    return;
-  }
+    if (!letrasPermitidas.includes(event.key)) {
+        event.preventDefault();
+    }
 }
 
-
-//función para que el titulo del libro permita solamente numeros y letras
 function letrasYnumeros(event) {
-  console.log("Llave presionada: " + event.key);
-  console.log("Código tecla: " + event.keyCode);
+    const letrasPermitidas = [
+        "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "u", "v", "x", "y", "w", "o", "z", "ñ", "Ñ",
+        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", " ",
+        "á", "é", "í", "ó", "ú", "Á", "É", "Í", "Ó", "Ú"
+    ];
+    const numeroPermitidos = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 
-  const letrasPermitidas = [
-    //letras en minúsculas
-    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "u", "v", "x", "y", "w", "o", "z", "ñ", "Ñ",
-    //LETRAS EN MAYÚSCULAS
-    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", " ",
-    //letras con tildes, mayusculas y minusculas
-    "á", "é", "í", "ó", "ú", "Á", "É", "Í", "Ó", "Ú"
-
-  ];
-  const numeroPermitidos = [
-    '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'
-  ];
-
-
-  if (
-    !(letrasPermitidas.includes(event.key)) &&
-    !(numeroPermitidos.includes(event.key))
-  ) {
-    event.preventDefault();
-    return;
-  }
-
-
+    if (!(letrasPermitidas.includes(event.key)) && !(numeroPermitidos.includes(event.key))) {
+        event.preventDefault();
+    }
 }
 
 function soloNumeros(event) {
-  console.log("Llave presionada: " + event.key);
-  console.log("Código tecla: " + event.keyCode);
+    const numeroPermitidos = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 
-  const numeroPermitidos = [
-    '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'
-  ];
-
-  if (!(numeroPermitidos.includes(event.key))) {
-    event.preventDefault();
-    return;
-  }
+    if (!numeroPermitidos.includes(event.key)) {
+        event.preventDefault();
+    }
 }
 
 function letrasNumerosCaracteres(event) {
-  console.log("Llave presionada: " + event.key);
-  console.log("Código tecla: " + event.keyCode);
+    const letrasPermitidas = [
+        "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "u", "v", "x", "y", "w", "o", "z", "ñ", "Ñ",
+        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", " ",
+        "á", "é", "í", "ó", "ú", "Á", "É", "Í", "Ó", "Ú"
+    ];
+    const numeroPermitidos = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+    const caracteresPermitidos = ['@', '_', '-', '.'];
 
-  const letrasPermitidas = [
-    //letras en minúsculas
-    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "u", "v", "x", "y", "w", "o", "z", "ñ", "Ñ",
-    //LETRAS EN MAYÚSCULAS
-    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", " ",
-    //letras con tildes, mayusculas y minusculas
-    "á", "é", "í", "ó", "ú", "Á", "É", "Í", "Ó", "Ú"
-
-  ];
-  const numeroPermitidos = [
-    '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'
-  ];
-  const caracteresPermitidos = [
-    '@', '_', '-', '.'
-  ];
-
-
-  if (!(numeroPermitidos.includes(event.key)) && (letrasPermitidas.includes(event.key)) && (caracteresPermitidos.includes(event.key))) {
-    event.preventDefault();
-    return;
-  }
-
-
+    if (!(numeroPermitidos.includes(event.key)) && !(letrasPermitidas.includes(event.key)) && !(caracteresPermitidos.includes(event.key))) {
+        event.preventDefault();
+    }
 }
-
-function numerosYcaracteres(event) {
-  console.log("Llave presionada: " + event.key);
-  console.log("Código tecla: " + event.keyCode);
-
-  const numeroPermitidos = [
-    '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'
-  ];
-  const caracteresPermitidos = [
-    ':'
-  ];
-
-
-  if (!(numeroPermitidos.includes(event.key)) && (caracteresPermitidos.includes(event.key))) {
-    event.preventDefault();
-    return;
-  }
-
-
-}
-
 
 function crearCuenta() {
     let formData = {
@@ -186,29 +118,25 @@ function validarCampos(formData) {
     });
 
     // Validación adicional para número de documento
-let numeroDocumento = document.getElementById("numero_documento").value.trim();
-let numeroDocumentoValue = parseInt(numeroDocumento);
+    let numeroDocumento = document.getElementById("numero_documento").value.trim();
+    let numeroDocumentoValue = parseInt(numeroDocumento);
 
-if (numeroDocumento === '') {
-    // Mensaje si el campo está vacío
-    document.getElementById("error-numero_documento").textContent = "El número de documento es obligatorio.";
-    document.getElementById("error-numero_documento").classList.add('error-message');
-    camposValidos = false;
-} else if (numeroDocumentoValue < 100000) {
-    // Mensaje si el número de documento es menor a 100000
-    document.getElementById("error-numero_documento").textContent = "El número de documento debe tener al menos 5 dígitos.";
-    document.getElementById("error-numero_documento").classList.add('error-message');
-    camposValidos = false;
-} else {
-    // Limpia el mensaje de error si el número de documento es válido
-    document.getElementById("error-numero_documento").textContent = "";
-    document.getElementById("error-numero_documento").classList.remove('error-message');
-}
-
+    if (numeroDocumento === '') {
+        document.getElementById("error-numero_documento").textContent = "El número de documento es obligatorio.";
+        document.getElementById("error-numero_documento").classList.add('error-message');
+        camposValidos = false;
+    } else if (numeroDocumentoValue < 100000) {
+        document.getElementById("error-numero_documento").textContent = "El número de documento debe tener al menos 5 dígitos.";
+        document.getElementById("error-numero_documento").classList.add('error-message');
+        camposValidos = false;
+    } else {
+        document.getElementById("error-numero_documento").textContent = "";
+        document.getElementById("error-numero_documento").classList.remove('error-message');
+    }
 
     // Validación adicional para número de teléfono
     let telefono = document.getElementById("telefono").value.trim();
-    if (telefono.length !== 10) {//3000000000    3999999999
+    if (telefono.length !== 10) {
         document.getElementById("error-telefono").textContent = "El número de teléfono debe tener exactamente 10 dígitos.";
         document.getElementById("error-telefono").classList.add('error-message');
         camposValidos = false;
@@ -217,12 +145,16 @@ if (numeroDocumento === '') {
         document.getElementById("error-telefono").classList.remove('error-message');
     }
 
+    // Validación de username
+    let username = document.getElementById("username").value.trim();
+    if (!username.includes('@') || !username.includes('.')) {
+        document.getElementById('error-username').textContent = 'El username electrónico no es válido.';
+        camposValidos = false;
+    } else {
+        document.getElementById('error-username').textContent = '';
+    }
+
     return camposValidos;
-}
-   // Validación de username
-  if (!username.includes('@') || !username.includes('.')) {
-    document.getElementById('error-username').textContent = 'El username electrónico no es válido.';
-    camposValidos = false;
 }
 
 function limpiarFormulario() {
