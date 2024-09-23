@@ -494,3 +494,34 @@ if (validarCampos()) {
   }
   
 }
+
+function eliminarReserva(idReserva) {
+  Swal.fire({
+    title: "¿Estás seguro?",
+    text: "¿Deseas eliminar esta reserva?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Sí, eliminar",
+    cancelButtonText: "Cancelar"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        url: url + idReserva,
+        type: "DELETE",
+        success: function(response) {
+          Swal.fire({
+            title: "¡Eliminado!",
+            text: "La reserva ha sido eliminada correctamente.",
+            icon: "success"
+          });
+          historial();
+        },
+        error: function(error) {
+          Swal.fire("Error", "Error al eliminar la reserva. " + error.responseText, "error");
+        }
+      });
+    }
+  });
+}
