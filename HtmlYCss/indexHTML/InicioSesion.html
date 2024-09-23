@@ -12,22 +12,21 @@
     <div class="container">
         <div class="form-container" id="form-container">
             <a href="../indexHTML/ModuloInformacion.html"> <h1 class="tituloInicioSesion">Inicio de sesión</h1> </a>
-          
             
             <div class="input-group">
                 <i class="fa-regular fa-circle-user icon"></i>
-                <input type="text" placeholder="Usuario" class="input-field">
+                <input type="text" id="username" placeholder="Usuario" class="input-field"> <!-- Agregado ID "username" -->
             </div>
             <div class="input-group">
                 <i class="fa-solid fa-lock icon"></i>
-                <input type="password" placeholder="Contraseña" class="input-field">
+                <input type="password" id="password" placeholder="Contraseña" class="input-field"> <!-- Agregado ID "password" -->
             </div>
             
             <a href="../indexHTML/RecuperarContrasena.html" class="recover-link">Recuperar contraseña</a>
             
             <div class="buttons">
                 <a href="../indexHTML/InicioSesion.html"><button class="btn red">Volver</button></a> 
-                <a href="../indexHTML/CrearCuenta.html"><button class="btn green">Enviar</button></a>
+                <button class="btn green" onclick="login()">Enviar</button>
             </div>
         </div>
         <div class="image-container" id="image-container">
@@ -36,14 +35,12 @@
     </div>
 
     <script src="../js/inicioSesion.js"></script> <!-- Enlace al archivo JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    
 </body>
 <footer class="footer">
-        
     <div class="footer-container">
         <p>&copy; 2024 Asigna Web - Todos los derechos reservados.</p>
-        
     </div>
 </footer>
 </html>

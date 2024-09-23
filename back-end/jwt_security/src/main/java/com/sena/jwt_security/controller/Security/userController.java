@@ -109,6 +109,38 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 		return new ResponseEntity<userRegistro>(user,HttpStatus.OK);
 	}
 	
+	@GetMapping("/verifyToken")
+	public ResponseEntity<String> verifyToken() {
+	    // Obtener la autenticación actual
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    
+	    // Verificar si la autenticación no es nula y si está autenticado
+	    if (auth != null && auth.isAuthenticated()) {
+	        // Extraer el nombre de usuario del principal
+	        String username = auth.getName();
+
+	        // Obtener el usuario de la base de datos
+	        java.util.Optional<userRegistro> optionalUser = userService.findByUsername(username);
+	        if (!optionalUser.isPresent()) {
+	            return new ResponseEntity<>("Usuario no encontrado", HttpStatus.UNAUTHORIZED);
+	        }
+
+	        // Obtener los detalles del usuario
+	        userRegistro user = optionalUser.get();
+
+	        // Verificar la contraseña (esto solo tiene sentido si estás almacenando el password en texto plano,
+	        // pero en una implementación real, las contraseñas se deben comparar después de encriptarlas)
+	        if (!passwordEncoder.matches(user.getPassword(), auth.getCredentials().toString())) {
+	            return new ResponseEntity<>("La contraseña no coincide", HttpStatus.UNAUTHORIZED);
+	        }
+
+	        // Si todo es correcto, el token es válido y el usuario está autenticado
+	        return new ResponseEntity<>("Token y credenciales válidas", HttpStatus.OK);
+	    } else {
+	        // Si no está autenticado o el token no es válido
+	        return new ResponseEntity<>("Token no válido o expirado", HttpStatus.UNAUTHORIZED);
+	    }
+	}
 	/*
 	 * Esta anotación  protege el acceso a este método,
 	 *  que  asegura de que solo los usuarios con el rol de "Administrador"
