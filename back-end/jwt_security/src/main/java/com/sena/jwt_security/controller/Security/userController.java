@@ -195,6 +195,7 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 
 	    // Establecer la nueva contraseña
 	    user.setPassword(passwordEncoder.encode(nuevaContrasena));
+	    user.setVerificar_contrasena(false); // Establecer en false después de cambiar la contraseña
 	    userService.save(user);
 
 	    // Enviar correo de confirmación

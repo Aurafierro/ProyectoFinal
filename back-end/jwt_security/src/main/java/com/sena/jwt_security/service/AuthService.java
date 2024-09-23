@@ -56,6 +56,7 @@ public class AuthService implements IUserService {
         userData.setPassword(passwordEncoder.encode(contrasena));  // Almacena la versión encriptada
 
         userData.setRol(request.getRol());
+        userData.setVerificar_contrasena(true);  // Establecer en true para indicar que se requiere cambiar la contraseña
 
         // Guardar el usuario en la base de datos
         data.save(userData);
@@ -68,10 +69,11 @@ public class AuthService implements IUserService {
             contrasena  // Enviar la contraseña original
         );
 
-        return new AuthResponse.builder()
+        return AuthResponse.builder()  // Corregido el uso del constructor de AuthResponse
                 .token(jwtService.getToken(userData))
                 .build();
     }
+
 
     
     
