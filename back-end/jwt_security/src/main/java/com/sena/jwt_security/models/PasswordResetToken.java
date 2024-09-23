@@ -28,8 +28,6 @@ public class PasswordResetToken {
 
     private LocalDateTime expiryDate;
 
-    // Getters y Setters
-
     public Long getId() {
         return id;
     }

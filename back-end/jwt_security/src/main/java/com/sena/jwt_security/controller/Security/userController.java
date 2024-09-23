@@ -245,7 +245,12 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	    return new ResponseEntity<>("Se ha enviado un enlace para recuperar la contraseña", HttpStatus.OK);
 	}
 
-	
+	@PostMapping("/cerrar-sesion")
+	public ResponseEntity<String> logout() {
+	    // solo devolver una respuesta confirmando el cierre de sesión.
+	    return new ResponseEntity<>("Cierre de sesión exitoso", HttpStatus.OK);
+	}
+
 
 	@GetMapping("/busquedafiltro/{filtro}")
 	public ResponseEntity<Object>findFiltro(@PathVariable String filtro){

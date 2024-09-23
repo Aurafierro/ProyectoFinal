@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.sena.jwt_security.interfaceService.IUserService;
+import com.sena.jwt_security.interfaces.IPasswordResetTokenRepository;
 import com.sena.jwt_security.interfaces.Iuser;
 import com.sena.jwt_security.models.AuthResponse;
 import com.sena.jwt_security.models.PasswordResetToken;
@@ -30,7 +31,19 @@ public class userService implements IUserService {
 	@Autowired
 	private Iuser data;
 	
-	private Map<String, PasswordResetToken> tokenStore = new HashMap<>();
+	@Autowired
+	private IPasswordResetTokenRepository tokenRepository;
+
+	public void savePasswordResetToken(userRegistro user, String token) {
+	    PasswordResetToken resetToken = new PasswordResetToken();
+	    resetToken.setUser(user);
+	    resetToken.setToken(token);
+	    resetToken.setExpiryDate(LocalDateTime.now().plusHours(24)); // Cambiado a 24 horas
+
+	    // Guarda el token en la base de datos
+	    tokenRepository.save(resetToken);
+	}
+
 
 	  
 	
@@ -96,24 +109,7 @@ public class userService implements IUserService {
 
 
 
-    @Override
-    public void savePasswordResetToken(userRegistro user, String token) {
-        PasswordResetToken resetToken = new PasswordResetToken();
-        resetToken.setUser(user);
-        resetToken.setToken(token);
-        resetToken.setExpiryDate(LocalDateTime.now().plusHours(1));
-
-        // Almacena en el mapa
-        tokenStore.put(token, resetToken);
-    }
-
-
-
-    public boolean validatePasswordResetToken(String token) {
-        PasswordResetToken resetToken = tokenStore.get(token); // O busca en la base de datos
-        return resetToken != null && resetToken.getExpiryDate().isAfter(LocalDateTime.now());
-    }
-
+    
 
 
 
