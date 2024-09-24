@@ -4,7 +4,9 @@ package com.sena.jwt_security.controller.Security;
 
 
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.apache.el.stream.Optional;
@@ -166,13 +168,23 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	        return ResponseEntity.ok(response);
 	    }*/
 	@GetMapping("/admin/findAll/")
-	public ResponseEntity<String>findAllAdmin(){
-		Authentication auth=SecurityContextHolder.getContext().getAuthentication();
-		var user =(userRegistro)auth.getPrincipal();
-		if (user.getRol()!=rol.Administrador)
-			return new ResponseEntity<String>("No tiene permiso",HttpStatus.FORBIDDEN);
-		return new ResponseEntity<String>("Método administrador",HttpStatus.OK);
+	public ResponseEntity<Map<String, Object>> findAllAdmin() {
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    var user = (userRegistro) auth.getPrincipal();
+	    
+	    Map<String, Object> response = new HashMap<>();
+	    
+	    // Devolver el rol del usuario
+	    if (user.getRol() == rol.Administrador) {
+	        response.put("role", "Admin");
+	    } else {
+	        response.put("role", "Usuario"); // Asignar "Usuario" para roles no administradores
+	    }
+	    
+	    return new ResponseEntity<>(response, HttpStatus.OK); // Cambiar a OK para ambos roles
 	}
+
+
 	
 	
 	@PutMapping("/cambiar-contrasena")

@@ -1,7 +1,7 @@
-var url = "http://localhost:8080/api/v1/public/user/login/"; // Update with your actual login endpoint
+var url = "http://localhost:8080/api/v1/public/user/login/"; // Actualiza con tu endpoint de inicio de sesión
 
 function login() {
-    // Collect user input
+    // Recoger la entrada del usuario
     let formData = {
         "username": document.getElementById("username").value,
         "password": document.getElementById("password").value
@@ -16,17 +16,17 @@ function login() {
             contentType: "application/json",
             data: JSON.stringify(formData),
             success: function (result) {
-                const token = result.token; // Adjust according to your API response
+                const token = result.token; // Ajusta según tu respuesta de API
                 let tokens = JSON.parse(localStorage.getItem('authTokens')) || [];
                 tokens.push(token);
-                localStorage.setItem('authTokens', JSON.stringify(tokens)); // Store all tokens
+                localStorage.setItem('authTokens', JSON.stringify(tokens)); // Almacenar todos los tokens
 
                 Swal.fire({
                     title: "¡Bienvenido!",
                     text: "Inicio de sesión exitoso.",
                     icon: "success"
                 }).then(() => {
-                    window.location.href = "http://127.0.0.1:5502/HtmlYCss/indexHTML/ModuloInformacion.html"; // Redirect to the main page
+                    checkUserRole(token); // Verificar el rol del usuario después del inicio de sesión exitoso
                 });
             },
             error: function (error) {
@@ -42,6 +42,40 @@ function login() {
     }
 }
 
+async function checkUserRole(token) {
+  try {
+      const response = await fetch('http://localhost:8080/api/v1/user/admin/findAll/', {
+          method: 'GET',
+          headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json'
+          }
+      });
+
+      const data = await response.json(); // Obtener respuesta como JSON
+
+      if (!response.ok) {
+          console.error('Error en la respuesta del servidor:', data);
+          Swal.fire("Error", "Error al verificar el rol del usuario: " + data.message, "error");
+          return;
+      }
+
+      const userRole = data.role; // Obtener el rol del usuario
+
+      if (userRole === "Admin") {
+          window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/M.informacionAdmin.html';
+      } else if (userRole === "Usuario") {
+          window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/ContrasenaCambiar.html'; // URL para usuarios
+      }
+
+  } catch (error) {
+      console.error('Error al verificar el rol del usuario:', error);
+      Swal.fire("Error", "Error al verificar el rol del usuario: " + error.message, "error");
+  }
+}
+
+
+
 function validarCampos(formData) {
     let camposRequeridos = [
         "username",
@@ -52,9 +86,9 @@ function validarCampos(formData) {
 
     camposRequeridos.forEach(function(campo) {
         let elemento = document.getElementById(campo);
-        let errorElemento = document.getElementById(`error-${campo}`); // If you want to show error messages
+        let errorElemento = document.getElementById(`error-${campo}`); // Ajusta el ID del elemento de error
         if (elemento.value.trim() === "") {
-            errorElemento.textContent = `Este campo es obligatorio.`;
+            errorElemento.textContent = "Este campo es obligatorio.";
             errorElemento.classList.add('error-message');
             camposValidos = false;
         } else {
