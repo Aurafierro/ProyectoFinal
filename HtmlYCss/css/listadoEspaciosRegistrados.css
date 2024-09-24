@@ -407,3 +407,86 @@ input{
     text-align: center;
     width: 80%;
 }
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    width: 100%;
+    max-width: 40%;
+    border-radius: 20px;
+    height: 80%;
+}
+
+.modal-body {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5%;
+}
+
+.left-column input, .right-column input,
+.SELECTnombre_espacio,
+.inputCamposEditarReserva {
+    width: 80%;
+    padding: 10px;
+    font-size: 0.875rem;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background-color: #D9D9D9;
+}
+
+.boton {
+    text-align: center;
+}
+
+#botonActualizarEspacio {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Candal';
+    border: none;
+}
+
+.btnCerrarModal{
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Candal';
+    border: none;
+}
+@media screen and (max-width: 768px) {
+    .header .logo {
+        flex-grow: 0;
+    }
+    .header .logout {
+        right: 10px;
+    }
+}
+
+.contenedorPadre{
+    display: flex;
+}
+
+.titulo{
+    text-align: center;
+}
+
+.divIzquierdo{
+    margin-left: 7%;
+}
