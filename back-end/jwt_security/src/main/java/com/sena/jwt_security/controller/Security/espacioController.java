@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 import java.io.IOException;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +26,6 @@ import com.sena.jwt_security.models.espacio;
 import com.sena.jwt_security.models.respuesta;
 import com.sena.jwt_security.service.FileStorageService;
 
-
-
 @RestController
 @RequestMapping("api/v1/espacio")
 @CrossOrigin
@@ -36,14 +33,14 @@ public class espacioController {
 
     @Autowired
     private IEspacioService espacioService;
-    
+
     @Autowired
     private FileStorageService fileStorageService;
 
     @GetMapping("/")
     public ResponseEntity<Object> consultarListaEspaciosJson() {
         List<espacio> listaEspacios = espacioService.consultarlistaespacio();
-        
+
         // Establecer la imagen_base como un arreglo de bytes vacío para todos los espacios
         for (espacio espacio : listaEspacios) {
             espacio.setImagen_base(new byte[0]); // Cambiado a byte[] vacío
@@ -58,79 +55,21 @@ public class espacioController {
             // Almacenar el archivo y obtener el nombre del archivo
             String fileName = fileStorageService.storeFile(file);
             espacio.setImagen_url("http://localhost:8080/api/downloadFile/" + fileName);
-            
+
             // Guardar la imagen como byte[] en lugar de Base64
             espacio.setImagen_base(file.getBytes());  // Almacenar los bytes directamente
-            
-            // Guardar el espacio en la base de datos
-            int retorno = espacioService.save(espacio);  // Cambiado a save
 
-            if (retorno == 0) {    
-                respuesta respuesta = new respuesta("ok", "Se guardó correctamente");
-                return new ResponseEntity<>(respuesta, HttpStatus.OK);
-            } else {
-                respuesta respuesta = new respuesta("error", "Error al guardar");
-                return new ResponseEntity<>(respuesta, HttpStatus.INTERNAL_SERVER_ERROR);
-            }
+            // Guardar el espacio en la base de datos
+            espacioService.save(espacio);
+
+            respuesta respuesta = new respuesta("ok", "Se guardó correctamente");
+            return new ResponseEntity<>(respuesta, HttpStatus.OK);
+
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                                  .body("Failed to upload file: " + e.getMessage());
         }
-<<<<<<< HEAD
     }
-=======
-        
-        
-		espacioService.save(espacio);
-		return new ResponseEntity<>(espacio,HttpStatus.OK);
-	}
-	
-	@GetMapping("/")
-	public ResponseEntity<Object>findAll(){
-		var ListaEspacio = espacioService.findAll();
-		return new ResponseEntity<>(ListaEspacio, HttpStatus.OK);
-	}
-	
-	//filtro
-	@GetMapping("/busquedafiltro/{filtro}")
-	public ResponseEntity<Object>findFiltro(@PathVariable String filtro){
-		var Listaespacio = espacioService.filtroEspacio(filtro);
-		return new ResponseEntity<>(Listaespacio, HttpStatus.OK);
-	}
-	//@PathVariable recibe una variable por el enlace
-	
-	@GetMapping("/{id_espacio}")
-	public ResponseEntity<Object> findOne ( @PathVariable String id_espacio ){
-		var espacio= espacioService.findOne(id_espacio);
-		return new ResponseEntity<>(espacio, HttpStatus.OK);
-	}
-	
-	
-
-	
-			@PutMapping("/{id_espacio}")
-			public ResponseEntity<Object> update(@PathVariable String id_espacio, @RequestBody espacio espacioUpdate) {
-			    
-				// Verificar si hay campos vacíos
-				
-				if (espacioUpdate.contieneCamposVacios()) {
-					return new ResponseEntity<>("Todos los campos son obligatorios", HttpStatus.BAD_REQUEST);
-				}
-
-				var espacio = espacioService.findOne(id_espacio).get();
-				if (espacio != null) {
-					  // Verificar si el titulo se está cambiando
-			        if (!espacio.getNombre_del_espacio().equals(espacioUpdate.getNombre_del_espacio())) {
-			            // El titulo se está cambiando, verificar si ya está en uso
-			            List<espacio> espacios_con_mismo_titulo = espacioService.filtroIngresoEspacio(espacioUpdate.getNombre_del_espacio());
-			            if (!espacios_con_mismo_titulo.isEmpty()) {
-			                // Si hay otros espacios con el mismo número de documento, devuelve un error
-			                return new ResponseEntity<>("El espacio ya está registrado", HttpStatus.BAD_REQUEST);
-			            }
-			        }
->>>>>>> origin/main
-
-
 
     // Método para buscar espacios por filtro
     @GetMapping("/busquedafiltro/{filtro}")
