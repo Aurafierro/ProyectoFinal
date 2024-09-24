@@ -15,11 +15,8 @@ import lombok.NoArgsConstructor;
 
 
 @Data
-//consultorr
 @Builder
-//constructor sin argumento o vacio
 @NoArgsConstructor
-//constructor sin argumentos
 @AllArgsConstructor
 @Entity
 
@@ -41,60 +38,119 @@ public class espacio {
 	
 	@Column (name="descripcion", nullable= false, length = 100)
 	private String descripcion;
+	
+	@Column(name = "imagen_base", columnDefinition = "LONGBLOB", nullable = true)
+	private byte[] imagen_base;
+
+	@Column( name="imagen_url", nullable = true, length = 255 )
+	private String imagen_url;
+	
+
+	
 
 	public espacio() {
 		super();
 	}
+	
+	
 
 	public espacio(String id_espacio, String nombre_del_espacio, String clasificacion, String capacidad,
-			String descripcion) {
+			String descripcion, byte[] imagen_base, String imagen_url) {
 		super();
 		this.id_espacio = id_espacio;
 		this.nombre_del_espacio = nombre_del_espacio;
 		this.clasificacion = clasificacion;
 		this.capacidad = capacidad;
 		this.descripcion = descripcion;
+		this.imagen_base = imagen_base;
+		this.imagen_url = imagen_url;
 	}
+
+
 
 	public String getId_espacio() {
 		return id_espacio;
 	}
 
+
+
 	public void setId_espacio(String id_espacio) {
 		this.id_espacio = id_espacio;
 	}
+
+
 
 	public String getNombre_del_espacio() {
 		return nombre_del_espacio;
 	}
 
+
+
 	public void setNombre_del_espacio(String nombre_del_espacio) {
 		this.nombre_del_espacio = nombre_del_espacio;
 	}
+
+
 
 	public String getClasificacion() {
 		return clasificacion;
 	}
 
+
+
 	public void setClasificacion(String clasificacion) {
 		this.clasificacion = clasificacion;
 	}
+
+
 
 	public String getCapacidad() {
 		return capacidad;
 	}
 
+
+
 	public void setCapacidad(String capacidad) {
 		this.capacidad = capacidad;
 	}
+
+
 
 	public String getDescripcion() {
 		return descripcion;
 	}
 
+
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
+
+
+	public byte[] getImagen_base() {
+		return imagen_base;
+	}
+
+
+
+	public void setImagen_base(byte[] imagen_base) {
+		this.imagen_base = imagen_base;
+	}
+
+
+
+	public String getImagen_url() {
+		return imagen_url;
+	}
+
+	 public void setImagen_url(String imagen_url) {
+	        if (imagen_url != null && !imagen_url.startsWith("data:image/jpeg;base64,")) {
+	            this.imagen_url = "data:image/jpeg;base64," + imagen_url;
+	        } else {
+	            this.imagen_url = imagen_url;
+	        }
+	    }
 
 	public boolean contieneCamposVacios() {
 		// TODO Auto-generated method stub

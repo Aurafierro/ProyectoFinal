@@ -20,11 +20,7 @@ public class espacioService implements IEspacioService {
 	@Autowired
 	private IEspacio data;
 	
-	@Override
-	public String save(espacio espacio) {
-	    data.save(espacio);
-	    return espacio.getId_espacio();
-	}
+	
 
 	@Override
 	public List<espacio> findAll() {
@@ -54,5 +50,22 @@ public class espacioService implements IEspacioService {
 	public List<espacio> filtroIngresoEspacio(String nombre_del_espacio) {
 	    List<espacio> listaEspacio = data.filtroIngresoEspacio(nombre_del_espacio);
 	    return listaEspacio;
+	}
+
+    @Override
+    public List<espacio> consultarlistaespacio() {
+        // Implementación del método para consultar todos los espacios
+        return (List<espacio>) data.findAll(); // Uso de findAll() para obtener la lista de espacios
+    }
+
+	
+	@Override
+	public int save(espacio espacio ) {
+		int res=0;
+		espacio producto=data.save(espacio);
+		if(producto.equals(null)) {
+			res=1;
+		}
+		return res;
 	}
 }
