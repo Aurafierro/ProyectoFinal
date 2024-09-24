@@ -64,8 +64,8 @@ public ResponseEntity<Object> save(@RequestBody espacio espacio) {
 	
 	@GetMapping("/")
 	public ResponseEntity<Object>findAll(){
-		var Listaespacio = espacioService.findAll();
-		return new ResponseEntity<>(Listaespacio, HttpStatus.OK);
+		var ListaEspacio = espacioService.findAll();
+		return new ResponseEntity<>(ListaEspacio, HttpStatus.OK);
 	}
 	
 	//filtro

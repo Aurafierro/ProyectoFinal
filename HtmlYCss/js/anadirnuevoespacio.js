@@ -28,7 +28,7 @@ document.getElementById('eventoForm').addEventListener('submit', function(event)
   alert('Datos enviados correctamente');
 });
 
-var url = "http://localhost:8080/api/v1/espacio/";
+var url = "http://localhost:localhost:8080/api/v1/espacio/";
 
 document.getElementById("nombre_del_espacio").addEventListener("keypress", soloLetras);
 document.getElementById("clasificacion").addEventListener("keypress", soloLetras);
@@ -144,18 +144,16 @@ function espaciosRegistrados() {
         //UNA ETIQUETA tr por cada registro
         var trResgistro = document.createElement("tr");
 
-        //var celdaId = document.createElement("td");
         let celdaNombreEspacio = document.createElement("td")
         let celdaClasificacion = document.createElement("td")
         let celdaCapacidad = document.createElement("td")
         let celdaDescripcion = document.createElement("td")
 
 
-        //celdaId.innerText = result[i]["id_reserva"];
         celdaNombreEspacio.innerText = result[i]["nombre_del_espacio"];
-        celdaClasificacion.innerText = result[i]["nombre_espacio"];
-        celdaCapacidad.innerText = result[i]["hora_entrada"];
-        celdaDescripcion.innerText = result[i]["hora_salida"];
+        celdaClasificacion.innerText = result[i]["clasificacion"];
+        celdaCapacidad.innerText = result[i]["capacidad"];
+        celdaDescripcion.innerText = result[i]["descripcion"];
 
         let celdaOpcionEditar = document.createElement("td");
         let botonEditarEspacio = document.createElement("button");
