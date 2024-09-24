@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.sena.jwt_security.interfaceService.IUserService;
 import com.sena.jwt_security.interfaces.Iuser;
+import com.sena.jwt_security.interfaces.UserRegistroRepository;
 import com.sena.jwt_security.models.AuthResponse;
 import com.sena.jwt_security.models.loginRequest;
 import com.sena.jwt_security.models.resgisterRequest;
@@ -27,6 +28,9 @@ import java.util.concurrent.ThreadLocalRandom;
 @Service
 public class AuthService implements IUserService {
 
+	@Autowired
+    private UserRegistroRepository userRegistroRepository;
+	
 	@Autowired
 	private emailService emailService;
     private final Iuser data;
@@ -207,4 +211,25 @@ public class AuthService implements IUserService {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public List<userRegistro> enviarNotificacionCuenta(String numero_documento) {
+	    // Busca usuarios con el número de documento proporcionado
+	    List<userRegistro> usuarios = userRegistroRepository.enviarNotificacionCuenta(numero_documento);
+	    
+	    // Verifica si se encontraron usuarios
+	    if (usuarios.isEmpty()) {
+	        throw new RuntimeException("No se encontró usuario con el documento: " + numero_documento);
+	    }
+	    
+	    // Aquí puedes implementar la lógica para enviar la notificación por correo, si es necesario
+	    // Por ejemplo:
+	    for (userRegistro usuario : usuarios) {
+	        // Lógica para enviar notificación (ejemplo de llamada a un servicio de email)
+	        // emailService.enviarNotificacionCuenta(usuario.getEmail(), usuario.getNombreCompleto(), ...);
+	    }
+	    
+	    // Devuelve la lista de usuarios encontrados
+	    return usuarios;
+	}
+
 }

@@ -6,12 +6,13 @@ import javax.crypto.SecretKey;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import io.jsonwebtoken.security.Keys;
 
 import io.jsonwebtoken.SignatureAlgorithm;
 
-
+@EnableScheduling
 @SpringBootApplication
 public class JwtSecurityApplication {
 

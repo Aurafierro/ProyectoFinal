@@ -360,15 +360,6 @@ function limpiarFormulario() {
 }
 
 
-//funcion para cerrar el modal
-function closeModal() {
-  // Obtén el modal por su ID
-  var modal = document.getElementById('exampleModal');
-
-  // Cambia la propiedad display del modal a "none" para ocultarlo
-  modal.style.display = "none";
-}
-
 
 function openModal() {
   const modal = document.getElementById('editModal');

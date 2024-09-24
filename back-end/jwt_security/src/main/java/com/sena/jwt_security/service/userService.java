@@ -109,20 +109,11 @@ public class userService implements IUserService {
 
 
 
-    
-
-
-
-	//public Object enviarNotificacionCuenta() {
-		// TODO Auto-generated method stub
-		//return null;
-	//}
-		
-	//@Override
-	//public List<userRegistro>enviarNotificacionCuenta(){
-		//List<userRegistro>listaUserRegistro=data.enviarNotificacionCuenta();
-		//return listaUserRegistro;
-	//}
+    @Override
+    public List<userRegistro>enviarNotificacionCuenta(String numero_documento){
+    	List <userRegistro>listaUserRegistro=data.enviarNotificacionCuenta(numero_documento);
+    	return listaUserRegistro;
+    }
 	
 }
 
