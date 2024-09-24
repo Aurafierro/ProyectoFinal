@@ -74,64 +74,34 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header divTituloModal">
-                    <h1 class="modal-title fs-5 titulo" id="exampleModalLabel">Editar reservación</h1>
+                    <h1 class="modal-title fs-5 titulo" id="exampleModalLabel">Editar espacio</h1>
                 </div>
                 <br>
-                <div class="modal-body contenedorFormModal">
-                    <div class="row contenedorPadre">
-                        <input id="id_reserva" type="hidden">
-                        <div class="divIzquierdo">
-                            <div class="col col-xl-6 col-12">
-                                <label for="nombre_espacio"><b>Nombre espacio:</b></label>
-                        <select id="nombre_espacio" name="nombre_espacio" class="form-select SELECTnombre_espacio">
-                            <option value="" selected disabled>Selecciona una opción</option>
-                            <option value="cancha">Cancha</option>
-                            <option value="gimnasio">Gimnasio</option>
-                            <option value="auditorio">Auditorio</option>
-                            <option value="biblioteca">Biblioteca</option>
-                        </select>
-                            </div>
-                            <br>
-                            <div class="col col-xl-6 col-12">
-                                <b><label for="">Hora salida:</label></b>
-                                <input type="time" id="hora_salida" step="1"
-                                    class="form-control inputCamposEditarReserva" />
-                            </div>
-                            <br>
-                            <div class="col col-xl-6 col-12">
-                                <b><label for="">Fecha salida:</label></b>
-                                <input type="date" id="fecha_salida" step="1"
-                                    class="form-control inputCamposEditarReserva" />
-                            </div>
-                        </div>
-                        <div class="divDerecho">
-                            <div class="col col-xl-6 col-12">
-                                <b><label for="">Hora entrada:</label></b>
-                                <input type="time" id="hora_entrada" class="form-control inputCamposEditarReserva" />
-                            </div>
-                            <br>
-                            <br>
-                            <div class="col col-xl-6 col-12">
-                                <b><label for="">Fecha entrada:</label></b>
-                                <input type="date" id="fecha_entrada" class="form-control inputCamposEditarReserva" />
-                            </div>
-                            <br>
-                            <br>
-                            <div class="row boton">
-                                <button type="button" id="botonActualizarReserva"
-                                    onclick="actualizarEspacio();">Guardar</button>
-                            </div>
+                <div>
+                    <div class="contenedorFormEditarEspacio">
+                        <input id="id_espacio" type="hidden">
+                        <input type="text" placeholder="Nombre del nuevo espacio" class="input-email"
+                            id="nombre_del_espacio">
+                        <input type="text" placeholder="Clasificación del nuevo espacio" class="input-email"
+                            id="clasificacion">
+                        <input type="text" placeholder="Capacidad del nuevo espacio" class="input-email" id="capacidad">
+                        <input type="text" placeholder="Descripción del nuevo espacio" class="input-email"
+                            id="desripcion">
+                        <div class="row boton">
+                            <button type="button" id="botonActualizarReserva"
+                                onclick="actualizarEspacio();">Guardar</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         </div>
     </div>
+    </div>
 
-   
+
 
     <script src="../js/anadirnuevoespacio.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -163,4 +133,5 @@
         <button class="download-pdf-button">Descargar PDF</button>
     </div>
 </footer>
+
 </html>

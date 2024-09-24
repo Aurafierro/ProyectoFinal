@@ -347,25 +347,22 @@ td button {
     background-color: #fefefe;
     margin: 10% auto;
     padding: 20px;
-    width: 80%;
-    max-width: 600px;
+    width: 100%;
+    max-width: 40%;
     border-radius: 20px;
+    height: 80%;
 }
 
 .modal-body {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.left-column, .right-column {
-    width: 48%;
+    margin-bottom: 5%;
 }
 
 .left-column input, .right-column input,
 .SELECTnombre_espacio,
 .inputCamposEditarReserva {
-    width: 100%;
+    width: 80%;
     padding: 10px;
     font-size: 0.875rem;
     border: 1px solid #ddd;
@@ -383,8 +380,19 @@ td button {
     padding: 10px 20px;
     border-radius: 20px;
     cursor: pointer;
+    font-family: 'Candal';
+    border: none;
 }
 
+.btnCerrarModal{
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Candal';
+    border: none;
+}
 @media screen and (max-width: 768px) {
     .header .logo {
         flex-grow: 0;
@@ -392,4 +400,16 @@ td button {
     .header .logout {
         right: 10px;
     }
+}
+
+.contenedorPadre{
+    display: flex;
+}
+
+.titulo{
+    text-align: center;
+}
+
+.divIzquierdo{
+    margin-left: 7%;
 }

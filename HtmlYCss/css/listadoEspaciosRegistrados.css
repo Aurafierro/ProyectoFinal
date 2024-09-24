@@ -393,3 +393,17 @@ td button {
         right: 10px;
     }
 }
+
+.contenedorFormEditarEspacio{
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+    justify-content: center;
+    text-align: center;
+}
+
+input{
+    margin: 2%;
+    text-align: center;
+    width: 80%;
+}
