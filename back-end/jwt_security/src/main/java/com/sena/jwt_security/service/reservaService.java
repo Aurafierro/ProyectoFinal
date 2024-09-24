@@ -19,16 +19,6 @@ public class reservaService implements IReservaService{
 	
 	@Autowired
 	private IReserva data;
-
-	// se implementa 
-
-	//private final jwtServices datajwt;
-
-	// se implementa el administrador de autenticacion
-	//private final AuthenticationManager authManager;
-	// se implementa el servicio de codificaion y 
-	//private final PasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
-
 	
 	@Override
 	public String save(reserva reserva) {

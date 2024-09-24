@@ -7,9 +7,7 @@
     <title>Agregar Nuevo Ambiente - AsignaWeb</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="../css/NuevoEspacio.css">
-    <!-- Iconos Font Awesome -->
     <link rel="icon" href="/iconos/logo.ico" type="image/x-icon">
-
 </head>
 
 <body>
@@ -17,15 +15,17 @@
         <div class="container vertical">
             <div class="form-container" id="form-container">
                 <h1>Agregar espacios</h1>
-                <input type="text" placeholder="Nombre del nuevo espacio" class="input-email">
-                <input type="text" placeholder="Descripción del nuevo espacio" class="input-email">
+                <input type="text" placeholder="Nombre del nuevo espacio" class="input-email" id="nombre_del_espacio">
+                <input type="text" placeholder="Clasificación del nuevo espacio" class="input-email" id="clasificacion">
+                <input type="text" placeholder="Capacidad del nuevo espacio" class="input-email" id="capacidad">
+                <input type="text" placeholder="Descripción del nuevo espacio" class="input-email" id="desripcion">
                 <div class="buttons">
                     <button class="btn red">Volver</button>
                     <button class="btn green">Guardar</button>
                 </div>
             </div>
             <div class="image-container" id="image-container">
-                <i class="fas fa-plus-circle add-icon" id="add-icon"></i> <!-- Icono de Font Awesome para agregar -->
+                <i class="fas fa-plus-circle add-icon" id="add-icon"></i>
                 <input type="file" id="file-input" style="display: none;" accept="image/*">
                 <img id="image-preview" class="image-preview" src="" alt="Vista previa de la imagen">
             </div>
@@ -55,6 +55,8 @@
             }
         });
     </script>
+
+    <script src="../js/anadirnuevoespacio.js"></script>
 </body>
 
 </html>

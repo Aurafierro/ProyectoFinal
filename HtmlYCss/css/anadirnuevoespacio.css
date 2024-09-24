@@ -7,7 +7,6 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: black; /* Fondo negro */
   color: white; /* Texto blanco */
 }
 
@@ -103,4 +102,400 @@ input[type="text"] {
 #imagenSeleccionada {
   max-width: 100%;
   margin-top: 5%;
+}
+
+@font-face {
+  font-family: "Candal";
+  src: url("/Fuentes/Candal/Candal-Regular.ttf");
+}
+
+body {
+  margin: 0;
+  font-family: 'Candal';
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  height: 100px;
+  background-color: #1a3e68;
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.header .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header .logo img.logo-img {
+  width: 100%;
+  height: 75px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.header .logout {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+}
+
+.header .logout a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+  font-size: 90%;
+  font-family: 'Candal';
+}
+
+.header .logout a:hover {
+  color: var(--hover-color);
+}
+
+.container {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #1a3e68;
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  transition: transform 0.3s;
+  z-index: 1000;
+}
+
+.sidebar.hidden {
+  transform: translateX(-100%);
+}
+
+.sidebar.visible {
+  transform: translateX(0);
+}
+
+.profile {
+  text-align: center;
+  margin: 85% 0 30px;
+  border-bottom: 1px solid black;
+  padding-bottom: 20px;
+  width: 100%;
+  color: white;
+}
+
+.profile-pic {
+  width: 160px;
+  height: 160px;
+  background-color: transparent;
+  border-radius: 50%;
+  margin: 10% auto 10px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 3px solid #fff;
+}
+
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-pic i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 70px;
+  display: none;
+}
+
+.profile-pic:hover i {
+  display: block;
+}
+
+.profile-pic input[type="file"] {
+  display: none;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+  color: white;
+}
+
+nav ul li {
+  margin: 20px 0;
+}
+
+nav ul li a {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease-in-out;
+  font-weight: bold;
+}
+
+nav ul li a i {
+  margin-right: 8px;
+}
+
+.main-content.shifted, .header.shifted {
+  margin-left: 250px;
+  transition: margin-left 0.3s;
+}
+
+.table-container {
+  padding: 30px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #f4f5f7;
+}
+
+th {
+  background-color: #D9D9D9;
+  color: rgb(0, 0, 0);
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+td {
+  padding: 3px;
+  border-bottom: 1px solid #ddd;
+}
+
+td button {
+  padding: 14px 18px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.divBotones {
+  display: flex;
+  margin-top: 10%;
+  justify-content: center;
+}
+
+.button-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.search-options {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+  align-items: center;
+}
+
+.search-bar-wrapper {
+  display: flex;
+  align-items: center;
+  width: 70%;
+  margin-bottom: 10px;
+  justify-content: end;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 70%;
+}
+
+.search-bar input[type="text"] {
+  width: 60%;
+  padding: 18px;
+  font-size: 16px;
+  border: 2px solid rgb(3, 3, 3);
+  border-radius: 5px;
+}
+
+.search-bar button {
+  padding: 22px 20px;
+  background-color: #000000;
+  border: none;
+  border-radius: 0 25px 25px 0;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.menu-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 40px;
+  color: #ffffff;
+  z-index: 1001;
+}
+
+.download-pdf-button {
+  position: fixed;
+  bottom: 160px;
+  right: 20px;
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.download-pdf-button:hover {
+  background-color: #218838;
+}
+
+.footer {
+  background-color: #1a3e68;
+  color: white;
+  text-align: center;
+  width: 100%;
+  padding: 20px 0;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  margin-top: auto;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.btnEditar {
+  background-color: #1a3e68;
+  border-radius: 20px;
+  color: white;
+  font-family: 'Candal';
+}
+
+.btnEliminar {
+  background-color: rgb(179, 0, 0);
+  border-radius: 20px;
+  margin-left: 3%;
+  color: white;
+  font-family: 'Candal';
+}
+
+.edit-btn, .delete-btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+  opacity: 0.8;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 20px;
+}
+
+.modal-body {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.left-column, .right-column {
+  width: 48%;
+}
+
+.left-column input, .right-column input,
+.SELECTnombre_espacio,
+.inputCamposEditarReserva {
+  width: 100%;
+  padding: 10px;
+  font-size: 0.875rem;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  background-color: #D9D9D9;
+}
+
+.boton {
+  text-align: center;
+}
+
+#botonActualizarReserva {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .header .logo {
+      flex-grow: 0;
+  }
+  .header .logout {
+      right: 10px;
+  }
 }

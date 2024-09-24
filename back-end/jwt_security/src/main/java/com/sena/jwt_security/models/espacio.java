@@ -33,21 +33,26 @@ public class espacio {
 	@Column (name="nombre_del_espacio", nullable= false, length = 40)
 	private String nombre_del_espacio;
 	
-	//@Column (name="imagen_espacio", nullable= true)
-	//private String imagen_espacio;
+	@Column (name="clasificacion", nullable= false, length = 36)
+	private String clasificacion;
 	
-	@Column (name="descripcion", nullable= false, length = 36)
+	@Column (name="capacidad", nullable= false, length = 36)
+	private String capacidad;
+	
+	@Column (name="descripcion", nullable= false, length = 100)
 	private String descripcion;
 
 	public espacio() {
 		super();
 	}
 
-	public espacio(String id_espacio, String nombre_del_espacio, /*Blob imagen_espacio,*/ String descripcion) {
+	public espacio(String id_espacio, String nombre_del_espacio, String clasificacion, String capacidad,
+			String descripcion) {
 		super();
 		this.id_espacio = id_espacio;
 		this.nombre_del_espacio = nombre_del_espacio;
-		//this.imagen_espacio = "data:image/jpeg;base64,"+ imagen_espacio;
+		this.clasificacion = clasificacion;
+		this.capacidad = capacidad;
 		this.descripcion = descripcion;
 	}
 
@@ -67,13 +72,21 @@ public class espacio {
 		this.nombre_del_espacio = nombre_del_espacio;
 	}
 
-	//public Blob getImagen_espacio() {
-		//return imagen_espacio;
-	//}
+	public String getClasificacion() {
+		return clasificacion;
+	}
 
-	//public void setImagen_espacio(Blob imagen_espacio) {
-		//this.imagen_espacio = imagen_espacio;
-	//}
+	public void setClasificacion(String clasificacion) {
+		this.clasificacion = clasificacion;
+	}
+
+	public String getCapacidad() {
+		return capacidad;
+	}
+
+	public void setCapacidad(String capacidad) {
+		this.capacidad = capacidad;
+	}
 
 	public String getDescripcion() {
 		return descripcion;
@@ -83,8 +96,9 @@ public class espacio {
 		this.descripcion = descripcion;
 	}
 
-	
-	
-	
-	
+	public boolean contieneCamposVacios() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

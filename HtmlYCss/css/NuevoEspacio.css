@@ -18,7 +18,7 @@ body {
 .container {
     display: flex;
     flex: 1;
-    background-color: #000000;
+    background-color: #202C4A;
     padding: 50px; 
     border-radius: 30px;
     margin: 20px auto; 
@@ -50,6 +50,7 @@ body {
     box-sizing: border-box;
     margin-bottom: 17px; 
 }
+
 .buttons {
     display: flex;
     justify-content: center;
@@ -66,14 +67,16 @@ body {
 .buttons .btn.red {
     background-color: #dc3545;
     color: white;
+    font-family: 'Candal';
 }
 .buttons .btn.green {
     background-color: #28a745;
     color: white;
+    font-family: 'Candal';
 }
 .image-container {
     flex: 1;
-    background-color: #1a3e68;
+    background-color: black;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -132,7 +135,7 @@ body {
 }
 
 .footer {
-    background-color: #1a3e68;
+    background-color: #202C4A;
     color: white;
     text-align: center;
     width: 100%;
@@ -143,4 +146,8 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+placeholder{
+    font-family: 'Candal';
 }
