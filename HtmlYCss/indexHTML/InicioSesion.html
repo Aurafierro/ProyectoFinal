@@ -11,15 +11,19 @@
 <body>
     <div class="container">
         <div class="form-container" id="form-container">
-            <a href="../indexHTML/ModuloInformacion.html"> <h1 class="tituloInicioSesion">Inicio de sesión</h1> </a>
+            <a href="../indexHTML/ModuloInformacion.html"> 
+                <h1 class="tituloInicioSesion">Inicio de sesión</h1> 
+            </a>
             
             <div class="input-group">
                 <i class="fa-regular fa-circle-user icon"></i>
-                <input type="text" id="username" placeholder="Usuario" class="input-field"> <!-- Agregado ID "username" -->
+                <input type="text" id="username" placeholder="Usuario" class="input-field"> <!-- ID "username" -->
+                <div id="error-username" class="error-message" style="color: red;"></div> <!-- Mensaje de error para usuario -->
             </div>
             <div class="input-group">
                 <i class="fa-solid fa-lock icon"></i>
-                <input type="password" id="password" placeholder="Contraseña" class="input-field"> <!-- Agregado ID "password" -->
+                <input type="password" id="password" placeholder="Contraseña" class="input-field"> <!-- ID "password" -->
+                <div id="error-password" class="error-message" style="color: red;"></div> <!-- Mensaje de error para contraseña -->
             </div>
             
             <a href="../indexHTML/RecuperarContrasena.html" class="recover-link">Recuperar contraseña</a>
@@ -36,6 +40,7 @@
 
     <script src="../js/inicioSesion.js"></script> <!-- Enlace al archivo JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </body>
 <footer class="footer">

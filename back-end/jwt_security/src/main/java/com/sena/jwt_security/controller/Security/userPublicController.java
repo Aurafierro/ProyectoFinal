@@ -22,9 +22,14 @@ public class userPublicController {
 
     @PostMapping("/login/")
     public ResponseEntity<AuthResponse> login(@RequestBody loginRequest request) {
-        AuthResponse response = authService.login(request);
-        return ResponseEntity.ok(response);
+        try {
+            AuthResponse response = authService.login(request);
+            return ResponseEntity.ok(response);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(new AuthResponse(e.getMessage()));
+        }
     }
+
 
    /*
     @PostMapping("/register/")

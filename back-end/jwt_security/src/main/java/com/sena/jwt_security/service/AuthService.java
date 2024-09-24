@@ -15,7 +15,7 @@ import com.sena.jwt_security.models.userRegistro;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.AuthenticationManager;
-
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 
 
@@ -78,22 +78,37 @@ public class AuthService implements IUserService {
     
     
     public AuthResponse loginRequest(loginRequest request) {
-        Authentication authentication = authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(
-                request.getUsername(), 
-                request.getPassword()
-            )
-        );
+        // Longitud esperada de la contraseña (ajusta según tu requerimiento)
+        int expectedLength = 8; // Por ejemplo, 8 caracteres
 
+        // Verificación de la longitud de la contraseña
+        if (request.getPassword().length() != expectedLength) {
+            throw new IllegalArgumentException("La contraseña debe tener exactamente " + expectedLength + " caracteres.");
+        }
+
+        // Proceder con la autenticación
+        Authentication authentication;
+        try {
+            authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                    request.getUsername(),
+                    request.getPassword()
+                )
+            );
+        } catch (BadCredentialsException e) {
+            throw new IllegalArgumentException("Nombre de usuario o contraseña incorrectos."); // Improved error handling
+        }
+
+        // Si la autenticación es exitosa, obtener el usuario
         userRegistro user = findByUsername(request.getUsername()).orElseThrow();
 
+        // Generar el token
         String token = jwtService.getToken(user);
 
         return AuthResponse.builder()
                 .token(token)
                 .build();
     }
-
 
     
     private static int numeroAleatorioEnRango(int minimo, int maximo) {
