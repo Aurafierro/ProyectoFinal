@@ -28,7 +28,7 @@ document.getElementById('eventoForm').addEventListener('submit', function(event)
   alert('Datos enviados correctamente');
 });
 
-var url = "http://localhost:8080/api/v1/espacio/";
+var url = "http://localhost:localhost:8080/api/v1/espacio/";
 
 document.getElementById("nombre_del_espacio").addEventListener("keypress", soloLetras);
 document.getElementById("clasificacion").addEventListener("keypress", soloLetras);
@@ -144,18 +144,16 @@ function espaciosRegistrados() {
         //UNA ETIQUETA tr por cada registro
         var trResgistro = document.createElement("tr");
 
-        //var celdaId = document.createElement("td");
         let celdaNombreEspacio = document.createElement("td")
         let celdaClasificacion = document.createElement("td")
         let celdaCapacidad = document.createElement("td")
         let celdaDescripcion = document.createElement("td")
 
 
-        //celdaId.innerText = result[i]["id_reserva"];
         celdaNombreEspacio.innerText = result[i]["nombre_del_espacio"];
-        celdaClasificacion.innerText = result[i]["nombre_espacio"];
-        celdaCapacidad.innerText = result[i]["hora_entrada"];
-        celdaDescripcion.innerText = result[i]["hora_salida"];
+        celdaClasificacion.innerText = result[i]["clasificacion"];
+        celdaCapacidad.innerText = result[i]["capacidad"];
+        celdaDescripcion.innerText = result[i]["descripcion"];
 
         let celdaOpcionEditar = document.createElement("td");
         let botonEditarEspacio = document.createElement("button");
@@ -163,7 +161,7 @@ function espaciosRegistrados() {
         botonEditarEspacio.innerHTML = "Editar";
         botonEditarEspacio.onclick = function (e) {
           $('#exampleModal').modal('show');
-          consultarReservaID(this.value);
+          consultarEspacioID(this.value);
         }
         botonEditarEspacio.className = "btnEditar";
         celdaOpcionEditar.appendChild(botonEditarEspacio);
@@ -217,4 +215,114 @@ function limpiarFormulario() {
   document.getElementById("clasificacion").value = "";
   document.getElementById("capacidad").value = "";
   document.getElementById("descripcion").value = "";
+}
+
+function consultarEspacioID(id){
+  //alert(id);
+  $.ajax({
+      url:url+id,
+      type:"GET",
+      success: function(result){
+          document.getElementById("id_espacio").value=result["id_espacio"];
+          document.getElementById("nombre_del_espacio").value=result["nombre_del_espacio"];
+          document.getElementById("clasificacion").value=result["clasificacion"];
+          document.getElementById("capacidad").value=result["capacidad"];
+          document.getElementById("descripcion").value=result["descripcion"];
+      }
+  });
+}
+
+function actualizarEspacio() { 
+  var id_espacio=document.getElementById("id_espacio").value
+  let formData={
+      "nombre_del_espacio": document.getElementById("nombre_del_espacio").value,
+      "clasificacion": document.getElementById("clasificacion").value,
+      "capacidad": document.getElementById("capacidad").value,
+      "descripcion": document.getElementById("descripcion").value
+};
+
+if (validarCampos()) {
+  $.ajax({
+      url:url+id_espacio,
+      type: "PUT",
+      contentType: "application/json",
+            data: JSON.stringify(formData),
+    
+      
+      success: function(result) {
+        
+          // Manejar la respuesta exitosa según necesites
+          Swal.fire({
+              title: "¡Excelente!",
+              text: "Se guardó correctamente",
+              icon: "success"
+            });
+          // Puedes hacer algo adicional como recargar la lista de libros
+          espaciosRegistrados();
+      },
+      error: function(error) {
+          // Manejar el error de la petición
+          Swal.fire({
+              title: "¡Error!",
+              text: "No se guardó",
+              icon: "error"
+            });
+      },
+      error: function (error) {
+        Swal.fire("Error", "Error al guardar, " + error.responseText, "error");
+    }
+  });
+  } else {
+  Swal.fire({
+      title: "¡Error!",
+      text: "Llene todos los campos correctamente",
+      icon: "error"
+    });
+  }
+  function validarCampos() {
+    // Obtener los valores de los campos
+    var nombre_del_espacio = document.getElementById("nombre_del_espacio").value;
+    var clasificacion = document.getElementById("clasificacion").value;
+    var capacidad = document.getElementById("capacidad").value;
+    var descripcion = document.getElementById("descripcion").value
+  
+    // Verificar si algún campo está vacío
+    if (nombre_del_espacio === '' || clasificacion === '' || capacidad === '' || descripcion === '') {
+      return false; // Al menos un campo está vacío
+    } else {
+      return true; // Todos los campos están llenos
+    }
+  }
+  
+}
+
+function eliminarEspacio(idEspacio) {
+  Swal.fire({
+    title: "¿Estás seguro?",
+    text: "¿Deseas eliminar este espacio?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Sí, eliminar",
+    cancelButtonText: "Cancelar"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        url: url + idEspacio,
+        type: "DELETE",
+        success: function(response) {
+          Swal.fire({
+            title: "¡Eliminado!",
+            text: "El espacio ha sido eliminada correctamente.",
+            icon: "success"
+          });
+          espaciosRegistrados();
+        },
+        error: function(error) {
+          Swal.fire("Error", "Error al eliminar el espacio. " + error.responseText, "error");
+        }
+      });
+    }
+  });
 }

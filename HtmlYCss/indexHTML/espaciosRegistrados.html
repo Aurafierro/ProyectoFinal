@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Espacios registrados</title>
-    <link rel="stylesheet" href="../css/anadirnuevoespacio.css">
+    <link rel="stylesheet" href="../css/listadoEspaciosRegistrados.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="icon" href="/iconos/logo.ico" type="image/x-icon">
 </head>
@@ -46,7 +46,7 @@
         <div class="search-options">
             <div class="search-bar-wrapper">
                 <div class="search-bar">
-                    <input type="text" placeholder="Ingresa el nombre que deseas buscar" id="inputSearch">
+                    <input type="text" placeholder="Ingresa el espacio que deseas buscar" id="inputSearch">
                     <button><i class="fas fa-search" onclick="espaciosRegistrados();"></i></button>
                 </div>
             </div>
@@ -74,7 +74,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header divTituloModal">
-                    <h1 class="modal-title fs-5 titulo" id="exampleModalLabel">Editar reservación</h1>
+                    <h1 class="modal-title fs-5 titulo" id="exampleModalLabel">Editar espacio</h1>
                 </div>
                 <br>
                 <div class="modal-body contenedorFormModal">
@@ -82,56 +82,46 @@
                         <input id="id_reserva" type="hidden">
                         <div class="divIzquierdo">
                             <div class="col col-xl-6 col-12">
-                                <label for="nombre_espacio"><b>Nombre espacio:</b></label>
-                        <select id="nombre_espacio" name="nombre_espacio" class="form-select SELECTnombre_espacio">
-                            <option value="" selected disabled>Selecciona una opción</option>
-                            <option value="cancha">Cancha</option>
-                            <option value="gimnasio">Gimnasio</option>
-                            <option value="auditorio">Auditorio</option>
-                            <option value="biblioteca">Biblioteca</option>
-                        </select>
-                            </div>
-                            <br>
-                            <div class="col col-xl-6 col-12">
-                                <b><label for="">Hora salida:</label></b>
-                                <input type="time" id="hora_salida" step="1"
+                                <b><label for="">Nombre espacio:</label></b>
+                                <input type="text" id="nombre_del_espacio" step="1"
                                     class="form-control inputCamposEditarReserva" />
                             </div>
                             <br>
                             <div class="col col-xl-6 col-12">
-                                <b><label for="">Fecha salida:</label></b>
-                                <input type="date" id="fecha_salida" step="1"
+                                <b><label for="">Clasificación:</label></b>
+                                <input type="text" id="clasificacion" step="1"
                                     class="form-control inputCamposEditarReserva" />
                             </div>
                         </div>
                         <div class="divDerecho">
                             <div class="col col-xl-6 col-12">
-                                <b><label for="">Hora entrada:</label></b>
-                                <input type="time" id="hora_entrada" class="form-control inputCamposEditarReserva" />
+                                <b><label for="">Capacidad:</label></b>
+                                <input type="text" id="capacidad" step="1"
+                                    class="form-control inputCamposEditarReserva" />
                             </div>
                             <br>
                             <br>
                             <div class="col col-xl-6 col-12">
-                                <b><label for="">Fecha entrada:</label></b>
-                                <input type="date" id="fecha_entrada" class="form-control inputCamposEditarReserva" />
+                                <b><label for="">Descripción:</label></b>
+                                <input type="text" id="descripcion" step="1"
+                                    class="form-control inputCamposEditarReserva" />
                             </div>
                             <br>
                             <br>
                             <div class="row boton">
-                                <button type="button" id="botonActualizarReserva"
-                                    onclick="actualizarReserva();">Guardar</button>
+                                <button type="button" id="botonActualizarEspacio"
+                                    onclick="actualizarEspacio();">Guardar</button>
+                                    <button type="button" class="btnCerrarModal" data-bs-dismiss="modal" onclick="cerrarModal();">Cancelar</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
         </div>
     </div>
+    </div>
 
-   
+
 
     <script src="../js/anadirnuevoespacio.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -163,4 +153,5 @@
         <button class="download-pdf-button">Descargar PDF</button>
     </div>
 </footer>
+
 </html>

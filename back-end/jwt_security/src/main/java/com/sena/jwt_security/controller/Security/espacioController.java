@@ -76,7 +76,59 @@ public class espacioController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                                  .body("Failed to upload file: " + e.getMessage());
         }
+<<<<<<< HEAD
     }
+=======
+        
+        
+		espacioService.save(espacio);
+		return new ResponseEntity<>(espacio,HttpStatus.OK);
+	}
+	
+	@GetMapping("/")
+	public ResponseEntity<Object>findAll(){
+		var ListaEspacio = espacioService.findAll();
+		return new ResponseEntity<>(ListaEspacio, HttpStatus.OK);
+	}
+	
+	//filtro
+	@GetMapping("/busquedafiltro/{filtro}")
+	public ResponseEntity<Object>findFiltro(@PathVariable String filtro){
+		var Listaespacio = espacioService.filtroEspacio(filtro);
+		return new ResponseEntity<>(Listaespacio, HttpStatus.OK);
+	}
+	//@PathVariable recibe una variable por el enlace
+	
+	@GetMapping("/{id_espacio}")
+	public ResponseEntity<Object> findOne ( @PathVariable String id_espacio ){
+		var espacio= espacioService.findOne(id_espacio);
+		return new ResponseEntity<>(espacio, HttpStatus.OK);
+	}
+	
+	
+
+	
+			@PutMapping("/{id_espacio}")
+			public ResponseEntity<Object> update(@PathVariable String id_espacio, @RequestBody espacio espacioUpdate) {
+			    
+				// Verificar si hay campos vacíos
+				
+				if (espacioUpdate.contieneCamposVacios()) {
+					return new ResponseEntity<>("Todos los campos son obligatorios", HttpStatus.BAD_REQUEST);
+				}
+
+				var espacio = espacioService.findOne(id_espacio).get();
+				if (espacio != null) {
+					  // Verificar si el titulo se está cambiando
+			        if (!espacio.getNombre_del_espacio().equals(espacioUpdate.getNombre_del_espacio())) {
+			            // El titulo se está cambiando, verificar si ya está en uso
+			            List<espacio> espacios_con_mismo_titulo = espacioService.filtroIngresoEspacio(espacioUpdate.getNombre_del_espacio());
+			            if (!espacios_con_mismo_titulo.isEmpty()) {
+			                // Si hay otros espacios con el mismo número de documento, devuelve un error
+			                return new ResponseEntity<>("El espacio ya está registrado", HttpStatus.BAD_REQUEST);
+			            }
+			        }
+>>>>>>> origin/main
 
 
 
