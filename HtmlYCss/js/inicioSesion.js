@@ -17,9 +17,12 @@ function login() {
             data: JSON.stringify(formData),
             success: function (result) {
                 const token = result.token; // Ajusta según tu respuesta de API
-                let tokens = JSON.parse(localStorage.getItem('authTokens')) || [];
-                tokens.push(token);
-                localStorage.setItem('authTokens', JSON.stringify(tokens)); // Almacenar todos los tokens
+                
+                // Eliminar el token anterior si existe
+                localStorage.removeItem('authTokens');
+                
+                // Almacenar el nuevo token directamente
+                localStorage.setItem('authTokens', token); // Solo almacenar el nuevo token
 
                 Swal.fire({
                     title: "¡Bienvenido!",

@@ -32,6 +32,7 @@ import com.sena.jwt_security.models.CambiarContrasenaRequest;
 import com.sena.jwt_security.models.CambioCotrasenaRequest;
 import com.sena.jwt_security.models.RecuperarContrasenaRequest;
 import com.sena.jwt_security.models.resgisterRequest;
+import com.sena.jwt_security.models.respuesta;
 import com.sena.jwt_security.models.rol;
 import com.sena.jwt_security.models.userRegistro;
 import com.sena.jwt_security.service.AuthService;
@@ -183,23 +184,30 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	
 	
 	@PutMapping("/cambiar-contrasena")
-	public ResponseEntity<Object> cambiarContraseña(@RequestBody CambiarContrasenaRequest request) {
+	public ResponseEntity<respuesta> cambiarContraseña(@RequestBody CambiarContrasenaRequest request) {
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    userRegistro user = (userRegistro) auth.getPrincipal();
+	    var respuesta=new respuesta("","");
 
 	    String nuevaContrasena = request.getNuevaContrasena();
 
 	    if (passwordEncoder.matches(nuevaContrasena, user.getPassword())) {
-	        return new ResponseEntity<>("La nueva contraseña no puede ser igual a la anterior", HttpStatus.BAD_REQUEST);
+	    	respuesta.setStatus(HttpStatus.BAD_REQUEST.toString());
+	    	respuesta.setMessage("La nueva contraseña no puede ser igual a la anterior");
+	        return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
 	    }
 
 	    if (!nuevaContrasena.equals(request.getConfirmarContrasena())) {
-	        return new ResponseEntity<>("La nueva contraseña y la confirmación no coinciden", HttpStatus.BAD_REQUEST);
+	    	respuesta.setStatus(HttpStatus.BAD_REQUEST.toString());
+	    	respuesta.setMessage("La nueva contraseña y la confirmación no cinciden");
+	        return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
 	    }
 
 	    if (!esContraseñaValida(nuevaContrasena)) {
-	        return new ResponseEntity<>("La nueva contraseña debe tener al menos 8 caracteres, incluir una letra mayúscula, un número y un carácter especial.", HttpStatus.BAD_REQUEST);
-	    }
+	    	respuesta.setStatus(HttpStatus.BAD_REQUEST.toString());
+	    	respuesta.setMessage("La nueva contraseña debe tener al menos 8 carácteres, incluir una letra mayúscula, un número y un caracter especial.");
+	        return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);	    }
+	    
 
 	    // Establecer la nueva contraseña
 	    user.setPassword(passwordEncoder.encode(nuevaContrasena));
@@ -209,7 +217,7 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	    // Enviar correo de confirmación
 	    emailService.enviarCorreoPasswordModificada(user.getUsername());
 
-	    return new ResponseEntity<>("Contraseña cambiada exitosamente", HttpStatus.OK);
+	    return new ResponseEntity<>(respuesta, HttpStatus.OK);
 	}
 
 	private boolean esContraseñaValida(String contraseña) {
