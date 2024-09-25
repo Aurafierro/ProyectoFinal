@@ -567,3 +567,19 @@ function descargarPDF() {
 
 // Añadir evento de clic al botón de descargar
 document.getElementById('download-pdf-button').addEventListener('click', descargarPDF);
+
+
+
+
+function buscarConFiltro() {
+  const filtro = document.getElementById('inputSearch').value;
+
+  // Realizar una petición GET al backend con el filtro ingresado
+  fetch(`/reservas/busquedafiltro/${filtro}`)
+      .then(response => response.json())
+      .then(data => {
+          // Llamar a una función para renderizar los datos en la tabla
+          renderizarTabla(data);
+      })
+      .catch(error => console.error('Error al buscar con filtro:', error));
+}
