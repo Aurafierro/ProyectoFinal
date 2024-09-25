@@ -56,6 +56,11 @@ public class reservaService implements IReservaService{
 	    return listaReserva;
 	}
 
-	
+	@Override
+	public Object filtroIngresoReservaSelect(String filtro) {
+		 List<reserva> listaReserva = data.filtroIngresoReservaSelect(filtro);
+		    return listaReserva;
 
+	
+	}
 }

@@ -14,4 +14,5 @@ public interface IReservaService {
 	public Optional<reserva> findOne(String id_reserva);
 	public int delete (String id_reserva);
 	public List<reserva> filtroIngresoReserva(String nombre_completo );
+	public Object filtroIngresoReservaSelect(String filtro);
 }

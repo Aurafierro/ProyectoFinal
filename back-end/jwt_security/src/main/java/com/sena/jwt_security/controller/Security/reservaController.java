@@ -181,6 +181,13 @@ if (reserva.getUsername().equals("")) {
 		return new ResponseEntity<>(ListaReserva, HttpStatus.OK);
 	}
 	
+
+	@GetMapping("/busquedafiltroselect/{filtro}")
+	public ResponseEntity<Object>findFiltrosSelect(@PathVariable String filtro){
+		var ListaReserva = reservaService.filtroIngresoReservaSelect(filtro);
+		return new ResponseEntity<>(ListaReserva, HttpStatus.OK);
+	}
+	
 	@GetMapping("/{id_reserva}")
 	public ResponseEntity<Object> findOne ( @PathVariable String id_reserva ){
 		var reserva= reservaService.findOne(id_reserva);
