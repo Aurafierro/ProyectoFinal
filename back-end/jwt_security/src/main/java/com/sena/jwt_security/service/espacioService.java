@@ -59,13 +59,15 @@ public class espacioService implements IEspacioService {
     }
 
 	
-	@Override
-	public int save(espacio espacio ) {
-		int res=0;
-		espacio producto=data.save(espacio);
-		if(producto.equals(null)) {
-			res=1;
-		}
-		return res;
-	}
+    @Override
+    public int save(espacio espacio) {
+        int res = 0;
+       
+        espacio savedEspacio = data.save(espacio);
+        if (savedEspacio == null) { 
+            res = 1; // Indicador de error si no se guardó correctamente
+        }
+        return res; // Devuelve 0 si se guardó correctamente, 1 si hubo un error
+    }
+
 }

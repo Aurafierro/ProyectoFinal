@@ -41,9 +41,9 @@ public class espacioController {
     public ResponseEntity<Object> consultarListaEspaciosJson() {
         List<espacio> listaEspacios = espacioService.consultarlistaespacio();
 
-        // Establecer la imagen_base como un arreglo de bytes vacío para todos los espacios
+        // Establecer la imagen_url como nula para todos los espacios si es necesario
         for (espacio espacio : listaEspacios) {
-            espacio.setImagen_base(new byte[0]); // Cambiado a byte[] vacío
+            espacio.setImagen_base(null); // Se elimina el arreglo de bytes
         }
 
         return new ResponseEntity<>(listaEspacios, HttpStatus.OK);
@@ -56,9 +56,6 @@ public class espacioController {
             String fileName = fileStorageService.storeFile(file);
             espacio.setImagen_url("http://localhost:8080/api/downloadFile/" + fileName);
 
-            // Guardar la imagen como byte[] en lugar de Base64
-            espacio.setImagen_base(file.getBytes());  // Almacenar los bytes directamente
-
             // Guardar el espacio en la base de datos
             espacioService.save(espacio);
 
@@ -70,6 +67,7 @@ public class espacioController {
                                  .body("Failed to upload file: " + e.getMessage());
         }
     }
+
 
     // Método para buscar espacios por filtro
     @GetMapping("/busquedafiltro/{filtro}")

@@ -39,8 +39,8 @@ public class espacio {
 	@Column (name="descripcion", nullable= false, length = 100)
 	private String descripcion;
 	
-	@Column(name = "imagen_base", columnDefinition = "LONGBLOB", nullable = true)
-	private byte[] imagen_base;
+	@Column( name="imagen_base", nullable = true)
+	private String  imagen_base;
 
 	@Column( name="imagen_url", nullable = true, length = 255 )
 	private String imagen_url;
@@ -48,14 +48,16 @@ public class espacio {
 
 	
 
+	
+
+
 	public espacio() {
 		super();
 	}
-	
-	
 
+	
 	public espacio(String id_espacio, String nombre_del_espacio, String clasificacion, String capacidad,
-			String descripcion, byte[] imagen_base, String imagen_url) {
+			String descripcion, String imagen_base, String imagen_url) {
 		super();
 		this.id_espacio = id_espacio;
 		this.nombre_del_espacio = nombre_del_espacio;
@@ -67,11 +69,9 @@ public class espacio {
 	}
 
 
-
 	public String getId_espacio() {
 		return id_espacio;
 	}
-
 
 
 	public void setId_espacio(String id_espacio) {
@@ -79,11 +79,9 @@ public class espacio {
 	}
 
 
-
 	public String getNombre_del_espacio() {
 		return nombre_del_espacio;
 	}
-
 
 
 	public void setNombre_del_espacio(String nombre_del_espacio) {
@@ -91,11 +89,9 @@ public class espacio {
 	}
 
 
-
 	public String getClasificacion() {
 		return clasificacion;
 	}
-
 
 
 	public void setClasificacion(String clasificacion) {
@@ -103,11 +99,9 @@ public class espacio {
 	}
 
 
-
 	public String getCapacidad() {
 		return capacidad;
 	}
-
 
 
 	public void setCapacidad(String capacidad) {
@@ -115,11 +109,9 @@ public class espacio {
 	}
 
 
-
 	public String getDescripcion() {
 		return descripcion;
 	}
-
 
 
 	public void setDescripcion(String descripcion) {
@@ -127,17 +119,14 @@ public class espacio {
 	}
 
 
-
-	public byte[] getImagen_base() {
+	public String getImagen_base() {
 		return imagen_base;
 	}
 
 
-
-	public void setImagen_base(byte[] imagen_base) {
+	public void setImagen_base(String imagen_base) {
 		this.imagen_base = imagen_base;
 	}
-
 
 
 	public String getImagen_url() {
