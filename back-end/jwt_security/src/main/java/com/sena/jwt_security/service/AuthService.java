@@ -82,8 +82,8 @@ public class AuthService implements IUserService {
     
     
     public AuthResponse loginRequest(loginRequest request) {
-        // Longitud esperada de la contraseña (ajusta según tu requerimiento)
-        int expectedLength = 8; // Por ejemplo, 8 caracteres
+        // Longitud esperada de la contraseña
+        int expectedLength = 8; // Ajusta según tu requerimiento
 
         // Verificación de la longitud de la contraseña
         if (request.getPassword().length() != expectedLength) {
@@ -100,19 +100,43 @@ public class AuthService implements IUserService {
                 )
             );
         } catch (BadCredentialsException e) {
-            throw new IllegalArgumentException("Nombre de usuario o contraseña incorrectos."); // Improved error handling
+            throw new IllegalArgumentException("Nombre de usuario o contraseña incorrectos."); // Manejo de errores mejorado
         }
 
-        // Si la autenticación es exitosa, obtener el usuario
+        // Obtener el usuario autenticado
         userRegistro user = findByUsername(request.getUsername()).orElseThrow();
 
-        // Generar el token
+        // Comprobar si es la primera vez que se loguea
+        if (user.isVerificar_contrasena()) { // Si es la primera vez
+            // Aquí no se hace nada especial, simplemente se permite el inicio de sesión
+            // El estado de verificar_contrasena se mantiene en true (1)
+        } else {
+            // Si ya se ha logueado antes, se debe cambiar el estado a false
+            user.setVerificar_contrasena(false); // Cambiar a false para indicar que ya no necesita cambiar la contraseña
+
+            // Guardar los cambios en la base de datos
+            try {
+                data.save(user); // Guarda los cambios en la base de datos
+            } catch (Exception e) {
+                throw new IllegalStateException("Error al actualizar el estado de verificar_contrasena: " + e.getMessage());
+            }
+
+            // Confirmar si el estado se actualizó correctamente
+            userRegistro updatedUser = findByUsername(request.getUsername()).orElseThrow();
+            if (updatedUser.isVerificar_contrasena()) {
+                throw new IllegalStateException("El estado de verificar_contrasena no se actualizó correctamente.");
+            }
+        }
+
+        // Generar el token de autenticación
         String token = jwtService.getToken(user);
 
         return AuthResponse.builder()
                 .token(token)
                 .build();
     }
+
+
 
     
     private static int numeroAleatorioEnRango(int minimo, int maximo) {

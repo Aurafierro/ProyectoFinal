@@ -20,6 +20,8 @@ public interface Iuser extends CrudRepository<userRegistro, String> {
     @Query("SELECT u FROM userRegistro u WHERE u.numero_documento = ?1")
     List<userRegistro> enviarNotificacionCuenta(String numero_documento);
 
+
+
 }
 
 
