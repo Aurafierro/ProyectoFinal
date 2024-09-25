@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solicitudes</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+
     <link rel="stylesheet" href="../css/Solicitudes.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="icon" href="/iconos/logo.ico" type="image/x-icon">
 </head>
+
 <body onload="solicitudes();">
     <header class="header">
         <div class="menu-toggle" onclick="toggleSidebar();">
@@ -33,8 +38,10 @@
         <nav>
             <ul>
                 <li><a href="../indexHTML/miPerfil.html" class="active"><i class="fas fa-user"></i>Mi perfil</a></li>
-                <li><a href="../indexHTML/crearReserva.html" class="active"><i class="fas fa-key"></i>Reservar espacios</a></li>
-                <li><a href="../indexHTML/Solicitudes.html" class="active"><i class="fas fa-check"></i>Solicitudes</a></li>
+                <li><a href="../indexHTML/crearReserva.html" class="active"><i class="fas fa-key"></i>Reservar
+                        espacios</a></li>
+                <li><a href="../indexHTML/Solicitudes.html" class="active"><i class="fas fa-check"></i>Solicitudes</a>
+                </li>
                 <li><a href="../indexHTML/historial.html"><i class="fas fa-history"></i>Historial</a></li>
             </ul>
         </nav>
@@ -69,16 +76,17 @@
                 <tbody id="cuerpoTabla"></tbody>
             </table>
             <div class="download-button">
-                <button id="botonDescargarPDF">Descargar PDF</button>
+                <button id="botonDescargarPDF" onclick="descargarPDF()">Descargar PDF</button>
             </div>
         </div>
     </div>
     <footer class="footer">
-        
+
         <div class="footer-container">
             <p>&copy; 2024 Asigna Web - Todos los derechos reservados.</p>
-            
+
         </div>
     </footer>
     <script src="/HtmlYCss/js/Solicitudes.js"></script>
-    </html>
+
+</html>
