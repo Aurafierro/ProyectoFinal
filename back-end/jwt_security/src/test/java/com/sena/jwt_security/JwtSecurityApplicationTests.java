@@ -32,7 +32,7 @@ class JwtSecurityApplicationTests {
         userRegistro.setTipo_documento("CC");
         userRegistro.setNumero_documento("1076503030");
         userRegistro.setNombre_completo("John Sebastian Penna Arias");
-        userRegistro.setTelefono("3023073134");
+   
         userRegistro.setUsername("sebastianpennaariss@gmail.com");
         userRegistro.setRol(rol.Usuario);
         userRegistro.setPassword("");
@@ -46,7 +46,7 @@ class JwtSecurityApplicationTests {
         userRegistro.setTipo_documento("CC");
         userRegistro.setNumero_documento("");
         userRegistro.setNombre_completo("John Sebastian Penna Arias");
-        userRegistro.setTelefono("3023073134");
+     
         userRegistro.setUsername("sebastianpennaariss@gmail.com");
         userRegistro.setRol(rol.Usuario);
         userRegistro.setPassword("");
@@ -60,7 +60,7 @@ class JwtSecurityApplicationTests {
         user1.setTipo_documento("CC");
         user1.setNumero_documento("1076503030");
         user1.setNombre_completo("John Sebastian Penna Arias");
-        user1.setTelefono("3023073134");
+
         user1.setUsername("sebastianpennaariss@gmail.com");
         user1.setRol(rol.Usuario);
         user1.setPassword("");

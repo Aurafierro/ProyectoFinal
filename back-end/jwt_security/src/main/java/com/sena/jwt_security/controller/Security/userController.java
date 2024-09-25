@@ -74,10 +74,7 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
             
             return new ResponseEntity<>("El nombre completo es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
-        if (userRegistro.getTelefono().equals("")) {
-            
-            return new ResponseEntity<>("El numero de télefono es un campo obligatorio", HttpStatus.BAD_REQUEST);
-        }
+       
         
        /* if (userRegistro.getContrasena() == null || userRegistro.getContrasena().isEmpty()) {
             return new ResponseEntity<>("La contraseña es un campo obligatorio", HttpStatus.BAD_REQUEST);
@@ -127,9 +124,7 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	    if (request.getNombre_completo().isEmpty()) {
 	        return new ResponseEntity<>("El nombre completo es un campo obligatorio", HttpStatus.BAD_REQUEST);
 	    }
-	    if (request.getTelefono().isEmpty()) {
-	        return new ResponseEntity<>("El número de teléfono es un campo obligatorio", HttpStatus.BAD_REQUEST);
-	    }
+	
 	    if (request.getUsername().isEmpty()) {
 	        return new ResponseEntity<>("El correo es un campo obligatorio", HttpStatus.BAD_REQUEST);
 	    }
@@ -329,7 +324,7 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 			user.setTipo_documento(userUpdate.getTipo_documento());
 			user.setNumero_documento(userUpdate.getNumero_documento());
 			user.setNombre_completo(userUpdate.getNombre_completo());
-			user.setTelefono(userUpdate.getTelefono());
+			
 			user.setUsername(userUpdate.getUsername());
 			user.setRol(userUpdate.getRol());
 			user.setPassword(userUpdate.getPassword());

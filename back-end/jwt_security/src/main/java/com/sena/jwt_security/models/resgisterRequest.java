@@ -16,7 +16,7 @@ public class resgisterRequest {
 	private String tipo_documento;
 	private String numero_documento;
 	private String nombre_completo;
-	private String telefono;
+	
 	private String username;
 	
 
@@ -28,13 +28,12 @@ public class resgisterRequest {
 	}
 
 
-	public resgisterRequest(String tipo_documento, String numero_documento, String nombre_completo, String telefono,
-			String username, com.sena.jwt_security.models.rol rol) {
+	public resgisterRequest(String tipo_documento, String numero_documento, String nombre_completo, String username,
+			com.sena.jwt_security.models.rol rol) {
 		super();
 		this.tipo_documento = tipo_documento;
 		this.numero_documento = numero_documento;
 		this.nombre_completo = nombre_completo;
-		this.telefono = telefono;
 		this.username = username;
 		this.rol = rol;
 	}
@@ -70,16 +69,6 @@ public class resgisterRequest {
 	}
 
 
-	public String getTelefono() {
-		return telefono;
-	}
-
-
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
-
-
 	public String getUsername() {
 		return username;
 	}
@@ -98,6 +87,7 @@ public class resgisterRequest {
 	public void setRol(rol rol) {
 		this.rol = rol;
 	}
+
 
 	
 	

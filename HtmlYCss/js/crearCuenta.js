@@ -2,7 +2,7 @@ var url = "http://localhost:8080/api/v1/user/register/";
 
 document.getElementById("numero_documento").addEventListener("keypress", soloNumeros);
 document.getElementById("nombre_completo").addEventListener("keypress", soloLetras);
-document.getElementById("telefono").addEventListener("keypress", soloNumeros);
+
 document.getElementById("username").addEventListener("keypress", letrasNumerosCaracteres);
 
 function soloLetras(event) {
@@ -44,7 +44,7 @@ function crearCuenta() {
         "tipo_documento": document.getElementById("tipo_documento").value,
         "numero_documento": document.getElementById("numero_documento").value,
         "nombre_completo": document.getElementById("nombre_completo").value,
-        "telefono": document.getElementById("telefono").value,
+       
         "username": document.getElementById("username").value,
         "rol": document.getElementById("rol").value
     };
@@ -93,7 +93,7 @@ function validarCampos(formData) {
         "tipo_documento",
         "numero_documento",
         "nombre_completo",
-        "telefono",
+       
         "username",
         "rol"
     ];
@@ -129,15 +129,7 @@ function validarCampos(formData) {
         document.getElementById("error-numero_documento").classList.remove('error-message');
     }
 
-    let telefono = document.getElementById("telefono").value.trim();
-    if (telefono.length !== 10) {
-        document.getElementById("error-telefono").textContent = "El número de teléfono debe tener exactamente 10 dígitos.";
-        document.getElementById("error-telefono").classList.add('error-message');
-        camposValidos = false;
-    } else {
-        document.getElementById("error-telefono").textContent = "";
-        document.getElementById("error-telefono").classList.remove('error-message');
-    }
+    
 
     let username = document.getElementById("username").value.trim();
     if (!username.includes('@') || !username.includes('.')) {
@@ -165,7 +157,7 @@ document.querySelectorAll('.form-control, .form-select').forEach(function(el) {
             "tipo_documento": document.getElementById("tipo_documento").value,
             "numero_documento": document.getElementById("numero_documento").value,
             "nombre_completo": document.getElementById("nombre_completo").value,
-            "telefono": document.getElementById("telefono").value,
+           
             "username": document.getElementById("username").value,
             "rol": document.getElementById("rol").value
         });

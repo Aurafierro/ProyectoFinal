@@ -52,7 +52,7 @@ public class AuthService implements IUserService {
         userData.setTipo_documento(request.getTipo_documento());
         userData.setNumero_documento(request.getNumero_documento());
         userData.setNombre_completo(request.getNombre_completo());
-        userData.setTelefono(request.getTelefono());
+        
         userData.setUsername(request.getUsername());
 
         // Generar contraseña aleatoria
