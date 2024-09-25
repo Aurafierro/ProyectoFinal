@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const urlFoto = 'http://localhost:8080/api/v1/fotoperfil/';
+    const maxFileSize = 2 * 1024 * 1024; // 2MB in bytes
 
     // Cargar la imagen seleccionada y subirla a la base de datos
     document.getElementById('photoInput').addEventListener('change', async function(event) {
@@ -7,20 +8,31 @@ document.addEventListener("DOMContentLoaded", () => {
         const file = input.files[0];
 
         if (file) {
+            // Validar el tamaño del archivo
+            console.log(`File size: ${file.size} bytes`); // Debugging: verificar tamaño del archivo
+            if (file.size > maxFileSize) {
+                Swal.fire('Error', 'La imagen es demasiado pesada. El límite es de 2MB.', 'error');
+                input.value = ''; // Limpiar el input
+                const preview = document.getElementById('image-preview');
+                preview.style.display = 'none'; // Ocultar la imagen previa
+                document.getElementById('add-icon').style.display = 'block'; // Mostrar el ícono nuevamente
+                return; // Salir de la función
+            }
+
             const formData = new FormData();
             formData.append('file', file); // Cambiar 'file' según lo esperado por tu API
 
-            try {
-                // Mostrar el archivo seleccionado como vista previa inmediatamente
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    const preview = document.getElementById('image-preview');
-                    preview.setAttribute('src', e.target.result);
-                    preview.style.display = 'block'; // Mostrar la imagen
-                };
-                reader.readAsDataURL(file);
+            // Mostrar el archivo seleccionado como vista previa inmediatamente
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const preview = document.getElementById('image-preview');
+                preview.setAttribute('src', e.target.result);
+                preview.style.display = 'block'; // Mostrar la imagen
+            };
+            reader.readAsDataURL(file);
 
-                // Enviar el archivo al servidor
+            // Enviar el archivo al servidor
+            try {
                 const response = await fetch(urlFoto, {
                     method: 'POST',
                     body: formData
@@ -29,9 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (response.ok) {
                     const result = await response.json();
                     const imageUrl = result.foto_perfil_url || result.message; // Ajustar según la respuesta de tu API
-
-                    // Aquí puedes actualizar la vista previa si es necesario
-                    // preview.src = imageUrl; // Esto es opcional si ya estás mostrando el archivo local
                     Swal.fire('Éxito', 'La imagen de perfil se ha actualizado correctamente', 'success');
                 } else {
                     const errorMessage = await response.text(); 
