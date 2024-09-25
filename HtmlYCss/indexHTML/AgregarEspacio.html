@@ -8,28 +8,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="../css/NuevoEspacio.css">
     <link rel="icon" href="/iconos/logo.ico" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
     <div class="content">
-        <div class="container vertical">
-            <div class="form-container" id="form-container">
-                <h1>Agregar espacios</h1>
-                <input type="text" placeholder="Nombre del nuevo espacio" class="input-email" id="nombre_del_espacio">
-                <input type="text" placeholder="Clasificación del nuevo espacio" class="input-email" id="clasificacion">
-                <input type="text" placeholder="Capacidad del nuevo espacio" class="input-email" id="capacidad">
-                <input type="text" placeholder="Descripción del nuevo espacio" class="input-email" id="desripcion">
-                <div class="buttons">
-                    <button class="btn red">Volver</button>
-                    <button class="btn green">Guardar</button>
+        <form id="miFormulario" enctype="multipart/form-data">
+            <div class="container vertical">
+                <div class="form-container" id="form-container">
+                    <h1>Agregar espacios</h1>
+                    <input type="text" placeholder="Nombre del nuevo espacio" class="input-email" id="nombre_del_espacio" aria-label="Nombre del nuevo espacio" required>
+                    <input type="text" placeholder="Clasificación del nuevo espacio" class="input-email" id="clasificacion" aria-label="Clasificación del nuevo espacio" required>
+                    <input type="text" placeholder="Capacidad del nuevo espacio" class="input-email" id="capacidad" aria-label="Capacidad del nuevo espacio" required>
+                    <input type="text" placeholder="Descripción del nuevo espacio" class="input-email" id="descripcion" aria-label="Descripción del nuevo espacio" required>
+                    <div class="buttons">
+                        <button class="btn red" id="volverBtn" type="button">Volver</button>
+                        <button class="btn green" id="guardarBtn" type="button" onclick="guardarEspacio()">Guardar</button>
+                    </div>
+                </div>
+                <div class="image-container" id="image-container">
+                    <i class="fas fa-plus-circle add-icon" id="add-icon"></i>
+                    <input type="file" id="file-input" style="display: none;" accept="image/*" aria-label="Subir imagen">
+                    <img id="image-preview" class="image-preview" src="" alt="Vista previa de la imagen" style="display: none;">
                 </div>
             </div>
-            <div class="image-container" id="image-container">
-                <i class="fas fa-plus-circle add-icon" id="add-icon"></i>
-                <input type="file" id="file-input" style="display: none;" accept="image/*">
-                <img id="image-preview" class="image-preview" src="" alt="Vista previa de la imagen">
-            </div>
-        </div>
+        </form>
     </div>
 
     <footer class="footer">
@@ -37,24 +41,6 @@
             <p>&copy; 2024 Asigna Web - Todos los derechos reservados.</p>
         </div>
     </footer>
-
-    <script>
-        document.getElementById('add-icon').addEventListener('click', function () {
-            document.getElementById('file-input').click();
-        });
-
-        document.getElementById('file-input').addEventListener('change', function (event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    document.getElementById('image-preview').src = e.target.result;
-                    document.getElementById('image-preview').style.display = 'block';
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-    </script>
 
     <script src="../js/anadirnuevoespacio.js"></script>
 </body>
