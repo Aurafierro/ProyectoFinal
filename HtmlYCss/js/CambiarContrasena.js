@@ -32,16 +32,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 body: JSON.stringify(body)
             });
 
+            const responseData = await response.json(); // Procesar la respuesta JSON
+
             if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error('Error al cambiar la contraseña: ' + (errorData.message || response.statusText));
+                throw new Error('Error al cambiar la contraseña: ' + (responseData.message || response.statusText));
             }
 
-            const successData = await response.json();
             Swal.fire({
                 icon: 'success',
                 title: 'Éxito',
-                text: successData // Asegúrate de que el servidor devuelva un mensaje claro
+                text: responseData.message // Mostrar el mensaje de éxito desde la respuesta
             });
             document.getElementById("modifyForm").reset(); // Reiniciar el formulario
         } catch (error) {
@@ -66,4 +66,3 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault();
     });
 });
-

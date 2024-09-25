@@ -187,27 +187,27 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	public ResponseEntity<respuesta> cambiarContraseña(@RequestBody CambiarContrasenaRequest request) {
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    userRegistro user = (userRegistro) auth.getPrincipal();
-	    var respuesta=new respuesta("","");
+	    var respuesta = new respuesta("", "");
 
 	    String nuevaContrasena = request.getNuevaContrasena();
 
 	    if (passwordEncoder.matches(nuevaContrasena, user.getPassword())) {
-	    	respuesta.setStatus(HttpStatus.BAD_REQUEST.toString());
-	    	respuesta.setMessage("La nueva contraseña no puede ser igual a la anterior");
+	        respuesta.setStatus(HttpStatus.BAD_REQUEST.toString());
+	        respuesta.setMessage("La nueva contraseña no puede ser igual a la anterior");
 	        return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
 	    }
 
 	    if (!nuevaContrasena.equals(request.getConfirmarContrasena())) {
-	    	respuesta.setStatus(HttpStatus.BAD_REQUEST.toString());
-	    	respuesta.setMessage("La nueva contraseña y la confirmación no cinciden");
+	        respuesta.setStatus(HttpStatus.BAD_REQUEST.toString());
+	        respuesta.setMessage("La nueva contraseña y la confirmación no coinciden");
 	        return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
 	    }
 
 	    if (!esContraseñaValida(nuevaContrasena)) {
-	    	respuesta.setStatus(HttpStatus.BAD_REQUEST.toString());
-	    	respuesta.setMessage("La nueva contraseña debe tener al menos 8 carácteres, incluir una letra mayúscula, un número y un caracter especial.");
-	        return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);	    }
-	    
+	        respuesta.setStatus(HttpStatus.BAD_REQUEST.toString());
+	        respuesta.setMessage("La nueva contraseña debe tener al menos 8 caracteres, incluir una letra mayúscula, un número y un carácter especial.");
+	        return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
+	    }
 
 	    // Establecer la nueva contraseña
 	    user.setPassword(passwordEncoder.encode(nuevaContrasena));
@@ -217,8 +217,13 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	    // Enviar correo de confirmación
 	    emailService.enviarCorreoPasswordModificada(user.getUsername());
 
+	    // Configurar la respuesta de éxito
+	    respuesta.setStatus(HttpStatus.OK.toString());
+	    respuesta.setMessage("Cambio de contraseña exitoso");
+
 	    return new ResponseEntity<>(respuesta, HttpStatus.OK);
 	}
+
 
 	private boolean esContraseñaValida(String contraseña) {
 	    if (contraseña.length() < 8) {
