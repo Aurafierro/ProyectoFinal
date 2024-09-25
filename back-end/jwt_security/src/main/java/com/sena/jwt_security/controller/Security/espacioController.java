@@ -4,6 +4,7 @@ import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -67,7 +68,6 @@ public class espacioController {
                                  .body("Failed to upload file: " + e.getMessage());
         }
     }
-
 
     // Método para buscar espacios por filtro
     @GetMapping("/busquedafiltro/{filtro}")
@@ -135,18 +135,46 @@ public class espacioController {
 
     // Método para validar los campos del espacio
     private String validateEspacio(espacio espacio) {
+        // Validar nombre_del_espacio
         if (espacio.getNombre_del_espacio().isEmpty()) {
             return "El nombre del espacio es obligatorio";
+        } else if (!isValidInput(espacio.getNombre_del_espacio())) {
+            return "El nombre del espacio contiene caracteres no permitidos";
         }
+
+        // Validar clasificacion
         if (espacio.getClasificacion().isEmpty()) {
             return "La clasificación es obligatoria";
+        } else if (!isValidInput(espacio.getClasificacion())) {
+            return "La clasificación contiene caracteres no permitidos";
         }
+
+        // Validar capacidad
         if (espacio.getCapacidad().isEmpty()) {
             return "La capacidad es obligatoria";
+        } else if (!isNumeric(espacio.getCapacidad())) {
+            return "La capacidad debe ser un número válido";
         }
+
+        // Validar descripcion
         if (espacio.getDescripcion().isEmpty()) {
             return "La descripción es obligatoria";
+        } else if (!isValidInput(espacio.getDescripcion())) {
+            return "La descripción contiene caracteres no permitidos";
         }
+
         return null;
+    }
+
+    // Método para validar la entrada de caracteres
+    private boolean isValidInput(String input) {
+        // Expresión regular para caracteres permitidos (letras, números y espacios)
+        String regex = "^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$";
+        return Pattern.matches(regex, input);
+    }
+
+    // Método para verificar si la cadena es numérica
+    private boolean isNumeric(String str) {
+        return str.matches("\\d+"); // Verifica si la cadena contiene solo dígitos
     }
 }
