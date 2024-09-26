@@ -79,13 +79,19 @@
                 <br>
                 <div class="modal-body contenedorFormModal">
                     <div class="row contenedorPadre">
-                        <input id="id_reserva" type="hidden">
+                        <input id="id_espacio" type="hidden">
                         <div class="divIzquierdo">
                             <div class="col col-xl-6 col-12">
-                                <b><label for="">Nombre espacio:</label></b>
-                                <input type="text" id="nombre_del_espacio" step="1"
-                                    class="form-control inputCamposEditarReserva" />
+                                <b><label for="nombre_del_espacio">Nombre espacio:</label></b>
+                                <select id="nombre_del_espacio" class="form-control inputCamposEditarReserva">
+                                    <option value="" disabled selected>Seleccione un espacio</option>
+                                    <option value="Espacio 1">Espacio 1</option>
+                                    <option value="Espacio 2">Espacio 2</option>
+                                    <option value="Espacio 3">Espacio 3</option>
+                                    <!-- Agrega más opciones según sea necesario -->
+                                </select>
                             </div>
+                            
                             <br>
                             <div class="col col-xl-6 col-12">
                                 <b><label for="">Clasificación:</label></b>
@@ -126,6 +132,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
     <script>
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');

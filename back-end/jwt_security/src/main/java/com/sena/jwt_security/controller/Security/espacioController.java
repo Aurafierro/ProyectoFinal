@@ -87,7 +87,6 @@ public class espacioController {
         }
     }
 
-    // Método para actualizar un espacio existente
     @PutMapping("/{id_espacio}")
     public ResponseEntity<Object> update(@PathVariable String id_espacio, @RequestBody espacio espacioUpdate) {
         // Validar si hay campos vacíos

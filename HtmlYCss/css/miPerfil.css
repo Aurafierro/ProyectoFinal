@@ -11,7 +11,7 @@ body {
 }
 .header {
     width: 100%;
-    background-color: #1a3e68;
+    background-color: #202C4A;
     color: var(--white);
     display: flex;
     justify-content: space-between;
@@ -216,7 +216,7 @@ header img {
     padding: 9px;
     font-size: 16px;
     color: white;
-    background-color: #1a3e68;
+    background-color: #202C4A;
     border: none;
     border-radius: 20px;
     font-family: 'Candal', Arial, sans-serif;
@@ -281,7 +281,7 @@ header img {
     padding: 9px;
     font-size: 16px;
     color: white;
-    background-color: #1a3e68;
+    background-color: #202C4A;
     border: none;
     border-radius: 20px;
     font-family: 'Candal', Arial, sans-serif;
@@ -440,7 +440,7 @@ footer {
 /* Estilos de la barra lateral */
 .sidebarj {
     width: 250px;
-    background-color: #1a3e68;
+    background-color: #202C4A;
     color: #ffffff;
     position: fixed;
     top: 0;
@@ -539,7 +539,7 @@ nav ul li a i {
 }
 
 .footer {
-    background-color: #1a3e68;
+    background-color: #202C4A;
     color: white;
     text-align: center;
     width: 100%;

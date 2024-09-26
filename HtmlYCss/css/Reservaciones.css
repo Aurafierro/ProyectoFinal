@@ -30,7 +30,7 @@ body {
 
 .header {
     width: 100%;
-    background-color: #1a3e68;
+    background-color: #202C4A;
     color: var(--white);
     display: flex;
     justify-content: space-between;
@@ -271,7 +271,7 @@ nav ul li a {
 /* Sidebar */
 .sidebar {
     width: 250px;
-    background-color: #1a3e68;
+    background-color: #202C4A;
     color: var(--white);
     display: flex;
     flex-direction: column;
@@ -306,7 +306,7 @@ nav ul li a {
 
 /* Footer */
 .footer {
-    background-color: #1a3e68;
+    background-color: #202C4A;
     color: white;
     text-align: center;
     width: 100%;
