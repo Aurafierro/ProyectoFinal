@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        const token = localStorage.getItem('authTokens'); // Asegúrate de que solo almacenes un token en el login
+        const token = localStorage.getItem('authTokens');
         if (!token) {
             Swal.fire({
                 icon: 'error',
@@ -27,12 +27,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}` // Usando el token del login
+                    'Authorization': `Bearer ${token}` // Aquí se corrigió
                 },
                 body: JSON.stringify(body)
             });
 
-            const responseData = await response.json(); // Procesar la respuesta JSON
+            const responseData = await response.json();
 
             if (!response.ok) {
                 throw new Error('Error al cambiar la contraseña: ' + (responseData.message || response.statusText));
@@ -41,15 +41,59 @@ document.addEventListener('DOMContentLoaded', function () {
             Swal.fire({
                 icon: 'success',
                 title: 'Éxito',
-                text: responseData.message // Mostrar el mensaje de éxito desde la respuesta
+                text: responseData.message
             });
-            document.getElementById("modifyForm").reset(); // Reiniciar el formulario
+
+            // Verificar el rol del usuario para redirigir
+            await redirectAfterPasswordChange(token);
+
+            document.getElementById("modifyForm").reset();
         } catch (error) {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
                 text: error.message
             });
+        }
+    }
+
+    // Función para redirigir según el rol del usuario
+    async function redirectAfterPasswordChange(token) {
+        try {
+            const response = await fetch('http://localhost:8080/api/v1/user/rol', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`, // Aquí se corrigió
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error('Error al obtener el rol del usuario: ' + (data.message || response.statusText));
+            }
+
+            const userRole = data.role; // Obtener el rol del usuario
+            console.log('Rol del usuario:', userRole); // Para depuración
+
+            // Redirigir según el rol del usuario
+            if (userRole === "Administrador") {
+                window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/M.informacionAdmin.html';
+            } else if (userRole === "Usuario") {
+                window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/ModuloInformacion.html';
+            } else {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Advertencia',
+                    text: 'Rol no reconocido. Redirigiendo a la página principal.'
+                });
+                window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html'; // Ajusta la URL según sea necesario
+            }
+
+        } catch (error) {
+            console.error('Error al verificar el rol del usuario:', error);
+            Swal.fire("Error", "Error al verificar el rol del usuario: " + error.message, "error");
         }
     }
 
@@ -61,8 +105,9 @@ document.addEventListener('DOMContentLoaded', function () {
         await changePassword(nuevaContrasena, confirmarContrasena);
     });
 
-    // Evento para manejar el clic en un botón específico (ejemplo)
+    // Evento para manejar el clic en el botón de volver
     document.querySelector(".btn.red").addEventListener("click", function (event) {
-        event.preventDefault();
+        event.preventDefault(); // Evitar la acción predeterminada
+        // Aquí podrías agregar lógica para redirigir o cerrar sesión si es necesario
     });
 });

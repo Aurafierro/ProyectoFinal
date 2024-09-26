@@ -46,7 +46,7 @@ function login() {
 
 async function checkUserRole(token) {
     try {
-        const response = await fetch('http://localhost:8080/api/v1/user/admin/findAll/', {
+        const response = await fetch('http://localhost:8080/api/v1/user/rol', { // Cambia a tu endpoint de rol
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -55,13 +55,6 @@ async function checkUserRole(token) {
         });
 
         const data = await response.json();
-        
-        // Imprimir los datos y pausar la ejecución
-        console.log(data);
-        setTimeout(() => {
-            // Esto permite que puedas ver el contenido en la consola durante 3 segundos
-            // Luego la ejecución continuará automáticamente
-        }, 10000); // Esperar 3 segundos antes de continuar
 
         if (!response.ok) {
             console.error('Error en la respuesta del servidor:', data);
@@ -74,11 +67,13 @@ async function checkUserRole(token) {
 
         const isVerificarContrasena = (verificarContrasena === true || verificarContrasena === 1);
 
+        // Redirigir al usuario a la página de cambio de contraseña si es necesario
         if (isVerificarContrasena) {
             window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/ContrasenaCambiar.html';
         } else {
-            if (userRole === "Admin") {
-                window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/M.informacionAdmin.html';
+            // Redirigir según el rol del usuario
+            if (userRole === "Administrador") {
+                window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/ContrasenaCambiar.html';
             } else if (userRole === "Usuario") {
                 window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/ModuloInformacion.html';
             }
@@ -89,6 +84,7 @@ async function checkUserRole(token) {
         Swal.fire("Error", "Error al verificar el rol del usuario: " + error.message, "error");
     }
 }
+
 
 function validarCampos(formData) {
     let camposRequeridos = [

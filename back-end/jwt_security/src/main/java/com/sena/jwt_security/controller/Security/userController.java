@@ -4,6 +4,7 @@ package com.sena.jwt_security.controller.Security;
 
 
 import java.util.Base64;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -186,7 +187,28 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	}
 
 
-	
+	@GetMapping("/rol")
+	   public ResponseEntity<Object> getRole() {
+	       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	       
+	       if (auth == null || !(auth.getPrincipal() instanceof userRegistro)) {
+	           return ResponseEntity
+	                   .status(HttpStatus.UNAUTHORIZED)
+	                   .body(Collections.singletonMap("message", "Usuario no autenticado"));
+	       }
+
+	       userRegistro user = (userRegistro) auth.getPrincipal();
+	       rol rol = user.getRol(); // Asumiendo que getRol() devuelve un enum Rol
+
+	       if (rol == null) {
+	           return ResponseEntity
+	                   .status(HttpStatus.NOT_FOUND)
+	                   .body(Collections.singletonMap("message", "Rol no encontrado"));
+	       }
+
+	       // Retornar el nombre del enum como String
+	       return ResponseEntity.ok(Collections.singletonMap("role", rol.name()));
+	   }
 	
 	@PutMapping("/cambiar-contrasena")
 	public ResponseEntity<respuesta> cambiarContraseña(@RequestBody CambiarContrasenaRequest request) {
