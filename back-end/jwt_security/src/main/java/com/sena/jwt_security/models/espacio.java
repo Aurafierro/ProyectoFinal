@@ -36,7 +36,7 @@ public class espacio {
 	@Column (name="capacidad", nullable= false, length = 36)
 	private String capacidad;
 	
-	@Column (name="descripcion", nullable= false, length = 100)
+	@Column (name="descripcion", nullable= false, length = 200)
 	private String descripcion;
 	
 	@Column( name="imagen_base", nullable = true)

@@ -1,7 +1,6 @@
 var url = "http://localhost:8080/api/v1/public/user/login/"; // Actualiza con tu endpoint de inicio de sesión
 
 function login() {
-    // Recoger la entrada del usuario
     let formData = {
         "username": document.getElementById("username").value,
         "password": document.getElementById("password").value
@@ -22,14 +21,14 @@ function login() {
                 localStorage.removeItem('authTokens');
                 
                 // Almacenar el nuevo token directamente
-                localStorage.setItem('authTokens', token); // Solo almacenar el nuevo token
+                localStorage.setItem('authTokens', token);
 
                 Swal.fire({
                     title: "¡Bienvenido!",
                     text: "Inicio de sesión exitoso.",
                     icon: "success"
                 }).then(() => {
-                    checkUserRole(token); // Verificar el rol del usuario después del inicio de sesión exitoso
+                    checkUserRole(token);
                 });
             },
             error: function (error) {
@@ -55,7 +54,14 @@ async function checkUserRole(token) {
             }
         });
 
-        const data = await response.json(); // Obtener respuesta como JSON
+        const data = await response.json();
+        
+        // Imprimir los datos y pausar la ejecución
+        console.log(data);
+        setTimeout(() => {
+            // Esto permite que puedas ver el contenido en la consola durante 3 segundos
+            // Luego la ejecución continuará automáticamente
+        }, 10000); // Esperar 3 segundos antes de continuar
 
         if (!response.ok) {
             console.error('Error en la respuesta del servidor:', data);
@@ -64,11 +70,18 @@ async function checkUserRole(token) {
         }
 
         const userRole = data.role; // Obtener el rol del usuario
+        const verificarContrasena = data.verificar_contrasena; // Obtener el estado de verificar_contrasena
 
-        if (userRole === "Admin") {
-            window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/M.informacionAdmin.html';
-        } else if (userRole === "Usuario") {
-            window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/ContrasenaCambiar.html'; // URL para usuarios
+        const isVerificarContrasena = (verificarContrasena === true || verificarContrasena === 1);
+
+        if (isVerificarContrasena) {
+            window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/ContrasenaCambiar.html';
+        } else {
+            if (userRole === "Admin") {
+                window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/M.informacionAdmin.html';
+            } else if (userRole === "Usuario") {
+                window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/ModuloInformacion.html';
+            }
         }
 
     } catch (error) {
@@ -101,14 +114,12 @@ function validarCampos(formData) {
     return camposValidos;
 }
 
-// JavaScript para alternar la visibilidad de la contraseña
+// Alternar visibilidad de la contraseña
 const togglePassword = document.getElementById('togglePassword');
 const passwordInput = document.getElementById('password');
 
 togglePassword.addEventListener('click', function () {
-    // Alternar el tipo de input entre 'password' y 'text'
     const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
     passwordInput.setAttribute('type', type);
-    // Cambiar el icono del ojo
     this.classList.toggle('fa-eye-slash');
 });

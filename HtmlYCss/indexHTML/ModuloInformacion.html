@@ -7,11 +7,9 @@
     <link rel="stylesheet" href="../css/ModuloInformacion.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" href="/iconos/logo.ico" type="image/x-icon">
-   
 </head>
 <body>
     <div class="profile">
-        <a href="../indexHTML/AgregarEspacio.html" class="notification__link"><i class="fas fa-bell"></i><span class="notification__count">0</span></a>
         <a href="../indexHTML/miPerfil.html" class="profile__link"><i class="fas fa-user"></i> Mi perfil</a>
     </div>
     <div>
@@ -21,70 +19,8 @@
     <div class="carousel-container">
         <button class="carousel-button prev">&#10094;</button>
         <div class="main-content">
-            <div class="container__cards">
-                <a href="../indexHTML/crearReserva.html">
-                    <div class="card">
-                        <div class="circles c1"></div>
-                        <div class="image">
-                            <img src="../img/Auditorio.JPG" alt="Auditorio">
-                        </div>
-                        <div class="content">
-                            <h4>Auditorio</h4>
-                            <h2>Espacio para eventos</h2>
-                            <h5>Capacidad: 200 personas</h5>
-                            <p>Bienvenido a nuestro auditorio, un espacio diseñado para albergar una amplia gama de eventos yactividades emocionantes.</p>
-                        </div>
-                        <div class="circles c2"></div>
-                    </div>
-                </a>
-
-                <a href="../indexHTML/crearReserva.html">
-                    <div class="card">
-                        <div class="circles c1"></div>
-                        <div class="image">
-                            <img src="../img/Biblioteca.JPG" alt="Biblioteca">
-                        </div>
-                        <div class="content">
-                            <h4>Biblioteca</h4>
-                            <h2>Espacio de estudio</h2>
-                            <h5>Capacidad: 100 personas</h5>
-                            <p>Ven y explora todo lo que nuestra biblioteca con un mundo de conocimiento y buenos equipos para que puedas utilizarlos. </p>
-                        </div>
-                        <div class="circles c2"></div>
-                    </div>
-                </a>
-
-                <a href="../indexHTML/crearReserva.html">
-                    <div class="card">
-                        <div class="circles c1"></div>
-                        <div class="image">
-                            <img src="../img/Canchas.JPG" alt="Cancha">
-                        </div>
-                        <div class="content">
-                            <h4>Cancha</h4>
-                            <h2>Espacio deportivo</h2>
-                            <h5>Capacidad: 50 personas</h5>
-                            <p>  Nuestra cancha tiene todo lo que necesitas para hacer realidad tu diversión  y sueños deportivos.</p>
-                        </div>
-                        <div class="circles c2"></div>
-                    </div>
-                </a>
-
-                <a href="../indexHTML/crearReserva.html">
-                    <div class="card">
-                        <div class="circles c1"></div>
-                        <div class="image">
-                            <img src="../img/Gimnasio.JPG" alt="Gimnasio">
-                        </div>
-                        <div class="content">
-                            <h4>Gimnasio</h4>
-                            <h2>Espacio de entrenamiento</h2>
-                            <h5>Capacidad: 30 personas</h5>
-                            <p>¡Reserva ahora tu sesión de entrenamiento y comienza a trabajar en tus metas de fitness! </p>
-                        </div>
-                        <div class="circles c2"></div>
-                    </div>
-                </a>
+            <div class="container__cards" id="cards-container">
+                <!-- Las tarjetas se generarán aquí mediante JavaScript -->
             </div>
         </div>
         <button class="carousel-button next">&#10095;</button>
@@ -93,14 +29,11 @@
     <!-- Contenedor de burbujas animadas -->
     <div class="bubbles-container"></div>
 
+    <footer class="footer"></footer>
+        <div class="footer-container">
+            <p>&copy; 2024 Asigna Web - Todos los derechos reservados.</p>
+        </div>
+    </footer>
     <script src="../js/moduloInformacionUsuario.js"></script>
-
-    
 </body>
-<footer class="footer">
-        
-    <div class="footer-container">
-        <p>&copy; 2024 Asigna Web - Todos los derechos reservados.</p>
-    </div>
-</footer>
 </html>
