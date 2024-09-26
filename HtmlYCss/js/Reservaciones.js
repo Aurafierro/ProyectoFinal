@@ -4,6 +4,13 @@ var url = "http://localhost:8080/api/v1/reserva/";
 //document.getElementById("nombre_espacio").addEventListener("keypress", soloLetras);
 //document.getElementById("hora_entrada").addEventListener("keypress", numerosYcaracteres);
 //document.getElementById("hora_salida").addEventListener("keypress", numerosYcaracteres);
+function cerrarSesion() {
+  // Elimina el token del almacenamiento local (localStorage o sessionStorage, según lo que estés usando)
+  localStorage.removeItem('token'); // Asegúrate de que 'token' es el nombre correcto que usas para almacenar el token
+
+  // Redirige a la página de inicio de sesión
+  window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html'; // Cambia esta ruta a la de tu página de inicio de sesión
+}
 
 
 function soloLetras(event) {
