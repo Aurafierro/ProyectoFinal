@@ -376,5 +376,23 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 			return new ResponseEntity<>("Error usuario no encontrado", HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	@GetMapping("/verificar-contrasena")
+	public ResponseEntity<Object> verificarEstadoContrasena() {
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+	    if (auth == null || !(auth.getPrincipal() instanceof userRegistro)) {
+	        return ResponseEntity
+	                .status(HttpStatus.UNAUTHORIZED)
+	                .body(Collections.singletonMap("message", "Usuario no autenticado"));
+	    }
+
+	    userRegistro user = (userRegistro) auth.getPrincipal();
+	    boolean verificarContrasena = user.isVerificar_contrasena(); // Obtener el estado
+
+	    return ResponseEntity.ok(Collections.singletonMap("verificar_contrasena", verificarContrasena));
+	}
+
+
 
 }

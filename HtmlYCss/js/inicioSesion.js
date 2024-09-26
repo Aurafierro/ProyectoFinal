@@ -46,7 +46,8 @@ function login() {
 
 async function checkUserRole(token) {
     try {
-        const response = await fetch('http://localhost:8080/api/v1/user/rol', { // Cambia a tu endpoint de rol
+        // Verificar el estado de la contraseña
+        const verificarResponse = await fetch('http://localhost:8080/api/v1/user/verificar-contrasena', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -54,37 +55,49 @@ async function checkUserRole(token) {
             }
         });
 
-        const data = await response.json();
-
-        if (!response.ok) {
-            console.error('Error en la respuesta del servidor:', data);
-            Swal.fire("Error", "Error al verificar el rol del usuario: " + data.message, "error");
+        if (!verificarResponse.ok) {
+            const errorData = await verificarResponse.json();
+            Swal.fire("Error", errorData.message, "error");
             return;
         }
 
-        const userRole = data.role; // Obtener el rol del usuario
-        const verificarContrasena = data.verificar_contrasena; // Obtener el estado de verificar_contrasena
+        const verificarData = await verificarResponse.json();
+        const verificarContrasena = verificarData.verificar_contrasena; // Obtener el estado
 
-        const isVerificarContrasena = (verificarContrasena === true || verificarContrasena === 1);
+        // Obtener el rol del usuario
+        const rolResponse = await fetch('http://localhost:8080/api/v1/user/rol', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
 
-        // Redirigir al usuario a la página de cambio de contraseña si es necesario
-        if (isVerificarContrasena) {
+        if (!rolResponse.ok) {
+            const errorData = await rolResponse.json();
+            Swal.fire("Error", "Error al verificar el rol del usuario: " + errorData.message, "error");
+            return;
+        }
+
+        const rolData = await rolResponse.json();
+        const userRole = rolData.role; // Obtener el rol del usuario
+
+        // Redirigir al usuario según el estado de verificar_contrasena y su rol
+        if (verificarContrasena) {
             window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/ContrasenaCambiar.html';
         } else {
-            // Redirigir según el rol del usuario
             if (userRole === "Administrador") {
-                window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/ContrasenaCambiar.html';
+                window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/M.informacionAdmin.html'; // Cambia a la página del administrador
             } else if (userRole === "Usuario") {
                 window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/ModuloInformacion.html';
             }
         }
 
     } catch (error) {
-        console.error('Error al verificar el rol del usuario:', error);
-        Swal.fire("Error", "Error al verificar el rol del usuario: " + error.message, "error");
+        console.error('Error al verificar el rol o el estado de la contraseña:', error);
+        Swal.fire("Error", "Error al verificar la información del usuario: " + error.message, "error");
     }
 }
-
 
 function validarCampos(formData) {
     let camposRequeridos = [
