@@ -138,6 +138,11 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	    if (!existingUserByDoc.isEmpty()) {
 	        return new ResponseEntity<>("El usuario ya está registrado con este número de documento", HttpStatus.BAD_REQUEST);
 	    }
+	    // Verificar si ya existe un usuario con el mismo correo electrónico
+	    List<userRegistro> existingUserByEmail = userService.filtroIngresoUserByEmail(request.getUsername());
+	    if (!existingUserByEmail.isEmpty()) {
+	        return new ResponseEntity<>("El correo electrónico ya está registrado", HttpStatus.BAD_REQUEST);
+	    }
 
 	    // Llamar al servicio de autenticación para registrar el usuario
 	    AuthResponse response = AuthService.register(request);

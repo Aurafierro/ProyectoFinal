@@ -255,5 +255,10 @@ public class AuthService implements IUserService {
 	    // Devuelve la lista de usuarios encontrados
 	    return usuarios;
 	}
+	@Override
+	public List<userRegistro> filtroIngresoUserByEmail(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

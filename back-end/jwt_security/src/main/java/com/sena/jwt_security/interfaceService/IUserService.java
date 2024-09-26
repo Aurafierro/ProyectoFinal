@@ -26,6 +26,7 @@ public interface IUserService {
 	public Optional<userRegistro>findByUsername(String username);
 	AuthResponse login(loginRequest request);
 	public void savePasswordResetToken(userRegistro user, String token);
+	public List<userRegistro> filtroIngresoUserByEmail(String username);
 	
 	
 

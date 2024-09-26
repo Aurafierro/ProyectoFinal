@@ -1,6 +1,7 @@
 package com.sena.jwt_security.service;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -114,6 +115,23 @@ public class userService implements IUserService {
     	List <userRegistro>listaUserRegistro=data.enviarNotificacionCuenta(numero_documento);
     	return listaUserRegistro;
     }
+
+
+
+
+    @Override
+    public List<userRegistro> filtroIngresoUserByEmail(String username) {
+        // Verificar si el nombre de usuario es nulo o vacío
+        if (username == null || username.isEmpty()) {
+            return Collections.emptyList(); // Devolver una lista vacía si no se proporciona un nombre de usuario
+        }
+
+        // Usar el repositorio para encontrar usuarios por su correo electrónico (nombre de usuario)
+        return data.findByUsername(username)
+                   .map(Collections::singletonList) // Si se encuentra un usuario, devolverlo en una lista
+                   .orElse(Collections.emptyList()); // Si no se encuentra, devolver una lista vacía
+    }
+
 	
 }
 
