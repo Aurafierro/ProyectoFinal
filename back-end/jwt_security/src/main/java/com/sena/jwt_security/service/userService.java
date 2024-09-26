@@ -132,6 +132,23 @@ public class userService implements IUserService {
                    .orElse(Collections.emptyList()); // Si no se encuentra, devolver una lista vacía
     }
 
+
+
+
+    @Override
+    public userRegistro findById(String idUser) {
+        // Buscar el usuario por su ID utilizando el repositorio
+        Optional<userRegistro> optionalUser = data.findById(idUser);
+        
+        // Si el usuario existe, devolverlo, si no, lanzar una excepción o devolver null
+        if (optionalUser.isPresent()) {
+            return optionalUser.get();
+        } else {
+            // Puedes manejarlo de distintas formas, como lanzar una excepción personalizada
+            return null;
+        }
+    }
+
 	
 }
 

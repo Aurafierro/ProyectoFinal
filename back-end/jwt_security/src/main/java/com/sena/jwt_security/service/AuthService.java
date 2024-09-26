@@ -260,5 +260,10 @@ public class AuthService implements IUserService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public userRegistro findById(String idUser) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

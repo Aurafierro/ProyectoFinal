@@ -17,9 +17,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 import com.sena.jwt_security.interfaceService.IFotoperfilService;
+import com.sena.jwt_security.interfaceService.IUserService;
 import com.sena.jwt_security.models.FotoPerfil;
 
 import com.sena.jwt_security.models.respuesta;
+import com.sena.jwt_security.models.userRegistro;
 import com.sena.jwt_security.service.FileStorageService;
 
 
@@ -34,6 +36,9 @@ public class fotoperfilController {
 
 	    @Autowired
 	    private FileStorageService fileStorageService;
+	    
+	    @Autowired
+	    private IUserService userService;
 
 	    @GetMapping("/")
 	    public ResponseEntity<Object> consultarListaFotoperfilJson() {
@@ -48,13 +53,33 @@ public class fotoperfilController {
 	    }
 
 	    @PostMapping("/")
-	    public ResponseEntity<Object> guardarFotoperfilJson(@ModelAttribute FotoPerfil FotoPerfil, @RequestParam("file") MultipartFile file) {
+	    public ResponseEntity<Object> guardarFotoperfilJson(
+	            @ModelAttribute FotoPerfil FotoPerfil, 
+	            @RequestParam("file") MultipartFile file) {  // Ya no recibimos id_user en el request
 	        try {
+	            // Obtener el usuario autenticado del contexto de seguridad
+	            org.springframework.security.core.Authentication authentication = 
+	                org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication();
+	            String username = authentication.getName();  // Esto obtiene el nombre de usuario (o correo)
+
+	            // Buscar el usuario en la base de datos usando el nombre de usuario obtenido
+	            List<userRegistro> usuarioList = userService.filtroIngresoUserByEmail(username);
+	            
+	            if (usuarioList.isEmpty()) {
+	                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+	                                     .body("Usuario no encontrado");
+	            }
+
+	            userRegistro usuario = usuarioList.get(0);  // Obtener el usuario
+
+	            // Asignar el usuario al FotoPerfil
+	            FotoPerfil.setId_user(usuario);
+
 	            // Almacenar el archivo y obtener el nombre del archivo
 	            String fileName = fileStorageService.storeFile(file);
 	            FotoPerfil.setImagen_url("http://localhost:8080/api/downloadFile/" + fileName);
 
-	            // Guardar el espacio en la base de datos
+	            // Guardar la entidad FotoPerfil en la base de datos
 	            FotoperfilService.save(FotoPerfil);
 
 	            respuesta respuesta = new respuesta("ok", "Se guardó correctamente");
@@ -65,5 +90,7 @@ public class fotoperfilController {
 	                                 .body("Failed to upload file: " + e.getMessage());
 	        }
 	    }
+
+
 
 }
