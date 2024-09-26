@@ -13,6 +13,7 @@ public interface IReservaService {
     public List<reserva> filtroReserva(String filtro);
 	public Optional<reserva> findOne(String id_reserva);
 	public int delete (String id_reserva);
-	public List<reserva> filtroIngresoReserva(String nombre_completo );
+
 	public Object filtroIngresoReservaSelect(String filtro);
+	public List<reserva> filtroIngresoReserva(String nombre_espacio, String nombre_completo);
 }

@@ -49,56 +49,48 @@ private emailService emailService;
 
 @PostMapping("/")
 public ResponseEntity<Object> save(@RequestBody reserva reserva) {
-	    
-    List<reserva> user = reservaService.filtroIngresoReserva(reserva.getNombre_completo());
-	    if (!user.isEmpty()) {
-	        return new ResponseEntity<>("La reserva ya tiene un ingreso activo", HttpStatus.BAD_REQUEST);
-	    }
+    List<reserva> user = reservaService.filtroIngresoReserva(reserva.getNombre_espacio(), reserva.getNombre_completo());
+    if (!user.isEmpty()) {
+        return new ResponseEntity<>("La reserva ya tiene un ingreso activo", HttpStatus.BAD_REQUEST);
+    }
 
-        if (reserva.getNombre_completo().equals("")) {
-            
-            return new ResponseEntity<>("El nombre completo es un campo obligatorio", HttpStatus.BAD_REQUEST);
-        }
+    // Your validation logic remains unchanged
+    if (reserva.getNombre_completo().isEmpty()) {
+        return new ResponseEntity<>("El nombre completo es un campo obligatorio", HttpStatus.BAD_REQUEST);
+    }
 
-       
+    if (reserva.getNombre_espacio().isEmpty()) {
+        return new ResponseEntity<>("El nombre del espacio es un campo obligatorio", HttpStatus.BAD_REQUEST);
+    }
 
-        if (reserva.getNombre_espacio().equals("")) {
-            
-            return new ResponseEntity<>("El nombre del espacio es un campo obligatorio", HttpStatus.BAD_REQUEST);
-        }
-        
+    if (reserva.getHora_entrada().isEmpty()) {
+        return new ResponseEntity<>("La hora de entrada es un campo obligatorio", HttpStatus.BAD_REQUEST);
+    }
 
-        if (reserva.getHora_entrada().equals("")) {
-            
-            return new ResponseEntity<>("La hora de entrada es un campo obligatorio", HttpStatus.BAD_REQUEST);
-        }
-        
-        if (reserva.getHora_salida().equals("")) {
-            
-            return new ResponseEntity<>("La hora de salida es un campo obligatorio", HttpStatus.BAD_REQUEST);
-        }   
-        
-if (reserva.getFecha_entrada().equals("")) {
-            
-            return new ResponseEntity<>("La fecha de entrada es un campo obligatorio", HttpStatus.BAD_REQUEST);
-        }   
+    if (reserva.getHora_salida().isEmpty()) {
+        return new ResponseEntity<>("La hora de salida es un campo obligatorio", HttpStatus.BAD_REQUEST);
+    }
 
-if (reserva.getFecha_salida().equals("")) {
+    if (reserva.getFecha_entrada() == null) { // Assuming this is a Date object
+        return new ResponseEntity<>("La fecha de entrada es un campo obligatorio", HttpStatus.BAD_REQUEST);
+    }
+
+    if (reserva.getFecha_salida() == null) { // Assuming this is a Date object
+        return new ResponseEntity<>("La fecha de salida es un campo obligatorio", HttpStatus.BAD_REQUEST);
+    }
+
+    if (reserva.getUsername().isEmpty()) {
+        return new ResponseEntity<>("El correo es un campo obligatorio", HttpStatus.BAD_REQUEST);
+    }
+
+    reservaService.save(reserva);
+    emailService.enviarNotificacionReservaRealizada(reserva.getUsername(), reserva.getNombre_completo(),
+            reserva.getNombre_espacio(), reserva.getHora_entrada(), reserva.getHora_salida(),
+            reserva.getFecha_entrada(), reserva.getFecha_salida());
     
-    return new ResponseEntity<>("La fecha de salida es un campo obligatorio", HttpStatus.BAD_REQUEST);
-}   
-        
-if (reserva.getUsername().equals("")) {
-    
-    return new ResponseEntity<>("El correo es un campo obligatorio", HttpStatus.BAD_REQUEST);
+    return new ResponseEntity<>(reserva, HttpStatus.OK);
 }
-        
-        
-		reservaService.save(reserva);
-		emailService.enviarNotificacionReservaRealizada(reserva.getUsername(),reserva.getNombre_completo(),reserva.getNombre_espacio(),reserva.getHora_entrada(),reserva.getHora_salida(),reserva.getFecha_entrada(),reserva.getFecha_salida());
-		return new ResponseEntity<>(reserva,HttpStatus.OK);
-	}
-	
+
 	@GetMapping("/")
 	public ResponseEntity<Object>findAll(){
 		var ListaReserva = reservaService.findAll();
@@ -177,7 +169,7 @@ if (reserva.getUsername().equals("")) {
 	
 	@GetMapping("/busquedafiltro/{filtro}")
 	public ResponseEntity<Object>findFiltro(@PathVariable String filtro){
-		var ListaReserva = reservaService.filtroIngresoReserva(filtro);
+		var ListaReserva = reservaService.filtroIngresoReserva(filtro, filtro);
 		return new ResponseEntity<>(ListaReserva, HttpStatus.OK);
 	}
 	

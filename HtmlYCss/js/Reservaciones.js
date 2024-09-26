@@ -248,13 +248,14 @@ function tablaReservas() {
 
 function historial() {
   
-  //METODO PARA LISTAR LOS CLIENTES
-  //SE CREA LA PETICION AJAX
-  var capturarFiltro = document.getElementById("inputSearch").value;
-  var urlLocal=url;
-  if (capturarFiltro!=""){
-  urlLocal+="busquedafiltro/"+capturarFiltro;
-  }
+ // METODO PARA LISTAR LOS CLIENTES
+ var capturarFiltro = document.getElementById("inputSearch").value.trim(); // .trim() para evitar espacios en blanco
+ var urlLocal = url; // Asumiendo que `url` está definido previamente
+
+ // Si hay un filtro, se agrega a la URL
+ if (capturarFiltro !== "") {
+   urlLocal += "busquedafiltro/" + encodeURIComponent(capturarFiltro); // Usar encodeURIComponent para asegurar que el filtro es seguro
+ }
 
   $.ajax({
     url: urlLocal,

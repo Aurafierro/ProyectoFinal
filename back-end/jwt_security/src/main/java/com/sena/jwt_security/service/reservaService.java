@@ -51,8 +51,9 @@ public class reservaService implements IReservaService{
 	}
 
 	@Override
-	public List<reserva> filtroIngresoReserva(String nombre_completo) {
-	    List<reserva> listaReserva = data.filtroIngresoReserva(nombre_completo);
+	public List<reserva> filtroIngresoReserva(String nombre_espacio, String nombre_completo) {
+	    // Llama al repositorio con ambos parámetros
+	    List<reserva> listaReserva = data.filtroIngresoReserva(nombre_espacio, nombre_completo);
 	    return listaReserva;
 	}
 
@@ -63,4 +64,6 @@ public class reservaService implements IReservaService{
 
 	
 	}
+
+
 }
