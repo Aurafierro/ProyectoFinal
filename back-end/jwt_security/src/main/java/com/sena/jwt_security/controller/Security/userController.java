@@ -295,7 +295,7 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	}
 	
 	@PutMapping("/cambio-contrasena")
-	public ResponseEntity<Object> cambiarContrasena(@RequestBody CambioCotrasenaRequest request) {
+	public ResponseEntity<String> cambiarContrasena(@RequestBody CambioCotrasenaRequest request) {
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    userRegistro user = (userRegistro) auth.getPrincipal();
 
@@ -303,7 +303,7 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	    if (!passwordEncoder.matches(request.getAntiguaContrasena(), user.getPassword())) {
 	        return ResponseEntity
 	                .status(HttpStatus.BAD_REQUEST)
-	                .body(Collections.singletonMap("error", "La contraseña antigua no es correcta"));
+	                .body("La contraseña antigua no es correcta");
 	    }
 
 	    String nuevaContrasena = request.getNuevaContrasena();
@@ -311,19 +311,19 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	    if (passwordEncoder.matches(nuevaContrasena, user.getPassword())) {
 	        return ResponseEntity
 	                .status(HttpStatus.BAD_REQUEST)
-	                .body(Collections.singletonMap("error", "La nueva contraseña no puede ser igual a la antigua"));
+	                .body("La nueva contraseña no puede ser igual a la antigua");
 	    }
 
 	    if (!nuevaContrasena.equals(request.getConfirmarContrasena())) {
 	        return ResponseEntity
 	                .status(HttpStatus.BAD_REQUEST)
-	                .body(Collections.singletonMap("error", "La nueva contraseña y la confirmación no coinciden"));
+	                .body("La nueva contraseña y la confirmación no coinciden");
 	    }
 
 	    if (!esContrasenaValida(nuevaContrasena)) {
 	        return ResponseEntity
 	                .status(HttpStatus.BAD_REQUEST)
-	                .body(Collections.singletonMap("error", "La nueva contraseña debe tener al menos 8 caracteres, incluir una letra mayúscula, un número y un carácter especial."));
+	                .body("La nueva contraseña debe tener al menos 8 caracteres, incluir una letra mayúscula, un número y un carácter especial.");
 	    }
 
 	    // Actualizar la contraseña
@@ -335,8 +335,9 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 
 	    return ResponseEntity
 	            .status(HttpStatus.OK)
-	            .body(Collections.singletonMap("message", "Contraseña cambiada exitosamente"));
+	            .body("Contraseña cambiada exitosamente");
 	}
+
 
 
 

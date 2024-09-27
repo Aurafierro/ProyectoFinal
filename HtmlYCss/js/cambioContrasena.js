@@ -21,23 +21,25 @@ async function cambiarContrasena() {
             body: JSON.stringify(requestData)
         });
 
+        // Obtener la respuesta como texto
+        const message = await response.text(); 
+
         if (!response.ok) {
-            const errorMessage = await response.text();
-            throw new Error(errorMessage);
+            throw new Error(message); // Lanza un error si la respuesta no es 2xx
         }
 
-        const result = await response.json();
+        // Mostrar el mensaje recibido como texto
         Swal.fire({
             icon: 'success',
             title: 'Éxito',
-            text: result,
+            text: message, // Muestra el mensaje de éxito
         });
 
     } catch (error) {
         Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: error.message,
+            text: error.message, // Muestra el mensaje de error
         });
     }
 }
