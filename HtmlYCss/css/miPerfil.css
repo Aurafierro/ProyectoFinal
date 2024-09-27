@@ -268,10 +268,10 @@ header img {
 .profile-containertres input {
     width: 100%; /* Ajustamos el ancho para que sea responsive */
     max-width: 400px; /* Máximo ancho para el campo de entrada */
-    padding: 7px;
+    padding: 10px;
     border: 1px solid #c0c0c0;
     border-radius: 12px;
-    background-color: #979292;
+    background-color: #D9D9D9;
     font-family: 'Candal', Arial, sans-serif;
     margin: 0 auto; /* Centramos los inputs */
 }
