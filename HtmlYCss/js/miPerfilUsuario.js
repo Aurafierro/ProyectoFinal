@@ -1,52 +1,56 @@
 document.addEventListener("DOMContentLoaded", () => {
     const urlFoto = 'http://localhost:8080/api/v1/fotoperfil/';
-    const maxFileSize = 2 * 1024 * 1024; // 2MB en bytes
+    const tamañoMaximoArchivo = 2 * 1024 * 1024; // 2MB en bytes
 
-    // Cargar la imagen seleccionada y subirla a la base de datos
-    document.getElementById('photoInput').addEventListener('change', async function(event) {
-        const input = event.target;
-        const file = input.files[0];
+    const urlImagenExistente = localStorage.getItem('profileImageUrl');
+    const vistaPrevia = document.getElementById('image-preview');
+    const iconoAgregar = document.getElementById('add-icon');
 
-        if (file) {
-            // Validar el tamaño del archivo
-            console.log(`File size: ${file.size} bytes`);
-            if (file.size > maxFileSize) {
+    if (urlImagenExistente) {
+        // Establecer la URL de la imagen existente como src de la vista previa
+        vistaPrevia.setAttribute('src', urlImagenExistente);
+        vistaPrevia.style.display = 'block';
+    }
+
+    document.getElementById('photoInput').addEventListener('change', async function(evento) {
+        const entrada = evento.target;
+        const archivo = entrada.files[0];
+
+        if (archivo) {
+            console.log(`Tamaño del archivo: ${archivo.size} bytes`);
+            if (archivo.size > tamañoMaximoArchivo) {
                 Swal.fire('Error', 'La imagen es demasiado pesada. El límite es de 2MB.', 'error');
-                input.value = '';
-                const preview = document.getElementById('image-preview');
-                preview.style.display = 'none';
-                document.getElementById('add-icon').style.display = 'block';
+                entrada.value = ''; // Reiniciar la entrada
+                vistaPrevia.style.display = 'none'; // Ocultar la vista previa si el archivo es demasiado grande
                 return;
             }
 
             const formData = new FormData();
-            formData.append('file', file); // Agregar el archivo al FormData
+            formData.append('file', archivo);
 
-            // Mostrar el archivo seleccionado como vista previa inmediatamente
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const preview = document.getElementById('image-preview');
-                preview.setAttribute('src', e.target.result);
-                preview.style.display = 'block';
+            const lector = new FileReader();
+            lector.onload = (e) => {
+                vistaPrevia.setAttribute('src', e.target.result);
+                vistaPrevia.style.display = 'block'; // Mostrar la vista previa
+                localStorage.setItem('profileImageUrl', e.target.result); // Almacenar la URL de la imagen
             };
-            reader.readAsDataURL(file);
+            lector.readAsDataURL(archivo);
 
-            // Enviar el archivo al servidor
             try {
-                const response = await fetch(urlFoto, {
+                const respuesta = await fetch(urlFoto, {
                     method: 'POST',
                     body: formData,
                     headers: {
-                        'Authorization': 'Bearer ' + localStorage.getItem('authTokens') // Asegúrate de enviar el token si es necesario
+                        'Authorization': 'Bearer ' + localStorage.getItem('authTokens')
                     }
                 });
 
-                if (response.ok) {
-                    const result = await response.json();
+                if (respuesta.ok) {
+                    const resultado = await respuesta.json();
                     Swal.fire('Éxito', 'La imagen de perfil se ha actualizado correctamente', 'success');
                 } else {
-                    const errorMessage = await response.text(); 
-                    throw new Error(`Error al subir la imagen: ${errorMessage}`);
+                    const mensajeError = await respuesta.text(); 
+                    throw new Error(`Error al subir la imagen: ${mensajeError}`);
                 }
             } catch (error) {
                 console.error('Error al cargar la imagen:', error);
@@ -55,16 +59,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Evento para abrir el selector de archivos al hacer clic en el ícono
-    document.getElementById('add-icon').addEventListener('click', () => {
-        document.getElementById('photoInput').click();
+    // Evento para abrir el selector de archivos al hacer clic en el icono
+    iconoAgregar.addEventListener('click', () => {
+        const entradaFoto = document.getElementById('photoInput');
+        entradaFoto.value = ''; // Reiniciar el valor de la entrada para permitir volver a subir
+        entradaFoto.click(); // Disparar el clic en la entrada de archivo
     });
 });
 
 function cerrarSesion() {
-    // Elimina el authToken del almacenamiento local
     localStorage.removeItem('authTokens'); 
-  
-    // Redirige a la página de inicio de sesión
+ 
     window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html';
 }
