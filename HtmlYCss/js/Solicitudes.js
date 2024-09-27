@@ -20,7 +20,7 @@ function descargarPDF() {
     const doc = new jsPDF();
   
     // Texto del título
-    const titulo = 'Solicitudes';
+    const titulo = 'Reservaciones Realizadas';
   
     // Obtener el ancho de la página
     const pageWidth = doc.internal.pageSize.getWidth();
