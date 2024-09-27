@@ -230,7 +230,7 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	        return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
 	    }
 
-	    if (!esContraseñaValida(nuevaContrasena)) {
+	    if (!esContrasenaValida(nuevaContrasena)) {
 	        respuesta.setStatus(HttpStatus.BAD_REQUEST.toString());
 	        respuesta.setMessage("La nueva contraseña debe tener al menos 8 caracteres, incluir una letra mayúscula, un número y un carácter especial.");
 	        return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
@@ -252,7 +252,7 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	}
 
 
-	private boolean esContraseñaValida(String contraseña) {
+	private boolean esContrasenaValida(String contraseña) {
 	    if (contraseña.length() < 8) {
 	        return false;
 	    }
@@ -314,7 +314,7 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	        return new ResponseEntity<>("La nueva contraseña y la confirmación no coinciden", HttpStatus.BAD_REQUEST);
 	    }
 
-	    if (!esContraseñaValida(nuevaContrasena)) {
+	    if (!esContrasenaValida(nuevaContrasena)) {
 	        return new ResponseEntity<>("La nueva contraseña debe tener al menos 8 caracteres, incluir una letra mayúscula, un número y un carácter especial.", HttpStatus.BAD_REQUEST);
 	    }
 
