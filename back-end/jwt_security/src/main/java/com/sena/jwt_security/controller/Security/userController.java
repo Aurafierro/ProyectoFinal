@@ -301,21 +301,29 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 
 	    // Verificar la contraseña antigua
 	    if (!passwordEncoder.matches(request.getAntiguaContrasena(), user.getPassword())) {
-	        return new ResponseEntity<>("La contraseña antigua no es correcta", HttpStatus.BAD_REQUEST);
+	        return ResponseEntity
+	                .status(HttpStatus.BAD_REQUEST)
+	                .body(Collections.singletonMap("error", "La contraseña antigua no es correcta"));
 	    }
 
-	    String nuevaContrasena = request.getNuevaContrasena(); 
+	    String nuevaContrasena = request.getNuevaContrasena();
 
 	    if (passwordEncoder.matches(nuevaContrasena, user.getPassword())) {
-	        return new ResponseEntity<>("La nueva contraseña no puede ser igual a la antigua", HttpStatus.BAD_REQUEST);
+	        return ResponseEntity
+	                .status(HttpStatus.BAD_REQUEST)
+	                .body(Collections.singletonMap("error", "La nueva contraseña no puede ser igual a la antigua"));
 	    }
 
 	    if (!nuevaContrasena.equals(request.getConfirmarContrasena())) {
-	        return new ResponseEntity<>("La nueva contraseña y la confirmación no coinciden", HttpStatus.BAD_REQUEST);
+	        return ResponseEntity
+	                .status(HttpStatus.BAD_REQUEST)
+	                .body(Collections.singletonMap("error", "La nueva contraseña y la confirmación no coinciden"));
 	    }
 
 	    if (!esContrasenaValida(nuevaContrasena)) {
-	        return new ResponseEntity<>("La nueva contraseña debe tener al menos 8 caracteres, incluir una letra mayúscula, un número y un carácter especial.", HttpStatus.BAD_REQUEST);
+	        return ResponseEntity
+	                .status(HttpStatus.BAD_REQUEST)
+	                .body(Collections.singletonMap("error", "La nueva contraseña debe tener al menos 8 caracteres, incluir una letra mayúscula, un número y un carácter especial."));
 	    }
 
 	    // Actualizar la contraseña
@@ -325,8 +333,11 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	    // Enviar correo de confirmación
 	    emailService.enviarCorreoPasswordModificada(user.getUsername());
 
-	    return new ResponseEntity<>("Contraseña cambiada exitosamente", HttpStatus.OK);
+	    return ResponseEntity
+	            .status(HttpStatus.OK)
+	            .body(Collections.singletonMap("message", "Contraseña cambiada exitosamente"));
 	}
+
 
 
 	@PostMapping("/cerrar-sesion")
