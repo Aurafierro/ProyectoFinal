@@ -563,3 +563,43 @@ function descargarPDF() {
   // Guardar el archivo PDF con un nombre específico
   doc.save('Reservaciones.pdf');
 }
+// Array que almacena las reservas existentes
+const reservasExistentes = [
+  { nombre: "Juan", espacio: "Sala A", fecha: "2024-09-27", horaEntrada: "10:00", horaSalida: "12:00" },
+  { nombre: "María", espacio: "Sala B", fecha: "2024-09-27", horaEntrada: "11:00", horaSalida: "13:00" }
+];
+
+// Función para validar si una reserva ya existe con la misma fecha y hora
+function validarReserva() {
+  const nombreCompleto = document.getElementById('nombre_completo').value;
+  const nombreEspacio = document.getElementById('nombre_espacio').value;
+  const fechaReserva = document.getElementById('fecha_reserva').value;
+  const horaEntrada = document.getElementById('hora_entrada').value;
+  const horaSalida = document.getElementById('hora_salida').value;
+
+  // Verificar si ya existe una reserva con la misma fecha y hora
+  const conflicto = reservasExistentes.some(reserva => {
+      return reserva.fecha === fechaReserva && reserva.horaEntrada === horaEntrada;
+  });
+
+  if (conflicto) {
+      alert("Ya existe una reserva con la misma fecha y hora. Por favor elige otro horario.");
+  } else {
+      // Agregar la nueva reserva al array de reservas existentes
+      reservasExistentes.push({
+          nombre: nombreCompleto,
+          espacio: nombreEspacio,
+          fecha: fechaReserva,
+          horaEntrada: horaEntrada,
+          horaSalida: horaSalida
+      });
+      alert("Reserva realizada exitosamente.");
+      // Aquí puedes enviar los datos al backend o continuar con el registro
+  }
+}
+
+// Agregar evento al formulario
+document.getElementById('formReserva').addEventListener('submit', function (event) {
+  event.preventDefault(); // Prevenir el envío del formulario
+  validarReserva();
+});
