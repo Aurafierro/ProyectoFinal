@@ -71,10 +71,9 @@ public class userService implements IUserService {
 	
 	@Override
 	public Optional<userRegistro> findOne(String id_user) {
-		Optional<userRegistro>userRegistro=data.findById(id_user);
-		
-		return userRegistro;
+	    return data.findById(id_user);
 	}
+
 
 	@Override
 	public int delete(String id_user) {

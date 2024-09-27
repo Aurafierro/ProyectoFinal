@@ -343,10 +343,18 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	}
 	
 	@GetMapping("/{id_user}")
-	public ResponseEntity<Object> findOne ( @PathVariable String id_user ){
-		var user= userService.findOne(id_user);
-		return new ResponseEntity<>(user, HttpStatus.OK);
+	public ResponseEntity<Object> findOne(@PathVariable String id_user) {
+	    // Buscar el usuario por ID
+	    var optionalUser = userService.findOne(id_user);
+	    
+	    // Verificar si el usuario existe
+	    if (optionalUser.isPresent()) {
+	        return new ResponseEntity<>(optionalUser.get(), HttpStatus.OK);
+	    } else {
+	        return new ResponseEntity<>(Collections.singletonMap("message", "Error: usuario no encontrado"), HttpStatus.NOT_FOUND);
+	    }
 	}
+
 	
 	
 	   @DeleteMapping ("/{id_user}")
@@ -356,26 +364,51 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 		}
 	   
 	
-	@PutMapping("/{id_user}")
-	public ResponseEntity<Object> update(@PathVariable String id_user, @RequestBody userRegistro userUpdate) { 
-		var user = userService.findOne(id_user).get();
-		if (user != null) {
-	
-			user.setTipo_documento(userUpdate.getTipo_documento());
-			user.setNumero_documento(userUpdate.getNumero_documento());
-			user.setNombre_completo(userUpdate.getNombre_completo());
-			
-			user.setUsername(userUpdate.getUsername());
-			user.setRol(userUpdate.getRol());
-			user.setPassword(userUpdate.getPassword());
-		
-			userService.save(user);
-			return new ResponseEntity<>("Guardado", HttpStatus.OK);
+	   @PutMapping("/{id_user}")
+	   public ResponseEntity<Map<String, Object>> update(@PathVariable String id_user, @RequestBody userRegistro userUpdate) {
+	       // Buscar el usuario por ID
+	       var optionalUser = userService.findOne(id_user);
 
-		} else {
-			return new ResponseEntity<>("Error usuario no encontrado", HttpStatus.BAD_REQUEST);
-		}
-	}
+	       if (optionalUser.isPresent()) {
+	           userRegistro user = optionalUser.get();
+
+	           // Actualizar los detalles del usuario si no son nulos
+	           if (userUpdate.getTipo_documento() != null) {
+	               user.setTipo_documento(userUpdate.getTipo_documento());
+	           }
+	           if (userUpdate.getNumero_documento() != null) {
+	               user.setNumero_documento(userUpdate.getNumero_documento());
+	           }
+	           if (userUpdate.getNombre_completo() != null) {
+	               user.setNombre_completo(userUpdate.getNombre_completo());
+	           }
+	           if (userUpdate.getUsername() != null) {
+	               // Validar el nuevo correo
+	               if (!isValidEmail(userUpdate.getUsername())) {
+	                   return new ResponseEntity<>(Collections.singletonMap("error", "El correo electrónico debe estar completo y en un formato válido"), HttpStatus.BAD_REQUEST);
+	               }
+	               user.setUsername(userUpdate.getUsername());
+	           }
+	           if (userUpdate.getRol() != null) {
+	               user.setRol(userUpdate.getRol());
+	           }
+
+	           // Opcional: Encriptar la nueva contraseña si se está actualizando
+	           if (userUpdate.getPassword() != null && !userUpdate.getPassword().isEmpty()) {
+	               user.setPassword(passwordEncoder.encode(userUpdate.getPassword()));
+	           }
+
+	           // Guardar el usuario actualizado
+	           userService.save(user);
+	           return new ResponseEntity<>(Collections.singletonMap("message", "Usuario actualizado correctamente"), HttpStatus.OK);
+	       } else {
+	           return new ResponseEntity<>(Collections.singletonMap("error", "Error: usuario no encontrado"), HttpStatus.NOT_FOUND);
+	       }
+	   }
+
+
+
+
 	
 	@GetMapping("/verificar-contrasena")
 	public ResponseEntity<Object> verificarEstadoContrasena() {
@@ -394,5 +427,6 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	}
 
 
+	
 
 }

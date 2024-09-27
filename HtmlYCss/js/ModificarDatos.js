@@ -1,44 +1,101 @@
-// JavaScript para abrir el input de archivo al hacer clic en el ícono o el círculo
-document.addEventListener('DOMContentLoaded', function() {
-    const profilePic = document.querySelector('.profile-pic');
-    const cameraIcon = document.querySelector('.profile-pic i');
-    const profileImageInput = document.getElementById('profileImage');
-    const profileImageDisplay = document.getElementById('profileImageDisplay');
+document.addEventListener('DOMContentLoaded', async () => {
+    // Obtener el token del localStorage
+    const token = localStorage.getItem('authTokens');
 
-    // Mostrar icono de la cámara con transición al pasar el cursor sobre la imagen de perfil
-    profilePic.addEventListener('mouseenter', function() {
-        cameraIcon.style.opacity = '1';
-    });
+    // Función para obtener datos del usuario
+    async function obtenerDatosUsuario(token) {
+        try {
+            const response = await fetch('http://localhost:8080/api/v1/user/profile', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
 
-    // Ocultar icono de la cámara con transición al quitar el cursor de la imagen de perfil
-    profilePic.addEventListener('mouseleave', function() {
-        if (!profileImageInput.files[0]) {
-            cameraIcon.style.opacity = '0';
-        }
-    });
-
-    // Abrir el input de archivo al hacer clic en el ícono o la imagen de perfil
-    profilePic.addEventListener('click', function() {
-        profileImageInput.click();
-    });
-
-    // Manejar la carga del archivo y mostrar la imagen
-    profileImageInput.addEventListener('change', function(event) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                profileImageDisplay.src = e.target.result;
-                cameraIcon.style.opacity = '0';
+            if (!response.ok) {
+                throw new Error('Error al obtener los datos');
             }
-            reader.readAsDataURL(file);
-        }
-    });
 
-    // Restablecer la imagen de perfil al hacer clic en la cámara cuando ya hay una imagen
-    cameraIcon.addEventListener('click', function() {
-        profileImageInput.value = null; // Limpiar el input para poder volver a seleccionar la misma imagen
-        profileImageDisplay.src = ''; // Limpiar la imagen actual
-        cameraIcon.style.opacity = '1'; // Mostrar el ícono de la cámara
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudieron obtener los datos del usuario.'
+            });
+        }
+    }
+
+    // Función para modificar los datos del usuario
+    async function modificarDatosUsuario(datosUsuario) {
+        const token = localStorage.getItem('authTokens');
+
+        if (!token) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Sin sesión',
+                text: 'No hay sesión activa. Por favor, inicia sesión.'
+            });
+            return;
+        }
+
+        try {
+            // Utiliza el id_user en la URL para modificar
+            const response = await fetch(`http://localhost:8080/api/v1/user/${datosUsuario.id_user}`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(datosUsuario)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Error al modificar los datos');
+            }
+
+            const data = await response.json();
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: 'Datos modificados exitosamente.'
+            });
+            return data;
+        } catch (error) {
+            console.error(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudieron modificar los datos: ' + error.message
+            });
+        }
+    }
+
+    // Obtener y llenar los datos del usuario al cargar la página
+    const datosUsuario = await obtenerDatosUsuario(token);
+
+    if (datosUsuario) {
+        document.getElementById('id_user').value = datosUsuario.id_user; // Asegúrate de que esto esté correcto
+        document.getElementById('numero-documento').value = datosUsuario.numero_documento || '';
+        document.getElementById('nombre-completo').value = datosUsuario.nombre_completo || '';
+        document.getElementById('correo').value = datosUsuario.username || ''; // Asumimos que el campo username es el correo
+        document.getElementById('tipo_documento').value = datosUsuario.tipo_documento || ''; // Agregar tipo_documento
+    }
+
+    // Manejo del envío del formulario
+    document.querySelector('.modificarDatos').addEventListener('click', async () => {
+        const nuevosDatos = {
+            id_user: document.getElementById('id_user').value, // Obtener el id_user oculto
+            numero_documento: document.getElementById('numero-documento').value,
+            nombre_completo: document.getElementById('nombre-completo').value,
+            username: document.getElementById('correo').value,
+            tipo_documento: document.getElementById('tipo_documento').value // Agregar tipo_documento
+        };
+
+        await modificarDatosUsuario(nuevosDatos);
     });
 });

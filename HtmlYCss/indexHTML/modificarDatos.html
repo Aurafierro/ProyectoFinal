@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificar datos</title>
     <link rel="stylesheet" href="../css/miPerfil.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Enlace a Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Enlace a Font Awesome -->
     <link rel="icon" href="/iconos/logo.ico" type="image/x-icon">
 </head>
 
@@ -23,26 +24,21 @@
         </div>
     </header>
 
-     <!-- Barra lateral con clase sidebarj -->
-     <aside class="sidebarj" id="sidebarj">
-        <div class="profile">
-            <div class="profile-pic">
-                <img id="profileImageDisplay" src="profile.jpg">
-                <i class="fas fa-camera"></i>
-                <input type="file" id="profileImage" accept="image/*">
-            </div>
-            <span>Paula Bustos</span>
-        </div>
+    <!-- Barra lateral con clase sidebarj -->
+    <aside class="sidebarj" id="sidebarj">
         <nav>
             <ul>
-                <li class="sidebars-item"><a href="../indexHTML/miPerfil.html"><i class="fas fa-user"></i>Mi perfil</a></li>
-                <li class="sidebars-item"><a href="../indexHTML/crearReserva.html"><i class="fas fa-key"></i>Reservar espacios</a></li>
-                <li class="sidebars-item"><a href="../indexHTML/Solicitudes.html"><i class="fas fa-check"></i>Solicitudes</a></li>
-                <li class="sidebars-item"><a href="../indexHTML/historial.html"><i class="fas fa-history"></i>Historial</a></li>
+                <li class="sidebars-item"><a href="../indexHTML/miPerfil.html"><i class="fas fa-user"></i>Mi perfil</a>
+                </li>
+                <li class="sidebars-item"><a href="../indexHTML/crearReserva.html"><i class="fas fa-key"></i>Reservar
+                        espacios</a></li>
+                <li class="sidebars-item"><a href="../indexHTML/Solicitudes.html"><i
+                            class="fas fa-check"></i>Solicitudes</a></li>
+                <li class="sidebars-item"><a href="../indexHTML/historial.html"><i
+                            class="fas fa-history"></i>Historial</a></li>
             </ul>
         </nav>
     </aside>
-
 
     <div class="sidebar">
         <div class="sidebar-item">
@@ -63,68 +59,50 @@
         </div>
     </div>
 
-
-
     <div class="profile-containers">
-       <div class="modifi"><h2>Modificar datos</h2></div> 
-        
+        <div class="modifi">
+            <h2>Modificar datos</h2>
+        </div>
 
-         
-            
-            <div class="profile-details">
-                <div class="left-column">
-                    <label for="tipo-documento">Tipo documento:</label>
-                    <input type="text" id="tipo-documento" name="tipo-documento">
-                    
-                    <label for="numero-documento">Número documento:</label>
-                    <input type="text" id="numero-documento" name="numero-documento">
-                    
-                    <label for="nombre-completo">Nombre completo:</label>
-                    <input type="text" id="nombre-completo" name="nombre-completo">
-                </div>
-                
-                <div class="right-column">
-                    <label for="rol">Rol:</label>
-                    <select id="rol" name="rol">
-                        <option value="usuario">Usuario</option>
-                        <option value="administrador">Administrador</option>
-                    </select>
-                    
-                    <label for="correo">Correo:</label>
-                    <input type="email" id="correo" name="correo">
-                    
-                    <label for="telefono">Teléfono:</label>
-                    <input type="tel" id="telefono" name="telefono">
-                </div>
+        <div class="profile-details">
+            <div class="left-column">
+                <input type="hidden" id="id_user" name="userId">
+                <label for="tipo_documento">Tipo documento:</label>
+                <select id="tipo_documento" name="tipo_documento">
+                    <option value="Tarjeta de identidad">Tarjeta de identidad</option>
+                    <option value="Cédula de ciudadanía">Cédula de ciudadanía</option>
+                    <option value="Cédula de extranjería">Cédula de extranjería</option>
+                </select>
+                <label for="nombre-completo">Nombre completo:</label>
+                <input type="text" id="nombre-completo" name="nombre-completo">
             </div>
-        
-            <button class="button-">Enviar</button>
-    </div>
-    
-            
-         
-           
+            <div class="right-column">
+                <label for="numero-documento">Número documento:</label>
+                <input type="text" id="numero-documento" name="numero-documento" class="numeroDeDocumento">
+                <label for="correo" class="inputCorreo">Correo:</label>
+                <input type="email" id="correo" name="correo">
+            </div>
         </div>
-    </div>
-        
 
 
-        </div>
+        <button class="modificarDatos">Modificar</button>
+    </div>
 </body>
 <footer class="footer">
-        
+
     <div class="footer-container">
         <p>&copy; 2024 Asigna Web - Todos los derechos reservados.</p>
     </div>
 </footer>
+<script src="../js/ModificarDatos.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     const menuToggle = document.getElementById('menuToggle');
-const sidebar = document.getElementById('sidebarj');
+    const sidebar = document.getElementById('sidebarj');
 
-menuToggle.addEventListener('click', () => {
-    sidebar.classList.toggle('visible');
-});
+    menuToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('visible');
+    });
 </script>
 </html>
