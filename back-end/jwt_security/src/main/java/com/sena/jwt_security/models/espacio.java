@@ -132,14 +132,10 @@ public class espacio {
 	public String getImagen_url() {
 		return imagen_url;
 	}
-
-	 public void setImagen_url(String imagen_url) {
-	        if (imagen_url != null && !imagen_url.startsWith("data:image/jpeg;base64,")) {
-	            this.imagen_url = "data:image/jpeg;base64," + imagen_url;
-	        } else {
-	            this.imagen_url = imagen_url;
-	        }
-	    }
+	
+	public void setImagen_url(String imagen_url) {
+		this.imagen_url=imagen_url;
+	}
 
 	public boolean contieneCamposVacios() {
 		// TODO Auto-generated method stub

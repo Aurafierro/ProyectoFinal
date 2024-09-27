@@ -40,15 +40,21 @@ public class espacioController {
 
     @GetMapping("/")
     public ResponseEntity<Object> consultarListaEspaciosJson() {
-        List<espacio> listaEspacios = espacioService.consultarlistaespacio();
+        try {
+            List<espacio> listaEspacios = espacioService.consultarlistaespacio();
 
-        // Establecer la imagen_url como nula para todos los espacios si es necesario
-        for (espacio espacio : listaEspacios) {
-            espacio.setImagen_base(null); // Se elimina el arreglo de bytes
+            // Establecer la imagen_url como nula para todos los espacios si es necesario
+            for (espacio espacio : listaEspacios) {
+            	espacio.setImagen_base(null); // Se elimina el arreglo de bytes
+            }
+
+            return new ResponseEntity<>(listaEspacios, HttpStatus.OK);
+        } catch (Exception e) {
+            // Manejo de excepciones para devolver un mensaje adecuado en caso de error
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body("Error al consultar la lista de fotos de perfil: " + e.getMessage());
         }
-
-        return new ResponseEntity<>(listaEspacios, HttpStatus.OK);
-    }
+        }
 
     @PostMapping("/")
     public ResponseEntity<Object> guardarEspacioJson(@ModelAttribute espacio espacio, @RequestParam("file") MultipartFile file) {

@@ -1,32 +1,32 @@
-/* ModuloInformacion.css */
+/* Módulo Información CSS */
+
 @font-face {
     font-family: "Candal";
     src: url("/Fuentes/Candal/Candal-Regular.ttf");
-  }
+}
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Candal";
+    font-family: "Candal", sans-serif;
 }
 
 body {
-    height: 100vh;
-    margin: 0;
+    min-height: 100vh; /* Cambiado de height a min-height */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between; /* Para que el footer se mantenga al final */
     align-items: center;
-    background-color: white; 
-    color: white;
+    background-color: #ffffff;
+    color: black; /* Cambiado a negro para mejor contraste */
     overflow-y: hidden;
 }
 
 .profile {
     position: absolute;
-    top: 5%;
-    right: 10px;
+    top: 7.5%;
+    right: 20px;
     z-index: 999;
     display: flex;
     align-items: center;
@@ -34,42 +34,22 @@ body {
 
 .profile__link,
 .notification__link {
-    font-size: 18px;
+    font-size: 1.5em;
     color: #000000;
     text-decoration: none;
     font-weight: bold;
-    display: flex;
-    align-items: center;
     margin-left: 15px;
-}
-
-.notification__link {
-    margin-left: 18; /* Elimina el margen izquierdo para la campana */
-    margin-right: 10px; /* Añade margen derecho a la campana */
-}
-
-.profile__link i,
-.notification__link i {
-    margin-right: 5px;
 }
 
 .notification__count {
     background-color: red;
-    color: white;
+    color: rgb(0, 0, 0);
     border-radius: 50%;
-    padding: 1px 5px;
-    font-size: 12px;
-    margin-left: 5px;
-}
-
-.notification__link {
-    position: relative;
-}
-
-.notification__count {
+    padding: 0.2em 0.5em;
+    font-size: 0.6em;
     position: absolute;
-    top: -10px;
-    right: -10px;
+    top: -0.7em;
+    right: -0.7em;
 }
 
 .carousel-container {
@@ -98,22 +78,18 @@ body {
 
 .carousel-button.prev {
     left: 10px;
+    background-color: #202C4a;
 }
 
 .carousel-button.next {
     right: 10px;
-}
-
-.main-content {
-    width: calc(100% - 120px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.5s ease;
+    background-color: #202C4a;
 }
 
 .container__cards {
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .card {
@@ -121,12 +97,11 @@ body {
     height: 35em;
     background-color: #202C4a;
     border-radius: 32px;
-    font-family: 'Candal';
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 15px;
+    margin: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -157,14 +132,8 @@ body {
 .image {
     width: 100%;
     height: 100%;
-    position: relative;
     border-radius: 15px;
     overflow: hidden;
-}
-
-/*Para quitarle la línea de los hipervínculos*/
-a {
-    text-decoration: none;
 }
 
 .image img {
@@ -176,23 +145,22 @@ a {
 
 .content {
     width: 65%;
-    height: 100%;
     padding: 0 30px;
     display: flex;
-    justify-content: center;
     flex-direction: column;
 }
 
-h4 {
+h4, h2, h5, p {
     color: #ffffff;
-    letter-spacing: 2px;
-    font-size: 60px; /* Ajuste del tamaño de fuente */
-    text-align: center; /* Centrado horizontal */
-    margin-top: 20px; /* Ajuste del margen superior */
+}
+
+h4 {
+    font-size: 60px;
+    text-align: center;
+    margin-top: 20px;
 }
 
 h2 {
-    color:#ffffff;
     margin-top: 10%;
 }
 
@@ -202,63 +170,31 @@ h5 {
 }
 
 p {
-    color: #ffffff;
     margin-top: 12px;
 }
 
+/* Media Queries */
 @media screen and (max-width: 1200px) {
     .card {
         width: 100%;
+        height: auto;
     }
 }
 
 @media screen and (max-width: 768px) {
-    .main-content {
-        padding: 10px;
-    }
-
     .carousel-container {
         height: auto;
-    }
-
-    .card {
-        width: 100%;
-        height: auto;
-        flex-direction: column;
-    }
-
-    .image {
-        width: 100%;
-        height: 200px;
-    }
-
-    .content {
-        width: 100%;
-        padding: 20px;
-    }
-
-    h4 {
-        font-size: 30px; /* Ajuste del tamaño de fuente */
-    }
-
-    h2 {
-        font-size: 20px;
-        margin-top: 10px;
-    }
-
-    h5 {
-        font-size: 16px;
-        margin-top: 8px;
-    }
-
-    p {
-        font-size: 14px;
-        margin-top: 8px;
     }
 
     .carousel-button {
         font-size: 1.5em;
         padding: 0 5px;
+    }
+
+    .profile__link,
+    .notification__link {
+        font-size: 1.2em;
+        margin-left: 10px;
     }
 }
 
@@ -266,60 +202,47 @@ p {
     .card {
         width: 100%;
         height: auto;
-        flex-direction: column;
-    }
-
-    .image {
-        width: 100%;
-        height: 150px;
-    }
-
-    .content {
-        width: 100%;
-        padding: 15px;
-    }
-
-    h4 {
-        font-size: 24px; /* Ajuste del tamaño de fuente */
-    }
-
-    h2 {
-        font-size: 18px;
-        margin-top: 5px;
-    }
-
-    h5 {
-        font-size: 14px;
-        margin-top: 5px;
-    }
-
-    p {
-        font-size: 12px;
-        margin-top: 5px;
     }
 
     .carousel-button {
         font-size: 1em;
         padding: 0 5px;
     }
-}
-#mensajeSeleccionar{
-    color: #000000;
-}
-.footer {
-    background-color: #1a3e68; /* Color de fondo azul */
-    color: white; /* Color del texto */
-    text-align: center; /* Centra el texto */
-    width: 100%; /* Asegura que el footer ocupe todo el ancho */
-    bottom: 0;
-    margin-top: auto;
-    padding: 45px 0; /* Agrega espaciado interno */
+
+    .profile__link,
+    .notification__link {
+        font-size: 1em;
+        margin-left: 5px;
+    }
 }
 
-.footer-container {
-    max-width: 1200px; /* Ancho máximo para el contenido */
-    margin: 0 auto; /* Centra el contenedor */
-    padding: 0 20px; /* Espaciado interno */
-    
+#mensajeSeleccionar {
+    color: #000000;
+    padding: 30px;
+    margin-top: 1px;
 }
+
+.footer {
+    background-color: #202C4a;
+    color: white;
+    text-align: center;
+    width: 100%;
+    padding: 20px 0;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    margin-top: auto;
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .card a {
+    text-decoration: none; /* Elimina el subrayado */
+    color: inherit; /* Opcional: hereda el color del texto del padre */
+}
+
 

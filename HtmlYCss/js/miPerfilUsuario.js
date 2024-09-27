@@ -26,11 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const formData = new FormData();
             formData.append('file', archivo);
 
-            const fotoPerfil = {
-               
-            };
-            formData.append('fotoPerfil', JSON.stringify(fotoPerfil));
-
             const lector = new FileReader();
             lector.onload = (e) => {
                 vistaPrevia.setAttribute('src', e.target.result);
@@ -49,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
 
                 if (respuesta.ok) {
-                    const resultado = await respuesta.json();
                     Swal.fire('Éxito', 'La imagen de perfil se ha actualizado correctamente', 'success');
                 } else {
                     const mensajeError = await respuesta.text();
@@ -74,3 +68,46 @@ function cerrarSesion() {
     window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html';
 }
 
+document.addEventListener("DOMContentLoaded", async () => {
+    await obtenerDatosUsuario();
+});
+
+async function obtenerDatosUsuario() {
+    const urlDatosUsuario = 'http://localhost:8080/api/v1/user/profile'; // URL actualizada
+    const token = localStorage.getItem('authTokens');
+
+    if (!token) {
+        console.error('Token no encontrado');
+        return;
+    }
+
+    try {
+        const respuesta = await fetch(urlDatosUsuario, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!respuesta.ok) {
+            throw new Error('Error al obtener los datos del usuario: ' + respuesta.statusText);
+        }
+
+        const datosUsuario = await respuesta.json();
+
+        // Mostrar los datos directamente en los elementos HTML
+        document.getElementById('tipo_documento').textContent = datosUsuario.tipo_documento || 'No disponible';
+        document.getElementById('numero_documento').textContent = datosUsuario.numero_documento || 'No disponible';
+        document.getElementById('nombre_completo').textContent = datosUsuario.nombre_completo || 'No disponible';
+        document.getElementById('rol').textContent = datosUsuario.rol || 'No disponible';
+        document.getElementById('correo').textContent = datosUsuario.username || 'No disponible';
+        
+        // Asignar el nombre completo al username
+        document.getElementById('username').textContent = datosUsuario.nombre_completo || 'No disponible';
+        
+    } catch (error) {
+        console.error('Error:', error);
+        Swal.fire('Error', error.message, 'error');
+    }
+}
