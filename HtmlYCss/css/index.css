@@ -98,7 +98,14 @@ img {
 }
 
 /* Sección de información de contacto */
-
+.contact-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #D6D6D6;
+    padding: 20px;
+    font-family: 'Candal', sans-serif;
+}
 
 .info-item {
     text-align: center;
@@ -197,10 +204,8 @@ img {
 /* Tarjetas flip animadas */
 .flip-card {
    
-    width: 250px;
-    height: 370px;
-   
-    font-family: sans-serif;
+    width: 300px;
+    height: 480px;
 }
 
 .title {
