@@ -4,13 +4,12 @@ package com.sena.jwt_security.controller.Security;
 
 
 import java.util.Base64;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-
-import org.apache.el.stream.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,7 +56,7 @@ private AuthService AuthService;
 
 
 @Autowired
-private PasswordEncoder passwordEncoder; // Injecting PasswordEncoder
+private PasswordEncoder passwordEncoder;
 
 
 @PostMapping("/")
@@ -76,21 +75,13 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
             
             return new ResponseEntity<>("El nombre completo es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
-       
         
-       /* if (userRegistro.getContrasena() == null || userRegistro.getContrasena().isEmpty()) {
-            return new ResponseEntity<>("La contraseña es un campo obligatorio", HttpStatus.BAD_REQUEST);
-        }
-
-        if (userRegistro.getConfirmar_contrasena() == null || userRegistro.getConfirmar_contrasena().isEmpty()) {
-            return new ResponseEntity<>("Confirmar contraseña es un campo obligatorio", HttpStatus.BAD_REQUEST);
-        }
-  */
         if (userRegistro.getUsername().equals("")) {
             
             return new ResponseEntity<>("El correo es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
           
+        userRegistro.setEstado(true);
 		userService.save(userRegistro);
 		emailService.enviarNotificacionCuenta(userRegistro.getUsername(),userRegistro.getNombre_completo(),userRegistro.getUsername(),userRegistro.getPassword());
 		return new ResponseEntity<>(userRegistro,HttpStatus.OK);
@@ -110,13 +101,6 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 		return new ResponseEntity<userRegistro>(user,HttpStatus.OK);
 	}
 	
-	/*
-	 * Esta anotación  protege el acceso a este método,
-	 *  que  asegura de que solo los usuarios con el rol de "Administrador"
-	 *   puedan acceder a ciertos métodos del controlador. 
-	 *   Esto es clave para mantener la seguridad y la separación 
-	 *   de roles.
-	 */
 	@PreAuthorize("hasRole('Administrador')")
 	@PostMapping("/register/")
 	public ResponseEntity<Object> register(@RequestBody resgisterRequest request) {
@@ -126,7 +110,6 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	    if (request.getNombre_completo().isEmpty()) {
 	        return new ResponseEntity<>("El nombre completo es un campo obligatorio", HttpStatus.BAD_REQUEST);
 	    }
-	
 	    if (request.getUsername().isEmpty()) {
 	        return new ResponseEntity<>("El correo es un campo obligatorio", HttpStatus.BAD_REQUEST);
 	    }
@@ -139,17 +122,22 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	    if (!existingUserByDoc.isEmpty()) {
 	        return new ResponseEntity<>("El usuario ya está registrado con este número de documento", HttpStatus.BAD_REQUEST);
 	    }
+	    
 	    // Verificar si ya existe un usuario con el mismo correo electrónico
 	    List<userRegistro> existingUserByEmail = userService.filtroIngresoUserByEmail(request.getUsername());
 	    if (!existingUserByEmail.isEmpty()) {
 	        return new ResponseEntity<>("El correo electrónico ya está registrado", HttpStatus.BAD_REQUEST);
 	    }
 
+	    // Establecer el estado del usuario como Activo (1 o true)
+	    request.setEstado(true); // o request.setEstado(true); o request.setEstado("Activo");
+	    
 	    // Llamar al servicio de autenticación para registrar el usuario
 	    AuthResponse response = AuthService.register(request);
 	    
 	    return ResponseEntity.ok(response);
 	}
+
 
 	// Método para validar el formato del correo electrónico
 	private boolean isValidEmail(String email) {
@@ -160,15 +148,7 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	private boolean containsInvalidCharacters(String input) {
 	    return input != null && !input.matches("^[a-zA-Z0-9_\\s]+$"); // Permite solo letras, números y espacios
 	}
-
-
-
-	/*
-	@PostMapping("/register/")
-	    public ResponseEntity<AuthResponse> register(@RequestBody resgisterRequest request) {
-	        AuthResponse response = authService.register(request);
-	        return ResponseEntity.ok(response);
-	    }*/
+	
 	@GetMapping("/admin/findAll/")
 	public ResponseEntity<Map<String, Object>> findAllAdmin() {
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -198,15 +178,14 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	       }
 
 	       userRegistro user = (userRegistro) auth.getPrincipal();
-	       rol rol = user.getRol(); // Asumiendo que getRol() devuelve un enum Rol
+	       rol rol = user.getRol(); //
 
 	       if (rol == null) {
 	           return ResponseEntity
 	                   .status(HttpStatus.NOT_FOUND)
 	                   .body(Collections.singletonMap("message", "Rol no encontrado"));
 	       }
-
-	       // Retornar el nombre del enum como String
+	       
 	       return ResponseEntity.ok(Collections.singletonMap("role", rol.name()));
 	   }
 	
@@ -238,7 +217,7 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 
 	    // Establecer la nueva contraseña
 	    user.setPassword(passwordEncoder.encode(nuevaContrasena));
-	    user.setVerificar_contrasena(false); // Establecer en false después de cambiar la contraseña
+	    user.setVerificar_contrasena(false); //
 	    userService.save(user);
 
 	    // Enviar correo de confirmación
@@ -338,15 +317,11 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	            .body("Contraseña cambiada exitosamente");
 	}
 
-
-
-
 	@PostMapping("/cerrar-sesion")
 	public ResponseEntity<String> logout() {
 	    // solo devolver una respuesta confirmando el cierre de sesión.
 	    return new ResponseEntity<>("Cierre de sesión exitoso", HttpStatus.OK);
 	}
-
 
 	@GetMapping("/busquedafiltro/{filtro}")
 	public ResponseEntity<Object>findFiltro(@PathVariable String filtro){
@@ -418,10 +393,6 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	       }
 	   }
 
-
-
-
-	
 	@GetMapping("/verificar-contrasena")
 	public ResponseEntity<Object> verificarEstadoContrasena() {
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -438,7 +409,58 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	    return ResponseEntity.ok(Collections.singletonMap("verificar_contrasena", verificarContrasena));
 	}
 
+	@GetMapping("/verificar-estado")
+	public ResponseEntity<Map<String, Object>> verificarEstado() {
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-	
+	    if (auth == null || !(auth.getPrincipal() instanceof userRegistro)) {
+	        return ResponseEntity
+	                .status(HttpStatus.UNAUTHORIZED)
+	                .body(Collections.singletonMap("message", "Usuario no autenticado"));
+	    }
+
+	    userRegistro user = (userRegistro) auth.getPrincipal();
+	    String estado = user.isEstado() ? "Activo" : "Inactivo"; // Cambiar aquí
+
+	    return ResponseEntity.ok(Collections.singletonMap("estado", estado));
+	}
+
+
+	@PutMapping("/desactivar/{id_user}")
+	public ResponseEntity<Object> desactivarUsuario(@PathVariable String id_user) {
+	    var optionalUser = userService.findOne(id_user);
+
+	    if (optionalUser.isPresent()) {
+	        userRegistro user = optionalUser.get();
+	        user.setEstado(false); // 'false' significa desactivado
+	        userService.save(user);
+
+	        // Enviar correo de desactivación
+	        String destinatario = user.getUsername(); // Asegúrate de que el usuario tenga un método para obtener el email
+	        String emailStatus = emailService.enviarCorreoDesactivacionCuenta(destinatario);
+	        
+	        return new ResponseEntity<>(Collections.singletonMap("estado", "Inactivo, " + emailStatus), HttpStatus.OK);
+	    } else {
+	        return new ResponseEntity<>(Collections.singletonMap("error", "Error: usuario no encontrado"), HttpStatus.NOT_FOUND);
+	    }
+	}
+
+
+
+	@PutMapping("/activar/{id_user}")
+	public ResponseEntity<Object> activarUsuario(@PathVariable String id_user) {
+	    var optionalUser = userService.findOne(id_user);
+
+	    if (optionalUser.isPresent()) {
+	        userRegistro user = optionalUser.get();
+	        user.setEstado(true); // 'true' significa activado
+	        userService.save(user);
+	        
+	        return new ResponseEntity<>(Collections.singletonMap("estado", "Activo"), HttpStatus.OK); // Cambiar aquí
+	    } else {
+	        return new ResponseEntity<>(Collections.singletonMap("error", "Error: usuario no encontrado"), HttpStatus.NOT_FOUND);
+	    }
+	}
+
 
 }

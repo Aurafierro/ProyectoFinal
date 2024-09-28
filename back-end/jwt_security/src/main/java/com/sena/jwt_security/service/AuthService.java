@@ -61,7 +61,7 @@ public class AuthService implements IUserService {
 
         userData.setRol(request.getRol());
         userData.setVerificar_contrasena(true);  // Establecer en true para indicar que se requiere cambiar la contraseña
-
+        userData.setEstado(true);
         // Guardar el usuario en la base de datos
         data.save(userData);
         

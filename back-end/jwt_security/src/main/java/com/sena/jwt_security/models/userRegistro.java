@@ -40,8 +40,6 @@ public class userRegistro implements UserDetails {
     @Column(name = "nombre_completo", nullable = false, length = 120)
     private String nombre_completo;
 
-  
-
     @Column(name = "username", nullable = false, length = 100)
     private String username;
 
@@ -55,41 +53,18 @@ public class userRegistro implements UserDetails {
     @Column(name = "verificar_contrasena")
     private boolean verificar_contrasena;
 
-    // New column added
     @Column(name = "correo_notificacion", nullable = false)
     private boolean correo_notificacion;
+
+    @Column(name = "estado", nullable = false)
+    private boolean estado;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(this.rol.name()));
     }
 
-    
-    
-    public userRegistro() {
-		super();
-	}
-
-
-
-	public userRegistro(String id_user, String tipo_documento, String numero_documento, String nombre_completo,
-			String username, String password, com.sena.jwt_security.models.rol rol, boolean verificar_contrasena,
-			boolean correo_notificacion) {
-		super();
-		this.id_user = id_user;
-		this.tipo_documento = tipo_documento;
-		this.numero_documento = numero_documento;
-		this.nombre_completo = nombre_completo;
-		this.username = username;
-		this.password = password;
-		this.rol = rol;
-		this.verificar_contrasena = verificar_contrasena;
-		this.correo_notificacion = correo_notificacion;
-	}
-
-
-
-	@Override
+    @Override
     public String getPassword() {
         return this.password;
     }
@@ -98,17 +73,15 @@ public class userRegistro implements UserDetails {
     public String getUsername() {
         return this.username;
     }
-
-    // Getters and Setters for new field
-    public boolean isCorreo_notificacion() {
-        return correo_notificacion;
+    
+    public boolean isEstado() {
+        return estado;
     }
 
-    public void setCorreo_notificacion(boolean correo_notificacion) {
-        this.correo_notificacion = correo_notificacion;
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
-    // Existing getters and setters...
     public String getId_user() {
         return id_user;
     }
@@ -140,8 +113,6 @@ public class userRegistro implements UserDetails {
     public void setNombre_completo(String nombre_completo) {
         this.nombre_completo = nombre_completo;
     }
-
-   
 
     public rol getRol() {
         return rol;
