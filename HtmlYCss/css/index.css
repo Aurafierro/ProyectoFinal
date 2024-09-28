@@ -93,19 +93,12 @@ img {
     max-width: 38%;
     height: auto;
     object-fit: cover;
-    margin-top: 20px;
-    transform: translateX(-70px);
+    margin-top: 10px;
+ 
 }
 
 /* Sección de información de contacto */
-.contact-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #D6D6D6;
-    padding: 20px;
-    font-family: 'Candal', sans-serif;
-}
+
 
 .info-item {
     text-align: center;
@@ -203,10 +196,10 @@ img {
 
 /* Tarjetas flip animadas */
 .flip-card {
-    background-color: transparent;
-    width: 240px;
+   
+    width: 250px;
     height: 370px;
-    perspective: 1000px;
+   
     font-family: sans-serif;
 }
 
@@ -231,7 +224,7 @@ img {
 }
 
 .flip-card-front, .flip-card-back {
-    box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2);
+   
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -241,32 +234,27 @@ img {
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    border: 1px solid rgb(172, 166, 163);
+   
     border-radius: 1rem;
     padding: 10px;
     box-sizing: border-box;
 }
 
 .flip-card-front {
-    background: linear-gradient(120deg, rgb(241, 241, 241) 30%, rgb(179, 179, 179) 88%, rgb(168, 168, 168) 40%, rgb(134, 132, 131) 78%);
+    background: linear-gradient(120deg, rgb(241, 241, 241) 30%, rgb(67, 85, 187) 88%, rgb(221, 221, 221) 40%, rgb(224, 224, 224) 78%);
     color: rgb(44, 43, 43);
 }
 
 .flip-card-front img {
     width: 100%;
-    max-width: 100%;
+    max-width: 110%;
     border-radius: 1rem;
 }
 
 .flip-card-back {
-    background: linear-gradient(120deg, rgb(241, 241, 241) 30%, rgb(179, 179, 179) 88%, rgb(168, 168, 168) 40%, rgb(134, 132, 131) 78%);
+    background: linear-gradient(120deg, rgb(241, 241, 241) 30%, rgb(67, 95, 187) 88%, rgb(238, 238, 238) 40%, rgb(221, 221, 221) 78%);
     color: rgb(44, 43, 43);
     transform: rotateY(180deg);
 }
 
-.flip-card-back img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
-    border-radius: 1rem;
-}
+
