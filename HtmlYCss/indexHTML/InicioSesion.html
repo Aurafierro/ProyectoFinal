@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio sesión</title>
-    <link rel="stylesheet" href="../css/InicioSesion.css"> <!-- Enlace al archivo CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Enlace a Font Awesome -->
+    <link rel="stylesheet" href="../css/InicioSesion.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
     <link rel="icon" href="/iconos/logo.ico" type="image/x-icon">
 </head>
 <body>
@@ -14,7 +14,6 @@
             <a href="../indexHTML/ModuloInformacion.html"> 
                 <h1 class="tituloInicioSesion">Inicio de sesión</h1> 
             </a>
-            
             <div class="input-group">
                 <i class="fa-regular fa-circle-user icon"></i>
                 <input type="text" id="username" placeholder="Usuario" class="input-field"> 
@@ -22,14 +21,11 @@
             </div>
             <div class="input-group">
                 <i class="fa-solid fa-lock icon"></i>
-                <input type="password" id="password" placeholder="Contraseña" class="input-field"> <!-- ID "password" -->
-                <i class="fa-solid fa-eye" id="togglePassword" style="cursor: pointer; color: black;"></i> <!-- Icono para mostrar/ocultar contraseña -->
-                <div id="error-password" class="error-message" style="color: red;"></div> <!-- Mensaje de error para contraseña -->
-            </div>
-            
-            
-            <a href="../indexHTML/RecuperarContrasena.html" class="recover-link">Recuperar contraseña</a>
-            
+                <input type="password" id="password" placeholder="Contraseña" class="input-field"> 
+                <i class="fas fa-eye" id="togglePassword" style="cursor: pointer; color: black;"></i> 
+                <div id="error-password" class="error-message" style="color: red;"></div> 
+            </div>  
+            <a href="../indexHTML/RecuperarContrasena.html" class="recover-link">Recuperar contraseña</a> 
             <div class="buttons">
                 <a href="../indexHTML/InicioSesion.html"><button class="btn red">Volver</button></a> 
                 <button class="btn green" onclick="login()">Enviar</button>

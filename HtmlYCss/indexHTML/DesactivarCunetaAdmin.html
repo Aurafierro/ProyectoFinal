@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi perfil</title>
+    <title>Desactivar cuenta</title>
     <link rel="stylesheet" href="../css/MiPerfil.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" href="/iconos/logo.ico" type="image/x-icon">
 </head>
+
 <body>
     <header class="header">
         <div class="menu-toggle" id="menuToggle">
@@ -16,20 +18,25 @@
         <div class="logo">
             <img src="/HtmlYCss/img/logori.png" alt="Logo" class="logo-img">
         </div>
-        <div class="logout">
+        <nav class="logout">
             <a href="#" class="logout-link" onclick="cerrarSesion()" title="Cerrar sesión">Cerrar sesión</a>
-        </div>
+        </nav>
     </header>
+    
     <aside class="sidebarj" id="sidebarj">
         <nav>
             <ul>
-                <li class="sidebars-item"><a href="../indexHTML/MiPerfil.html"><i class="fas fa-user"></i>Mi perfil</a></li>
-                <li class="sidebars-item"><a href="../indexHTML/CrearReserva.html"><i class="fas fa-key"></i>Reservar espacios</a></li>
-                <li class="sidebars-item"><a href="../indexHTML/ModificarReserva.html"><i class="far fa-edit"></i>></i>Modificar Reserva</a></li>
-                <li class="sidebars-item"><a href="../indexHTML/Historial.html"><i class="fas fa-history"></i>Historial</a></li>
+                <li class="sidebars-item"><a href="../indexHTML/MiPerfilAdmin.html"><i class="fas fa-user"></i>Mi perfil</a></li>
+                <li class="sidebars-item"><a href="../indexHTML/CrearReservaAdmin.html"><i class="fas fa-key"></i>Reservar espacios</a></li>
+                <li class="sidebars-item"><a href="../indexHTML/Solicitudes.html"><i class="fas fa-check"></i>Solicitudes</a></li>
+                <li class="sidebars-item"><a href="../indexHTML/HistorialAdmin.html"><i class="fas fa-history"></i>Historial</a></li>
+                <li class="sidebars-item"><a href="../indexHTML/ModificarReservaAdmin.html"><i class="far fa-edit"></i></i>Modificar Reserva</a></li>
+                <li class="sidebars-item"><a href="../indexHTML/CrearCuenta.html"><i class="fas fa-users"></i>Crear cuentas</a></li>
+                <li class="sidebars-item"><a href="../indexHTML/EspaciosRegistrados.html"><i class="fas fa-calendar-week"></i>Registro de espacios</a></li>
             </ul>
         </nav>
     </aside>
+
     <div class="sidebar">
         <div class="sidebar-item">
             <i class="fas fa-user"></i>
@@ -49,28 +56,16 @@
         </div>
     </div>
 
-    <div class="profile-container">
-        <h2>Mi perfil</h2>
-        <div class="profile-photo">
-            <i id="add-icon" class="fa-solid fa-camera-retro" style="cursor: pointer; position: absolute; top: 5px; right: 5px; font-size: 30px; color: rgb(0, 0, 0); z-index: 20;"></i>
-            <div class="circle-container" style="border-radius: 50%; overflow: hidden; width: 150px; height: 150px; position: relative; border: 2px dashed #ccc; display: flex; align-items: center; justify-content: center; background-color: #f0f0f0;">
-                <img id="image-preview" src="" alt="Vista previa" style="width: 100%; height: 100%; object-fit: cover; display: none;">
-                <input type="file" id="photoInput" accept="image/*" style="display: none;" onchange="previewImage();">
-            </div>
-            <p id="username"><strong>Mariana Charry</strong></p>
+    <div class="profile-container-desactivar">
+        <div class="desactivar-cuenta">
+            <h2>Desactivar cuenta</h2>
         </div>
-        <div class="profile-details">
-            <p>Tipo documento:</p>
-            <p id="tipo_documento"></p>
-            <p>Número documento:</p>
-            <p id="numero_documento"></p>
-            <p>Nombre completo:</p>
-            <p id="nombre_completo"></p>
-            <p>Rol:</p>
-            <p id="rol"></p>
-            <p>Correo:</p>
-            <p id="correo"></p>
-        </div>
+        <input type="hidden" id="id_user" name="id_user">
+        <p>Para activar tu cuenta en AsignaWeb, envía un correo electrónico a asignaweb@gmail.com con el asunto "Solicitud de Activación de Cuenta".
+            <br><br>Ten presente, aunque tu cuenta esté inactiva, tu información permanecerá en nuestra base de datos.
+        </p>
+        <p>Te notificaremos una vez que la activación se haya completado.</p>
+        <button type="button" class="desactivarCuenta">Desactivar cuenta</button>
     </div>
 
     <footer class="footer">
@@ -78,10 +73,17 @@
             <p>&copy; 2024 Asigna Web - Todos los derechos reservados.</p>
         </div>
     </footer>
-    
-    <script src="../js/MiPerfilUsuario.js"></script>
+
+    <script src="../js/DesactivarCuenta.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebarj');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('visible');
+        });
+    </script>
 </body>
 </html>

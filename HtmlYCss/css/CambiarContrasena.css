@@ -76,6 +76,22 @@ body {
     box-sizing: border-box;
     margin-bottom: 18px;
 }
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-text {
+    width: 100%;
+    padding-right: 30px;
+}
+
+.input-group i {
+    position: absolute;
+    right: 30px;
+    top: 37%;
+    transform: translateY(-50%);
+}
 
 .buttons {
     display: flex;
