@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    // Obtener el token del localStorage
     const token = localStorage.getItem('authTokens');
 
     // Función para obtener datos del usuario
@@ -42,9 +41,21 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
         }
 
-        // Obtener el ID del usuario
+        // Obtener el ID del usuario y su estado
         const datosUsuario = await obtenerDatosUsuario(token);
-        const id_user = datosUsuario.id_user; // Asegúrate de que el id_user esté correctamente definido
+        const id_user = datosUsuario.id_user;
+
+        // Verificar estado del usuario
+        const estado = datosUsuario.estado; // Asegúrate de que el estado se obtiene correctamente
+
+        if (estado === 'Inactivo' || estado === false || estado === 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Cuenta inactiva',
+                text: 'No se puede desactivar una cuenta que ya está inactiva.'
+            });
+            return;
+        }
 
         // URL del endpoint para desactivar el usuario
         const url = `http://localhost:8080/api/v1/user/desactivar/${id_user}`;
@@ -59,20 +70,19 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             });
 
-            // Verificar si la solicitud fue exitosa
             if (response.ok) {
                 const data = await response.json();
                 Swal.fire({
                     icon: 'success',
                     title: 'Cuenta desactivada',
-                    text: `Estado: ${data.estado}` // Asegúrate de que "estado" está en la respuesta
+                    text: `Estado: ${data.estado}`
                 });
             } else {
                 const errorData = await response.json();
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: `No se pudo desactivar la cuenta: ${errorData.error}` // Asegúrate de que "error" está en la respuesta
+                    text: `No se pudo desactivar la cuenta: ${errorData.error}`
                 });
             }
         } catch (error) {
@@ -85,6 +95,5 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    // Evento que llama la función al hacer clic en el botón
     document.querySelector('.desactivarCuenta').addEventListener('click', desactivarUsuario);
 });
