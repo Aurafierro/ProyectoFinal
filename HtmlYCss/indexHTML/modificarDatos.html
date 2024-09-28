@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificar datos</title>
-    <link rel="stylesheet" href="../css/miPerfil.css">
+    <link rel="stylesheet" href="../css/MiPerfil.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Enlace a Font Awesome -->
     <link rel="icon" href="/iconos/logo.ico" type="image/x-icon">
@@ -23,19 +23,13 @@
             <a href="#" class="logout-link" onclick="cerrarSesion()" title="Cerrar sesión">Cerrar sesión</a>
         </div>
     </header>
-
-    <!-- Barra lateral con clase sidebarj -->
     <aside class="sidebarj" id="sidebarj">
         <nav>
             <ul>
-                <li class="sidebars-item"><a href="../indexHTML/miPerfil.html"><i class="fas fa-user"></i>Mi perfil</a>
-                </li>
-                <li class="sidebars-item"><a href="../indexHTML/crearReserva.html"><i class="fas fa-key"></i>Reservar
-                        espacios</a></li>
-                <li class="sidebars-item"><a href="../indexHTML/Solicitudes.html"><i
-                            class="fas fa-check"></i>Solicitudes</a></li>
-                <li class="sidebars-item"><a href="../indexHTML/historial.html"><i
-                            class="fas fa-history"></i>Historial</a></li>
+                <li class="sidebars-item"><a href="../indexHTML/miPerfil.html"><i class="fas fa-user"></i>Mi perfil</a></li>
+                <li class="sidebars-item"><a href="../indexHTML/crearReserva.html"><i class="fas fa-key"></i>Reservar espacios</a></li>
+                <li class="sidebars-item"><a href="../indexHTML/Solicitudes.html"><i class="fas fa-check"></i>Solicitudes</a></li>
+                <li class="sidebars-item"><a href="../indexHTML/historial.html"><i class="fas fa-history"></i>Historial</a></li>
             </ul>
         </nav>
     </aside>
@@ -83,13 +77,10 @@
                 <input type="email" id="correo" name="correo">
             </div>
         </div>
-
-
         <button class="modificarDatos">Modificar</button>
     </div>
 </body>
 <footer class="footer">
-
     <div class="footer-container">
         <p>&copy; 2024 Asigna Web - Todos los derechos reservados.</p>
     </div>
@@ -97,12 +88,5 @@
 <script src="../js/ModificarDatos.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    const menuToggle = document.getElementById('menuToggle');
-    const sidebar = document.getElementById('sidebarj');
 
-    menuToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('visible');
-    });
-</script>
 </html>

@@ -39,13 +39,15 @@ async function cambiarContrasena() {
         Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: error.message, // Muestra el mensaje de error
+            text: error.message, 
         });
     }
 }
-
-// Añade un evento al botón de enviar
 document.querySelector('.button-contrasena').addEventListener('click', (event) => {
     event.preventDefault(); // Previene el comportamiento por defecto del formulario
     cambiarContrasena();
 });
+function cerrarSesion() {
+    localStorage.removeItem('authTokens'); 
+    window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html';
+}

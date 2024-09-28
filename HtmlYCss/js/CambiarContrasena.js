@@ -108,6 +108,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Evento para manejar el clic en el botón de volver
     document.querySelector(".btn.red").addEventListener("click", function (event) {
         event.preventDefault(); // Evitar la acción predeterminada
-        // Aquí podrías agregar lógica para redirigir o cerrar sesión si es necesario
+       
     });
 });

@@ -1,3 +1,10 @@
+const menuToggle = document.getElementById('menuToggle');
+const sidebar = document.getElementById('sidebarj');
+
+menuToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('visible');
+});
+
 document.addEventListener("DOMContentLoaded", () => {
     const urlFoto = 'http://localhost:8080/api/v1/fotoperfil/';
     const tamañoMaximoArchivo = 2 * 1024 * 1024; // 2MB
@@ -63,10 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-function cerrarSesion() {
-    localStorage.removeItem('authTokens'); 
-    window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html';
-}
+
 
 document.addEventListener("DOMContentLoaded", async () => {
     await obtenerDatosUsuario();
@@ -103,11 +107,14 @@ async function obtenerDatosUsuario() {
         document.getElementById('rol').textContent = datosUsuario.rol || 'No disponible';
         document.getElementById('correo').textContent = datosUsuario.username || 'No disponible';
         
-        // Asignar el nombre completo al username
         document.getElementById('username').textContent = datosUsuario.nombre_completo || 'No disponible';
         
     } catch (error) {
         console.error('Error:', error);
         Swal.fire('Error', error.message, 'error');
     }
+}
+function cerrarSesion() {
+    localStorage.removeItem('authTokens'); 
+    window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html';
 }

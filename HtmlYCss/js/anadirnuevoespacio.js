@@ -1,28 +1,24 @@
 // URL base para la API
 const url = "http://localhost:8080/api/v1/espacio/";
 
-// Validar campos al ingresar
+
 document.getElementById("nombre_del_espacio").addEventListener("keypress", soloLetras);
 document.getElementById("clasificacion").addEventListener("keypress", soloLetras);
 document.getElementById("capacidad").addEventListener("keypress", soloNumeros);
 document.getElementById("descripcion").addEventListener("keypress", soloLetras);
 
-// Funciones para validar entradas
 function soloLetras(event) {
     const letrasPermitidas = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]$/;
     if (!letrasPermitidas.test(event.key) && event.key !== 'Backspace') {
         event.preventDefault();
     }
 }
-
 function soloNumeros(event) {
     const numeroPermitidos = /^[0-9]$/;
     if (!numeroPermitidos.test(event.key) && event.key !== 'Backspace') {
         event.preventDefault();
     }
 }
-
-// Función para limpiar el formulario
 function limpiarFormulario() {
     document.getElementById("miFormulario").reset();
     const preview = document.getElementById('image-preview');
@@ -31,7 +27,14 @@ function limpiarFormulario() {
     document.getElementById('add-icon').style.display = 'block';
 }
 
-// Función para guardar espacio
+
+const menuToggle = document.getElementById('menuToggle');
+const sidebar = document.getElementById('sidebarj');
+
+menuToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('visible');
+});
+
 function guardarEspacio() {
     const formData = new FormData();
     formData.append("nombre_del_espacio", document.getElementById("nombre_del_espacio").value);
@@ -146,8 +149,6 @@ function consultarEspacioID(id) {
         }
     });
 }
-
-// Función para actualizar espacio
 function actualizarEspacio() {
     var id_espacio = document.getElementById("id_espacio").value;
     let formData = {
@@ -156,7 +157,6 @@ function actualizarEspacio() {
         "capacidad": document.getElementById("capacidad").value,
         "descripcion": document.getElementById("descripcion").value
     };
-
     if (validarCampos()) {
         $.ajax({
             url: url + id_espacio,
@@ -183,8 +183,6 @@ function actualizarEspacio() {
         });
     }
 }
-
-// Función para validar campos
 function validarCampos() {
     var nombre_del_espacio = document.getElementById("nombre_del_espacio").value;
     var clasificacion = document.getElementById("clasificacion").value;
@@ -193,7 +191,6 @@ function validarCampos() {
 
     return !(nombre_del_espacio === '' || clasificacion === '' || capacidad === '' || descripcion === '');
 }
-
 // Función para eliminar espacio
 function eliminarEspacio(idEspacio) {
     Swal.fire({
@@ -312,3 +309,7 @@ function descargarPDF() {
         })
         .catch(error => console.error('Error al buscar con filtro:', error));
   }
+  function cerrarSesion() {
+    localStorage.removeItem('authTokens'); 
+    window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html';
+}

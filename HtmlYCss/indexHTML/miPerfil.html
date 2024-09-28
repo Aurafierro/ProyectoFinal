@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi perfil</title>
-    <link rel="stylesheet" href="../css/miPerfil.css">
+    <link rel="stylesheet" href="../css/MiPerfil.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" href="/iconos/logo.ico" type="image/x-icon">
 </head>
@@ -20,7 +20,6 @@
             <a href="#" class="logout-link" onclick="cerrarSesion()" title="Cerrar sesión">Cerrar sesión</a>
         </div>
     </header>
-
     <aside class="sidebarj" id="sidebarj">
         <nav>
             <ul>
@@ -28,6 +27,7 @@
                 <li class="sidebars-item"><a href="../indexHTML/crearReserva.html"><i class="fas fa-key"></i>Reservar espacios</a></li>
                 <li class="sidebars-item"><a href="../indexHTML/Solicitudes.html"><i class="fas fa-check"></i>Solicitudes</a></li>
                 <li class="sidebars-item"><a href="../indexHTML/historial.html"><i class="fas fa-history"></i>Historial</a></li>
+                
             </ul>
         </nav>
     </aside>
@@ -81,16 +81,9 @@
         </div>
     </footer>
     
-    <script src="../js/miPerfilUsuario.js"></script>
+    <script src="../js/MiPerfilUsuario.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        const menuToggle = document.getElementById('menuToggle');
-        const sidebar = document.getElementById('sidebarj');
-
-        menuToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('visible');
-        });
-    </script>
+    
 </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Historial reservaciones</title>
-    <link rel="stylesheet" href="../css/historial.css">
+    <link rel="stylesheet" href="../css/Historial.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
 
@@ -28,9 +28,9 @@
             <ul>
                 <li><a href="../indexHTML/miPerfil.html" class="active"><i class="fas fa-user-edit"></i>Mi perfil</a>
                 </li>
-                <li><a href="../indexHTML/crearReserva.html" class="active"><i class="fas fa-key"></i>Reservar
-                        espacios</a></li>
+                <li><a href="../indexHTML/crearReserva.html" class="active"><i class="fas fa-key"></i>Reservar espacios</a></li>
                 <li><a href="../indexHTML/historial.html"><i class="fas fa-history"></i>Historial</a></li>
+                <li><a href="../indexHTML/EspaciosRegistrados.html"><i class="fas fa-calendar-week"></i>Registro de espacios</a></li>
             </ul>
         </nav>
     </aside>
@@ -71,24 +71,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
-    <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const mainContent = document.querySelector('.main-content');
-            const header = document.querySelector('.header');
-            if (sidebar.classList.contains('hidden')) {
-                sidebar.classList.remove('hidden');
-                sidebar.classList.add('visible');
-                mainContent.classList.add('shifted');
-                header.classList.add('shifted');
-            } else {
-                sidebar.classList.remove('visible');
-                sidebar.classList.add('hidden');
-                mainContent.classList.remove('shifted');
-                header.classList.remove('shifted');
-            }
-        }
-    </script>
+   
 </body>
 <footer class="footer">
     <div class="footer-container">

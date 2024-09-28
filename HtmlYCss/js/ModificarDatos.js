@@ -1,3 +1,10 @@
+const menuToggle = document.getElementById('menuToggle');
+const sidebar = document.getElementById('sidebarj');
+
+menuToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('visible');
+});
+
 document.addEventListener('DOMContentLoaded', async () => {
     // Obtener el token del localStorage
     const token = localStorage.getItem('authTokens');
@@ -99,3 +106,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         await modificarDatosUsuario(nuevosDatos);
     });
 });
+function cerrarSesion() {
+    localStorage.removeItem('authTokens'); 
+    window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html';
+}

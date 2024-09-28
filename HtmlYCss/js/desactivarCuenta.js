@@ -97,3 +97,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     document.querySelector('.desactivarCuenta').addEventListener('click', desactivarUsuario);
 });
+function cerrarSesion() {
+    localStorage.removeItem('authTokens'); 
+    window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html';
+}

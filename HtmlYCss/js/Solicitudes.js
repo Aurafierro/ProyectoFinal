@@ -15,6 +15,10 @@ function toggleSidebar() {
         sidebar.classList.toggle("hidden");
     }
 }
+function cerrarSesion() {
+    localStorage.removeItem('authTokens'); 
+    window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html';
+}
 function descargarPDF() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
