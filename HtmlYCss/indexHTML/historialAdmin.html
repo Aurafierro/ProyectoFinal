@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historial reservas admin</title>
+    <title>Historial reservaciones</title>
     <link rel="stylesheet" href="../css/historial.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+
     <link rel="icon" href="/iconos/logo.ico" type="image/x-icon">
 </head>
 
-<body onload="historial();">
+<body onload="tablaReservas();">
     <header class="header">
         <div class="menu-toggle" onclick="toggleSidebar();">
             <i class="fas fa-bars"></i>
@@ -23,15 +24,6 @@
         </div>
     </header>
     <aside class="sidebar hidden" id="sidebar">
-        <div class="profile">
-            <div class="profile-pic">
-                <img id="profileImageDisplay" src="" alt="">
-                <i class="fas fa-camera"></i>
-                <input type="file" id="profileImage" accept="image/*">
-            </div>
-            <span>Paula Bustos</span>
-        </div>
-
         <nav>
             <ul>
                 <li><a href="../indexHTML/miPerfil.html" class="active"><i class="fas fa-user-edit"></i>Mi perfil</a>
@@ -41,17 +33,18 @@
                 <li><a href="../indexHTML/historial.html"><i class="fas fa-history"></i>Historial</a></li>
             </ul>
         </nav>
-        
     </aside>
     <div class="main-content">
         <div class="search-options">
             <div class="search-bar-wrapper">
                 <div class="search-bar">
                     <input type="text" placeholder="Ingresa el nombre que deseas buscar" id="inputSearch">
-                    <button><i class="fas fa-search" onclick="historial();"></i></button>
+                    <button onclick="tablaReservas()"><i class="fas fa-search"></i></button>
                 </div>
             </div>
+            <div><span id="tituloPagina">Historial reservaciones</span></div>
         </div>
+        
         <div class="table-wrapper">
             <div class="table-container">
                 <table>
@@ -63,7 +56,6 @@
                             <th>Hora salida</th>
                             <th>Fecha entrada</th>
                             <th>Fecha salida</th>
-                            <th>Opciones</th>
                         </tr>
                     </thead>
                     <tbody id="cuerpoTabla"></tbody>
@@ -72,75 +64,13 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header divTituloModal">
-                    <h1 class="modal-title fs-5 titulo" id="exampleModalLabel">Editar reservación</h1>
-                </div>
-                <br>
-                <div class="modal-body contenedorFormModal">
-                    <div class="row contenedorPadre">
-                        <input id="id_reserva" type="hidden">
-                        <div class="divIzquierdo">
-                            <div class="col col-xl-6 col-12">
-                                <label for="nombre_espacio"><b>Nombre espacio:</b></label>
-                        <select id="nombre_espacio" name="nombre_espacio" class="form-select SELECTnombre_espacio">
-                            <option value="" selected disabled>Selecciona una opción</option>
-                            <option value="cancha">Cancha</option>
-                            <option value="gimnasio">Gimnasio</option>
-                            <option value="auditorio">Auditorio</option>
-                            <option value="biblioteca">Biblioteca</option>
-                        </select>
-                            </div>
-                            <br>
-                            <div class="col col-xl-6 col-12">
-                                <b><label for="">Hora salida:</label></b>
-                                <input type="time" id="hora_salida" step="1"
-                                    class="form-control inputCamposEditarReserva" />
-                            </div>
-                            <br>
-                            <div class="col col-xl-6 col-12">
-                                <b><label for="">Fecha salida:</label></b>
-                                <input type="date" id="fecha_salida" step="1"
-                                    class="form-control inputCamposEditarReserva" />
-                            </div>
-                        </div>
-                        <div class="divDerecho">
-                            <div class="col col-xl-6 col-12">
-                                <b><label for="">Hora entrada:</label></b>
-                                <input type="time" id="hora_entrada" class="form-control inputCamposEditarReserva" />
-                            </div>
-                            <br>
-                            <br>
-                            <div class="col col-xl-6 col-12">
-                                <b><label for="">Fecha entrada:</label></b>
-                                <input type="date" id="fecha_entrada" class="form-control inputCamposEditarReserva" />
-                            </div>
-                            <br>
-                            <br>
-                            <div class="row boton">
-                                <button type="button" id="botonActualizarReserva"
-                                    onclick="actualizarReserva();">Guardar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-
-   
-
     <script src="../js/Reservaciones.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
     <script>
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
@@ -163,7 +93,7 @@
 <footer class="footer">
     <div class="footer-container">
         <p>&copy; 2024 Asigna Web - Todos los derechos reservados.</p>
-        <button class="download-pdf-button">Descargar PDF</button>
+        <button class="download-pdf-button"onclick="descargarPDF()">Descargar PDF></button>
     </div>
 </footer>
 </html>

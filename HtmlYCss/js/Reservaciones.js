@@ -185,9 +185,13 @@ function crearReserva() {
 //función de la tabla, la lista de todas las reservas realizadas
 
 function tablaReservas() {
-
+  var capturarFiltro = document.getElementById("inputSearch").value;
+  var urlLocal = url;
+  if (capturarFiltro != "") {
+    urlLocal += "busquedafiltro/" + capturarFiltro;
+  }
   $.ajax({
-    url: url,
+    url: urlLocal,
     type: "GET",
     success: function (result) {
       //success: funcion que se ejecuta
@@ -247,13 +251,13 @@ function tablaReservas() {
 
 
 function historial() {
-  
+
   //METODO PARA LISTAR LOS CLIENTES
   //SE CREA LA PETICION AJAX
   var capturarFiltro = document.getElementById("inputSearch").value;
-  var urlLocal=url;
-  if (capturarFiltro!=""){
-  urlLocal+="busquedafiltro/"+capturarFiltro;
+  var urlLocal = url;
+  if (capturarFiltro != "") {
+    urlLocal += "busquedafiltro/" + capturarFiltro;
   }
 
   $.ajax({
@@ -341,13 +345,13 @@ function historial() {
 
 //funcion para que el formulario quede vacío de nuevo, después de realizar un registro
 function limpiarFormulario() {
-  document.getElementById("nombre_completo").className="form-control";
-  document.getElementById("nombre_espacio").className="form-control";
-  document.getElementById("hora_entrada").className="form-control";
-  document.getElementById("hora_salida").className="form-control";
-  document.getElementById("fecha_entrada").className="form-control";
-  document.getElementById("fecha_salida").className="form-control";
-  document.getElementById("username").className="form-control";
+  document.getElementById("nombre_completo").className = "form-control";
+  document.getElementById("nombre_espacio").className = "form-control";
+  document.getElementById("hora_entrada").className = "form-control";
+  document.getElementById("hora_salida").className = "form-control";
+  document.getElementById("fecha_entrada").className = "form-control";
+  document.getElementById("fecha_salida").className = "form-control";
+  document.getElementById("username").className = "form-control";
 
 
   document.getElementById("nombre_completo").value = "";
@@ -372,10 +376,10 @@ function closeModal() {
 }
 
 // Cierra el modal si el usuario hace clic fuera de él
-window.onclick = function(event) {
+window.onclick = function (event) {
   const modal = document.getElementById('editModal');
   if (event.target == modal) {
-      modal.style.display = 'none';
+    modal.style.display = 'none';
   }
 }
 
@@ -390,79 +394,79 @@ var span = document.getElementsByClassName("close")[0];
 
 // Cuando el usuario hace clic en el botón, se abre el modal
 opcionesButtons.forEach(button => {
-    button.onclick = function() {
-        modal.style.display = "block";
-    };
+  button.onclick = function () {
+    modal.style.display = "block";
+  };
 });
 
 
 
 // Cuando el usuario hace clic en cualquier lugar fuera del modal, se cierra
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
 }
 
-function consultarReservaID(id){
+function consultarReservaID(id) {
   //alert(id);
   $.ajax({
-      url:url+id,
-      type:"GET",
-      success: function(result){
-          document.getElementById("id_reserva").value=result["id_reserva"];
-          document.getElementById("nombre_espacio").value=result["nombre_espacio"];
-          document.getElementById("hora_entrada").value=result["hora_entrada"];
-          document.getElementById("hora_salida").value=result["hora_salida"];
-          document.getElementById("fecha_entrada").value=result["fecha_entrada"];
-          document.getElementById("fecha_salida").value=result["fecha_salida"];
-      }
+    url: url + id,
+    type: "GET",
+    success: function (result) {
+      document.getElementById("id_reserva").value = result["id_reserva"];
+      document.getElementById("nombre_espacio").value = result["nombre_espacio"];
+      document.getElementById("hora_entrada").value = result["hora_entrada"];
+      document.getElementById("hora_salida").value = result["hora_salida"];
+      document.getElementById("fecha_entrada").value = result["fecha_entrada"];
+      document.getElementById("fecha_salida").value = result["fecha_salida"];
+    }
   });
 }
 
-function actualizarReserva() { 
-  var id_reserva=document.getElementById("id_reserva").value
-  let formData={
-      "nombre_espacio": document.getElementById("nombre_espacio").value,
-      "hora_entrada": document.getElementById("hora_entrada").value,
-      "hora_salida": document.getElementById("hora_salida").value,
-      "fecha_entrada": document.getElementById("fecha_entrada").value,
-      "fecha_salida": document.getElementById("fecha_salida").value
-};
+function actualizarReserva() {
+  var id_reserva = document.getElementById("id_reserva").value
+  let formData = {
+    "nombre_espacio": document.getElementById("nombre_espacio").value,
+    "hora_entrada": document.getElementById("hora_entrada").value,
+    "hora_salida": document.getElementById("hora_salida").value,
+    "fecha_entrada": document.getElementById("fecha_entrada").value,
+    "fecha_salida": document.getElementById("fecha_salida").value
+  };
 
-if (validarCampos()) {
-  $.ajax({
-      url:url+id_reserva,
+  if (validarCampos()) {
+    $.ajax({
+      url: url + id_reserva,
       type: "PUT",
       contentType: "application/json",
-            data: JSON.stringify(formData),
-    
-      
-      success: function(result) {
-        
-          // Manejar la respuesta exitosa según necesites
-          Swal.fire({
-              title: "¡Excelente!",
-              text: "Se guardó correctamente",
-              icon: "success"
-            });
-          // Puedes hacer algo adicional como recargar la lista de libros
-          historial();
+      data: JSON.stringify(formData),
+
+
+      success: function (result) {
+
+        // Manejar la respuesta exitosa según necesites
+        Swal.fire({
+          title: "¡Excelente!",
+          text: "Se guardó correctamente",
+          icon: "success"
+        });
+        // Puedes hacer algo adicional como recargar la lista de libros
+        historial();
       },
-      error: function(error) {
-          // Manejar el error de la petición
-          Swal.fire({
-              title: "¡Error!",
-              text: "No se guardó",
-              icon: "error"
-            });
+      error: function (error) {
+        // Manejar el error de la petición
+        Swal.fire({
+          title: "¡Error!",
+          text: "No se guardó",
+          icon: "error"
+        });
       },
       error: function (error) {
         Swal.fire("Error", "Error al guardar, " + error.responseText, "error");
-    }
-  });
+      }
+    });
   } else {
-  Swal.fire({
+    Swal.fire({
       title: "¡Error!",
       text: "Llene todos los campos correctamente",
       icon: "error"
@@ -475,7 +479,7 @@ if (validarCampos()) {
     var hora_salida = document.getElementById("hora_salida").value;
     var fecha_entrada = document.getElementById("fecha_entrada").value;
     var fecha_salida = document.getElementById("fecha_salida").value
-  
+
     // Verificar si algún campo está vacío
     if (nombre_espacio === '' || hora_entrada === '' || hora_salida === '' || fecha_entrada === '' || fecha_salida === '') {
       return false; // Al menos un campo está vacío
@@ -483,7 +487,7 @@ if (validarCampos()) {
       return true; // Todos los campos están llenos
     }
   }
-  
+
 }
 
 function eliminarReserva(idReserva) {
@@ -501,7 +505,7 @@ function eliminarReserva(idReserva) {
       $.ajax({
         url: url + idReserva,
         type: "DELETE",
-        success: function(response) {
+        success: function (response) {
           Swal.fire({
             title: "¡Eliminado!",
             text: "La reserva ha sido eliminada correctamente.",
@@ -509,7 +513,7 @@ function eliminarReserva(idReserva) {
           });
           historial();
         },
-        error: function(error) {
+        error: function (error) {
           Swal.fire("Error", "Error al eliminar la reserva. " + error.responseText, "error");
         }
       });
@@ -521,7 +525,7 @@ function descargarPDF() {
   const doc = new jsPDF();
 
   // Texto del título
-  const titulo = 'Solicitudes';
+  const titulo = 'Reservaciones Asigna Web';
 
   // Obtener el ancho de la página
   const pageWidth = doc.internal.pageSize.getWidth();
@@ -541,27 +545,27 @@ function descargarPDF() {
   doc.text(" ", 14, 30);
 
   // Definir las columnas de la tabla
-  const head = [['Nombre Completo', 'Nombre Espacio', 'Hora Entrada', 'Hora Salida', 'fecha Entrada' , 'fecha Salida' ]];
+  const head = [['Nombre Completo', 'Nombre Espacio', 'Hora Entrada', 'Hora Salida', 'fecha Entrada', 'fecha Salida']];
 
   // Obtener los datos de la tabla desde el DOM
   const cuerpoTabla = document.getElementById('cuerpoTabla');
   const rows = [...cuerpoTabla.getElementsByTagName('tr')].map(row => {
-      return [...row.getElementsByTagName('td')].map(cell => cell.innerText);
+    return [...row.getElementsByTagName('td')].map(cell => cell.innerText);
   });
 
   // Generar la tabla en el PDF después del título
   doc.autoTable({
-      head: head,
-      body: rows,
-      startY: 35, // Posición inicial de la tabla después del título
-      theme: 'striped', // Cambiar el estilo de la tabla
-      styles: { cellPadding: 3, fontSize: 10 },
-      headStyles: { fillColor: [26, 62, 104] },
-      bodyStyles: { fillColor: [255, 255, 255] }
+    head: head,
+    body: rows,
+    startY: 35, // Posición inicial de la tabla después del título
+    theme: 'striped', // Cambiar el estilo de la tabla
+    styles: { cellPadding: 3, fontSize: 10 },
+    headStyles: { fillColor: [26, 62, 104] },
+    bodyStyles: { fillColor: [255, 255, 255] }
   });
 
   // Guardar el archivo PDF con un nombre específico
-  doc.save('Reservaciones.pdf');
+  doc.save('ReservacionesAsignaWeb.pdf');
 }
 // Array que almacena las reservas existentes
 const reservasExistentes = [
@@ -579,22 +583,22 @@ function validarReserva() {
 
   // Verificar si ya existe una reserva con la misma fecha y hora
   const conflicto = reservasExistentes.some(reserva => {
-      return reserva.fecha === fechaReserva && reserva.horaEntrada === horaEntrada;
+    return reserva.fecha === fechaReserva && reserva.horaEntrada === horaEntrada;
   });
 
   if (conflicto) {
-      alert("Ya existe una reserva con la misma fecha y hora. Por favor elige otro horario.");
+    alert("Ya existe una reserva con la misma fecha y hora. Por favor elige otro horario.");
   } else {
-      // Agregar la nueva reserva al array de reservas existentes
-      reservasExistentes.push({
-          nombre: nombreCompleto,
-          espacio: nombreEspacio,
-          fecha: fechaReserva,
-          horaEntrada: horaEntrada,
-          horaSalida: horaSalida
-      });
-      alert("Reserva realizada exitosamente.");
-      // Aquí puedes enviar los datos al backend o continuar con el registro
+    // Agregar la nueva reserva al array de reservas existentes
+    reservasExistentes.push({
+      nombre: nombreCompleto,
+      espacio: nombreEspacio,
+      fecha: fechaReserva,
+      horaEntrada: horaEntrada,
+      horaSalida: horaSalida
+    });
+    alert("Reserva realizada exitosamente.");
+    // Aquí puedes enviar los datos al backend o continuar con el registro
   }
 }
 

@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historial reservaciones</title>
+    <title>Modificar reservación</title>
+    <link rel="stylesheet" href="/HtmlYCss/js/historial.js">
     <link rel="stylesheet" href="../css/historial.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
@@ -11,7 +13,7 @@
     <link rel="icon" href="/iconos/logo.ico" type="image/x-icon">
 </head>
 
-<body onload="tablaReservas();">
+<body onload="historial();">
     <header class="header">
         <div class="menu-toggle" onclick="toggleSidebar();">
             <i class="fas fa-bars"></i>
@@ -22,6 +24,8 @@
         <div class="logout">
             <a href="#" class="logout-link" onclick="cerrarSesion()" title="Cerrar sesión">Cerrar sesión</a>
         </div>
+        
+        
     </header>
     <aside class="sidebar hidden" id="sidebar">
         <nav>
@@ -39,10 +43,10 @@
             <div class="search-bar-wrapper">
                 <div class="search-bar">
                     <input type="text" placeholder="Ingresa el nombre que deseas buscar" id="inputSearch">
-                    <button onclick="tablaReservas()"><i class="fas fa-search"></i></button>
+                    <button onclick="historial()"><i class="fas fa-search"></i></button>
                 </div>
             </div>
-            <div><span id="tituloPagina">Historial reservaciones</span></div>
+            <div><span id="tituloPagina">Modificar reservaciones</span></div>
         </div>
         
         <div class="table-wrapper">
@@ -56,6 +60,7 @@
                             <th>Hora salida</th>
                             <th>Fecha entrada</th>
                             <th>Fecha salida</th>
+                            <th>Opciones</th>
                         </tr>
                     </thead>
                     <tbody id="cuerpoTabla"></tbody>
@@ -63,6 +68,68 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header divTituloModal">
+                    <h1 class="modal-title fs-5 titulo" id="exampleModalLabel">Editar reservación</h1>
+                </div>
+                <br>
+                <div class="modal-body contenedorFormModal">
+                    <div class="row contenedorPadre">
+                        <input id="id_reserva" type="hidden">
+                        <div class="divIzquierdo">
+                            <div class="col col-xl-6 col-12">
+                                <label for="nombre_espacio"><b>Nombre espacio:</b></label>
+                        <select id="nombre_espacio" name="nombre_espacio" class="form-select SELECTnombre_espacio">
+                            <option value="" selected disabled>Selecciona una opción</option>
+                            <option value="cancha">Cancha</option>
+                            <option value="gimnasio">Gimnasio</option>
+                            <option value="auditorio">Auditorio</option>
+                            <option value="biblioteca">Biblioteca</option>
+                        </select>
+                            </div>
+                            <br>
+                            <div class="col col-xl-6 col-12">
+                                <b><label for="">Hora salida:</label></b>
+                                <input type="time" id="hora_salida" step="1"
+                                    class="form-control inputCamposEditarReserva" />
+                            </div>
+                            <br>
+                            <div class="col col-xl-6 col-12">
+                                <b><label for="">Fecha salida:</label></b>
+                                <input type="date" id="fecha_salida" step="1"
+                                    class="form-control inputCamposEditarReserva" />
+                            </div>
+                        </div>
+                        <div class="divDerecho">
+                            <div class="col col-xl-6 col-12">
+                                <b><label for="">Hora entrada:</label></b>
+                                <input type="time" id="hora_entrada" class="form-control inputCamposEditarReserva" />
+                            </div>
+                            <br>
+                            <br>
+                            <div class="col col-xl-6 col-12">
+                                <b><label for="">Fecha entrada:</label></b>
+                                <input type="date" id="fecha_entrada" class="form-control inputCamposEditarReserva" />
+                            </div>
+                            <br>
+                            <br>
+                            <div class="row boton">
+                                <button type="button" id="botonActualizarReserva"
+                                    onclick="actualizarReserva();">Guardar</button>
+                                    <button type="button" class="btnCerrarModal" data-bs-dismiss="modal" onclick="cerrarModal();">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
 
     <script src="../js/Reservaciones.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
