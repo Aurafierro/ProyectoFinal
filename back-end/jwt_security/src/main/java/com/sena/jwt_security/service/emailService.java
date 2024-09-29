@@ -100,9 +100,7 @@ public class emailService {
 				    + "            Este enlace es válido por 24 horas. Si el enlace ha expirado, por favor solicite un nuevo enlace a través de la página de recuperación de cuenta."
 				    + "        </p>"
 				    + "        <br>"
-				    + "        <center>"
-				    + "            <button style='background-color:#2B56C5; color:white; padding:10px 20px; border:none; border-radius:14px; font-size:16px; cursor:pointer; margin-bottom:5%;'>Recuperar contraseña</button>"
-				    + "        </center>"
+				 
 				    
 				    + "        <div style='background-color: #202C4A; margin: auto; padding: 15px;'>"
 		            +"         <p style='text-align:center; font-size: 16px; color: #FFFFFF;'>¡Te esperamos pronto!</p>"

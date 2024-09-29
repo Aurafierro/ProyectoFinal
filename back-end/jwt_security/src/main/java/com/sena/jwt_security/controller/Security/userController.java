@@ -244,34 +244,40 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	}
 
 	@PostMapping("/recuperar-contrasena")
-	public ResponseEntity<Object> recuperarContrasena(@RequestBody RecuperarContrasenaRequest request) {
+	public ResponseEntity<Map<String, String>> recuperarContrasena(@RequestBody RecuperarContrasenaRequest request) {
+	    Map<String, String> response = new HashMap<>();
+
 	    if (request.getUsername() == null || request.getUsername().isEmpty()) {
-	        return new ResponseEntity<>("El correo es un campo obligatorio", HttpStatus.BAD_REQUEST);
+	        response.put("message", "El correo es un campo obligatorio");
+	        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 	    }
 
 	    if (!isValidEmail(request.getUsername())) {
-	        return new ResponseEntity<>("El correo electrónico debe estar completo y en un formato válido", HttpStatus.BAD_REQUEST);
+	        response.put("message", "El correo electrónico debe estar completo y en un formato válido");
+	        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 	    }
 
-	  
 	    java.util.Optional<userRegistro> optionalUser = userService.findByUsername(request.getUsername());
 
 	    if (!optionalUser.isPresent()) {
-	        return new ResponseEntity<>("El usuario no existe", HttpStatus.NOT_FOUND);
+	        response.put("message", "El usuario no existe");
+	        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
 	    }
 
-	    userRegistro user = optionalUser.get(); 
-
-	
+	    userRegistro user = optionalUser.get();
 	    String token = UUID.randomUUID().toString();
-
 	    userService.savePasswordResetToken(user, token);
-	    String enlace = "http://tu_dominio/cambiar_contrasena?u=" + Base64.getEncoder().encodeToString(user.getUsername().getBytes()) + "&t=" + token;
+
+	    String enlace = "http://tu_dominio/cambiar_contrasena?u=" + 
+	                     Base64.getEncoder().encodeToString(user.getUsername().getBytes()) + 
+	                     "&t=" + token;
 
 	    emailService.enviarCorreoRecuperarPassword(user.getUsername(), enlace);
-
-	    return new ResponseEntity<>("Se ha enviado un enlace para recuperar la contraseña", HttpStatus.OK);
+	    
+	    response.put("message", "Se ha enviado un enlace para recuperar la contraseña");
+	    return new ResponseEntity<>(response, HttpStatus.OK);
 	}
+
 	
 	@PutMapping("/cambio-contrasena")
 	public ResponseEntity<String> cambiarContrasena(@RequestBody CambioCotrasenaRequest request) {
