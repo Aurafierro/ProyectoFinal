@@ -224,21 +224,20 @@ header img {
     margin: 0 auto; 
     margin-top: 3%;
 }
-
-/* Cambiar contraseña */
+/* Contenedor principal */
 .profile-containertres {
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #EDEDED;
-    padding: 10px;
+    padding: 20px; /* Aumentado para más espacio interno */
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 40%;
-    margin: 4% auto; /* Centramos el contenedor horizontalmente */
+    width: 40%; /* Ancho base */
+    margin: 4% auto; /* Centrado con margen */
 }
 
-.modifi-contraseña h2 {
+.modifi-contrasena h2 {
     margin: 0;
     font-size: 30px;
     color: #000000;
@@ -252,33 +251,42 @@ header img {
     text-align: center;
 }
 
-.profile-containertres form {
+/* Estilo de los inputs y contenedor de iconos */
+.input-container {
+    position: relative;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    max-width: 400px; /* Ancho máximo de los inputs */
+    margin: 0 auto 15px auto;
 }
 
-.profile-containertres label {
+.input-container label {
     font-size: 14px;
     color: #000000;
     text-align: center;
 }
 
-.profile-containertres input {
-    width: 100%; /* Ajustamos el ancho para que sea responsive */
-    max-width: 400px; /* Máximo ancho para el campo de entrada */
+.input-container input {
+    width: 92%;
     padding: 10px;
+    padding-right: 40px; 
     border: 1px solid #c0c0c0;
     border-radius: 12px;
     background-color: #D9D9D9;
     font-family: 'Candal', Arial, sans-serif;
-    margin: 0 auto; /* Centramos los inputs */
+}
+
+.input-container .toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 1px;
+    transform: translateY(-10%); 
+    cursor: pointer;
+    color: #202C4A;
 }
 
 .button-contrasena {
-    width: 100%; /* Ajustamos el ancho para que sea responsive */
-    max-width: 140px; /* Máximo ancho para el botón */
+    width: 100%;
+    max-width: 140px; 
     padding: 9px;
     font-size: 16px;
     color: white;
@@ -286,53 +294,61 @@ header img {
     border: none;
     border-radius: 20px;
     font-family: 'Candal', Arial, sans-serif;
-    margin: 0 auto;
-    display: block; /* Aseguramos que el botón se centre correctamente */
+    margin: 20px auto 0; 
+    display: block; 
 }
 
-/* Estilos Responsive */
 @media (max-width: 1280px) {
     .profile-containertres {
-        max-width: 80%;
+        max-width: 80%; 
     }
 }
-
 @media (max-width: 768px) {
     .profile-containertres {
         max-width: 90%;
+        padding: 15px; 
+    }
+
+    .input-container input {
+        padding: 8px; 
+    }
+
+    .button-contrasena {
+        padding: 7px; 
     }
 }
 
 @media (max-width: 480px) {
     .profile-containertres {
-        max-width: 95%;
+        max-width: 95%; 
+        padding: 10px; 
+    }
+    .profile-containertres h2 {
+        font-size: 24px; 
+    }
+    .input-container input {
+        padding: 5px; 
+        font-size: 14px;
+    }
+    .button-contrasena {
+        padding: 6px; 
+        font-size: 14px; 
+    }
+}
+@media (max-width: 375px) {
+    .profile-containertres {
+        width: 260px; 
     }
 
     .profile-containertres input {
         padding: 5px;
+        width: 200px; 
     }
-
     .button-contrasena {
-        padding: 8px;
-    }
-    @media (max-width: 375px) {
-        .profile-containertres {
-    width: 260px;
-        }
-    
-        .profile-containertres input {
-            padding: 5px;
-            width: 200px;
-        }
-    
-        .button-contrasena {
-            padding: 8px;
-        }
+        padding: 5px; 
+        font-size: 14px; 
     }
 }
-
-
-
 
 /* DESACTIVAR CUENTA */
 .profile-container-desactivar {
@@ -383,45 +399,37 @@ header img {
 /* Responsive para pantallas pequeñas */
 @media (max-width: 768px) {
     .profile-container-desactivar {
-        max-width: 90%; /* Aumenta el ancho del contenedor en pantallas pequeñas */
-        margin: 20px auto; /* Centra el contenedor y ajusta el margen */
+        max-width: 90%; 
+        margin: 20px auto; 
     }
-
     .desactivar-cuenta h2 {
-        font-size: 24px; /* Reduce el tamaño del encabezado en pantallas más pequeñas */
+        font-size: 24px; 
     }
-
     .profile-container-desactivar p {
-        font-size: 12px; /* Reduce el tamaño del texto en pantallas más pequeñas */
+        font-size: 12px; 
     }
-
     .profile-container-desactivar button {
-        width: 100%; /* Botón se ajusta al ancho del contenedor */
-        max-width: 300px; /* Establece un ancho máximo para el botón */
-        font-size: 14px; /* Reduce el tamaño de la fuente del botón */
+        width: 100%; 
+        max-width: 300px; 
+        font-size: 14px; 
     }
 }
-
 @media (max-width: 480px) {
     .profile-container-desactivar {
-        padding: 15px; /* Ajusta el padding para pantallas muy pequeñas */
-        margin: 20px auto; /* Asegura que el contenedor esté centrado */
+        padding: 15px; 
+        margin: 20px auto; 
     }
-
     .desactivar-cuenta h2 {
-        font-size: 20px; /* Reduce aún más el tamaño del encabezado */
+        font-size: 20px; 
     }
-
     .profile-container-desactivar p {
-        font-size: 11px; /* Reduce aún más el tamaño del texto */
+        font-size: 11px; 
     }
-
     .profile-container-desactivar button {
-        font-size: 12px; /* Reduce aún más el tamaño de la fuente del botón */
+        font-size: 12px;
     }
 }
 
-/* Asegura que el footer esté al fondo en pantallas móviles */
 html, body {
     height: 100%;
     margin: 0;
@@ -433,10 +441,8 @@ body {
 }
 
 footer {
-    margin-top: auto; /* Empuja el footer al fondo */
+    margin-top: auto; 
 }
-
-/*  MENU HAMBURGUESA*/
 
 /* Estilos de la barra lateral */
 .sidebarj {

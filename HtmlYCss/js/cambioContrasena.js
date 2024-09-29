@@ -51,3 +51,17 @@ function cerrarSesion() {
     localStorage.removeItem('authTokens'); 
     window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html';
 }
+function togglePasswordVisibility(inputId, icon) {
+    const passwordField = document.getElementById(inputId);
+    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordField.setAttribute('type', type);
+    icon.classList.toggle('fa-eye-slash'); // Toggle the eye slash icon
+}
+
+// Add event listeners for the eye icons
+document.querySelectorAll('.toggle-password').forEach(icon => {
+    icon.addEventListener('click', function () {
+        const inputId = this.getAttribute('data-input');
+        togglePasswordVisibility(inputId, this);
+    });
+});
