@@ -1,4 +1,4 @@
-var url = "http://localhost:8080/api/v1/user/register/";
+var url = "http://10.192.92.90:8080/api/v1/user/register/";
 
 document.getElementById("numero_documento").addEventListener("keypress", soloNumeros);
 document.getElementById("nombre_completo").addEventListener("keypress", soloLetras);
@@ -69,7 +69,7 @@ function crearCuenta() {
                   icon: "success"
               }).then(() => {
                   // Redirige al usuario al inicio de sesión después de que se cierre la alerta
-                  window.location.href = "http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html"; // Ruta correcta
+                  window.location.href = "http://10.192.92.90:5500/HtmlYCss/indexHTML/InicioSesion.html"; // Ruta correcta
               });
               
 

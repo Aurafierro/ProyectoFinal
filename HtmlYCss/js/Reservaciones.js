@@ -1,4 +1,4 @@
-var url = "http://localhost:8080/api/v1/reserva/";
+var url = "http://10.192.92.90:8080/api/v1/reserva/";
 
 //document.getElementById("nombre_completo").addEventListener("keypress", soloLetras);
 //document.getElementById("nombre_espacio").addEventListener("keypress", soloLetras);
@@ -212,7 +212,7 @@ function tablaReservas() {
 }
 function cerrarSesion() {
   localStorage.removeItem('authTokens'); 
-  window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html';
+  window.location.href = 'http://10.192.92.90:5500/HtmlYCss/indexHTML/InicioSesion.html';
 }
 function toggleSidebar() {
   const sidebar = document.getElementById('sidebar');

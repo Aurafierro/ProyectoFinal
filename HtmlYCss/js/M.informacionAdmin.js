@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevButton = document.querySelector('.carousel-button.prev');
     const nextButton = document.querySelector('.carousel-button.next');
     const cardsContainer = document.getElementById('cards-container');
-    const apiUrl = 'http://localhost:8080/api/v1/espacio/'; // Cambia esto por la URL de tu API
+    const apiUrl = 'http://10.192.92.90:8080/api/v1/espacio/'; // Cambia esto por la URL de tu API
     let currentIndex = 0;
     let cards = [];
 
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             
                 const card = document.createElement('a');
-                card.href = '../indexHTML/crearReserva.html'; // Ajusta el enlace según sea necesario
+                card.href = '../indexHTML/crearReservaAdmin.html'; // Ajusta el enlace según sea necesario
                 card.classList.add('card');
                 
                 card.innerHTML = `

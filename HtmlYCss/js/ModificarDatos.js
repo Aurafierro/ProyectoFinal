@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Función para obtener datos del usuario
     async function obtenerDatosUsuario(token) {
         try {
-            const response = await fetch('http://localhost:8080/api/v1/user/profile', {
+            const response = await fetch('http://10.192.92.90:8080/api/v1/user/profile', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         try {
             // Utiliza el id_user en la URL para modificar
-            const response = await fetch(`http://localhost:8080/api/v1/user/${datosUsuario.id_user}`, {
+            const response = await fetch(`http://10.192.92.90:8080/api/v1/user/${datosUsuario.id_user}`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -147,5 +147,5 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 function cerrarSesion() {
     localStorage.removeItem('authTokens'); 
-    window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html';
+    window.location.href = 'http://10.192.92.90:5500/HtmlYCss/indexHTML/InicioSesion.html';
 }

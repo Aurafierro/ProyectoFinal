@@ -6,7 +6,7 @@ menuToggle.addEventListener('click', () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    const urlFoto = 'http://localhost:8080/api/v1/fotoperfil/';
+    const urlFoto = 'http://10.192.92.90:8080/api/v1/fotoperfil/';
     const tamañoMaximoArchivo = 2 * 1024 * 1024; // 2MB
 
     const urlImagenExistente = localStorage.getItem('profileImageUrl');
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 async function obtenerDatosUsuario() {
-    const urlDatosUsuario = 'http://localhost:8080/api/v1/user/profile';
+    const urlDatosUsuario = 'http://10.192.92.90:8080/api/v1/user/profile';
     const token = localStorage.getItem('authTokens');
 
     if (!token) {
@@ -116,5 +116,5 @@ async function obtenerDatosUsuario() {
 }
 function cerrarSesion() {
     localStorage.removeItem('authTokens'); 
-    window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html';
+    window.location.href = 'http://10.192.92.90:5500/HtmlYCss/indexHTML/InicioSesion.html';
 }
