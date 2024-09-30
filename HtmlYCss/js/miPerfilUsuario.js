@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 async function obtenerDatosUsuario() {
-    const urlDatosUsuario = 'http://localhost:8080/api/v1/user/profile'; // URL actualizada
+    const urlDatosUsuario = 'http://localhost:8080/api/v1/user/profile';
     const token = localStorage.getItem('authTokens');
 
     if (!token) {
