@@ -1,3 +1,42 @@
+document.getElementById("nombre-completo").addEventListener("keypress", soloLetras);
+document.getElementById("numero-documento").addEventListener("keypress", soloNumeros);
+
+document.getElementById("correo").addEventListener("keypress", letrasNumerosCaracteres);
+
+function soloLetras(event) {
+    const letrasPermitidas = [
+        "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "u", "v", "x", "y", "w", "o", "z", "ñ", "Ñ",
+        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", " ",
+        "á", "é", "í", "ó", "ú", "Á", "É", "Í", "Ó", "Ú"
+    ];
+
+    if (!letrasPermitidas.includes(event.key)) {
+        event.preventDefault();
+    }
+}
+
+function letrasNumerosCaracteres(event) {
+    const letrasPermitidas = [
+        "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "u", "v", "x", "y", "w", "o", "z", "ñ", "Ñ",
+        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", " ",
+        "á", "é", "í", "ó", "ú", "Á", "É", "Í", "Ó", "Ú"
+    ];
+    const numeroPermitidos = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+    const caracteresPermitidos = ['@', '_', '-', '.'];
+
+    if (!(letrasPermitidas.includes(event.key)) && !(numeroPermitidos.includes(event.key)) && !(caracteresPermitidos.includes(event.key))) {
+        event.preventDefault();
+    }
+}
+
+function soloNumeros(event) {
+    const numeroPermitidos = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+
+    if (!numeroPermitidos.includes(event.key)) {
+        event.preventDefault();
+    }
+}
+
 const menuToggle = document.getElementById('menuToggle');
 const sidebar = document.getElementById('sidebarj');
 
