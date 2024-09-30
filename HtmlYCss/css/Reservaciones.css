@@ -333,3 +333,8 @@ td {
     padding: 3px;
     border-bottom: 1px solid #ddd;
 }
+
+.logout-link{
+    text-decoration: none;
+    color: white;
+}

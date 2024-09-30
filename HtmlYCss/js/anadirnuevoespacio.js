@@ -1,7 +1,31 @@
 // URL base para la API
 const url = "http://localhost:8080/api/v1/espacio/";
 
+// Manejo del evento del icono para subir imágenes
+document.getElementById("add-icon").addEventListener("click", () => {
+    document.getElementById("file-input").click();
+});
 
+document.getElementById("file-input").addEventListener("change", (event) => {
+    const file = event.target.files[0];
+    const preview = document.getElementById("image-preview");
+    const addIcon = document.getElementById("add-icon");
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            preview.setAttribute("src", e.target.result);
+            preview.style.display = "block";
+            addIcon.style.display = "none";
+        };
+        reader.readAsDataURL(file);
+    } else {
+        preview.style.display = "none";
+        addIcon.style.display = "block";
+    }
+});
+
+// Validar solo letras en los inputs especificados
 document.getElementById("nombre_del_espacio").addEventListener("keypress", soloLetras);
 document.getElementById("clasificacion").addEventListener("keypress", soloLetras);
 document.getElementById("capacidad").addEventListener("keypress", soloNumeros);
@@ -13,12 +37,15 @@ function soloLetras(event) {
         event.preventDefault();
     }
 }
+
 function soloNumeros(event) {
     const numeroPermitidos = /^[0-9]$/;
     if (!numeroPermitidos.test(event.key) && event.key !== 'Backspace') {
         event.preventDefault();
     }
 }
+
+// Limpiar formulario
 function limpiarFormulario() {
     document.getElementById("miFormulario").reset();
     const preview = document.getElementById('image-preview');
@@ -27,7 +54,7 @@ function limpiarFormulario() {
     document.getElementById('add-icon').style.display = 'block';
 }
 
-
+// Toggle del menú lateral
 const menuToggle = document.getElementById('menuToggle');
 const sidebar = document.getElementById('sidebarj');
 
@@ -35,6 +62,7 @@ menuToggle.addEventListener('click', () => {
     sidebar.classList.toggle('visible');
 });
 
+// Guardar espacio
 function guardarEspacio() {
     const formData = new FormData();
     formData.append("nombre_del_espacio", document.getElementById("nombre_del_espacio").value);
@@ -149,6 +177,8 @@ function consultarEspacioID(id) {
         }
     });
 }
+
+// Actualizar espacio
 function actualizarEspacio() {
     var id_espacio = document.getElementById("id_espacio").value;
     let formData = {
@@ -183,6 +213,7 @@ function actualizarEspacio() {
         });
     }
 }
+
 function validarCampos() {
     var nombre_del_espacio = document.getElementById("nombre_del_espacio").value;
     var clasificacion = document.getElementById("clasificacion").value;
@@ -191,6 +222,7 @@ function validarCampos() {
 
     return !(nombre_del_espacio === '' || clasificacion === '' || capacidad === '' || descripcion === '');
 }
+
 // Función para eliminar espacio
 function eliminarEspacio(idEspacio) {
     Swal.fire({
@@ -216,100 +248,9 @@ function eliminarEspacio(idEspacio) {
                     espaciosRegistrados();
                 },
                 error: function (error) {
-                    Swal.fire("Error", "Error al eliminar el espacio: " + error.responseText, "error");
+                    Swal.fire("Error", "Error al eliminar: " + error.responseText, "error");
                 }
             });
         }
     });
-}
-
-// Función para cargar espacios en el select del modal
-function cargarEspacios() {
-    $.ajax({
-        url: url,
-        type: "GET",
-        success: function (result) {
-            const selectNombreEspacio = document.getElementById("nombre_del_espacio");
-            selectNombreEspacio.innerHTML = ""; // Limpia las opciones existentes
-            let seleccioneOpcion = document.createElement("option");
-            seleccioneOpcion.value = "";
-            seleccioneOpcion.innerText = "Seleccione un espacio";
-            selectNombreEspacio.appendChild(seleccioneOpcion);
-
-            result.forEach(item => {
-                let opcionEspacio = document.createElement("option");
-                opcionEspacio.value = item["id_espacio"]; // Asigna el ID
-                opcionEspacio.innerText = item["nombre_del_espacio"]; // Asigna el nombre
-                selectNombreEspacio.appendChild(opcionEspacio);
-            });
-        },
-        error: function (error) {
-            console.error("Error al cargar espacios:", error);
-        }
-    });
-}
-
-function descargarPDF() {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-  
-    // Texto del título
-    const titulo = 'Espacios Registrados';
-  
-    // Obtener el ancho de la página
-    const pageWidth = doc.internal.pageSize.getWidth();
-  
-    // Calcular la posición X para centrar el título
-    const textWidth = doc.getTextWidth(titulo);
-    const textX = (pageWidth - textWidth) / 2;
-  
-    // Añadir título al PDF centrado
-    doc.setFontSize(18);
-    doc.text(titulo, textX, 22); // Coloca el título en la posición Y = 22
-  
-    // Restablecer el tamaño de la fuente para el contenido
-    doc.setFontSize(12);
-  
-    // Añadir un espacio después del título
-    doc.text(" ", 14, 30);
-  
-    // Definir las columnas de la tabla
-    const head = [['Nombre Espacio', 'clasificacion', 'Capacidad', 'Descripcion', 'Opciones']];
-  
-    // Obtener los datos de la tabla desde el DOM
-    const cuerpoTabla = document.getElementById('cuerpoTabla');
-    const rows = [...cuerpoTabla.getElementsByTagName('tr')].map(row => {
-        return [...row.getElementsByTagName('td')].map(cell => cell.innerText);
-    });
-  
-    // Generar la tabla en el PDF después del título
-    doc.autoTable({
-        head: head,
-        body: rows,
-        startY: 35, // Posición inicial de la tabla después del título
-        theme: 'striped', // Cambiar el estilo de la tabla
-        styles: { cellPadding: 3, fontSize: 10 },
-        headStyles: { fillColor: [26, 62, 104] },
-        bodyStyles: { fillColor: [255, 255, 255] }
-    });
-  
-    // Guardar el archivo PDF con un nombre específico
-    doc.save('EspaciosRegistrados.pdf');
-  }
-
-  function buscarConFiltro() {
-    const filtro = document.getElementById('inputSearch').value;
-  
-    // Realizar una petición GET al backend con el filtro ingresado
-    fetch(`/reservas/busquedafiltro/${filtro}`)
-        .then(response => response.json())
-        .then(data => {
-            // Llamar a una función para renderizar los datos en la tabla
-            renderizarTabla(data);
-        })
-        .catch(error => console.error('Error al buscar con filtro:', error));
-  }
-  function cerrarSesion() {
-    localStorage.removeItem('authTokens'); 
-    window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html';
 }
