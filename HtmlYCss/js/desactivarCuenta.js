@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Función para obtener datos del usuario
     async function obtenerDatosUsuario(token) {
         try {
-            const response = await fetch('http://10.192.92.90:8080/api/v1/user/profile', {
+            const response = await fetch('http://10.192.94.153:8080/api/v1/user/profile', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         // URL del endpoint para desactivar el usuario
-        const url = `http://10.192.92.90:8080/api/v1/user/desactivar/${id_user}`;
+        const url = `http://10.192.94.153:8080/api/v1/user/desactivar/${id_user}`;
 
         // Realizar la solicitud fetch con el token
         try {
@@ -99,5 +99,5 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 function cerrarSesion() {
     localStorage.removeItem('authTokens'); 
-    window.location.href = 'http://10.192.92.90:5500/HtmlYCss/indexHTML/InicioSesion.html';
+    window.location.href = 'http://10.192.94.153:5500/HtmlYCss/indexHTML/InicioSesion.html';
 }

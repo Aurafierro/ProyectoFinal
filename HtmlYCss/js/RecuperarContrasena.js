@@ -1,4 +1,4 @@
-const url = 'http://10.192.92.90:8080/api/v1/user/recuperar-contrasena';
+const url = 'http://10.192.94.153:8080/api/v1/user/recuperar-contrasena';
 
 document.querySelector('.btn.green').addEventListener('click', function(event) {
     event.preventDefault();  // Evitar que el formulario se envíe de forma predeterminada

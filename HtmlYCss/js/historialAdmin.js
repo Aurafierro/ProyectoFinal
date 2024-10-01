@@ -1,4 +1,4 @@
-var url = "http://10.192.92.90:8080/api/v1/reserva/";
+var url = "http://10.192.94.153:8080/api/v1/reserva/";
 
 
 function cerrarSesion() {
@@ -6,7 +6,7 @@ function cerrarSesion() {
   localStorage.removeItem('token'); // Asegúrate de que 'token' es el nombre correcto que usas para almacenar el token
 
   // Redirige a la página de inicio de sesión
-  window.location.href = 'http://10.192.92.90:5500/HtmlYCss/indexHTML/InicioSesion.html'; // Cambia esta ruta a la de tu página de inicio de sesión
+  window.location.href = 'http://10.192.94.153:5500/HtmlYCss/indexHTML/InicioSesion.html'; // Cambia esta ruta a la de tu página de inicio de sesión
 }
 function historial() {
   
