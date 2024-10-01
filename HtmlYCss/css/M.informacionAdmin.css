@@ -21,6 +21,7 @@ body {
     background-color: #ffffff;
     color: black;
     padding-top: 0;
+    overflow: hidden;
 }
 
 .profile {
