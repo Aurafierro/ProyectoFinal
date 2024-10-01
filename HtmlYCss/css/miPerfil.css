@@ -458,6 +458,12 @@ footer {
     z-index: 1000;
     transform: translateX(-100%);
 }
+.sidebarj nav ul li {
+    padding: 16px 15px; /* Espaciado para los ítems */
+    margin-bottom: 12px; /* Añadir espacio entre los ítems */
+    transition: background-color 0.3s;
+}
+
 
 .profile {
     text-align: center;

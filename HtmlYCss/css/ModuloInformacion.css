@@ -387,10 +387,11 @@ header img {
 }
 
 .sidebarj nav ul li {
-    list-style: none;
-    padding: 10px 15px; /* Espaciado para los ítems */
+    padding: 16px 15px; /* Espaciado para los ítems */
+    margin-bottom: 12px; /* Añadir espacio entre los ítems */
     transition: background-color 0.3s;
 }
+
 
 .sidebarj nav ul li:hover {
     background-color: rgba(255, 255, 255, 0.1); /* Efecto hover */
