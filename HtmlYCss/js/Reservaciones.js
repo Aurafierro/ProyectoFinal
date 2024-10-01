@@ -479,41 +479,87 @@ function eliminarReserva(idReserva) {
 function descargarPDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
-  const titulo = 'Reservaciones Asigna Web';
-  // Obtener el ancho de la página
+
+  const titulo = 'Historial de Reservaciones';
   const pageWidth = doc.internal.pageSize.getWidth();
-  // Calcular la posición X para centrar el título
+  const logo = '../img/logori.png'; // Asegúrate de que la ruta sea correcta.
+
+  // Añadir el logo al PDF en la parte superior izquierda
+  doc.addImage(logo, 'PNG', 15, 10, 30, 30);
+
+  // Añadir título centrado y estilizado
   const textWidth = doc.getTextWidth(titulo);
   const textX = (pageWidth - textWidth) / 2;
-  // Añadir título al PDF centrado
-  doc.setFontSize(18);
-  doc.text(titulo, textX, 22); // Coloca el título en la posición Y = 22
-  // Restablecer el tamaño de la fuente para el contenido
+  doc.setFontSize(22);
+  doc.setTextColor(0, 51, 102); // Azul oscuro profesional
+  doc.text(titulo, textX, 25);
+
+  // Línea horizontal delgada debajo del título para un estilo limpio
+  doc.setDrawColor(200, 200, 200); // Línea gris suave
+  doc.setLineWidth(0.5);
+  doc.line(15, 32, pageWidth - 15, 32); 
+
+  // Espacio para el contenido principal
   doc.setFontSize(12);
-  doc.text(" ", 14, 30);
-  // Definir las columnas de la tabla
-  const head = [['Nombre Completo', 'Nombre Espacio', 'Hora Entrada', 'Hora Salida', 'fecha Entrada', 'fecha Salida']];
-  // Obtener los datos de la tabla desde el DOM
+
+  // Añadir una decoración sutil en la parte inferior: barra de color degradado
+  const gradientHeight = 20;
+  const gradientStartY = doc.internal.pageSize.getHeight() - gradientHeight;
+  const gradientEndY = doc.internal.pageSize.getHeight();
+  
+  // Dibujar el rectángulo degradado en la parte inferior
+  const gradientColorStart = [0, 51, 102]; // Azul oscuro
+  const gradientColorEnd = [0, 153, 204]; // Azul claro
+
+  for (let y = gradientStartY; y <= gradientEndY; y++) {
+      const interpolatedColor = gradientColorStart.map((start, index) => {
+          const end = gradientColorEnd[index];
+          const t = (y - gradientStartY) / gradientHeight;
+          return Math.round(start * (1 - t) + end * t);
+      });
+      doc.setDrawColor(...interpolatedColor);
+      doc.line(0, y, pageWidth, y);
+  }
+
+  // Datos de la tabla
   const cuerpoTabla = document.getElementById('cuerpoTabla');
   const rows = [...cuerpoTabla.getElementsByTagName('tr')].map(row => {
-    return [...row.getElementsByTagName('td')].map(cell => cell.innerText);
+      return [...row.getElementsByTagName('td')].map(cell => cell.innerText);
   });
-  // Generar la tabla en el PDF después del título
+
+  // Crear tabla en el PDF con estilos profesionales
+  const head = [['Nombre Completo', 'Nombre Espacio', 'Hora Entrada', 'Hora Salida', 'Fecha Entrada', 'Fecha Salida']];
   doc.autoTable({
-    head: head,
-    body: rows,
-    startY: 35, // Posición inicial de la tabla después del título
-    theme: 'striped', // Cambiar el estilo de la tabla
-    styles: { cellPadding: 3, fontSize: 10 },
-    headStyles: { fillColor: [26, 62, 104] },
-    bodyStyles: { fillColor: [255, 255, 255] }
+      head: head,
+      body: rows,
+      startY: 40,
+      theme: 'grid',
+      headStyles: {
+          fillColor: [0, 51, 102],  // Azul oscuro profesional
+          textColor: [255, 255, 255],  // Texto blanco
+          fontSize: 12,
+          fontStyle: 'bold'
+      },
+      bodyStyles: {
+          fontSize: 10,
+          halign: 'center',
+          fillColor: [245, 245, 245],  // Fondo gris suave
+          textColor: [0, 0, 0]
+      },
+      alternateRowStyles: {
+          fillColor: [255, 255, 255]  // Blanco en filas alternas
+      },
+      styles: {
+          lineWidth: 0.1,
+          overflow: 'linebreak',
+          cellPadding: 5,
+          valign: 'middle'
+      }
   });
-  doc.save('ReservacionesAsignaWeb.pdf');
+
+  // Guardar el archivo PDF
+  doc.save('Historial_Reservaciones.pdf');
 }
-const reservasExistentes = [
-  { nombre: "Juan", espacio: "Sala A", fecha: "2024-09-27", horaEntrada: "10:00", horaSalida: "12:00" },
-  { nombre: "María", espacio: "Sala B", fecha: "2024-09-27", horaEntrada: "11:00", horaSalida: "13:00" }
-];
 // Función para validar si una reserva ya existe con la misma fecha y hora
 function validarReserva() {
   const nombreCompleto = document.getElementById('nombre_completo').value;
