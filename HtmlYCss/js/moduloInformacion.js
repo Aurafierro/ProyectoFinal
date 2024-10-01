@@ -1,3 +1,18 @@
+document.addEventListener("DOMContentLoaded", function() {
+    const menuToggle = document.querySelector(".menu-toggle");
+    const sidebar = document.getElementById("sidebarj");
+
+    menuToggle.addEventListener("click", function() {
+        sidebar.classList.toggle("visible");
+    });
+
+    // Cierra el menú al hacer clic en un enlace
+    sidebar.addEventListener("click", function() {
+        sidebar.classList.remove("visible");
+    });
+});
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const prevButton = document.querySelector('.carousel-button.prev');
     const nextButton = document.querySelector('.carousel-button.next');

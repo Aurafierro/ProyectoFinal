@@ -303,6 +303,29 @@ p {
     color: white;
     cursor: pointer;
 }
+.menu-toggle {
+    position: absolute; /* Cambiado a absolute para que esté alineado a la izquierda */
+    top: 20px; 
+    left: 20px; /* Alineado a la izquierda */
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 40px;
+    color: #ffffff;
+    z-index: 1001;
+    box-shadow: none; /* Elimina la sombra */
+}
+
+
+.menu-toggle i {
+    font-size: 40px; /* Asegúrate de que el ícono sea grande */
+    color: #ffffff; /* Color blanco */
+}
+.menu-icon {
+    font-size: 30px;
+    margin-right: 25px;
+}
+
 
 .header .logo {
     display: flex;
@@ -330,4 +353,56 @@ header img {
     height: auto;
     max-width: 100px;
     object-fit: cover;
+}
+/* Estilos de la barra lateral */
+.sidebarj {
+    width: 250px;
+    background-color: #202C4A;
+    color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    padding: 120px 0;
+    transition: transform 0.3s;
+    z-index: 1000;
+    transform: translateX(-100%);
+}
+.sidebarj {
+    width: 250px;
+    background-color: #202C4A;
+    color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    padding: 120px 0;
+    transition: transform 0.3s;
+    z-index: 1000;
+    transform: translateX(-100%);
+}
+
+.sidebarj.visible {
+    transform: translateX(0);
+}
+
+.sidebarj nav ul li {
+    list-style: none;
+    padding: 10px 15px; /* Espaciado para los ítems */
+    transition: background-color 0.3s;
+}
+
+.sidebarj nav ul li:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Efecto hover */
+}
+
+.sidebarj nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.sidebarj nav ul li i {
+    margin-right: 10px; /* Espaciado entre el ícono y el texto */
 }
