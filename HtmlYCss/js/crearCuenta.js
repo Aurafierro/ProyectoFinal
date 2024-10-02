@@ -1,8 +1,8 @@
-var url = "http://localhost:8080/api/v1/user/register/";
 
+
+// Funciones de validación de caracteres
 document.getElementById("numero_documento").addEventListener("keypress", soloNumeros);
 document.getElementById("nombre_completo").addEventListener("keypress", soloLetras);
-
 document.getElementById("username").addEventListener("keypress", letrasNumerosCaracteres);
 
 function soloLetras(event) {
@@ -39,12 +39,12 @@ function soloNumeros(event) {
     }
 }
 
+// Función para crear cuenta
 function crearCuenta() {
     let formData = {
         "tipo_documento": document.getElementById("tipo_documento").value,
         "numero_documento": document.getElementById("numero_documento").value,
         "nombre_completo": document.getElementById("nombre_completo").value,
-       
         "username": document.getElementById("username").value,
         "rol": document.getElementById("rol").value
     };
@@ -53,7 +53,7 @@ function crearCuenta() {
 
     if (camposValidos) {
         $.ajax({
-            url: url,
+            url: urlRegister, // Usar la URL global de registro
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify(formData),
@@ -64,14 +64,13 @@ function crearCuenta() {
                 localStorage.setItem('authTokens', JSON.stringify(tokens)); // Almacena todos los tokens
 
                 Swal.fire({
-                  title: "¡Excelente!",
-                  text: "Se guardó correctamente",
-                  icon: "success"
-              }).then(() => {
-                  // Redirige al usuario al inicio de sesión después de que se cierre la alerta
-                  window.location.href = "http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html"; // Ruta correcta
-              });
-              
+                    title: "¡Excelente!",
+                    text: "Se guardó correctamente",
+                    icon: "success"
+                }).then(() => {
+                    // Redirige al usuario al inicio de sesión después de que se cierre la alerta
+                    window.location.href = urlRedireccionInicioSesion;
+                });
 
                 limpiarFormulario();
             },
@@ -88,12 +87,12 @@ function crearCuenta() {
     }
 }
 
+// Validación de campos
 function validarCampos(formData) {
     let camposRequeridos = [
         "tipo_documento",
         "numero_documento",
         "nombre_completo",
-       
         "username",
         "rol"
     ];
@@ -129,11 +128,9 @@ function validarCampos(formData) {
         document.getElementById("error-numero_documento").classList.remove('error-message');
     }
 
-    
-
     let username = document.getElementById("username").value.trim();
     if (!username.includes('@') || !username.includes('.')) {
-        document.getElementById('error-username').textContent = 'El username electrónico no es válido.';
+        document.getElementById('error-username').textContent = 'El username no es válido.';
         camposValidos = false;
     } else {
         document.getElementById('error-username').textContent = '';
@@ -142,6 +139,7 @@ function validarCampos(formData) {
     return camposValidos;
 }
 
+// Función para limpiar el formulario
 function limpiarFormulario() {
     document.getElementById("crearCuentaForm").reset();
     document.querySelectorAll('.error-message').forEach(function(el) {
@@ -157,7 +155,6 @@ document.querySelectorAll('.form-control, .form-select').forEach(function(el) {
             "tipo_documento": document.getElementById("tipo_documento").value,
             "numero_documento": document.getElementById("numero_documento").value,
             "nombre_completo": document.getElementById("nombre_completo").value,
-           
             "username": document.getElementById("username").value,
             "rol": document.getElementById("rol").value
         });

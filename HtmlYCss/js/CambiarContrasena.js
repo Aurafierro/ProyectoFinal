@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function () {
             });
             return;
         }
-
         const token = localStorage.getItem('authTokens');
         if (!token) {
             Swal.fire({
@@ -19,9 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
             return;
         }
-
         const body = { nuevaContrasena, confirmarContrasena };
-
         try {
             const response = await fetch(urlCambioContrasena, { 
                 method: 'PUT',
@@ -31,20 +28,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 },
                 body: JSON.stringify(body)
             });
-
             const responseData = await response.json();
-
             if (!response.ok) {
                 throw new Error('Error al cambiar la contraseña: ' + (responseData.message || response.statusText));
             }
-
             Swal.fire({
                 icon: 'success',
                 title: 'Éxito',
                 text: responseData.message
             });
             await redirectAfterPasswordChange(token);
-
             document.getElementById("modifyForm").reset();
         } catch (error) {
             Swal.fire({
