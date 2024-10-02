@@ -242,3 +242,70 @@ function eliminarEspacio(idEspacio) {
         }
     });
 }
+function descargarPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    // Imagen de diseño (Base64)
+    const imgData = '../pdf/diseñopdf.jpg'; // Aquí va el Base64 de tu imagen
+  
+    // Tamaño de la página
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    
+    // Agregar imagen de ondas en las esquinas
+    doc.addImage(imgData, 'PNG', 0, 0, pageWidth, pageHeight);
+  
+    // Título centrado
+    const titulo = 'Espacios Registrados';
+    const textWidth = doc.getTextWidth(titulo);
+    const textX = (pageWidth - textWidth) / 2;
+    doc.setFontSize(18);
+    doc.setTextColor(26, 62, 104); // Color azul oscuro para el título
+    doc.text(titulo, textX, 30);
+  
+    // Estilo para las columnas de la tabla
+    const head = [['Nombre Espacio', 'Clasificacion', 'Capacidad ', 'Descripcion']];
+    
+    // Obtener los datos de la tabla desde el DOM
+    const cuerpoTabla = document.getElementById('cuerpoTabla');
+    const rows = [...cuerpoTabla.getElementsByTagName('tr')].map(row => {
+        return [...row.getElementsByTagName('td')].map(cell => cell.innerText);
+    });
+  
+    // Generar la tabla con nuevo diseño
+    doc.autoTable({
+        head: head,
+        body: rows,
+        startY: 50, // Ajustar según el espacio que necesites
+        theme: 'grid', // Cambiar a un estilo de cuadrícula
+        styles: {
+            fillColor: [255, 255, 255], // Fondo blanco en las celdas
+            textColor: [0, 0, 0],       // Texto negro
+            lineColor: [44, 62, 80],    // Líneas de borde azul oscuro
+            lineWidth: 0.1,
+            fontSize: 10,
+            fontStyle: 'normal',
+            halign: 'center',           // Centrar el texto
+            cellPadding: 5,             // Padding extra para mayor espacio
+            overflow: 'linebreak',
+        },
+        headStyles: {
+            fillColor: [26, 62, 104],   // Azul oscuro en el encabezado
+            textColor: [255, 255, 255], // Texto blanco en el encabezado
+            fontSize: 12,
+            fontStyle: 'bold',
+            lineWidth: 0.1,             // Bordes delgados
+            halign: 'center',           // Centrar el texto en el encabezado
+            cellPadding: 6,             // Más espacio en las celdas del encabezado
+        },
+        alternateRowStyles: {
+            fillColor: [245, 245, 245]  // Alternar filas con un gris claro
+        },
+        tableLineColor: [26, 62, 104],  // Bordes de la tabla en azul oscuro
+        tableLineWidth: 0.2,            // Grosor de las líneas de la tabla
+    });
+  
+    // Guardar el PDF
+    doc.save('EspaciosRegistrados.pdf');
+  }

@@ -479,86 +479,69 @@ function eliminarReserva(idReserva) {
 function descargarPDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
+  
+  // Imagen de diseño (Base64)
+  const imgData = '../pdf/diseñopdf.jpg'; // Aquí va el Base64 de tu imagen
 
-  const titulo = 'Historial de Reservaciones';
+  // Tamaño de la página
   const pageWidth = doc.internal.pageSize.getWidth();
-  const logo = '../img/logori.png'; // Asegúrate de que la ruta sea correcta.
+  const pageHeight = doc.internal.pageSize.getHeight();
+  
+  // Agregar imagen de ondas en las esquinas
+  doc.addImage(imgData, 'PNG', 0, 0, pageWidth, pageHeight);
 
-  // Añadir el logo al PDF en la parte superior izquierda
-  doc.addImage(logo, 'PNG', 15, 10, 30, 30);
-
-  // Añadir título centrado y estilizado
+  // Título centrado
+  const titulo = 'Historial de Reservaciones';
   const textWidth = doc.getTextWidth(titulo);
   const textX = (pageWidth - textWidth) / 2;
-  doc.setFontSize(22);
-  doc.setTextColor(0, 51, 102); // Azul oscuro profesional
-  doc.text(titulo, textX, 25);
+  doc.setFontSize(18);
+  doc.setTextColor(26, 62, 104); // Color azul oscuro para el título
+  doc.text(titulo, textX, 30);
 
-  // Línea horizontal delgada debajo del título para un estilo limpio
-  doc.setDrawColor(200, 200, 200); // Línea gris suave
-  doc.setLineWidth(0.5);
-  doc.line(15, 32, pageWidth - 15, 32); 
-
-  // Espacio para el contenido principal
-  doc.setFontSize(12);
-
-  // Añadir una decoración sutil en la parte inferior: barra de color degradado
-  const gradientHeight = 20;
-  const gradientStartY = doc.internal.pageSize.getHeight() - gradientHeight;
-  const gradientEndY = doc.internal.pageSize.getHeight();
+  // Estilo para las columnas de la tabla
+  const head = [['Nombre Completo', 'Nombre Espacio', 'Hora Entrada', 'Hora Salida', 'Fecha Entrada', 'Fecha Salida']];
   
-  // Dibujar el rectángulo degradado en la parte inferior
-  const gradientColorStart = [0, 51, 102]; // Azul oscuro
-  const gradientColorEnd = [0, 153, 204]; // Azul claro
-
-  for (let y = gradientStartY; y <= gradientEndY; y++) {
-      const interpolatedColor = gradientColorStart.map((start, index) => {
-          const end = gradientColorEnd[index];
-          const t = (y - gradientStartY) / gradientHeight;
-          return Math.round(start * (1 - t) + end * t);
-      });
-      doc.setDrawColor(...interpolatedColor);
-      doc.line(0, y, pageWidth, y);
-  }
-
-  // Datos de la tabla
+  // Obtener los datos de la tabla desde el DOM
   const cuerpoTabla = document.getElementById('cuerpoTabla');
   const rows = [...cuerpoTabla.getElementsByTagName('tr')].map(row => {
       return [...row.getElementsByTagName('td')].map(cell => cell.innerText);
   });
 
-  // Crear tabla en el PDF con estilos profesionales
-  const head = [['Nombre Completo', 'Nombre Espacio', 'Hora Entrada', 'Hora Salida', 'Fecha Entrada', 'Fecha Salida']];
+  // Generar la tabla con nuevo diseño
   doc.autoTable({
       head: head,
       body: rows,
-      startY: 40,
-      theme: 'grid',
-      headStyles: {
-          fillColor: [0, 51, 102],  // Azul oscuro profesional
-          textColor: [255, 255, 255],  // Texto blanco
-          fontSize: 12,
-          fontStyle: 'bold'
-      },
-      bodyStyles: {
+      startY: 50, // Ajustar según el espacio que necesites
+      theme: 'grid', // Cambiar a un estilo de cuadrícula
+      styles: {
+          fillColor: [255, 255, 255], // Fondo blanco en las celdas
+          textColor: [0, 0, 0],       // Texto negro
+          lineColor: [44, 62, 80],    // Líneas de borde azul oscuro
+          lineWidth: 0.1,
           fontSize: 10,
-          halign: 'center',
-          fillColor: [245, 245, 245],  // Fondo gris suave
-          textColor: [0, 0, 0]
+          fontStyle: 'normal',
+          halign: 'center',           // Centrar el texto
+          cellPadding: 5,             // Padding extra para mayor espacio
+          overflow: 'linebreak',
+      },
+      headStyles: {
+          fillColor: [26, 62, 104],   // Azul oscuro en el encabezado
+          textColor: [255, 255, 255], // Texto blanco en el encabezado
+          fontSize: 12,
+          fontStyle: 'bold',
+          lineWidth: 0.1,             // Bordes delgados
+          halign: 'center',           // Centrar el texto en el encabezado
+          cellPadding: 6,             // Más espacio en las celdas del encabezado
       },
       alternateRowStyles: {
-          fillColor: [255, 255, 255]  // Blanco en filas alternas
+          fillColor: [245, 245, 245]  // Alternar filas con un gris claro
       },
-      styles: {
-          lineWidth: 0.1,
-          overflow: 'linebreak',
-          cellPadding: 5,
-          valign: 'middle'
-      }
+      tableLineColor: [26, 62, 104],  // Bordes de la tabla en azul oscuro
+      tableLineWidth: 0.2,            // Grosor de las líneas de la tabla
   });
 
-  // Guardar el archivo PDF
-  doc.save('Historial_Reservaciones.pdf');
+  // Guardar el PDF
+  doc.save('HistorialReservaciones.pdf');
 }
 // Función para validar si una reserva ya existe con la misma fecha y hora
 function validarReserva() {
