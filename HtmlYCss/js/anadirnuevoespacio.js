@@ -1,5 +1,3 @@
-// URL base para la API
-const url = "http://localhost:8080/api/v1/espacio/";
 
 // Manejo del evento del icono para subir imágenes
 document.getElementById("add-icon").addEventListener("click", () => {
@@ -77,7 +75,7 @@ function guardarEspacio() {
 
     $.ajax({
         type: "POST",
-        url: url,
+        url: urlAnadirEspacio, // Se debe usar la URL correcta
         data: formData,
         processData: false,
         contentType: false,
@@ -100,7 +98,7 @@ function guardarEspacio() {
 // Función para obtener espacios registrados
 function espaciosRegistrados() {
     var capturarFiltro = document.getElementById("inputSearch").value.trim();
-    var urlLocal = url;
+    var urlLocal = urlAnadirEspacio;
 
     if (capturarFiltro !== "") {
         urlLocal += "busquedafiltro/" + encodeURIComponent(capturarFiltro);
@@ -133,7 +131,6 @@ function espaciosRegistrados() {
                 botonEditarEspacio.onclick = function () {
                     $('#exampleModal').modal('show');
                     consultarEspacioID(this.value);
-                    cargarEspacios(); // Cargar espacios al abrir el modal
                 };
                 botonEditarEspacio.className = "btnEditar";
                 celdaOpcionEditar.appendChild(botonEditarEspacio);
@@ -166,7 +163,7 @@ function espaciosRegistrados() {
 // Función para consultar un espacio por ID
 function consultarEspacioID(id) {
     $.ajax({
-        url: url + id,
+        url: urlAnadirEspacio + id, // Usar URL correcta
         type: "GET",
         success: function (result) {
             document.getElementById("id_espacio").value = result["id_espacio"];
@@ -189,7 +186,7 @@ function actualizarEspacio() {
     };
     if (validarCampos()) {
         $.ajax({
-            url: url + id_espacio,
+            url: urlAnadirEspacio + id_espacio, // Usar URL correcta
             type: "PUT",
             contentType: "application/json",
             data: JSON.stringify(formData),
@@ -214,15 +211,6 @@ function actualizarEspacio() {
     }
 }
 
-function validarCampos() {
-    var nombre_del_espacio = document.getElementById("nombre_del_espacio").value;
-    var clasificacion = document.getElementById("clasificacion").value;
-    var capacidad = document.getElementById("capacidad").value;
-    var descripcion = document.getElementById("descripcion").value;
-
-    return !(nombre_del_espacio === '' || clasificacion === '' || capacidad === '' || descripcion === '');
-}
-
 // Función para eliminar espacio
 function eliminarEspacio(idEspacio) {
     Swal.fire({
@@ -237,7 +225,7 @@ function eliminarEspacio(idEspacio) {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: url + idEspacio,
+                url: urlAnadirEspacio + idEspacio, // Usar URL correcta
                 type: "DELETE",
                 success: function (response) {
                     Swal.fire({
