@@ -156,6 +156,55 @@ function crearReserva() {
   }
 
 }
+function listaReservasCrearReserva() {
+  $.ajax({
+    url: url,
+    type: "GET",
+    success: function (result) {
+      //success: funcion que se ejecuta
+      //cuando la peticion tiene exito
+      console.log(result);
+
+      var cuerpoTabla = document.getElementById("cuerpoTabla");
+      //Se limpia el cuepro de la tabla
+      cuerpoTabla.innerHTML = "";
+      //se hace un ciclo que recorra l arreglo con los datos
+      for (var i = 0; i < result.length; i++) {
+        //UNA ETIQUETA tr por cada registro
+        var trResgistro = document.createElement("tr");
+
+        let celdaNombreCompleto = document.createElement("td")
+        let celdaNombreEspacio = document.createElement("td")
+        let celdaHoraEntrada = document.createElement("td")
+        let celdaHoraSalida = document.createElement("td")
+        let celdaFechaEntrada = document.createElement("td")
+        let celdaFechaSalida = document.createElement("td")
+
+        //celdaId.innerText = result[i]["id_reserva"];
+        celdaNombreCompleto.innerText = result[i]["nombre_completo"];
+        celdaNombreEspacio.innerText = result[i]["nombre_espacio"];
+        celdaHoraEntrada.innerText = result[i]["hora_entrada"];
+        celdaHoraSalida.innerText = result[i]["hora_salida"];
+        celdaFechaEntrada.innerText = result[i]["fecha_entrada"];
+        celdaFechaSalida.innerText = result[i]["fecha_salida"];
+        //trResgistro.appendChild(celdaId);
+        trResgistro.appendChild(celdaNombreCompleto);
+        trResgistro.appendChild(celdaNombreEspacio);
+        trResgistro.appendChild(celdaHoraEntrada);
+        trResgistro.appendChild(celdaHoraSalida);
+        trResgistro.appendChild(celdaFechaEntrada);
+        trResgistro.appendChild(celdaFechaSalida);
+
+        cuerpoTabla.appendChild(trResgistro);
+
+      }
+    },
+    error: function (error) {
+      alert("Error en la petición " + error);
+    }
+  })
+
+}
 function tablaReservas() {
   var capturarFiltro = document.getElementById("inputSearch").value;
   var urlLocal = url;
@@ -543,31 +592,3 @@ function descargarPDF() {
   // Guardar el PDF
   doc.save('HistorialReservaciones.pdf');
 }
-// Función para validar si una reserva ya existe con la misma fecha y hora
-function validarReserva() {
-  const nombreCompleto = document.getElementById('nombre_completo').value;
-  const nombreEspacio = document.getElementById('nombre_espacio').value;
-  const fechaReserva = document.getElementById('fecha_reserva').value;
-  const horaEntrada = document.getElementById('hora_entrada').value;
-  const horaSalida = document.getElementById('hora_salida').value;
-  const conflicto = reservasExistentes.some(reserva => {
-    return reserva.fecha === fechaReserva && reserva.horaEntrada === horaEntrada;
-  });
-
-  if (conflicto) {
-    alert("Ya existe una reserva con la misma fecha y hora. Por favor elige otro horario.");
-  } else {
-    reservasExistentes.push({
-      nombre: nombreCompleto,
-      espacio: nombreEspacio,
-      fecha: fechaReserva,
-      horaEntrada: horaEntrada,
-      horaSalida: horaSalida
-    });
-    alert("Reserva realizada exitosamente.");
-  }
-}
-document.getElementById('formReserva').addEventListener('submit', function (event) {
-  event.preventDefault(); 
-  validarReserva();
-});
