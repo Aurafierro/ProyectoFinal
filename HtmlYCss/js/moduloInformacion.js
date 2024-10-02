@@ -93,3 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
 });
+function cerrarSesion() {
+    localStorage.removeItem('authTokens'); 
+    window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html';
+}
