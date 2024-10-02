@@ -3,6 +3,8 @@ package com.sena.jwt_security.service;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.annotation.Resource;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -40,4 +42,9 @@ public class FileStorageService {
         // Retornar el nombre del archivo guardado
         return fileName;
     }
+
+	public Resource loadFileAsResource(String fileName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

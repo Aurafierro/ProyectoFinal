@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.innerHTML = `
                     <div class="circles c1"></div>
                     <div class="image">
-                        <img src="${item.imagen}" alt="${item.nombre_del_espacio}">
+                        <img src="${item.imagen_url}" alt="${item.nombre_del_espacio}">
                     </div>
                     <div class="content">
                         <h4>${item.nombre_del_espacio}</h4>
@@ -92,18 +92,4 @@ document.addEventListener('DOMContentLoaded', () => {
         alert(message);
     };
 
-    // Simulación de burbujas
-    const numBubbles = 30; // Número de burbujas
-    const bubblesContainer = document.querySelector('.bubbles-container');
-
-    for (let i = 0; i < numBubbles; i++) {
-        const bubble = document.createElement('div');
-        bubble.className = 'bubble';
-        bubble.style.width = `${Math.random() * 20}px`; // Tamaño aleatorio
-        bubble.style.height = bubble.style.width;
-        bubble.style.left = `${Math.random() * 100}%`; // Posición horizontal aleatoria
-        bubble.style.animationDuration = `${Math.random() * 6 + 5}s`; // Duración aleatoria de la animación
-        bubble.style.bottom = `${-Math.random() * 100}%`; // Posición inicial aleatoria en la pantalla
-        bubblesContainer.appendChild(bubble);
-    }
 });

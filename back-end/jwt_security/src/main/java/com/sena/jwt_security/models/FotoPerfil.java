@@ -28,9 +28,9 @@ public class FotoPerfil {
 	private String id_fotoperfil;
 
 	@ManyToOne
-	@JoinColumn (name="id_user")
-	private userRegistro id_user;
-	
+    @JoinColumn(name = "id_user", nullable = false) // Asegúrate de que esta columna no sea nula
+    private userRegistro id_user;
+
 	@Column( name="imagen_base", nullable = true)
 	private String  imagen_base;
 

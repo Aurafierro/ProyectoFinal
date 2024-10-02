@@ -22,21 +22,22 @@ public class fotoperfilService implements IFotoperfilService {
 	@Autowired
 	private IFotoPerfil data;
 
-	@Override
-	public List<FotoPerfil> consultarlistafotoperfil() {
-		
-		return (List<FotoPerfil>) data.findAll(); 
-	}
-	 
-	@Override
-	public int save(FotoPerfil FotoPerfil) {
-		   int res = 0;
-	       
-	        FotoPerfil savedFotoPerfil = data.save(FotoPerfil);
-	        if (savedFotoPerfil == null) { 
-	            res = 1; // Indicador de error si no se guardó correctamente
+	 @Override
+	    public List<FotoPerfil> consultarlistafotoperfil() {
+	        return (List<FotoPerfil>) data.findAll();
+	    }
+
+	    @Override
+	    public int save(FotoPerfil fotoPerfil) {
+	        try {
+	            // Guarda la FotoPerfil y si se guarda correctamente no lanzará excepción
+	            data.save(fotoPerfil);
+	            return 0; // 0 si se guardó correctamente
+	        } catch (Exception e) {
+	            // Manejo de excepción
+	            System.err.println("Error al guardar FotoPerfil: " + e.getMessage());
+	            return 1; // 1 si hubo un error
 	        }
-	        return res; // Devuelve 0 si se guardó correctamente, 1 si hubo un error
 	    }
     
 	 
