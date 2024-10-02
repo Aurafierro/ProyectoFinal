@@ -58,13 +58,48 @@ public class userRegistro implements UserDetails {
 
     @Column(name = "estado", nullable = false)
     private boolean estado;
+    
+    
 
-    @Override
+    public userRegistro() {
+		super();
+	}
+
+
+	public userRegistro(String id_user, String tipo_documento, String numero_documento, String nombre_completo,
+			String username, String password, com.sena.jwt_security.models.rol rol, boolean verificar_contrasena,
+			boolean correo_notificacion, boolean estado) {
+		super();
+		this.id_user = id_user;
+		this.tipo_documento = tipo_documento;
+		this.numero_documento = numero_documento;
+		this.nombre_completo = nombre_completo;
+		this.username = username;
+		this.password = password;
+		this.rol = rol;
+		this.verificar_contrasena = verificar_contrasena;
+		this.correo_notificacion = correo_notificacion;
+		this.estado = estado;
+	}
+
+
+	@Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(this.rol.name()));
     }
+    
 
-    @Override
+    public boolean isCorreo_notificacion() {
+		return correo_notificacion;
+	}
+
+
+	public void setCorreo_notificacion(boolean correo_notificacion) {
+		this.correo_notificacion = correo_notificacion;
+	}
+
+
+	@Override
     public String getPassword() {
         return this.password;
     }

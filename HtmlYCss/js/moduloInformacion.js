@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevButton = document.querySelector('.carousel-button.prev');
     const nextButton = document.querySelector('.carousel-button.next');
     const cardsContainer = document.getElementById('cards-container');
-    const apiUrl = 'http://10.192.94.153:8080/api/v1/espacio/'; // Cambia esto por la URL de tu API
+    const apiUrl = 'http://localhost:8080/api/v1/espacio/'; // Cambia esto por la URL de tu API
     let currentIndex = 0;
     let cards = [];
 

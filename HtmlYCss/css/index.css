@@ -63,12 +63,14 @@ body {
 .text-content h1, .text-content-dos h1, .text-content-cuatro h1, .text-content-cinco h1 {
     margin: 0 0 30px 0;
     font-size: 3.9em;
+   
 }
 
 .text-content p, .text-content-dos p, .text-content-cuatro p, .text-content-cinco p {
     margin: 30px 0;
     font-size: 1.8em;
-    line-height: 1.6;
+    line-height: 1.2;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 /* Botones */
@@ -96,35 +98,66 @@ img {
     margin-top: 10px;
  
 }
-
-/* Sección de información de contacto */
-.contact-info {
+/* Estilos del footer */
+footer.contact-info {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #D6D6D6;
+    justify-content: space-between; 
+    align-items: flex-start; 
     padding: 20px;
-    font-family: 'Candal', sans-serif;
+    background-color: #D6D6D6; 
+    color: rgb(0, 0, 0); 
 }
 
 .info-item {
+    flex: 1; 
+    margin: 10px; 
     text-align: center;
+}
+.logo {
+    text-align: center; 
+    margin-right: auto; 
+}
+.logo img {
+    width: 150px; 
+    height: auto; 
+    margin-left: 0; 
+    margin-right: 0; 
+    margin-top: 40px; 
+}
+.logo p {
+    margin-top: 10px; 
+    color: rgb(0, 0, 0); 
+}
+
+.contacts {
+    text-align: left; 
+    margin-left: 15%; 
+}
+.terms {
+    text-align: left; 
+    margin-left: 15%; 
+    margin-top: 30px;
+}
+.info-item h3 {
+    margin-bottom: 10px; 
+}
+/* Enlaces en el footer */
+.info-item a {
+    color: #000000; 
+    text-decoration: none; 
+}
+
+.info-item a:hover {
+    text-decoration: underline; 
 }
 
 .info-item i {
-    font-size: 24px;
-    color: #000;
-    margin-bottom: 10px;
+    font-size: 20px; 
+    margin-right: 5px; 
 }
 
-.info-item h3 {
-    font-weight: bold;
-    margin: 5px 0;
-}
 
-.info-item p {
-    font-size: 18px;
-}
+
 
 /* Media queries para responsividad */
 
@@ -227,7 +260,6 @@ img {
 .flip-card:hover .flip-card-inner {
     transform: rotateY(180deg);
 }
-
 .flip-card-front, .flip-card-back {
    
     position: absolute;
@@ -244,7 +276,6 @@ img {
     padding: 10px;
     box-sizing: border-box;
 }
-
 .flip-card-front {
     background: linear-gradient(120deg, rgb(241, 241, 241) 30%, rgb(67, 85, 187) 88%, rgb(221, 221, 221) 40%, rgb(224, 224, 224) 78%);
     color: rgb(44, 43, 43);
@@ -255,11 +286,9 @@ img {
     max-width: 110%;
     border-radius: 1rem;
 }
-
 .flip-card-back {
     background: linear-gradient(120deg, rgb(241, 241, 241) 30%, rgb(67, 95, 187) 88%, rgb(238, 238, 238) 40%, rgb(221, 221, 221) 78%);
     color: rgb(44, 43, 43);
     transform: rotateY(180deg);
 }
-
 

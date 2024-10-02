@@ -108,4 +108,16 @@ public class FotoPerfil {
 	        }
 	    }
 
+
+
+
+	public void setId_user(String id_user2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+
 }

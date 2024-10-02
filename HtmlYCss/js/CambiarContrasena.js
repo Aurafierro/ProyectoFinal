@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const body = { nuevaContrasena, confirmarContrasena };
 
         try {
-            const response = await fetch('http://10.192.94.153:8080/api/v1/user/cambiar-contrasena', {
+            const response = await fetch('http://localhost:8080/api/v1/user/cambiar-contrasena', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Función para redirigir según el rol del usuario
     async function redirectAfterPasswordChange(token) {
         try {
-            const response = await fetch('http://10.192.94.153:8080/api/v1/user/rol', {
+            const response = await fetch('http://localhost:8080/api/v1/user/rol', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`, // Aquí se corrigió
@@ -79,16 +79,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Redirigir según el rol del usuario
             if (userRole === "Administrador") {
-                window.location.href = 'http://10.192.94.153:5500/HtmlYCss/indexHTML/M.informacionAdmin.html';
+                window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/M.informacionAdmin.html';
             } else if (userRole === "Usuario") {
-                window.location.href = 'http://10.192.94.153:5500/HtmlYCss/indexHTML/ModuloInformacion.html';
+                window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/ModuloInformacion.html';
             } else {
                 Swal.fire({
                     icon: 'warning',
                     title: 'Advertencia',
                     text: 'Rol no reconocido. Redirigiendo a la página principal.'
                 });
-                window.location.href = 'http://10.192.94.153:5500/HtmlYCss/indexHTML/InicioSesion.html'; // Ajusta la URL según sea necesario
+                window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html'; // Ajusta la URL según sea necesario
             }
 
         } catch (error) {

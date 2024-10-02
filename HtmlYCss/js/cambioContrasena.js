@@ -12,7 +12,7 @@ async function cambiarContrasena() {
     const token = localStorage.getItem('authTokens'); // Asegúrate de que el token se guarda en el almacenamiento local
 
     try {
-        const response = await fetch('http://10.192.94.153:8080/api/v1/user/cambio-contrasena', {
+        const response = await fetch('http://localhost:8080/api/v1/user/cambio-contrasena', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ document.querySelector('.button-contrasena').addEventListener('click', (event) =
 });
 function cerrarSesion() {
     localStorage.removeItem('authTokens'); 
-    window.location.href = 'http://10.192.94.153:5500/HtmlYCss/indexHTML/InicioSesion.html';
+    window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html';
 }
 function togglePasswordVisibility(inputId, icon) {
     const passwordField = document.getElementById(inputId);

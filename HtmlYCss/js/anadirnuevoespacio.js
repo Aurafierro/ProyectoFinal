@@ -1,5 +1,5 @@
 // URL base para la API
-const url = "http://10.192.94.153:8080/api/v1/espacio/";
+const url = "http://localhost:8080/api/v1/espacio/";
 
 // Manejo del evento del icono para subir imágenes
 document.getElementById("add-icon").addEventListener("click", () => {

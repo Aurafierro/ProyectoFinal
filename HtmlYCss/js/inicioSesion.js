@@ -1,4 +1,4 @@
-var url = "http://10.192.94.153:8080/api/v1/public/user/login/"; // Actualiza con tu endpoint de inicio de sesión
+var url = "http://localhost:8080/api/v1/public/user/login/"; // Actualiza con tu endpoint de inicio de sesión
 
 function login() {
     let formData = {
@@ -47,7 +47,7 @@ function login() {
 async function checkUserRole(token) {
     try {
         // Verificar el estado de la contraseña
-        const verificarResponse = await fetch('http://10.192.94.153:8080/api/v1/user/verificar-contrasena', {
+        const verificarResponse = await fetch('http://localhost:8080/api/v1/user/verificar-contrasena', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -65,7 +65,7 @@ async function checkUserRole(token) {
         const verificarContrasena = verificarData.verificar_contrasena; // Obtener el estado
 
         // Obtener el rol del usuario
-        const rolResponse = await fetch('http://10.192.94.153:8080/api/v1/user/rol', {
+        const rolResponse = await fetch('http://localhost:8080/api/v1/user/rol', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -84,12 +84,12 @@ async function checkUserRole(token) {
 
         // Redirigir al usuario según el estado de verificar_contrasena y su rol
         if (verificarContrasena) {
-            window.location.href = 'http://10.192.94.153:5500/HtmlYCss/indexHTML/ContrasenaCambiar.html';
+            window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/ContrasenaCambiar.html';
         } else {
             if (userRole === "Administrador") {
-                window.location.href = 'http://10.192.94.153:5500/HtmlYCss/indexHTML/M.informacionAdmin.html'; // Cambia a la página del administrador
+                window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/M.informacionAdmin.html'; // Cambia a la página del administrador
             } else if (userRole === "Usuario") {
-                window.location.href = 'http://10.192.94.153:5500/HtmlYCss/indexHTML/ModuloInformacion.html';
+                window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/ModuloInformacion.html';
             }
         }
 

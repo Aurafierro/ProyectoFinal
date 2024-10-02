@@ -52,14 +52,15 @@
 
     <div class="profile-container">
         <h2>Mi perfil</h2>
-        <div class="profile-photo">
+        <div class="profile-photo" style="position: relative;">
             <i id="add-icon" class="fa-solid fa-camera-retro" style="cursor: pointer; position: absolute; top: 5px; right: 5px; font-size: 30px; color: rgb(0, 0, 0); z-index: 20;"></i>
             <div class="circle-container" style="border-radius: 50%; overflow: hidden; width: 150px; height: 150px; position: relative; border: 2px dashed #ccc; display: flex; align-items: center; justify-content: center; background-color: #f0f0f0;">
                 <img id="image-preview" src="" alt="Vista previa" style="width: 100%; height: 100%; object-fit: cover; display: none;">
-                <input type="file" id="photoInput" accept="image/*" style="display: none;" onchange="previewImage();">
+                <input type="file" id="photoInput" accept="image/*" style="display: none;">
             </div>
             <p id="username"><strong>Mariana Charry</strong></p>
         </div>
+        
         <div class="profile-details">
             <p>Tipo documento:</p>
             <p id="tipo_documento"></p>
