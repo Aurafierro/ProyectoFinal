@@ -295,21 +295,27 @@ function toggleSidebar() {
         function historial() {
           var capturarFiltro = document.getElementById("inputSearch").value;
           var urlLocal = url;
+          
           if (capturarFiltro != "") {
             urlLocal += "busquedafiltro/" + capturarFiltro;
           }
+          
           $.ajax({
             url: urlLocal,
             type: "GET",
             success: function (result) {
-              console.log(result);
+              console.log(result); // Log the entire result to inspect the data
         
               var cuerpoTabla = document.getElementById("cuerpoTabla");
-              cuerpoTabla.innerHTML = ""; // Limpiar tabla
+              cuerpoTabla.innerHTML = ""; // Clear the table body
         
-              // Filtrar solo las reservas activas antes de mostrarlas en la tabla
+              // Iterate over each reservation
               result.forEach(function (reserva) {
-                if (reserva.estado === true) { // Mostrar solo si está activa
+                console.log("Reserva:", reserva); // Log each reservation to inspect the structure
+        
+                // Filter based on `estado` or show all reservations without filtering for now
+                // You can adjust this filtering logic based on how `estado` is represented in the data
+                if (reserva.estado === true || reserva.estadoReserva === "ACTIVO" || true) { 
                   var trResgistro = document.createElement("tr");
         
                   let celdaNombreCompleto = document.createElement("td");
@@ -355,7 +361,7 @@ function toggleSidebar() {
                   trResgistro.appendChild(celdaFechaSalida);
                   trResgistro.appendChild(celdaOpcionEditar);
                   trResgistro.appendChild(celdaOpcionEliminar);
-                  
+        
                   cuerpoTabla.appendChild(trResgistro);
                 }
               });
@@ -366,38 +372,37 @@ function toggleSidebar() {
           });
         }
         
-
-function cancelarReserva(idReserva) {
-  Swal.fire({
-      title: "¿Estás seguro?",
-      text: "¿Deseas cancelar esta reserva?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Sí, cancelar",
-      cancelButtonText: "Cancelar"
-  }).then((result) => {
-      if (result.isConfirmed) {
-          $.ajax({
-              url: url + "cancelar/" + idReserva, // URL con ID de la reserva
-              type: "PUT",
-              success: function (response) {
+        function cancelarReserva(idReserva) {
+          Swal.fire({
+            title: "¿Estás seguro?",
+            text: "¿Deseas cancelar esta reserva?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sí, cancelar",
+            cancelButtonText: "Cancelar"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              $.ajax({
+                url: url + "cancelar/" + idReserva, // URL with reservation ID
+                type: "PUT",
+                success: function (response) {
                   Swal.fire({
-                      title: "¡Cancelado!",
-                      text: "La reserva ha sido cancelada correctamente.",
-                      icon: "success"
+                    title: "¡Cancelado!",
+                    text: "La reserva ha sido cancelada correctamente.",
+                    icon: "success"
                   });
-                  historial(); // Actualizar el historial después de cancelar la reserva
-              },
-              error: function (error) {
+                  historial(); // Refresh the reservation list after canceling
+                },
+                error: function (error) {
                   Swal.fire("Error", "Error al cancelar la reserva. " + error.responseText, "error");
-              }
+                }
+              });
+            }
           });
-      }
-  });
-}
-
+        }
+        
 function limpiarFormulario() {
   document.getElementById("nombre_completo").className = "form-control";
   document.getElementById("nombre_espacio").className = "form-control";

@@ -8,6 +8,10 @@ var urlRol = urlBase + "user/rol";
 var urlCambiarContraseña=urlBase + "cambio-contrasena";
 var urlProfile=urlBase+"user/profile";
 var urlDesactivarCuenta=urlBase+"user/desactivar/";
+var urlReserva=urlBase+"reserva/";
+var urlFotoPerfil=urlBase+"fotoperfil/";
+var urlRecuperarContrase=urlBase+"recuperar-contrasena";
+var urlInicioSesion=urlBase+"user/login/";
 
 
 /* Redirecciones */
