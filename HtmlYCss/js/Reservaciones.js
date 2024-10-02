@@ -212,33 +212,29 @@ function tablaReservas() {
     url: urlLocal,
     type: "GET",
     success: function (result) {
-      //success: funcion que se ejecuta
-      //cuando la peticion tiene exito
-      console.log(result);
-
       var cuerpoTabla = document.getElementById("cuerpoTabla");
-      //Se limpia el cuepro de la tabla
-      cuerpoTabla.innerHTML = "";
-      //se hace un ciclo que recorra l arreglo con los datos
-      for (var i = 0; i < result.length; i++) {
-        //UNA ETIQUETA tr por cada registro
+      cuerpoTabla.innerHTML = ""; // Limpiar tabla
+
+      result.forEach(function (reserva) {
         var trResgistro = document.createElement("tr");
 
-        let celdaNombreCompleto = document.createElement("td")
-        let celdaNombreEspacio = document.createElement("td")
-        let celdaHoraEntrada = document.createElement("td")
-        let celdaHoraSalida = document.createElement("td")
-        let celdaFechaEntrada = document.createElement("td")
-        let celdaFechaSalida = document.createElement("td")
-        let celdaEstado = document.createElement("td")
+        let celdaNombreCompleto = document.createElement("td");
+        let celdaNombreEspacio = document.createElement("td");
+        let celdaHoraEntrada = document.createElement("td");
+        let celdaHoraSalida = document.createElement("td");
+        let celdaFechaEntrada = document.createElement("td");
+        let celdaFechaSalida = document.createElement("td");
+        let celdaEstado = document.createElement("td");
 
-        celdaNombreCompleto.innerText = result[i]["nombre_completo"];
-        celdaNombreEspacio.innerText = result[i]["nombre_espacio"];
-        celdaHoraEntrada.innerText = result[i]["hora_entrada"];
-        celdaHoraSalida.innerText = result[i]["hora_salida"];
-        celdaFechaEntrada.innerText = result[i]["fecha_entrada"];
-        celdaFechaSalida.innerText = result[i]["fecha_salida"];
-        celdaEstado.innerText = result[i]["estado"];
+        celdaNombreCompleto.innerText = reserva.nombre_completo;
+        celdaNombreEspacio.innerText = reserva.nombre_espacio;
+        celdaHoraEntrada.innerText = reserva.hora_entrada;
+        celdaHoraSalida.innerText = reserva.hora_salida;
+        celdaFechaEntrada.innerText = reserva.fecha_entrada;
+        celdaFechaSalida.innerText = reserva.fecha_salida;
+        
+        // Mostrar estado como "Activo" o "Cancelado"
+        celdaEstado.innerText = reserva.estadoReserva === "ACTIVO" ? "Activo" : "Cancelado";
 
         trResgistro.appendChild(celdaNombreCompleto);
         trResgistro.appendChild(celdaNombreEspacio);
@@ -249,15 +245,17 @@ function tablaReservas() {
         trResgistro.appendChild(celdaEstado);
 
         cuerpoTabla.appendChild(trResgistro);
-
-      }
+      });
     },
     error: function (error) {
       alert("Error en la petición " + error);
     }
-  })
-
+  });
 }
+
+
+
+
 function cerrarSesion() {
   localStorage.removeItem('authTokens'); 
   window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html';

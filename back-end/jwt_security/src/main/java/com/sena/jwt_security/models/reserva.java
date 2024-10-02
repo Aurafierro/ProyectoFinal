@@ -4,6 +4,8 @@ import java.sql.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -37,31 +39,40 @@ public class reserva {
     @Column(name = "username", nullable = false, length = 100)
     private String username;
 
-    // Nuevo campo de tipo booleano
-    @Column(name = "estado", nullable = false)
-    private boolean estado;
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name = "estado", nullable = false, length = 10)
+    private estado estadoReserva = estado.ACTIVO;  
+  
 
-    // Constructor vacío
-    public reserva() {
-        super();
-    }
+   
 
-    // Constructor con todos los campos, incluido el nuevo campo "estado"
-    public reserva(String id_reserva, String nombre_completo, String nombre_espacio, String hora_entrada,
-            String hora_salida, Date fecha_entrada, Date fecha_salida, String username, boolean estado) {
-        super();
-        this.id_reserva = id_reserva;
-        this.nombre_completo = nombre_completo;
-        this.nombre_espacio = nombre_espacio;
-        this.hora_entrada = hora_entrada;
-        this.hora_salida = hora_salida;
-        this.fecha_entrada = fecha_entrada;
-        this.fecha_salida = fecha_salida;
-        this.username = username;
-        this.estado = estado;
-    }
 
-    // Getters y Setters
+
+
+	public reserva() {
+		super();
+	}
+
+	
+	
+	public reserva(String id_reserva, String nombre_completo, String nombre_espacio, String hora_entrada,
+			String hora_salida, Date fecha_entrada, Date fecha_salida, String username, estado estadoReserva) {
+		super();
+		this.id_reserva = id_reserva;
+		this.nombre_completo = nombre_completo;
+		this.nombre_espacio = nombre_espacio;
+		this.hora_entrada = hora_entrada;
+		this.hora_salida = hora_salida;
+		this.fecha_entrada = fecha_entrada;
+		this.fecha_salida = fecha_salida;
+		this.username = username;
+		this.estadoReserva = estadoReserva;
+	}
+
+
+
+	// Getters y Setters
     public String getId_reserva() {
         return id_reserva;
     }
@@ -126,11 +137,36 @@ public class reserva {
         this.username = username;
     }
 
-    public boolean isEstado() {
-        return estado;
-    }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
+
+
+
+
+	public estado getEstadoReserva() {
+		return estadoReserva;
+	}
+
+
+
+	public void setEstadoReserva(estado estadoReserva) {
+		this.estadoReserva = estadoReserva;
+	}
+
+
+
+	public void setEstado(com.sena.jwt_security.models.estado activo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+
+
+
+
+
+
+    
 }

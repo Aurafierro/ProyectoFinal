@@ -33,6 +33,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.sena.jwt_security.interfaceService.IReservaService;
+import com.sena.jwt_security.models.estado;
 import com.sena.jwt_security.models.reserva;
 import com.sena.jwt_security.service.emailService;
 
@@ -84,7 +85,7 @@ public ResponseEntity<Object> save(@RequestBody reserva reserva) {
     }
 
     // Asignar estado como 'Activo', true o 1
-    reserva.setEstado(true); // Si es booleano
+    reserva.setEstado(estado.ACTIVO); // Usar el enum
     // reserva.setEstado(1); // Si es un entero
     // reserva.setEstado("Activo"); // Si es un String
 
@@ -225,22 +226,24 @@ public ResponseEntity<Object> save(@RequestBody reserva reserva) {
 	
 	@PutMapping("/cancelar/{id_reserva}")
 	public ResponseEntity<Object> cancelarReserva(@PathVariable String id_reserva) {
-	    var reserva = reservaService.findOne(id_reserva).get();
+	    var reserva = reservaService.findOne(id_reserva).orElse(null);
 	    if (reserva != null) {
-	        // Validar si la reserva ya está en estado "Inactivo"
-	        if (!reserva.isEstado()) {
-	            return new ResponseEntity<>("La reserva ya está inactiva", HttpStatus.BAD_REQUEST);
+	        // Validar si la reserva ya está en estado "CANCELADO"
+	        if (reserva.getEstadoReserva() == estado.CANCELADO) {
+	            return new ResponseEntity<>("La reserva ya está cancelada", HttpStatus.BAD_REQUEST);
 	        }
 
-	        // Cambiar el estado a "Inactivo"
-	        reserva.setEstado(false); // O 0, dependiendo de tu implementación del campo estado
-	        
+	        // Cambiar el estado a "CANCELADO"
+	        reserva.setEstadoReserva(estado.CANCELADO);
+
 	        // Guardar los cambios
 	        reservaService.save(reserva);
-	        return new ResponseEntity<>("Reserva cancelada y estado cambiado a inactivo", HttpStatus.OK);
+	        return new ResponseEntity<>("Reserva cancelada y estado cambiado a cancelado", HttpStatus.OK);
 	    } else {
 	        return new ResponseEntity<>("Error: reserva no encontrada", HttpStatus.NOT_FOUND);
 	    }
 	}
+
+
 
 }
