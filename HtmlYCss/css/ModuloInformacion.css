@@ -407,3 +407,8 @@ header img {
 .sidebarj nav ul li i {
     margin-right: 10px; /* Espaciado entre el ícono y el texto */
 }
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 25%;
+}
