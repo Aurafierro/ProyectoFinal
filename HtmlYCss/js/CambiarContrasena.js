@@ -23,11 +23,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const body = { nuevaContrasena, confirmarContrasena };
 
         try {
-            const response = await fetch('http://localhost:8080/api/v1/user/cambiar-contrasena', {
+            const response = await fetch(urlCambioContrasena, { 
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}` // Aquí se corrigió
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(body)
             });
@@ -43,8 +43,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 title: 'Éxito',
                 text: responseData.message
             });
-
-            // Verificar el rol del usuario para redirigir
             await redirectAfterPasswordChange(token);
 
             document.getElementById("modifyForm").reset();
@@ -56,59 +54,48 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     }
-
     // Función para redirigir según el rol del usuario
     async function redirectAfterPasswordChange(token) {
         try {
-            const response = await fetch('http://localhost:8080/api/v1/user/rol', {
+            const response = await fetch(urlRol, { 
                 method: 'GET',
                 headers: {
-                    'Authorization': `Bearer ${token}`, // Aquí se corrigió
+                    'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'
                 }
             });
-
             const data = await response.json();
-
             if (!response.ok) {
                 throw new Error('Error al obtener el rol del usuario: ' + (data.message || response.statusText));
             }
-
             const userRole = data.role; // Obtener el rol del usuario
-            console.log('Rol del usuario:', userRole); // Para depuración
-
+            console.log('Rol del usuario:', userRole); 
             // Redirigir según el rol del usuario
             if (userRole === "Administrador") {
-                window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/M.informacionAdmin.html';
+                window.location.href = urlRedireccionModuloAdmin;  
             } else if (userRole === "Usuario") {
-                window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/ModuloInformacion.html';
+                window.location.href = urlRedireccionModuloUsuario;  
             } else {
                 Swal.fire({
                     icon: 'warning',
                     title: 'Advertencia',
                     text: 'Rol no reconocido. Redirigiendo a la página principal.'
                 });
-                window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html'; // Ajusta la URL según sea necesario
+                window.location.href = urlRedireccionInicioSesion;  
             }
-
         } catch (error) {
             console.error('Error al verificar el rol del usuario:', error);
             Swal.fire("Error", "Error al verificar el rol del usuario: " + error.message, "error");
         }
     }
-
-    // Evento de envío del formulario de cambio de contraseña
     document.getElementById("modifyForm").addEventListener("submit", async function (event) {
         event.preventDefault();
         const nuevaContrasena = document.getElementById("nuevaContrasena").value;
         const confirmarContrasena = document.getElementById("confirmarContrasena").value;
         await changePassword(nuevaContrasena, confirmarContrasena);
     });
-
-    // Evento para manejar el clic en el botón de volver
     document.querySelector(".btn.red").addEventListener("click", function (event) {
         event.preventDefault(); // Evitar la acción predeterminada
-       
     });
 });
 document.getElementById('togglePassword1').addEventListener('click', function () {
@@ -117,7 +104,6 @@ document.getElementById('togglePassword1').addEventListener('click', function ()
     passwordField.setAttribute('type', type);
     this.classList.toggle('fa-eye-slash');
 });
-
 document.getElementById('togglePassword2').addEventListener('click', function () {
     const passwordField = document.getElementById('confirmarContrasena');
     const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
