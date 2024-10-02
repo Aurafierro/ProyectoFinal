@@ -54,7 +54,7 @@ public ResponseEntity<Object> save(@RequestBody reserva reserva) {
         return new ResponseEntity<>("La reserva ya tiene un ingreso activo", HttpStatus.BAD_REQUEST);
     }
 
-    // Your validation logic remains unchanged
+    // Validaciones
     if (reserva.getNombre_completo().isEmpty()) {
         return new ResponseEntity<>("El nombre completo es un campo obligatorio", HttpStatus.BAD_REQUEST);
     }
@@ -83,13 +83,20 @@ public ResponseEntity<Object> save(@RequestBody reserva reserva) {
         return new ResponseEntity<>("El correo es un campo obligatorio", HttpStatus.BAD_REQUEST);
     }
 
+    // Asignar estado como 'Activo', true o 1
+    reserva.setEstado(true); // Si es booleano
+    // reserva.setEstado(1); // Si es un entero
+    // reserva.setEstado("Activo"); // Si es un String
+
+    // Guardar reserva y enviar notificación por correo
     reservaService.save(reserva);
     emailService.enviarNotificacionReservaRealizada(reserva.getUsername(), reserva.getNombre_completo(),
             reserva.getNombre_espacio(), reserva.getHora_entrada(), reserva.getHora_salida(),
             reserva.getFecha_entrada(), reserva.getFecha_salida());
-    
+
     return new ResponseEntity<>(reserva, HttpStatus.OK);
 }
+
 
 	@GetMapping("/")
 	public ResponseEntity<Object>findAll(){
@@ -215,6 +222,25 @@ public ResponseEntity<Object> save(@RequestBody reserva reserva) {
 		}
 	}
 
+	
+	@PutMapping("/cancelar/{id_reserva}")
+	public ResponseEntity<Object> cancelarReserva(@PathVariable String id_reserva) {
+	    var reserva = reservaService.findOne(id_reserva).get();
+	    if (reserva != null) {
+	        // Validar si la reserva ya está en estado "Inactivo"
+	        if (!reserva.isEstado()) {
+	            return new ResponseEntity<>("La reserva ya está inactiva", HttpStatus.BAD_REQUEST);
+	        }
 
+	        // Cambiar el estado a "Inactivo"
+	        reserva.setEstado(false); // O 0, dependiendo de tu implementación del campo estado
+	        
+	        // Guardar los cambios
+	        reservaService.save(reserva);
+	        return new ResponseEntity<>("Reserva cancelada y estado cambiado a inactivo", HttpStatus.OK);
+	    } else {
+	        return new ResponseEntity<>("Error: reserva no encontrada", HttpStatus.NOT_FOUND);
+	    }
+	}
 
 }

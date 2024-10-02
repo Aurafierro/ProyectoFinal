@@ -161,50 +161,47 @@ function listaReservasCrearReserva() {
     url: url,
     type: "GET",
     success: function (result) {
-      //success: funcion que se ejecuta
-      //cuando la peticion tiene exito
       console.log(result);
 
       var cuerpoTabla = document.getElementById("cuerpoTabla");
-      //Se limpia el cuepro de la tabla
-      cuerpoTabla.innerHTML = "";
-      //se hace un ciclo que recorra l arreglo con los datos
-      for (var i = 0; i < result.length; i++) {
-        //UNA ETIQUETA tr por cada registro
-        var trResgistro = document.createElement("tr");
+      cuerpoTabla.innerHTML = ""; // Limpiar el cuerpo de la tabla
 
-        let celdaNombreCompleto = document.createElement("td")
-        let celdaNombreEspacio = document.createElement("td")
-        let celdaHoraEntrada = document.createElement("td")
-        let celdaHoraSalida = document.createElement("td")
-        let celdaFechaEntrada = document.createElement("td")
-        let celdaFechaSalida = document.createElement("td")
+      // Filtrar solo las reservas activas antes de mostrarlas en la tabla
+      result.forEach(function (reserva) {
+        if (reserva.estado === true) { // Mostrar solo si está activa
+          var trResgistro = document.createElement("tr");
 
-        //celdaId.innerText = result[i]["id_reserva"];
-        celdaNombreCompleto.innerText = result[i]["nombre_completo"];
-        celdaNombreEspacio.innerText = result[i]["nombre_espacio"];
-        celdaHoraEntrada.innerText = result[i]["hora_entrada"];
-        celdaHoraSalida.innerText = result[i]["hora_salida"];
-        celdaFechaEntrada.innerText = result[i]["fecha_entrada"];
-        celdaFechaSalida.innerText = result[i]["fecha_salida"];
-        //trResgistro.appendChild(celdaId);
-        trResgistro.appendChild(celdaNombreCompleto);
-        trResgistro.appendChild(celdaNombreEspacio);
-        trResgistro.appendChild(celdaHoraEntrada);
-        trResgistro.appendChild(celdaHoraSalida);
-        trResgistro.appendChild(celdaFechaEntrada);
-        trResgistro.appendChild(celdaFechaSalida);
+          let celdaNombreCompleto = document.createElement("td");
+          let celdaNombreEspacio = document.createElement("td");
+          let celdaHoraEntrada = document.createElement("td");
+          let celdaHoraSalida = document.createElement("td");
+          let celdaFechaEntrada = document.createElement("td");
+          let celdaFechaSalida = document.createElement("td");
 
-        cuerpoTabla.appendChild(trResgistro);
+          celdaNombreCompleto.innerText = reserva["nombre_completo"];
+          celdaNombreEspacio.innerText = reserva["nombre_espacio"];
+          celdaHoraEntrada.innerText = reserva["hora_entrada"];
+          celdaHoraSalida.innerText = reserva["hora_salida"];
+          celdaFechaEntrada.innerText = reserva["fecha_entrada"];
+          celdaFechaSalida.innerText = reserva["fecha_salida"];
 
-      }
+          trResgistro.appendChild(celdaNombreCompleto);
+          trResgistro.appendChild(celdaNombreEspacio);
+          trResgistro.appendChild(celdaHoraEntrada);
+          trResgistro.appendChild(celdaHoraSalida);
+          trResgistro.appendChild(celdaFechaEntrada);
+          trResgistro.appendChild(celdaFechaSalida);
+
+          cuerpoTabla.appendChild(trResgistro);
+        }
+      });
     },
     error: function (error) {
       alert("Error en la petición " + error);
     }
-  })
-
+  });
 }
+
 function tablaReservas() {
   var capturarFiltro = document.getElementById("inputSearch").value;
   var urlLocal = url;
@@ -233,21 +230,23 @@ function tablaReservas() {
         let celdaHoraSalida = document.createElement("td")
         let celdaFechaEntrada = document.createElement("td")
         let celdaFechaSalida = document.createElement("td")
+        let celdaEstado = document.createElement("td")
 
-        //celdaId.innerText = result[i]["id_reserva"];
         celdaNombreCompleto.innerText = result[i]["nombre_completo"];
         celdaNombreEspacio.innerText = result[i]["nombre_espacio"];
         celdaHoraEntrada.innerText = result[i]["hora_entrada"];
         celdaHoraSalida.innerText = result[i]["hora_salida"];
         celdaFechaEntrada.innerText = result[i]["fecha_entrada"];
         celdaFechaSalida.innerText = result[i]["fecha_salida"];
-        //trResgistro.appendChild(celdaId);
+        celdaEstado.innerText = result[i]["estado"];
+
         trResgistro.appendChild(celdaNombreCompleto);
         trResgistro.appendChild(celdaNombreEspacio);
         trResgistro.appendChild(celdaHoraEntrada);
         trResgistro.appendChild(celdaHoraSalida);
         trResgistro.appendChild(celdaFechaEntrada);
         trResgistro.appendChild(celdaFechaSalida);
+        trResgistro.appendChild(celdaEstado);
 
         cuerpoTabla.appendChild(trResgistro);
 
@@ -295,82 +294,112 @@ function toggleSidebar() {
                 header.classList.remove('shifted');
             }
         }
-function historial() {
-
-  var capturarFiltro = document.getElementById("inputSearch").value;
-  var urlLocal = url;
-  if (capturarFiltro != "") {
-    urlLocal += "busquedafiltro/" + capturarFiltro;
-  }
-  $.ajax({
-    url: urlLocal,
-    type: "GET",
-    success: function (result) {
-      //success: funcion que se ejecuta
-      //cuando la peticion tiene exito
-      console.log(result);
-
-      var cuerpoTabla = document.getElementById("cuerpoTabla");
-      //Se limpia el cuepro de la tabla
-      cuerpoTabla.innerHTML = "";
-      //se hace un ciclo que recorra l arreglo con los datos
-      for (var i = 0; i < result.length; i++) {
-        var trResgistro = document.createElement("tr");
-        //var celdaId = document.createElement("td");
-        let celdaNombreCompleto = document.createElement("td")
-        let celdaNombreEspacio = document.createElement("td")
-        let celdaHoraEntrada = document.createElement("td")
-        let celdaHoraSalida = document.createElement("td")
-        let celdaFechaEntrada = document.createElement("td")
-        let celdaFechaSalida = document.createElement("td")
-        //celdaId.innerText = result[i]["id_reserva"];
-        celdaNombreCompleto.innerText = result[i]["nombre_completo"];
-        celdaNombreEspacio.innerText = result[i]["nombre_espacio"];
-        celdaHoraEntrada.innerText = result[i]["hora_entrada"];
-        celdaHoraSalida.innerText = result[i]["hora_salida"];
-        celdaFechaEntrada.innerText = result[i]["fecha_entrada"];
-        celdaFechaSalida.innerText = result[i]["fecha_salida"];
-
-        let celdaOpcionEditar = document.createElement("td");
-        let botonEditarReserva = document.createElement("button");
-        botonEditarReserva.value = result[i]["id_reserva"];
-        botonEditarReserva.innerHTML = "Editar";
-        botonEditarReserva.onclick = function (e) {
-          $('#exampleModal').modal('show');
-          consultarReservaID(this.value);
+        function historial() {
+          var capturarFiltro = document.getElementById("inputSearch").value;
+          var urlLocal = url;
+          if (capturarFiltro != "") {
+            urlLocal += "busquedafiltro/" + capturarFiltro;
+          }
+          $.ajax({
+            url: urlLocal,
+            type: "GET",
+            success: function (result) {
+              console.log(result);
+        
+              var cuerpoTabla = document.getElementById("cuerpoTabla");
+              cuerpoTabla.innerHTML = ""; // Limpiar tabla
+        
+              // Filtrar solo las reservas activas antes de mostrarlas en la tabla
+              result.forEach(function (reserva) {
+                if (reserva.estado === true) { // Mostrar solo si está activa
+                  var trResgistro = document.createElement("tr");
+        
+                  let celdaNombreCompleto = document.createElement("td");
+                  let celdaNombreEspacio = document.createElement("td");
+                  let celdaHoraEntrada = document.createElement("td");
+                  let celdaHoraSalida = document.createElement("td");
+                  let celdaFechaEntrada = document.createElement("td");
+                  let celdaFechaSalida = document.createElement("td");
+        
+                  celdaNombreCompleto.innerText = reserva["nombre_completo"];
+                  celdaNombreEspacio.innerText = reserva["nombre_espacio"];
+                  celdaHoraEntrada.innerText = reserva["hora_entrada"];
+                  celdaHoraSalida.innerText = reserva["hora_salida"];
+                  celdaFechaEntrada.innerText = reserva["fecha_entrada"];
+                  celdaFechaSalida.innerText = reserva["fecha_salida"];
+        
+                  let celdaOpcionEditar = document.createElement("td");
+                  let botonEditarReserva = document.createElement("button");
+                  botonEditarReserva.value = reserva["id_reserva"];
+                  botonEditarReserva.innerHTML = "Modificar reserva";
+                  botonEditarReserva.onclick = function (e) {
+                    $('#exampleModal').modal('show');
+                    consultarReservaID(this.value);
+                  };
+                  botonEditarReserva.className = "btnEditar";
+                  celdaOpcionEditar.appendChild(botonEditarReserva);
+        
+                  let celdaOpcionEliminar = document.createElement("td");
+                  let botonEliminarReserva = document.createElement("button");
+                  botonEliminarReserva.value = reserva["id_reserva"];
+                  botonEliminarReserva.innerHTML = "Cancelar";
+                  botonEliminarReserva.onclick = function (e) {
+                    cancelarReserva(this.value);
+                  };
+                  botonEliminarReserva.className = "btnEliminar";
+                  celdaOpcionEliminar.appendChild(botonEliminarReserva);
+        
+                  trResgistro.appendChild(celdaNombreCompleto);
+                  trResgistro.appendChild(celdaNombreEspacio);
+                  trResgistro.appendChild(celdaHoraEntrada);
+                  trResgistro.appendChild(celdaHoraSalida);
+                  trResgistro.appendChild(celdaFechaEntrada);
+                  trResgistro.appendChild(celdaFechaSalida);
+                  trResgistro.appendChild(celdaOpcionEditar);
+                  trResgistro.appendChild(celdaOpcionEliminar);
+                  
+                  cuerpoTabla.appendChild(trResgistro);
+                }
+              });
+            },
+            error: function (error) {
+              alert("Error en la petición " + error);
+            }
+          });
         }
-        botonEditarReserva.className = "btnEditar";
-        celdaOpcionEditar.appendChild(botonEditarReserva);
+        
 
-        let celdaOpcionEliminar = document.createElement("td");
-        let botonEliminarReserva = document.createElement("button");
-        botonEliminarReserva.value = result[i]["id_reserva"];
-        botonEliminarReserva.innerHTML = "Eliminar";
-        botonEliminarReserva.onclick = function (e) {
-          eliminarReserva(this.value);
-        }
-        botonEliminarReserva.className = "btnEliminar";
-        celdaOpcionEditar.appendChild(botonEliminarReserva);
-
-        //trResgistro.appendChild(celdaId);
-        trResgistro.appendChild(celdaNombreCompleto);
-        trResgistro.appendChild(celdaNombreEspacio);
-        trResgistro.appendChild(celdaHoraEntrada);
-        trResgistro.appendChild(celdaHoraSalida);
-        trResgistro.appendChild(celdaFechaEntrada);
-        trResgistro.appendChild(celdaFechaSalida);
-        trResgistro.appendChild(celdaOpcionEditar);
-        trResgistro.appendChild(celdaOpcionEliminar);
-        cuerpoTabla.appendChild(trResgistro);
-
+function cancelarReserva(idReserva) {
+  Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¿Deseas cancelar esta reserva?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, cancelar",
+      cancelButtonText: "Cancelar"
+  }).then((result) => {
+      if (result.isConfirmed) {
+          $.ajax({
+              url: url + "cancelar/" + idReserva, // URL con ID de la reserva
+              type: "PUT",
+              success: function (response) {
+                  Swal.fire({
+                      title: "¡Cancelado!",
+                      text: "La reserva ha sido cancelada correctamente.",
+                      icon: "success"
+                  });
+                  historial(); // Actualizar el historial después de cancelar la reserva
+              },
+              error: function (error) {
+                  Swal.fire("Error", "Error al cancelar la reserva. " + error.responseText, "error");
+              }
+          });
       }
-    },
-    error: function (error) {
-      alert("Error en la petición " + error);
-    }
-  })
-
+  });
 }
+
 function limpiarFormulario() {
   document.getElementById("nombre_completo").className = "form-control";
   document.getElementById("nombre_espacio").className = "form-control";
