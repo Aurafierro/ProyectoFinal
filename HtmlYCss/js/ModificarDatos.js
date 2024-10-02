@@ -76,50 +76,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Función para modificar los datos del usuario
-    async function modificarDatosUsuario(datosUsuario) {
-        const token = localStorage.getItem('authTokens');
-
-        if (!token) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Sin sesión',
-                text: 'No hay sesión activa. Por favor, inicia sesión.'
-            });
-            return;
-        }
-
-        try {
-            // Utiliza el id_user en la URL para modificar
-            const response = await fetch(`http://localhost:8080/api/v1/user/${datosUsuario.id_user}`, {
-                method: 'PUT',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(datosUsuario)
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || 'Error al modificar los datos');
-            }
-
-            const data = await response.json();
-            Swal.fire({
-                icon: 'success',
-                title: 'Éxito',
-                text: 'Datos modificados exitosamente.'
-            });
-            return data;
-        } catch (error) {
-            console.error(error);
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'No se pudieron modificar los datos: ' + error.message
-            });
-        }
-    }
+    
 
     // Obtener y llenar los datos del usuario al cargar la página
     const datosUsuario = await obtenerDatosUsuario(token);
