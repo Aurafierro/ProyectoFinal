@@ -438,19 +438,25 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 
 	    if (optionalUser.isPresent()) {
 	        userRegistro user = optionalUser.get();
+
+	        // Verificar si el usuario ya está desactivado
+	        if (!user.isEstado()) {
+	            return new ResponseEntity<>(Collections.singletonMap("message", "La cuenta ya está inactiva."), HttpStatus.BAD_REQUEST);
+	        }
+
+	        // Desactivar la cuenta del usuario
 	        user.setEstado(false); // 'false' significa desactivado
 	        userService.save(user);
 
 	        // Enviar correo de desactivación
 	        String destinatario = user.getUsername(); // Asegúrate de que el usuario tenga un método para obtener el email
 	        String emailStatus = emailService.enviarCorreoDesactivacionCuenta(destinatario);
-	        
+
 	        return new ResponseEntity<>(Collections.singletonMap("estado", "Inactivo, " + emailStatus), HttpStatus.OK);
 	    } else {
 	        return new ResponseEntity<>(Collections.singletonMap("error", "Error: usuario no encontrado"), HttpStatus.NOT_FOUND);
 	    }
 	}
-
 
 
 	@PutMapping("/activar/{id_user}")
