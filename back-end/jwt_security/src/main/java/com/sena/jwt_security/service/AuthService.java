@@ -150,7 +150,8 @@ public class AuthService implements IUserService {
     private String codigoAleatorio() {
     	int longitud =10;
     	
-    	String banco ="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@$%#";
+    	String banco = "abcdefghijkmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@$%#";
+
     	
     	//CADENA EN DONDE  SE VA IR AGREGANDO UN CÁCTER ALEATORIO
     	
