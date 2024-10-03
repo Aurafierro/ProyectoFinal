@@ -1,23 +1,61 @@
+async function checkUserStatus(token) {
+    try {
+        const response = await fetch(urlBase + 'user/verificar-estado', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
 
-// Función de inicio de sesión
-function login() {
+        if (!response.ok) {
+            const errorData = await response.json();
+            Swal.fire("Error", errorData.message, "error");
+            return null; // Retornar null si hay un error
+        }
+
+        const data = await response.json();
+        const estado = data.estado; // Obtener el estado
+
+        return estado === "Activo" ? 1 : 0; // Retornar 1 para "Activo" y 0 para "Inactivo"
+
+    } catch (error) {
+        console.error('Error al verificar el estado del usuario:', error);
+        Swal.fire("Error", "Error al verificar el estado del usuario: " + error.message, "error");
+        return null; // Retornar null en caso de error
+    }
+}
+
+async function login() {
     let formData = {
         "username": document.getElementById("username").value,
         "password": document.getElementById("password").value
     };
     let camposValidos = validarCampos(formData);
     if (camposValidos) {
+        // Iniciar proceso de inicio de sesión
         $.ajax({
             url: urlInicioSesion, // URL del login
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify(formData),
-            success: function (result) {
+            success: async function (result) {
                 const token = result.token; // Ajusta según tu respuesta de API
                 // Eliminar el token anterior si existe
                 localStorage.removeItem('authTokens');
                 // Almacenar el nuevo token directamente
                 localStorage.setItem('authTokens', token);
+
+                // Verificar el estado del usuario
+                const estado = await checkUserStatus(token);
+                if (estado === null) return; // Salir si hay un error
+
+                if (estado === 0) {
+                    Swal.fire("Acceso Denegado", "Tu cuenta está inactiva.", "error");
+                    return; // Detener si el usuario está inactivo
+                }
+
+                // Continuar con el inicio de sesión exitoso
                 Swal.fire({
                     title: "¡Bienvenido!",
                     text: "Inicio de sesión exitoso.",
@@ -38,6 +76,7 @@ function login() {
         });
     }
 }
+
 // Función para verificar el rol del usuario y si necesita cambiar la contraseña
 async function checkUserRole(token) {
     try {
