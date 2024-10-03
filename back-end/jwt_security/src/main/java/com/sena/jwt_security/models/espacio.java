@@ -46,16 +46,13 @@ public class espacio {
 	private String imagen_url;
 	
 
-	
-
-	
-
 
 	public espacio() {
 		super();
 	}
 
 	
+
 	public espacio(String id_espacio, String nombre_del_espacio, String clasificacion, String capacidad,
 			String descripcion, String imagen_base, String imagen_url) {
 		super();
@@ -64,9 +61,10 @@ public class espacio {
 		this.clasificacion = clasificacion;
 		this.capacidad = capacidad;
 		this.descripcion = descripcion;
-		this.imagen_base = imagen_base;
+		this.imagen_base = "data:image/jpeg;base64,"+ imagen_base;
 		this.imagen_url = imagen_url;
 	}
+
 
 
 	public String getId_espacio() {
@@ -133,10 +131,13 @@ public class espacio {
 		return imagen_url;
 	}
 	
-	public void setImagen_url(String imagen_url) {
-		this.imagen_url=imagen_url;
-	}
-
+	 public void setImagen_url(String imagen_url) {
+	        if (imagen_url != null && !imagen_url.startsWith("data:image/jpeg;base64,")) {
+	            this.imagen_url = "data:image/jpeg;base64," + imagen_url;
+	        } else {
+	            this.imagen_url = imagen_url;
+	        }
+	    }
 	public boolean contieneCamposVacios() {
 		// TODO Auto-generated method stub
 		return false;

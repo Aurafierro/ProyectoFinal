@@ -161,38 +161,38 @@ function listaReservasCrearReserva() {
     url: url,
     type: "GET",
     success: function (result) {
-      console.log(result);
+      console.log(result); // Asegúrate de que los datos lleguen correctamente
 
       var cuerpoTabla = document.getElementById("cuerpoTabla");
+      if (!cuerpoTabla) {
+        console.error("Tabla no encontrada");
+        return;
+      }
       cuerpoTabla.innerHTML = ""; // Limpiar el cuerpo de la tabla
-
-      // Filtrar solo las reservas activas antes de mostrarlas en la tabla
       result.forEach(function (reserva) {
-        if (reserva.estado === true) { // Mostrar solo si está activa
+        // Asegúrate de que el campo estadoReserva existe y es el correcto
+        if (reserva.estadoReserva === "ACTIVO" || true) { // Modifica según corresponda el campo de estado
           var trResgistro = document.createElement("tr");
-
           let celdaNombreCompleto = document.createElement("td");
           let celdaNombreEspacio = document.createElement("td");
           let celdaHoraEntrada = document.createElement("td");
           let celdaHoraSalida = document.createElement("td");
           let celdaFechaEntrada = document.createElement("td");
           let celdaFechaSalida = document.createElement("td");
-
           celdaNombreCompleto.innerText = reserva["nombre_completo"];
           celdaNombreEspacio.innerText = reserva["nombre_espacio"];
           celdaHoraEntrada.innerText = reserva["hora_entrada"];
           celdaHoraSalida.innerText = reserva["hora_salida"];
           celdaFechaEntrada.innerText = reserva["fecha_entrada"];
           celdaFechaSalida.innerText = reserva["fecha_salida"];
-
           trResgistro.appendChild(celdaNombreCompleto);
           trResgistro.appendChild(celdaNombreEspacio);
           trResgistro.appendChild(celdaHoraEntrada);
           trResgistro.appendChild(celdaHoraSalida);
           trResgistro.appendChild(celdaFechaEntrada);
           trResgistro.appendChild(celdaFechaSalida);
-
           cuerpoTabla.appendChild(trResgistro);
+          console.log("Fila añadida al cuerpo de la tabla");
         }
       });
     },
@@ -201,7 +201,6 @@ function listaReservasCrearReserva() {
     }
   });
 }
-
 function tablaReservas() {
   var capturarFiltro = document.getElementById("inputSearch").value;
   var urlLocal = url;
@@ -214,10 +213,8 @@ function tablaReservas() {
     success: function (result) {
       var cuerpoTabla = document.getElementById("cuerpoTabla");
       cuerpoTabla.innerHTML = ""; // Limpiar tabla
-
       result.forEach(function (reserva) {
         var trResgistro = document.createElement("tr");
-
         let celdaNombreCompleto = document.createElement("td");
         let celdaNombreEspacio = document.createElement("td");
         let celdaHoraEntrada = document.createElement("td");
@@ -225,17 +222,14 @@ function tablaReservas() {
         let celdaFechaEntrada = document.createElement("td");
         let celdaFechaSalida = document.createElement("td");
         let celdaEstado = document.createElement("td");
-
         celdaNombreCompleto.innerText = reserva.nombre_completo;
         celdaNombreEspacio.innerText = reserva.nombre_espacio;
         celdaHoraEntrada.innerText = reserva.hora_entrada;
         celdaHoraSalida.innerText = reserva.hora_salida;
         celdaFechaEntrada.innerText = reserva.fecha_entrada;
         celdaFechaSalida.innerText = reserva.fecha_salida;
-        
         // Mostrar estado como "Activo" o "Cancelado"
         celdaEstado.innerText = reserva.estadoReserva === "ACTIVO" ? "Activo" : "Cancelado";
-
         trResgistro.appendChild(celdaNombreCompleto);
         trResgistro.appendChild(celdaNombreEspacio);
         trResgistro.appendChild(celdaHoraEntrada);
@@ -243,7 +237,6 @@ function tablaReservas() {
         trResgistro.appendChild(celdaFechaEntrada);
         trResgistro.appendChild(celdaFechaSalida);
         trResgistro.appendChild(celdaEstado);
-
         cuerpoTabla.appendChild(trResgistro);
       });
     },
@@ -252,10 +245,6 @@ function tablaReservas() {
     }
   });
 }
-
-
-
-
 function cerrarSesion() {
   localStorage.removeItem('authTokens'); 
   window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html';
@@ -317,21 +306,18 @@ function toggleSidebar() {
                 // You can adjust this filtering logic based on how `estado` is represented in the data
                 if (reserva.estado === true || reserva.estadoReserva === "ACTIVO" || true) { 
                   var trResgistro = document.createElement("tr");
-        
                   let celdaNombreCompleto = document.createElement("td");
                   let celdaNombreEspacio = document.createElement("td");
                   let celdaHoraEntrada = document.createElement("td");
                   let celdaHoraSalida = document.createElement("td");
                   let celdaFechaEntrada = document.createElement("td");
                   let celdaFechaSalida = document.createElement("td");
-        
                   celdaNombreCompleto.innerText = reserva["nombre_completo"];
                   celdaNombreEspacio.innerText = reserva["nombre_espacio"];
                   celdaHoraEntrada.innerText = reserva["hora_entrada"];
                   celdaHoraSalida.innerText = reserva["hora_salida"];
                   celdaFechaEntrada.innerText = reserva["fecha_entrada"];
                   celdaFechaSalida.innerText = reserva["fecha_salida"];
-        
                   let celdaOpcionEditar = document.createElement("td");
                   let botonEditarReserva = document.createElement("button");
                   botonEditarReserva.value = reserva["id_reserva"];
@@ -342,7 +328,6 @@ function toggleSidebar() {
                   };
                   botonEditarReserva.className = "btnEditar";
                   celdaOpcionEditar.appendChild(botonEditarReserva);
-        
                   let celdaOpcionEliminar = document.createElement("td");
                   let botonEliminarReserva = document.createElement("button");
                   botonEliminarReserva.value = reserva["id_reserva"];
@@ -352,7 +337,6 @@ function toggleSidebar() {
                   };
                   botonEliminarReserva.className = "btnEliminar";
                   celdaOpcionEliminar.appendChild(botonEliminarReserva);
-        
                   trResgistro.appendChild(celdaNombreCompleto);
                   trResgistro.appendChild(celdaNombreEspacio);
                   trResgistro.appendChild(celdaHoraEntrada);
@@ -361,7 +345,6 @@ function toggleSidebar() {
                   trResgistro.appendChild(celdaFechaSalida);
                   trResgistro.appendChild(celdaOpcionEditar);
                   trResgistro.appendChild(celdaOpcionEliminar);
-        
                   cuerpoTabla.appendChild(trResgistro);
                 }
               });
@@ -371,7 +354,6 @@ function toggleSidebar() {
             }
           });
         }
-        
         function cancelarReserva(idReserva) {
           Swal.fire({
             title: "¿Estás seguro?",
@@ -402,7 +384,6 @@ function toggleSidebar() {
             }
           });
         }
-        
 function limpiarFormulario() {
   document.getElementById("nombre_completo").className = "form-control";
   document.getElementById("nombre_espacio").className = "form-control";
@@ -434,14 +415,11 @@ window.onclick = function (event) {
     modal.style.display = 'none';
   }
 }
-
 var modal = document.getElementById("myModal");
 // Obtener el botón que abre el modal
 var opcionesButtons = document.querySelectorAll(".opciones-btn");
-
 // Obtener el <span> que cierra el modal
 var span = document.getElementsByClassName("close")[0];
-
 // Cuando el usuario hace clic en el botón, se abre el modal
 opcionesButtons.forEach(button => {
   button.onclick = function () {
@@ -517,8 +495,6 @@ function actualizarReserva() {
     var hora_salida = document.getElementById("hora_salida").value;
     var fecha_entrada = document.getElementById("fecha_entrada").value;
     var fecha_salida = document.getElementById("fecha_salida").value
-
-    // Verificar si algún campo está vacío
     if (nombre_espacio === '' || hora_entrada === '' || hora_salida === '' || fecha_entrada === '' || fecha_salida === '') {
       return false; // Al menos un campo está vacío
     } else {
@@ -560,17 +536,13 @@ function eliminarReserva(idReserva) {
 function descargarPDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
-  
   // Imagen de diseño (Base64)
   const imgData = '../pdf/diseñopdf.jpg'; // Aquí va el Base64 de tu imagen
-
   // Tamaño de la página
   const pageWidth = doc.internal.pageSize.getWidth();
   const pageHeight = doc.internal.pageSize.getHeight();
-  
   // Agregar imagen de ondas en las esquinas
   doc.addImage(imgData, 'PNG', 0, 0, pageWidth, pageHeight);
-
   // Título centrado
   const titulo = 'Historial de Reservaciones';
   const textWidth = doc.getTextWidth(titulo);
@@ -578,16 +550,11 @@ function descargarPDF() {
   doc.setFontSize(18);
   doc.setTextColor(26, 62, 104); // Color azul oscuro para el título
   doc.text(titulo, textX, 30);
-
-  // Estilo para las columnas de la tabla
   const head = [['Nombre Completo', 'Nombre Espacio', 'Hora Entrada', 'Hora Salida', 'Fecha Entrada', 'Fecha Salida']];
-  
-  // Obtener los datos de la tabla desde el DOM
   const cuerpoTabla = document.getElementById('cuerpoTabla');
   const rows = [...cuerpoTabla.getElementsByTagName('tr')].map(row => {
       return [...row.getElementsByTagName('td')].map(cell => cell.innerText);
   });
-
   // Generar la tabla con nuevo diseño
   doc.autoTable({
       head: head,
@@ -620,7 +587,6 @@ function descargarPDF() {
       tableLineColor: [26, 62, 104],  // Bordes de la tabla en azul oscuro
       tableLineWidth: 0.2,            // Grosor de las líneas de la tabla
   });
-
   // Guardar el PDF
   doc.save('HistorialReservaciones.pdf');
 }
