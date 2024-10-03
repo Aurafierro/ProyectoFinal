@@ -158,7 +158,7 @@ function crearReserva() {
 }
 function listaReservasCrearReserva() {
   $.ajax({
-    url: url,
+    url: url, // URL para obtener todas las reservas
     type: "GET",
     success: function (result) {
       console.log(result); // Asegúrate de que los datos lleguen correctamente
@@ -168,29 +168,39 @@ function listaReservasCrearReserva() {
         console.error("Tabla no encontrada");
         return;
       }
+
       cuerpoTabla.innerHTML = ""; // Limpiar el cuerpo de la tabla
+
       result.forEach(function (reserva) {
-        // Asegúrate de que el campo estadoReserva existe y es el correcto
-        if (reserva.estadoReserva === "ACTIVO" || true) { // Modifica según corresponda el campo de estado
+        // Verificar si el estado de la reserva es "ACTIVO"
+        if (reserva.estadoReserva === "ACTIVO") {
           var trResgistro = document.createElement("tr");
+
+          // Crear celdas para cada campo de la reserva
           let celdaNombreCompleto = document.createElement("td");
           let celdaNombreEspacio = document.createElement("td");
           let celdaHoraEntrada = document.createElement("td");
           let celdaHoraSalida = document.createElement("td");
           let celdaFechaEntrada = document.createElement("td");
           let celdaFechaSalida = document.createElement("td");
+
+          // Asignar los valores correspondientes a las celdas
           celdaNombreCompleto.innerText = reserva["nombre_completo"];
           celdaNombreEspacio.innerText = reserva["nombre_espacio"];
           celdaHoraEntrada.innerText = reserva["hora_entrada"];
           celdaHoraSalida.innerText = reserva["hora_salida"];
           celdaFechaEntrada.innerText = reserva["fecha_entrada"];
           celdaFechaSalida.innerText = reserva["fecha_salida"];
+
+          // Añadir las celdas a la fila
           trResgistro.appendChild(celdaNombreCompleto);
           trResgistro.appendChild(celdaNombreEspacio);
           trResgistro.appendChild(celdaHoraEntrada);
           trResgistro.appendChild(celdaHoraSalida);
           trResgistro.appendChild(celdaFechaEntrada);
           trResgistro.appendChild(celdaFechaSalida);
+
+          // Añadir la fila al cuerpo de la tabla
           cuerpoTabla.appendChild(trResgistro);
           console.log("Fila añadida al cuerpo de la tabla");
         }
@@ -201,6 +211,7 @@ function listaReservasCrearReserva() {
     }
   });
 }
+
 function tablaReservas() {
   var capturarFiltro = document.getElementById("inputSearch").value;
   var urlLocal = url;
