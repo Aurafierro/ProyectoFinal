@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.sena.jwt_security.models.AuthResponse;
 import com.sena.jwt_security.models.loginRequest;
-import com.sena.jwt_security.models.resgisterRequest;
+
 import com.sena.jwt_security.service.AuthService;
 
 @RestController

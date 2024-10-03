@@ -21,11 +21,10 @@ import com.sena.jwt_security.models.loginRequest;
 import com.sena.jwt_security.models.resgisterRequest;
 import com.sena.jwt_security.models.userRegistro;
 
-import lombok.RequiredArgsConstructor;
 
 
 @Service
-@RequiredArgsConstructor
+
 public class userService implements IUserService {
 
 	

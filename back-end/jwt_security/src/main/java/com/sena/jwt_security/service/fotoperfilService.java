@@ -10,10 +10,10 @@ import com.sena.jwt_security.interfaceService.IFotoperfilService;
 import com.sena.jwt_security.interfaces.IFotoPerfil;
 import com.sena.jwt_security.models.FotoPerfil;
 
-import lombok.RequiredArgsConstructor;
+
 
 @Service
-@RequiredArgsConstructor
+
 public class fotoperfilService implements IFotoperfilService {
 
 	

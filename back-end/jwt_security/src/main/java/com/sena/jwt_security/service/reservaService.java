@@ -11,10 +11,10 @@ import com.sena.jwt_security.interfaceService.IReservaService;
 import com.sena.jwt_security.interfaces.IReserva;
 import com.sena.jwt_security.models.reserva;
 
-import lombok.RequiredArgsConstructor;
+
 
 @Service
-@RequiredArgsConstructor
+
 public class reservaService implements IReservaService{
 	
 	@Autowired

@@ -10,11 +10,11 @@ import com.sena.jwt_security.interfaceService.IEspacioService;
 import com.sena.jwt_security.interfaces.IEspacio;
 import com.sena.jwt_security.models.espacio;
 
-import lombok.RequiredArgsConstructor;
+
 
 
 @Service
-@RequiredArgsConstructor
+
 public class espacioService implements IEspacioService {
 	
 	@Autowired
