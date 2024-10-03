@@ -283,12 +283,12 @@ function toggleSidebar() {
         }
         function historial() {
           var capturarFiltro = document.getElementById("inputSearch").value;
-          var urlLocal = url;
-          
+          var urlLocal = urlReserva;
+        
           if (capturarFiltro != "") {
             urlLocal += "busquedafiltro/" + capturarFiltro;
           }
-          
+        
           $.ajax({
             url: urlLocal,
             type: "GET",
@@ -302,22 +302,24 @@ function toggleSidebar() {
               result.forEach(function (reserva) {
                 console.log("Reserva:", reserva); // Log each reservation to inspect the structure
         
-                // Filter based on `estado` or show all reservations without filtering for now
-                // You can adjust this filtering logic based on how `estado` is represented in the data
-                if (reserva.estado === true || reserva.estadoReserva === "ACTIVO" || true) { 
+                // Filtrar solo las reservas activas (estado === true o estadoReserva === "ACTIVO")
+                if (reserva.estado === true || reserva.estadoReserva === "ACTIVO") {
                   var trResgistro = document.createElement("tr");
+        
                   let celdaNombreCompleto = document.createElement("td");
                   let celdaNombreEspacio = document.createElement("td");
                   let celdaHoraEntrada = document.createElement("td");
                   let celdaHoraSalida = document.createElement("td");
                   let celdaFechaEntrada = document.createElement("td");
                   let celdaFechaSalida = document.createElement("td");
+        
                   celdaNombreCompleto.innerText = reserva["nombre_completo"];
                   celdaNombreEspacio.innerText = reserva["nombre_espacio"];
                   celdaHoraEntrada.innerText = reserva["hora_entrada"];
                   celdaHoraSalida.innerText = reserva["hora_salida"];
                   celdaFechaEntrada.innerText = reserva["fecha_entrada"];
                   celdaFechaSalida.innerText = reserva["fecha_salida"];
+        
                   let celdaOpcionEditar = document.createElement("td");
                   let botonEditarReserva = document.createElement("button");
                   botonEditarReserva.value = reserva["id_reserva"];
@@ -328,6 +330,7 @@ function toggleSidebar() {
                   };
                   botonEditarReserva.className = "btnEditar";
                   celdaOpcionEditar.appendChild(botonEditarReserva);
+        
                   let celdaOpcionEliminar = document.createElement("td");
                   let botonEliminarReserva = document.createElement("button");
                   botonEliminarReserva.value = reserva["id_reserva"];
@@ -337,6 +340,7 @@ function toggleSidebar() {
                   };
                   botonEliminarReserva.className = "btnEliminar";
                   celdaOpcionEliminar.appendChild(botonEliminarReserva);
+        
                   trResgistro.appendChild(celdaNombreCompleto);
                   trResgistro.appendChild(celdaNombreEspacio);
                   trResgistro.appendChild(celdaHoraEntrada);
@@ -354,6 +358,8 @@ function toggleSidebar() {
             }
           });
         }
+        
+        // Función para cancelar una reserva
         function cancelarReserva(idReserva) {
           Swal.fire({
             title: "¿Estás seguro?",
@@ -367,7 +373,7 @@ function toggleSidebar() {
           }).then((result) => {
             if (result.isConfirmed) {
               $.ajax({
-                url: url + "cancelar/" + idReserva, // URL with reservation ID
+                url: urlReserva + "cancelar/" + idReserva, // URL with reservation ID
                 type: "PUT",
                 success: function (response) {
                   Swal.fire({
@@ -375,7 +381,8 @@ function toggleSidebar() {
                     text: "La reserva ha sido cancelada correctamente.",
                     icon: "success"
                   });
-                  historial(); // Refresh the reservation list after canceling
+                  // Eliminar la fila correspondiente después de la cancelación
+                  document.querySelector(`button[value="${idReserva}"]`).closest('tr').remove();
                 },
                 error: function (error) {
                   Swal.fire("Error", "Error al cancelar la reserva. " + error.responseText, "error");

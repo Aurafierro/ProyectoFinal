@@ -147,7 +147,6 @@ function limpiarFormulario() {
         el.classList.remove('error-message');
     });
 }
-
 // Validación en tiempo real
 document.querySelectorAll('.form-control, .form-select').forEach(function(el) {
     el.addEventListener('input', function() {
