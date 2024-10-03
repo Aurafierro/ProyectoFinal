@@ -2,12 +2,21 @@ var url = "http://localhost:8080/api/v1/reserva/";
 
 
 function cerrarSesion() {
-  // Elimina el token del almacenamiento local (localStorage o sessionStorage, según lo que estés usando)
-  localStorage.removeItem('token'); // Asegúrate de que 'token' es el nombre correcto que usas para almacenar el token
-
-  // Redirige a la página de inicio de sesión
-  window.location.href = urlRedireccionInicioSesion;   // Cambia esta ruta a la de tu página de inicio de sesión
+  // Eliminar el token de autenticación
+  localStorage.removeItem('authTokens'); 
+  
+  // Limpiar el historial de navegación
+  history.pushState(null, null, urlRedireccionInicioSesion); // Redirige al login
+  
+  // Desactivar retroceso
+  window.addEventListener('popstate', function (event) {
+    history.pushState(null, null, urlRedireccionInicioSesion);
+  });
+  
+  // Redirigir al inicio de sesión
+  window.location.href = urlRedireccionInicioSesion;
 }
+
 function historial() {
   
     //METODO PARA LISTAR LOS CLIENTES

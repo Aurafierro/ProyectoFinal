@@ -98,6 +98,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.querySelector('.desactivarCuenta').addEventListener('click', desactivarUsuario);
 });
 function cerrarSesion() {
+    // Eliminar el token de autenticación
     localStorage.removeItem('authTokens'); 
-    window.location.href = urlRedireccionInicioSesion;  
-}
+    
+    // Limpiar el historial de navegación
+    history.pushState(null, null, urlRedireccionInicioSesion); // Redirige al login
+    
+    // Desactivar retroceso
+    window.addEventListener('popstate', function (event) {
+      history.pushState(null, null, urlRedireccionInicioSesion);
+    });
+    
+    // Redirigir al inicio de sesión
+    window.location.href = urlRedireccionInicioSesion;
+  }
+  

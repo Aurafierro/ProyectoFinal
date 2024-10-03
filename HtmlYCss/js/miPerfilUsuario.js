@@ -141,10 +141,19 @@ function cargarPerfil() {
     }
 }
 
-// Function to log out
 function cerrarSesion() {
-    localStorage.removeItem('authTokens'); // Remove auth token
-    localStorage.removeItem('userId'); // Remove user ID
-   
-    window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html'; // Redirect to login page
-}
+    // Eliminar el token de autenticación
+    localStorage.removeItem('authTokens'); 
+    
+    // Limpiar el historial de navegación
+    history.pushState(null, null, urlRedireccionInicioSesion); // Redirige al login
+    
+    // Desactivar retroceso
+    window.addEventListener('popstate', function (event) {
+      history.pushState(null, null, urlRedireccionInicioSesion);
+    });
+    
+    // Redirigir al inicio de sesión
+    window.location.href = urlRedireccionInicioSesion;
+  }
+  

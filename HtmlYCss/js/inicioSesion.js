@@ -119,8 +119,19 @@ togglePassword.addEventListener('click', function () {
     passwordInput.setAttribute('type', type);
     this.classList.toggle('fa-eye-slash');
 });
-// Función para cerrar sesión
 function cerrarSesion() {
-    localStorage.removeItem('authTokens');
-    window.location.href = urlRedireccionInicioSesion;  
-}
+    // Eliminar el token de autenticación
+    localStorage.removeItem('authTokens'); 
+    
+    // Limpiar el historial de navegación
+    history.pushState(null, null, urlRedireccionInicioSesion); // Redirige al login
+    
+    // Desactivar retroceso
+    window.addEventListener('popstate', function (event) {
+      history.pushState(null, null, urlRedireccionInicioSesion);
+    });
+    
+    // Redirigir al inicio de sesión
+    window.location.href = urlRedireccionInicioSesion;
+  }
+  

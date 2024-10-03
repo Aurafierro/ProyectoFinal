@@ -1,4 +1,3 @@
-var url = "http://localhost:8080/api/v1/reserva/";
 
 //document.getElementById("nombre_completo").addEventListener("keypress", soloLetras);
 //document.getElementById("nombre_espacio").addEventListener("keypress", soloLetras);
@@ -129,7 +128,7 @@ function crearReserva() {
   });
   if (camposValidos) {
     $.ajax({
-      url: url,
+      url: urlReserva,
       type: "POST",
       contentType: "application/json",
       data: JSON.stringify(formData),
@@ -158,7 +157,7 @@ function crearReserva() {
 }
 function listaReservasCrearReserva() {
   $.ajax({
-    url: url, // URL para obtener todas las reservas
+    url: urlReserva, // URL para obtener todas las reservas
     type: "GET",
     success: function (result) {
       console.log(result); // Asegúrate de que los datos lleguen correctamente
@@ -214,7 +213,7 @@ function listaReservasCrearReserva() {
 
 function tablaReservas() {
   var capturarFiltro = document.getElementById("inputSearch").value;
-  var urlLocal = url;
+  var urlLocal = urlReserva;
   if (capturarFiltro != "") {
     urlLocal += "busquedafiltro/" + capturarFiltro;
   }
@@ -256,10 +255,32 @@ function tablaReservas() {
     }
   });
 }
+document.addEventListener('DOMContentLoaded', function () {
+  const authToken = localStorage.getItem('authTokens');
+
+  // Si no hay un token, redirige al inicio de sesión
+  if (!authToken) {
+    window.location.href = urlRedireccionInicioSesion;
+  }
+
+  // Evitar que el usuario vuelva a la página anterior después de cerrar sesión
+  window.history.replaceState(null, null, window.location.href); // Reemplaza el estado actual con la URL actual
+  window.onpopstate = function () {
+    window.location.href = urlRedireccionInicioSesion; // Siempre redirige al inicio de sesión al retroceder
+  };
+});
+
 function cerrarSesion() {
-  localStorage.removeItem('authTokens'); 
-  window.location.href = 'http://127.0.0.1:5502/HtmlYCss/indexHTML/InicioSesion.html';
+  // Limpiar el token y redirigir
+  localStorage.removeItem('authTokens');
+  
+  // Limpiar el historial del navegador para evitar regresar a la página anterior
+  window.history.replaceState(null, null, urlRedireccionInicioSesion);
+  
+  // Redirigir al inicio de sesión
+  window.location.href = urlRedireccionInicioSesion;
 }
+
 function toggleSidebar() {
   const sidebar = document.getElementById('sidebar');
   const mainContent = document.querySelector('.main-content');
@@ -453,7 +474,7 @@ window.onclick = function (event) {
 function consultarReservaID(id) {
   //alert(id);
   $.ajax({
-    url: url + id,
+    url:  urlReserva + id,
     type: "GET",
     success: function (result) {
       document.getElementById("id_reserva").value = result["id_reserva"];
@@ -476,7 +497,7 @@ function actualizarReserva() {
   };
   if (validarCampos()) {
     $.ajax({
-      url: url + id_reserva,
+      url: urlReserva + id_reserva,
       type: "PUT",
       contentType: "application/json",
       data: JSON.stringify(formData),
