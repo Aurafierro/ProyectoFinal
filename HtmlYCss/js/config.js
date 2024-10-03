@@ -1,5 +1,5 @@
 // Declaración de URLs en el ámbito global
-var urlBase = "http://localhost:8083/api/v1/";
+var urlBase = "http://localhost:8888/api/v1/";
 
 var urlAnadirEspacio = urlBase + "espacio/";
 var urlRegister = urlBase + "user/register/";
