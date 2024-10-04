@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Function to fetch user data
 async function obtenerDatosUsuario() {
-    const urlDatosUsuario = 'http://localhost:8080/api/v1/user/profile'; // URL for user profile API
+    const urlDatosUsuario = 'http://5.183.11.147:8888/api/v1/user/profile'; // URL for user profile API
     const token = localStorage.getItem('authTokens');
 
     if (!token) {
@@ -113,6 +113,8 @@ async function obtenerDatosUsuario() {
         document.getElementById('numero_documento').textContent = datosUsuario.numero_documento || 'No disponible'; // Agregado
         document.getElementById('rol').textContent = datosUsuario.rol || 'No disponible'; // Agregado
 
+
+        document.getElementById('username').textContent = datosUsuario.nombre_completo || 'No disponible';
         // Check if there's an existing profile image and set it
         const existingImageUrl = datosUsuario.fotoPerfil; // Assuming the user data has this field
         if (existingImageUrl) {
