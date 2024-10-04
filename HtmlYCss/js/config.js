@@ -15,7 +15,7 @@ var urlInicioSesion=urlBase+"public/user/login/";
 
 
 /* Redirecciones */
-var urlRedireccion = "http://127.0.0.1:5502/";
+var urlRedireccion = "http://5.183.11.147:8888/";
 var urlRedireccionModuloAdmin = urlRedireccion + "HtmlYCss/indexHTML/M.informacionAdmin.html";
 var urlRedireccionModuloUsuario = urlRedireccion + "HtmlYCss/indexHTML/ModuloInformacion.html";
 var urlRedireccionInicioSesion = urlRedireccion + "HtmlYCss/indexHTML/InicioSesion.html";
