@@ -15,7 +15,7 @@ var urlInicioSesion=urlBase+"public/user/login/";
 
 
 /* Redirecciones */
-var urlRedireccion = "http://asignaweb,com:8888/";
+var urlRedireccion = "http://asignaweb.com:8888/"; //Aqui el puerto no se pondría, no?
 
 var urlRedireccionModuloAdmin = urlRedireccion + "HtmlYCss/indexHTML/m.informacionAdmin.html";
 var urlRedireccionModuloUsuario = urlRedireccion + "HtmlYCss/indexHTML/moduloInformacion.html";
