@@ -1,7 +1,7 @@
 
 @font-face {
     font-family: "Candal";
-    src: url("/Fuentes/Candal/Candal-Regular.ttf");
+    src: url("../Fuentes/Candal/Candal-Regular.ttf");
 }
 body {
     background-color: #FFFFFF;
