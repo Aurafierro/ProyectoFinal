@@ -5,7 +5,7 @@ var urlAnadirEspacio = urlBase + "espacio/";
 var urlRegister = urlBase + "user/register/";
 var urlCambioContrasena = urlBase + "user/cambiar-contrasena";
 var urlRol = urlBase + "user/rol";
-var urlCambiarContraseña=urlBase + "cambio-contrasena";
+var urlCambiarContraseña=urlBase + "user/cambio-contrasena";
 var urlProfile=urlBase+"user/profile";
 var urlDesactivarCuenta=urlBase+"user/desactivar/";
 var urlReserva=urlBase+"reserva/";
@@ -15,7 +15,7 @@ var urlInicioSesion=urlBase+"public/user/login/";
 
 
 /* Redirecciones */
-var urlRedireccion = "http://5.183.11.147:8888/";
+var urlRedireccion = "http://asignaweb,com:8888/";
 
 var urlRedireccionModuloAdmin = urlRedireccion + "HtmlYCss/indexHTML/m.informacionAdmin.html";
 var urlRedireccionModuloUsuario = urlRedireccion + "HtmlYCss/indexHTML/moduloInformacion.html";
