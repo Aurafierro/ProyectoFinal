@@ -16,6 +16,7 @@ var urlInicioSesion=urlBase+"public/user/login/";
 
 /* Redirecciones */
 var urlRedireccion = "http://5.183.11.147:8888/";
+
 var urlRedireccionModuloAdmin = urlRedireccion + "HtmlYCss/indexHTML/m.informacionAdmin.html";
 var urlRedireccionModuloUsuario = urlRedireccion + "HtmlYCss/indexHTML/moduloInformacion.html";
 
@@ -23,4 +24,4 @@ var urlRedireccionModuloUsuario = urlRedireccion + "HtmlYCss/indexHTML/moduloInf
 var urlCambiarContrasena = urlRedireccion + "HtmlYCss/indexHTML/contrasenaCambiar.html";
 
 var urlRedireccionInicioSesion = urlRedireccion + "HtmlYCss/indexHTML/inicioSesion.html";
-var urlCambiarContrasena = urlRedireccion + "/HtmlYCss/indexHTML/contrasenaCambiar.html";
+
