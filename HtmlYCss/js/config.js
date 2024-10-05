@@ -18,6 +18,8 @@ var urlInicioSesion=urlBase+"public/user/login/";
 var urlRedireccion = "http://5.183.11.147:8888/";
 var urlRedireccionModuloAdmin = urlRedireccion + "HtmlYCss/indexHTML/m.informacionAdmin.html";
 var urlRedireccionModuloUsuario = urlRedireccion + "HtmlYCss/indexHTML/moduloInformacion.html";
+
+
 var urlCambiarContrasena = urlRedireccion + "HtmlYCss/indexHTML/contrasenaCambiar.html";
 
 var urlRedireccionInicioSesion = urlRedireccion + "HtmlYCss/indexHTML/inicioSesion.html";
