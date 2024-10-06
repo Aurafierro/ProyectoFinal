@@ -112,13 +112,13 @@ async function checkUserRole(token, nuevaContrasena = null, confirmarContrasena 
             });
         }
 
-        if (!verificarResponse.ok) {
-            const errorData = await verificarResponse.json();
+        if (!response.ok) {
+            const errorData = await response.json();
             Swal.fire("Error", errorData.message, "error");
             return;
         }
 
-        const verificarData = await verificarResponse.json();
+        const verificarData = await response.json();
         const verificarContrasena = verificarData.verificar_contrasena; // Obtener el estado de la contraseña
 
         // Obtener el rol del usuario
