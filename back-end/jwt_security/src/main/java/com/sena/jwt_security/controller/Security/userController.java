@@ -261,6 +261,7 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	        return new ResponseEntity<>("Error al verificar la contraseña: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
 	}
+	/*
 	@PostMapping("/recuperar-contrasena")
 	public ResponseEntity<Map<String, String>> recuperarContrasena(@RequestBody RecuperarContrasenaRequest request) {
 	    Map<String, String> response = new HashMap<>();
@@ -296,7 +297,7 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	    response.put("message", "Se ha enviado un enlace para recuperar la contraseña");
 	    return new ResponseEntity<>(response, HttpStatus.OK);
 	}
-
+*/
 
 	
 	@PutMapping("/cambio-contrasena")
