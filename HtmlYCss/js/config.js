@@ -22,7 +22,7 @@ var urlRedireccionModuloAdmin = urlRedireccion + "HtmlYCss/indexHTML/m.informaci
 var urlRedireccionModuloUsuario = urlRedireccion + "HtmlYCss/indexHTML/moduloInformacion.html";
 
 
-var urlCambioContrasena  = urlRedireccion + "HtmlYCss/indexHTML/contrasenaCambiar.html";
+var urlPaginaCambioContrasena  = urlRedireccion + "HtmlYCss/indexHTML/contrasenaCambiar.html";
 
 var urlRedireccionInicioSesion = urlRedireccion + "HtmlYCss/indexHTML/inicioSesion.html";
 
