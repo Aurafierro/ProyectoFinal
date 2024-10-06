@@ -76,29 +76,27 @@ async function login() {
         });
     }
 }
+
+// Función para verificar el rol del usuario y si necesita cambiar la contraseña
 async function checkUserRole(token) {
     try {
         // Verificar el estado de la contraseña
-        const verificarResponse = await fetch(urlCambioContrasena,{
+        const verificarResponse = await fetch(urlBase + 'user/verificar-contrasena', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             }
         });
-        
+
         if (!verificarResponse.ok) {
             const errorData = await verificarResponse.json();
             Swal.fire("Error", errorData.message, "error");
             return;
         }
-        
 
         const verificarData = await verificarResponse.json();
         const verificarContrasena = verificarData.verificar_contrasena; // Obtener el estado de la contraseña
-
-        // Agrega un log para ver el valor de verificarContrasena
-        console.log("verificarContrasena:", verificarContrasena);
 
         // Obtener el rol del usuario
         const rolResponse = await fetch(urlBase + 'user/rol', {
@@ -115,14 +113,9 @@ async function checkUserRole(token) {
         }
         const rolData = await rolResponse.json();
         const userRole = rolData.role; // Obtener el rol del usuario
-
-        // Log para ver el valor del rol
-        console.log("userRole:", userRole);
-
         // Redirigir al usuario según el estado de verificar_contrasena y su rol
         if (verificarContrasena) {
-            // Log antes de redirigir
-            window.location.href = urlPaginaCambioContrasena;
+            window.location.href = urlCambioContrasena;
         } else {
             if (userRole === "Administrador") {
                 window.location.href = urlRedireccionModuloAdmin; // Cambia a la página del administrador
@@ -136,7 +129,6 @@ async function checkUserRole(token) {
         Swal.fire("Error", "Error al verificar la información del usuario: " + error.message, "error");
     }
 }
-
 // Función para validar campos del formulario de login
 function validarCampos(formData) {
     let camposRequeridos = [
