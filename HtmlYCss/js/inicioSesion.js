@@ -1,4 +1,33 @@
 
+// Función para verificar el estado del usuario
+async function checkUserStatus(token) {
+    try {
+        const response = await fetch(urlBase + 'user/verificar-estado', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            Swal.fire("Error", errorData.message, "error");
+            return null; // Retornar null si hay un error
+        }
+
+        const data = await response.json();
+        const estado = data.estado; // Obtener el estado
+
+        return estado === "Activo" ? 1 : 0; // Retornar 1 para "Activo" y 0 para "Inactivo"
+
+    } catch (error) {
+        console.error('Error al verificar el estado del usuario:', error);
+        Swal.fire("Error", "Error al verificar el estado del usuario: " + error.message, "error");
+        return null; // Retornar null en caso de error
+    }
+}
+
 // Función de inicio de sesión
 function login() {
     let formData = {
