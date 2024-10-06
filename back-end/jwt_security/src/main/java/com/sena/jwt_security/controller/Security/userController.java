@@ -271,16 +271,19 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	public ResponseEntity<Map<String, String>> recuperarContrasena(@RequestBody RecuperarContrasenaRequest request) {
 	    Map<String, String> response = new HashMap<>();
 
+	    // Validar que el correo no esté vacío
 	    if (request.getUsername() == null || request.getUsername().isEmpty()) {
 	        response.put("message", "El correo es un campo obligatorio");
 	        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 	    }
 
+	    // Validar que el correo tenga un formato válido
 	    if (!isValidEmail(request.getUsername())) {
 	        response.put("message", "El correo electrónico debe estar completo y en un formato válido");
 	        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 	    }
 
+	    // Buscar usuario en la base de datos
 	    java.util.Optional<userRegistro> optionalUser = userService.findByUsername(request.getUsername());
 
 	    if (!optionalUser.isPresent()) {
@@ -288,17 +291,20 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
 	    }
 
+	    // Si el usuario existe, generar el token
 	    userRegistro user = optionalUser.get();
 	    String token = UUID.randomUUID().toString();
 	    userService.savePasswordResetToken(user, token);
 
+	    // Generar el enlace de recuperación de contraseña con el dominio correcto
 	    String enlace = "https://asignaweb.com/HtmlYCss/indexHTML/contrasenaCambiar.html?u=" + 
-                Base64.getEncoder().encodeToString(user.getUsername().getBytes()) + 
-                "&t=" + token;
+	                    Base64.getEncoder().encodeToString(user.getUsername().getBytes()) + 
+	                    "&t=" + token;
 
-
+	    // Enviar correo con el enlace generado
 	    emailService.enviarCorreoRecuperarPassword(user.getUsername(), enlace);
-	    
+
+	    // Respuesta exitosa
 	    response.put("message", "Se ha enviado un enlace para recuperar la contraseña");
 	    return new ResponseEntity<>(response, HttpStatus.OK);
 	}
