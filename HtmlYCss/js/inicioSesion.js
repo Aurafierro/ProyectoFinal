@@ -1,6 +1,6 @@
 async function checkUserStatus(token) {
     try {
-        const response = await fetch(urlCambioRol + 'user/verificar-estado', {
+        const response = await fetch(urlBase + 'user/verificar-estado', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
