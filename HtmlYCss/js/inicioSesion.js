@@ -82,7 +82,7 @@ async function checkUserRole(token) {
     try {
         // Verificar el estado de la contraseña
         const verificarResponse = await fetch(urlCambioContrasena, {
-            method: 'GET',
+            method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
