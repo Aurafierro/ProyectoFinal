@@ -76,12 +76,10 @@ async function login() {
         });
     }
 }
-
-// Función para verificar el rol del usuario y si necesita cambiar la contraseña
 async function checkUserRole(token) {
     try {
         // Verificar el estado de la contraseña
-        const verificarResponse = await fetch(urlCambioContrasena,  + 'user/cambiar-contrasena', {
+        const verificarResponse = await fetch(urlCambioContrasena + 'user/cambiar-contrasena', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -98,6 +96,9 @@ async function checkUserRole(token) {
         const verificarData = await verificarResponse.json();
         const verificarContrasena = verificarData.verificar_contrasena; // Obtener el estado de la contraseña
 
+        // Agrega un log para ver el valor de verificarContrasena
+        console.log("verificarContrasena:", verificarContrasena);
+
         // Obtener el rol del usuario
         const rolResponse = await fetch(urlBase + 'user/rol', {
             method: 'GET',
@@ -113,8 +114,14 @@ async function checkUserRole(token) {
         }
         const rolData = await rolResponse.json();
         const userRole = rolData.role; // Obtener el rol del usuario
+
+        // Log para ver el valor del rol
+        console.log("userRole:", userRole);
+
         // Redirigir al usuario según el estado de verificar_contrasena y su rol
         if (verificarContrasena) {
+            // Log antes de redirigir
+            console.log("Redirigiendo a la página de cambio de contraseña:", urlPaginaCambioContrasena);
             window.location.href = urlPaginaCambioContrasena;
         } else {
             if (userRole === "Administrador") {
@@ -129,6 +136,7 @@ async function checkUserRole(token) {
         Swal.fire("Error", "Error al verificar la información del usuario: " + error.message, "error");
     }
 }
+
 // Función para validar campos del formulario de login
 function validarCampos(formData) {
     let camposRequeridos = [
