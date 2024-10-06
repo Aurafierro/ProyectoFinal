@@ -4,6 +4,7 @@ var urlBase = "http://5.183.11.147:8888/api/v1/";
 var urlAnadirEspacio = urlBase + "espacio/";
 var urlRegister = urlBase + "user/register/";
 var urlCambioContrasena = urlBase + "user/cambiar-contrasena";
+var urlCambioRol = urlBase + "user/verificar-estado";
 var urlRol = urlBase + "user/rol";
 var urlCambiarContraseña=urlBase + "user/cambio-contrasena";
 var urlProfile=urlBase+"user/profile";
