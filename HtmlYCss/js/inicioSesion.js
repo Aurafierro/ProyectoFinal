@@ -115,7 +115,7 @@ async function checkUserRole(token) {
         const userRole = rolData.role; // Obtener el rol del usuario
         // Redirigir al usuario según el estado de verificar_contrasena y su rol
         if (verificarContrasena) {
-            window.location.href = urlCambioContrasena;
+            window.location.href = urlPaginaCambioContrasena;
         } else {
             if (userRole === "Administrador") {
                 window.location.href = urlRedireccionModuloAdmin; // Cambia a la página del administrador
