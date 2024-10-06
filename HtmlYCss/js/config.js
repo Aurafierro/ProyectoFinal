@@ -21,6 +21,6 @@ var urlRedireccion = "http://asignaweb.com/";
 var urlRedireccionModuloAdmin = urlRedireccion + "HtmlYCss/indexHTML/m.informacionAdmin.html";
 var urlRedireccionModuloUsuario = urlRedireccion + "HtmlYCss/indexHTML/moduloInformacion.html";
 
-var urlPaginaCambioContrasena = urlRedireccion + "HtmlYCss/indexHTML/contrasenaCambiar.html";
+var urlPaginaCambioContrasena = urlRedireccion + "HtmlYCss/indexHTML/contrasenaCambiar..html";
 
 var urlRedireccionInicioSesion = urlRedireccion + "HtmlYCss/indexHTML/inicioSesion.html";
