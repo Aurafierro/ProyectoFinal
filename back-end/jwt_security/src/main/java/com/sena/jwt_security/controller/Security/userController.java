@@ -144,11 +144,6 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	    return email != null && email.matches("^[\\w-\\.]+@[\\w-]+\\.[a-zA-Z]{2,}$");
 	}
 
-	// Método para verificar caracteres inválidos en los campos
-	private boolean containsInvalidCharacters(String input) {
-	    return input != null && !input.matches("^[a-zA-Z0-9_\\s]+$"); // Permite solo letras, números y espacios
-	}
-	
 	@GetMapping("/admin/findAll/")
 	public ResponseEntity<Map<String, Object>> findAllAdmin() {
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
