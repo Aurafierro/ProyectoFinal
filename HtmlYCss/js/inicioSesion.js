@@ -79,14 +79,14 @@ async function login() {
 async function checkUserRole(token) {
     try {
         // Verificar el estado de la contraseña
-        const verificarResponse = await fetch(urlCambioContrasena + 'user/cambiar-contrasena', {
+        const verificarResponse = await fetch(urlCambioContrasena ,{
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             }
         });
-
+        
         if (!verificarResponse.ok) {
             const errorData = await verificarResponse.json();
             Swal.fire("Error", errorData.message, "error");
