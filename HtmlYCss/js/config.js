@@ -13,6 +13,7 @@ var urlReserva=urlBase+"reserva/";
 var urlFotoPerfil=urlBase+"fotoperfil/";
 var urlRecuperarContrase=urlBase+"recuperar-contrasena";
 var urlInicioSesion=urlBase+"public/user/login/";
+var urlRecuperarContrasena=urlBase+"user/recuperar-contrasena"
 
 
 /* Redirecciones */

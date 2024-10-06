@@ -292,9 +292,10 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	    String token = UUID.randomUUID().toString();
 	    userService.savePasswordResetToken(user, token);
 
-	    String enlace = "http://tu_dominio/cambiar_contrasena?u=" + 
-	                     Base64.getEncoder().encodeToString(user.getUsername().getBytes()) + 
-	                     "&t=" + token;
+	    String enlace = "https://asignaweb.com/HtmlYCss/indexHTML/contrasenaCambiar.html?u=" + 
+                Base64.getEncoder().encodeToString(user.getUsername().getBytes()) + 
+                "&t=" + token;
+
 
 	    emailService.enviarCorreoRecuperarPassword(user.getUsername(), enlace);
 	    
