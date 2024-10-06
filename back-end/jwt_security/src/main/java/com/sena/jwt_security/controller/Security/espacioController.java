@@ -61,7 +61,7 @@ public class espacioController {
         try {
             // Almacenar el archivo y obtener el nombre del archivo
             String fileName = fileStorageService.storeFile(file);
-            espacio.setImagen_url("http://localhost:8080/api/downloadFile/" + fileName);
+            espacio.setImagen_url("http://5.183.11.147:8888/api/downloadFile/" + fileName);
 
             // Guardar el espacio en la base de datos
             espacioService.save(espacio);

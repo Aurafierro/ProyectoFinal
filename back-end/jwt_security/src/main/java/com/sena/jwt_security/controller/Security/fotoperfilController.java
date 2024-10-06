@@ -72,7 +72,7 @@ public class fotoperfilController {
             if (file != null && !file.isEmpty()) {
                 // Almacena el archivo y configura la URL de la imagen
                 String fileName = fileStorageService.storeFile(file);
-                fotoPerfil.setImagen_url("http://localhost:8080/api/downloadFile/" + fileName);
+                fotoPerfil.setImagen_url("http://5.183.11.147:8888/api/downloadFile/" + fileName);
             } else {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                                      .body("Archivo no proporcionado o está vacío");
