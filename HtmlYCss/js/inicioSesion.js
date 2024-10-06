@@ -124,7 +124,7 @@ async function checkUserRole(token, nuevaContrasena = null, confirmarContrasena 
         if (nuevaContrasena && confirmarContrasena) {
             const verificarContrasena = responseData.verificar_contrasena; // Obtener el estado de la contraseña
             if (verificarContrasena) {
-                window.location.href = urlCambioContrasena;
+                window.location.href = urlPaginaCambioContrasena;
                 return;
             }
         }
