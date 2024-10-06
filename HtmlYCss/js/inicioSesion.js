@@ -1,63 +1,23 @@
-// Función para verificar el estado del usuario
-async function checkUserStatus(token) {
-    try {
-        const response = await fetch(urlBase + 'user/verificar-estado', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            }
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            Swal.fire("Error", errorData.message, "error");
-            return null; // Retornar null si hay un error
-        }
-
-        const data = await response.json();
-        const estado = data.estado; // Obtener el estado
-
-        return estado === "Activo" ? 1 : 0; // Retornar 1 para "Activo" y 0 para "Inactivo"
-
-    } catch (error) {
-        console.error('Error al verificar el estado del usuario:', error);
-        Swal.fire("Error", "Error al verificar el estado del usuario: " + error.message, "error");
-        return null; // Retornar null en caso de error
-    }
-}
 
 // Función de inicio de sesión
-async function login() {
+function login() {
     let formData = {
         "username": document.getElementById("username").value,
         "password": document.getElementById("password").value
     };
     let camposValidos = validarCampos(formData);
     if (camposValidos) {
-        // Iniciar proceso de inicio de sesión
         $.ajax({
             url: urlInicioSesion, // URL del login
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify(formData),
-            success: async function (result) {
+            success: function (result) {
                 const token = result.token; // Ajusta según tu respuesta de API
                 // Eliminar el token anterior si existe
                 localStorage.removeItem('authTokens');
                 // Almacenar el nuevo token directamente
                 localStorage.setItem('authTokens', token);
-
-                // Verificar el estado del usuario
-                const estado = await checkUserStatus(token);
-                if (estado === null) return; // Salir si hay un error
-
-                if (estado === 0) {
-                    Swal.fire("Acceso Denegado", "Tu cuenta está inactiva.", "error");
-                    return; // Detener si el usuario está inactivo
-                }
-
-                // Continuar con el inicio de sesión exitoso
                 Swal.fire({
                     title: "¡Bienvenido!",
                     text: "Inicio de sesión exitoso.",
@@ -78,56 +38,26 @@ async function login() {
         });
     }
 }
-
 // Función para verificar el rol del usuario y si necesita cambiar la contraseña
-async function checkUserRole(token, nuevaContrasena = null, confirmarContrasena = null) {
-    if (nuevaContrasena && confirmarContrasena && nuevaContrasena !== confirmarContrasena) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Las contraseñas no coinciden.'
-        });
-        return;
-    }
-
+async function checkUserRole(token) {
     try {
-        let response;
-        if (nuevaContrasena && confirmarContrasena) {
-            // Verificar el estado de la contraseña y enviarlo en la solicitud PUT
-            response = await fetch(urlCambioContrasena, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ nuevaContrasena, confirmarContrasena }) // Enviar las contraseñas en el cuerpo
-            });
-        } else {
-            // Si no hay contraseñas, solo verificar el rol
-            response = await fetch(urlBase + 'user/rol', {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                }
-            });
-        }
+        // Verificar el estado de la contraseña
+        const verificarResponse = await fetch(urlBase + 'user/verificar-contrasena', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
 
-        if (!response.ok) {
-            const errorData = await response.json();
+        if (!verificarResponse.ok) {
+            const errorData = await verificarResponse.json();
             Swal.fire("Error", errorData.message, "error");
             return;
         }
 
-        const responseData = await response.json();
-
-        if (nuevaContrasena && confirmarContrasena) {
-            const verificarContrasena = responseData.verificar_contrasena; // Obtener el estado de la contraseña
-            if (verificarContrasena) {
-                window.location.href = urlPaginaCambioContrasena;
-                return;
-            }
-        }
+        const verificarData = await verificarResponse.json();
+        const verificarContrasena = verificarData.verificar_contrasena; // Obtener el estado de la contraseña
 
         // Obtener el rol del usuario
         const rolResponse = await fetch(urlBase + 'user/rol', {
@@ -137,21 +67,22 @@ async function checkUserRole(token, nuevaContrasena = null, confirmarContrasena 
                 'Content-Type': 'application/json'
             }
         });
-
         if (!rolResponse.ok) {
             const errorData = await rolResponse.json();
             Swal.fire("Error", "Error al verificar el rol del usuario: " + errorData.message, "error");
             return;
         }
-
         const rolData = await rolResponse.json();
         const userRole = rolData.role; // Obtener el rol del usuario
-
         // Redirigir al usuario según el estado de verificar_contrasena y su rol
-        if (userRole === "Administrador") {
-            window.location.href = urlRedireccionModuloAdmin;
-        } else if (userRole === "Usuario") {
-            window.location.href = urlRedireccionModuloUsuario;
+        if (verificarContrasena) {
+            window.location.href = urlPaginaCambioContrasena;
+        } else {
+            if (userRole === "Administrador") {
+                window.location.href = urlRedireccionModuloAdmin; // Cambia a la página del administrador
+            } else if (userRole === "Usuario") {
+                window.location.href = urlRedireccionModuloUsuario;
+            }
         }
 
     } catch (error) {
@@ -159,15 +90,16 @@ async function checkUserRole(token, nuevaContrasena = null, confirmarContrasena 
         Swal.fire("Error", "Error al verificar la información del usuario: " + error.message, "error");
     }
 }
-
 // Función para validar campos del formulario de login
 function validarCampos(formData) {
-    let camposRequeridos = ["username", "password"];
+    let camposRequeridos = [
+        "username",
+        "password"
+    ];
     let camposValidos = true;
-
-    camposRequeridos.forEach(function (campo) {
+    camposRequeridos.forEach(function(campo) {
         let elemento = document.getElementById(campo);
-        let errorElemento = document.getElementById(`error-${campo}`);
+        let errorElemento = document.getElementById(`error-${campo}`); // Ajusta el ID del elemento de error
         if (elemento.value.trim() === "") {
             errorElemento.textContent = "Este campo es obligatorio.";
             errorElemento.classList.add('error-message');
@@ -179,7 +111,6 @@ function validarCampos(formData) {
     });
     return camposValidos;
 }
-
 // Alternar visibilidad de la contraseña
 const togglePassword = document.getElementById('togglePassword');
 const passwordInput = document.getElementById('password');
@@ -188,17 +119,19 @@ togglePassword.addEventListener('click', function () {
     passwordInput.setAttribute('type', type);
     this.classList.toggle('fa-eye-slash');
 });
-
-// Función para cerrar sesión
 function cerrarSesion() {
-    localStorage.removeItem('authTokens');
+    // Eliminar el token de autenticación
+    localStorage.removeItem('authTokens'); 
+    
+    // Limpiar el historial de navegación
     history.pushState(null, null, urlRedireccionInicioSesion); // Redirige al login
-
+    
     // Desactivar retroceso
     window.addEventListener('popstate', function (event) {
-        history.pushState(null, null, urlRedireccionInicioSesion);
+      history.pushState(null, null, urlRedireccionInicioSesion);
     });
-
+    
     // Redirigir al inicio de sesión
     window.location.href = urlRedireccionInicioSesion;
-}
+  }
+  
