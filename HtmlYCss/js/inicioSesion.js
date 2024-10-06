@@ -16,6 +16,7 @@ async function checkUserStatus(token) {
         }
 
         const data = await response.json();
+        console.log('Estado del usuario:', data); // Verificar la respuesta recibida
         const estado = data.estado; // Obtener el estado
 
         return estado === "Activo" ? 1 : 0; // Retornar 1 para "Activo" y 0 para "Inactivo"
@@ -42,6 +43,7 @@ function login() {
             data: JSON.stringify(formData),
             success: async function (result) {
                 const token = result.token; // Ajusta según tu respuesta de API
+                console.log('Token recibido:', token); // Verificar el token recibido
                 // Eliminar el token anterior si existe
                 localStorage.removeItem('authTokens');
                 // Almacenar el nuevo token directamente
@@ -80,7 +82,7 @@ async function checkUserRole(token) {
     try {
         // Verificar el estado de la contraseña
         const verificarResponse = await fetch(urlBase + 'user/verificar-contrasena', {
-            method: 'PUT',
+            method: 'GET', // Cambiado a GET para verificar el estado
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
@@ -111,6 +113,7 @@ async function checkUserRole(token) {
         }
         const rolData = await rolResponse.json();
         const userRole = rolData.role; // Obtener el rol del usuario
+
         // Redirigir al usuario según el estado de verificar_contrasena y su rol
         if (verificarContrasena) {
             window.location.href = urlPaginaCambioContrasena;
