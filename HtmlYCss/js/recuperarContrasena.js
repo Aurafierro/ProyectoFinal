@@ -1,5 +1,4 @@
-const url = 'http://localhost:8080/api/v1/user/recuperar-contrasena';
-
+// Evento para el botón de enviar el correo de recuperación de contraseña
 document.querySelector('.btn.green').addEventListener('click', function(event) {
     event.preventDefault();  // Evitar que el formulario se envíe de forma predeterminada
 
@@ -16,7 +15,7 @@ document.querySelector('.btn.green').addEventListener('click', function(event) {
     }
 
     // Realizar la solicitud POST al backend
-    fetch(url, {
+    fetch(urlRecuperarContrasena, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -44,10 +43,12 @@ document.querySelector('.btn.green').addEventListener('click', function(event) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Correo invalido.'
+            text: 'Correo inválido o error al enviar la solicitud.'
         });
     });
 });
+
+// Función para cerrar la sesión
 function cerrarSesion() {
     // Eliminar el token de autenticación
     localStorage.removeItem('authTokens'); 
@@ -62,5 +63,4 @@ function cerrarSesion() {
     
     // Redirigir al inicio de sesión
     window.location.href = urlRedireccionInicioSesion;
-  }
-  
+}

@@ -11,7 +11,7 @@ var urlProfile=urlBase+"user/profile";
 var urlDesactivarCuenta=urlBase+"user/desactivar/";
 var urlReserva=urlBase+"reserva/";
 var urlFotoPerfil=urlBase+"fotoperfil/";
-var urlRecuperarContrase=urlBase+"recuperar-contrasena";
+var urlRecuperarContrase=urlBase+"user/recuperar-contrasena";
 var urlInicioSesion=urlBase+"public/user/login/";
 var urlRecuperarContrasena=urlBase+"user/recuperar-contrasena"
 
