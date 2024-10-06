@@ -1,4 +1,3 @@
-// Función para verificar el estado del usuario
 async function checkUserStatus(token) {
     try {
         const response = await fetch(urlBase + 'user/verificar-estado', {
@@ -27,7 +26,6 @@ async function checkUserStatus(token) {
     }
 }
 
-// Función de inicio de sesión
 async function login() {
     let formData = {
         "username": document.getElementById("username").value,
@@ -80,6 +78,7 @@ async function login() {
 }
 
 // Función para verificar el rol del usuario y si necesita cambiar la contraseña
+// Función para verificar el rol del usuario y si necesita cambiar la contraseña
 async function checkUserRole(token, nuevaContrasena = null, confirmarContrasena = null) {
     if (nuevaContrasena && confirmarContrasena && nuevaContrasena !== confirmarContrasena) {
         Swal.fire({
@@ -113,21 +112,14 @@ async function checkUserRole(token, nuevaContrasena = null, confirmarContrasena 
             });
         }
 
-        if (!response.ok) {
-            const errorData = await response.json();
+        if (!verificarResponse.ok) {
+            const errorData = await verificarResponse.json();
             Swal.fire("Error", errorData.message, "error");
             return;
         }
 
-        const responseData = await response.json();
-
-        if (nuevaContrasena && confirmarContrasena) {
-            const verificarContrasena = responseData.verificar_contrasena; // Obtener el estado de la contraseña
-            if (verificarContrasena) {
-                window.location.href = urlCambioContrasena;
-                return;
-            }
-        }
+        const verificarData = await verificarResponse.json();
+        const verificarContrasena = verificarData.verificar_contrasena; // Obtener el estado de la contraseña
 
         // Obtener el rol del usuario
         const rolResponse = await fetch(urlBase + 'user/rol', {
@@ -137,21 +129,22 @@ async function checkUserRole(token, nuevaContrasena = null, confirmarContrasena 
                 'Content-Type': 'application/json'
             }
         });
-
         if (!rolResponse.ok) {
             const errorData = await rolResponse.json();
             Swal.fire("Error", "Error al verificar el rol del usuario: " + errorData.message, "error");
             return;
         }
-
         const rolData = await rolResponse.json();
         const userRole = rolData.role; // Obtener el rol del usuario
-
         // Redirigir al usuario según el estado de verificar_contrasena y su rol
-        if (userRole === "Administrador") {
-            window.location.href = urlRedireccionModuloAdmin;
-        } else if (userRole === "Usuario") {
-            window.location.href = urlRedireccionModuloUsuario;
+        if (verificarContrasena) {
+            window.location.href = urlCambioContrasena;
+        } else {
+            if (userRole === "Administrador") {
+                window.location.href = urlRedireccionModuloAdmin; // Cambia a la página del administrador
+            } else if (userRole === "Usuario") {
+                window.location.href = urlRedireccionModuloUsuario;
+            }
         }
 
     } catch (error) {
@@ -159,15 +152,16 @@ async function checkUserRole(token, nuevaContrasena = null, confirmarContrasena 
         Swal.fire("Error", "Error al verificar la información del usuario: " + error.message, "error");
     }
 }
-
 // Función para validar campos del formulario de login
 function validarCampos(formData) {
-    let camposRequeridos = ["username", "password"];
+    let camposRequeridos = [
+        "username",
+        "password"
+    ];
     let camposValidos = true;
-
-    camposRequeridos.forEach(function (campo) {
+    camposRequeridos.forEach(function(campo) {
         let elemento = document.getElementById(campo);
-        let errorElemento = document.getElementById(`error-${campo}`);
+        let errorElemento = document.getElementById(`error-${campo}`); // Ajusta el ID del elemento de error
         if (elemento.value.trim() === "") {
             errorElemento.textContent = "Este campo es obligatorio.";
             errorElemento.classList.add('error-message');
@@ -179,7 +173,6 @@ function validarCampos(formData) {
     });
     return camposValidos;
 }
-
 // Alternar visibilidad de la contraseña
 const togglePassword = document.getElementById('togglePassword');
 const passwordInput = document.getElementById('password');
@@ -188,17 +181,19 @@ togglePassword.addEventListener('click', function () {
     passwordInput.setAttribute('type', type);
     this.classList.toggle('fa-eye-slash');
 });
-
-// Función para cerrar sesión
 function cerrarSesion() {
-    localStorage.removeItem('authTokens');
+    // Eliminar el token de autenticación
+    localStorage.removeItem('authTokens'); 
+    
+    // Limpiar el historial de navegación
     history.pushState(null, null, urlRedireccionInicioSesion); // Redirige al login
-
+    
     // Desactivar retroceso
     window.addEventListener('popstate', function (event) {
-        history.pushState(null, null, urlRedireccionInicioSesion);
+      history.pushState(null, null, urlRedireccionInicioSesion);
     });
-
+    
     // Redirigir al inicio de sesión
     window.location.href = urlRedireccionInicioSesion;
-}
+  }
+  
