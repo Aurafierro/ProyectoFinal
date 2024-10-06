@@ -243,30 +243,7 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	    return tieneMayuscula && tieneNumero && tieneCaracterEspecial;
 	}
 
-	@GetMapping("/cambiar-contrasena")
-	public ResponseEntity<?> verificarContrasena() {
-	    try {
-	        // Obtener el usuario autenticado directamente desde el contexto de seguridad
-	        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	        userRegistro user = (userRegistro) auth.getPrincipal(); // Aquí obtienes el usuario autenticado
-
-	        if (user == null) {
-	            return new ResponseEntity<>("Usuario no encontrado.", HttpStatus.NOT_FOUND);
-	        }
-
-	        // Verificar si el usuario necesita cambiar su contraseña
-	        boolean verificarContrasena = user.isVerificar_contrasena(); // Campo booleano que indica si debe cambiar su contraseña
-
-	        Map<String, Object> response = new HashMap<>();
-	        response.put("verificar_contrasena", verificarContrasena);
-
-	        return ResponseEntity.ok(response);
-
-	    } catch (Exception e) {
-	        return new ResponseEntity<>("Error al verificar la contraseña: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-	    }
-	}
-
+	
 	@PostMapping("/recuperar-contrasena")
 	public ResponseEntity<Map<String, String>> recuperarContrasena(@RequestBody RecuperarContrasenaRequest request) {
 	    Map<String, String> response = new HashMap<>();
