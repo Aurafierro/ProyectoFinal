@@ -76,54 +76,29 @@ async function login() {
         });
     }
 }
-// Función para verificar el rol del usuario y si necesita cambiar la contraseña
-async function checkUserRole(token, nuevaContrasena = null, confirmarContrasena = null) {
-    if (nuevaContrasena && confirmarContrasena && nuevaContrasena !== confirmarContrasena) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Las contraseñas no coinciden.'
-        });
-        return;
-    }
-
+async function checkUserRole(token) {
     try {
-        let response;
-        if (nuevaContrasena && confirmarContrasena) {
-            // Verificar el estado de la contraseña y enviarlo en la solicitud PUT
-            response = await fetch(urlCambioContrasena, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ nuevaContrasena, confirmarContrasena }) // Enviar las contraseñas en el cuerpo
-            });
-        } else {
-            // Si no hay contraseñas, solo verificar el rol
-            response = await fetch(urlBase + 'user/rol', {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                }
-            });
-        }
-        if (!response.ok) {
-            const errorData = await response.json();
+        // Verificar el estado de la contraseña
+        const verificarResponse = await fetch(urlCambioContrasena,{
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (!verificarResponse.ok) {
+            const errorData = await verificarResponse.json();
             Swal.fire("Error", errorData.message, "error");
             return;
         }
+        
 
-        const responseData = await response.json();
+        const verificarData = await verificarResponse.json();
+        const verificarContrasena = verificarData.verificar_contrasena; // Obtener el estado de la contraseña
 
-        if (nuevaContrasena && confirmarContrasena) {
-            const verificarContrasena = responseData.verificar_contrasena; // Obtener el estado de la contraseña
-            if (verificarContrasena) {
-                window.location.href = urlPaginaCambioContrasena;
-                return;
-            }
-        }
+        // Agrega un log para ver el valor de verificarContrasena
+        console.log("verificarContrasena:", verificarContrasena);
 
         // Obtener el rol del usuario
         const rolResponse = await fetch(urlBase + 'user/rol', {
@@ -147,7 +122,6 @@ async function checkUserRole(token, nuevaContrasena = null, confirmarContrasena 
         // Redirigir al usuario según el estado de verificar_contrasena y su rol
         if (verificarContrasena) {
             // Log antes de redirigir
-            console.log("Redirigiendo a la página de cambio de contraseña:", urlPaginaCambioContrasena);
             window.location.href = urlPaginaCambioContrasena;
         } else {
             if (userRole === "Administrador") {
