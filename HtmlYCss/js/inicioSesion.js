@@ -77,8 +77,6 @@ async function login() {
     }
 }
 
-// Función para verificar el rol del usuario y si necesita cambiar la contraseña
-// Función para verificar el rol del usuario y si necesita cambiar la contraseña
 async function checkUserRole(token, nuevaContrasena = null, confirmarContrasena = null) {
     if (nuevaContrasena && confirmarContrasena && nuevaContrasena !== confirmarContrasena) {
         Swal.fire({
@@ -137,7 +135,7 @@ async function checkUserRole(token, nuevaContrasena = null, confirmarContrasena 
         const rolData = await rolResponse.json();
         const userRole = rolData.role; // Obtener el rol del usuario
         // Redirigir al usuario según el estado de verificar_contrasena y su rol
-        if (verificarContrasena === 1) { // Si es un número
+        if (verificarContrasena === true) { // Si es un número
             window.location.href = urlPaginaCambioContrasena;
         
         
