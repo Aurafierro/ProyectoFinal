@@ -261,7 +261,6 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	        return new ResponseEntity<>("Error al verificar la contraseña: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
 	}
-
 	@PostMapping("/recuperar-contrasena")
 	public ResponseEntity<Map<String, String>> recuperarContrasena(@RequestBody RecuperarContrasenaRequest request) {
 	    Map<String, String> response = new HashMap<>();
@@ -286,17 +285,18 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	    userRegistro user = optionalUser.get();
 	    String token = UUID.randomUUID().toString();
 	    userService.savePasswordResetToken(user, token);
-	    
-	    String enlace = "https://asignaweb.com/cambiar_contrasena?u=" + 
-                Base64.getEncoder().encodeToString(user.getUsername().getBytes()) + 
-                "&t=" + token;
 
+	    // Enlace sin http o https, utilizando solo el dominio y permitiendo al navegador decidir el esquema
+	    String enlace = "//asignaweb.com/cambiar_contrasena?u=" + 
+	            Base64.getEncoder().encodeToString(user.getUsername().getBytes()) + 
+	            "&t=" + token;
 
 	    emailService.enviarCorreoRecuperarPassword(user.getUsername(), enlace);
-	    
+
 	    response.put("message", "Se ha enviado un enlace para recuperar la contraseña");
 	    return new ResponseEntity<>(response, HttpStatus.OK);
 	}
+
 
 	
 	@PutMapping("/cambio-contrasena")
