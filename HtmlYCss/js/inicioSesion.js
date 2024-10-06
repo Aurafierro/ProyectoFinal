@@ -1,3 +1,4 @@
+// Función para verificar el estado del usuario
 async function checkUserStatus(token) {
     try {
         const response = await fetch(urlBase + 'user/verificar-estado', {
@@ -26,6 +27,7 @@ async function checkUserStatus(token) {
     }
 }
 
+// Función de inicio de sesión
 async function login() {
     let formData = {
         "username": document.getElementById("username").value,
@@ -78,25 +80,54 @@ async function login() {
 }
 
 // Función para verificar el rol del usuario y si necesita cambiar la contraseña
-async function checkUserRole(token) {
-    try {
-        // Verificar el estado de la contraseña
-        const verificarResponse = await fetch(urlBase + 'user/cambiar-contrasena', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            }
+async function checkUserRole(token, nuevaContrasena = null, confirmarContrasena = null) {
+    if (nuevaContrasena && confirmarContrasena && nuevaContrasena !== confirmarContrasena) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Las contraseñas no coinciden.'
         });
+        return;
+    }
 
-        if (!verificarResponse.ok) {
-            const errorData = await verificarResponse.json();
+    try {
+        let response;
+        if (nuevaContrasena && confirmarContrasena) {
+            // Verificar el estado de la contraseña y enviarlo en la solicitud PUT
+            response = await fetch(urlCambioContrasena, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nuevaContrasena, confirmarContrasena }) // Enviar las contraseñas en el cuerpo
+            });
+        } else {
+            // Si no hay contraseñas, solo verificar el rol
+            response = await fetch(urlBase + 'user/rol', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+        }
+
+        if (!response.ok) {
+            const errorData = await response.json();
             Swal.fire("Error", errorData.message, "error");
             return;
         }
 
-        const verificarData = await verificarResponse.json();
-        const verificarContrasena = verificarData.verificar_contrasena; // Obtener el estado de la contraseña
+        const responseData = await response.json();
+
+        if (nuevaContrasena && confirmarContrasena) {
+            const verificarContrasena = responseData.verificar_contrasena; // Obtener el estado de la contraseña
+            if (verificarContrasena) {
+                window.location.href = urlCambioContrasena;
+                return;
+            }
+        }
 
         // Obtener el rol del usuario
         const rolResponse = await fetch(urlBase + 'user/rol', {
@@ -106,24 +137,21 @@ async function checkUserRole(token) {
                 'Content-Type': 'application/json'
             }
         });
+
         if (!rolResponse.ok) {
             const errorData = await rolResponse.json();
             Swal.fire("Error", "Error al verificar el rol del usuario: " + errorData.message, "error");
             return;
         }
+
         const rolData = await rolResponse.json();
         const userRole = rolData.role; // Obtener el rol del usuario
+
         // Redirigir al usuario según el estado de verificar_contrasena y su rol
-        if (verificarContrasena) {
-            var urlPaginaCambioContrasena = "http://asignaweb.com/HtmlYCss/indexHTML/contrasenaCambiar.html";
-            window.location.href = urlPaginaCambioContrasena;
-            
-        } else {
-            if (userRole === "Administrador") {
-                window.location.href = urlRedireccionModuloAdmin; // Cambia a la página del administrador
-            } else if (userRole === "Usuario") {
-                window.location.href = urlRedireccionModuloUsuario;
-            }
+        if (userRole === "Administrador") {
+            window.location.href = urlRedireccionModuloAdmin;
+        } else if (userRole === "Usuario") {
+            window.location.href = urlRedireccionModuloUsuario;
         }
 
     } catch (error) {
@@ -131,16 +159,15 @@ async function checkUserRole(token) {
         Swal.fire("Error", "Error al verificar la información del usuario: " + error.message, "error");
     }
 }
+
 // Función para validar campos del formulario de login
 function validarCampos(formData) {
-    let camposRequeridos = [
-        "username",
-        "password"
-    ];
+    let camposRequeridos = ["username", "password"];
     let camposValidos = true;
-    camposRequeridos.forEach(function(campo) {
+
+    camposRequeridos.forEach(function (campo) {
         let elemento = document.getElementById(campo);
-        let errorElemento = document.getElementById(`error-${campo}`); // Ajusta el ID del elemento de error
+        let errorElemento = document.getElementById(`error-${campo}`);
         if (elemento.value.trim() === "") {
             errorElemento.textContent = "Este campo es obligatorio.";
             errorElemento.classList.add('error-message');
@@ -152,6 +179,7 @@ function validarCampos(formData) {
     });
     return camposValidos;
 }
+
 // Alternar visibilidad de la contraseña
 const togglePassword = document.getElementById('togglePassword');
 const passwordInput = document.getElementById('password');
@@ -160,19 +188,17 @@ togglePassword.addEventListener('click', function () {
     passwordInput.setAttribute('type', type);
     this.classList.toggle('fa-eye-slash');
 });
+
+// Función para cerrar sesión
 function cerrarSesion() {
-    // Eliminar el token de autenticación
-    localStorage.removeItem('authTokens'); 
-    
-    // Limpiar el historial de navegación
+    localStorage.removeItem('authTokens');
     history.pushState(null, null, urlRedireccionInicioSesion); // Redirige al login
-    
+
     // Desactivar retroceso
     window.addEventListener('popstate', function (event) {
-      history.pushState(null, null, urlRedireccionInicioSesion);
+        history.pushState(null, null, urlRedireccionInicioSesion);
     });
-    
+
     // Redirigir al inicio de sesión
     window.location.href = urlRedireccionInicioSesion;
-  }
-  
+}
