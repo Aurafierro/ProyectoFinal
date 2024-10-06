@@ -1,48 +1,66 @@
-$(document).ready(function () {
-    // Seleccionar el botón de enviar
-    $('#btnEnviar').on('click', function (event) {
-        event.preventDefault(); // Prevenir que el formulario se recargue
+// Evento para el botón de enviar el correo de recuperación de contraseña
+document.querySelector('.btn.green').addEventListener('click', function(event) {
+    event.preventDefault();  // Evitar que el formulario se envíe de forma predeterminada
 
-        // Obtener el valor del campo de correo electrónico
-        var email = $('#emailInput').val();
+    const email = document.getElementById('emailInput').value;  // Capturar el valor del input de email
 
-        // Validar que el correo no esté vacío
-        if (!email || email.trim() === '') {
-            Swal.fire('Error', 'El campo de correo electrónico es obligatorio.', 'error');
-            return;
+    // Validar que el campo de correo no esté vacío
+    if (!email) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Por favor, introduce tu correo electrónico.'
+        });
+        return;
+    }
+
+    // Realizar la solicitud POST al backend
+    fetch(urlRecuperarContrasena, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            username: email  // Enviar el email capturado como 'username'
+        })
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();  // Convertir la respuesta a JSON si la solicitud fue exitosa
+        } else {
+            throw new Error('Error al enviar la solicitud');
         }
-
-        // Validar que el correo tenga un formato válido
-        if (!isValidEmail(email)) {
-            Swal.fire('Error', 'Introduce un correo electrónico válido.', 'error');
-            return;
-        }
-
-        // Hacer la solicitud AJAX para enviar el correo de recuperación
-        $.ajax({
-            url: urlRecuperarContrasena, // Usamos la URL global definida para recuperar contraseña
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({ username: email }), // Enviar el correo en el cuerpo de la petición
-            success: function (response) {
-                Swal.fire({
-                    title: 'Correo enviado',
-                    text: response.message, // Mostrar el mensaje de éxito devuelto por el servidor
-                    icon: 'success'
-                });
-            },
-            error: function (xhr, status, error) {
-                // Si la respuesta tiene un mensaje de error, lo mostramos
-                let errorMessage = xhr.responseJSON && xhr.responseJSON.message ? xhr.responseJSON.message : 'Error al enviar el correo';
-                Swal.fire('Error', errorMessage, 'error');
-            }
+    })
+    .then(data => {
+        Swal.fire({
+            icon: 'success',
+            title: '¡Éxito!',
+            text: data.message || 'Se ha enviado un enlace para recuperar la contraseña'
+        });
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Correo inválido o error al enviar la solicitud.'
         });
     });
-
-    // Función para validar el formato del correo electrónico
-    function isValidEmail(email) {
-        // Expresión regular simple para validar correos electrónicos
-        var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-        return emailPattern.test(email);
-    }
 });
+
+// Función para cerrar la sesión
+function cerrarSesion() {
+    // Eliminar el token de autenticación
+    localStorage.removeItem('authTokens'); 
+    
+    // Limpiar el historial de navegación
+    history.pushState(null, null, urlRedireccionInicioSesion); // Redirige al login
+    
+    // Desactivar retroceso
+    window.addEventListener('popstate', function (event) {
+      history.pushState(null, null, urlRedireccionInicioSesion);
+    });
+    
+    // Redirigir al inicio de sesión
+    window.location.href = urlRedireccionInicioSesion;
+}
