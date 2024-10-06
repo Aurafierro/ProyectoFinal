@@ -1,4 +1,6 @@
-document.getElementById('btnEnviar').addEventListener('click', function(event) {
+const url = 'http://localhost:8080/api/v1/user/recuperar-contrasena';
+
+document.querySelector('.btn.green').addEventListener('click', function(event) {
     event.preventDefault();  // Evitar que el formulario se envíe de forma predeterminada
 
     const email = document.getElementById('emailInput').value;  // Capturar el valor del input de email
@@ -13,11 +15,8 @@ document.getElementById('btnEnviar').addEventListener('click', function(event) {
         return;
     }
 
-    // URL del endpoint de recuperar contraseña
-    var urlRecuperarContrasena = urlBase + "user/recuperar-contrasena";
-
     // Realizar la solicitud POST al backend
-    fetch(urlRecuperarContrasena, {
+    fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -45,11 +44,10 @@ document.getElementById('btnEnviar').addEventListener('click', function(event) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Correo inválido.'
+            text: 'Correo invalido.'
         });
     });
 });
-
 function cerrarSesion() {
     // Eliminar el token de autenticación
     localStorage.removeItem('authTokens'); 
