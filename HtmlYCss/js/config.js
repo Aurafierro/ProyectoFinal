@@ -23,6 +23,4 @@ var urlRedireccionModuloUsuario = urlRedireccion + "HtmlYCss/indexHTML/moduloInf
 
 
 var urlPaginaCambioContrasena  = urlRedireccion + "HtmlYCss/indexHTML/contrasenaCambiar.html";
-
 var urlRedireccionInicioSesion = urlRedireccion + "HtmlYCss/indexHTML/inicioSesion.html";
-
