@@ -637,3 +637,25 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('fecha_entrada').setAttribute('min', today);
   document.getElementById('fecha_salida').setAttribute('min', today);
 });
+// Función para cargar los espacios desde la API y rellenar el select en el modal
+function cargarEspacios() {
+  $.ajax({
+      url: urlAnadirEspacio, // URL de tu API para obtener los espacios
+      type: 'GET',
+      success: function (espacios) {
+          const selectEspacios = document.getElementById('nombre_espacio');
+          selectEspacios.innerHTML = '<option value="" selected disabled>Selecciona una opción</option>';
+          // Iterar sobre los espacios obtenidos y agregarlos como opciones en el select
+          espacios.forEach(function (espacio) {
+              const option = document.createElement('option');
+              option.value = espacio.id; // Asumiendo que cada espacio tiene un ID
+              option.text = espacio.nombre_espacio; // Asumiendo que el nombre del espacio está en "nombre_espacio"
+              selectEspacios.appendChild(option);
+          });
+      },
+      error: function (error) {
+          console.error("Error al cargar los espacios: ", error);
+          Swal.fire('Error', 'No se pudieron cargar los espacios disponibles.', 'error');
+      }
+  });
+}

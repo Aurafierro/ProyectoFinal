@@ -2,6 +2,7 @@
 //var urlBase = "http://5.183.11.147:8888/api/v1/";
 var urlBase = "http://localhost:8080/api/v1/";
 
+
 var urlAnadirEspacio = urlBase + "espacio/";
 var urlRegister = urlBase + "user/register/";
 var urlCambioContrasena = urlBase + "user/cambiar-contrasena";
