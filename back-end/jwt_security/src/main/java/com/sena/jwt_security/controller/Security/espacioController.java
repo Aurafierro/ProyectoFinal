@@ -62,7 +62,7 @@ public class espacioController {
             // Almacenar el archivo y obtener el nombre del archivo
             String fileName = fileStorageService.storeFile(file);
             // Utilizar esquema relativo para que el protocolo sea determinado automáticamente
-            espacio.setImagen_url("//5.183.11.147:8888/api/downloadFile/" + fileName);
+            espacio.setImagen_url("http://5.183.11.147:8888/api/downloadFile/" + fileName);
 
             // Guardar el espacio en la base de datos
             espacioService.save(espacio);
