@@ -265,7 +265,7 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	    String token = UUID.randomUUID().toString();
 	    userService.savePasswordResetToken(user, token);
 
-	    String enlace = "http://asignaweb.com/cambiar_contrasena?u=" + 
+	    String enlace = "http://asignaweb.com/cambiarContrasena?u=" + 
 	            Base64.getEncoder().encodeToString(user.getUsername().getBytes()) + 
 	            "&t=" + token;
 
