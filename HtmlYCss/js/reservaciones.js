@@ -629,3 +629,11 @@ function descargarPDF() {
   // Guardar el PDF
   doc.save('HistorialReservaciones.pdf');
 }
+document.addEventListener('DOMContentLoaded', function () {
+  // Obtener la fecha actual
+  const today = new Date().toISOString().split('T')[0];
+
+  // Establecer la fecha mínima en los campos de tipo date
+  document.getElementById('fecha_entrada').setAttribute('min', today);
+  document.getElementById('fecha_salida').setAttribute('min', today);
+});
