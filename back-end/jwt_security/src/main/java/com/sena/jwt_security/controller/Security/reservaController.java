@@ -1,6 +1,5 @@
 package com.sena.jwt_security.controller.Security;
 
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -40,86 +39,87 @@ import com.sena.jwt_security.service.emailService;
 @RequestMapping("/api/v1/reserva")
 @CrossOrigin
 public class reservaController {
-	
 
-@Autowired
-private IReservaService reservaService;
-@Autowired
-private emailService emailService;
+    @Autowired
+    private IReservaService reservaService;
+    
+    @Autowired
+    private emailService emailService;
 
-@PostMapping("/")
-public ResponseEntity<Object> save(@RequestBody reserva reserva) {
-    List<reserva> user = reservaService.filtroIngresoReserva(reserva.getNombre_espacio(), reserva.getNombre_completo());
-    if (!user.isEmpty()) {
-        return new ResponseEntity<>("La reserva ya tiene un ingreso activo", HttpStatus.BAD_REQUEST);
+    @PostMapping("/")
+    public ResponseEntity<Object> save(@RequestBody reserva reserva) {
+        // Verificar si la hora de entrada es igual a la hora de salida
+        if (reserva.getHora_entrada().equals(reserva.getHora_salida())) {
+            return new ResponseEntity<>("La hora de entrada no puede ser igual a la hora de salida", HttpStatus.BAD_REQUEST);
+        }
+
+        // Verificar si ya existe una reserva para el mismo espacio en el mismo horario
+        List<reserva> reservasConflictivas = reservaService.verificarReservaConflicto(
+            reserva.getNombre_espacio(), 
+            reserva.getHora_entrada(), 
+            reserva.getHora_salida()
+        );
+        
+        if (!reservasConflictivas.isEmpty()) {
+            return new ResponseEntity<>("Este espacio ya está reservado en ese horario", HttpStatus.BAD_REQUEST);
+        }
+
+        // Validaciones adicionales
+        if (reserva.getNombre_completo().isEmpty()) {
+            return new ResponseEntity<>("El nombre completo es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
+
+        if (reserva.getNombre_espacio().isEmpty()) {
+            return new ResponseEntity<>("El nombre del espacio es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
+
+        if (reserva.getHora_entrada().isEmpty()) {
+            return new ResponseEntity<>("La hora de entrada es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
+
+        if (reserva.getHora_salida().isEmpty()) {
+            return new ResponseEntity<>("La hora de salida es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
+
+        if (reserva.getFecha_entrada() == null) {
+            return new ResponseEntity<>("La fecha de entrada es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
+
+        if (reserva.getFecha_salida() == null) {
+            return new ResponseEntity<>("La fecha de salida es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
+
+        if (reserva.getUsername().isEmpty()) {
+            return new ResponseEntity<>("El correo es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
+
+        // Asignar estado como 'Activo'
+        reserva.setEstado(estado.ACTIVO);
+
+        // Guardar reserva y enviar notificación por correo
+        reservaService.save(reserva);
+        emailService.enviarNotificacionReservaRealizada(reserva.getUsername(), reserva.getNombre_completo(),
+                reserva.getNombre_espacio(), reserva.getHora_entrada(), reserva.getHora_salida(),
+                reserva.getFecha_entrada(), reserva.getFecha_salida());
+
+        return new ResponseEntity<>(reserva, HttpStatus.OK);
     }
 
-    // Validaciones
-    if (reserva.getNombre_completo().isEmpty()) {
-        return new ResponseEntity<>("El nombre completo es un campo obligatorio", HttpStatus.BAD_REQUEST);
+    @GetMapping("/")
+    public ResponseEntity<Object> findAll() {
+        var ListaReserva = reservaService.findAll();
+        return new ResponseEntity<>(ListaReserva, HttpStatus.OK);
     }
 
-    if (reserva.getNombre_espacio().isEmpty()) {
-        return new ResponseEntity<>("El nombre del espacio es un campo obligatorio", HttpStatus.BAD_REQUEST);
-    }
-
-    if (reserva.getHora_entrada().isEmpty()) {
-        return new ResponseEntity<>("La hora de entrada es un campo obligatorio", HttpStatus.BAD_REQUEST);
-    }
-
-    if (reserva.getHora_salida().isEmpty()) {
-        return new ResponseEntity<>("La hora de salida es un campo obligatorio", HttpStatus.BAD_REQUEST);
-    }
-
-    if (reserva.getFecha_entrada() == null) { // Assuming this is a Date object
-        return new ResponseEntity<>("La fecha de entrada es un campo obligatorio", HttpStatus.BAD_REQUEST);
-    }
-
-    if (reserva.getFecha_salida() == null) { // Assuming this is a Date object
-        return new ResponseEntity<>("La fecha de salida es un campo obligatorio", HttpStatus.BAD_REQUEST);
-    }
-
-    if (reserva.getUsername().isEmpty()) {
-        return new ResponseEntity<>("El correo es un campo obligatorio", HttpStatus.BAD_REQUEST);
-    }
-
-    // Asignar estado como 'Activo', true o 1
-    reserva.setEstado(estado.ACTIVO); // Usar el enum
-    // reserva.setEstado(1); // Si es un entero
-    // reserva.setEstado("Activo"); // Si es un String
-
-    // Guardar reserva y enviar notificación por correo
-    reservaService.save(reserva);
-    emailService.enviarNotificacionReservaRealizada(reserva.getUsername(), reserva.getNombre_completo(),
-            reserva.getNombre_espacio(), reserva.getHora_entrada(), reserva.getHora_salida(),
-            reserva.getFecha_entrada(), reserva.getFecha_salida());
-
-    return new ResponseEntity<>(reserva, HttpStatus.OK);
-}
-
-
-	@GetMapping("/")
-	public ResponseEntity<Object>findAll(){
-		var ListaReserva = reservaService.findAll();
-		return new ResponseEntity<>(ListaReserva, HttpStatus.OK);
-	}
-	@GetMapping("/pdf")
+    @GetMapping("/pdf")
     public ResponseEntity<byte[]> downloadPdf() throws MalformedURLException, IOException {
         Document document = new Document();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy"); // Formato de fecha
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
         try {
             PdfWriter.getInstance(document, out);
             document.open();
-
-            /*
-            // Para añadir el logo de nuestro sitio web
-            String logoPath = "";
-            Image logo = Image.getInstance(logoPath);
-            logo.scaleToFit(100, 100); // AJUSTARLE EL TAMAÑO
-            logo.setAlignment(Image.ALIGN_CENTER);
-            document.add(logo);*/
 
             // PARA AÑADIR TITULO AL PDF
             Paragraph title = new Paragraph("Reservaciones realizadas",
@@ -127,7 +127,6 @@ public ResponseEntity<Object> save(@RequestBody reserva reserva) {
             title.setAlignment(Element.ALIGN_CENTER);
             document.add(title);
 
-            // Añadir un espacio después del título
             document.add(new Paragraph(" "));
 
             // Crear una tabla con las columnas especificadas
@@ -147,102 +146,80 @@ public ResponseEntity<Object> save(@RequestBody reserva reserva) {
             for (reserva reserva : reservas) {
                 table.addCell(reserva.getNombre_completo());
                 table.addCell(reserva.getNombre_espacio());
-                table.addCell(dateFormat.format(reserva.getFecha_entrada())); // Convertir fecha a String
-                table.addCell(dateFormat.format(reserva.getFecha_salida())); // Convertir fecha a String
+                table.addCell(dateFormat.format(reserva.getFecha_entrada()));
+                table.addCell(dateFormat.format(reserva.getFecha_salida()));
                 table.addCell(reserva.getHora_entrada());
                 table.addCell(reserva.getHora_salida());
             }
 
-            // Añadir la tabla al documento
             document.add(table);
-
             document.close();
         } catch (DocumentException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        // Configurar encabezados para la descarga del archivo
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
         headers.setContentDispositionFormData("attachment", "reservas.pdf");
 
-        return ResponseEntity.ok()
-                .headers(headers)
-                .body(out.toByteArray());
+        return ResponseEntity.ok().headers(headers).body(out.toByteArray());
     }
 
-	
-	
-	@GetMapping("/busquedafiltro/{filtro}")
-	public ResponseEntity<Object>findFiltro(@PathVariable String filtro){
-		var ListaReserva = reservaService.filtroIngresoReserva(filtro, filtro);
-		return new ResponseEntity<>(ListaReserva, HttpStatus.OK);
-	}
-	
+    @GetMapping("/busquedafiltro/{filtro}")
+    public ResponseEntity<Object> findFiltro(@PathVariable String filtro) {
+        var ListaReserva = reservaService.filtroIngresoReserva(filtro, filtro);
+        return new ResponseEntity<>(ListaReserva, HttpStatus.OK);
+    }
 
-	@GetMapping("/busquedafiltroselect/{filtro}")
-	public ResponseEntity<Object>findFiltrosSelect(@PathVariable String filtro){
-		var ListaReserva = reservaService.filtroIngresoReservaSelect(filtro);
-		return new ResponseEntity<>(ListaReserva, HttpStatus.OK);
-	}
-	
-	@GetMapping("/{id_reserva}")
-	public ResponseEntity<Object> findOne ( @PathVariable String id_reserva ){
-		var reserva= reservaService.findOne(id_reserva);
-		return new ResponseEntity<>(reserva, HttpStatus.OK);
-	}
-	
-	
-	   @DeleteMapping ("/{id_reserva}")
-		public ResponseEntity<Object> delete(@PathVariable String id_reserva){
-			 reservaService.delete(id_reserva);
-					return new ResponseEntity<>("Reserva eliminada con éxito",HttpStatus.OK);
-		}
-	   
-	
-	@PutMapping("/{id_reserva}")
-	public ResponseEntity<Object> update(@PathVariable String id_reserva,@RequestBody reserva reservaUpdate) {
-	   
-		
-		var reserva = reservaService.findOne(id_reserva).get();
-		if (reserva != null) {
-		
-			reserva.setNombre_espacio(reservaUpdate.getNombre_espacio());
-			reserva.setHora_entrada(reservaUpdate.getHora_entrada());
-			reserva.setHora_salida(reservaUpdate.getHora_salida());
-			reserva.setFecha_entrada(reservaUpdate.getFecha_entrada());
-			reserva.setFecha_salida(reservaUpdate.getFecha_salida());
+    @GetMapping("/busquedafiltroselect/{filtro}")
+    public ResponseEntity<Object> findFiltrosSelect(@PathVariable String filtro) {
+        var ListaReserva = reservaService.filtroIngresoReservaSelect(filtro);
+        return new ResponseEntity<>(ListaReserva, HttpStatus.OK);
+    }
 
-			reservaService.save(reserva);
-			return new ResponseEntity<>("Guardado", HttpStatus.OK);
+    @GetMapping("/{id_reserva}")
+    public ResponseEntity<Object> findOne(@PathVariable String id_reserva) {
+        var reserva = reservaService.findOne(id_reserva);
+        return new ResponseEntity<>(reserva, HttpStatus.OK);
+    }
 
-		} else {
-			return new ResponseEntity<>("Error reserva no encontrada", HttpStatus.BAD_REQUEST);
-		}
-	}
+    @DeleteMapping("/{id_reserva}")
+    public ResponseEntity<Object> delete(@PathVariable String id_reserva) {
+        reservaService.delete(id_reserva);
+        return new ResponseEntity<>("Reserva eliminada con éxito", HttpStatus.OK);
+    }
 
-	
-	@PutMapping("/cancelar/{id_reserva}")
-	public ResponseEntity<Object> cancelarReserva(@PathVariable String id_reserva) {
-	    var reserva = reservaService.findOne(id_reserva).orElse(null);
-	    if (reserva != null) {
-	        // Validar si la reserva ya está en estado "CANCELADO"
-	        if (reserva.getEstadoReserva() == estado.CANCELADO) {
-	            return new ResponseEntity<>("La reserva ya está cancelada", HttpStatus.BAD_REQUEST);
-	        }
+    @PutMapping("/{id_reserva}")
+    public ResponseEntity<Object> update(@PathVariable String id_reserva, @RequestBody reserva reservaUpdate) {
+        var reserva = reservaService.findOne(id_reserva).get();
+        if (reserva != null) {
+            reserva.setNombre_espacio(reservaUpdate.getNombre_espacio());
+            reserva.setHora_entrada(reservaUpdate.getHora_entrada());
+            reserva.setHora_salida(reservaUpdate.getHora_salida());
+            reserva.setFecha_entrada(reservaUpdate.getFecha_entrada());
+            reserva.setFecha_salida(reservaUpdate.getFecha_salida());
 
-	        // Cambiar el estado a "CANCELADO"
-	        reserva.setEstadoReserva(estado.CANCELADO);
+            reservaService.save(reserva);
+            return new ResponseEntity<>("Guardado", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Error reserva no encontrada", HttpStatus.BAD_REQUEST);
+        }
+    }
 
-	        // Guardar los cambios
-	        reservaService.save(reserva);
-	        return new ResponseEntity<>("Reserva cancelada y estado cambiado a cancelado", HttpStatus.OK);
-	    } else {
-	        return new ResponseEntity<>("Error: reserva no encontrada", HttpStatus.NOT_FOUND);
-	    }
-	}
+    @PutMapping("/cancelar/{id_reserva}")
+    public ResponseEntity<Object> cancelarReserva(@PathVariable String id_reserva) {
+        var reserva = reservaService.findOne(id_reserva).orElse(null);
+        if (reserva != null) {
+            if (reserva.getEstadoReserva() == estado.CANCELADO) {
+                return new ResponseEntity<>("La reserva ya está cancelada", HttpStatus.BAD_REQUEST);
+            }
 
-
-
+            reserva.setEstadoReserva(estado.CANCELADO);
+            reservaService.save(reserva);
+            return new ResponseEntity<>("Reserva cancelada y estado cambiado a cancelado", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Error: reserva no encontrada", HttpStatus.NOT_FOUND);
+        }
+    }
 }

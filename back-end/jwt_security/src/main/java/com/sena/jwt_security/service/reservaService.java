@@ -64,6 +64,13 @@ public class reservaService implements IReservaService{
 
 	
 	}
+	@Override
+	public List<reserva> verificarReservaConflicto(String nombre_espacio, String hora_entrada, String hora_salida) {
+	    // Llama al repositorio para verificar si ya hay una reserva con el mismo espacio y horario
+	    List<reserva> listaReservaConflicto = data.verificarReservaConflicto(nombre_espacio, hora_entrada, hora_salida);
+	    return listaReservaConflicto;
+	}
+
 
 
 }
