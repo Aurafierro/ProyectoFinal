@@ -659,3 +659,29 @@ function cargarEspacios() {
       }
   });
 }
+function cargarEspacios() {
+  $.ajax({
+      url: 'http://localhost:8888/api/v1/espacio/', 
+      type: 'GET',
+      success: function (espacios) {
+          const selectEspacios = document.getElementById('nombre_espacio');
+          selectEspacios.innerHTML = '<option value="" selected disabled>Selecciona una opción</option>'; 
+
+          espacios.forEach(function (espacio) {
+              const option = document.createElement('option');
+              option.value = espacio.id; 
+              option.text = espacio.nombre_del_espacio; 
+              selectEspacios.appendChild(option);
+          });
+      },
+      error: function (error) {
+          console.error("Error al cargar los espacios: ", error);
+          Swal.fire('Error', 'No se pudieron cargar los espacios disponibles.', 'error');
+      }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  listaReservasCrearReserva(); 
+  cargarEspacios();
+});
