@@ -1,8 +1,7 @@
 @font-face {
   font-family: "Candal";
-  src: url("/Fuentes/Candal/Candal-Regular.ttf");
+  src: url("/HtmlYCss/Fuentes/Candal/Candal-Regular.ttf");
 }
-
 body {
   margin: 0;
   font-family: "Candal", sans-serif;

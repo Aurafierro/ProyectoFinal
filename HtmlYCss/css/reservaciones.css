@@ -6,8 +6,9 @@
 }
 @font-face {
     font-family: "Candal";
-    src: url("/Fuentes/Candal/Candal-Regular.ttf");
-}
+    src: url("/HtmlYCss/Fuentes/Candal/Candal-Regular.ttf");
+  }
+
 /* Estilos para el cuerpo y la cabecera */
 body {
     margin: 0;
@@ -20,14 +21,12 @@ body {
     transition: margin-left 0.3s;
 
 }
-
 .main-content {
     flex: 1;
     padding: 20px;
     margin-left: 0;
     transition: margin-left 0.3s ease-in-out;
 }
-
 .header {
     width: 100%;
     background-color: #202C4A;
@@ -37,7 +36,6 @@ body {
     align-items: center;
     box-sizing: border-box;
 }
-
 .header .logo {
     font-size: 20px;
     display: flex;
@@ -52,7 +50,6 @@ body {
     margin-bottom: 5px;
     padding-left: 20px;
 }
-
 .header .logout a {
     color: white;
     text-decoration: none;
@@ -61,15 +58,12 @@ body {
     padding-right: 20px;
     font-family: 'Candal';
 }
-
 /* Contenedor principal */
 .container {
     display: flex;
     flex: 1;
     flex-direction: row;
 }
-
-
 /* Navegación */
 nav ul {
     list-style: none;
@@ -79,11 +73,9 @@ nav ul {
     margin-top: 120px;
     color: white;
 }
-
 nav ul li {
     margin: 10px 0;
 }
-
 nav ul li a {
     color: var(--white);
     text-decoration: none;
@@ -94,7 +86,6 @@ nav ul li a {
     font-weight: bold;
     margin-top: 20%;
 }
-
 /* Contenedor padre */
 .cotenedorPadre {
     display: flex;
@@ -102,22 +93,18 @@ nav ul li a {
     padding-left: 15%;
     width: 100%;
 }
-
 /* Título de reservas */
 .tituloReservas {
     color: #202C4A;
     font-size: 150%;
 }
-
 .contenedorTitulo {
     width: 100%;
     margin-top: 1%;
 }
-
 .contenedorContenido {
     width: 100%;
 }
-
 /* Formulario */
 .form {
     width: 20%;
@@ -132,13 +119,11 @@ nav ul li a {
     /* margin-left: 15%; */
     position: sticky;
 }
-
 .form label {
     width: 83%;
     margin-top: 10px;
     font-size: 100%;
 }
-
 .form input {
     width: calc(100% - 80px);
     padding: 15px;
@@ -147,7 +132,6 @@ nav ul li a {
     border-radius: 30px;
     text-align: center;
 }
-
 .form button {
     padding: 10px 20px;
     border: none;
@@ -159,7 +143,6 @@ nav ul li a {
     color: white;
     margin-bottom: 2%;
 }
-
 /* Select */
 #nombre_espacio {
     width: 82%;
@@ -168,7 +151,6 @@ nav ul li a {
     border-radius: 50px;
     font-weight: bold;
 }
-
 /* Menú hamburguesa */
 .menu-toggle {
     position: relative;
@@ -181,7 +163,6 @@ nav ul li a {
     color: #ffffff;
     z-index: 1001;
 }
-
 /* Menú desplegable */
 .menu-container {
     position: fixed;
@@ -196,11 +177,9 @@ nav ul li a {
     min-width: 160px;
     text-align: left;
 }
-
 .menu-container.active {
     display: block;
 }
-
 .menu-container a {
     display: block;
     padding: 10px 15px;
@@ -208,11 +187,9 @@ nav ul li a {
     color: #333;
     font-size: 16px;
 }
-
 .menu-container a:hover {
     background-color: #f0f0f0;
 }
-
 /* Sidebar */
 .sidebar {
     width: 250px;
@@ -231,25 +208,19 @@ nav ul li a {
     transition: transform 0.3s;
     z-index: 1000;
 }
-
 .sidebar.hidden {
     transform: translateX(-100%);
 }
-
 .sidebar.visible {
     transform: translateX(0);
 }
-
-
 /* Estilos adicionales */
 .menu-open .sidebar {
     transform: translateX(0);
 }
-
 .menu-open .main-content {
     margin-left: 250px;
 }
-
 /* Footer */
 .footer {
     background-color: #202C4A;
@@ -259,69 +230,55 @@ nav ul li a {
     padding: 20px 0;
     flex-shrink: 0;
 }
-
 .footer-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
-
 /* Media Queries */
-
 /* Dispositivos pequeños (pantallas de hasta 768px) */
 @media (max-width: 768px) {
     .header .logo img.logo-img {
         width: 70%;
         height: auto;
     }
-
     .form {
         width: 100%;
         margin-left: 0;
         margin-top: 10%;
     }
-
     .main-content {
         padding: 10px;
     }
-
     .sidebar {
         width: 200px;
     }
-
     .menu-open .main-content {
         margin-left: 200px;
     }
-
     .tituloReservas {
         font-size: 200%;
     }
-
     .tabla {
         margin-left: 0;
     }
 }
-
 /* Dispositivos muy pequeños (pantallas de hasta 480px) */
 @media (max-width: 480px) {
     
 }
-
-
 .table-container {
     padding: 30px;
     flex: 1;
     overflow-y: auto;
     box-sizing: border-box;
 }
-
 table {
     border-collapse: collapse;
     background-color: #f4f5f7;
     box-sizing: border-box;
     /* margin-left: 100%; */
 }
-
 th {
     background-color: #D9D9D9;
     color: rgb(0, 0, 0);
@@ -329,12 +286,10 @@ th {
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
-
 td {
     padding: 3px;
     border-bottom: 1px solid #ddd;
 }
-
 .logout-link{
     text-decoration: none;
     color: white;

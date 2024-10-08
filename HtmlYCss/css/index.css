@@ -1,7 +1,8 @@
 @font-face {
-    font-family: "Candal";
-    src: url("/Fuentes/Candal/Candal-Regular.ttf");
+    font-family: 'Candal';
+    src: url('http://asignaweb.com/Fuentes/Candal/Candal-Regular.ttf') format('truetype');
 }
+
 
 body {
     margin: 0;

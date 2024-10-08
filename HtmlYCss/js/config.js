@@ -1,6 +1,6 @@
 
-urlBase = "http://5.183.11.147:8888/api/v1/";
-//var urlBase = "http://localhost:8080/api/v1/";
+//urlBase = "http://5.183.11.147:8888/api/v1/";
+var urlBase = "http://localhost:8080/api/v1/";
 
 
 var urlAnadirEspacio = urlBase + "espacio/";
@@ -19,8 +19,8 @@ var urlRecuperarContrasena=urlBase+"user/recuperar-contrasena"
 
 
 /* Redirecciones */
+//var urlRedireccion = "http://asignaweb.com/"; 
 var urlRedireccion = "http://asignaweb.com/"; 
-
 var urlRedireccionModuloAdmin = urlRedireccion + "HtmlYCss/indexHTML/m.informacionAdmin.html";
 var urlRedireccionModuloUsuario = urlRedireccion + "HtmlYCss/indexHTML/moduloInformacion.html";
 

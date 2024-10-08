@@ -1,8 +1,7 @@
 @font-face {
     font-family: "Candal";
-    src: url("/Fuentes/Candal/Candal-Regular.ttf");
-}
-
+    src: url("/HtmlYCss/Fuentes/Candal/Candal-Regular.ttf");
+  }
 body {
     margin: 0;
     font-family: "Candal";
@@ -13,7 +12,6 @@ body {
     background-color: #FFFFFF;
     color: white;
 }
-
 .container {
     display: flex;
     flex-direction: row;
@@ -27,7 +25,6 @@ body {
     position: relative;
     margin: auto; 
 }
-
 .footer {
     background-color: #1a3e68;
     color: white;
@@ -36,37 +33,31 @@ body {
     padding: 1% 0; 
     flex-shrink: 0;
 }
-
 .footer-container {
     max-width: 1200px; 
     margin: 0 auto;
     padding: 0 20%;
 }
-
 .form-container, .image-container {
     flex: 1;
     width: 50%;
     justify-content: center;
     align-items: center;
 }
-
 .form-container {
     padding: 5%;
     box-sizing: border-box;
     color: white;
     text-align: center;
 }
-
 .form-container h1 {
     font-size: 2.5rem;
     margin-bottom: 9%;
 }
-
 .form-container p {
     font-size: 1.2rem;
     margin-bottom: 7%;
 }
-
 .input-email {
     width: 100%;
     padding: 15px;
@@ -76,12 +67,10 @@ body {
     box-sizing: border-box;
     margin-bottom: 18px;
 }
-
 .buttons {
     display: flex;
     justify-content: center;
 }
-
 .buttons .btn {
     margin: 0 10px;
     padding: 15px 45px;
@@ -90,32 +79,26 @@ body {
     cursor: pointer;
     font-size: 1.2rem;
 }
-
 .buttons .btn.red {
     background-color: #dc3545;
     color: white;
     font-family: 'Candal';
 }
-
 .buttons .btn.green {
     background-color: #28a745;
     color: white;
     font-family: 'Candal';
 }
-
 .image-container {
     background-color: black;
 }
-
 .image-container img {
     width: 80%;
     max-width: 400px;
     height: auto;
     display: block; 
-    margin: 65px auto; 
-  
+    margin: 65px auto;  
 }
-
 @media screen and (max-width: 768px) {
     .container {
         flex-direction: column;
@@ -123,24 +106,19 @@ body {
         margin: 0 auto; 
         margin-bottom: 50px; 
     }
-
     .form-container, .image-container {
         width: 100%;
     }
-
     .form-container {
         padding: 20px;
     }
-
     .input-email {
         padding: 15px 20px;
     }
-
     .buttons .btn {
         padding: 12px 28px;
         font-size: 1rem;
     }
-
     .image-container img {
         width: 80%; 
         margin-left: 7%; 
