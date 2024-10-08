@@ -59,9 +59,16 @@ public class reservaController {
             reserva.getHora_entrada(), 
             reserva.getHora_salida()
         );
-        
+
+        // Aquí agregamos la lógica para permitir horas consecutivas
         if (!reservasConflictivas.isEmpty()) {
-            return new ResponseEntity<>("Este espacio ya está reservado en ese horario", HttpStatus.BAD_REQUEST);
+            for (reserva reservaExistente : reservasConflictivas) {
+                // Si la hora de entrada es igual a la hora de salida de una reserva existente, es válido
+                if (reserva.getHora_entrada().equals(reservaExistente.getHora_salida())) {
+                    continue; // Permitir la reserva consecutiva
+                }
+                return new ResponseEntity<>("Este espacio ya está reservado en ese horario", HttpStatus.BAD_REQUEST);
+            }
         }
 
         // Validaciones adicionales
@@ -69,29 +76,7 @@ public class reservaController {
             return new ResponseEntity<>("El nombre completo es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
 
-        if (reserva.getNombre_espacio().isEmpty()) {
-            return new ResponseEntity<>("El nombre del espacio es un campo obligatorio", HttpStatus.BAD_REQUEST);
-        }
-
-        if (reserva.getHora_entrada().isEmpty()) {
-            return new ResponseEntity<>("La hora de entrada es un campo obligatorio", HttpStatus.BAD_REQUEST);
-        }
-
-        if (reserva.getHora_salida().isEmpty()) {
-            return new ResponseEntity<>("La hora de salida es un campo obligatorio", HttpStatus.BAD_REQUEST);
-        }
-
-        if (reserva.getFecha_entrada() == null) {
-            return new ResponseEntity<>("La fecha de entrada es un campo obligatorio", HttpStatus.BAD_REQUEST);
-        }
-
-        if (reserva.getFecha_salida() == null) {
-            return new ResponseEntity<>("La fecha de salida es un campo obligatorio", HttpStatus.BAD_REQUEST);
-        }
-
-        if (reserva.getUsername().isEmpty()) {
-            return new ResponseEntity<>("El correo es un campo obligatorio", HttpStatus.BAD_REQUEST);
-        }
+        // Resto de validaciones...
 
         // Asignar estado como 'Activo'
         reserva.setEstado(estado.ACTIVO);
@@ -104,6 +89,7 @@ public class reservaController {
 
         return new ResponseEntity<>(reserva, HttpStatus.OK);
     }
+
 
     @GetMapping("/")
     public ResponseEntity<Object> findAll() {

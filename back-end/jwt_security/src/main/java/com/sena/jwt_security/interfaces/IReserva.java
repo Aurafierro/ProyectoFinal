@@ -16,12 +16,14 @@ public interface IReserva extends CrudRepository<reserva, String> {
             + "r.fecha_entrada = ?1 OR "
             + "r.fecha_salida = ?1")
     List<reserva> filtroReserva(String filtro);
-
-    // Filtro para evitar duplicidad de reservas con el mismo espacio y horario
+    
+    
     @Query("SELECT r FROM reserva r WHERE r.nombre_espacio = ?1 AND "
-            + "(?2 BETWEEN r.hora_entrada AND r.hora_salida OR "
-            + "?3 BETWEEN r.hora_entrada AND r.hora_salida)")
+            + "((?2 >= r.hora_entrada AND ?2 < r.hora_salida) OR "
+            + "(?3 > r.hora_entrada AND ?3 <= r.hora_salida) OR "
+            + "(?2 < r.hora_entrada AND ?3 > r.hora_salida))")
     List<reserva> verificarReservaConflicto(String nombre_espacio, String hora_entrada, String hora_salida);
+
 
     // Filtro para validar que la hora de entrada y salida no sean iguales
     @Query("SELECT r FROM reserva r WHERE r.hora_entrada != r.hora_salida")
