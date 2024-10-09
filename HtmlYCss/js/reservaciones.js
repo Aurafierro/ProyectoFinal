@@ -96,6 +96,12 @@ function crearReserva() {
     "fecha_salida": document.getElementById("fecha_salida").value,
     "username": document.getElementById("username").value
   };
+
+  // Validar que las horas de entrada y salida no sean iguales
+  if (!validarHoras(formData.hora_entrada, formData.hora_salida)) {
+    return; // Si son iguales, no continuar
+  }
+
   let camposValidos = true;
   let camposRequeridos = [
     "nombre_completo",
@@ -113,6 +119,7 @@ function crearReserva() {
       return false; // Terminar la iteración si se encuentra un campo vacío
     }
   });
+
   if (camposValidos) {
     $.ajax({
       url: urlReserva,
@@ -132,7 +139,6 @@ function crearReserva() {
         Swal.fire("Error", "Error al guardar, " + error.responseText, "error");
       },
     });
-
   } else {
     Swal.fire({
       title: "¡Error!",
@@ -140,8 +146,8 @@ function crearReserva() {
       icon: "error"
     });
   }
-
 }
+
 function listaReservasCrearReserva() {
   $.ajax({
     url: urlReserva, // URL para obtener todas las reservas
@@ -619,20 +625,16 @@ function validarCampos() {
   }
 }
 
-function validarHoras() {
-  const horaEntrada = document.getElementById("hora_entrada").value;
-  const horaSalida = document.getElementById("hora_salida").value;
-
-  // Comprobar si las horas son iguales
-  if (horaEntrada && horaSalida && horaEntrada === horaSalida) {
+function validarHoras(horaEntrada, horaSalida) {
+  if (horaEntrada === horaSalida) {
       Swal.fire({
           title: "¡Error!",
-          text: "La hora de salida no puede ser igual a la hora de entrada.",
+          text: "La hora de entrada no puede ser igual a la hora de salida",
           icon: "error"
       });
-      return false; // Retornar falso si hay un error
+      return false;
   }
-  return true; // Retornar verdadero si no hay errores
+  return true;
 }
 
 function actualizarReserva() {
@@ -645,54 +647,39 @@ function actualizarReserva() {
       "fecha_salida": document.getElementById("fecha_salida").value
   };
 
-  // Validar campos y horas
-  if (validarCampos() && validarHoras()) {
-      // Validar que no haya conflictos en las horas
-      $.ajax({
-          url: urlReserva + "verificarConflicto", // Endpoint para verificar conflictos
-          type: "POST",
-          contentType: "application/json",
-          data: JSON.stringify(formData),
-          success: function (result) {
-              if (result.conflicto) {
-                  Swal.fire({
-                      title: "¡Error!",
-                      text: "Ya existe una reservación con esa hora y espacio.",
-                      icon: "error"
-                  });
-              } else {
-                  // Si no hay conflicto, proceder a actualizar la reserva
-                  $.ajax({
-                      url: urlReserva + id_reserva,
-                      type: "PUT",
-                      contentType: "application/json",
-                      data: JSON.stringify(formData),
-                      success: function (result) {
-                          Swal.fire({
-                              title: "¡Excelente!",
-                              text: "Se guardó correctamente",
-                              icon: "success"
-                          });
-                          historial();
-                      },
-                      error: function (error) {
-                          Swal.fire("Error", "Error al guardar, " + error.responseText, "error");
-                      }
-                  });
-              }
-          },
-          error: function (error) {
-              Swal.fire("Error", "Error al verificar el conflicto, " + error.responseText, "error");
-          }
-      });
+  // Validar que las horas de entrada y salida no sean iguales
+  if (!validarHoras(formData.hora_entrada, formData.hora_salida)) {
+    return; // Si son iguales, no continuar
+  }
+
+  if (validarCampos()) {
+    // Proceder a actualizar la reserva
+    $.ajax({
+        url: urlReserva + id_reserva,
+        type: "PUT",
+        contentType: "application/json",
+        data: JSON.stringify(formData),
+        success: function (result) {
+            Swal.fire({
+                title: "¡Excelente!",
+                text: "Se guardó correctamente",
+                icon: "success"
+            });
+            historial(); // Actualizar el historial de reservas
+        },
+        error: function (error) {
+            Swal.fire("Error", "Error al guardar, " + error.responseText, "error");
+        }
+    });
   } else {
-      Swal.fire({
-          title: "¡Error!",
-          text: "Llene todos los campos correctamente",
-          icon: "error"
-      });
+    Swal.fire({
+        title: "¡Error!",
+        text: "Llene todos los campos correctamente",
+        icon: "error"
+    });
   }
 }
+
 
 function cerrarModal() {
   // Suponiendo que estás utilizando el modal de Bootstrap

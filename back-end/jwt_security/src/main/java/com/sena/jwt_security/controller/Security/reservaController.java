@@ -48,35 +48,15 @@ public class reservaController {
 
     @PostMapping("/")
     public ResponseEntity<Object> save(@RequestBody reserva reserva) {
-        // Verificar si la hora de entrada es igual a la hora de salida
+        // Validación de que la hora de entrada no sea igual a la hora de salida
         if (reserva.getHora_entrada().equals(reserva.getHora_salida())) {
             return new ResponseEntity<>("La hora de entrada no puede ser igual a la hora de salida", HttpStatus.BAD_REQUEST);
-        }
-
-        // Verificar si ya existe una reserva para el mismo espacio en el mismo horario
-        List<reserva> reservasConflictivas = reservaService.verificarReservaConflicto(
-            reserva.getNombre_espacio(), 
-            reserva.getHora_entrada(), 
-            reserva.getHora_salida()
-        );
-
-        // Aquí agregamos la lógica para permitir horas consecutivas
-        if (!reservasConflictivas.isEmpty()) {
-            for (reserva reservaExistente : reservasConflictivas) {
-                // Si la hora de entrada es igual a la hora de salida de una reserva existente, es válido
-                if (reserva.getHora_entrada().equals(reservaExistente.getHora_salida())) {
-                    continue; // Permitir la reserva consecutiva
-                }
-                return new ResponseEntity<>("Este espacio ya está reservado en ese horario", HttpStatus.BAD_REQUEST);
-            }
         }
 
         // Validaciones adicionales
         if (reserva.getNombre_completo().isEmpty()) {
             return new ResponseEntity<>("El nombre completo es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
-
-        // Resto de validaciones...
 
         // Asignar estado como 'Activo'
         reserva.setEstado(estado.ACTIVO);
