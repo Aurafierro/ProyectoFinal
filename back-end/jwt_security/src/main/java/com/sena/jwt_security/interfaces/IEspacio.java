@@ -18,4 +18,5 @@ public interface IEspacio extends CrudRepository<espacio,String>{
 
 	@Query("SELECT e FROM espacio e WHERE e.nombre_del_espacio LIKE %?1%")
 	List <espacio>filtroIngresoEspacio(String nombre_del_espacio);
+
 }

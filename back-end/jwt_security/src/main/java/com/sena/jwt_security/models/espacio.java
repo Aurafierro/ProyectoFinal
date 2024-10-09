@@ -33,8 +33,9 @@ public class espacio {
 	@Column (name="descripcion", nullable= false, length = 200)
 	private String descripcion;
 	
-	@Column( name="imagen_base", nullable = true)
-	private String  imagen_base;
+	@Column( name="imagen_base", columnDefinition = "MEDIUMBLOB", nullable = true)
+	private String imagen_base;
+
 
 	@Column( name="imagen_url", nullable = true, length = 255 )
 	private String imagen_url;
@@ -124,14 +125,11 @@ public class espacio {
 	public String getImagen_url() {
 		return imagen_url;
 	}
-	
-	 public void setImagen_url(String imagen_url) {
-	        if (imagen_url != null && !imagen_url.startsWith("data:image/jpeg;base64,")) {
-	            this.imagen_url = "data:image/jpeg;base64," + imagen_url;
-	        } else {
-	            this.imagen_url = imagen_url;
-	        }
-	    }
+    // Corregir el setter para no agregar 'data:image/jpeg;base64,' a la URL
+    public void setImagen_url(String imagen_url) {
+        this.imagen_url = imagen_url; // Almacenar solo la URL completa del archivo
+    }
+
 	public boolean contieneCamposVacios() {
 		// TODO Auto-generated method stub
 		return false;

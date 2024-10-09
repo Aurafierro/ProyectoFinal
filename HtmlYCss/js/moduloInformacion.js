@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const menuToggle = document.querySelector(".menu-toggle");
     const sidebar = document.getElementById("sidebarj");
 
+    // Toggle del menú lateral
     menuToggle.addEventListener("click", function() {
         sidebar.classList.toggle("visible");
     });
@@ -12,12 +13,11 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-
 document.addEventListener('DOMContentLoaded', () => {
     const prevButton = document.querySelector('.carousel-button.prev');
     const nextButton = document.querySelector('.carousel-button.next');
     const cardsContainer = document.getElementById('cards-container');
-    const apiUrl = 'http://5.183.11.147:8888/api/v1/espacio/'; // Cambia esto por la URL de tu API
+    const apiUrl = 'http://localhost:8888/api/v1/espacio/'; // Cambia esto por la URL de tu API
     let currentIndex = 0;
     let cards = [];
 
@@ -56,10 +56,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.href = '../indexHTML/crearReserva.html'; // Ajusta el enlace según sea necesario
                 card.classList.add('card');
 
+                // Usar imagen base64 si no hay URL de imagen
+                const imagenSrc =  "data:image/jpeg;base64," + item.imagen_base;
+
                 card.innerHTML = `
                     <div class="circles c1"></div>
                     <div class="image">
-                        <img src="${item.imagen_url}" alt="${item.nombre_del_espacio}">
+                        <img src="${imagenSrc}" alt="${item.nombre_del_espacio}">
                     </div>
                     <div class="content">
                         <h4>${item.nombre_del_espacio}</h4>
@@ -91,8 +94,8 @@ document.addEventListener('DOMContentLoaded', () => {
         notificationCount.textContent = notifications;
         alert(message);
     };
-
 });
+
 function cerrarSesion() {
     // Eliminar el token de autenticación
     localStorage.removeItem('authTokens'); 
@@ -107,5 +110,4 @@ function cerrarSesion() {
     
     // Redirigir al inicio de sesión
     window.location.href = urlRedireccionInicioSesion;
-  }
-  
+}

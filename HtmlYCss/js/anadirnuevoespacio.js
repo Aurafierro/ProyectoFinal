@@ -70,12 +70,13 @@ function guardarEspacio() {
 
     const fileInput = document.getElementById("file-input");
     if (fileInput.files.length > 0) {
-        formData.append("file", fileInput.files[0]);
+        formData.append("file", fileInput.files[0]);  // Adjuntar el archivo
     }
 
+    // Enviar la solicitud AJAX
     $.ajax({
         type: "POST",
-        url: urlAnadirEspacio, // Se debe usar la URL correcta
+        url: urlAnadirEspacio,  // URL correcta
         data: formData,
         processData: false,
         contentType: false,

@@ -1,9 +1,11 @@
 package com.sena.jwt_security.controller.Security;
 
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import java.io.IOException;
+
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -23,9 +25,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.sena.jwt_security.interfaceService.IEspacioService;
+
 import com.sena.jwt_security.models.espacio;
 import com.sena.jwt_security.models.respuesta;
+
 import com.sena.jwt_security.service.FileStorageService;
+
 
 @RestController
 @RequestMapping("api/v1/espacio")
@@ -37,44 +42,83 @@ public class espacioController {
 
     @Autowired
     private FileStorageService fileStorageService;
-
+    
+    
     @GetMapping("/")
-    public ResponseEntity<Object> consultarListaEspaciosJson() {
-        try {
-            List<espacio> listaEspacios = espacioService.consultarlistaespacio();
+	public ResponseEntity<Object> consultarListaEspaciosJson() {
+		List<espacio> listaEspacios= espacioService.consultarlistaespacio();
+		//String blob="";
+		//listaEspacios.get(0).setImagen_base(blob);
+		return new ResponseEntity<> (listaEspacios, HttpStatus.OK);
+    }
+ @PostMapping("/")
+	//eliminar @RequestBody 
+	public ResponseEntity<Object> guardarEspacioJson(espacio espacio, @RequestParam("file") MultipartFile file) throws IOException  {
 
-            // Establecer la imagen_url como nula para todos los espacios si es necesario
-            for (espacio espacio : listaEspacios) {
-            	espacio.setImagen_base(null); // Se elimina el arreglo de bytes
-            }
-
-            return new ResponseEntity<>(listaEspacios, HttpStatus.OK);
-        } catch (Exception e) {
-            // Manejo de excepciones para devolver un mensaje adecuado en caso de error
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                                 .body("Error al consultar la lista de fotos de perfil: " + e.getMessage());
+		try {
+			String fileName = fileStorageService.storeFile(file);
+			espacio.setImagen_url("http://localhost:8888/api/downloadFile/" + fileName);
+            
+            // return ResponseEntity.ok().body("File uploaded successfully: " + file.getOriginalFilename());
+        } catch (IOException e) {
+            // return ResponseEntity.status(500).body("Failed to upload file: " + file.getOriginalFilename());
         }
-        }
 
+		espacio.setImagen_base(Base64.getEncoder().encodeToString(file.getBytes()));
+		int retorno=espacioService.save(espacio);
+		if(retorno==0) {	
+			respuesta respuesta=new respuesta(
+				"ok",
+				"Se guardó correctamente"
+				);
+			return new ResponseEntity<> (respuesta, HttpStatus.OK);
+		}else {
+			respuesta respuesta=new respuesta(
+						"error",
+						"Error al guardar"
+						);
+			return new ResponseEntity<> (respuesta, HttpStatus.OK);
+		}
+		
+	}
+ 
+    /*
     @PostMapping("/")
-    public ResponseEntity<Object> guardarEspacioJson(@ModelAttribute espacio espacio, @RequestParam("file") MultipartFile file) {
+    public ResponseEntity<Object> guardarEspacioJson(@ModelAttribute espacio espacio, 
+                                                     @RequestParam("file") MultipartFile file, 
+                                                     HttpServletRequest request) {
         try {
-            // Almacenar el archivo y obtener el nombre del archivo
-            String fileName = fileStorageService.storeFile(file);
-            // Utilizar esquema relativo para que el protocolo sea determinado automáticamente
-            espacio.setImagen_url("http://5.183.11.147:8888/api/downloadFile/" + fileName);
+            // Verificar si el archivo no es nulo y no está vacío
+            if (file != null && !file.isEmpty()) {
+                // Almacenar el archivo y obtener el nombre del archivo
+                String fileName = fileStorageService.storeFile(file);
+
+                // Codificar el nombre del archivo para URL (evita problemas con espacios y caracteres especiales)
+                String encodedFileName = URLEncoder.encode(fileName, StandardCharsets.UTF_8.toString());
+
+                // Construir la URL completa del archivo con el nombre codificado
+                String serverUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+                espacio.setImagen_url(serverUrl + "/api/downloadFile/" + encodedFileName);
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                                     .body("Archivo no proporcionado o está vacío");
+            }
 
             // Guardar el espacio en la base de datos
             espacioService.save(espacio);
 
+            // Devolver respuesta de éxito
             respuesta respuesta = new respuesta("ok", "Se guardó correctamente");
             return new ResponseEntity<>(respuesta, HttpStatus.OK);
 
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                                 .body("Failed to upload file: " + e.getMessage());
+                                 .body("Error al subir el archivo: " + e.getMessage());
         }
     }
+
+    */
+
 
     // Método para buscar espacios por filtro
     @GetMapping("/busquedafiltro/{filtro}")

@@ -1,3 +1,4 @@
+
 package com.sena.jwt_security.models;
 
 import java.util.Collection;
