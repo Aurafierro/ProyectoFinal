@@ -4,20 +4,7 @@
 //document.getElementById("hora_entrada").addEventListener("keypress", numerosYcaracteres);
 //document.getElementById("hora_salida").addEventListener("keypress", numerosYcaracteres);
 
-document.querySelector('.menu-toggle').addEventListener('click', function () {
-  const sidebar = document.querySelector('.sidebar');
-  const contenedorContenido = document.querySelector('.contenedorContenido');
 
-  // Alterna la visibilidad de la barra lateral
-  sidebar.classList.toggle('visible');
-
-  // Ajusta el margen izquierdo del contenido principal dependiendo del estado del menú
-  if (sidebar.classList.contains('visible')) {
-      contenedorContenido.style.marginLeft = '250px'; // Desplaza el contenido principal
-  } else {
-      contenedorContenido.style.marginLeft = '0'; // Restaura el margen original
-  }
-});
 function soloLetras(event) {
   console.log("Llave presionada: " + event.key);
   console.log("Código tecla: " + event.keyCode);
@@ -281,22 +268,7 @@ function cerrarSesion() {
   window.location.href = urlRedireccionInicioSesion;
 }
 
-function toggleSidebar() {
-  const sidebar = document.getElementById('sidebar');
-  const mainContent = document.querySelector('.main-content');
-  const header = document.querySelector('.header');
-  if (sidebar.classList.contains('hidden')) {
-      sidebar.classList.remove('hidden');
-      sidebar.classList.add('visible');
-      mainContent.classList.add('shifted');
-      header.classList.add('shifted');
-  } else {
-      sidebar.classList.remove('visible');
-      sidebar.classList.add('hidden');
-      mainContent.classList.remove('shifted');
-      header.classList.remove('shifted');
-  }
-}
+
   function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const mainContent = document.querySelector('.main-content');
