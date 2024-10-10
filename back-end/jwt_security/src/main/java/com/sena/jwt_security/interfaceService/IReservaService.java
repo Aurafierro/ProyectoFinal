@@ -17,4 +17,6 @@ public interface IReservaService {
 	public Object filtroIngresoReservaSelect(String filtro);
 	public List<reserva> filtroIngresoReserva(String nombre_espacio, String nombre_completo);
 	public List<reserva> verificarReservaConflicto(String nombre_espacio, String hora_entrada, String hora_salida);
+	public List<reserva> findByUsuario(String username);
+	
 }
