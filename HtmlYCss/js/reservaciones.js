@@ -275,7 +275,7 @@ function cerrarSesion() {
 }
 
 
-  function toggleSidebar() {
+  function sidebar() {
             const sidebar = document.getElementById('sidebar');
             const mainContent = document.querySelector('.main-content');
             const header = document.querySelector('.header');
@@ -688,3 +688,16 @@ function cerrarModal() {
       modal.hide();
   }
 }
+document.querySelector('.menu-toggle').addEventListener('click', function () {
+  const sidebar = document.querySelector('.sidebar');
+  const contenedorContenido = document.querySelector('.contenedorContenido');
+
+  // Alterna la visibilidad de la barra lateral
+  sidebar.classList.toggle('visible');
+  // Ajusta el margen izquierdo del contenido principal dependiendo del estado del menú
+  if (sidebar.classList.contains('visible')) {
+      contenedorContenido.style.marginLeft = '250px'; // Desplaza el contenido principal
+  } else {
+      contenedorContenido.style.marginLeft = '0'; // Restaura el margen original
+  }
+});
