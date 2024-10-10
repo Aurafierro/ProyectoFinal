@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.sena.jwt_security.interfaceService.IReservaService;
 import com.sena.jwt_security.interfaces.IReserva;
+import com.sena.jwt_security.models.espacio;
 import com.sena.jwt_security.models.reserva;
+import com.sena.jwt_security.models.userRegistro;
 
 
 
@@ -51,19 +53,12 @@ public class reservaService implements IReservaService{
 	}
 
 	@Override
-	public List<reserva> filtroIngresoReserva(String nombre_espacio, String nombre_completo) {
+	public List<reserva> filtroIngresoReserva(espacio espacio, userRegistro userRegistro) {
 	    // Llama al repositorio con ambos parámetros
-	    List<reserva> listaReserva = data.filtroIngresoReserva(nombre_espacio, nombre_completo);
+	    List<reserva> listaReserva = data.filtroIngresoReserva(espacio, userRegistro);
 	    return listaReserva;
 	}
 
-	@Override
-	public Object filtroIngresoReservaSelect(String filtro) {
-		 List<reserva> listaReserva = data.filtroIngresoReservaSelect(filtro);
-		    return listaReserva;
-
-	
-	}
 	@Override
 	public List<reserva> verificarReservaConflicto(String nombre_espacio, String hora_entrada, String hora_salida) {
 	    // Llama al repositorio para verificar si ya hay una reserva con el mismo espacio y horario

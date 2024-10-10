@@ -165,4 +165,10 @@ public class userRegistro implements UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

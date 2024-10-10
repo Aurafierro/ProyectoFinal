@@ -17,7 +17,6 @@ var urlRecuperarContrase=urlBase+"user/recuperar-contrasena";
 var urlInicioSesion=urlBase+"public/user/login/";
 var urlRecuperarContrasena=urlBase+"user/recuperar-contrasena"
 
-
 /* Redirecciones */
 //var urlRedireccion = "http://asignaweb.com/"; 
 var urlRedireccion = "http://127.0.0.1:5502//"; 

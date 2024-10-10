@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevButton = document.querySelector('.carousel-button.prev');
     const nextButton = document.querySelector('.carousel-button.next');
     const cardsContainer = document.getElementById('cards-container');
-    const apiUrl = 'http://5.183.11.147:8888/api/v1/espacio/'; // Cambia esto por la URL de tu API
     let currentIndex = 0;
     let cards = [];
 
@@ -43,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cards.push(defaultCard); // Almacena la tarjeta predeterminada
 
     // Fetch data from API
-    fetch(apiUrl)
+    fetch(urlAnadirEspacio)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Error en la red');

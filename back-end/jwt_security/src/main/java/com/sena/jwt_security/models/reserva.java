@@ -9,6 +9,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class reserva {
@@ -18,11 +20,13 @@ public class reserva {
     @Column(name = "id_reserva", nullable = false, length = 36)
     private String id_reserva;
 
-    @Column(name = "nombre_completo", nullable = false, length = 36)
-    private String nombre_completo;
+    @ManyToOne
+    @JoinColumn(name = "id_user")
+    private userRegistro userRegistro;
 
-    @Column(name = "nombre_espacio", nullable = false, length = 36)
-    private String nombre_espacio;
+    @ManyToOne
+    @JoinColumn(name = "id_espacio")
+    private espacio espacio;
 
     @Column(name = "hora_entrada", nullable = false, length = 36)
     private String hora_entrada;
@@ -39,40 +43,29 @@ public class reserva {
     @Column(name = "username", nullable = false, length = 100)
     private String username;
 
-    
     @Enumerated(EnumType.STRING)
     @Column(name = "estado", nullable = false, length = 10)
-    private estado estadoReserva = estado.ACTIVO;  
-  
+    private estado estadoReserva = estado.ACTIVO;
 
-   
+    public reserva() {
+        super();
+    }
 
+    public reserva(String id_reserva, com.sena.jwt_security.models.userRegistro userRegistro,
+            com.sena.jwt_security.models.espacio espacio, String hora_entrada, String hora_salida, Date fecha_entrada,
+            Date fecha_salida, String username, estado estadoReserva) {
+        super();
+        this.id_reserva = id_reserva;
+        this.userRegistro = userRegistro;
+        this.espacio = espacio;
+        this.hora_entrada = hora_entrada;
+        this.hora_salida = hora_salida;
+        this.fecha_entrada = fecha_entrada;
+        this.fecha_salida = fecha_salida;
+        this.username = username;
+        this.estadoReserva = estadoReserva;
+    }
 
-
-
-	public reserva() {
-		super();
-	}
-
-	
-	
-	public reserva(String id_reserva, String nombre_completo, String nombre_espacio, String hora_entrada,
-			String hora_salida, Date fecha_entrada, Date fecha_salida, String username, estado estadoReserva) {
-		super();
-		this.id_reserva = id_reserva;
-		this.nombre_completo = nombre_completo;
-		this.nombre_espacio = nombre_espacio;
-		this.hora_entrada = hora_entrada;
-		this.hora_salida = hora_salida;
-		this.fecha_entrada = fecha_entrada;
-		this.fecha_salida = fecha_salida;
-		this.username = username;
-		this.estadoReserva = estadoReserva;
-	}
-
-
-
-	// Getters y Setters
     public String getId_reserva() {
         return id_reserva;
     }
@@ -81,20 +74,20 @@ public class reserva {
         this.id_reserva = id_reserva;
     }
 
-    public String getNombre_completo() {
-        return nombre_completo;
+    public userRegistro getUserRegistro() {
+        return userRegistro;
     }
 
-    public void setNombre_completo(String nombre_completo) {
-        this.nombre_completo = nombre_completo;
+    public void setUserRegistro(userRegistro userRegistro) {
+        this.userRegistro = userRegistro;
     }
 
-    public String getNombre_espacio() {
-        return nombre_espacio;
+    public espacio getEspacio() {
+        return espacio;
     }
 
-    public void setNombre_espacio(String nombre_espacio) {
-        this.nombre_espacio = nombre_espacio;
+    public void setEspacio(espacio espacio) {
+        this.espacio = espacio;
     }
 
     public String getHora_entrada() {
@@ -137,36 +130,15 @@ public class reserva {
         this.username = username;
     }
 
+    public estado getEstadoReserva() {
+        return estadoReserva;
+    }
 
+    public void setEstadoReserva(estado estadoReserva) {
+        this.estadoReserva = estadoReserva;
+    }
 
-
-
-
-	public estado getEstadoReserva() {
-		return estadoReserva;
-	}
-
-
-
-	public void setEstadoReserva(estado estadoReserva) {
-		this.estadoReserva = estadoReserva;
-	}
-
-
-
-	public void setEstado(com.sena.jwt_security.models.estado activo) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-
-
-
-
-
-
-
-    
+    public userRegistro getUser() {
+        return this.userRegistro;
+    }
 }

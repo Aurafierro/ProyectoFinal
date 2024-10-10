@@ -86,67 +86,105 @@ function numerosYcaracteres(event) {
     return;
   }
 }
-function crearReserva() {
-  let formData = {
-    "nombre_completo": document.getElementById("nombre_completo").value,
-    "nombre_espacio": document.getElementById("nombre_espacio").value,
-    "hora_entrada": document.getElementById("hora_entrada").value,
-    "hora_salida": document.getElementById("hora_salida").value,
-    "fecha_entrada": document.getElementById("fecha_entrada").value,
-    "fecha_salida": document.getElementById("fecha_salida").value,
-    "username": document.getElementById("username").value
-  };
 
-  // Validar que las horas de entrada y salida no sean iguales
-  if (!validarHoras(formData.hora_entrada, formData.hora_salida)) {
-    return; // Si son iguales, no continuar
+//cuando la página cargue 
+// se debe cargar la información del formulario
+//ejemplo nombre de la persona
+function cargarFormulario() {
+  // Obtener el token de autenticación del localStorage
+  const authToken = localStorage.getItem('authTokens');
+  $.ajax({
+    url: 'http://localhost:8888/api/v1/user/profile', // URL de tu endpoint
+    type: 'GET',
+    headers: {
+      'Authorization': `Bearer ${authToken}` // Agregar el token al encabezado
+    },
+    success: function (userData) {
+      console.log(userData);
+      document.getElementById("nombre_completo").value=userData["nombre_completo"];
+    }
   }
+  );
+}
 
-  let camposValidos = true;
-  let camposRequeridos = [
-    "nombre_completo",
-    "nombre_espacio",
-    "hora_entrada",
-    "hora_salida",
-    "fecha_entrada",
-    "fecha_salida",
-    "username"
-  ];
-  camposRequeridos.forEach(function (campo) {
-    let valorCampo = document.getElementById(campo).value.trim();
-    if (valorCampo === "") {
-      camposValidos = false;
-      return false; // Terminar la iteración si se encuentra un campo vacío
+function crearReserva() {
+  // Obtener el token de autenticación del localStorage
+  const authToken = localStorage.getItem('authTokens');
+
+  // Realizar una llamada al endpoint /profile para obtener los datos del usuario
+  $.ajax({
+    url: 'http://localhost:8888/api/v1/user/profile', // URL de tu endpoint
+    type: 'GET',
+    headers: {
+      'Authorization': `Bearer ${authToken}` // Agregar el token al encabezado
+    },
+    success: function (userData) {
+      let formData = {
+        "userRegistro": userData.id_user, // Usar el ID del usuario obtenido
+        "espacio": document.getElementById("id_espacio").value,
+        "hora_entrada": document.getElementById("hora_entrada").value,
+        "hora_salida": document.getElementById("hora_salida").value,
+        "fecha_entrada": document.getElementById("fecha_entrada").value,
+        "fecha_salida": document.getElementById("fecha_salida").value,
+        "username": userData.nombre_completo // Suponiendo que 'nombre_completo' está en los datos del usuario
+      };
+
+      // Validar que las horas de entrada y salida no sean iguales
+      if (!validarHoras(formData.hora_entrada, formData.hora_salida)) {
+        return; // Si son iguales, no continuar
+      }
+
+      let camposValidos = true;
+      let camposRequeridos = [
+        "id_user",
+        "id_espacio",
+        "hora_entrada",
+        "hora_salida",
+        "fecha_entrada",
+        "fecha_salida",
+        "username"
+      ];
+      camposRequeridos.forEach(function (campo) {
+        let valorCampo = document.getElementById(campo).value.trim();
+        if (valorCampo === "") {
+          camposValidos = false;
+          return false; // Terminar la iteración si se encuentra un campo vacío
+        }
+      });
+
+      if (camposValidos) {
+        $.ajax({
+          url: urlReserva,
+          type: "POST",
+          contentType: "application/json",
+          data: JSON.stringify(formData),
+          success: function (result) {
+            Swal.fire({
+              title: "¡Excelente!",
+              text: "Se guardó correctamente",
+              icon: "success"
+            });
+            limpiarFormulario();
+            tablaReservas();
+          },
+          error: function (error) {
+            Swal.fire("Error", "Error al guardar, " + error.responseText, "error");
+          },
+        });
+      } else {
+        Swal.fire({
+          title: "¡Error!",
+          text: "Llene todos los campos correctamente",
+          icon: "error"
+        });
+      }
+    },
+    error: function (error) {
+      Swal.fire("Error", "No se pudo obtener el perfil del usuario: " + error.responseText, "error");
     }
   });
-
-  if (camposValidos) {
-    $.ajax({
-      url: urlReserva,
-      type: "POST",
-      contentType: "application/json",
-      data: JSON.stringify(formData),
-      success: function (result) {
-        Swal.fire({
-          title: "¡Excelente!",
-          text: "Se guardó correctamente",
-          icon: "success"
-        });
-        limpiarFormulario();
-        tablaReservas();
-      },
-      error: function (error) {
-        Swal.fire("Error", "Error al guardar, " + error.responseText, "error");
-      },
-    });
-  } else {
-    Swal.fire({
-      title: "¡Error!",
-      text: "Llene todos los campos correctamente",
-      icon: "error"
-    });
-  }
 }
+
 
 function listaReservasCrearReserva() {
   $.ajax({
@@ -177,8 +215,8 @@ function listaReservasCrearReserva() {
           let celdaFechaSalida = document.createElement("td");
 
           // Asignar los valores correspondientes a las celdas
-          celdaNombreCompleto.innerText = reserva["nombre_completo"];
-          celdaNombreEspacio.innerText = reserva["nombre_espacio"];
+          celdaNombreCompleto.innerText = reserva["userRegistro"]["nombre_completo"];
+          celdaNombreEspacio.innerText = reserva["espacio"]["nombre_espacio"];
           celdaHoraEntrada.innerText = reserva["hora_entrada"];
           celdaHoraSalida.innerText = reserva["hora_salida"];
           celdaFechaEntrada.innerText = reserva["fecha_entrada"];
@@ -266,151 +304,151 @@ document.addEventListener('DOMContentLoaded', function () {
 function cerrarSesion() {
   // Limpiar el token y redirigir
   localStorage.removeItem('authTokens');
-  
+
   // Limpiar el historial del navegador para evitar regresar a la página anterior
   window.history.replaceState(null, null, urlRedireccionInicioSesion);
-  
+
   // Redirigir al inicio de sesión
   window.location.href = urlRedireccionInicioSesion;
 }
 
 
-  function sidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const mainContent = document.querySelector('.main-content');
-            const header = document.querySelector('.header');
-            if (sidebar.classList.contains('hidden')) {
-                sidebar.classList.remove('hidden');
-                sidebar.classList.add('visible');
-                mainContent.classList.add('shifted');
-                header.classList.add('shifted');
-            } else {
-                sidebar.classList.remove('visible');
-                sidebar.classList.add('hidden');
-                mainContent.classList.remove('shifted');
-                header.classList.remove('shifted');
-            }
+function sidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const mainContent = document.querySelector('.main-content');
+  const header = document.querySelector('.header');
+  if (sidebar.classList.contains('hidden')) {
+    sidebar.classList.remove('hidden');
+    sidebar.classList.add('visible');
+    mainContent.classList.add('shifted');
+    header.classList.add('shifted');
+  } else {
+    sidebar.classList.remove('visible');
+    sidebar.classList.add('hidden');
+    mainContent.classList.remove('shifted');
+    header.classList.remove('shifted');
+  }
+}
+function historial() {
+  var capturarFiltro = document.getElementById("inputSearch").value;
+  var urlLocal = urlReserva;
+
+  if (capturarFiltro != "") {
+    urlLocal += "busquedafiltro/" + capturarFiltro;
+  }
+
+  $.ajax({
+    url: urlLocal,
+    type: "GET",
+    success: function (result) {
+      console.log(result); // Log the entire result to inspect the data
+
+      var cuerpoTabla = document.getElementById("cuerpoTabla");
+      cuerpoTabla.innerHTML = ""; // Clear the table body
+
+      // Iterate over each reservation
+      result.forEach(function (reserva) {
+        console.log("Reserva:", reserva); // Log each reservation to inspect the structure
+
+        // Filtrar solo las reservas activas (estado === true o estadoReserva === "ACTIVO")
+        if (reserva.estado === true || reserva.estadoReserva === "ACTIVO") {
+          var trResgistro = document.createElement("tr");
+
+          let celdaNombreCompleto = document.createElement("td");
+          let celdaNombreEspacio = document.createElement("td");
+          let celdaHoraEntrada = document.createElement("td");
+          let celdaHoraSalida = document.createElement("td");
+          let celdaFechaEntrada = document.createElement("td");
+          let celdaFechaSalida = document.createElement("td");
+
+          celdaNombreCompleto.innerText = reserva["userRegistro"]["nombre_completo"];
+          celdaNombreEspacio.innerText = reserva["espacio"]["nombre_espacio"];
+          celdaHoraEntrada.innerText = reserva["hora_entrada"];
+          celdaHoraSalida.innerText = reserva["hora_salida"];
+          celdaFechaEntrada.innerText = reserva["fecha_entrada"];
+          celdaFechaSalida.innerText = reserva["fecha_salida"];
+
+          let celdaOpcionEditar = document.createElement("td");
+          let botonEditarReserva = document.createElement("button");
+          botonEditarReserva.value = reserva["id_reserva"];
+          botonEditarReserva.innerHTML = "Modificar reserva";
+          botonEditarReserva.onclick = function (e) {
+            $('#exampleModal').modal('show');
+            consultarReservaID(this.value);
+          };
+          botonEditarReserva.className = "btnEditar";
+          celdaOpcionEditar.appendChild(botonEditarReserva);
+
+          let celdaOpcionEliminar = document.createElement("td");
+          let botonEliminarReserva = document.createElement("button");
+          botonEliminarReserva.value = reserva["id_reserva"];
+          botonEliminarReserva.innerHTML = "Cancelar";
+          botonEliminarReserva.onclick = function (e) {
+            cancelarReserva(this.value);
+          };
+          botonEliminarReserva.className = "btnEliminar";
+          celdaOpcionEliminar.appendChild(botonEliminarReserva);
+
+          trResgistro.appendChild(celdaNombreCompleto);
+          trResgistro.appendChild(celdaNombreEspacio);
+          trResgistro.appendChild(celdaHoraEntrada);
+          trResgistro.appendChild(celdaHoraSalida);
+          trResgistro.appendChild(celdaFechaEntrada);
+          trResgistro.appendChild(celdaFechaSalida);
+          trResgistro.appendChild(celdaOpcionEditar);
+          trResgistro.appendChild(celdaOpcionEliminar);
+          cuerpoTabla.appendChild(trResgistro);
         }
-        function historial() {
-          var capturarFiltro = document.getElementById("inputSearch").value;
-          var urlLocal = urlReserva;
-        
-          if (capturarFiltro != "") {
-            urlLocal += "busquedafiltro/" + capturarFiltro;
-          }
-        
-          $.ajax({
-            url: urlLocal,
-            type: "GET",
-            success: function (result) {
-              console.log(result); // Log the entire result to inspect the data
-        
-              var cuerpoTabla = document.getElementById("cuerpoTabla");
-              cuerpoTabla.innerHTML = ""; // Clear the table body
-        
-              // Iterate over each reservation
-              result.forEach(function (reserva) {
-                console.log("Reserva:", reserva); // Log each reservation to inspect the structure
-        
-                // Filtrar solo las reservas activas (estado === true o estadoReserva === "ACTIVO")
-                if (reserva.estado === true || reserva.estadoReserva === "ACTIVO") {
-                  var trResgistro = document.createElement("tr");
-        
-                  let celdaNombreCompleto = document.createElement("td");
-                  let celdaNombreEspacio = document.createElement("td");
-                  let celdaHoraEntrada = document.createElement("td");
-                  let celdaHoraSalida = document.createElement("td");
-                  let celdaFechaEntrada = document.createElement("td");
-                  let celdaFechaSalida = document.createElement("td");
-        
-                  celdaNombreCompleto.innerText = reserva["nombre_completo"];
-                  celdaNombreEspacio.innerText = reserva["nombre_espacio"];
-                  celdaHoraEntrada.innerText = reserva["hora_entrada"];
-                  celdaHoraSalida.innerText = reserva["hora_salida"];
-                  celdaFechaEntrada.innerText = reserva["fecha_entrada"];
-                  celdaFechaSalida.innerText = reserva["fecha_salida"];
-        
-                  let celdaOpcionEditar = document.createElement("td");
-                  let botonEditarReserva = document.createElement("button");
-                  botonEditarReserva.value = reserva["id_reserva"];
-                  botonEditarReserva.innerHTML = "Modificar reserva";
-                  botonEditarReserva.onclick = function (e) {
-                    $('#exampleModal').modal('show');
-                    consultarReservaID(this.value);
-                  };
-                  botonEditarReserva.className = "btnEditar";
-                  celdaOpcionEditar.appendChild(botonEditarReserva);
-        
-                  let celdaOpcionEliminar = document.createElement("td");
-                  let botonEliminarReserva = document.createElement("button");
-                  botonEliminarReserva.value = reserva["id_reserva"];
-                  botonEliminarReserva.innerHTML = "Cancelar";
-                  botonEliminarReserva.onclick = function (e) {
-                    cancelarReserva(this.value);
-                  };
-                  botonEliminarReserva.className = "btnEliminar";
-                  celdaOpcionEliminar.appendChild(botonEliminarReserva);
-        
-                  trResgistro.appendChild(celdaNombreCompleto);
-                  trResgistro.appendChild(celdaNombreEspacio);
-                  trResgistro.appendChild(celdaHoraEntrada);
-                  trResgistro.appendChild(celdaHoraSalida);
-                  trResgistro.appendChild(celdaFechaEntrada);
-                  trResgistro.appendChild(celdaFechaSalida);
-                  trResgistro.appendChild(celdaOpcionEditar);
-                  trResgistro.appendChild(celdaOpcionEliminar);
-                  cuerpoTabla.appendChild(trResgistro);
-                }
-              });
-            },
-            error: function (error) {
-              alert("Error en la petición " + error);
-            }
-          });
-        }
-        
-        // Función para cancelar una reserva
-        function cancelarReserva(idReserva) {
+      });
+    },
+    error: function (error) {
+      alert("Error en la petición " + error);
+    }
+  });
+}
+
+// Función para cancelar una reserva
+function cancelarReserva(idReserva) {
+  Swal.fire({
+    title: "¿Estás seguro?",
+    text: "¿Deseas cancelar esta reserva?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Sí, cancelar",
+    cancelButtonText: "Cancelar"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        url: urlReserva + "cancelar/" + idReserva, // URL with reservation ID
+        type: "PUT",
+        success: function (response) {
           Swal.fire({
-            title: "¿Estás seguro?",
-            text: "¿Deseas cancelar esta reserva?",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Sí, cancelar",
-            cancelButtonText: "Cancelar"
-          }).then((result) => {
-            if (result.isConfirmed) {
-              $.ajax({
-                url: urlReserva + "cancelar/" + idReserva, // URL with reservation ID
-                type: "PUT",
-                success: function (response) {
-                  Swal.fire({
-                    title: "¡Cancelado!",
-                    text: "La reserva ha sido cancelada correctamente.",
-                    icon: "success"
-                  });
-                  // Eliminar la fila correspondiente después de la cancelación
-                  document.querySelector(`button[value="${idReserva}"]`).closest('tr').remove();
-                },
-                error: function (error) {
-                  Swal.fire("Error", "Error al cancelar la reserva. " + error.responseText, "error");
-                }
-              });
-            }
+            title: "¡Cancelado!",
+            text: "La reserva ha sido cancelada correctamente.",
+            icon: "success"
           });
+          // Eliminar la fila correspondiente después de la cancelación
+          document.querySelector(`button[value="${idReserva}"]`).closest('tr').remove();
+        },
+        error: function (error) {
+          Swal.fire("Error", "Error al cancelar la reserva. " + error.responseText, "error");
         }
+      });
+    }
+  });
+}
 function limpiarFormulario() {
-  document.getElementById("nombre_completo").className = "form-control";
-  document.getElementById("nombre_espacio").className = "form-control";
+  document.getElementById("id_user").className = "form-control";
+  document.getElementById("id_espacio").className = "form-control";
   document.getElementById("hora_entrada").className = "form-control";
   document.getElementById("hora_salida").className = "form-control";
   document.getElementById("fecha_entrada").className = "form-control";
   document.getElementById("fecha_salida").className = "form-control";
   document.getElementById("username").className = "form-control";
-  document.getElementById("nombre_completo").value = "";
-  document.getElementById("nombre_espacio").value = "";
+  document.getElementById("id_user").value = "";
+  document.getElementById("id_espacio").value = "";
   document.getElementById("hora_entrada").value = "";
   document.getElementById("hora_salida").value = "";
   document.getElementById("fecha_entrada").value = "";
@@ -452,11 +490,11 @@ window.onclick = function (event) {
 function consultarReservaID(id) {
   //alert(id);
   $.ajax({
-    url:  urlReserva + id,
+    url: urlReserva + id,
     type: "GET",
     success: function (result) {
       document.getElementById("id_reserva").value = result["id_reserva"];
-      document.getElementById("nombre_espacio").value = result["nombre_espacio"];
+      document.getElementById("id_espacio").value = result["nombre_espacio"];
       document.getElementById("hora_entrada").value = result["hora_entrada"];
       document.getElementById("hora_salida").value = result["hora_salida"];
       document.getElementById("fecha_entrada").value = result["fecha_entrada"];
@@ -515,39 +553,39 @@ function descargarPDF() {
   const head = [['Nombre Completo', 'Nombre Espacio', 'Hora Entrada', 'Hora Salida', 'Fecha Entrada', 'Fecha Salida']];
   const cuerpoTabla = document.getElementById('cuerpoTabla');
   const rows = [...cuerpoTabla.getElementsByTagName('tr')].map(row => {
-      return [...row.getElementsByTagName('td')].map(cell => cell.innerText);
+    return [...row.getElementsByTagName('td')].map(cell => cell.innerText);
   });
   // Generar la tabla con nuevo diseño
   doc.autoTable({
-      head: head,
-      body: rows,
-      startY: 50, // Ajustar según el espacio que necesites
-      theme: 'grid', // Cambiar a un estilo de cuadrícula
-      styles: {
-          fillColor: [255, 255, 255], // Fondo blanco en las celdas
-          textColor: [0, 0, 0],       // Texto negro
-          lineColor: [44, 62, 80],    // Líneas de borde azul oscuro
-          lineWidth: 0.1,
-          fontSize: 10,
-          fontStyle: 'normal',
-          halign: 'center',           // Centrar el texto
-          cellPadding: 5,             // Padding extra para mayor espacio
-          overflow: 'linebreak',
-      },
-      headStyles: {
-          fillColor: [26, 62, 104],   // Azul oscuro en el encabezado
-          textColor: [255, 255, 255], // Texto blanco en el encabezado
-          fontSize: 12,
-          fontStyle: 'bold',
-          lineWidth: 0.1,             // Bordes delgados
-          halign: 'center',           // Centrar el texto en el encabezado
-          cellPadding: 6,             // Más espacio en las celdas del encabezado
-      },
-      alternateRowStyles: {
-          fillColor: [245, 245, 245]  // Alternar filas con un gris claro
-      },
-      tableLineColor: [26, 62, 104],  // Bordes de la tabla en azul oscuro
-      tableLineWidth: 0.2,            // Grosor de las líneas de la tabla
+    head: head,
+    body: rows,
+    startY: 50, // Ajustar según el espacio que necesites
+    theme: 'grid', // Cambiar a un estilo de cuadrícula
+    styles: {
+      fillColor: [255, 255, 255], // Fondo blanco en las celdas
+      textColor: [0, 0, 0],       // Texto negro
+      lineColor: [44, 62, 80],    // Líneas de borde azul oscuro
+      lineWidth: 0.1,
+      fontSize: 10,
+      fontStyle: 'normal',
+      halign: 'center',           // Centrar el texto
+      cellPadding: 5,             // Padding extra para mayor espacio
+      overflow: 'linebreak',
+    },
+    headStyles: {
+      fillColor: [26, 62, 104],   // Azul oscuro en el encabezado
+      textColor: [255, 255, 255], // Texto blanco en el encabezado
+      fontSize: 12,
+      fontStyle: 'bold',
+      lineWidth: 0.1,             // Bordes delgados
+      halign: 'center',           // Centrar el texto en el encabezado
+      cellPadding: 6,             // Más espacio en las celdas del encabezado
+    },
+    alternateRowStyles: {
+      fillColor: [245, 245, 245]  // Alternar filas con un gris claro
+    },
+    tableLineColor: [26, 62, 104],  // Bordes de la tabla en azul oscuro
+    tableLineWidth: 0.2,            // Grosor de las líneas de la tabla
   });
   // Guardar el PDF
   doc.save('HistorialReservaciones.pdf');
@@ -560,52 +598,30 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('fecha_entrada').setAttribute('min', today);
   document.getElementById('fecha_salida').setAttribute('min', today);
 });
-// Función para cargar los espacios desde la API y rellenar el select en el modal
 function cargarEspacios() {
   $.ajax({
-      url: urlAnadirEspacio, // URL de tu API para obtener los espacios
-      type: 'GET',
-      success: function (espacios) {
-          const selectEspacios = document.getElementById('nombre_espacio');
-          selectEspacios.innerHTML = '<option value="" selected disabled>Selecciona una opción</option>';
-          // Iterar sobre los espacios obtenidos y agregarlos como opciones en el select
-          espacios.forEach(function (espacio) {
-              const option = document.createElement('option');
-              option.value = espacio.id; // Asumiendo que cada espacio tiene un ID
-              option.text = espacio.nombre_espacio; // Asumiendo que el nombre del espacio está en "nombre_espacio"
-              selectEspacios.appendChild(option);
-          });
-      },
-      error: function (error) {
-          console.error("Error al cargar los espacios: ", error);
-          Swal.fire('Error', 'No se pudieron cargar los espacios disponibles.', 'error');
-      }
-  });
-}
-function cargarEspacios() {
-  $.ajax({
-      url: 'http://localhost:8888/api/v1/espacio/', 
-      type: 'GET',
-      success: function (espacios) {
-          const selectEspacios = document.getElementById('nombre_espacio');
-          selectEspacios.innerHTML = '<option value="" selected disabled>Selecciona una opción</option>'; 
+    url: 'http://localhost:8888/api/v1/espacio/',
+    type: 'GET',
+    success: function (espacios) {
+      const selectEspacios = document.getElementById('nombre_espacio');
+      selectEspacios.innerHTML = '<option value="" selected disabled>Selecciona una opción</option>';
 
-          espacios.forEach(function (espacio) {
-              const option = document.createElement('option');
-              option.value = espacio.id; 
-              option.text = espacio.nombre_del_espacio; 
-              selectEspacios.appendChild(option);
-          });
-      },
-      error: function (error) {
-          console.error("Error al cargar los espacios: ", error);
-          Swal.fire('Error', 'No se pudieron cargar los espacios disponibles.', 'error');
-      }
+      espacios.forEach(function (espacio) {
+        const option = document.createElement('option');
+        option.value = espacio.id;
+        option.text = espacio.nombre_del_espacio;
+        selectEspacios.appendChild(option);
+      });
+    },
+    error: function (error) {
+      console.error("Error al cargar los espacios: ", error);
+      Swal.fire('Error', 'No se pudieron cargar los espacios disponibles.', 'error');
+    }
   });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  listaReservasCrearReserva(); 
+  listaReservasCrearReserva();
   cargarEspacios();
 });
 
@@ -619,20 +635,20 @@ function validarCampos() {
 
   // Comprobar si hay campos vacíos
   if (nombre_espacio === '' || hora_entrada === '' || hora_salida === '' || fecha_entrada === '' || fecha_salida === '') {
-      return false; // Al menos un campo está vacío
+    return false; // Al menos un campo está vacío
   } else {
-      return true; 
+    return true;
   }
 }
 
 function validarHoras(horaEntrada, horaSalida) {
   if (horaEntrada === horaSalida) {
-      Swal.fire({
-          title: "¡Error!",
-          text: "La hora de entrada no puede ser igual a la hora de salida",
-          icon: "error"
-      });
-      return false;
+    Swal.fire({
+      title: "¡Error!",
+      text: "La hora de entrada no puede ser igual a la hora de salida",
+      icon: "error"
+    });
+    return false;
   }
   return true;
 }
@@ -640,11 +656,11 @@ function validarHoras(horaEntrada, horaSalida) {
 function actualizarReserva() {
   var id_reserva = document.getElementById("id_reserva").value;
   let formData = {
-      "nombre_espacio": document.getElementById("nombre_espacio").value,
-      "hora_entrada": document.getElementById("hora_entrada").value,
-      "hora_salida": document.getElementById("hora_salida").value,
-      "fecha_entrada": document.getElementById("fecha_entrada").value,
-      "fecha_salida": document.getElementById("fecha_salida").value
+    "nombre_espacio": document.getElementById("nombre_espacio").value,
+    "hora_entrada": document.getElementById("hora_entrada").value,
+    "hora_salida": document.getElementById("hora_salida").value,
+    "fecha_entrada": document.getElementById("fecha_entrada").value,
+    "fecha_salida": document.getElementById("fecha_salida").value
   };
 
   // Validar que las horas de entrada y salida no sean iguales
@@ -655,27 +671,27 @@ function actualizarReserva() {
   if (validarCampos()) {
     // Proceder a actualizar la reserva
     $.ajax({
-        url: urlReserva + id_reserva,
-        type: "PUT",
-        contentType: "application/json",
-        data: JSON.stringify(formData),
-        success: function (result) {
-            Swal.fire({
-                title: "¡Excelente!",
-                text: "Se guardó correctamente",
-                icon: "success"
-            });
-            historial(); // Actualizar el historial de reservas
-        },
-        error: function (error) {
-            Swal.fire("Error", "Error al guardar, " + error.responseText, "error");
-        }
+      url: urlReserva + id_reserva,
+      type: "PUT",
+      contentType: "application/json",
+      data: JSON.stringify(formData),
+      success: function (result) {
+        Swal.fire({
+          title: "¡Excelente!",
+          text: "Se guardó correctamente",
+          icon: "success"
+        });
+        historial(); // Actualizar el historial de reservas
+      },
+      error: function (error) {
+        Swal.fire("Error", "Error al guardar, " + error.responseText, "error");
+      }
     });
   } else {
     Swal.fire({
-        title: "¡Error!",
-        text: "Llene todos los campos correctamente",
-        icon: "error"
+      title: "¡Error!",
+      text: "Llene todos los campos correctamente",
+      icon: "error"
     });
   }
 }
@@ -685,7 +701,7 @@ function cerrarModal() {
   // Suponiendo que estás utilizando el modal de Bootstrap
   const modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal'));
   if (modal) {
-      modal.hide();
+    modal.hide();
   }
 }
 document.querySelector('.menu-toggle').addEventListener('click', function () {
@@ -696,8 +712,8 @@ document.querySelector('.menu-toggle').addEventListener('click', function () {
   sidebar.classList.toggle('visible');
   // Ajusta el margen izquierdo del contenido principal dependiendo del estado del menú
   if (sidebar.classList.contains('visible')) {
-      contenedorContenido.style.marginLeft = '250px'; // Desplaza el contenido principal
+    contenedorContenido.style.marginLeft = '250px'; // Desplaza el contenido principal
   } else {
-      contenedorContenido.style.marginLeft = '0'; // Restaura el margen original
+    contenedorContenido.style.marginLeft = '0'; // Restaura el margen original
   }
 });

@@ -31,9 +31,13 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.sena.jwt_security.interfaceService.IReservaService;
+import com.sena.jwt_security.models.espacio;
 import com.sena.jwt_security.models.estado;
 import com.sena.jwt_security.models.reserva;
+import com.sena.jwt_security.models.userRegistro;
 import com.sena.jwt_security.service.emailService;
+import com.sena.jwt_security.service.espacioService;
+import com.sena.jwt_security.service.userService;
 
 @RestController
 @RequestMapping("/api/v1/reserva")
@@ -54,21 +58,35 @@ public class reservaController {
         }
 
         // Validaciones adicionales
-        if (reserva.getNombre_completo().isEmpty()) {
+        if (reserva.getUserRegistro() == null || reserva.getUserRegistro().getNombre_completo() == null) {
             return new ResponseEntity<>("El nombre completo es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
 
+        if (reserva.getEspacio() == null || reserva.getEspacio().getNombre_del_espacio() == null) {
+            return new ResponseEntity<>("El espacio reservado es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
+
         // Asignar estado como 'Activo'
-        reserva.setEstado(estado.ACTIVO);
+        reserva.setEstadoReserva(estado.ACTIVO);
 
-        // Guardar reserva y enviar notificación por correo
+        // Guardar reserva
         reservaService.save(reserva);
-        emailService.enviarNotificacionReservaRealizada(reserva.getUsername(), reserva.getNombre_completo(),
-                reserva.getNombre_espacio(), reserva.getHora_entrada(), reserva.getHora_salida(),
-                reserva.getFecha_entrada(), reserva.getFecha_salida());
+        
+        // Enviar notificación por correo
+        String mensaje = emailService.enviarNotificacionReservaRealizada(
+            reserva.getUsername(), 
+            reserva.getUserRegistro(), // Enviar el objeto userRegistro completo
+            reserva.getEspacio(), 
+            reserva.getHora_entrada(), 
+            reserva.getHora_salida(),
+            reserva.getFecha_entrada(), 
+            reserva.getFecha_salida()
+        );
 
-        return new ResponseEntity<>(reserva, HttpStatus.OK);
+        // Retornar respuesta
+        return new ResponseEntity<>(mensaje, HttpStatus.OK);
     }
+
 
 
     @GetMapping("/")
@@ -87,7 +105,7 @@ public class reservaController {
             PdfWriter.getInstance(document, out);
             document.open();
 
-            // PARA AÑADIR TITULO AL PDF
+            // TÍTULO DEL PDF
             Paragraph title = new Paragraph("Reservaciones realizadas",
                     FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18, Font.BOLD, BaseColor.BLACK));
             title.setAlignment(Element.ALIGN_CENTER);
@@ -95,11 +113,11 @@ public class reservaController {
 
             document.add(new Paragraph(" "));
 
-            // Crear una tabla con las columnas especificadas
+            // Crear tabla
             PdfPTable table = new PdfPTable(6); // Número de columnas
             table.setWidthPercentage(100);
 
-            // Añadir encabezados a la tabla
+            // Encabezados
             table.addCell("Nombre completo");
             table.addCell("Nombre del espacio");
             table.addCell("Fecha de la reservación");
@@ -107,11 +125,13 @@ public class reservaController {
             table.addCell("Hora entrada");
             table.addCell("Hora salida");
 
-            // Añadir contenido a la tabla
+            // Obtener reservas
             List<reserva> reservas = reservaService.findAll();
             for (reserva reserva : reservas) {
-                table.addCell(reserva.getNombre_completo());
-                table.addCell(reserva.getNombre_espacio());
+                String userNombre = obtenerNombreUser(reserva.getUserRegistro());
+                String espacioNombre = obtenerNombreEspacio(reserva.getEspacio());
+                table.addCell(userNombre); // Mostrar el nombre del usuario
+                table.addCell(espacioNombre);
                 table.addCell(dateFormat.format(reserva.getFecha_entrada()));
                 table.addCell(dateFormat.format(reserva.getFecha_salida()));
                 table.addCell(reserva.getHora_entrada());
@@ -132,16 +152,22 @@ public class reservaController {
         return ResponseEntity.ok().headers(headers).body(out.toByteArray());
     }
 
-    @GetMapping("/busquedafiltro/{filtro}")
-    public ResponseEntity<Object> findFiltro(@PathVariable String filtro) {
-        var ListaReserva = reservaService.filtroIngresoReserva(filtro, filtro);
-        return new ResponseEntity<>(ListaReserva, HttpStatus.OK);
+    private String obtenerNombreUser(Object user) {
+        if (user instanceof userRegistro) {
+            userRegistro usuario = (userRegistro) user;
+            return usuario.getNombre_completo(); // Asegúrate de que este método exista en la clase userRegistro
+        }
+        return "Usuario desconocido"; // Retorno por defecto si el objeto no es del tipo esperado
     }
 
-    @GetMapping("/busquedafiltroselect/{filtro}")
-    public ResponseEntity<Object> findFiltrosSelect(@PathVariable String filtro) {
-        var ListaReserva = reservaService.filtroIngresoReservaSelect(filtro);
-        return new ResponseEntity<>(ListaReserva, HttpStatus.OK);
+    @GetMapping("/busquedafiltro/{filtro}")
+    public ResponseEntity<Object> findFiltro(@PathVariable String filtro) {
+        espacio espacioEncontrado = espacioService.findByFiltro(filtro);
+        userRegistro usuarioEncontrado = userService.findByFiltro(filtro);
+
+        var listaReserva = reservaService.filtroIngresoReserva(espacioEncontrado, usuarioEncontrado);
+
+        return new ResponseEntity<>(listaReserva, HttpStatus.OK);
     }
 
     @GetMapping("/{id_reserva}")
@@ -158,9 +184,9 @@ public class reservaController {
 
     @PutMapping("/{id_reserva}")
     public ResponseEntity<Object> update(@PathVariable String id_reserva, @RequestBody reserva reservaUpdate) {
-        var reserva = reservaService.findOne(id_reserva).get();
+        var reserva = reservaService.findOne(id_reserva).orElse(null);
         if (reserva != null) {
-            reserva.setNombre_espacio(reservaUpdate.getNombre_espacio());
+            reserva.setEspacio(reservaUpdate.getEspacio());
             reserva.setHora_entrada(reservaUpdate.getHora_entrada());
             reserva.setHora_salida(reservaUpdate.getHora_salida());
             reserva.setFecha_entrada(reservaUpdate.getFecha_entrada());
@@ -187,5 +213,11 @@ public class reservaController {
         } else {
             return new ResponseEntity<>("Error: reserva no encontrada", HttpStatus.NOT_FOUND);
         }
+    }
+
+    private String obtenerNombreEspacio(espacio espacio) {
+        // Aquí deberías implementar la lógica para obtener el nombre del espacio desde la tabla espacio.
+        // Por ejemplo, llamar al servicio de espacio o consultar el repositorio.
+        return espacio.getId_espacio(); // Asegúrate de que el método getNombre() exista en la clase espacio
     }
 }

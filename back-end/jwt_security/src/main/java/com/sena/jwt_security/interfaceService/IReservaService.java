@@ -4,7 +4,9 @@ import java.util.List;
 
 import java.util.Optional;
 
+import com.sena.jwt_security.models.espacio;
 import com.sena.jwt_security.models.reserva;
+import com.sena.jwt_security.models.userRegistro;
 
 public interface IReservaService {
 
@@ -13,10 +15,6 @@ public interface IReservaService {
     public List<reserva> filtroReserva(String filtro);
 	public Optional<reserva> findOne(String id_reserva);
 	public int delete (String id_reserva);
-
-	public Object filtroIngresoReservaSelect(String filtro);
-	public List<reserva> filtroIngresoReserva(String nombre_espacio, String nombre_completo);
+	public List<reserva> filtroIngresoReserva(espacio espacio, userRegistro userRegistro);
 	public List<reserva> verificarReservaConflicto(String nombre_espacio, String hora_entrada, String hora_salida);
-	public List<reserva> findByUsuario(String username);
-	
 }

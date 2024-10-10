@@ -70,4 +70,9 @@ public class espacioService implements IEspacioService {
         return res; // Devuelve 0 si se guardó correctamente, 1 si hubo un error
     }
 
+	public static espacio findByFiltro(String filtro) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

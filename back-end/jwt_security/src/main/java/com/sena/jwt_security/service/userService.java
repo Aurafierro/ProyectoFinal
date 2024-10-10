@@ -147,6 +147,14 @@ public class userService implements IUserService {
         }
     }
 
+
+
+
+	public static userRegistro findByFiltro(String filtro) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }
 
