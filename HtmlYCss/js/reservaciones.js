@@ -692,8 +692,6 @@ function validarHoras(horaEntrada, horaSalida) {
 
 function actualizarReserva() {
   // Obtener los valores de los campos del formulario
-  var nombreCompleto = document.getElementById("nombre_completo").value;
-  var username = document.getElementById("username").value;
   var idUser = document.getElementById("id_user").value;  // ID de la tabla `userRegistro`
   var idEspacio = document.getElementById("nombre_espacio").value;  // ID de la tabla `espacio`
   var horaEntrada = document.getElementById("hora_entrada").value;
@@ -724,11 +722,6 @@ function actualizarReserva() {
 
   // Crear un objeto con los datos a enviar (en formato JSON)
   var reservaData = {
-    userRegistro: {
-      id_user: idUser,
-      nombre_completo: nombreCompleto,
-      username: username
-    },
     espacio: {
       id_espacio: idEspacio  // Asegúrate de que el nombre coincide con lo que espera el backend
     },
