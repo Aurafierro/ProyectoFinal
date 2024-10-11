@@ -52,6 +52,7 @@ public class reservaController {
 
     @PostMapping("/")
     public ResponseEntity<Object> save(@RequestBody reserva reserva) {
+    	
         // Validación de que la hora de entrada no sea igual a la hora de salida
         if (reserva.getHora_entrada().equals(reserva.getHora_salida())) {
             return new ResponseEntity<>("La hora de entrada no puede ser igual a la hora de salida", HttpStatus.BAD_REQUEST);
