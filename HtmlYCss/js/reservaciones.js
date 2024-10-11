@@ -87,103 +87,139 @@ function numerosYcaracteres(event) {
   }
 }
 
-//cuando la página cargue 
-// se debe cargar la información del formulario
-//ejemplo nombre de la persona
+// Función para cargar los datos del usuario en el formulario
+window.onload = function () {
+  cargarFormulario(); // Cargar los datos del usuario cuando se carga la página
+};
+
+// Función para cargar la información del usuario en el formulario
 function cargarFormulario() {
-  // Obtener el token de autenticación del localStorage
   const authToken = localStorage.getItem('authTokens');
+
   $.ajax({
-    url: 'http://localhost:8888/api/v1/user/profile', // URL de tu endpoint
+    url: 'http://localhost:8888/api/v1/user/profile', // URL del endpoint para obtener los datos del perfil del usuario
     type: 'GET',
     headers: {
       'Authorization': `Bearer ${authToken}` // Agregar el token al encabezado
     },
     success: function (userData) {
       console.log(userData);
-      document.getElementById("nombre_completo").value=userData["nombre_completo"];
-    }
-  }
-  );
-}
 
-function crearReserva() {
-  // Obtener el token de autenticación del localStorage
-  const authToken = localStorage.getItem('authTokens');
+      // Verificar que los elementos existen antes de asignarles valores
+      var nombreCompletoField = document.getElementById("nombre_completo");
+      var usernameField = document.getElementById("username");
+      var idUserField = document.getElementById("id_user");
 
-  // Realizar una llamada al endpoint /profile para obtener los datos del usuario
-  $.ajax({
-    url: 'http://localhost:8888/api/v1/user/profile', // URL de tu endpoint
-    type: 'GET',
-    headers: {
-      'Authorization': `Bearer ${authToken}` // Agregar el token al encabezado
-    },
-    success: function (userData) {
-      let formData = {
-        "userRegistro": userData.id_user, // Usar el ID del usuario obtenido
-        "espacio": document.getElementById("id_espacio").value,
-        "hora_entrada": document.getElementById("hora_entrada").value,
-        "hora_salida": document.getElementById("hora_salida").value,
-        "fecha_entrada": document.getElementById("fecha_entrada").value,
-        "fecha_salida": document.getElementById("fecha_salida").value,
-        "username": userData.nombre_completo // Suponiendo que 'nombre_completo' está en los datos del usuario
-      };
-
-      // Validar que las horas de entrada y salida no sean iguales
-      if (!validarHoras(formData.hora_entrada, formData.hora_salida)) {
-        return; // Si son iguales, no continuar
-      }
-
-      let camposValidos = true;
-      let camposRequeridos = [
-        "id_user",
-        "id_espacio",
-        "hora_entrada",
-        "hora_salida",
-        "fecha_entrada",
-        "fecha_salida",
-        "username"
-      ];
-      camposRequeridos.forEach(function (campo) {
-        let valorCampo = document.getElementById(campo).value.trim();
-        if (valorCampo === "") {
-          camposValidos = false;
-          return false; // Terminar la iteración si se encuentra un campo vacío
-        }
-      });
-
-      if (camposValidos) {
-        $.ajax({
-          url: urlReserva,
-          type: "POST",
-          contentType: "application/json",
-          data: JSON.stringify(formData),
-          success: function (result) {
-            Swal.fire({
-              title: "¡Excelente!",
-              text: "Se guardó correctamente",
-              icon: "success"
-            });
-            limpiarFormulario();
-            tablaReservas();
-          },
-          error: function (error) {
-            Swal.fire("Error", "Error al guardar, " + error.responseText, "error");
-          },
-        });
+      if (nombreCompletoField && usernameField && idUserField) {
+        nombreCompletoField.value = userData["nombre_completo"];
+        usernameField.value = userData["username"];
+        idUserField.value = userData["id_user"];  // Asegúrate de que `id_user` sea el ID de `userRegistro`
       } else {
-        Swal.fire({
-          title: "¡Error!",
-          text: "Llene todos los campos correctamente",
-          icon: "error"
-        });
+        console.log("Error: Uno o más campos no existen en el DOM.");
       }
     },
     error: function (error) {
-      Swal.fire("Error", "No se pudo obtener el perfil del usuario: " + error.responseText, "error");
+      console.log("Error al cargar los datos del usuario:", error);
     }
   });
+  historial();
 }
+
+// Definir las funciones de validación de horas
+function validarHora_entrada(input) {
+  console.log("Validando hora de entrada:", input.value);
+}
+
+function validarHora_salida(input) {
+  console.log("Validando hora de salida:", input.value);
+}
+
+// Función para crear la reserva
+function crearReserva() {
+  // Obtener los valores de los campos del formulario
+  var nombreCompleto = document.getElementById("nombre_completo").value;
+  var username = document.getElementById("username").value;
+  var idUser = document.getElementById("id_user").value;  // ID de la tabla `userRegistro`
+  var idEspacio = document.getElementById("nombre_espacio").value;  // ID de la tabla `espacio`
+  var horaEntrada = document.getElementById("hora_entrada").value;
+  var horaSalida = document.getElementById("hora_salida").value;
+  var fechaEntrada = document.getElementById("fecha_entrada").value;
+  var fechaSalida = document.getElementById("fecha_salida").value;
+
+  // Validar que no haya campos vacíos
+  if (!validarCampos()) {
+      Swal.fire({
+          title: "¡Error!",
+          text: "Todos los campos son obligatorios",
+          icon: "error"
+      });
+      return;
+  }
+
+  // Validar que las horas no sean iguales
+  if (!validarHoras(horaEntrada, horaSalida)) {
+      Swal.fire({
+          title: "¡Error!",
+          text: "La hora de entrada y salida no pueden ser iguales",
+          icon: "error"
+      });
+      return;
+  }
+
+  // Crear un objeto con los datos a enviar (en formato JSON)
+  var reservaData = {
+      userRegistro: {
+          id_user: idUser,
+          nombre_completo: nombreCompleto,
+          username: username
+      },
+      espacio: {
+          id_espacio: idEspacio  // Asegúrate de que el nombre coincide con lo que espera el backend
+      },
+      hora_entrada: horaEntrada,
+      hora_salida: horaSalida,
+      fecha_entrada: fechaEntrada,
+      fecha_salida: fechaSalida
+  };
+
+  console.log("Datos enviados:", JSON.stringify(reservaData));
+
+  // Realizar la petición POST con el Content-Type adecuado
+  $.ajax({
+      url: 'http://localhost:8888/api/v1/reserva/', // URL de tu endpoint de reserva
+      type: 'POST',
+      contentType: "application/json", // Definir el tipo de contenido como JSON
+      data: JSON.stringify(reservaData), // Convertir el objeto a JSON antes de enviarlo
+      success: function (response) {
+          Swal.fire({
+              title: "¡Reserva creada!",
+              text: "La reserva se ha creado correctamente",
+              icon: "success"
+          });
+          listaReservasCrearReserva(); // Recargar la lista de reservas
+      },
+      error: function (error) {
+          Swal.fire({
+              title: "¡Error!",
+              text: "Ocurrió un error al crear la reserva",
+              icon: "error"
+          });
+          console.log("Error al crear la reserva:", error.responseJSON || error.responseText || error);
+      }
+  });
+}
+
+// Validar que todos los campos estén llenos
+function validarCampos() {
+  var idEspacio = document.getElementById("nombre_espacio").value;
+  var horaEntrada = document.getElementById("hora_entrada").value;
+  var horaSalida = document.getElementById("hora_salida").value;
+  var fechaEntrada = document.getElementById("fecha_entrada").value;
+  var fechaSalida = document.getElementById("fecha_salida").value;
+
+  return idEspacio !== '' && horaEntrada !== '' && horaSalida !== '' && fechaEntrada !== '' && fechaSalida !== '';
+}
+
 
 
 function listaReservasCrearReserva() {
@@ -216,7 +252,7 @@ function listaReservasCrearReserva() {
 
           // Asignar los valores correspondientes a las celdas
           celdaNombreCompleto.innerText = reserva["userRegistro"]["nombre_completo"];
-          celdaNombreEspacio.innerText = reserva["espacio"]["nombre_espacio"];
+          celdaNombreEspacio.innerText = reserva["espacio"]["nombre_del_espacio"];
           celdaHoraEntrada.innerText = reserva["hora_entrada"];
           celdaHoraSalida.innerText = reserva["hora_salida"];
           celdaFechaEntrada.innerText = reserva["fecha_entrada"];
@@ -362,7 +398,7 @@ function historial() {
           let celdaFechaSalida = document.createElement("td");
 
           celdaNombreCompleto.innerText = reserva["userRegistro"]["nombre_completo"];
-          celdaNombreEspacio.innerText = reserva["espacio"]["nombre_espacio"];
+          celdaNombreEspacio.innerText = reserva["espacio"]["nombre_del_espacio"];
           celdaHoraEntrada.innerText = reserva["hora_entrada"];
           celdaHoraSalida.innerText = reserva["hora_salida"];
           celdaFechaEntrada.innerText = reserva["fecha_entrada"];
@@ -494,7 +530,7 @@ function consultarReservaID(id) {
     type: "GET",
     success: function (result) {
       document.getElementById("id_reserva").value = result["id_reserva"];
-      document.getElementById("id_espacio").value = result["nombre_espacio"];
+      document.getElementById("nombre_espacio").value = result["espacio"]["id_espacio"];
       document.getElementById("hora_entrada").value = result["hora_entrada"];
       document.getElementById("hora_salida").value = result["hora_salida"];
       document.getElementById("fecha_entrada").value = result["fecha_entrada"];
@@ -598,32 +634,33 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('fecha_entrada').setAttribute('min', today);
   document.getElementById('fecha_salida').setAttribute('min', today);
 });
+// Función para llenar el select con los espacios desde el servidor
 function cargarEspacios() {
-  $.ajax({
-    url: 'http://localhost:8888/api/v1/espacio/',
-    type: 'GET',
-    success: function (espacios) {
-      const selectEspacios = document.getElementById('nombre_espacio');
-      selectEspacios.innerHTML = '<option value="" selected disabled>Selecciona una opción</option>';
+  fetch('http://localhost:8888/api/v1/espacio/')  // Asegúrate de que esta URL sea correcta
+    .then(response => response.json())
+    .then(data => {
+      var select = document.getElementById("nombre_espacio");
+      // Limpiar cualquier opción previa en el select
+      select.innerHTML = '<option value="" selected disabled>Selecciona una opción</option>';
 
-      espacios.forEach(function (espacio) {
-        const option = document.createElement('option');
-        option.value = espacio.id;
-        option.text = espacio.nombre_del_espacio;
-        selectEspacios.appendChild(option);
+      // Iterar sobre los espacios recibidos desde el servidor
+      data.forEach(function(espacio) {
+        var option = document.createElement("option");
+        option.value = espacio.id_espacio;  // ID del espacio
+        option.text = espacio.nombre_del_espacio;  // Nombre del espacio
+        select.add(option);
       });
-    },
-    error: function (error) {
-      console.error("Error al cargar los espacios: ", error);
-      Swal.fire('Error', 'No se pudieron cargar los espacios disponibles.', 'error');
-    }
-  });
+    })
+    .catch(error => {
+      console.error("Error al cargar los espacios:", error);
+    });
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  listaReservasCrearReserva();
+// Llamar a la función para cargar los espacios cuando la página esté lista
+document.addEventListener('DOMContentLoaded', function() {
   cargarEspacios();
 });
+
 
 function validarCampos() {
   // Obtener los valores de los campos
@@ -654,46 +691,78 @@ function validarHoras(horaEntrada, horaSalida) {
 }
 
 function actualizarReserva() {
-  var id_reserva = document.getElementById("id_reserva").value;
-  let formData = {
-    "nombre_espacio": document.getElementById("nombre_espacio").value,
-    "hora_entrada": document.getElementById("hora_entrada").value,
-    "hora_salida": document.getElementById("hora_salida").value,
-    "fecha_entrada": document.getElementById("fecha_entrada").value,
-    "fecha_salida": document.getElementById("fecha_salida").value
-  };
+  // Obtener los valores de los campos del formulario
+  var nombreCompleto = document.getElementById("nombre_completo").value;
+  var username = document.getElementById("username").value;
+  var idUser = document.getElementById("id_user").value;  // ID de la tabla `userRegistro`
+  var idEspacio = document.getElementById("nombre_espacio").value;  // ID de la tabla `espacio`
+  var horaEntrada = document.getElementById("hora_entrada").value;
+  var horaSalida = document.getElementById("hora_salida").value;
+  var fechaEntrada = document.getElementById("fecha_entrada").value;
+  var fechaSalida = document.getElementById("fecha_salida").value;
+  var idReserva = document.getElementById("id_reserva").value; // ID de la reserva
 
-  // Validar que las horas de entrada y salida no sean iguales
-  if (!validarHoras(formData.hora_entrada, formData.hora_salida)) {
-    return; // Si son iguales, no continuar
-  }
-
-  if (validarCampos()) {
-    // Proceder a actualizar la reserva
-    $.ajax({
-      url: urlReserva + id_reserva,
-      type: "PUT",
-      contentType: "application/json",
-      data: JSON.stringify(formData),
-      success: function (result) {
-        Swal.fire({
-          title: "¡Excelente!",
-          text: "Se guardó correctamente",
-          icon: "success"
-        });
-        historial(); // Actualizar el historial de reservas
-      },
-      error: function (error) {
-        Swal.fire("Error", "Error al guardar, " + error.responseText, "error");
-      }
-    });
-  } else {
+  // Validar que no haya campos vacíos
+  if (!validarCampos()) {
     Swal.fire({
       title: "¡Error!",
-      text: "Llene todos los campos correctamente",
+      text: "Todos los campos son obligatorios",
       icon: "error"
     });
+    return;
   }
+
+  // Validar que las horas no sean iguales
+  if (!validarHoras(horaEntrada, horaSalida)) {
+    Swal.fire({
+      title: "¡Error!",
+      text: "La hora de entrada y salida no pueden ser iguales",
+      icon: "error"
+    });
+    return;
+  }
+
+  // Crear un objeto con los datos a enviar (en formato JSON)
+  var reservaData = {
+    userRegistro: {
+      id_user: idUser,
+      nombre_completo: nombreCompleto,
+      username: username
+    },
+    espacio: {
+      id_espacio: idEspacio  // Asegúrate de que el nombre coincide con lo que espera el backend
+    },
+    hora_entrada: horaEntrada,
+    hora_salida: horaSalida,
+    fecha_entrada: fechaEntrada,
+    fecha_salida: fechaSalida
+  };
+
+  console.log("Datos enviados:", JSON.stringify(reservaData));
+
+  // Realizar la petición PUT con el Content-Type adecuado
+  $.ajax({
+    url: 'http://localhost:8888/api/v1/reserva/' + idReserva, // URL de tu endpoint de actualización
+    type: 'PUT',
+    contentType: "application/json", // Definir el tipo de contenido como JSON
+    data: JSON.stringify(reservaData), // Convertir el objeto a JSON antes de enviarlo
+    success: function (response) {
+      Swal.fire({
+        title: "¡Reserva actualizada!",
+        text: "La reserva se ha actualizado correctamente",
+        icon: "success"
+      });
+      historial(); // Actualizar el historial de reservas
+    },
+    error: function (error) {
+      Swal.fire({
+        title: "¡Error!",
+        text: "Ocurrió un error al actualizar la reserva",
+        icon: "error"
+      });
+      console.log("Error al actualizar la reserva:", error.responseJSON || error.responseText || error);
+    }
+  });
 }
 
 

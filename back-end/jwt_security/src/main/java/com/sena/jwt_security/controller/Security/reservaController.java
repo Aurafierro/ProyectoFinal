@@ -57,25 +57,30 @@ public class reservaController {
             return new ResponseEntity<>("La hora de entrada no puede ser igual a la hora de salida", HttpStatus.BAD_REQUEST);
         }
 
-        // Validaciones adicionales
+        // Validación de que la hora de entrada no sea posterior a la hora de salida
+        if (reserva.getHora_entrada().equals(reserva.getHora_salida())) {
+            return new ResponseEntity<>("La hora de entrada no puede ser después de la hora de salida", HttpStatus.BAD_REQUEST);
+        }
+
+        // Validaciones adicionales para el usuario
         if (reserva.getUserRegistro() == null || reserva.getUserRegistro().getNombre_completo() == null) {
             return new ResponseEntity<>("El nombre completo es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
 
-        if (reserva.getEspacio() == null || reserva.getEspacio().getNombre_del_espacio() == null) {
+        // Validación del espacio (ahora validamos por id_espacio)
+        if (reserva.getEspacio() == null || reserva.getEspacio().getId_espacio() == null) {
             return new ResponseEntity<>("El espacio reservado es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
 
-        // Asignar estado como 'Activo'
+     // Asignar estado como 'Activo'
         reserva.setEstadoReserva(estado.ACTIVO);
 
-        // Guardar reserva
+        // Guardar la reserva en la base de datos
         reservaService.save(reserva);
-        
+
         // Enviar notificación por correo
         String mensaje = emailService.enviarNotificacionReservaRealizada(
-            reserva.getUsername(), 
-            reserva.getUserRegistro(), // Enviar el objeto userRegistro completo
+            reserva.getUserRegistro(), 
             reserva.getEspacio(), 
             reserva.getHora_entrada(), 
             reserva.getHora_salida(),
@@ -83,7 +88,7 @@ public class reservaController {
             reserva.getFecha_salida()
         );
 
-        // Retornar respuesta
+        // Retornar respuesta de éxito
         return new ResponseEntity<>(mensaje, HttpStatus.OK);
     }
 

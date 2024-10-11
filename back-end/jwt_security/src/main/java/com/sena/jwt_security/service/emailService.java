@@ -169,46 +169,50 @@ public class emailService {
 	}
 	
 	
-	public String enviarNotificacionReservaRealizada(String destinatario, userRegistro userRegistro, espacio espacio, String hora_entrada, String hora_salida, Date fecha_entrada, Date fecha_salida) {
+	public String enviarNotificacionReservaRealizada(userRegistro userRegistro, espacio espacio, String hora_entrada, String hora_salida, Date fecha_entrada, Date fecha_salida) {
 	    try {
-	        String asunto = "Confirmación de reservación en Asigna Web";
+	        // Extraer el destinatario desde el objeto userRegistro
+	        String destinatario = userRegistro.getUsername(); // Asumiendo que el campo 'username' es el correo del usuario
 	        
-	        String cuerpo = ""
-	                + "<body style='margin: 0; padding: 0; background-color: #CCCCCC;'>"
-	                + "  <div style='background-color: #CCCCCC;'>"
-	                + "   <div style='background-color: white; max-width: 600px; margin: auto; padding: 20px; box-sizing: border-box;'>"
-	                + "       <div style='background-color: #202C4A; padding: 11px; text-align: center;'>"
-	                + "           <img style='width: 110px; height: 100px;' src='https://i.postimg.cc/L8hJKpjP/5613765-Recuperado.png' alt='Logo'>"
-	                + "       </div>"
-	                + "       <h1 style='color: #2B56C5; text-align: center; font-size: 24px; margin-top: 20px;'>Hola, " + userRegistro.getNombre_completo() + " confirmamos tu reservación</h1>"
-	                + "       <p style='color: #000; font-size: 16px; line-height: 1.5; margin-top: 20px;'>"
-	                + "          Esperamos que te encuentres bien. Por medio de este correo, queremos confirmar tu reserva realizada en Asigna Web"
-	                + "      </p>"
-	                + "      <br>"
-	                + "      <strong>Detalles de la reserva:</strong>"
-	                + "      <br>"
-	                + "          <strong>Realizada por: </strong> " + userRegistro.getNombre_completo() + " "
-	                + "      <br>"
-	                + "          <strong>Espacio reservado: </strong> " + espacio.getNombre_del_espacio() + " " // Assuming espacio has a getNombre() method
-	                + "      <br>"
-	                + "          <strong>Hora de entrada: </strong> " + hora_entrada + " "
-	                + "      <br>"
-	                + "          <strong>Hora de salida: </strong> " + hora_salida + " "
-	                + "      <br>"
-	                + "          <strong>Fecha de entrada: </strong> " + fecha_entrada + " "
-	                + "      <br>"
-	                + "          <strong>Fecha de salida: </strong> " + fecha_salida + " "
-	                + "      <br>"
-	                + "       <p style='text-align:center; font-size: 16px;'>¡Te esperamos pronto!</p>"
-	                + "       <div style='background-color: #202C4A; margin: auto; padding: 35px;'>"
-	                + "       </div>"
-	                + "      </div>"
-	                + "   </div>"
-	                + "</body>";
+	        String asunto = "Confirmación de reservación en Asigna Web";
 
+	        String cuerpo = ""
+	            + "<body style='margin: 0; padding: 0; background-color: #CCCCCC;'>"
+	            + "  <div style='background-color: #CCCCCC;'>"
+	            + "   <div style='background-color: white; max-width: 600px; margin: auto; padding: 20px; box-sizing: border-box;'>"
+	            + "       <div style='background-color: #202C4A; padding: 11px; text-align: center;'>"
+	            + "           <img style='width: 110px; height: 100px;' src='https://i.postimg.cc/L8hJKpjP/5613765-Recuperado.png' alt='Logo'>"
+	            + "       </div>"
+	            + "       <h1 style='color: #2B56C5; text-align: center; font-size: 24px; margin-top: 20px;'>Hola, " + userRegistro.getNombre_completo() + ", confirmamos tu reservación</h1>"
+	            + "       <p style='color: #000; font-size: 16px; line-height: 1.5; margin-top: 20px;'>"
+	            + "          Esperamos que te encuentres bien. Por medio de este correo, queremos confirmar tu reserva realizada en Asigna Web."
+	            + "      </p>"
+	            + "      <br>"
+	            + "      <strong>Detalles de la reserva:</strong>"
+	            + "      <br>"
+	            + "          <strong>Realizada por: </strong> " + userRegistro.getNombre_completo() + " "
+	            + "      <br>"
+	            + "          <strong>Espacio reservado: </strong> " + espacio.getNombre_del_espacio() + " "
+	            + "      <br>"
+	            + "          <strong>Hora de entrada: </strong> " + hora_entrada + " "
+	            + "      <br>"
+	            + "          <strong>Hora de salida: </strong> " + hora_salida + " "
+	            + "      <br>"
+	            + "          <strong>Fecha de entrada: </strong> " + fecha_entrada + " "
+	            + "      <br>"
+	            + "          <strong>Fecha de salida: </strong> " + fecha_salida + " "
+	            + "      <br>"
+	            + "       <p style='text-align:center; font-size: 16px;'>¡Te esperamos pronto!</p>"
+	            + "       <div style='background-color: #202C4A; margin: auto; padding: 35px;'>"
+	            + "       </div>"
+	            + "      </div>"
+	            + "   </div>"
+	            + "</body>";
+
+	        // Llamada al método que envía el correo
 	        boolean retorno = enviarCorreo(destinatario, asunto, cuerpo);
 	        return retorno ? "Se envió correctamente" : "No se pudo enviar";
-	        
+
 	    } catch (Exception e) {
 	        return "Error al enviar: " + e.getMessage();
 	    }

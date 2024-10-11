@@ -35,29 +35,36 @@
             </div>
             <div class="cotenedorPadre">
                 <div class="form">
+                    <input type="hidden" id="id_user" name="id_user">
+
                     <label for="nombre_completo">Nombre completo:</label>
-                    <input type="text" id="nombre_completo" name="nombre_completo" disabled>
+                    <input type="text" id="nombre_completo" name="nombre_completo" readonly>
+                  
                     <label for="nombre_espacio">Nombre espacio:</label>
                     <select id="nombre_espacio" name="nombre_espacio" class="form-select">
-                    <option value="" selected disabled>Selecciona una opción</option>
+                      <option value="" selected disabled>Selecciona una opción</option>
+                      <option value="1">Sala de reuniones</option>
+                      <option value="2">Auditorio</option>
                     </select>
-
+                  
                     <label for="hora_entrada">Hora de Entrada:</label>
                     <input type="time" id="hora_entrada" name="hora_entrada" onfocusout="validarHora_entrada(this);">
-
+                  
                     <label for="hora_salida">Hora de Salida:</label>
                     <input type="time" id="hora_salida" name="hora_salida" onfocusout="validarHora_salida(this);">
-
+                  
                     <label for="fecha_entrada">Fecha entrada:</label>
                     <input type="date" id="fecha_entrada" name="fecha_entrada">
-
+                  
                     <label for="fecha_salida">Fecha salida:</label>
                     <input type="date" id="fecha_salida" name="fecha_salida">
-
+                  
                     <label for="username">Correo:</label>
-                    <input type="text" id="username" name="username">
+                    <input type="text" id="username" name="username" readonly>
+                  
                     <button id="reservar" onclick="crearReserva();">Reservar</button>
-                </div>
+                  </div>
+                  
                 <div>
                     <div class="table-wrapper">
                         <div class="table-container">

@@ -294,3 +294,8 @@ td {
     text-decoration: none;
     color: white;
 }
+
+#nombre_completo, #username{
+    background-color: white;
+    color: black; /* Cambia el color del texto si es necesario */
+}
