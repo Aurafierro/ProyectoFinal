@@ -28,14 +28,7 @@ async function cambiarContrasena() {
             throw new Error(message); // Lanza un error si la respuesta no es 2xx
         }
 
-        // Mostrar el mensaje de éxito
-        Swal.fire({
-            icon: 'success',
-            title: 'Éxito',
-            text: message, // Muestra el mensaje de éxito
-        });
-
-        // Cerrar sesión después de mostrar el mensaje
+        // Cerrar sesión inmediatamente después de cambiar la contraseña exitosamente
         cerrarSesion();
 
     } catch (error) {
