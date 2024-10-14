@@ -9,36 +9,41 @@ async function cambiarContrasena() {
         confirmarContrasena: confirmPassword
     };
 
-    const token = localStorage.getItem('authTokens'); // Asegúrate de que el token se guarda en el almacenamiento local
+    const token = localStorage.getItem('authTokens'); 
 
     try {
         const response = await fetch(urlCambiarContraseña, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}` // Incluye el token en el encabezado
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(requestData)
         });
 
-        // Obtener la respuesta como texto
-        const message = await response.text(); 
-
         if (!response.ok) {
-            throw new Error(message); // Lanza un error si la respuesta no es 2xx
+            const errorMessage = await response.text();
+            throw new Error(errorMessage);
         }
 
-        // Cerrar sesión inmediatamente después de cambiar la contraseña exitosamente
+        // Si la respuesta es correcta, cerrar sesión de inmediato
         cerrarSesion();
 
     } catch (error) {
-        // Manejo de errores si la solicitud falla
         Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: error.message, 
+            text: error.message,
         });
     }
+}
+
+function cerrarSesion() {
+    // Eliminar el token del almacenamiento local
+    localStorage.removeItem('authTokens');
+
+    // Redirigir al inicio de sesión inmediatamente
+    window.location.replace(urlRedireccionInicioSesion);
 }
 
 // Event listener para el botón de cambiar contraseña
@@ -47,11 +52,6 @@ document.querySelector('.button-contrasena').addEventListener('click', (event) =
     cambiarContrasena();
 });
 
-// Función para cerrar sesión
-function cerrarSesion() {
-    localStorage.removeItem('authTokens'); 
-    window.location.href = urlRedireccionInicioSesion;  
-}
 
 // Función para alternar la visibilidad de la contraseña
 function togglePasswordVisibility(inputId, icon) {
@@ -67,4 +67,4 @@ document.querySelectorAll('.toggle-password').forEach(icon => {
         const inputId = this.getAttribute('data-input');
         togglePasswordVisibility(inputId, this);
     });
-}); 
+});
