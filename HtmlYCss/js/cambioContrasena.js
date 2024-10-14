@@ -1,61 +1,41 @@
-// Función para cambiar la contraseña
 async function cambiarContrasena() {
     const currentPassword = document.getElementById('antiguaContrasena').value;
     const newPassword = document.getElementById('nuevaContrasena').value;
     const confirmPassword = document.getElementById('confirmarContrasena').value;
 
-    // Verifica que la nueva contraseña y la confirmación coincidan
-    if (newPassword !== confirmPassword) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Las contraseñas no coinciden.',
-        });
-        return;
-    }
-
-    // Datos que se enviarán al backend
     const requestData = {
         antiguaContrasena: currentPassword,
         nuevaContrasena: newPassword,
         confirmarContrasena: confirmPassword
     };
 
-    const token = localStorage.getItem('authTokens'); // Obtener el token del almacenamiento local
-
-    if (!token) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'No se encontró el token de autenticación.',
-        });
-        return;
-    }
+    const token = localStorage.getItem('authTokens'); // Asegúrate de que el token se guarda en el almacenamiento local
 
     try {
-        // Realiza la solicitud al backend para cambiar la contraseña
         const response = await fetch(urlCambiarContraseña, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}` // Incluye el token en los encabezados
+                'Authorization': `Bearer ${token}` // Incluye el token en el encabezado
             },
             body: JSON.stringify(requestData)
         });
 
-        const message = await response.text(); // Obtiene la respuesta en texto
+        // Obtener la respuesta como texto
+        const message = await response.text(); 
 
         if (!response.ok) {
             throw new Error(message); // Lanza un error si la respuesta no es 2xx
         }
 
-        // Si el cambio de contraseña fue exitoso
+        // Mostrar el mensaje de éxito
         Swal.fire({
             icon: 'success',
             title: 'Éxito',
-            text: 'Contraseña cambiada exitosamente. La sesión se cerrará.',
+            text: message, // Muestra el mensaje de éxito
         }).then(() => {
-            cerrarSesion(); // Llama a la función para cerrar sesión
+            // Después de mostrar el mensaje, cerrar sesión
+            cerrarSesion();
         });
 
     } catch (error) {
@@ -63,26 +43,35 @@ async function cambiarContrasena() {
         Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: error.message,
+            text: error.message, 
         });
     }
-}
-
-// Función para cerrar sesión
-function cerrarSesion() {
-    console.log('Cerrando sesión...');
-    localStorage.removeItem('authTokens'); // Eliminar el token del almacenamiento local
-    Swal.fire({
-        icon: 'warning',
-        title: 'Sesión cerrada',
-        text: 'Tu sesión ha sido cerrada. Redirigiendo al inicio de sesión.',
-    }).then(() => {
-        window.location.href = urlRedireccionInicioSesion; // Redirigir al login
-    });
 }
 
 // Event listener para el botón de cambiar contraseña
 document.querySelector('.button-contrasena').addEventListener('click', (event) => {
     event.preventDefault(); // Previene el comportamiento por defecto del formulario
-    cambiarContrasena(); // Llama a la función de cambiar contraseña
+    cambiarContrasena();
+});
+
+// Función para cerrar sesión
+function cerrarSesion() {
+    localStorage.removeItem('authTokens'); 
+    window.location.href = urlRedireccionInicioSesion;  
+}
+
+// Función para alternar la visibilidad de la contraseña
+function togglePasswordVisibility(inputId, icon) {
+    const passwordField = document.getElementById(inputId);
+    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordField.setAttribute('type', type);
+    icon.classList.toggle('fa-eye-slash'); // Toggle the eye slash icon
+}
+
+// Añadir event listeners para los íconos de visibilidad de la contraseña
+document.querySelectorAll('.toggle-password').forEach(icon => {
+    icon.addEventListener('click', function () {
+        const inputId = this.getAttribute('data-input');
+        togglePasswordVisibility(inputId, this);
+    });
 });
