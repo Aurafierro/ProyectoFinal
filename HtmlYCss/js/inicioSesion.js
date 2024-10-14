@@ -28,12 +28,8 @@ async function checkUserStatus(token) {
     }
 }
 
-
-
-
-
 // Función de inicio de sesión
-function login() {
+async function login() {
     let formData = {
         "username": document.getElementById("username").value,
         "password": document.getElementById("password").value
@@ -45,12 +41,21 @@ function login() {
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify(formData),
-            success: function (result) {
+            success: async function (result) {
                 const token = result.token; // Ajusta según tu respuesta de API
                 // Eliminar el token anterior si existe
                 localStorage.removeItem('authTokens');
                 // Almacenar el nuevo token directamente
                 localStorage.setItem('authTokens', token);
+
+                // Verificar el estado del usuario
+                const estado = await checkUserStatus(token);
+                if (estado === 0) {
+                    Swal.fire("Error", "Su cuenta está inactiva. No puede iniciar sesión.", "error");
+                    localStorage.removeItem('authTokens'); // Eliminar token si está inactivo
+                    return; // No continuar con el inicio de sesión
+                }
+
                 Swal.fire({
                     title: "¡Bienvenido!",
                     text: "Inicio de sesión exitoso.",
@@ -71,6 +76,7 @@ function login() {
         });
     }
 }
+
 // Función para verificar el rol del usuario y si necesita cambiar la contraseña
 async function checkUserRole(token) {
     try {
