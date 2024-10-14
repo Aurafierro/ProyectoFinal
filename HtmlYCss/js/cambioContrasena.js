@@ -33,10 +33,10 @@ async function cambiarContrasena() {
             icon: 'success',
             title: 'Éxito',
             text: message, // Muestra el mensaje de éxito
-        }).then(() => {
-            // Después de mostrar el mensaje, cerrar sesión
-            cerrarSesion();
         });
+
+        // Cerrar sesión después de mostrar el mensaje
+        cerrarSesion();
 
     } catch (error) {
         // Manejo de errores si la solicitud falla
@@ -74,4 +74,4 @@ document.querySelectorAll('.toggle-password').forEach(icon => {
         const inputId = this.getAttribute('data-input');
         togglePasswordVisibility(inputId, this);
     });
-});
+}); 

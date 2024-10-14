@@ -82,43 +82,7 @@ public class espacioController {
 		
 	}
  
-    /*
-    @PostMapping("/")
-    public ResponseEntity<Object> guardarEspacioJson(@ModelAttribute espacio espacio, 
-                                                     @RequestParam("file") MultipartFile file, 
-                                                     HttpServletRequest request) {
-        try {
-            // Verificar si el archivo no es nulo y no está vacío
-            if (file != null && !file.isEmpty()) {
-                // Almacenar el archivo y obtener el nombre del archivo
-                String fileName = fileStorageService.storeFile(file);
-
-                // Codificar el nombre del archivo para URL (evita problemas con espacios y caracteres especiales)
-                String encodedFileName = URLEncoder.encode(fileName, StandardCharsets.UTF_8.toString());
-
-                // Construir la URL completa del archivo con el nombre codificado
-                String serverUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
-                espacio.setImagen_url(serverUrl + "/api/downloadFile/" + encodedFileName);
-            } else {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                                     .body("Archivo no proporcionado o está vacío");
-            }
-
-            // Guardar el espacio en la base de datos
-            espacioService.save(espacio);
-
-            // Devolver respuesta de éxito
-            respuesta respuesta = new respuesta("ok", "Se guardó correctamente");
-            return new ResponseEntity<>(respuesta, HttpStatus.OK);
-
-        } catch (IOException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                                 .body("Error al subir el archivo: " + e.getMessage());
-        }
-    }
-
-    */
-
+ 
 
     // Método para buscar espacios por filtro
     @GetMapping("/busquedafiltro/{filtro}")
