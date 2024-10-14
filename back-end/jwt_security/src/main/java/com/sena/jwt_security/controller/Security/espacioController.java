@@ -59,9 +59,9 @@ public class espacioController {
 			String fileName = fileStorageService.storeFile(file);
 			espacio.setImagen_url("http://5.183.11.147:8888/api/downloadFile/" + fileName);
             
-            // return ResponseEntity.ok().body("File uploaded successfully: " + file.getOriginalFilename());
+          
         } catch (IOException e) {
-            // return ResponseEntity.status(500).body("Failed to upload file: " + file.getOriginalFilename());
+           
         }
 
 		espacio.setImagen_base(Base64.getEncoder().encodeToString(file.getBytes()));

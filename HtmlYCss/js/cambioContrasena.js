@@ -28,11 +28,13 @@ async function cambiarContrasena() {
             throw new Error(message); // Lanza un error si la respuesta no es 2xx
         }
 
-        // Mostrar el mensaje recibido como texto
+        // Mostrar el mensaje de éxito
         Swal.fire({
             icon: 'success',
             title: 'Éxito',
             text: message, // Muestra el mensaje de éxito
+        }).then(() => {
+            cerrarSesion(); // Cerrar sesión automáticamente después de cambiar la contraseña
         });
 
     } catch (error) {
@@ -43,25 +45,15 @@ async function cambiarContrasena() {
         });
     }
 }
+
+// Función para cerrar sesión
+function cerrarSesion() {
+    localStorage.removeItem('authTokens'); // Eliminar el token de autenticación
+    window.location.href = urlRedireccionInicioSesion; // Redirigir a la página de inicio de sesión
+}
+
+// Agregar el event listener para el botón de cambiar contraseña
 document.querySelector('.button-contrasena').addEventListener('click', (event) => {
     event.preventDefault(); // Previene el comportamiento por defecto del formulario
     cambiarContrasena();
-});
-function cerrarSesion() {
-    localStorage.removeItem('authTokens'); 
-    window.location.href = urlRedireccionInicioSesion;  
-}
-function togglePasswordVisibility(inputId, icon) {
-    const passwordField = document.getElementById(inputId);
-    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-    passwordField.setAttribute('type', type);
-    icon.classList.toggle('fa-eye-slash'); // Toggle the eye slash icon
-}
-
-// Add event listeners for the eye icons
-document.querySelectorAll('.toggle-password').forEach(icon => {
-    icon.addEventListener('click', function () {
-        const inputId = this.getAttribute('data-input');
-        togglePasswordVisibility(inputId, this);
-    });
 });
