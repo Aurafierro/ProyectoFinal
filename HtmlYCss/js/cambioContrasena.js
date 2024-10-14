@@ -21,38 +21,40 @@ async function cambiarContrasena() {
             body: JSON.stringify(requestData)
         });
 
-        // Obtener la respuesta como texto
         const message = await response.text(); 
 
         if (!response.ok) {
             throw new Error(message); // Lanza un error si la respuesta no es 2xx
         }
 
-        // Mostrar el mensaje de éxito
+        // Mostrar mensaje de éxito y cerrar sesión
         Swal.fire({
             icon: 'success',
             title: 'Éxito',
-            text: message, // Muestra el mensaje de éxito
+            text: 'Contraseña cambiada exitosamente. La sesión se cerrará.',
         }).then(() => {
-            cerrarSesion(); // Cerrar sesión automáticamente después de cambiar la contraseña
+            cerrarSesion(); // Llama a la función para cerrar sesión
         });
 
     } catch (error) {
         Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: error.message, 
+            text: error.message,
         });
     }
 }
 
 // Función para cerrar sesión
 function cerrarSesion() {
-    localStorage.removeItem('authTokens'); // Eliminar el token de autenticación
-    window.location.href = urlRedireccionInicioSesion; // Redirigir a la página de inicio de sesión
+    console.log('Cerrando sesión...');
+    localStorage.removeItem('authTokens'); // Eliminar el token
+    alert('Tu cuenta ha sido desactivada, redirigiendo al inicio de sesión.'); // Mostrar alerta opcional
+    window.location.href = urlRedireccionInicioSesion; // Redirigir al login
 }
 
-// Agregar el event listener para el botón de cambiar contraseña
+
+// Event listener para el botón de cambiar contraseña
 document.querySelector('.button-contrasena').addEventListener('click', (event) => {
     event.preventDefault(); // Previene el comportamiento por defecto del formulario
     cambiarContrasena();
