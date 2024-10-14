@@ -97,7 +97,7 @@ function cargarFormulario() {
   const authToken = localStorage.getItem('authTokens');
 
   $.ajax({
-    url: 'http://localhost:8888/api/v1/user/profile', // URL del endpoint para obtener los datos del perfil del usuario
+    url: 'http://5.183.11.147:8888/api/v1/user/profile', // URL del endpoint para obtener los datos del perfil del usuario
     type: 'GET',
     headers: {
       'Authorization': `Bearer ${authToken}` // Agregar el token al encabezado
