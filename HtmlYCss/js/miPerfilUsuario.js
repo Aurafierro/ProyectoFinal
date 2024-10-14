@@ -1,20 +1,20 @@
 const menuToggle = document.getElementById('menuToggle');
 const sidebar = document.getElementById('sidebarj');
 
-// Function to toggle the visibility of the sidebar
+// Función para alternar la visibilidad de la barra lateral
 menuToggle.addEventListener('click', () => {
     sidebar.classList.toggle('visible');
 });
 
-// Wait for the content to be fully loaded
+// Esperar a que el contenido esté completamente cargado
 document.addEventListener("DOMContentLoaded", () => {
-    // Fetch user data when the document is loaded
+    // Obtener los datos del usuario cuando el documento esté cargado
     obtenerDatosUsuario();
 });
 
-// Function to fetch user data
+// Función para obtener los datos del usuario
 async function obtenerDatosUsuario() {
-    const urlDatosUsuario = urlProfile; // URL for user profile API
+    const urlDatosUsuario = urlProfile; // URL de la API de perfil del usuario
     const token = localStorage.getItem('authTokens');
 
     if (!token) {
@@ -26,7 +26,7 @@ async function obtenerDatosUsuario() {
         const respuesta = await fetch(urlDatosUsuario, {
             method: 'GET',
             headers: {
-                'Authorization': 'Bearer ' + token, // Include auth token
+                'Authorization': 'Bearer ' + token, // Incluir el token de autenticación
                 'Content-Type': 'application/json',
             }
         });
@@ -36,15 +36,14 @@ async function obtenerDatosUsuario() {
         }
 
         const datosUsuario = await respuesta.json();
-        localStorage.setItem('userId', datosUsuario.id_user); // Save user ID in localStorage
+        localStorage.setItem('userId', datosUsuario.id_user); // Guardar el ID del usuario en localStorage
 
-        // Display the user data directly in the HTML elements
+        // Mostrar los datos del usuario directamente en los elementos HTML
         document.getElementById('nombre_completo').textContent = datosUsuario.nombre_completo || 'No disponible';
         document.getElementById('correo').textContent = datosUsuario.username || 'No disponible';
-        document.getElementById('tipo_documento').textContent = datosUsuario.tipo_documento || 'No disponible'; // Agregado
-        document.getElementById('numero_documento').textContent = datosUsuario.numero_documento || 'No disponible'; // Agregado
-        document.getElementById('rol').textContent = datosUsuario.rol || 'No disponible'; // Agregado
-        document.getElementById('username').textContent = datosUsuario.nombre_completo || 'No disponible';
+        document.getElementById('tipo_documento').textContent = datosUsuario.tipo_documento || 'No disponible';
+        document.getElementById('numero_documento').textContent = datosUsuario.numero_documento || 'No disponible';
+        document.getElementById('rol').textContent = datosUsuario.rol || 'No disponible';
 
     } catch (error) {
         console.error('Error:', error);
