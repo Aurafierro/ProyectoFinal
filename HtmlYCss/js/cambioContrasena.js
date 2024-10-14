@@ -26,8 +26,15 @@ async function cambiarContrasena() {
             throw new Error(errorMessage);
         }
 
-        // Si la respuesta es correcta, cerrar sesión de inmediato
-        cerrarSesion();
+        // Si la respuesta es correcta, mostrar el mensaje de éxito
+        Swal.fire({
+            icon: 'success',
+            title: 'Contraseña cambiada',
+            text: 'Tu contraseña ha sido cambiada exitosamente.'
+        }).then(() => {
+            // Después de mostrar el mensaje de éxito, cerrar sesión y redirigir
+            cerrarSesion();
+        });
 
     } catch (error) {
         Swal.fire({
@@ -38,20 +45,17 @@ async function cambiarContrasena() {
     }
 }
 
-function cerrarSesion() {
-    // Eliminar el token del almacenamiento local
-    localStorage.removeItem('authTokens');
-
-    // Redirigir al inicio de sesión inmediatamente
-    window.location.replace(urlRedireccionInicioSesion);
-}
-
 // Event listener para el botón de cambiar contraseña
 document.querySelector('.button-contrasena').addEventListener('click', (event) => {
-    event.preventDefault(); // Previene el comportamiento por defecto del formulario
+    event.preventDefault();
     cambiarContrasena();
 });
 
+// Función para cerrar sesión y redirigir al inicio de sesión
+function cerrarSesion() {
+    localStorage.removeItem('authTokens'); 
+    window.location.href = urlRedireccionInicioSesion;  
+}
 
 // Función para alternar la visibilidad de la contraseña
 function togglePasswordVisibility(inputId, icon) {
