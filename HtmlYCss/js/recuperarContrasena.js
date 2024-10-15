@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 text: responseData.message
             });
 
-            await redirectAfterPasswordChange();
+            await redirectAfterPasswordChange(token);
             document.getElementById("modifyForm").reset();
         } catch (error) {
             Swal.fire({
@@ -116,21 +116,41 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Redirigir directamente al inicio de sesión después de cambiar la contraseña
-    async function redirectAfterPasswordChange() {
+    // Redirigir al módulo adecuado según el rol
+    async function redirectAfterPasswordChange(token) {
         try {
-            Swal.fire({
-                icon: 'success',
-                title: 'Contraseña cambiada',
-                text: 'Tu contraseña ha sido actualizada correctamente. Serás redirigido al inicio de sesión.',
-                timer: 3000,  // Mostrar el mensaje por 3 segundos
-                showConfirmButton: false
-            }).then(() => {
-                window.location.href = urlRedireccionInicioSesion;  // Redirigir al inicio de sesión
+            const response = await fetch(urlRol, { 
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
             });
+
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error('Error al obtener el rol del usuario: ' + (data.message || response.statusText));
+            }
+
+            const userRole = data.role; 
+            console.log('Rol del usuario:', userRole); 
+            
+            // Redirigir según el rol del usuario
+            if (userRole === "Administrador") {
+                window.location.href = urlRedireccionModuloAdmin;  
+            } else if (userRole === "Usuario") {
+                window.location.href = urlRedireccionModuloUsuario;  
+            } else {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Advertencia',
+                    text: 'Rol no reconocido. Redirigiendo a la página principal.'
+                });
+                window.location.href = urlRedireccionInicioSesion;  
+            }
         } catch (error) {
-            console.error('Error al redirigir:', error);
-            Swal.fire("Error", "Error al redirigir: " + error.message, "error");
+            console.error('Error al verificar el rol del usuario:', error);
+            Swal.fire("Error", "Error al verificar el rol del usuario: " + error.message, "error");
         }
     }
 
@@ -167,17 +187,3 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
-
-
-    document.getElementById("modifyForm").addEventListener("submit", async function (event) {
-        event.preventDefault();
-        const nuevaContrasena = document.getElementById("nuevaContrasena").value;
-        const confirmarContrasena = document.getElementById("confirmarContrasena").value;
-        await changePassword(nuevaContrasena, confirmarContrasena);
-    });
-
-    document.querySelector(".btn.red").addEventListener("click", function (event) {
-        event.preventDefault(); // Evitar la acción predeterminada
-    });
-
-
