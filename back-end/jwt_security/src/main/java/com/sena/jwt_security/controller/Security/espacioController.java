@@ -57,7 +57,7 @@ public class espacioController {
 
 		try {
 			String fileName = fileStorageService.storeFile(file);
-			espacio.setImagen_url("http://5.183.11.147:8888/api/downloadFile/" + fileName);
+			espacio.setImagen_url("http://localhost:8888/api/downloadFile/" + fileName);
             
           
         } catch (IOException e) {

@@ -122,7 +122,7 @@ function cargarFormulario() {
       console.log("Error al cargar los datos del usuario:", error);
     }
   });
-  historial();
+  listaReservasCrearReserva();
   
 }
 

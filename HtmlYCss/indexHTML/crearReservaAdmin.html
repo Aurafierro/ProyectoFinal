@@ -29,6 +29,8 @@
                 <li class="sidebars-item"><a href="../indexHTML/historialAdmin.html"><i class="fas fa-history"></i>Historial</a></li>
                 <li class="sidebars-item"><a href="../indexHTML/modificarReservaAdmin.html"><i class="far fa-edit"></i></i>Modificar Reserva</a></li>
                 <li class="sidebars-item"><a href="../indexHTML/crearCuenta.html"><i class="fas fa-users"></i>Crear cuentas</a></li>
+                <li class="sidebars-item"><a href="../indexHTML/agregarEspacio.html"><i class="fas fa-calendar-week"></i>Agregar espacios</a></li>
+
                 <li class="sidebars-item"><a href="../indexHTML/espaciosRegistrados.html"><i class="fas fa-calendar-week"></i>Registro de espacios</a></li>
                 </ul>
             </nav>
@@ -40,36 +42,35 @@
 
             <div class="cotenedorPadre">
                 <div class="form">
-                    <label for="nombre_completo">Nombre completo:</label>
-                    <input type="text" id="nombre_completo" name="nombre_completo"
-                        onfocusout="validarNombre_completo(this);">
+                    <input type="hidden" id="id_user" name="id_user">
 
+                    <label for="nombre_completo">Nombre completo:</label>
+                    <input type="text" id="nombre_completo" name="nombre_completo" readonly>
+                  
                     <label for="nombre_espacio">Nombre espacio:</label>
                     <select id="nombre_espacio" name="nombre_espacio" class="form-select">
-                        <option value="" selected disabled>Selecciona una opción</option>
-                        <option value="cancha">Cancha</option>
-                        <option value="gimnasio">Gimnasio</option>
-                        <option value="auditorio">Auditorio</option>
-                        <option value="biblioteca">Biblioteca</option>
+                      <option value="" selected disabled>Selecciona una opción</option>
+                      <option value="1">Sala de reuniones</option>
+                      <option value="2">Auditorio</option>
                     </select>
-
+                  
                     <label for="hora_entrada">Hora de Entrada:</label>
                     <input type="time" id="hora_entrada" name="hora_entrada" onfocusout="validarHora_entrada(this);">
-
+                  
                     <label for="hora_salida">Hora de Salida:</label>
                     <input type="time" id="hora_salida" name="hora_salida" onfocusout="validarHora_salida(this);">
-
+                  
                     <label for="fecha_entrada">Fecha entrada:</label>
                     <input type="date" id="fecha_entrada" name="fecha_entrada">
-
+                  
                     <label for="fecha_salida">Fecha salida:</label>
                     <input type="date" id="fecha_salida" name="fecha_salida">
-
+                  
                     <label for="username">Correo:</label>
-                    <input type="text" id="username" name="username">
-
+                    <input type="text" id="username" name="username" readonly>
+                  
                     <button id="reservar" onclick="crearReserva();">Reservar</button>
-                </div>
+                  </div>
 
                 <div>
                     <div class="table-wrapper">
@@ -100,7 +101,8 @@
         </div>
     </footer>
 
-    <script src="/HtmlYCss/js/reservaciones.js"></script>
+    <!--<script src="/HtmlYCss/js/reservaciones.js"></script>-->
+    <script src="../js/tablaCrearReserva.js"></script>
     <script src="../js/config.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>

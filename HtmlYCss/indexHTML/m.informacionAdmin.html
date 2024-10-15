@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Módulo información</title>
-    <link rel="stylesheet" href="../css/m.informacionAdmin.css">
+    <title>Módulo información administrador</title>
+    <link rel="stylesheet" href="../css/moduloInformacion.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" href="/iconos/logo.ico" type="image/x-icon">
 </head>
 <body>
     <header class="header">
-       
         <div class="logo">
             <img src="/HtmlYCss/img/logori.png" alt="Logo" class="logo-img">
         </div>
@@ -27,12 +26,15 @@
                 <li class="sidebars-item"><a href="../indexHTML/historialAdmin.html"><i class="fas fa-history"></i>Historial</a></li>
                 <li class="sidebars-item"><a href="../indexHTML/modificarReservaAdmin.html"><i class="far fa-edit"></i></i>Modificar Reserva</a></li>
                 <li class="sidebars-item"><a href="../indexHTML/crearCuenta.html"><i class="fas fa-users"></i>Crear cuentas</a></li>
+                <li class="sidebars-item"><a href="../indexHTML/agregarEspacio.html"><i class="fas fa-calendar-week"></i>Agregar espacios</a></li>
+
                 <li class="sidebars-item"><a href="../indexHTML/espaciosRegistrados.html"><i class="fas fa-calendar-week"></i>Registro de espacios</a></li>
             </ul>
         </nav>
     </aside>
+    
     <div class="profile">
-        <a href="../indexHTML/miPerfilAdmin.html" class="profile__link"><i class="fas fa-user"></i> Mi perfil</a>
+        <a href="../indexHTML/miPerfil.html" class="profile__link"><i class="fas fa-user"></i> Mi perfil</a>
     </div>
     <div>
         <h2 id="mensajeSeleccionar">Selecciona un espacio para realizar una reserva</h2>
@@ -47,29 +49,15 @@
         </div>
         <button class="carousel-button next">&#10095;</button>
     </div>
-    <script src="../js/m.informacionAdmin.js"></script>
-    <script src="../js/config.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const menuToggle = document.querySelector(".menu-toggle");
-            const sidebar = document.getElementById("sidebarj");
-
-            menuToggle.addEventListener("click", function() {
-                sidebar.classList.toggle("visible");
-            });
-
-            sidebar.addEventListener("click", function() {
-                sidebar.classList.remove("visible");
-            });
-        });
-    </script>
-     <div class="menu-toggle">
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2024 Asigna Web - Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <div class="menu-toggle">
         <i class="fas fa-bars"></i>
     </div>
+    <script src="../js/moduloInformacion.js"></script>
+    <script src="../js/config.js"></script>
 </body>
-<footer class="footer">
-    <div class="footer-container">
-        <p>&copy; 2024 Asigna Web - Todos los derechos reservados.</p>
-    </div>
-</footer>
 </html>
