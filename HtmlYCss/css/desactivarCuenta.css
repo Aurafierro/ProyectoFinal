@@ -1,14 +1,17 @@
-/* Reset de estilos y fuente personalizada */
+
+
+
+@font-face {
+    font-family: "Candal";
+    src: url("/HtmlYCss/Fuentes/Candal/Candal-Regular.ttf");
+  }
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-@font-face {
-    font-family: "Candal";
-    src: url("/HtmlYCss/Fuentes/Candal/Candal-Regular.ttf");
-  }
+
 
 /* Estilos para el cuerpo y la cabecera */
 html, body {
