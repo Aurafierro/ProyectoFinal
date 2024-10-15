@@ -181,17 +181,3 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-// Mostrar/ocultar contraseña
-document.getElementById('togglePassword1').addEventListener('click', function () {
-    const passwordField = document.getElementById('nuevaContrasena');
-    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-    passwordField.setAttribute('type', type);
-    this.classList.toggle('fa-eye-slash');
-});
-
-document.getElementById('togglePassword2').addEventListener('click', function () {
-    const passwordField = document.getElementById('confirmarContrasena');
-    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-    passwordField.setAttribute('type', type);
-    this.classList.toggle('fa-eye-slash');
-});
