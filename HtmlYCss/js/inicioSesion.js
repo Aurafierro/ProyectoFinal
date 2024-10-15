@@ -113,6 +113,7 @@ async function checkUserRole(token) {
         }
         const rolData = await rolResponse.json();
         const userRole = rolData.role; // Obtener el rol del usuario
+        
         // Redirigir al usuario según el estado de verificar_contrasena y su rol
         if (verificarContrasena) {
             window.location.href = urlPaginaCambioContrasena;
@@ -129,6 +130,20 @@ async function checkUserRole(token) {
         Swal.fire("Error", "Error al verificar la información del usuario: " + error.message, "error");
     }
 }
+
+// Función de redirección después de cambio de contraseña
+async function redirigirDespuesCambioContrasena() {
+    Swal.fire({
+        title: "Contraseña actualizada",
+        text: "Tu contraseña ha sido cambiada correctamente. Serás redirigido al inicio de sesión.",
+        icon: "success",
+        timer: 3000, // Mostrar el mensaje por 3 segundos
+        showConfirmButton: false
+    }).then(() => {
+        window.location.href = urlRedireccionInicioSesion; // Redirigir al inicio de sesión
+    });
+}
+
 // Función para validar campos del formulario de login
 function validarCampos(formData) {
     let camposRequeridos = [
@@ -150,6 +165,7 @@ function validarCampos(formData) {
     });
     return camposValidos;
 }
+
 // Alternar visibilidad de la contraseña
 const togglePassword = document.getElementById('togglePassword');
 const passwordInput = document.getElementById('password');
@@ -158,6 +174,8 @@ togglePassword.addEventListener('click', function () {
     passwordInput.setAttribute('type', type);
     this.classList.toggle('fa-eye-slash');
 });
+
+// Función para cerrar sesión
 function cerrarSesion() {
     // Eliminar el token de autenticación
     localStorage.removeItem('authTokens'); 
@@ -172,5 +190,4 @@ function cerrarSesion() {
     
     // Redirigir al inicio de sesión
     window.location.href = urlRedireccionInicioSesion;
-  }
-  
+}
