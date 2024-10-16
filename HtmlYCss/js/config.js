@@ -1,4 +1,3 @@
-
 //var urlBase = "http://5.183.11.147:8888/api/v1/";
 var urlBase = "http://localhost:8888/api/v1/";
 
