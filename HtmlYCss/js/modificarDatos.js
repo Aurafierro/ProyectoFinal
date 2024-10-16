@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Función para obtener datos del usuario
     async function obtenerDatosUsuario(token) {
         try {
-            const response = await fetch('http://localhost:8080/api/v1/user/profile', {
+            const response = await fetch(urlProfile, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,

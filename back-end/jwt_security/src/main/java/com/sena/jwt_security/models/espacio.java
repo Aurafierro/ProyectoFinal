@@ -37,8 +37,7 @@ public class espacio {
 	private String imagen_base;
 
 
-	@Column( name="imagen_url", nullable = true, length = 255 )
-	private String imagen_url;
+
 	
 
 
@@ -56,8 +55,9 @@ public class espacio {
 		this.clasificacion = clasificacion;
 		this.capacidad = capacidad;
 		this.descripcion = descripcion;
-		this.imagen_base = "data:image/jpeg;base64,"+ imagen_base;
-		this.imagen_url = imagen_url;
+		//this.imagen_base = "data:image/jpeg;base64,"+ imagen_base;
+		 this.imagen_base=imagen_base;
+	
 	}
 
 
@@ -120,15 +120,6 @@ public class espacio {
 	public void setImagen_base(String imagen_base) {
 		this.imagen_base = imagen_base;
 	}
-
-
-	public String getImagen_url() {
-		return imagen_url;
-	}
-    // Corregir el setter para no agregar 'data:image/jpeg;base64,' a la URL
-    public void setImagen_url(String imagen_url) {
-        this.imagen_url = imagen_url; // Almacenar solo la URL completa del archivo
-    }
 
 	public boolean contieneCamposVacios() {
 		// TODO Auto-generated method stub

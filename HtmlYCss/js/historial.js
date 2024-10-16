@@ -97,7 +97,7 @@ function soloLetras(event) {
     const authToken = localStorage.getItem('authTokens');
   
     $.ajax({
-      url: 'http://localhost:8888/api/v1/user/profile', // URL del endpoint para obtener los datos del perfil del usuario
+      url: urlProfile, // URL del endpoint para obtener los datos del perfil del usuario
       type: 'GET',
       headers: {
         'Authorization': `Bearer ${authToken}` // Agregar el token al encabezado
@@ -187,7 +187,7 @@ function soloLetras(event) {
   
     // Realizar la petición POST con el Content-Type adecuado
     $.ajax({
-        url: 'http://localhost:8888/api/v1/reserva/', // URL de tu endpoint de reserva
+        url: urlReserva, // URL de tu endpoint de reserva
         type: 'POST',
         contentType: "application/json", // Definir el tipo de contenido como JSON
         data: JSON.stringify(reservaData), // Convertir el objeto a JSON antes de enviarlo
@@ -641,7 +641,7 @@ function soloLetras(event) {
   });
   // Función para llenar el select con los espacios desde el servidor
   function cargarEspacios() {
-    fetch('http://localhost:8888/api/v1/espacio/')  // Asegúrate de que esta URL sea correcta
+    fetch(urlAnadirEspacio)  // Asegúrate de que esta URL sea correcta
       .then(response => response.json())
       .then(data => {
         var select = document.getElementById("nombre_espacio");
@@ -740,7 +740,7 @@ function soloLetras(event) {
   
     // Realizar la petición PUT con el Content-Type adecuado
     $.ajax({
-      url: 'http://localhost:8888/api/v1/reserva/' + idReserva, // URL de tu endpoint de actualización
+      url: urlReserva + idReserva, // URL de tu endpoint de actualización
       type: 'PUT',
       contentType: "application/json", // Definir el tipo de contenido como JSON
       data: JSON.stringify(reservaData), // Convertir el objeto a JSON antes de enviarlo

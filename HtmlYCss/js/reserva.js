@@ -1,4 +1,4 @@
-var url = "http://localhost:8888/api/v1/reserva/";
+var url = urlReserva;
 
 document.getElementById("nombre_completo").addEventListener("keypress",soloLetras);
 document.getElementById("nombre_espacio").addEventListener("keypress",soloLetras);
