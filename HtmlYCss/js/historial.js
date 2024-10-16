@@ -300,12 +300,12 @@ function soloLetras(event) {
           let celdaFechaEntrada = document.createElement("td");
           let celdaFechaSalida = document.createElement("td");
           let celdaEstado = document.createElement("td");
-          celdaNombreCompleto.innerText = reserva.nombre_completo;
-          celdaNombreEspacio.innerText = reserva.nombre_espacio;
-          celdaHoraEntrada.innerText = reserva.hora_entrada;
-          celdaHoraSalida.innerText = reserva.hora_salida;
-          celdaFechaEntrada.innerText = reserva.fecha_entrada;
-          celdaFechaSalida.innerText = reserva.fecha_salida;
+          celdaNombreCompleto.innerText = reserva["userRegistro"]["nombre_completo"];
+          celdaNombreEspacio.innerText = reserva["espacio"]["nombre_del_espacio"];
+          celdaHoraEntrada.innerText = reserva["hora_entrada"];
+          celdaHoraSalida.innerText = reserva["hora_salida"];
+          celdaFechaEntrada.innerText = reserva["fecha_entrada"];
+          celdaFechaSalida.innerText = reserva["fecha_salida"];
           // Mostrar estado como "Activo" o "Cancelado"
           celdaEstado.innerText = reserva.estadoReserva === "ACTIVO" ? "Activo" : "Cancelado";
           trResgistro.appendChild(celdaNombreCompleto);
