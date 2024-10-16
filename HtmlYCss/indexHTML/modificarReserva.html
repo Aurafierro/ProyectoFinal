@@ -6,7 +6,7 @@
     <title>Modificar reservación</title>
     <link rel="stylesheet" href="../css/historial.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="icon" href="/iconos/logo.ico" type="image/x-icon">
+    <link rel="icon" href="../img/logo.png" type="image/x-icon">
 </head>
 <body onload="historial();">
     <header class="header">
@@ -23,11 +23,16 @@
     <aside class="sidebar hidden" id="sidebar">
         <nav>
             <ul>
-                <li class="sidebars-item"><a href="../indexHTML/miPerfil.html"><i class="fas fa-user"></i>Mi perfil</a></li>
-                <li class="sidebars-item"><a href="../indexHTML/moduloInformacion.html"><i class="fas fa-user"></i>Módulo información</a></li>
-                <li class="sidebars-item"><a href="../indexHTML/crearReserva.html"><i class="fas fa-key"></i>Reservar espacios</a></li>
-                <li class="sidebars-item"><a href="../indexHTML/modificarReserva.html"><i class="far fa-edit"></i>Modificar Reserva</a></li>
-                <li class="sidebars-item"><a href="../indexHTML/historial.html"><i class="fas fa-history"></i>Historial</a></li>
+                <li class="sidebars-item"><a href="../indexHTML/miPerfil.html"><i class="fas fa-user"></i>Mi perfil</a>
+                </li>
+                <li class="sidebars-item"><a href="../indexHTML/moduloInformacion.html"><i
+                            class="fas fa-user"></i>Módulo información</a></li>
+                <li class="sidebars-item"><a href="../indexHTML/crearReserva.html"><i class="fas fa-key"></i>Reservar
+                        espacios</a></li>
+                <li class="sidebars-item"><a href="../indexHTML/modificarReserva.html"><i
+                            class="far fa-edit"></i>Modificar Reserva</a></li>
+                <li class="sidebars-item"><a href="../indexHTML/historial.html"><i
+                            class="fas fa-history"></i>Historial</a></li>
             </ul>
         </nav>
     </aside>
@@ -74,7 +79,8 @@
                         <div class="divIzquierdo">
                             <div class="col col-xl-6 col-12">
                                 <label for="nombre_espacio"><b>Nombre espacio:</b></label>
-                                <select id="nombre_espacio" name="nombre_espacio" class="form-select SELECTnombre_espacio">
+                                <select id="nombre_espacio" name="nombre_espacio"
+                                    class="form-select SELECTnombre_espacio">
                                     <option value="" selected disabled>Selecciona una opción</option>
                                     <!-- Otras opciones pueden ser añadidas aquí -->
                                 </select>
@@ -87,7 +93,8 @@
                             <br>
                             <div class="col col-xl-6 col-12">
                                 <b><label for="">Fecha salida:</label></b>
-                                <input type="date" id="fecha_salida" step="1" class="form-control inputCamposEditarReserva" />
+                                <input type="date" id="fecha_salida" step="1"
+                                    class="form-control inputCamposEditarReserva" />
                             </div>
                         </div>
                         <div class="divDerecho">
@@ -104,8 +111,10 @@
                             <br>
                             <br>
                             <div class="row boton">
-                                <button type="button" id="botonActualizarReserva" onclick="actualizarReserva();">Guardar</button>
-                                <button type="button" class="btnCerrarModal" data-bs-dismiss="modal" onclick="cerrarModal();">Cancelar</button>
+                                <button type="button" id="botonActualizarReserva"
+                                    onclick="actualizarReserva();">Guardar</button>
+                                <button type="button" class="btnCerrarModal" data-bs-dismiss="modal"
+                                    onclick="cerrarModal();">Cancelar</button>
                             </div>
                         </div>
                     </div>

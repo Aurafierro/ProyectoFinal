@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Desactivar cuenta</title>
     <link rel="stylesheet" href="../css/miPerfil.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="icon" href="/iconos/logo.ico" type="image/x-icon">
+    <link rel="icon" href="../img/logo.png" type="image/x-icon">
 </head>
-
 <body>
     <header class="header">
         <div class="menu-toggle" id="menuToggle">
@@ -22,7 +20,6 @@
             <a href="#" class="logout-link" onclick="cerrarSesion()" title="Cerrar sesión">Cerrar sesión</a>
         </nav>
     </header>
-    
     <aside class="sidebarj" id="sidebarj">
         <nav>
             <ul>
@@ -34,7 +31,6 @@
             </ul>
         </nav>
     </aside>
-
     <div class="sidebar">
         <div class="sidebar-item">
             <i class="fas fa-user"></i>
@@ -49,7 +45,6 @@
             <a href="../indexHTML/desactivarCuenta.html" class="logout-linku">Desactivar cuenta</a>
         </div>
     </div>
-
     <div class="profile-container-desactivar">
         <div class="desactivar-cuenta">
             <h2>Desactivar cuenta</h2>
@@ -61,13 +56,11 @@
         <p>Te notificaremos una vez que la activación se haya completado.</p>
         <button type="button" class="desactivarCuenta">Desactivar cuenta</button>
     </div>
-
     <footer class="footer">
         <div class="footer-container">
             <p>&copy; 2024 Asigna Web - Todos los derechos reservados.</p>
         </div>
     </footer>
-
     <script src="../js/desactivarCuenta.js"></script>
     <script src="../js/config.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -75,7 +68,6 @@
     <script>
         const menuToggle = document.getElementById('menuToggle');
         const sidebar = document.getElementById('sidebarj');
-
         menuToggle.addEventListener('click', () => {
             sidebar.classList.toggle('visible');
         });

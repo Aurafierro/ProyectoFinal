@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Espacios registrados</title>
     <link rel="stylesheet" href="../css/listadoEspaciosRegistrados.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="icon" href="/iconos/logo.ico" type="image/x-icon">
+    <link rel="icon" href="../img/logo.png" type="image/x-icon">
 </head>
-
 <body onload="espaciosRegistrados();">
     <header class="header">
         <div class="menu-toggle" onclick="toggleSidebar();">
@@ -23,7 +21,6 @@
         </div>
     </header>
     <aside class="sidebar hidden" id="sidebar">
-      
             <nav>
                 <ul>
                     <li class="sidebars-item"><a href="../indexHTML/miPerfilAdmin.html"><i class="fas fa-user"></i>Mi perfil</a></li>
@@ -36,10 +33,7 @@
 
                 <li class="sidebars-item"><a href="../indexHTML/espaciosRegistrados.html"><i class="fas fa-calendar-week"></i>Registro de espacios</a></li>
                 </ul>
-            </nav>    
-       
-
-       
+            </nav>
     </aside>
     <div class="main-content">
         <div class="search-options">
@@ -67,7 +61,6 @@
             </div>
         </div>
     </div>
-
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -90,7 +83,6 @@
                                     <!-- Agrega más opciones según sea necesario -->
                                 </select>
                             </div>
-                            
                             <br>
                             <div class="col col-xl-6 col-12">
                                 <b><label for="">Clasificación:</label></b>
@@ -156,5 +148,4 @@
         <button class="download-pdf-button" onclick="descargarPDF()">Descargar PDF</button>
     </div>
 </footer>
-
 </html>

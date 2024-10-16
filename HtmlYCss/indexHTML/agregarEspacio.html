@@ -1,50 +1,52 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar espacio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="../css/nuevoEspacio.css">
-    <link rel="icon" href="/iconos/logo.ico" type="image/x-icon">
+    <link rel="icon" href="../img/logo.png" type="image/x-icon">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-
 <body>
     <div class="content">
         <form id="miFormulario" enctype="multipart/form-data">
             <div class="container vertical">
                 <div class="form-container" id="form-container">
                     <h1>Agregar espacios</h1>
-                    <input type="text" placeholder="Nombre del nuevo espacio" class="input-email" id="nombre_del_espacio" aria-label="Nombre del nuevo espacio" required>
-                    <input type="text" placeholder="Clasificación del nuevo espacio" class="input-email" id="clasificacion" aria-label="Clasificación del nuevo espacio" required>
-                    <input type="text" placeholder="Capacidad del nuevo espacio" class="input-email" id="capacidad" aria-label="Capacidad del nuevo espacio" required>
-                    <input type="text" placeholder="Descripción del nuevo espacio" class="input-email" id="descripcion" aria-label="Descripción del nuevo espacio" required>
+                    <input type="text" placeholder="Nombre del nuevo espacio" class="input-email"
+                        id="nombre_del_espacio" aria-label="Nombre del nuevo espacio" required>
+                    <input type="text" placeholder="Clasificación del nuevo espacio" class="input-email"
+                        id="clasificacion" aria-label="Clasificación del nuevo espacio" required>
+                    <input type="text" placeholder="Capacidad del nuevo espacio" class="input-email" id="capacidad"
+                        aria-label="Capacidad del nuevo espacio" required>
+                    <input type="text" placeholder="Descripción del nuevo espacio" class="input-email" id="descripcion"
+                        aria-label="Descripción del nuevo espacio" required>
                     <div class="buttons">
-                      <a href="../indexHTML/m.informacionAdmin.html"><button class="btn red" id="volverBtn" type="button">Volver</button></a>
-                        <button class="btn green" id="guardarBtn" type="button" onclick="guardarEspacio()">Guardar</button>
+                        <a href="../indexHTML/m.informacionAdmin.html"><button class="btn red" id="volverBtn"
+                                type="button">Volver</button></a>
+                        <button class="btn green" id="guardarBtn" type="button"
+                            onclick="guardarEspacio()">Guardar</button>
                     </div>
                 </div>
                 <div class="image-container" id="image-container">
                     <i class="fas fa-plus-circle add-icon" id="add-icon"></i>
-                    <input type="file" id="file-input" style="display: none;" accept="image/*" aria-label="Subir imagen">
-                    <img id="image-preview" class="image-preview" src="" alt="Vista previa de la imagen" style="display: none;">
+                    <input type="file" id="file-input" style="display: none;" accept="image/*"
+                        aria-label="Subir imagen">
+                    <img id="image-preview" class="image-preview" src="" alt="Vista previa de la imagen"
+                        style="display: none;">
                 </div>
-                
             </div>
         </form>
     </div>
-
     <footer class="footer">
         <div class="footer-container">
             <p>&copy; 2024 Asigna Web - Todos los derechos reservados.</p>
         </div>
     </footer>
-
     <script src="../js/anadirnuevoespacio.js"></script>
     <script src="../js/config.js"></script>
 </body>
-
 </html>

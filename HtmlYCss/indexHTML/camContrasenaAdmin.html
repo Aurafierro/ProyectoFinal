@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cambio contraseña</title>
     <link rel="stylesheet" href="../css/miPerfil.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="icon" href="/iconos/logo.ico" type="image/x-icon">
+    <link rel="icon" href="../img/logo.png" type="image/x-icon">
 </head>
 <body>
     <header class="header">
@@ -32,18 +31,15 @@
                 <li class="sidebars-item"><a href="../indexHTML/modificarReservaAdmin.html"><i class="far fa-edit"></i></i>Modificar Reserva</a></li>
                 <li class="sidebars-item"><a href="../indexHTML/crearCuenta.html"><i class="fas fa-users"></i>Crear cuentas</a></li>
                 <li class="sidebars-item"><a href="../indexHTML/agregarEspacio.html"><i class="fas fa-calendar-week"></i>Agregar espacios</a></li>
-
                 <li class="sidebars-item"><a href="../indexHTML/espaciosRegistrados.html"><i class="fas fa-calendar-week"></i>Registro de espacios</a></li>
             </ul>
         </nav>
     </aside>
-
     <div class="sidebar">
         <div class="sidebar-item">
             <i class="fas fa-user"></i>
             <a href="../indexHTML/miPerfilAdmin.html" class="logout-linku">Mi perfil</a>
         </div>
-     
         <div class="sidebar-item">
             <i class="fas fa-key"></i>
             <a href="../indexHTML/camContrasenaAdmin.html" class="logout-linku">Cambiar contraseña</a>
@@ -53,37 +49,30 @@
             <a href="../indexHTML/desactivarCunetaAdmin.html" class="logout-linku">Desactivar cuenta</a>
         </div>
     </div>
-
     <div class="profile-containertres">
         <div class="modifi-contraseña">
             <h2>Cambio de contraseña</h2>
         </div>
         <p>Ingresa una contraseña de fácil recordación</p>
-        
         <form>
             <div class="input-container">
                 <label for="antiguaContrasena">Contraseña actual:</label>
                 <input type="password" id="antiguaContrasena" name="current-password">
                 <i class="fas fa-eye toggle-password" data-input="antiguaContrasena"></i>
             </div>
-    
             <div class="input-container">
                 <label for="nuevaContrasena">Nueva contraseña:</label>
                 <input type="password" id="nuevaContrasena" name="new-password">
                 <i class="fas fa-eye toggle-password" data-input="nuevaContrasena"></i>
             </div>
-    
             <div class="input-container">
                 <label for="confirmarContrasena">Confirmar contraseña:</label>
                 <input type="password" id="confirmarContrasena" name="confirm-password">
                 <i class="fas fa-eye toggle-password" data-input="confirmarContrasena"></i>
             </div>
-    
             <button type="button" class="button-contrasena">Enviar</button>
         </form>
     </div>
-    
-
 </body>
 <footer class="footer">
     <div class="footer-container">
@@ -97,7 +86,6 @@
 <script>
     const menuToggle = document.getElementById('menuToggle');
     const sidebar = document.getElementById('sidebarj');
-
     menuToggle.addEventListener('click', () => {
         sidebar.classList.toggle('visible');
     });

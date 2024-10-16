@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear una cuenta</title>
     <link rel="stylesheet" href="../css/crearCuenta.css">
-    <link rel="icon" href="/iconos/logo.ico" type="image/x-icon">
-    <!-- Incluir Font Awesome -->
+    <link rel="icon" href="../img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -33,7 +32,6 @@
             </ul>
         </nav>
     </aside>
-
     <div class="container">
         <div class="form-container">
             <h2>Crear una cuenta</h2>
@@ -91,7 +89,6 @@
             <img src="../img/logori.png" alt="AsignaWeb Logo">
         </div>
     </div>
-
     <script src="../js/crearCuenta.js"></script>
     <script src="../js/config.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -100,22 +97,18 @@
         document.addEventListener("DOMContentLoaded", function() {
             const menuToggle = document.querySelector(".menu-toggle");
             const sidebar = document.getElementById("sidebarj");
-    
             menuToggle.addEventListener("click", function() {
                 sidebar.classList.toggle("visible");
             });
-    
             sidebar.addEventListener("click", function() {
                 sidebar.classList.remove("visible");
             });
         });
     </script>
-    
     <div class="menu-toggle">
         <i class="fas fa-bars"></i>
     </div>
 </body>
-
 <footer class="footer">
     <div class="footer-container">
         <p>&copy; 2024 Asigna Web - Todos los derechos reservados.</p>
