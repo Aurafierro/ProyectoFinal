@@ -21,7 +21,6 @@ var urlRecuperarContrasena=urlBase+"user/recuperar-contrasena"
 var urlRedireccion = "http://127.0.0.1:5502//"; 
 var urlRedireccionModuloAdmin = urlRedireccion + "HtmlYCss/indexHTML/m.informacionAdmin.html";
 var urlRedireccionModuloUsuario = urlRedireccion + "HtmlYCss/indexHTML/moduloInformacion.html";
-
 var urlPaginaCambioContrasena = urlRedireccion + "HtmlYCss/indexHTML/contrasenaCambiar.html";
 
 var urlRedireccionInicioSesion = urlRedireccion + "HtmlYCss/indexHTML/inicioSesion.html";

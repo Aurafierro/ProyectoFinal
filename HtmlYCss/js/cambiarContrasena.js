@@ -65,9 +65,9 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log('Rol del usuario:', userRole); 
             // Redirigir según el rol del usuario
             if (userRole === "Administrador") {
-                window.location.href = urlRedireccionModuloAdmin;  
+                window.location.href = urlRedireccionInicioSesion;  
             } else if (userRole === "Usuario") {
-                window.location.href = urlRedireccionModuloUsuario;  
+                window.location.href = urlRedireccionInicioSesion;  
             } else {
                 Swal.fire({
                     icon: 'warning',
