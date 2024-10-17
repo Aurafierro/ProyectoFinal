@@ -135,6 +135,7 @@ function validarHora_salida(input) {
   console.log("Validando hora de salida:", input.value);
 }
 
+
 // Función para crear la reserva
 function crearReserva() {
   // Obtener los valores de los campos del formulario
@@ -198,6 +199,7 @@ function crearReserva() {
               icon: "success"
           });
           listaReservasCrearReserva(); // Recargar la lista de reservas
+          limpiarFormularioReservas();
       },
       error: function (error) {
           Swal.fire({
@@ -208,6 +210,17 @@ function crearReserva() {
           console.log("Error al crear la reserva:", error.responseJSON || error.responseText || error);
       }
   });
+}
+
+function limpiarFormularioReservas() {
+  document.getElementById("nombre_completo").value = "";
+  document.getElementById("username").value = "";
+  document.getElementById("id_user").value = "";
+  document.getElementById("nombre_espacio").value = ""; // Asegúrate de que este ID coincida con tu campo select
+  document.getElementById("hora_entrada").value = "";
+  document.getElementById("hora_salida").value = "";
+  document.getElementById("fecha_entrada").value = "";
+  document.getElementById("fecha_salida").value = "";
 }
 
 // Validar que todos los campos estén llenos
@@ -479,22 +492,6 @@ function cancelarReserva(idReserva) {
       });
     }
   });
-}
-function limpiarFormulario() {
-  document.getElementById("id_user").className = "form-control";
-  document.getElementById("id_espacio").className = "form-control";
-  document.getElementById("hora_entrada").className = "form-control";
-  document.getElementById("hora_salida").className = "form-control";
-  document.getElementById("fecha_entrada").className = "form-control";
-  document.getElementById("fecha_salida").className = "form-control";
-  document.getElementById("username").className = "form-control";
-  document.getElementById("id_user").value = "";
-  document.getElementById("id_espacio").value = "";
-  document.getElementById("hora_entrada").value = "";
-  document.getElementById("hora_salida").value = "";
-  document.getElementById("fecha_entrada").value = "";
-  document.getElementById("fecha_salida").value = "";
-  document.getElementById("username").value = "";
 }
 function openModal() {
   const modal = document.getElementById('editModal');
