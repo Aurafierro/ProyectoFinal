@@ -333,7 +333,7 @@ function historial() {
           cuerpoTabla.appendChild(trResgistro);
         }
       });
-      cargarFormulario();
+     
     },
     error: function (error) {
       alert("Error en la petición " + error);
@@ -585,7 +585,7 @@ function validarHoras(horaEntrada, horaSalida) {
 }
 function actualizarReserva() {
   // Obtener los valores de los campos del formulario
-  var idUser = document.getElementById("id_user").value;  // ID de la tabla `userRegistro`
+ 
   var idEspacio = document.getElementById("nombre_espacio").value;  // ID de la tabla `espacio`
   var horaEntrada = document.getElementById("hora_entrada").value;
   var horaSalida = document.getElementById("hora_salida").value;

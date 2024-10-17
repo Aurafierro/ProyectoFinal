@@ -28,10 +28,10 @@ public class reserva {
     @JoinColumn(name = "id_espacio")
     private espacio espacio;
 
-    @Column(name = "hora_entrada", nullable = false, length = 5)
+    @Column(name = "hora_entrada", nullable = false, length = 10)
     private String hora_entrada;
 
-    @Column(name = "hora_salida", nullable = false, length = 5)
+    @Column(name = "hora_salida", nullable = false, length = 10)
     private String hora_salida;
 
     @Column(name = "fecha_entrada", nullable = true)
