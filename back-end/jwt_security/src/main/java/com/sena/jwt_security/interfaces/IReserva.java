@@ -3,6 +3,8 @@ package com.sena.jwt_security.interfaces;
 import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+
 import com.sena.jwt_security.models.espacio;
 import com.sena.jwt_security.models.reserva;
 import com.sena.jwt_security.models.userRegistro;
@@ -32,5 +34,14 @@ public interface IReserva extends CrudRepository<reserva, String> {
 
     // Filtro para verificar si ya hay una reserva por espacio y nombre completo
     @Query("SELECT r FROM reserva r WHERE r.espacio = ?1 AND r.userRegistro = ?2")
+    
     List<reserva> filtroIngresoReserva(espacio espacio, userRegistro userRegistro);
+    
+ // Filtro para verificar si ya hay una reserva por espacio y nombre completo
+    @Query("SELECT r FROM reserva r JOIN r.userRegistro u JOIN r.espacio e WHERE u.nombre_completo LIKE %:nombreCompleto% OR e.nombre_del_espacio LIKE %:nombreEspacio%")
+    List<reserva> filtroPorUsuarioYEspacio(@Param("nombreCompleto") String nombreCompleto, @Param("nombreEspacio") String nombreEspacio);
+
+
+ 
+
 }

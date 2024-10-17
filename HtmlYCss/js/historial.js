@@ -282,50 +282,59 @@ function soloLetras(event) {
   function tablaReservas() {
     var capturarFiltro = document.getElementById("inputSearch").value;
     var urlLocal = urlReserva;
-    if (capturarFiltro != "") {
-      urlLocal += "busquedafiltro/" + capturarFiltro;
+
+    if (capturarFiltro !== "") {
+        // Construye la URL con el filtro tanto para 'nombreCompleto' como para 'nombreEspacio'
+        urlLocal += "busquedafiltro?nombreCompleto=" + encodeURIComponent(capturarFiltro) + 
+                    "&nombreEspacio=" + encodeURIComponent(capturarFiltro);
     }
+
     $.ajax({
-      url: urlLocal,
-      type: "GET",
-      success: function (result) {
-        var cuerpoTabla = document.getElementById("cuerpoTabla");
-        cuerpoTabla.innerHTML = ""; // Limpiar tabla
-        result.forEach(function (reserva) {
-          var trResgistro = document.createElement("tr");
-          let celdaNombreCompleto = document.createElement("td");
-          let celdaNombreEspacio = document.createElement("td");
-          let celdaHoraEntrada = document.createElement("td");
-          let celdaHoraSalida = document.createElement("td");
-          let celdaFechaEntrada = document.createElement("td");
-          let celdaFechaSalida = document.createElement("td");
-          let celdaEstado = document.createElement("td");
-          celdaNombreCompleto.innerText = reserva["userRegistro"]["nombre_completo"];
-          celdaNombreEspacio.innerText = reserva["espacio"]["nombre_del_espacio"];
-          celdaHoraEntrada.innerText = reserva["hora_entrada"];
-          celdaHoraSalida.innerText = reserva["hora_salida"];
-          celdaFechaEntrada.innerText = reserva["fecha_entrada"];
-          celdaFechaSalida.innerText = reserva["fecha_salida"];
-          // Mostrar estado como "Activo" o "Cancelado"
-          celdaEstado.innerText = reserva.estadoReserva === "ACTIVO" ? "Activo" : "Cancelado";
-          trResgistro.appendChild(celdaNombreCompleto);
-          trResgistro.appendChild(celdaNombreEspacio);
-          trResgistro.appendChild(celdaHoraEntrada);
-          trResgistro.appendChild(celdaHoraSalida);
-          trResgistro.appendChild(celdaFechaEntrada);
-          trResgistro.appendChild(celdaFechaSalida);
-          trResgistro.appendChild(celdaEstado);
-          cuerpoTabla.appendChild(trResgistro);
-        });
-  
-        // Llamar a cargarFormulario después de cargar la tabla
-        cargarFormulario();
-      },
-      error: function (error) {
-        alert("Error en la petición " + error);
-      }
+        url: urlLocal,
+        type: "GET",
+        success: function (result) {
+            var cuerpoTabla = document.getElementById("cuerpoTabla");
+            cuerpoTabla.innerHTML = ""; // Limpiar tabla antes de cargar los datos
+            result.forEach(function (reserva) {
+                var trResgistro = document.createElement("tr");
+                let celdaNombreCompleto = document.createElement("td");
+                let celdaNombreEspacio = document.createElement("td");
+                let celdaHoraEntrada = document.createElement("td");
+                let celdaHoraSalida = document.createElement("td");
+                let celdaFechaEntrada = document.createElement("td");
+                let celdaFechaSalida = document.createElement("td");
+                let celdaEstado = document.createElement("td");
+
+                celdaNombreCompleto.innerText = reserva["userRegistro"]["nombre_completo"];
+                celdaNombreEspacio.innerText = reserva["espacio"]["nombre_del_espacio"];
+                celdaHoraEntrada.innerText = reserva["hora_entrada"];
+                celdaHoraSalida.innerText = reserva["hora_salida"];
+                celdaFechaEntrada.innerText = reserva["fecha_entrada"];
+                celdaFechaSalida.innerText = reserva["fecha_salida"];
+                // Mostrar estado como "Activo" o "Cancelado"
+                celdaEstado.innerText = reserva.estadoReserva === "ACTIVO" ? "Activo" : "Cancelado";
+
+                // Agregar celdas a la fila
+                trResgistro.appendChild(celdaNombreCompleto);
+                trResgistro.appendChild(celdaNombreEspacio);
+                trResgistro.appendChild(celdaHoraEntrada);
+                trResgistro.appendChild(celdaHoraSalida);
+                trResgistro.appendChild(celdaFechaEntrada);
+                trResgistro.appendChild(celdaFechaSalida);
+                trResgistro.appendChild(celdaEstado);
+
+                // Agregar la fila al cuerpo de la tabla
+                cuerpoTabla.appendChild(trResgistro);
+            });
+
+            // Llamar a cargarFormulario después de cargar la tabla
+            cargarFormulario();
+        },
+        error: function (error) {
+            alert("Error en la petición " + error);
+        }
     });
-  }
+}
   
   document.addEventListener('DOMContentLoaded', function () {
     const authToken = localStorage.getItem('authTokens');

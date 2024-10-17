@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itextpdf.text.BaseColor;
@@ -166,7 +167,7 @@ public class reservaController {
         return "Usuario desconocido"; // Retorno por defecto si el objeto no es del tipo esperado
     }
 
-    @GetMapping("/busquedafiltro/{filtro}")
+   /* @GetMapping("/busquedafiltro/{filtro}")
     public ResponseEntity<Object> findFiltro(@PathVariable String filtro) {
         espacio espacioEncontrado = espacioService.findByFiltro(filtro);
         userRegistro usuarioEncontrado = userService.findByFiltro(filtro);
@@ -174,7 +175,15 @@ public class reservaController {
         var listaReserva = reservaService.filtroIngresoReserva(espacioEncontrado, usuarioEncontrado);
 
         return new ResponseEntity<>(listaReserva, HttpStatus.OK);
+    }*/
+     
+    
+    @GetMapping("/busquedafiltro")
+    public ResponseEntity<Object> findFiltro(@RequestParam String nombreCompleto, @RequestParam String nombreEspacio) {
+        var listaReservas = reservaService.filtroPorUsuarioYEspacio(nombreCompleto, nombreEspacio);
+        return new ResponseEntity<>(listaReservas, HttpStatus.OK);
     }
+
 
     @GetMapping("/{id_reserva}")
     public ResponseEntity<Object> findOne(@PathVariable String id_reserva) {

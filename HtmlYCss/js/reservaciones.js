@@ -1,10 +1,4 @@
 
-//document.getElementById("nombre_completo").addEventListener("keypress", soloLetras);
-//document.getElementById("nombre_espacio").addEventListener("keypress", soloLetras);
-//document.getElementById("hora_entrada").addEventListener("keypress", numerosYcaracteres);
-//document.getElementById("hora_salida").addEventListener("keypress", numerosYcaracteres);
-
-
 function soloLetras(event) {
   console.log("Llave presionada: " + event.key);
   console.log("Código tecla: " + event.keyCode);
@@ -86,16 +80,13 @@ function numerosYcaracteres(event) {
     return;
   }
 }
-
 // Función para cargar los datos del usuario en el formulario
 window.onload = function () {
   cargarFormulario(); // Cargar los datos del usuario cuando se carga la página
 };
-
 // Función para cargar la información del usuario en el formulario
 function cargarFormulario() {
   const authToken = localStorage.getItem('authTokens');
-
   $.ajax({
     url: urlProfile, // URL del endpoint para obtener los datos del perfil del usuario
     type: 'GET',
@@ -104,7 +95,6 @@ function cargarFormulario() {
     },
     success: function (userData) {
       console.log(userData);
-
       // Verificar que los elementos existen antes de asignarles valores
       var nombreCompletoField = document.getElementById("nombre_completo");
       var usernameField = document.getElementById("username");
@@ -125,16 +115,13 @@ function cargarFormulario() {
   historial();
   
 }
-
 // Definir las funciones de validación de horas
 function validarHora_entrada(input) {
   console.log("Validando hora de entrada:", input.value);
 }
-
 function validarHora_salida(input) {
   console.log("Validando hora de salida:", input.value);
 }
-
 // Función para crear la reserva
 function crearReserva() {
   // Obtener los valores de los campos del formulario
@@ -146,7 +133,6 @@ function crearReserva() {
   var horaSalida = document.getElementById("hora_salida").value;
   var fechaEntrada = document.getElementById("fecha_entrada").value;
   var fechaSalida = document.getElementById("fecha_salida").value;
-
   // Validar que no haya campos vacíos
   if (!validarCampos()) {
       Swal.fire({
@@ -156,7 +142,6 @@ function crearReserva() {
       });
       return;
   }
-
   // Validar que las horas no sean iguales
   if (!validarHoras(horaEntrada, horaSalida)) {
       Swal.fire({
@@ -166,7 +151,6 @@ function crearReserva() {
       });
       return;
   }
-
   // Crear un objeto con los datos a enviar (en formato JSON)
   var reservaData = {
       userRegistro: {
@@ -182,9 +166,7 @@ function crearReserva() {
       fecha_entrada: fechaEntrada,
       fecha_salida: fechaSalida
   };
-
   console.log("Datos enviados:", JSON.stringify(reservaData));
-
   // Realizar la petición POST con el Content-Type adecuado
   $.ajax({
       url: urlReserva, // URL de tu endpoint de reserva
@@ -209,7 +191,6 @@ function crearReserva() {
       }
   });
 }
-
 // Validar que todos los campos estén llenos
 function validarCampos() {
   var idEspacio = document.getElementById("nombre_espacio").value;
@@ -220,128 +201,18 @@ function validarCampos() {
 
   return idEspacio !== '' && horaEntrada !== '' && horaSalida !== '' && fechaEntrada !== '' && fechaSalida !== '';
 }
-
-
-
-function listaReservasCrearReserva() {
-  $.ajax({
-    url: urlReserva, // URL para obtener todas las reservas
-    type: "GET",
-    success: function (result) {
-      console.log(result); // Asegúrate de que los datos lleguen correctamente
-
-      var cuerpoTabla = document.getElementById("cuerpoTabla");
-      if (!cuerpoTabla) {
-        console.error("Tabla no encontrada");
-        return;
-      }
-
-      cuerpoTabla.innerHTML = ""; // Limpiar el cuerpo de la tabla
-
-      result.forEach(function (reserva) {
-        // Verificar si el estado de la reserva es "ACTIVO"
-        if (reserva.estadoReserva === "ACTIVO") {
-          var trResgistro = document.createElement("tr");
-
-          // Crear celdas para cada campo de la reserva
-          let celdaNombreCompleto = document.createElement("td");
-          let celdaNombreEspacio = document.createElement("td");
-          let celdaHoraEntrada = document.createElement("td");
-          let celdaHoraSalida = document.createElement("td");
-          let celdaFechaEntrada = document.createElement("td");
-          let celdaFechaSalida = document.createElement("td");
-
-          // Asignar los valores correspondientes a las celdas
-          celdaNombreCompleto.innerText = reserva["userRegistro"]["nombre_completo"];
-          celdaNombreEspacio.innerText = reserva["espacio"]["nombre_del_espacio"];
-          celdaHoraEntrada.innerText = reserva["hora_entrada"];
-          celdaHoraSalida.innerText = reserva["hora_salida"];
-          celdaFechaEntrada.innerText = reserva["fecha_entrada"];
-          celdaFechaSalida.innerText = reserva["fecha_salida"];
-
-          // Añadir las celdas a la fila
-          trResgistro.appendChild(celdaNombreCompleto);
-          trResgistro.appendChild(celdaNombreEspacio);
-          trResgistro.appendChild(celdaHoraEntrada);
-          trResgistro.appendChild(celdaHoraSalida);
-          trResgistro.appendChild(celdaFechaEntrada);
-          trResgistro.appendChild(celdaFechaSalida);
-
-          // Añadir la fila al cuerpo de la tabla
-          cuerpoTabla.appendChild(trResgistro);
-          console.log("Fila añadida al cuerpo de la tabla");
-        }
-      });
-    },
-    error: function (error) {
-      alert("Error en la petición " + error);
-    }
-  });
-}
-
-function tablaReservas() {
-  var capturarFiltro = document.getElementById("inputSearch").value;
-  var urlLocal = urlReserva;
-  if (capturarFiltro != "") {
-    urlLocal += "busquedafiltro/" + capturarFiltro;
-  }
-  $.ajax({
-    url: urlLocal,
-    type: "GET",
-    success: function (result) {
-      var cuerpoTabla = document.getElementById("cuerpoTabla");
-      cuerpoTabla.innerHTML = ""; // Limpiar tabla
-      result.forEach(function (reserva) {
-        var trResgistro = document.createElement("tr");
-        let celdaNombreCompleto = document.createElement("td");
-        let celdaNombreEspacio = document.createElement("td");
-        let celdaHoraEntrada = document.createElement("td");
-        let celdaHoraSalida = document.createElement("td");
-        let celdaFechaEntrada = document.createElement("td");
-        let celdaFechaSalida = document.createElement("td");
-        let celdaEstado = document.createElement("td");
-        celdaNombreCompleto.innerText = reserva.nombre_completo;
-        celdaNombreEspacio.innerText = reserva.nombre_espacio;
-        celdaHoraEntrada.innerText = reserva.hora_entrada;
-        celdaHoraSalida.innerText = reserva.hora_salida;
-        celdaFechaEntrada.innerText = reserva.fecha_entrada;
-        celdaFechaSalida.innerText = reserva.fecha_salida;
-        // Mostrar estado como "Activo" o "Cancelado"
-        celdaEstado.innerText = reserva.estadoReserva === "ACTIVO" ? "Activo" : "Cancelado";
-        trResgistro.appendChild(celdaNombreCompleto);
-        trResgistro.appendChild(celdaNombreEspacio);
-        trResgistro.appendChild(celdaHoraEntrada);
-        trResgistro.appendChild(celdaHoraSalida);
-        trResgistro.appendChild(celdaFechaEntrada);
-        trResgistro.appendChild(celdaFechaSalida);
-        trResgistro.appendChild(celdaEstado);
-        cuerpoTabla.appendChild(trResgistro);
-      });
-
-      // Llamar a cargarFormulario después de cargar la tabla
-      cargarFormulario();
-    },
-    error: function (error) {
-      alert("Error en la petición " + error);
-    }
-  });
-}
-
 document.addEventListener('DOMContentLoaded', function () {
   const authToken = localStorage.getItem('authTokens');
-
   // Si no hay un token, redirige al inicio de sesión
   if (!authToken) {
     window.location.href = urlRedireccionInicioSesion;
   }
-
   // Evitar que el usuario vuelva a la página anterior después de cerrar sesión
   window.history.replaceState(null, null, window.location.href); // Reemplaza el estado actual con la URL actual
   window.onpopstate = function () {
     window.location.href = urlRedireccionInicioSesion; // Siempre redirige al inicio de sesión al retroceder
   };
 });
-
 function cerrarSesion() {
   // Limpiar el token y redirigir
   localStorage.removeItem('authTokens');
@@ -352,8 +223,6 @@ function cerrarSesion() {
   // Redirigir al inicio de sesión
   window.location.href = urlRedireccionInicioSesion;
 }
-
-
 function sidebar() {
   const sidebar = document.getElementById('sidebar');
   const mainContent = document.querySelector('.main-content');
@@ -372,12 +241,39 @@ function sidebar() {
 }
 function historial() {
   var capturarFiltro = document.getElementById("inputSearch").value;
-  var urlLocal = urlReserva;
-
-  if (capturarFiltro != "") {
-    urlLocal += "busquedafiltro/" + capturarFiltro;
+  var urlLocal = urlReserva;  // Asegúrate de que urlReserva esté definida correctamente
+  
+  if (capturarFiltro !== "") {
+      // Verificar si la URL base ya tiene la barra diagonal al final
+      if (!urlLocal.endsWith("/")) {
+          urlLocal += "/";
+      }
+  
+      // Enviar el mismo filtro tanto para 'nombreCompleto' como para 'nombreEspacio'
+      urlLocal += "busquedafiltro?nombreCompleto=" + encodeURIComponent(capturarFiltro) + 
+                  "&nombreEspacio=" + encodeURIComponent(capturarFiltro);
   }
+  
+  // Verificar la URL generada
+  console.log("URL con filtro: " + urlLocal); 
 
+  // Realiza la solicitud al backend con fetch
+  fetch(urlLocal)
+      .then(response => {
+          if (!response.ok) {
+              throw new Error("Error en la solicitud: " + response.status);
+          }
+          return response.json();
+      })
+      .then(data => {
+          console.log("Datos recibidos:", data);
+          // Llama a una función para manejar los datos recibidos
+      })
+      .catch(error => {
+          console.error("Error:", error);
+      });
+
+  // Realiza la solicitud también con jQuery por compatibilidad
   $.ajax({
     url: urlLocal,
     type: "GET",
@@ -386,29 +282,25 @@ function historial() {
 
       var cuerpoTabla = document.getElementById("cuerpoTabla");
       cuerpoTabla.innerHTML = ""; // Clear the table body
-
-      // Iterate over each reservation
+      // Iterar sobre cada reserva
       result.forEach(function (reserva) {
         console.log("Reserva:", reserva); // Log each reservation to inspect the structure
-
         // Filtrar solo las reservas activas (estado === true o estadoReserva === "ACTIVO")
         if (reserva.estado === true || reserva.estadoReserva === "ACTIVO") {
           var trResgistro = document.createElement("tr");
-
           let celdaNombreCompleto = document.createElement("td");
           let celdaNombreEspacio = document.createElement("td");
           let celdaHoraEntrada = document.createElement("td");
           let celdaHoraSalida = document.createElement("td");
           let celdaFechaEntrada = document.createElement("td");
           let celdaFechaSalida = document.createElement("td");
-
           celdaNombreCompleto.innerText = reserva["userRegistro"]["nombre_completo"];
           celdaNombreEspacio.innerText = reserva["espacio"]["nombre_del_espacio"];
           celdaHoraEntrada.innerText = reserva["hora_entrada"];
           celdaHoraSalida.innerText = reserva["hora_salida"];
           celdaFechaEntrada.innerText = reserva["fecha_entrada"];
           celdaFechaSalida.innerText = reserva["fecha_salida"];
-
+          
           let celdaOpcionEditar = document.createElement("td");
           let botonEditarReserva = document.createElement("button");
           botonEditarReserva.value = reserva["id_reserva"];
@@ -441,12 +333,14 @@ function historial() {
           cuerpoTabla.appendChild(trResgistro);
         }
       });
+      cargarFormulario();
     },
     error: function (error) {
       alert("Error en la petición " + error);
     }
   });
 }
+
 
 // Función para cancelar una reserva
 function cancelarReserva(idReserva) {
@@ -634,11 +528,10 @@ function descargarPDF() {
 document.addEventListener('DOMContentLoaded', function () {
   // Obtener la fecha actual
   const today = new Date().toISOString().split('T')[0];
-
   // Establecer la fecha mínima en los campos de tipo date
   document.getElementById('fecha_entrada').setAttribute('min', today);
   document.getElementById('fecha_salida').setAttribute('min', today);
-});
+})
 // Función para llenar el select con los espacios desde el servidor
 function cargarEspacios() {
   fetch(urlAnadirEspacio)  // Asegúrate de que esta URL sea correcta
@@ -647,7 +540,6 @@ function cargarEspacios() {
       var select = document.getElementById("nombre_espacio");
       // Limpiar cualquier opción previa en el select
       select.innerHTML = '<option value="" selected disabled>Selecciona una opción</option>';
-
       // Iterar sobre los espacios recibidos desde el servidor
       data.forEach(function(espacio) {
         var option = document.createElement("option");
@@ -660,13 +552,10 @@ function cargarEspacios() {
       console.error("Error al cargar los espacios:", error);
     });
 }
-
 // Llamar a la función para cargar los espacios cuando la página esté lista
 document.addEventListener('DOMContentLoaded', function() {
   cargarEspacios();
 });
-
-
 function validarCampos() {
   // Obtener los valores de los campos
   var nombre_espacio = document.getElementById("nombre_espacio").value;
@@ -694,7 +583,6 @@ function validarHoras(horaEntrada, horaSalida) {
   }
   return true;
 }
-
 function actualizarReserva() {
   // Obtener los valores de los campos del formulario
   var idUser = document.getElementById("id_user").value;  // ID de la tabla `userRegistro`
@@ -704,7 +592,6 @@ function actualizarReserva() {
   var fechaEntrada = document.getElementById("fecha_entrada").value;
   var fechaSalida = document.getElementById("fecha_salida").value;
   var idReserva = document.getElementById("id_reserva").value; // ID de la reserva
-
   // Validar que no haya campos vacíos
   if (!validarCampos()) {
     Swal.fire({
@@ -714,7 +601,6 @@ function actualizarReserva() {
     });
     return;
   }
-
   // Validar que las horas no sean iguales
   if (!validarHoras(horaEntrada, horaSalida)) {
     Swal.fire({
@@ -724,7 +610,6 @@ function actualizarReserva() {
     });
     return;
   }
-
   // Crear un objeto con los datos a enviar (en formato JSON)
   var reservaData = {
     espacio: {
@@ -735,9 +620,7 @@ function actualizarReserva() {
     fecha_entrada: fechaEntrada,
     fecha_salida: fechaSalida
   };
-
   console.log("Datos enviados:", JSON.stringify(reservaData));
-
   // Realizar la petición PUT con el Content-Type adecuado
   $.ajax({
     url: urlReserva + idReserva, // URL de tu endpoint de actualización
@@ -762,8 +645,6 @@ function actualizarReserva() {
     }
   });
 }
-
-
 function cerrarModal() {
   // Suponiendo que estás utilizando el modal de Bootstrap
   const modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal'));

@@ -65,7 +65,9 @@ public class reservaService implements IReservaService{
 	    List<reserva> listaReservaConflicto = data.verificarReservaConflicto(nombre_espacio, hora_entrada, hora_salida);
 	    return listaReservaConflicto;
 	}
-
-
-
+	
+	public List<reserva> filtroPorUsuarioYEspacio(String nombreCompleto, String nombreEspacio) {
+        // Llama al método en el repositorio
+        return data.filtroPorUsuarioYEspacio(nombreCompleto, nombreEspacio);
+    }
 }
