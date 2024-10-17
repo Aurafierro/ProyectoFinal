@@ -484,7 +484,7 @@ function descargarPDF() {
   const textX = (pageWidth - textWidth) / 2;
   doc.setFontSize(18);
   doc.setTextColor(26, 62, 104); // Color azul oscuro para el título
-  doc.text(titulo, textX, 30);
+  doc.text(titulo, textX, 40);
   const head = [['Nombre Completo', 'Nombre Espacio', 'Hora Entrada', 'Hora Salida', 'Fecha Entrada', 'Fecha Salida']];
   const cuerpoTabla = document.getElementById('cuerpoTabla');
   const rows = [...cuerpoTabla.getElementsByTagName('tr')].map(row => {
