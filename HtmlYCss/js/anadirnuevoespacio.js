@@ -10,18 +10,27 @@ document.getElementById("file-input").addEventListener("change", (event) => {
     const addIcon = document.getElementById("add-icon");
 
     if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            preview.setAttribute("src", e.target.result);
-            preview.style.display = "block";
-            addIcon.style.display = "none";
-        };
-        reader.readAsDataURL(file);
+        // Verificar si el archivo es una imagen
+        const validImageTypes = ["image/jpeg", "image/png"];
+        if (validImageTypes.includes(file.type)) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                preview.setAttribute("src", e.target.result);
+                preview.style.display = "block";
+                addIcon.style.display = "none";
+            };
+            reader.readAsDataURL(file);
+        } else {
+            // Mostrar mensaje de error y limpiar el campo si no es una imagen
+            Swal.fire("Error", "Solo puedes subir archivos de imagen (JPG, PNG, GIF, BMP).", "error");
+            event.target.value = ""; // Limpiar el input de archivos
+        }
     } else {
         preview.style.display = "none";
         addIcon.style.display = "block";
     }
 });
+
 
 // Validar solo letras en los inputs especificados
 document.getElementById("nombre_del_espacio").addEventListener("keypress", soloLetras);
