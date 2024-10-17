@@ -40,8 +40,9 @@ public interface IReserva extends CrudRepository<reserva, String> {
  // Filtro para verificar si ya hay una reserva por espacio y nombre completo
     @Query("SELECT r FROM reserva r JOIN r.userRegistro u JOIN r.espacio e WHERE u.nombre_completo LIKE %:nombreCompleto% OR e.nombre_del_espacio LIKE %:nombreEspacio%")
     List<reserva> filtroPorUsuarioYEspacio(@Param("nombreCompleto") String nombreCompleto, @Param("nombreEspacio") String nombreEspacio);
+    
+    @Query("SELECT r FROM reserva r JOIN r.userRegistro u WHERE u.id_user = :id_user")
+    List<reserva> findReservasByUserId(@Param("id_user") String id_user);
 
-
- 
 
 }

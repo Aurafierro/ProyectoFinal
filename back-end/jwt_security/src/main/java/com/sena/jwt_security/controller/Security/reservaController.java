@@ -184,7 +184,6 @@ public class reservaController {
         return new ResponseEntity<>(listaReservas, HttpStatus.OK);
     }
 
-
     @GetMapping("/{id_reserva}")
     public ResponseEntity<Object> findOne(@PathVariable String id_reserva) {
         var reserva = reservaService.findOne(id_reserva);
@@ -235,4 +234,17 @@ public class reservaController {
         // Por ejemplo, llamar al servicio de espacio o consultar el repositorio.
         return espacio.getId_espacio(); // Asegúrate de que el método getNombre() exista en la clase espacio
     }
+    
+    @GetMapping("/usuario/{id_user}")
+    public ResponseEntity<Object> getReservasByUser(@PathVariable String id_user) {
+        var reservas = reservaService.findReservasByUserId(id_user);
+        
+        // Verificar si hay reservas para el usuario
+        if (reservas.isEmpty()) {
+            return new ResponseEntity<>("No hay reservas para este usuario", HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(reservas, HttpStatus.OK);
+    }
+
 }

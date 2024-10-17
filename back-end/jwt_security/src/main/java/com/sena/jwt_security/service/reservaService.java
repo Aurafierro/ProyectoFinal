@@ -70,4 +70,10 @@ public class reservaService implements IReservaService{
         // Llama al método en el repositorio
         return data.filtroPorUsuarioYEspacio(nombreCompleto, nombreEspacio);
     }
+	
+	public List<reserva> findReservasByUserId(String id_user) {
+        // Llama al método del repositorio para obtener las reservas de un usuario específico
+        return data.findReservasByUserId(id_user);
+    }
+
 }
