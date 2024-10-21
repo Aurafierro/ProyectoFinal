@@ -122,6 +122,7 @@ function validarHora_entrada(input) {
 function validarHora_salida(input) {
   console.log("Validando hora de salida:", input.value);
 }
+
 // Función para crear la reserva
 function crearReserva() {
   // Obtener los valores de los campos del formulario
@@ -142,15 +143,30 @@ function crearReserva() {
       });
       return;
   }
-  // Validar que las horas no sean iguales
-  if (!validarHoras(horaEntrada, horaSalida)) {
+  function validarHoras(horaEntrada, horaSalida) {
+    if (horaEntrada === horaSalida) {
       Swal.fire({
-          title: "¡Error!",
-          text: "La hora de entrada y salida no pueden ser iguales",
-          icon: "error"
+        title: "¡Error!",
+        text: "La hora de entrada no puede ser igual a la hora de salida",
+        icon: "error"
       });
-      return;
+      return false;
+    }
+    return true;
   }
+  document.getElementById("hora_entrada").addEventListener("change", function() {
+    const horaEntrada = this.value;
+    const horaSalida = document.getElementById("hora_salida").value;
+    validarHoras(horaEntrada, horaSalida);
+  });
+  
+  document.getElementById("hora_salida").addEventListener("change", function() {
+    const horaSalida = this.value;
+    const horaEntrada = document.getElementById("hora_entrada").value;
+    validarHoras(horaEntrada, horaSalida);
+  });
+  
+  
   // Crear un objeto con los datos a enviar (en formato JSON)
   var reservaData = {
       userRegistro: {
@@ -601,15 +617,7 @@ function actualizarReserva() {
     });
     return;
   }
-  // Validar que las horas no sean iguales
-  if (!validarHoras(horaEntrada, horaSalida)) {
-    Swal.fire({
-      title: "¡Error!",
-      text: "La hora de entrada y salida no pueden ser iguales",
-      icon: "error"
-    });
-    return;
-  }
+ 
   // Crear un objeto con los datos a enviar (en formato JSON)
   var reservaData = {
     espacio: {

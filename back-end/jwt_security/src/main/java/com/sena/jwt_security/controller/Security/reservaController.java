@@ -60,7 +60,7 @@ public class reservaController {
         }
 
         // Validación de que la hora de entrada no sea posterior a la hora de salida
-        if (reserva.getHora_entrada().equals(reserva.getHora_salida())) {
+        if (reserva.getHora_salida().equals(reserva.getHora_entrada())) {
             return new ResponseEntity<>("La hora de entrada no puede ser después de la hora de salida", HttpStatus.BAD_REQUEST);
         }
 
