@@ -17,8 +17,8 @@ public interface IReserva extends CrudRepository<reserva, String> {
             + "r.hora_entrada LIKE %?1% OR "
             + "r.hora_salida LIKE %?1% OR "
             + "e.nombre_del_espacio LIKE %?1% OR "
-            + "(r.fecha_entrada = ?1) OR "
-            + "(r.fecha_salida = ?1)")
+            + "r.fecha_entrada = ?1 OR "
+            + "r.fecha_salida = ?1")
     List<reserva> filtroReserva(String filtro);
     
     // Filtro para verificar conflictos en las reservas

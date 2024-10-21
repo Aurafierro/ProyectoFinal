@@ -438,8 +438,9 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 }
+
 function consultarReservaID(id) {
-  //alert(id);
+  // Obtener los datos de la reserva y rellenar el formulario del modal
   $.ajax({
     url: urlReserva + id,
     type: "GET",
@@ -450,9 +451,35 @@ function consultarReservaID(id) {
       document.getElementById("hora_salida").value = result["hora_salida"];
       document.getElementById("fecha_entrada").value = result["fecha_entrada"];
       document.getElementById("fecha_salida").value = result["fecha_salida"];
+
+      // Agregar validación de horas al modal
+      document.getElementById("hora_entrada").addEventListener("change", function () {
+        const horaEntrada = this.value;
+        const horaSalida = document.getElementById("hora_salida").value;
+        validarHoras(horaEntrada, horaSalida);
+      });
+
+      document.getElementById("hora_salida").addEventListener("change", function () {
+        const horaSalida = this.value;
+        const horaEntrada = document.getElementById("hora_entrada").value;
+        validarHoras(horaEntrada, horaSalida);
+      });
     }
   });
 }
+
+function validarHoras(horaEntrada, horaSalida) {
+  if (horaEntrada === horaSalida) {
+    Swal.fire({
+      title: "¡Error!",
+      text: "La hora de entrada no puede ser igual a la hora de salida",
+      icon: "error"
+    });
+    return false;
+  }
+  return true;
+}
+
 
 function eliminarReserva(idReserva) {
   Swal.fire({
@@ -601,23 +628,23 @@ function validarHoras(horaEntrada, horaSalida) {
 }
 function actualizarReserva() {
   // Obtener los valores de los campos del formulario
- 
   var idEspacio = document.getElementById("nombre_espacio").value;  // ID de la tabla `espacio`
   var horaEntrada = document.getElementById("hora_entrada").value;
   var horaSalida = document.getElementById("hora_salida").value;
   var fechaEntrada = document.getElementById("fecha_entrada").value;
   var fechaSalida = document.getElementById("fecha_salida").value;
   var idReserva = document.getElementById("id_reserva").value; // ID de la reserva
-  // Validar que no haya campos vacíos
-  if (!validarCampos()) {
+
+  // Validar que no haya campos vacíos y que las horas sean diferentes
+  if (!validarCampos() || !validarHoras(horaEntrada, horaSalida)) {
     Swal.fire({
       title: "¡Error!",
-      text: "Todos los campos son obligatorios",
+      text: "La hora de entrada no puede ser igual a la hora de salida.",
       icon: "error"
     });
     return;
   }
- 
+
   // Crear un objeto con los datos a enviar (en formato JSON)
   var reservaData = {
     espacio: {
@@ -628,7 +655,9 @@ function actualizarReserva() {
     fecha_entrada: fechaEntrada,
     fecha_salida: fechaSalida
   };
+
   console.log("Datos enviados:", JSON.stringify(reservaData));
+
   // Realizar la petición PUT con el Content-Type adecuado
   $.ajax({
     url: urlReserva + idReserva, // URL de tu endpoint de actualización
@@ -642,6 +671,7 @@ function actualizarReserva() {
         icon: "success"
       });
       historial(); // Actualizar el historial de reservas
+      cerrarModal(); // Cerrar el modal después de la actualización
     },
     error: function (error) {
       Swal.fire({
@@ -653,6 +683,7 @@ function actualizarReserva() {
     }
   });
 }
+
 function cerrarModal() {
   // Suponiendo que estás utilizando el modal de Bootstrap
   const modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal'));
