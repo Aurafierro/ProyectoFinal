@@ -1,5 +1,6 @@
 package com.sena.jwt_security.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import java.util.Optional;
@@ -60,11 +61,7 @@ public class reservaService implements IReservaService{
 	}
 
 	@Override
-	public List<reserva> verificarReservaConflicto(String nombre_espacio, String hora_entrada, String hora_salida) {
-	    // Llama al repositorio para verificar si ya hay una reserva con el mismo espacio y horario
-	    List<reserva> listaReservaConflicto = data.verificarReservaConflicto(nombre_espacio, hora_entrada, hora_salida);
-	    return listaReservaConflicto;
-	}
+	public List<reserva> verificarReservaConflicto(espacio espacio, String hora_entrada, String hora_salida, userRegistro userRegistro);
 	
 	public List<reserva> filtroPorUsuarioYEspacio(String nombreCompleto, String nombreEspacio) {
         // Llama al método en el repositorio
@@ -75,5 +72,12 @@ public class reservaService implements IReservaService{
         // Llama al método del repositorio para obtener las reservas de un usuario específico
         return data.findReservasByUserId(id_user);
     }
+
+	@Override
+	public boolean existeReservaConflicto(Long idEspacio, String horaEntrada, String horaSalida,
+			LocalDate fechaEntrada) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }
