@@ -1,11 +1,12 @@
 package com.sena.jwt_security.controller.Security;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.sena.jwt_security.models.AuthResponse;
 import com.sena.jwt_security.models.loginRequest;
-
+import com.sena.jwt_security.models.preregisterRequest;
 import com.sena.jwt_security.service.AuthService;
 
 @RestController
@@ -20,16 +21,19 @@ public class userPublicController {
         this.authService = authService;
     }
 
-    @PostMapping("/login/")
+    @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody loginRequest request) {
-        try {
-            AuthResponse response = authService.login(request);
-            return ResponseEntity.ok(response);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(new AuthResponse(e.getMessage()));
-        }
+        AuthResponse response = authService.login(request);
+        return new ResponseEntity<AuthResponse>(response, HttpStatus.OK);
     }
 
+    @PostMapping("/pre-register/")
+    public ResponseEntity<AuthResponse> preRegister(@RequestBody preregisterRequest request) {
+        // Llamar al servicio de preRegistro
+        AuthResponse response = authService.preregister(request);
+        // Devolver la respuesta con el token
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 
    /*
     @PostMapping("/register/")

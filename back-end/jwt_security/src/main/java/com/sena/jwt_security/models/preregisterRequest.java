@@ -1,9 +1,9 @@
 package com.sena.jwt_security.models;
 
+public class preregisterRequest {
 
-public class resgisterRequest {
-
-    private String tipo_documento;
+	
+	private String tipo_documento;
     private String numero_documento;
     private String nombre_completo;
     private String username;
@@ -12,12 +12,15 @@ public class resgisterRequest {
 
     
 
-    public resgisterRequest() {
+
+
+	public preregisterRequest() {
 		super();
 	}
+	
+	
 
-    
-	public resgisterRequest(String tipo_documento, String numero_documento, String nombre_completo, String username,
+	public preregisterRequest(String tipo_documento, String numero_documento, String nombre_completo, String username,
 			com.sena.jwt_security.models.rol rol, com.sena.jwt_security.models.estadoUser estadoUser) {
 		super();
 		this.tipo_documento = tipo_documento;
@@ -27,6 +30,7 @@ public class resgisterRequest {
 		this.rol = rol;
 		this.estadoUser = estadoUser;
 	}
+
 
 
 	// Métodos getter y setter para cada campo
@@ -79,6 +83,4 @@ public class resgisterRequest {
 	public void setEstadoUser(estadoUser estadoUser) {
 		this.estadoUser = estadoUser;
 	}
-
- 
 }

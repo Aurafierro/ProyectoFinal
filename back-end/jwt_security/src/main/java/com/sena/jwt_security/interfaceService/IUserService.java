@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import com.sena.jwt_security.models.AuthResponse;
 import com.sena.jwt_security.models.loginRequest;
+import com.sena.jwt_security.models.preregisterRequest;
 import com.sena.jwt_security.models.resgisterRequest;
 import com.sena.jwt_security.models.userRegistro;
 
@@ -23,11 +24,14 @@ public interface IUserService {
 	
 	public AuthResponse register(resgisterRequest request);
 
+
 	public Optional<userRegistro>findByUsername(String username);
 	AuthResponse login(loginRequest request);
 	public void savePasswordResetToken(userRegistro user, String token);
 	public List<userRegistro> filtroIngresoUserByEmail(String username);
 	public userRegistro findById(String idUser);
+	AuthResponse preregister(preregisterRequest request);
+	String generarContrasenaAleatoria();
 	
 	
 

@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import com.sena.jwt_security.models.userRegistro;
 
@@ -20,7 +21,9 @@ public interface Iuser extends CrudRepository<userRegistro, String> {
     @Query("SELECT u FROM userRegistro u WHERE u.numero_documento = ?1")
     List<userRegistro> enviarNotificacionCuenta(String numero_documento);
 
-
+    // Consultar usuarios por correo electrónico (podría devolver múltiples resultados)
+    @Query("SELECT u FROM userRegistro u WHERE u.username = :username")
+    List<userRegistro> filtroIngresoUserByEmail(@Param("username") String username);
 
 }
 

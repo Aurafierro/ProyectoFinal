@@ -2,18 +2,11 @@
     font-family: 'Candal';
     src: url('http://asignaweb.com/Fuentes/Candal/Candal-Regular.ttf') format('truetype');
 }
-@font-face {
-    font-family: "Candal";
-    src: url("/HtmlYCss/Fuentes/Candal/Candal-Regular.ttf");
-  }
-
-
 body {
     margin: 0;
     font-family: 'Candal', sans-serif;
 }
 
-/* Contenedor general */
 .container, .container-dos, .container-tres, .container-cuatro, .container-cinco {
     display: flex;
     justify-content: space-between;
@@ -21,51 +14,60 @@ body {
     box-sizing: border-box;
     flex-wrap: wrap;
 }
-
-/* Ajustes para diferentes containers */
 .container {
-    background-color: #202C4A;
+    background-color: #0e0baa;
     color: white;
     padding: 100px 20px;
 }
-
 .container-dos {
     background-color: #EDEEEF;
     color: #202C4A;
     padding: 200px 20px;
 }
-
 .container-tres {
-    background-color: #202C4A;
-    padding: 240px 20px;
+    display: flex;
+    flex-direction: column; /* Asegura que el título esté arriba */
+    align-items: center; /* Centra el título */
+    background-color: #0b3052;
+    padding: 120px 20px;
+    gap: 20px; /* Espacio entre el título y las tarjetas */
 }
-
+.cards-container {
+    display: flex;
+    justify-content: center; /* Centra las tarjetas */
+    flex-wrap: nowrap; /* Evita que las tarjetas se muevan a una nueva línea */
+    gap: 15px; /* Espacio entre las tarjetas */
+    overflow-x: auto; /* Permite desplazamiento horizontal si es necesario */
+}
+.title {
+    font-size: 5.5em; /* Ajusta el tamaño del título */
+    margin: 0; /* Elimina márgenes adicionales */
+    color: white;
+    text-align: center;
+}
 .container-cuatro {
     background-color: #EDEEEF;
-    color: #202C4A;
+    color:#0b3052;
     padding: 150px 20px;
 }
-
 .container-cinco {
-    background-color: #202C4A;
+    background-color: #0b3052;
     color: white;
     padding: 80px 20px;
 }
-/* From Uiverse.io by MuhammadHasann */ 
 button {
     position: relative;
     padding: 20px 60px;
-    background: #202C4A;
+    background:#0b3052;
     font-size: 17px;
     font-weight: 500;
     color: #fdfdfd;
-    border: 3px solid #202C4A;
+    border: 3px solid #0b3052;
     border-radius: 20px;
     box-shadow: 0 0 0 #fec1958c;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
   }
-  
   .star-1 {
     position: absolute;
     top: 20%;
@@ -76,15 +78,11 @@ button {
     z-index: -5;
     transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
   }
-  
-  
-  
   button:hover {
     background: transparent;
     color: #7e7e7e;
     box-shadow: 0 0 25px #20077e;
   }
-  
   button:hover .star-1 {
     position: absolute;
     top: -80%;
@@ -94,14 +92,9 @@ button {
     filter: drop-shadow(0 0 10px #000000);
     z-index: 2;
   }
-  
-  
   .fil0 {
     fill: #430fff;
   }
-  
-
-/* Contenido de texto general */
 .text-content, .text-content-dos, .text-content-cuatro, .text-content-cinco {
     max-width: 60%;
     display: flex;
@@ -112,14 +105,11 @@ button {
     padding: 20px;
     flex: 1 1 300px;
 }
-
-/* Encabezados y párrafos generales */
 .text-content h1, .text-content-dos h1, .text-content-cuatro h1, .text-content-cinco h1 {
     margin: 0 0 30px 0;
     font-size: 3.9em;
    
 }
-
 .text-content p, .text-content-dos p, .text-content-cuatro p, .text-content-cinco p {
     margin: 30px 0;
     font-size: 1.8em;
@@ -127,7 +117,6 @@ button {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-/* Botones */
 .text-content button {
     background-color: #EBECED;
     color: black;
@@ -144,14 +133,52 @@ button {
     background-color: #D6D6D6;
 }
 
-/* Imagenes generales */
+/* Imagenes generales con animación */
 img {
-    max-width: 38%;
+    max-width: 28%;
     height: auto;
     object-fit: cover;
     margin-top: 10px;
- 
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    animation: slideIn 0.7s ease-out;
+    transform: translateX(-60px); /* Mueve la imagen 10px hacia la izquierda */
 }
+
+
+/* Escalar la imagen ligeramente al pasar el ratón */
+img:hover {
+    transform: scale(1.05); /* Aumenta el tamaño al 105% */
+    animation: pulse 2s infinite; /* Mantiene el movimiento mientras el cursor está sobre la imagen */
+}
+
+/* Añadir rotación suave */
+img:active {
+    transform: scale(1.05) rotate(5deg); /* Rota ligeramente al hacer clic */
+}
+
+/* Animación de entrada */
+@keyframes slideIn {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Animación de pulso suave */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1.05); /* Tamaño cuando el cursor está sobre la imagen */
+    }
+    50% {
+        transform: scale(1.1); /* Tamaño máximo durante el pulso */
+    }
+}
+
+
 /* Estilos del footer */
 footer.contact-info {
     display: flex;
@@ -209,13 +236,6 @@ footer.contact-info {
     font-size: 20px; 
     margin-right: 5px; 
 }
-
-
-
-
-/* Media queries para responsividad */
-
-/* Ajustes para pantallas medianas */
 @media (max-width: 1200px) {
     .text-content h1, .text-content-dos h1, .text-content-cuatro h1, .text-content-cinco h1 {
         font-size: 3em;
@@ -288,61 +308,65 @@ footer.contact-info {
     }
 }
 
-/* Tarjetas flip animadas */
-.flip-card {
-   
-    width: 300px;
-    height: 480px;
-}
-
 .title {
-    font-size: 1.5em;
-    font-weight: 900;
+    font-size: 2em; /* Ajusta el tamaño del título */
+    margin-bottom: 20px; /* Espacio entre el título y las tarjetas */
     text-align: center;
-    margin: 0;
 }
 
-.flip-card-inner {
+.card {
+    width: 340px;
+    height: 494px;
+    background: #07182E;
     position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-}
-
-.flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
-}
-.flip-card-front, .flip-card-back {
-   
-    position: absolute;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-   
-    border-radius: 1rem;
-    padding: 10px;
-    box-sizing: border-box;
-}
-.flip-card-front {
-    background: linear-gradient(120deg, rgb(241, 241, 241) 30%, rgb(67, 85, 187) 88%, rgb(221, 221, 221) 40%, rgb(224, 224, 224) 78%);
-    color: rgb(44, 43, 43);
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 20px;
 }
 
-.flip-card-front img {
-    width: 100%;
-    max-width: 110%;
-    border-radius: 1rem;
-}
-.flip-card-back {
-    background: linear-gradient(120deg, rgb(241, 241, 241) 30%, rgb(67, 95, 187) 88%, rgb(238, 238, 238) 40%, rgb(221, 221, 221) 78%);
-    color: rgb(44, 43, 43);
-    transform: rotateY(180deg);
+.card img {
+    width: auto; /* Ajusta el ancho automáticamente */
+    height: 90%; /* Deja que la imagen ocupe el 90% de la altura de la tarjeta */
+    max-width: 100%; /* No excede el ancho de la tarjeta */
+    object-fit: contain; /* Mantiene las proporciones sin distorsionar */
+    border-radius: 15px;
+    z-index: 1;
+    transform: translateY(-10px);
 }
 
+.card h2 {
+    z-index: 1;
+    color: white;
+    font-size: 2em;
+    position: absolute; /* Para poder superponer el texto encima de la imagen */
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    width: 100px;
+    background-image: linear-gradient(180deg, rgb(36, 1, 165), rgb(36, 1, 165));
+    height: 130%;
+    animation: rotBGimg 3s linear infinite;
+    transition: all 0.2s linear;
+}
+
+@keyframes rotBGimg {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    background: #bdc6d3;
+    inset: 5px;
+    border-radius: 15px;
+    z-index: 0; /* Asegura que el fondo esté debajo de la imagen */
+}

@@ -4,16 +4,23 @@ package com.sena.jwt_security.service;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.sena.jwt_security.interfaceService.IUserService;
 import com.sena.jwt_security.interfaces.Iuser;
 import com.sena.jwt_security.interfaces.UserRegistroRepository;
 import com.sena.jwt_security.models.AuthResponse;
+import com.sena.jwt_security.models.estadoUser;
 import com.sena.jwt_security.models.loginRequest;
+import com.sena.jwt_security.models.preregisterRequest;
 import com.sena.jwt_security.models.resgisterRequest;
+import com.sena.jwt_security.models.rol;
 import com.sena.jwt_security.models.userRegistro;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -52,7 +59,6 @@ public class AuthService implements IUserService {
         userData.setTipo_documento(request.getTipo_documento());
         userData.setNumero_documento(request.getNumero_documento());
         userData.setNombre_completo(request.getNombre_completo());
-        
         userData.setUsername(request.getUsername());
 
         // Generar contraseña aleatoria
@@ -60,34 +66,68 @@ public class AuthService implements IUserService {
         userData.setPassword(passwordEncoder.encode(contrasena));  // Almacena la versión encriptada
 
         userData.setRol(request.getRol());
-        userData.setVerificar_contrasena(true);  // Establecer en true para indicar que se requiere cambiar la contraseña
-        userData.setEstado(true);
-        // Guardar el usuario en la base de datos
+        userData.setVerificar_contrasena(true);  // Se requiere cambiar la contraseña
+
+        // Estado dependiendo del tipo de registro
+        if (request.getRol().equals(rol.Administrador)) {
+            userData.setEstadoUser(estadoUser.cuenta_activa); // Admin tiene la cuenta activa directamente
+        } else {
+            userData.setEstadoUser(estadoUser.cuenta_inactiva); // Pre-registro para usuarios comunes
+        }
+
+        // Guardar usuario
         data.save(userData);
-        
-        // Enviar la contraseña original por correo en texto plano
+
+        // Enviar notificación al correo
         emailService.enviarNotificacionCuenta(
             userData.getUsername(), 
             userData.getNombre_completo(), 
             userData.getUsername(), 
-            contrasena  // Enviar la contraseña original
+            contrasena
         );
 
-        return AuthResponse.builder()  // Corregido el uso del constructor de AuthResponse
+        return AuthResponse.builder()
                 .token(jwtService.getToken(userData))
                 .build();
     }
+    
+    
+ 
+    @Override
+    public AuthResponse preregister(preregisterRequest request) {
+        userRegistro userData = new userRegistro();
+        userData.setTipo_documento(request.getTipo_documento());
+        userData.setNumero_documento(request.getNumero_documento());
+        userData.setNombre_completo(request.getNombre_completo());
+        userData.setUsername(request.getUsername());
 
+        // Generar contraseña aleatoria
+        String contrasena = codigoAleatorio();
+        userData.setPassword(passwordEncoder.encode(contrasena));
+
+        userData.setRol(request.getRol());
+        userData.setVerificar_contrasena(true);
+
+        // Estado inicial como "cuenta_inactiva" (pre-registro)
+        userData.setEstadoUser(estadoUser.cuenta_inactiva);
+
+        // Guardar usuario
+        data.save(userData);
+
+        // Crear una respuesta sin token ya que aún no se ha aprobado
+        return AuthResponse.builder()
+                .message("Pre-registro exitoso, pendiente de aprobación.") // Agregar un mensaje no nulo
+                .token(null) // No se genera un token aún
+                .build();
+    }
 
     
+ 
     
     public AuthResponse loginRequest(loginRequest request) {
-        // Longitud esperada de la contraseña
-        int expectedLength = 8; // Ajusta según tu requerimiento
-
-        // Verificación de la longitud de la contraseña
-        if (request.getPassword().length() != expectedLength) {
-            throw new IllegalArgumentException("La contraseña debe tener exactamente " + expectedLength + " caracteres.");
+        // Verificar que el username no sea nulo o vacío
+        if (request.getUsername() == null || request.getUsername().isEmpty()) {
+            throw new IllegalArgumentException("El nombre de usuario no puede ser nulo o vacío.");
         }
 
         // Proceder con la autenticación
@@ -106,13 +146,15 @@ public class AuthService implements IUserService {
         // Obtener el usuario autenticado
         userRegistro user = findByUsername(request.getUsername()).orElseThrow();
 
+        // Verificar el estado del usuario antes de continuar
+        if (user.getEstadoUser() != estadoUser.aceptar_user && user.getEstadoUser() != estadoUser.cuenta_activa) {
+            throw new IllegalArgumentException("La cuenta no está activa o no ha sido aceptada por un administrador");
+        }
+
         // Comprobar si es la primera vez que se loguea
-        if (user.isVerificar_contrasena()) { // Si es la primera vez
-            // Aquí no se hace nada especial, simplemente se permite el inicio de sesión
-            // El estado de verificar_contrasena se mantiene en true (1)
-        } else {
+        if (!user.isVerificar_contrasena()) {
             // Si ya se ha logueado antes, se debe cambiar el estado a false
-            user.setVerificar_contrasena(false); // Cambiar a false para indicar que ya no necesita cambiar la contraseña
+            user.setVerificar_contrasena(false);
 
             // Guardar los cambios en la base de datos
             try {
@@ -121,9 +163,8 @@ public class AuthService implements IUserService {
                 throw new IllegalStateException("Error al actualizar el estado de verificar_contrasena: " + e.getMessage());
             }
 
-            // Confirmar si el estado se actualizó correctamente
-            userRegistro updatedUser = findByUsername(request.getUsername()).orElseThrow();
-            if (updatedUser.isVerificar_contrasena()) {
+            // Confirmar si el estado se actualizó correctamente con la misma referencia de `user`
+            if (user.isVerificar_contrasena()) {
                 throw new IllegalStateException("El estado de verificar_contrasena no se actualizó correctamente.");
             }
         }
@@ -135,14 +176,9 @@ public class AuthService implements IUserService {
                 .token(token)
                 .build();
     }
-
-
-
     
     private static int numeroAleatorioEnRango(int minimo, int maximo) {
-    	
     	//nextInt regresa en rango pero con limite superior exclusivo.
-    	
     	return  ThreadLocalRandom.current().nextInt(minimo, maximo +1);
     	
     }
@@ -152,9 +188,7 @@ public class AuthService implements IUserService {
     	
     	String banco = "abcdefghijkmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@$%#";
 
-    	
     	//CADENA EN DONDE  SE VA IR AGREGANDO UN CÁCTER ALEATORIO
-    	
     	String cadena ="";
     	for (int x = 0; x < longitud; x++) {
     		int indiceAleatorio =numeroAleatorioEnRango(0, banco.length()-1);
@@ -164,8 +198,6 @@ public class AuthService implements IUserService {
     	
     	return cadena.toString(); 
     }
-    
-    
     
     @Override
     public AuthResponse login(loginRequest request) {
@@ -180,7 +212,6 @@ public class AuthService implements IUserService {
         // Buscar el usuario autenticado en la base de datos
         userRegistro user = findByUsername(request.getUsername())
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-
         // Generar el token JWT
         String token = jwtService.getToken(user);
 
@@ -189,7 +220,6 @@ public class AuthService implements IUserService {
                 .token(token)
                 .build();
     }
-
 
     @Override
     public String save(userRegistro userRegistro) {
@@ -265,6 +295,10 @@ public class AuthService implements IUserService {
 	public userRegistro findById(String idUser) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	@Override
+	public String generarContrasenaAleatoria() {
+	    return codigoAleatorio();
 	}
 
 }

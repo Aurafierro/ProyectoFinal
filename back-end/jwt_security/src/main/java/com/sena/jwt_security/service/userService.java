@@ -18,6 +18,7 @@ import com.sena.jwt_security.interfaces.Iuser;
 import com.sena.jwt_security.models.AuthResponse;
 import com.sena.jwt_security.models.PasswordResetToken;
 import com.sena.jwt_security.models.loginRequest;
+import com.sena.jwt_security.models.preregisterRequest;
 import com.sena.jwt_security.models.resgisterRequest;
 import com.sena.jwt_security.models.userRegistro;
 
@@ -151,6 +152,24 @@ public class userService implements IUserService {
 
 
 	public static userRegistro findByFiltro(String filtro) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+	@Override
+	public AuthResponse preregister(preregisterRequest request) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+	@Override
+	public String generarContrasenaAleatoria() {
 		// TODO Auto-generated method stub
 		return null;
 	}

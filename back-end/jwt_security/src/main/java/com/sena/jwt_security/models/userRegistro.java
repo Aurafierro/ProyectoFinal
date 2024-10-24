@@ -49,19 +49,24 @@ public class userRegistro implements UserDetails {
     @Column(name = "correo_notificacion", nullable = false)
     private boolean correo_notificacion;
 
-    @Column(name = "estado", nullable = false)
-    private boolean estado;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "estadoUser", nullable = false, length = 100)
+    private estadoUser estadoUser;
     
     
 
-    public userRegistro() {
+  
+
+	public userRegistro() {
 		super();
 	}
+	
+	
 
 
 	public userRegistro(String id_user, String tipo_documento, String numero_documento, String nombre_completo,
 			String username, String password, com.sena.jwt_security.models.rol rol, boolean verificar_contrasena,
-			boolean correo_notificacion, boolean estado) {
+			boolean correo_notificacion, com.sena.jwt_security.models.estadoUser estadoUser) {
 		super();
 		this.id_user = id_user;
 		this.tipo_documento = tipo_documento;
@@ -72,8 +77,10 @@ public class userRegistro implements UserDetails {
 		this.rol = rol;
 		this.verificar_contrasena = verificar_contrasena;
 		this.correo_notificacion = correo_notificacion;
-		this.estado = estado;
+		this.estadoUser = estadoUser;
 	}
+
+
 
 
 	@Override
@@ -102,15 +109,23 @@ public class userRegistro implements UserDetails {
         return this.username;
     }
     
-    public boolean isEstado() {
-        return estado;
-    }
+    
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
+    public estadoUser getEstadoUser() {
+		return estadoUser;
+	}
 
-    public String getId_user() {
+
+
+
+	public void setEstadoUser(estadoUser estadoUser) {
+		this.estadoUser = estadoUser;
+	}
+
+
+
+
+	public String getId_user() {
         return id_user;
     }
 
