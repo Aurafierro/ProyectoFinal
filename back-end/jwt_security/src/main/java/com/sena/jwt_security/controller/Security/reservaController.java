@@ -53,14 +53,14 @@ public class reservaController {
 
     @PostMapping("/")
     public ResponseEntity<Object> save(@RequestBody reserva reserva) {
-    	
+
         // Validación de que la hora de entrada no sea igual a la hora de salida
         if (reserva.getHora_entrada().equals(reserva.getHora_salida())) {
             return new ResponseEntity<>("La hora de entrada no puede ser igual a la hora de salida", HttpStatus.BAD_REQUEST);
         }
 
         // Validación de que la hora de entrada no sea posterior a la hora de salida
-        if (reserva.getHora_salida().equals(reserva.getHora_entrada())) {
+        if (reserva.getHora_salida().compareTo(reserva.getHora_entrada()) < 0) {
             return new ResponseEntity<>("La hora de entrada no puede ser después de la hora de salida", HttpStatus.BAD_REQUEST);
         }
 
@@ -74,7 +74,23 @@ public class reservaController {
             return new ResponseEntity<>("El espacio reservado es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
 
-     // Asignar estado como 'Activo'
+        // Obtener el ID del usuario y el objeto espacio
+        String idUsuario = reserva.getUserRegistro().getId_user(); // Asegúrate de que este campo esté en userRegistro
+        espacio espacioReserva = reserva.getEspacio(); // El objeto espacio se utiliza directamente
+
+        // Verificar si ya existe una reserva igual
+        List<reserva> reservasExistentes = reservaService.verificarReservaConflicto(
+            espacioReserva,
+            reserva.getHora_entrada(),
+            reserva.getHora_salida(),
+            reserva.getUserRegistro() // Pasar el objeto userRegistro para la verificación
+        );
+
+        if (!reservasExistentes.isEmpty()) {
+            return new ResponseEntity<>("Ya existe una reserva con los mismos detalles", HttpStatus.CONFLICT);
+        }
+
+        // Asignar estado como 'Activo'
         reserva.setEstadoReserva(estado.ACTIVO);
 
         // Guardar la reserva en la base de datos
@@ -82,18 +98,17 @@ public class reservaController {
 
         // Enviar notificación por correo
         String mensaje = emailService.enviarNotificacionReservaRealizada(
-            reserva.getUserRegistro(), 
-            reserva.getEspacio(), 
-            reserva.getHora_entrada(), 
+            reserva.getUserRegistro(),
+            reserva.getEspacio(),
+            reserva.getHora_entrada(),
             reserva.getHora_salida(),
-            reserva.getFecha_entrada(), 
+            reserva.getFecha_entrada(),
             reserva.getFecha_salida()
         );
 
         // Retornar respuesta de éxito
         return new ResponseEntity<>(mensaje, HttpStatus.OK);
     }
-
 
 
     @GetMapping("/")
