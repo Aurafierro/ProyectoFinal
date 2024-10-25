@@ -20,7 +20,7 @@
             <a href="#" class="logout-link" onclick="cerrarSesion()" title="Cerrar sesión">Cerrar sesión</a>
         </div>
     </header>
-    <aside class="sidebar hidden" id="sidebar">
+    <aside class="sidebarj" id="sidebarj">
         <nav>
             <ul>
                 <li class="sidebars-item"><a href="../indexHTML/miPerfil.html"><i class="fas fa-user"></i>Mi perfil</a>
@@ -132,24 +132,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
-    <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const mainContent = document.querySelector('.main-content');
-            const header = document.querySelector('.header');
-            if (sidebar.classList.contains('hidden')) {
-                sidebar.classList.remove('hidden');
-                sidebar.classList.add('visible');
-                mainContent.classList.add('shifted');
-                header.classList.add('shifted');
-            } else {
-                sidebar.classList.remove('visible');
-                sidebar.classList.add('hidden');
-                mainContent.classList.remove('shifted');
-                header.classList.remove('shifted');
-            }
-        }
-    </script>
+  
 </body>
 <footer class="footer">
     <div class="footer-container">

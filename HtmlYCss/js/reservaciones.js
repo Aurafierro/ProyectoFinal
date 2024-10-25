@@ -1,4 +1,17 @@
+document.addEventListener("DOMContentLoaded", function() {
+  const menuToggle = document.querySelector(".menu-toggle");
+  const sidebar = document.getElementById("sidebarj");
 
+  // Toggle del menú lateral
+  menuToggle.addEventListener("click", function() {
+      sidebar.classList.toggle("visible");
+  });
+
+  // Cierra el menú al hacer clic en un enlace
+  sidebar.addEventListener("click", function() {
+      sidebar.classList.remove("visible");
+  });
+});
 function soloLetras(event) {
   console.log("Llave presionada: " + event.key);
   console.log("Código tecla: " + event.keyCode);

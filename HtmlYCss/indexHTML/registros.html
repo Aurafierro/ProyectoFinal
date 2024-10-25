@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historial reservaciones</title>
+    <title>Registros</title>
     <link rel="stylesheet" href="../css/historial.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="icon" href="../img/logo.png" type="image/x-icon">
 </head>
-<body onload="tablaReservas();">
+<body onload="tablaRegistro();">
     <header class="header">
         <div class="menu-toggle" onclick="toggleSidebar();">
             <i class="fas fa-bars"></i>
@@ -30,7 +30,7 @@
                 <li class="sidebars-item"><a href="../indexHTML/modificarReservaAdmin.html"><i class="far fa-edit"></i></i>Modificar Reserva</a></li>
                 <li class="sidebars-item"><a href="../indexHTML/crearCuenta.html"><i class="fas fa-users"></i>Crear cuentas</a></li>
                 <li class="sidebars-item"><a href="../indexHTML/agregarEspacio.html"><i class="fas fa-calendar-week"></i>Agregar espacios</a></li>
-                <li class="sidebars-item"><a href="../indexHTML/preRegistro.html"><i class="fas fa-calendar-week"></i>Registros</a></li>
+                <li class="sidebars-item"><a href="../indexHTML/registros.html"><i class="fas fa-calendar-week"></i>Registros</a></li>
                 <li class="sidebars-item"><a href="../indexHTML/espaciosRegistrados.html"><i class="fas fa-calendar-week"></i>Registro de espacios</a></li>
             </ul>
         </nav>
@@ -40,22 +40,22 @@
             <div class="search-bar-wrapper">
                 <div class="search-bar">
                     <input type="text" placeholder="Ingresa el nombre que deseas buscar" id="inputSearch">
-                    <button onclick="tablaReservas()"><i class="fas fa-search"></i></button>
+                    <button onclick="tablaRegistro()"><i class="fas fa-search"></i></button>
                 </div>
             </div>
-            <div><span id="tituloPagina">Historial reservaciones</span></div>
+            <div><span id="tituloPagina">Pre registros por autorizar</span></div>
         </div>
         <div class="table-wrapper">
             <div class="table-container">
                 <table>
                     <thead>
                         <tr>
+                            <th></th>
+                            <th>Tipo de documento</th>
+                            <th>Número de documento</th>
+                            <th>Rol</th>
                             <th>Nombre completo</th>
-                            <th>Nombre espacio</th>
-                            <th>Hora entrada</th>
-                            <th>Hora salida</th>
-                            <th>Fecha entrada</th>
-                            <th>Fecha salida</th>
+                            <th>Correo electrónico</th>
                             <th>Estado</th>
                         </tr>
                     </thead>
@@ -64,8 +64,8 @@
             </div>
         </div>
     </div>
-    <!--<script src="../js/reservaciones.js"></script>-->
-    <script src="../js/historial.js"></script>
+  
+    <script src="../js/registros.js"></script>
     <script src="../js/config.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>

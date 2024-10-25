@@ -1,4 +1,17 @@
+document.addEventListener("DOMContentLoaded", function() {
+  const menuToggle = document.querySelector(".menu-toggle");
+  const sidebar = document.getElementById("sidebarj");
 
+  // Toggle del menú lateral
+  menuToggle.addEventListener("click", function() {
+      sidebar.classList.toggle("visible");
+  });
+
+  // Cierra el menú al hacer clic en un enlace
+  sidebar.addEventListener("click", function() {
+      sidebar.classList.remove("visible");
+  });
+});
 //document.getElementById("nombre_completo").addEventListener("keypress", soloLetras);
 //document.getElementById("nombre_espacio").addEventListener("keypress", soloLetras);
 //document.getElementById("hora_entrada").addEventListener("keypress", numerosYcaracteres);
