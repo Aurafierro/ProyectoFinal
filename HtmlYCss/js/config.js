@@ -15,7 +15,7 @@ var urlFotoPerfil=urlBase+"fotoperfil/";
 var urlRecuperarContrase=urlBase+"user/recuperar-contrasena";
 var urlInicioSesion=urlBase+"public/user/login/";
 var urlRecuperarContrasena=urlBase+"user/recuperar-contrasena"
-
+var urlPreRegistro=urlBase+"public/user/pre-register/"
 /* Redirecciones */
 //var urlRedireccion = "http://asignaweb.com/"; 
 var urlRedireccion = "http://127.0.0.1:5502//"; 

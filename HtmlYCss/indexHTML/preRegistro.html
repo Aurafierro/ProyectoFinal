@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PreRegistro</title>
+    <link rel="stylesheet" href="../css/crearCuenta.css">
+    <link rel="icon" href="../img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="/HtmlYCss/img/logori.png" alt="Logo" class="logo-img">
+        </div>
+     
+    </header>
+ 
+    <div class="container">
+        <div class="form-container">
+            <h2>Pre registro</h2>
+            <form id="crearCuentaForm">
+                <div class="columns">
+                    <div class="column">
+                        <div class="input-group">
+                            <label for="tipo_documento">Tipo de documento</label>
+                            <select id="tipo_documento" class="form-select" tabindex="0">
+                                <option value="" selected disabled>Selecciona una opción</option>
+                                <option value="Tarjeta de identidad">Tarjeta de identidad</option>
+                                <option value="Cédula de ciudadanía">Cédula de ciudadanía</option>
+                                <option value="Cédula de extranjería">Cédula de extranjería</option>
+                            </select>
+                            <small class="error-message" id="error-tipo_documento"></small>
+                        </div>
+                        <div class="input-group">
+                            <label for="rol">Rol</label>
+                            <select id="rol" class="form-select" tabindex="3">
+                                <option value="" selected disabled>Selecciona una opción</option>
+                                <option value="Usuario">Usuario</option>
+                                <option value="Administrador">Administrador</option>
+                            </select>
+                            <small class="error-message" id="error-rol"></small>
+                        </div>  
+                    </div>
+                    <div class="column">
+                        <div class="input-group">
+                            <label for="numero_documento">Número de documento</label>
+                            <input type="number" id="numero_documento" step="1" class="form-control" tabindex="1">
+                            <small class="error-message" id="error-numero_documento"></small>
+                        </div>
+                        <div class="input-group">
+                            <label for="nombre_completo">Nombre completo</label>
+                            <input type="text" id="nombre_completo" class="form-control">
+                            <small class="error-message" id="error-nombre_completo"></small>
+                        </div>
+                        <div class="input-group">
+                            <label for="username">Correo electrónico</label>
+                            <input type="email" id="username" class="form-control">
+                            <small class="error-message" id="error-username"></small>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="button-container">
+                    <a href="../indexHTML/inicioSesion.html"><button type="button" class="volver-btn" onclick="volver();">Volver</button></a>
+                    <button type="button" class="crear-cuenta-btn" onclick="Registro();">Registrarse</button>
+                </div>
+            </form>
+        </div>
+        <div class="image-container">
+            <img src="../img/logori.png" alt="AsignaWeb Logo">
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2024 Asigna Web - Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <script src="../js/config.js"></script>
+    <script src="../js/preRegistro.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ 
+</body>
+
+</html>

@@ -60,9 +60,9 @@ public class reservaService implements IReservaService{
 	    return listaReserva;
 	}
 
-	@Override
+	/*@Override
 	public List<reserva> verificarReservaConflicto(espacio espacio, String hora_entrada, String hora_salida, userRegistro userRegistro);
-	
+	*/
 	public List<reserva> filtroPorUsuarioYEspacio(String nombreCompleto, String nombreEspacio) {
         // Llama al método en el repositorio
         return data.filtroPorUsuarioYEspacio(nombreCompleto, nombreEspacio);
@@ -78,6 +78,13 @@ public class reservaService implements IReservaService{
 			LocalDate fechaEntrada) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public List<reserva> verificarReservaConflicto(espacio espacio, String hora_entrada, String hora_salida,
+			userRegistro userRegistro) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
