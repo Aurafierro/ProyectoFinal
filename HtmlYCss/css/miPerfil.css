@@ -11,7 +11,7 @@ body {
 }
 .header {
     width: 100%;
-    background-color: #202C4A;
+    background-color: #5491C7;
     color: var(--white);
     display: flex;
     justify-content: space-between;
@@ -89,7 +89,7 @@ header img {
     left: 5px; 
     width: 94%; 
     height: 1px; 
-    background-color: #202C4A; 
+    background-color: #5491C7; 
 }
 .sidebar-item {
     display: flex;
@@ -217,7 +217,7 @@ header img {
     padding: 9px;
     font-size: 16px;
     color: white;
-    background-color: #202C4A;
+    background-color: #5491C7;
     border: none;
     border-radius: 20px;
     font-family: 'Candal', Arial, sans-serif;
@@ -281,7 +281,7 @@ header img {
     right: 1px;
     transform: translateY(-10%); 
     cursor: pointer;
-    color: #202C4A;
+    color: #5491C7;
 }
 
 .button-contrasena {
@@ -290,7 +290,7 @@ header img {
     padding: 9px;
     font-size: 16px;
     color: white;
-    background-color: #202C4A;
+    background-color: #5491C7;
     border: none;
     border-radius: 20px;
     font-family: 'Candal', Arial, sans-serif;
@@ -447,7 +447,7 @@ footer {
 /* Estilos de la barra lateral */
 .sidebarj {
     width: 250px;
-    background-color: #202C4A;
+    background-color: #5491C7;
     color: #ffffff;
     position: fixed;
     top: 0;
@@ -553,7 +553,7 @@ nav ul li a i {
 }
 
 .footer {
-    background-color: #202C4A;
+    background-color: #5491C7;
     color: white;
     text-align: center;
     width: 100%;
