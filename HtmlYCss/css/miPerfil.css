@@ -459,8 +459,8 @@ footer {
     transform: translateX(-100%);
 }
 .sidebarj nav ul li {
-    padding: 16px 15px; /* Espaciado para los ítems */
-    margin-bottom: 12px; /* Añadir espacio entre los ítems */
+    padding: 16px 15px;
+    margin-bottom: 12px;
     transition: background-color 0.3s;
 }
 

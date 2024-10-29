@@ -62,7 +62,7 @@ body {
     flex-direction: row;
 }
 
-/* Estilos de la barra lateral */
+/*Estilos de la barra lateral*/
 .sidebarj {
     width: 250px;
     background-color: #032766;
@@ -95,14 +95,14 @@ body {
 }
 
 .sidebarj nav ul li {
-    padding: 16px 15px; /* Espaciado para los ítems */
-    margin-bottom: 12px; /* Añadir espacio entre los ítems */
+    padding: 16px 15px;
+    margin-bottom: 12px;
     transition: background-color 0.3s;
 }
 
 
 .sidebarj nav ul li:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Efecto hover */
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .sidebarj nav ul li a {
@@ -113,7 +113,7 @@ body {
 }
 
 .sidebarj nav ul li i {
-    margin-right: 10px; /* Espaciado entre el ícono y el texto */
+    margin-right: 10px;
 }
 nav ul {
     list-style-type: none;
@@ -399,32 +399,32 @@ td button {
     background-color: #fefefe;
     margin: 5% auto;
     padding: 20px;
-    width: 90%; /* Ajustado para pantallas pequeñas */
-    max-width: 600px; /* Limitar tamaño máximo */
+    width: 90%;
+    max-width: 600px;
     border-radius: 20px;
-    height: auto; /* Altura automática para flexibilidad */
-    overflow-y: auto; /* Permitir scroll si es necesario */
+    height: auto;
+    overflow-y: auto;
 }
 
 .modal-body {
     display: flex;
-    flex-direction: column; /* Disposición en columna para pantallas pequeñas */
-    gap: 10px; /* Añadir espacio entre elementos */
+    flex-direction: column;
+    gap: 10px;
     margin-bottom: 5%;
 }
 
 @media (min-width: 768px) {
     .modal-body {
-        flex-direction: row; /* Cambiar a disposición en fila para pantallas grandes */
-        justify-content: space-between; /* Mantener separación entre columnas */
-        align-items: flex-start; /* Alinear elementos al inicio */
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
     }
 }
 
 .left-column input, .right-column input,
 .SELECTnombre_espacio,
 .inputCamposEditarReserva {
-    width: 100%; /* Ajuste al 100% en pantallas pequeñas */
+    width: 100%;
     padding: 10px;
  
     border: 1px solid #ddd;
@@ -437,7 +437,7 @@ td button {
     .left-column input, .right-column input,
     .SELECTnombre_espacio,
     .inputCamposEditarReserva {
-        width: 80%; /* Ajustar al 80% en pantallas grandes */
+        width: 80%;
     }
 }
 
@@ -447,8 +447,8 @@ td button {
 }
 
 #botonActualizarReserva, .btnCerrarModal {
-    width: 100%; /* Ancho completo en pantallas pequeñas */
-    max-width: 300px; /* Limitar el tamaño en pantallas grandes */
+    width: 100%;
+    max-width: 300px;
     padding: 10px 20px;
     border-radius: 20px;
     cursor: pointer;
@@ -480,15 +480,15 @@ td button {
 /* Ajustes para el contenedor padre */
 .contenedorPadre {
     display: flex;
-    flex-direction: column; /* Columnas en pantallas pequeñas */
-    align-items: center; /* Centrar contenido */
+    flex-direction: column;
+    align-items: center;
     padding: 10px;
 }
 
 @media (min-width: 768px) {
     .contenedorPadre {
-        flex-direction: row; /* Fila en pantallas grandes */
-        justify-content: space-around; /* Distribuir espacio de manera equitativa */
+        flex-direction: row;
+        justify-content: space-around;
     }
 }
 
@@ -506,8 +506,8 @@ td button {
 
 @media (min-width: 768px) {
     .divIzquierdo {
-        margin-left: 0; /* Ajustar el margen en pantallas grandes */
-        flex: 1; /* Permitir que el div izquierdo ocupe más espacio */
+        margin-left: 0;
+        flex: 1;
     }
 }
 

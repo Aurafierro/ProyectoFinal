@@ -1,5 +1,3 @@
-/* Módulo Información CSS */
-
 @font-face {
     font-family: "Candal";
     src: url("/HtmlYCss/Fuentes/Candal/Candal-Regular.ttf");
@@ -15,7 +13,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Mantiene el contenido entre la parte superior y el footer */
+    justify-content: space-between;
     align-items: center;
     background-color: #ffffff;
     color: black;
@@ -225,12 +223,12 @@ p {
 
 footer {
     width: 100%;
-    background-color: #032766; /* Color de fondo */
-    color: white; /* Color del texto */
+    background-color: #032766;
+    color: white;
     text-align: center;
     padding: 16px 5px;
-    z-index: 1000; /* Asegúrate de que esté encima de otros elementos */
-    margin-top: 20px; /* Añade un margen superior para separarlo de otros elementos */
+    z-index: 1000;
+    margin-top: 20px;
 }
 
 
@@ -241,8 +239,8 @@ footer {
 }
 
   .card a {
-    text-decoration: none; /* Elimina el subrayado */
-    color: inherit; /* Opcional: hereda el color del texto del padre */
+    text-decoration: none;
+    color: inherit;
 }
 
 .header {
@@ -254,9 +252,9 @@ footer {
     align-items: center;
     box-sizing: border-box;
     padding: 10px;
-    position: relative; /* Asegúrate de que esté en el flujo normal del documento */
-    top: 0; /* Posición fija en la parte superior */
-    z-index: 1000; /* Para asegurarte de que esté sobre otros elementos */
+    position: relative;
+    top: 0;
+    z-index: 1000;
 }
 
 .header .menu-icon {
@@ -305,8 +303,8 @@ header img {
 }
 
 .menu-toggle i {
-    font-size: 40px; /* Asegúrate de que el ícono sea grande */
-    color: #ffffff; /* Color blanco */
+    font-size: 40px;
+    color: #ffffff;
 }
 .menu-icon {
     font-size: 30px;
@@ -331,14 +329,14 @@ header img {
 }
 
 .sidebarj nav ul li {
-    padding: 16px 15px; /* Espaciado para los ítems */
-    margin-bottom: 12px; /* Añadir espacio entre los ítems */
+    padding: 16px 15px;
+    margin-bottom: 12px;
     transition: background-color 0.3s;
 }
 
 
 .sidebarj nav ul li:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Efecto hover */
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .sidebarj nav ul li a {
@@ -349,7 +347,7 @@ header img {
 }
 
 .sidebarj nav ul li i {
-    margin-right: 10px; /* Espaciado entre el ícono y el texto */
+    margin-right: 10px;
 }
 nav ul {
     list-style-type: none;

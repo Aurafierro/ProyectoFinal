@@ -8,11 +8,10 @@
     padding: 0;
 }
 
-/* Estilos para el cuerpo y la cabecera */
 html, body {
     margin: 0;
     padding: 0;
-    height: 100%; /* Asegura que el html y el body ocupen toda la altura de la ventana */
+    height: 100%;
 }
 
 body {

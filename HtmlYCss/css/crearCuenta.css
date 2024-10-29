@@ -82,8 +82,8 @@ body {
 .button-container {
   margin-top: 20px;
   display: flex;
-  justify-content: center; /* Centra los botones */
-  gap: 20px; /* Espacio entre los botones */
+  justify-content: center;
+  gap: 20px;
 }
 
 .volver-btn,
@@ -95,7 +95,7 @@ body {
   font-size: 1rem;
   font-family: 'Candal';
   
-  max-width: 300px; /* Limita el ancho máximo de los botones */
+  max-width: 300px;
 }
 
 .volver-btn {
@@ -153,7 +153,7 @@ body {
   }
 
   .volver-btn, .crear-cuenta-btn {
-    width: 45%; /* Ajusta el ancho en pantallas medianas */
+    width: 45%;
     font-size: 1rem;
   }
 
@@ -180,7 +180,7 @@ body {
   .button-container {
     flex-direction: column;
     gap: 10px;
-    align-items: center; /* Centra los botones en la columna */
+    align-items: center;
   }
 
   .image-container img {
@@ -211,9 +211,9 @@ body {
   align-items: center;
   box-sizing: border-box;
   padding: 10px;
-  position: relative; /* Asegúrate de que esté en el flujo normal del documento */
-  top: 0; /* Posición fija en la parte superior */
-  z-index: 1000; /* Para asegurarte de que esté sobre otros elementos */
+  position: relative;
+  top: 0;
+  z-index: 1000;
 }
 
 .header .menu-icon {
@@ -252,8 +252,8 @@ header img {
 }
 .menu-toggle {
   position: absolute;
-  top: 20px; /* Mantén la distancia desde el borde superior */
-  left: 20px; /* Cambia este valor si necesitas ajustar más */
+  top: 20px;
+  left: 20px;
   padding: 10px;
   cursor: pointer;
   font-size: 40px;
@@ -262,8 +262,8 @@ header img {
 }
 
 .menu-toggle i {
-  font-size: 40px; /* Asegúrate de que el ícono sea grande */
-  color: #ffffff; /* Color blanco */
+  font-size: 40px;
+  color: #ffffff;
 }
 .menu-icon {
   font-size: 30px;
@@ -288,14 +288,14 @@ header img {
 }
 
 .sidebarj nav ul li {
-  padding: 16px 15px; /* Espaciado para los ítems */
-  margin-bottom: 12px; /* Añadir espacio entre los ítems */
+  padding: 16px 15px;
+  margin-bottom: 12px;
   transition: background-color 0.3s;
 }
 
 
 .sidebarj nav ul li:hover {
-  background-color: rgba(255, 255, 255, 0.1); /* Efecto hover */
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .sidebarj nav ul li a {
@@ -306,7 +306,7 @@ header img {
 }
 
 .sidebarj nav ul li i {
-  margin-right: 10px; /* Espaciado entre el ícono y el texto */
+  margin-right: 10px;
 }
 nav ul {
   list-style-type: none;
