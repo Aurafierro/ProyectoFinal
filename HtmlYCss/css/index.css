@@ -23,30 +23,30 @@ body {
 
 /* Ajustes para diferentes containers */
 .container {
-    background-color: #5491C7;
+    background-color: #032766;
     color: white;
     padding: 100px 20px;
 }
 
 .container-dos {
     background-color: #EDEEEF;
-    color: #5491C7;
+    color: #032766;
     padding: 200px 20px;
 }
 
 .container-tres {
-    background-color: #5491C7;
+    background-color: #032766;
     padding: 240px 20px;
 }
 
 .container-cuatro {
     background-color: #EDEEEF;
-    color: #5491C7;
+    color: #032766;
     padding: 150px 20px;
 }
 
 .container-cinco {
-    background-color: #5491C7;
+    background-color: #032766;
     color: white;
     padding: 80px 20px;
 }
@@ -54,11 +54,11 @@ body {
 button {
     position: relative;
     padding: 20px 60px;
-    background: #5491C7;
+    background: #032766;
     font-size: 17px;
     font-weight: 500;
     color: #fdfdfd;
-    border: 3px solid #5491C7;
+    border: 3px solid #032766;
     border-radius: 20px;
     box-shadow: 0 0 0 #fec1958c;
     transition: all 0.3s ease-in-out;

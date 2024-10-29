@@ -8,8 +8,6 @@
     padding: 0;
 }
 
-
-
 /* Estilos para el cuerpo y la cabecera */
 html, body {
     margin: 0;
@@ -28,7 +26,7 @@ body {
 
 .header {
     width: 100%;
-    background-color: #1a3e68;
+    background-color: #032766;
     color: var(--white);
     display: flex;
     justify-content: space-between;

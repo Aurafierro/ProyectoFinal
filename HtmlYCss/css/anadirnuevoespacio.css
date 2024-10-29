@@ -2,6 +2,7 @@
   font-family: "Candal";
   src: url("/HtmlYCss/Fuentes/Candal/Candal-Regular.ttf");
 }
+
 body {
   font-family: "Candal";
   margin: 0;
@@ -18,7 +19,6 @@ body {
   border-radius: 1000px;
   position: relative; /* Posicionamiento relativo para usar posicionamiento absoluto en los botones */
 }
-
 
 h1 {
   text-align: center;
