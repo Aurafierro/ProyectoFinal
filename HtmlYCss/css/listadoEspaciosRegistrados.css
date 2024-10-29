@@ -13,7 +13,7 @@ body {
 
 .header {
     height: 100px;
-    background-color: #1a3e68;
+    background-color: #032766;
     color: var(--white);
     display: flex;
     justify-content: center;
@@ -65,7 +65,7 @@ body {
 
 .sidebar {
     width: 250px;
-    background-color: #1a3e68;
+    background-color: #032766;
     color: var(--white);
     display: flex;
     flex-direction: column;
@@ -231,7 +231,7 @@ td button {
 }
 
 .footer {
-    background-color: #1a3e68;
+    background-color: #032766;
     color: white;
     text-align: center;
     width: 100%;
@@ -249,7 +249,7 @@ td button {
 }
 
 .btnEditar {
-    background-color: #1a3e68;
+    background-color: #032766;
     border-radius: 20px;
     color: white;
     font-family: 'Candal';
@@ -271,7 +271,7 @@ td button {
 }
 
 .edit-btn {
-    background-color: #007bff;
+    background-color: #032766;
     color: white;
 }
 

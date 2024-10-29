@@ -20,7 +20,7 @@ body {
     font-weight: bold;
     display: flex;
     flex-direction: column;
-    background-color: #3EBFFF;
+    background-color: #032766;
     overflow-x: hidden;
 }
 
@@ -67,7 +67,7 @@ body {
 
 .sidebar {
     width: 15%;
-    background-color: #1a3e68;
+    background-color: #032766;
     color: var(--white);
     display: flex;
     flex-direction: column;
