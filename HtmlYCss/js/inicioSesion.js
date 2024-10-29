@@ -19,8 +19,7 @@ async function checkUserStatus(token) {
         console.log('Estado del usuario:', data); // Verificar la respuesta recibida
         const estado = data.estado; // Obtener el estado
 
-        return estado === "Activo" ? 1 : 0; // Retornar 1 para "Activo" y 0 para "Inactivo"
-
+        return estado === "cuenta_activa" ? 1 : 0; // Retornar 1 para "cuenta_activa" y 0 para "cuenta_inactiva"
     } catch (error) {
         console.error('Error al verificar el estado del usuario:', error);
         Swal.fire("Error", "Error al verificar el estado del usuario: " + error.message, "error");
@@ -34,7 +33,9 @@ async function login() {
         "username": document.getElementById("username").value,
         "password": document.getElementById("password").value
     };
+
     let camposValidos = validarCampos(formData);
+
     if (camposValidos) {
         $.ajax({
             url: urlInicioSesion, // URL del login
@@ -106,71 +107,76 @@ async function checkUserRole(token) {
                 'Content-Type': 'application/json'
             }
         });
+
         if (!rolResponse.ok) {
             const errorData = await rolResponse.json();
             Swal.fire("Error", "Error al verificar el rol del usuario: " + errorData.message, "error");
             return;
         }
+
         const rolData = await rolResponse.json();
         const userRole = rolData.role; // Obtener el rol del usuario
+
         // Redirigir al usuario según el estado de verificar_contrasena y su rol
         if (verificarContrasena) {
-            window.location.href = urlPaginaCambioContrasena;
+            window.location.href = urlPaginaCambioContrasena; // Redirigir para cambiar la contraseña
         } else {
             if (userRole === "Administrador") {
                 window.location.href = urlRedireccionModuloAdmin; // Cambia a la página del administrador
             } else if (userRole === "Usuario") {
-                window.location.href = urlRedireccionModuloUsuario;
+                window.location.href = urlRedireccionModuloUsuario; // Cambia a la página del usuario
             }
         }
-
     } catch (error) {
         console.error('Error al verificar el rol o el estado de la contraseña:', error);
         Swal.fire("Error", "Error al verificar la información del usuario: " + error.message, "error");
     }
 }
+
 // Función para validar campos del formulario de login
 function validarCampos(formData) {
-    let camposRequeridos = [
-        "username",
-        "password"
-    ];
+    let camposRequeridos = ["username", "password"];
     let camposValidos = true;
-    camposRequeridos.forEach(function(campo) {
+
+    camposRequeridos.forEach(function (campo) {
         let elemento = document.getElementById(campo);
         let errorElemento = document.getElementById(`error-${campo}`); // Ajusta el ID del elemento de error
         if (elemento.value.trim() === "") {
             errorElemento.textContent = "Este campo es obligatorio.";
-            errorElemento.classList.add('error-message');
+            errorElemento.classList.add("error-message");
             camposValidos = false;
         } else {
             errorElemento.textContent = "";
-            errorElemento.classList.remove('error-message');
+            errorElemento.classList.remove("error-message");
         }
     });
+
     return camposValidos;
 }
+
 // Alternar visibilidad de la contraseña
-const togglePassword = document.getElementById('togglePassword');
-const passwordInput = document.getElementById('password');
-togglePassword.addEventListener('click', function () {
-    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-    passwordInput.setAttribute('type', type);
-    this.classList.toggle('fa-eye-slash');
+const togglePassword = document.getElementById("togglePassword");
+const passwordInput = document.getElementById("password");
+togglePassword.addEventListener("click", function () {
+    const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+    passwordInput.setAttribute("type", type);
+    this.classList.toggle("fa-eye-slash");
 });
+
+// Función para cerrar sesión
 function cerrarSesion() {
     // Eliminar el token de autenticación
-    localStorage.removeItem('authTokens'); 
-    
+    localStorage.removeItem("authTokens");
+
     // Limpiar el historial de navegación
     history.pushState(null, null, urlRedireccionInicioSesion); // Redirige al login
-    
+
     // Desactivar retroceso
-    window.addEventListener('popstate', function (event) {
-      history.pushState(null, null, urlRedireccionInicioSesion);
+    window.addEventListener("popstate", function (event) {
+        history.pushState(null, null, urlRedireccionInicioSesion);
     });
-    
+
     // Redirigir al inicio de sesión
     window.location.href = urlRedireccionInicioSesion;
-  }
-  
+}
+ 

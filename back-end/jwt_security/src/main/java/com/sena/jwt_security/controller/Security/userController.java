@@ -148,6 +148,13 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	}
 
 	
+	@GetMapping("/pre-registros")
+	@PreAuthorize("hasRole('Administrador')")
+	public ResponseEntity<List<userRegistro>> obtenerPreRegistros() {
+	    List<userRegistro> usuariosNoAprobados = userService.obtenerUsuariosPorEstado(estadoUser.cuenta_inactiva);
+	    return ResponseEntity.ok(usuariosNoAprobados);
+	}
+
 	@PreAuthorize("hasRole('Administrador')")
 	@PutMapping("/aprobar/{id_user}")
 	public ResponseEntity<Object> aprobarUsuario(@PathVariable String id_user) {

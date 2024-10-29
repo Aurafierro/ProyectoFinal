@@ -17,6 +17,7 @@ import com.sena.jwt_security.interfaces.IPasswordResetTokenRepository;
 import com.sena.jwt_security.interfaces.Iuser;
 import com.sena.jwt_security.models.AuthResponse;
 import com.sena.jwt_security.models.PasswordResetToken;
+import com.sena.jwt_security.models.estadoUser;
 import com.sena.jwt_security.models.loginRequest;
 import com.sena.jwt_security.models.preregisterRequest;
 import com.sena.jwt_security.models.resgisterRequest;
@@ -170,6 +171,15 @@ public class userService implements IUserService {
 
 	@Override
 	public String generarContrasenaAleatoria() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+	@Override
+	public List<userRegistro> obtenerUsuariosPorEstado(estadoUser cuentaInactiva) {
 		// TODO Auto-generated method stub
 		return null;
 	}

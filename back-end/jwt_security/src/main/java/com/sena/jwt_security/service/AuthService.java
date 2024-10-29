@@ -62,27 +62,23 @@ public class AuthService implements IUserService {
         userData.setUsername(request.getUsername());
 
         // Generar contraseña aleatoria
-        String contrasena = codigoAleatorio();  // Almacena la contraseña original
-        userData.setPassword(passwordEncoder.encode(contrasena));  // Almacena la versión encriptada
+        String contrasena = codigoAleatorio();
+        userData.setPassword(passwordEncoder.encode(contrasena));
 
         userData.setRol(request.getRol());
-        userData.setVerificar_contrasena(true);  // Se requiere cambiar la contraseña
+        userData.setVerificar_contrasena(true); // Requiere cambiar la contraseña
 
-        // Estado dependiendo del tipo de registro
-        if (request.getRol().equals(rol.Administrador)) {
-            userData.setEstadoUser(estadoUser.cuenta_activa); // Admin tiene la cuenta activa directamente
-        } else {
-            userData.setEstadoUser(estadoUser.cuenta_inactiva); // Pre-registro para usuarios comunes
-        }
+        // Establecer el estado como "cuenta_activa" para ambos roles
+        userData.setEstadoUser(estadoUser.cuenta_activa);
 
         // Guardar usuario
         data.save(userData);
 
         // Enviar notificación al correo
         emailService.enviarNotificacionCuenta(
-            userData.getUsername(), 
-            userData.getNombre_completo(), 
-            userData.getUsername(), 
+            userData.getUsername(),
+            userData.getNombre_completo(),
+            userData.getUsername(),
             contrasena
         );
 
@@ -90,9 +86,8 @@ public class AuthService implements IUserService {
                 .token(jwtService.getToken(userData))
                 .build();
     }
+
     
-    
- 
     @Override
     public AuthResponse preregister(preregisterRequest request) {
         userRegistro userData = new userRegistro();
@@ -106,7 +101,7 @@ public class AuthService implements IUserService {
         userData.setPassword(passwordEncoder.encode(contrasena));
 
         userData.setRol(request.getRol());
-        userData.setVerificar_contrasena(true);
+        userData.setVerificar_contrasena(true); // Requiere cambiar la contraseña
 
         // Estado inicial como "cuenta_inactiva" (pre-registro)
         userData.setEstadoUser(estadoUser.cuenta_inactiva);
@@ -116,8 +111,8 @@ public class AuthService implements IUserService {
 
         // Crear una respuesta sin token ya que aún no se ha aprobado
         return AuthResponse.builder()
-                .message("Pre-registro exitoso, pendiente de aprobación.") // Agregar un mensaje no nulo
-                .token(null) // No se genera un token aún
+                .message("Pre-registro exitoso, pendiente de aprobación.")
+                .token(null)
                 .build();
     }
 
@@ -126,6 +121,7 @@ public class AuthService implements IUserService {
     
     public AuthResponse loginRequest(loginRequest request) {
         // Verificar que el username no sea nulo o vacío
+    	 // Verificar que el username no sea nulo o vacío
         if (request.getUsername() == null || request.getUsername().isEmpty()) {
             throw new IllegalArgumentException("El nombre de usuario no puede ser nulo o vacío.");
         }
@@ -140,33 +136,21 @@ public class AuthService implements IUserService {
                 )
             );
         } catch (BadCredentialsException e) {
-            throw new IllegalArgumentException("Nombre de usuario o contraseña incorrectos."); // Manejo de errores mejorado
+            throw new IllegalArgumentException("Nombre de usuario o contraseña incorrectos.");
         }
 
         // Obtener el usuario autenticado
         userRegistro user = findByUsername(request.getUsername()).orElseThrow();
 
         // Verificar el estado del usuario antes de continuar
-        if (user.getEstadoUser() != estadoUser.aceptar_user && user.getEstadoUser() != estadoUser.cuenta_activa) {
-            throw new IllegalArgumentException("La cuenta no está activa o no ha sido aceptada por un administrador");
+        if (user.getEstadoUser() != estadoUser.cuenta_activa) {
+            throw new IllegalArgumentException("La cuenta no está activa o no ha sido aprobada.");
         }
 
         // Comprobar si es la primera vez que se loguea
-        if (!user.isVerificar_contrasena()) {
-            // Si ya se ha logueado antes, se debe cambiar el estado a false
+        if (user.isVerificar_contrasena()) {
             user.setVerificar_contrasena(false);
-
-            // Guardar los cambios en la base de datos
-            try {
-                data.save(user); // Guarda los cambios en la base de datos
-            } catch (Exception e) {
-                throw new IllegalStateException("Error al actualizar el estado de verificar_contrasena: " + e.getMessage());
-            }
-
-            // Confirmar si el estado se actualizó correctamente con la misma referencia de `user`
-            if (user.isVerificar_contrasena()) {
-                throw new IllegalStateException("El estado de verificar_contrasena no se actualizó correctamente.");
-            }
+            data.save(user); // Guarda los cambios en la base de datos
         }
 
         // Generar el token de autenticación
@@ -176,7 +160,6 @@ public class AuthService implements IUserService {
                 .token(token)
                 .build();
     }
-    
     private static int numeroAleatorioEnRango(int minimo, int maximo) {
     	//nextInt regresa en rango pero con limite superior exclusivo.
     	return  ThreadLocalRandom.current().nextInt(minimo, maximo +1);
@@ -299,6 +282,11 @@ public class AuthService implements IUserService {
 	@Override
 	public String generarContrasenaAleatoria() {
 	    return codigoAleatorio();
+	}
+	@Override
+	public List<userRegistro> obtenerUsuariosPorEstado(estadoUser cuentaInactiva) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

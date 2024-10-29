@@ -35,7 +35,7 @@ function Registro() {
 
     if (camposValidos) {
         $.ajax({
-            url: urlPreRegistro, // Usar la URL global de registro
+            url: urlRegister, // Usar la URL global de registro
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify(formData),
@@ -136,3 +136,9 @@ document.querySelectorAll('.form-control, .form-select').forEach(function(el) {
         });
     });
 });
+
+// Mostrar tabla de registros
+document.addEventListener("DOMContentLoaded", function() {
+    tablaRegistro();
+});
+
