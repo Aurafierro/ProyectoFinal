@@ -35,7 +35,7 @@ function Registro() {
 
     if (camposValidos) {
         $.ajax({
-            url: urlRegister, // Usar la URL global de registro
+            url: urlPreRegistros, // Usar la URL global de registro
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify(formData),

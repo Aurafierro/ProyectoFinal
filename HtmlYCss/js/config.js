@@ -16,7 +16,7 @@ var urlRecuperarContrase=urlBase+"user/recuperar-contrasena";
 
 var urlInicioSesion = urlBase + "public/user/login";
 var urlAceptarRegistro = urlBase + "user/aprobar/";
-var urlPreRegistros = urlBase + "user/pre-registros";
+var urlPreRegistros = urlBase + "public/user/pre-register/";
 
 
 
