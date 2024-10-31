@@ -1,82 +1,79 @@
-  // Realiza la solicitud al backend con fetch
-  fetch(urlLocal)
+// Función para cargar la tabla de registros inactivos
+function tablaRegistro() {
+  fetch(urlUsuariosInactivos)
       .then(response => {
-          if (!response.ok) {
-              throw new Error("Error en la solicitud: " + response.status);
-          }
+          if (!response.ok) throw new Error("Error en la solicitud: " + response.status);
           return response.json();
       })
-      .then(data => {
-          console.log("Datos recibidos:", data);
-          // Llama a una función para manejar los datos recibidos
-      })
+      .then(data => mostrarRegistros(data))
       .catch(error => {
           console.error("Error:", error);
+          Swal.fire("Error", "No se pudieron cargar los registros: " + error.message, "error");
       });
+}
 
-  // Realiza la solicitud también con jQuery por compatibilidad
-  $.ajax({
-    url: urlRegistro,
-    type: "GET",
-    success: function (result) {
-      console.log(result); // Log the entire result to inspect the data
+// Función para mostrar los registros en la tabla
+function mostrarRegistros(registros) {
+  const cuerpoTabla = document.getElementById("cuerpoTabla");
+  cuerpoTabla.innerHTML = ""; // Limpiar la tabla antes de llenarla
 
-      var cuerpoTabla = document.getElementById("cuerpoTabla");
-      cuerpoTabla.innerHTML = ""; // Clear the table body
+  registros.forEach(registro => {
+      let trRegistro = document.createElement("tr");
 
-      result.forEach(function (registro) {
-        console.log("registro:", registro); // Log each reservation to inspect the structure
-       
-          var trResgistro = document.createElement("tr");
-          let trRegistro = document.createElement("tr");
+      // Crear celdas con los valores del registro
+      let celdaTipoDocumento = document.createElement("td");
+      celdaTipoDocumento.innerText = registro.tipo_documento;
 
-                let celdaTipoDocumento = document.createElement("td");
-                let celdaNumeroDocumento = document.createElement("td");
-                let celdaRol = document.createElement("td");
-                let celdaNombreCompleto = document.createElement("td");
-                let celdaCorreo = document.createElement("td");
-                let celdaEstado = document.createElement("td");
+      let celdaNumeroDocumento = document.createElement("td");
+      celdaNumeroDocumento.innerText = registro.numero_documento;
 
-         celdaTipoDocumento.innerText = registro["tipo_documento"];
-                celdaNumeroDocumento.innerText = registro["numero_documento"];
-                celdaRol.innerText = registro["rol"];
-                celdaNombreCompleto.innerText = registro["nombre_completo"];
-                celdaCorreo.innerText = registro["username"];
+      let celdaRol = document.createElement("td");
+      celdaRol.innerText = registro.rol || "Sin rol"; // Usa "Sin rol" como valor por defecto
 
-          let celdaOpcionEditar = document.createElement("td");
-          let botonEditarRegistro = document.createElement("button");
-          botonEditarRegistro .value = reserva["id_user"];
-          botonEditarRegistro .onclick = function (e) {
-            aceptarRegistro(this.value);
-          };
-          botonEditarRegistro .className = "btnRegistro";
-          celdaOpcionAceptar.appendChild(botonEditarRegistro );
+      let celdaNombreCompleto = document.createElement("td");
+      celdaNombreCompleto.innerText = registro.nombre_completo;
 
+      let celdaCorreo = document.createElement("td");
+      celdaCorreo.innerText = registro.username;
 
-          let celdaOpcionRechazar = document.createElement("td");
-          let botonRecgazarRegistro = document.createElement("button");
-          botonRecgazarRegistro .value = reserva["id_user"];
-          botonRecgazarRegistro .innerHTML = "Cancelar";
-          botonRecgazarRegistro .onclick = function (e) {
-            cancelarRegistro(this.value);
-          };
-          botonRecgazarRegistro .className = "btnRechazar";
-          celdaOpcionEliminar.appendChild(botonRecgazarRegistro );
+      let celdaEstado = document.createElement("td");
 
-             trRegistro.appendChild(celdaNumeroDocumento);
-                trRegistro.appendChild(celdaRol);
-                trRegistro.appendChild(celdaNombreCompleto);
-                trRegistro.appendChild(celdaCorreo);
-                trRegistro.appendChild(celdaEstado);
-          trResgistro.appendChild(celdaOpcionAceptar);
-          trResgistro.appendChild(celdaOpcionEliminar);
-          cuerpoTabla.appendChild(trResgistro);
-        }
-      });
-     
-    },
-    error: function (error) {
-      alert("Error en la petición " + error);
-    }
+      // Botón Aceptar
+      let botonAceptarRegistro = document.createElement("button");
+      botonAceptarRegistro.innerText = "Aceptar";
+      botonAceptarRegistro.className = "btnRegistro";
+      botonAceptarRegistro.style.backgroundColor = "#007bff";
+      botonAceptarRegistro.style.color = "white";
+      botonAceptarRegistro.onclick = function () {
+          aceptarRegistro(registro.id_user, trRegistro);
+      };
+      celdaEstado.appendChild(botonAceptarRegistro);
+
+      // Botón Rechazar
+      let botonRechazarRegistro = document.createElement("button");
+      botonRechazarRegistro.innerText = "Rechazar";
+      botonRechazarRegistro.className = "btnRechazar";
+      botonRechazarRegistro.style.backgroundColor = "#dc3545";
+      botonRechazarRegistro.style.color = "white";
+      botonRechazarRegistro.onclick = function () {
+          rechazarRegistro(registro.id_user, trRegistro);
+      };
+      celdaEstado.appendChild(botonRechazarRegistro);
+
+      // Añadir celdas a la fila
+      trRegistro.appendChild(celdaTipoDocumento);
+      trRegistro.appendChild(celdaNumeroDocumento);
+      trRegistro.appendChild(celdaRol);
+      trRegistro.appendChild(celdaNombreCompleto);
+      trRegistro.appendChild(celdaCorreo);
+      trRegistro.appendChild(celdaEstado);
+
+      // Añadir la fila completa al cuerpo de la tabla
+      cuerpoTabla.appendChild(trRegistro);
   });
 }
+
+// Llamar a tablaRegistro al cargar la página
+window.onload = function() {
+  tablaRegistro();
+};

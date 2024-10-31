@@ -288,5 +288,12 @@ public class AuthService implements IUserService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public List<userRegistro> obtenerUsuariosInactivos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 
 }

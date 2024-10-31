@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="icon" href="../img/logo.png" type="image/x-icon">
 </head>
-<body onload="tablaRegistro();">
+<body>
     <header class="header">
         <div class="menu-toggle" onclick="toggleSidebar();">
             <i class="fas fa-bars"></i>
@@ -50,7 +50,6 @@
                 <table>
                     <thead>
                         <tr>
-                            <th></th>
                             <th>Tipo de documento</th>
                             <th>Número de documento</th>
                             <th>Rol</th>
@@ -64,7 +63,8 @@
             </div>
         </div>
     </div>
-  
+
+    <!-- Archivos de JavaScript -->
     <script src="../js/registro.js"></script>
     <script src="../js/config.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -77,7 +77,7 @@
 <footer class="footer">
     <div class="footer-container">
         <p>&copy; 2024 Asigna Web - Todos los derechos reservados.</p>
-        <button class="download-pdf-button"onclick="descargarPDF()">Descargar PDF></button>
+        <button class="download-pdf-button" onclick="descargarPDF()">Descargar PDF</button>
     </div>
 </footer>
 </html>

@@ -34,6 +34,8 @@ public interface IUserService {
 	AuthResponse preregister(preregisterRequest request);
 	String generarContrasenaAleatoria();
 	public List<userRegistro> obtenerUsuariosPorEstado(estadoUser cuentaInactiva);
+	public List<userRegistro> obtenerUsuariosInactivos();
+
 	
 	
 

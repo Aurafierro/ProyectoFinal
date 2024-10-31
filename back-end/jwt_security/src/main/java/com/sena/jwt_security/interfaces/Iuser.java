@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import com.sena.jwt_security.models.estadoUser;
 import com.sena.jwt_security.models.userRegistro;
 
 public interface Iuser extends CrudRepository<userRegistro, String> {
@@ -24,6 +25,14 @@ public interface Iuser extends CrudRepository<userRegistro, String> {
     // Consultar usuarios por correo electrónico (podría devolver múltiples resultados)
     @Query("SELECT u FROM userRegistro u WHERE u.username = :username")
     List<userRegistro> filtroIngresoUserByEmail(@Param("username") String username);
+
+    
+    @Query("SELECT u FROM userRegistro u WHERE u.estadoUser = 'cuenta_inactiva'")
+    List<userRegistro> findAllByEstadoInactivo();
+
+    @Query("SELECT u FROM userRegistro u WHERE u.estadoUser = :estado")
+    List<userRegistro> findAllByEstadoUser(@Param("estado") estadoUser estado);
+
 
 }
 

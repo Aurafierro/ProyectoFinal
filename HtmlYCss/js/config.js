@@ -20,8 +20,14 @@ var urlPreRegistros = urlBase + "public/user/pre-register/";
 
 
 
+const urlUsuariosInactivos = urlBase + "user/usuarios-inactivos"; // Endpoint para usuarios inactivos
+var urlRechazarRegistro = urlBase + "user/rechazar/";
+
+
+
+
 var urlRecuperarContrasena=urlBase+"user/recuperar-contrasena"
-var urlPreRegistro=urlBase+"public/user/pre-register/"
+
 
 /* Redirecciones */
 //var urlRedireccion = "http://asignaweb.com/"; 

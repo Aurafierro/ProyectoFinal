@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.sena.jwt_security.interfaceService.IUserService;
 import com.sena.jwt_security.models.AuthResponse;
@@ -191,7 +192,45 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	        return new ResponseEntity<>("Usuario no encontrado", HttpStatus.NOT_FOUND);
 	    }
 	}
+	
+	@PreAuthorize("hasRole('Administrador')")
+	@DeleteMapping("/rechazar/{id_user}")
+	public ResponseEntity<Object> rechazarUsuario(@PathVariable String id_user) {
+		   var optionalUser = userService.findOne(id_user);
 
+
+	    if (optionalUser.isPresent()) {
+	        userRegistro user = optionalUser.get();
+
+	        // Actualiza el estado del usuario o realiza cualquier otra lógica necesaria para marcarlo como rechazado
+	        user.setEstadoUser(estadoUser.user_rechazado);  // Supón que 'cuenta_no_aceptada' es un estado definido en el enum
+	        userService.save(user);
+
+	        return new ResponseEntity<>("Usuario rechazado exitosamente.", HttpStatus.OK);
+	    } else {
+	        return new ResponseEntity<>("Usuario no encontrado", HttpStatus.NOT_FOUND);
+	    }
+	}
+
+	 @GetMapping("/usuarios-inactivos")
+	    public ResponseEntity<List<userRegistro>> obtenerUsuariosInactivos() {
+	        List<userRegistro> usuariosInactivos = userService.obtenerUsuariosInactivos();
+	        if (usuariosInactivos.isEmpty()) {
+	            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	        }
+	        return new ResponseEntity<>(usuariosInactivos, HttpStatus.OK);
+	    }
+
+	    // Endpoint para obtener usuarios por cualquier estado
+	    @GetMapping("/usuarios-por-estado")
+	    public ResponseEntity<List<userRegistro>> obtenerUsuariosPorEstado(@RequestParam estadoUser estado) {
+	        List<userRegistro> usuarios = userService.obtenerUsuariosPorEstado(estado);
+	        if (usuarios.isEmpty()) {
+	            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	        }
+	        return new ResponseEntity<>(usuarios, HttpStatus.OK);
+	    
+	}
 
 	
 	

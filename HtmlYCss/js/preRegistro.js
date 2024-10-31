@@ -137,8 +137,3 @@ document.querySelectorAll('.form-control, .form-select').forEach(function(el) {
     });
 });
 
-// Mostrar tabla de registros
-document.addEventListener("DOMContentLoaded", function() {
-    tablaRegistro();
-});
-

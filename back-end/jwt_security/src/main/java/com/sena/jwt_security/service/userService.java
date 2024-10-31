@@ -178,11 +178,19 @@ public class userService implements IUserService {
 
 
 
-	@Override
-	public List<userRegistro> obtenerUsuariosPorEstado(estadoUser cuentaInactiva) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public List<userRegistro> obtenerUsuariosInactivos() {
+        return data.findAllByEstadoInactivo();
+    }
+
+    @Override
+    public List<userRegistro> obtenerUsuariosPorEstado(estadoUser estado) {
+        return data.findAllByEstadoUser(estado);
+    }
+
+	
+
+
 
 	
 }

@@ -1,5 +1,3 @@
-
-
 // Funciones de validación de caracteres
 document.getElementById("numero_documento").addEventListener("keypress", soloNumeros);
 document.getElementById("nombre_completo").addEventListener("keypress", soloLetras);
@@ -38,8 +36,9 @@ function soloNumeros(event) {
         event.preventDefault();
     }
 }
-// Función para crear cuenta (registro)
-function crearCuenta() {
+
+// Función para crear cuenta
+function crearCuenta(){
     let formData = {
         "tipo_documento": document.getElementById("tipo_documento").value,
         "numero_documento": document.getElementById("numero_documento").value,
@@ -57,23 +56,21 @@ function crearCuenta() {
             contentType: "application/json",
             data: JSON.stringify(formData),
             success: function (result) {
-                // El resultado debe contener un token, ya que la cuenta está activa
-                const token = result.token; 
-                if (token) {
-                    // Guardar el token de autenticación en localStorage
-                    localStorage.setItem('authToken', token);
+                const token = result.token; // Ajusta según la respuesta de tu API
+                let tokens = JSON.parse(localStorage.getItem('authTokens')) || [];
+                tokens.push(token);
+                localStorage.setItem('authTokens', JSON.stringify(tokens)); // Almacena todos los tokens
 
-                    Swal.fire({
-                        title: "¡Registro exitoso!",
-                        text: "Su cuenta se ha registrado correctamente.",
-                        icon: "success"
-                    }).then(() => {
-                        // Redirigir al usuario según su rol
-                        verificarRolUsuario(token);
-                    });
-                } else {
-                    Swal.fire("Error", "Error al registrar, no se recibió un token de autenticación.", "error");
-                }
+                Swal.fire({
+                    title: "¡Excelente!",
+                    text: "Se guardó correctamente",
+                    icon: "success"
+                }).then(() => {
+                    // Redirige al usuario al inicio de sesión después de que se cierre la alerta
+                    window.location.href = urlRedireccionInicioSesion;
+                });
+
+                limpiarFormulario();
             },
             error: function (error) {
                 Swal.fire("Error", "Error al guardar, " + error.responseText, "error");
@@ -88,32 +85,58 @@ function crearCuenta() {
     }
 }
 
-// Función para verificar el rol del usuario y redirigir a la página correspondiente
-function verificarRolUsuario(token) {
-    $.ajax({
-        url: urlRol, // URL para verificar el rol del usuario
-        type: "GET",
-        headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-        },
-        success: function (rolResponse) {
-            const userRole = rolResponse.role; // Asumiendo que la respuesta tiene un campo "role"
-            if (userRole === "Administrador") {
-                window.location.href = urlRedireccionModuloAdmin; // Redirige al módulo del administrador
-            } else if (userRole === "Usuario") {
-                window.location.href = urlRedireccionModuloUsuario; // Redirige al módulo del usuario
-            } else {
-                Swal.fire("Error", "No se pudo determinar el rol del usuario.", "error");
-            }
-        },
-        error: function (error) {
-            Swal.fire("Error", "Error al verificar el rol del usuario: " + error.responseText, "error");
+// Validación de campos
+function validarCampos(formData) {
+    let camposRequeridos = [
+        "tipo_documento",
+        "numero_documento",
+        "nombre_completo",
+        "username",
+        "rol"
+    ];
+
+    let camposValidos = true;
+
+    camposRequeridos.forEach(function(campo) {
+        let elemento = document.getElementById(campo);
+        let errorElemento = document.getElementById(`error-${campo}`);
+
+        if (elemento.value.trim() === "") {
+            errorElemento.textContent = "Este campo es obligatorio.";
+            errorElemento.classList.add('error-message');
+            camposValidos = false;
         }
+        
     });
+
+    let numeroDocumento = document.getElementById("numero_documento").value.trim();
+    let numeroDocumentoValue = parseInt(numeroDocumento);
+
+    if (numeroDocumento === '') {
+        document.getElementById("error-numero_documento").textContent = "El número de documento es obligatorio.";
+        document.getElementById("error-numero_documento").classList.add('error-message');
+        camposValidos = false;
+    } else if (numeroDocumentoValue < 100000) {
+        document.getElementById("error-numero_documento").textContent = "El número de documento debe tener al menos 5 dígitos.";
+        document.getElementById("error-numero_documento").classList.add('error-message');
+        camposValidos = false;
+    } else {
+        document.getElementById("error-numero_documento").textContent = "";
+        document.getElementById("error-numero_documento").classList.remove('error-message');
+    }
+
+    let username = document.getElementById("username").value.trim();
+    if (!username.includes('@') || !username.includes('.')) {
+        document.getElementById('error-username').textContent = 'El username no es válido.';
+        camposValidos = false;
+    } else {
+        document.getElementById('error-username').textContent = '';
+    }
+
+    return camposValidos;
 }
 
-// Función para limpiar el formulario después del registro exitoso
+// Función para limpiar el formulario
 function limpiarFormulario() {
     document.getElementById("crearCuentaForm").reset();
     document.querySelectorAll('.error-message').forEach(function(el) {
@@ -121,29 +144,30 @@ function limpiarFormulario() {
         el.classList.remove('error-message');
     });
 }
-
-// Alternar visibilidad de la contraseña
-const togglePassword = document.getElementById('togglePassword');
-const passwordInput = document.getElementById('password');
-togglePassword.addEventListener('click', function () {
-    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-    passwordInput.setAttribute('type', type);
-    this.classList.toggle('fa-eye-slash');
+// Validación en tiempo real
+document.querySelectorAll('.form-control, .form-select').forEach(function(el) {
+    el.addEventListener('input', function() {
+        validarCampos({
+            "tipo_documento": document.getElementById("tipo_documento").value,
+            "numero_documento": document.getElementById("numero_documento").value,
+            "nombre_completo": document.getElementById("nombre_completo").value,
+            "username": document.getElementById("username").value,
+            "rol": document.getElementById("rol").value
+        });
+    });
 });
-
-// Función de cerrar sesión
 function cerrarSesion() {
     // Eliminar el token de autenticación
-    localStorage.removeItem('authToken'); 
-
+    localStorage.removeItem('authTokens'); 
+    
     // Limpiar el historial de navegación
     history.pushState(null, null, urlRedireccionInicioSesion); // Redirige al login
-
+    
     // Desactivar retroceso
     window.addEventListener('popstate', function (event) {
       history.pushState(null, null, urlRedireccionInicioSesion);
     });
-
+    
     // Redirigir al inicio de sesión
     window.location.href = urlRedireccionInicioSesion;
-}
+  }
