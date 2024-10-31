@@ -13,21 +13,12 @@ var urlDesactivarCuenta=urlBase+"user/desactivar/";
 var urlReserva=urlBase+"reserva/";
 var urlFotoPerfil=urlBase+"fotoperfil/";
 var urlRecuperarContrase=urlBase+"user/recuperar-contrasena";
-
 var urlInicioSesion = urlBase + "public/user/login";
 var urlAceptarRegistro = urlBase + "user/aprobar/";
-var urlPreRegistros = urlBase + "public/user/pre-register/";
-
-
-
-const urlUsuariosInactivos = urlBase + "user/usuarios-inactivos"; // Endpoint para usuarios inactivos
 var urlRechazarRegistro = urlBase + "user/rechazar/";
-
-
-
-
+var urlPreRegistros = urlBase + "public/user/pre-register/";
+var urlUsuariosInactivos = urlBase + "user/usuarios-inactivos"; // Endpoint para usuarios inactivos
 var urlRecuperarContrasena=urlBase+"user/recuperar-contrasena"
-
 
 /* Redirecciones */
 //var urlRedireccion = "http://asignaweb.com/"; 
@@ -35,5 +26,4 @@ var urlRedireccion = "http://127.0.0.1:5502//";
 var urlRedireccionModuloAdmin = urlRedireccion + "HtmlYCss/indexHTML/m.informacionAdmin.html";
 var urlRedireccionModuloUsuario = urlRedireccion + "HtmlYCss/indexHTML/moduloInformacion.html";
 var urlPaginaCambioContrasena = urlRedireccion + "HtmlYCss/indexHTML/contrasenaCambiar.html";
-
 var urlRedireccionInicioSesion = urlRedireccion + "HtmlYCss/indexHTML/inicioSesion.html";
