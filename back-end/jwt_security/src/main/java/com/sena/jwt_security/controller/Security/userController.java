@@ -34,6 +34,7 @@ import com.sena.jwt_security.models.AuthResponse;
 import com.sena.jwt_security.models.CambiarContrasenaRequest;
 import com.sena.jwt_security.models.CambioCotrasenaRequest;
 import com.sena.jwt_security.models.RecuperarContrasenaRequest;
+import com.sena.jwt_security.models.espacio;
 import com.sena.jwt_security.models.estadoUser;
 import com.sena.jwt_security.models.resgisterRequest;
 import com.sena.jwt_security.models.respuesta;
@@ -430,11 +431,7 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	    return new ResponseEntity<>("Cierre de sesión exitoso", HttpStatus.OK);
 	}
 
-	@GetMapping("/busquedafiltro/{filtro}")
-	public ResponseEntity<Object>findFiltro(@PathVariable String filtro){
-		var ListaUserRegistro = userService.filtroIngresoUser(filtro);
-		return new ResponseEntity<>(ListaUserRegistro, HttpStatus.OK);
-	}
+
 	
 	@GetMapping("/{id_user}")
 	public ResponseEntity<Object> findOne(@PathVariable String id_user) {
@@ -641,14 +638,12 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	}
 
 
-	
-	
-	/*
-	  
-    @GetMapping("/busquedafiltro")
-    public ResponseEntity<Object> findFiltro(@RequestParam String nombreCompleto, @RequestParam String username,  @RequestParam String numero_documento, @RequestParam  String rol) {
-        var listaReservas = userService.filtroRegistro(nombreCompleto, nombreEspacio);
-        return new ResponseEntity<>(listaReservas, HttpStatus.OK);
-    }
-    */
+	@GetMapping("/busquedafiltro")
+	public ResponseEntity<Object> findFiltroRegistros(@RequestParam String filtro) {
+	    List<userRegistro> listaUserRegistro = userService.findFiltroRegistros(filtro);
+	    return new ResponseEntity<>(listaUserRegistro, HttpStatus.OK);
+	}
+
+
+    
 }

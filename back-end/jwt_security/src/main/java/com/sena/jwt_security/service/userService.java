@@ -188,7 +188,16 @@ public class userService implements IUserService {
         return data.findAllByEstadoUser(estado);
     }
 
-	
+
+
+    @Override
+    public List<userRegistro> findFiltroRegistros(String filtro) {
+        // Llama al método del repositorio que tiene la consulta con el filtro
+        return data.findFiltroRegistros(filtro);
+    }
+
+
+
 
 
 

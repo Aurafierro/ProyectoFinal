@@ -293,7 +293,12 @@ public class AuthService implements IUserService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
+	@Override
+	public List<userRegistro> findFiltroRegistros(String filtro) {
+	    // Llama al método del repositorio que tiene la consulta con el filtro
+	    return data.findFiltroRegistros(filtro);
+	}
+
+
 
 }

@@ -5,10 +5,14 @@ import java.util.List;
 
 import java.util.Optional;
 
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
 import com.sena.jwt_security.models.AuthResponse;
 import com.sena.jwt_security.models.estadoUser;
 import com.sena.jwt_security.models.loginRequest;
 import com.sena.jwt_security.models.preregisterRequest;
+import com.sena.jwt_security.models.reserva;
 import com.sena.jwt_security.models.resgisterRequest;
 import com.sena.jwt_security.models.userRegistro;
 
@@ -35,9 +39,13 @@ public interface IUserService {
 	String generarContrasenaAleatoria();
 	public List<userRegistro> obtenerUsuariosPorEstado(estadoUser cuentaInactiva);
 	public List<userRegistro> obtenerUsuariosInactivos();
+	public List<userRegistro> findFiltroRegistros(String filtro);
 
 	
+
 	
+
+    
 
 	
 }
