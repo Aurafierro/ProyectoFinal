@@ -180,7 +180,7 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	        userService.save(user);
 
 	        // Enviar correo de notificación con la contraseña generada
-	        emailService.enviarNotificacionCuenta(
+	        emailService.enviarNotificacionRegistro(
 	                user.getUsername(),
 	                user.getNombre_completo(),
 	                user.getUsername(),
@@ -205,6 +205,12 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	        // Actualiza el estado del usuario o realiza cualquier otra lógica necesaria para marcarlo como rechazado
 	        user.setEstadoUser(estadoUser.user_rechazado);  // Supón que 'cuenta_no_aceptada' es un estado definido en el enum
 	        userService.save(user);
+	        // Enviar correo de notificación con la contraseña generada
+	        emailService.enviarNotificacionRegitroRechazado(
+	                user.getUsername(),
+	                user.getNombre_completo()
+	               
+	        );
 
 	        return new ResponseEntity<>("Usuario rechazado exitosamente.", HttpStatus.OK);
 	    } else {
@@ -635,4 +641,14 @@ public ResponseEntity<Object> save(@RequestBody userRegistro userRegistro) {
 	}
 
 
+	
+	
+	/*
+	  
+    @GetMapping("/busquedafiltro")
+    public ResponseEntity<Object> findFiltro(@RequestParam String nombreCompleto, @RequestParam String username,  @RequestParam String numero_documento, @RequestParam  String rol) {
+        var listaReservas = userService.filtroRegistro(nombreCompleto, nombreEspacio);
+        return new ResponseEntity<>(listaReservas, HttpStatus.OK);
+    }
+    */
 }

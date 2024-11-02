@@ -280,4 +280,120 @@ public class emailService {
 		
 	}
 	
+	
+	public String enviarNotificacionRegistro(String destinatario, String nombre_completo, String username, String password ) {
+
+		try {
+			
+			
+			String asunto="Bienvenid@ " +nombre_completo + " a AsignaWeb";
+			String cuerpo=""
+					+"<body style='margin: 0; padding: 0; background-color: #CCCCCC;'>" 
+				    +  "  <div style='background-color: #CCCCCC;'>" 
+				     + "   <div style='background-color: white; max-width: 600px; margin: auto; padding: 20px; box-sizing: border-box;'>" 
+				 +     "       <div style='background-color: #202C4A; padding: 11px; text-align: center;'>" 
+				  +    "           <img style='width: 110px; height: 100px;' src='https://i.postimg.cc/L8hJKpjP/5613765-Recuperado.png' alt='Logo'>" 
+				  +    "       </div>" 
+				    +  "<h1 style='color: #2B56C5; text-align: center; font-size: 24px; margin-top: 20px;'>¡Bienvenid@, " + nombre_completo + " a AsignaWeb!</h1>"
+
+				  +    "      <p style='color: #000; font-size: 16px; line-height: 1.5; margin-top: 20px;'>" 
+				    +  "        ¡Felicidades! Tu registro ha sido aceptado y ahora formas parte de nuestra comunidad.	" 
+				   +   "   Estamos emocionados de darte la bienvenida y esperamos que disfrutes de la experiencia completa que        " 
+				   +   "       ofrecemos en nuestro sitio web. Ahora podrás acceder a contenido exclusivo, participar en  " 
+				  +    "      eventos especiales y aprovechar todas las funcionalidades que   " 
+				  +    "       hemos diseñado pensando en ti.    " 
+				 
+				  +    "      </p>" 
+				 +     "      <br>" 
+				     + "    <center>" 
+				 +" <strong> Tus credenciales son las siguientes: </strong>"
+				     +"<br>"
+				     +"<br>"
+				     
+				     + "          <strong>Nombre de Usuario: </strong> " + username + " "
+				     +"<br>"
+				     + "          <strong>Contraseña: " + password + "</strong>"
+				     +"<br>"
+				          
+				   
+				    +  "         <a href='http://127.0.0.1:5502/HtmlYCss/indexHTML/index.html' style='text-decoration: none;'>" 
+				    +  "             <button style='background-color:#2B56C5; color:white; padding:10px 20px; border:none; border-radius:14px; font-size:16px; cursor:pointer; margin-bottom:3%; margin-top:3%;'>Inicio de sesión</button>" 
+				    +  "         </a>" 
+				   +   "    </center>" 
+				   +   "       <p style='text-align:center; font-size: 16px;'>¡Te esperamos pronto!</p>" 
+				    +  "       <div style='background-color: #202C4A; margin: auto; padding: 35px;'>" 
+				    +  "       </div>" 
+				    +  "      </div>" 
+				   +   "   </div>" 
+				   +   "</body>";
+			        
+			var retorno=enviarCorreo(destinatario,asunto,cuerpo);
+			if(retorno) {
+				return "Se envió correctamente";
+			}else {
+				return "No se pudo enviar";
+			}
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			return "Error al envíar "+e.getMessage();
+		}
+	}
+	
+	
+	
+	
+	public String enviarNotificacionRegitroRechazado(String destinatario, String nombre_completo) {
+
+		try {
+			
+			
+			String asunto="Bienvenid@ " +nombre_completo + " a AsignaWeb";
+			String cuerpo=""
+					+"<body style='margin: 0; padding: 0; background-color: #CCCCCC;'>" 
+				    +  "  <div style='background-color: #CCCCCC;'>" 
+				     + "   <div style='background-color: white; max-width: 600px; margin: auto; padding: 20px; box-sizing: border-box;'>" 
+				 +     "       <div style='background-color: #202C4A; padding: 11px; text-align: center;'>" 
+				  +    "           <img style='width: 110px; height: 100px;' src='https://i.postimg.cc/L8hJKpjP/5613765-Recuperado.png' alt='Logo'>" 
+				  +    "       </div>" 
+				    +  "<h1 style='color: #2B56C5; text-align: center; font-size: 24px; margin-top: 20px;'>¡Lo sentimos, " + nombre_completo + " !</h1>"
+
+				  +    "      <p style='color: #000; font-size: 16px; line-height: 1.5; margin-top: 20px;'>" 
+				    
+
+
+
+				    +  "        Lamentamos informarte que tu solicitud de registro en AsignaWeb ha sido rechazada por los" 
+				   +   "   administradores. Si deseas obtener más información o comunicarte con el equipo de soporte, por favor envía un correo  " 
+				    
+				+"   <center>" 
+				   +"senasofia@edu.co. "
+				    
+				   
+				  +    "      Gracias por tu interés en AsignaWeb. " 
+				 
+				  +    "      </p>" 
+				  +   "    </center>"
+
+
+				   +   "       <p style='text-align:center; font-size: 16px;'>¡Te esperamos pronto!</p>" 
+				    +  "       <div style='background-color: #202C4A; margin: auto; padding: 35px;'>" 
+				    +  "       </div>" 
+				    +  "      </div>" 
+				   +   "   </div>" 
+				   +   "</body>";
+			        
+			var retorno=enviarCorreo(destinatario,asunto,cuerpo);
+			if(retorno) {
+				return "Se envió correctamente";
+			}else {
+				return "No se pudo enviar";
+			}
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			return "Error al envíar "+e.getMessage();
+		}
+	}
+	
 }
