@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.sena.jwt_security.models.userRegistro;
 import com.sena.jwt_security.service.emailService;
+
 import com.sena.jwt_security.service.userService;
 
 import java.util.List;
@@ -15,6 +16,8 @@ public class task {
 
     @Autowired
     private userService data;
+    
+
 
     @Autowired
     private emailService email;

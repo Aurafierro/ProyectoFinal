@@ -396,4 +396,56 @@ public class emailService {
 		}
 	}
 	
+	
+	
+	
+	public String enviarNotificacionReservaUnDiaAntes(String destinatario, String espacio,  String nombre_completo, String fecha_entrada) {
+
+		try {
+			
+			
+			String asunto="Bienvenid@ " +nombre_completo + " a AsignaWeb";
+			String cuerpo=""
+					+"<body style='margin: 0; padding: 0; background-color: #CCCCCC;'>" 
+					  +  "  <div style='background-color: #CCCCCC;'>" 
+					   + "   <div style='background-color: white; max-width: 600px; margin: auto; padding: 20px; box-sizing: border-box;'>" 
+					+     "       <div style='background-color: #202C4A; padding: 11px; text-align: center;'>" 
+					+    "           <img style='width: 110px; height: 100px;' src='https://i.postimg.cc/L8hJKpjP/5613765-Recuperado.png' alt='Logo'>" 
+					+    "       </div>" 
+					  +  "<h1 style='color: #2B56C5; text-align: center; font-size: 24px; margin-top: 20px;'>¡Recuerda, " + nombre_completo + " tu  reserva!</h1>"
+
+					+    "      <p style='color: #000; font-size: 16px; line-height: 1.5; margin-top: 20px;'>" 
+					 +" Te recordamos que mañana tienes asignada una reserva para el "+ espacio +" a  las "+ fecha_entrada + " Te agradecemos que llegues con unos minutos de antelación para facilitar"
+					 +"  el acceso y disfrutar plenamente de tu tiempo en el espacio."
+					+    "      </p>" 
+			 
+					 +   "       <p style='text-align:center; font-size: 16px;'>¡Te esperamos pronto!</p>" 
+					  +  "       <div style='background-color: #202C4A; margin: auto; padding: 35px;'>" 
+					  +  "       </div>" 
+					  +  "      </div>" 
+					 +   "   </div>" 
+					 +   "</body>";
+			        
+			var retorno=enviarCorreo(destinatario,asunto,cuerpo);
+			if(retorno) {
+				return "Se envió correctamente";
+			}else {
+				return "No se pudo enviar";
+			}
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			return "Error al envíar "+e.getMessage();
+		}
+	}
+
+	public void enviarNotificacionReservaUnDiaAntes(Date fecha_entrada, String mensaje) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+
+	
 }

@@ -2,6 +2,7 @@
 
 // Función para cargar la tabla de registros inactivos
 function tablaRegistro() {
+    
   fetch(urlUsuariosInactivos)
       .then(response => {
           if (!response.ok) throw new Error("Error en la solicitud: " + response.status);

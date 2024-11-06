@@ -1,5 +1,6 @@
 package com.sena.jwt_security.service;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -86,5 +87,15 @@ public class reservaService implements IReservaService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	 public List<reserva> enviarNotificacionReservaUnDiaAntes() {
+	        LocalDate tomorrow = LocalDate.now().plusDays(1); // Fecha de mañana
+	        Date fecha_entrada = Date.valueOf(tomorrow); // Convierte a java.sql.Date
+	        return data.findByFechaEntrada(fecha_entrada); // Obtiene reservas para mañana
+	    }
+
+
+	
+
 
 }

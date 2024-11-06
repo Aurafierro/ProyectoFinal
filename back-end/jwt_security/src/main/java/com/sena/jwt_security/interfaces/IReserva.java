@@ -1,5 +1,6 @@
 package com.sena.jwt_security.interfaces;
 
+import java.sql.Date;
 import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -43,6 +44,13 @@ public interface IReserva extends CrudRepository<reserva, String> {
     
     @Query("SELECT r FROM reserva r JOIN r.userRegistro u WHERE u.id_user = :id_user")
     List<reserva> findReservasByUserId(@Param("id_user") String id_user);
+    
+    
+
+    @Query("SELECT r FROM reserva r WHERE r.fecha_entrada = ?1")
+    List<reserva> findByFechaEntrada(Date fecha_entrada);
+
+
 
 
 }

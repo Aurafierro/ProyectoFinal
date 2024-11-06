@@ -1,5 +1,6 @@
 package com.sena.jwt_security.interfaces;
 
+import java.sql.Date;
 import java.util.List;
 
 import java.util.Optional;
@@ -42,6 +43,7 @@ public interface Iuser extends CrudRepository<userRegistro, String> {
     	       + "u.numero_documento LIKE %:filtro%")
     	List<userRegistro> findFiltroRegistros(@Param("filtro") String filtro);
 
+ 
 
 
 

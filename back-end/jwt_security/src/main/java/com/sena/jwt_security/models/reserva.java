@@ -127,7 +127,7 @@ public class reserva {
 	public void setEstadoReserva(estado estadoReserva) {
 		this.estadoReserva = estadoReserva;
 	}
-    
+
     
     
 }
