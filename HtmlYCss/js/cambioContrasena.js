@@ -48,15 +48,32 @@ document.querySelector('.button-contrasena').addEventListener('click', (event) =
     cambiarContrasena();
 });
 function cerrarSesion() {
-    localStorage.removeItem('authTokens'); 
-    window.location.href = urlRedireccionInicioSesion;  
-}
-function togglePasswordVisibility(inputId, icon) {
-    const passwordField = document.getElementById(inputId);
-    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-    passwordField.setAttribute('type', type);
-    icon.classList.toggle('fa-eye-slash'); // Toggle the eye slash icon
-}
+    Swal.fire({
+        title: "Cerrar sesión",
+        text: "¿Estás seguro de que deseas cerrar sesión?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí, salir",
+        cancelButtonText: "Cancelar"
+    }).then(result => {
+        if (result.isConfirmed) {
+          // Eliminar el token de autenticación
+          localStorage.removeItem('authTokens');
+          
+          // Manejar el retroceso del navegador
+          history.pushState(null, null, urlRedireccionInicioSesion); // Redirige al login
+  
+          // Desactivar retroceso en el navegador
+          window.addEventListener('popstate', function (event) {
+              history.pushState(null, null, urlRedireccionInicioSesion); // Desactiva el retroceso
+          });
+  
+          // Redirigir al inicio de sesión
+          window.location.href = urlRedireccionInicioSesion;
+        }
+    });
+  }
+  
 
 // Add event listeners for the eye icons
 document.querySelectorAll('.toggle-password').forEach(icon => {

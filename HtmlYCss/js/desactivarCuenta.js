@@ -100,9 +100,30 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     document.querySelector('.desactivarCuenta').addEventListener('click', desactivarUsuario);
 });
-
-// Función para cerrar sesión y redirigir al inicio de sesión
 function cerrarSesion() {
-    localStorage.removeItem('authTokens'); 
-    window.location.href = urlRedireccionInicioSesion;  
-}
+    Swal.fire({
+        title: "Cerrar sesión",
+        text: "¿Estás seguro de que deseas cerrar sesión?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí, salir",
+        cancelButtonText: "Cancelar"
+    }).then(result => {
+        if (result.isConfirmed) {
+          // Eliminar el token de autenticación
+          localStorage.removeItem('authTokens');
+          
+          // Manejar el retroceso del navegador
+          history.pushState(null, null, urlRedireccionInicioSesion); // Redirige al login
+  
+          // Desactivar retroceso en el navegador
+          window.addEventListener('popstate', function (event) {
+              history.pushState(null, null, urlRedireccionInicioSesion); // Desactiva el retroceso
+          });
+  
+          // Redirigir al inicio de sesión
+          window.location.href = urlRedireccionInicioSesion;
+        }
+    });
+  }
+  

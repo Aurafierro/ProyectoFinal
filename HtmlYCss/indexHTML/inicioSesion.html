@@ -26,9 +26,14 @@
             <a href="../indexHTML/recuperarContrasena.html" class="recover-link">Recuperar contraseña</a> 
             <a href="../indexHTML/preRegistro.html" class="recover-link">PreRegistro</a> 
             <div class="buttons">
-    
-                <button class="btn green" onclick="login()">Enviar</button>
+                <button class="btn green" id="loginButton" onclick="login()">Enviar</button>
+                <!-- El loader está oculto inicialmente -->
+                <div class="loader" id="loaderContainer" style="display: none;">
+                    <span class="loader-text">loading</span>
+                    <span class="load"></span>
+                </div>
             </div>
+            
         </div>
         <div class="image-container" id="image-container">
             <img src="../img/logori.png" alt="AsignaWeb Logo">

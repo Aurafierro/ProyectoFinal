@@ -52,17 +52,29 @@ async function obtenerDatosUsuario() {
 }
 
 function cerrarSesion() {
-    // Eliminar el token de autenticación
-    localStorage.removeItem('authTokens'); 
-    
-    // Limpiar el historial de navegación
-    history.pushState(null, null, urlRedireccionInicioSesion); // Redirige al login
-    
-    // Desactivar retroceso
-    window.addEventListener('popstate', function (event) {
-      history.pushState(null, null, urlRedireccionInicioSesion);
+    Swal.fire({
+        title: "Cerrar sesión",
+        text: "¿Estás seguro de que deseas cerrar sesión?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí, salir",
+        cancelButtonText: "Cancelar"
+    }).then(result => {
+        if (result.isConfirmed) {
+          // Eliminar el token de autenticación
+          localStorage.removeItem('authTokens');
+          
+          // Manejar el retroceso del navegador
+          history.pushState(null, null, urlRedireccionInicioSesion); // Redirige al login
+  
+          // Desactivar retroceso en el navegador
+          window.addEventListener('popstate', function (event) {
+              history.pushState(null, null, urlRedireccionInicioSesion); // Desactiva el retroceso
+          });
+  
+          // Redirigir al inicio de sesión
+          window.location.href = urlRedireccionInicioSesion;
+        }
     });
-    
-    // Redirigir al inicio de sesión
-    window.location.href = urlRedireccionInicioSesion;
-}
+  }
+  

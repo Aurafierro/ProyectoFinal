@@ -1,3 +1,87 @@
+// Función de inicio de sesión
+async function login() {
+    // Obtener los valores del formulario
+    let formData = {
+        "username": document.getElementById("username").value,
+        "password": document.getElementById("password").value
+    };
+
+    // Validar los campos del formulario
+    let camposValidos = validarCampos(formData);
+
+    // Referencias al botón y al contenedor del loader
+    const loginButton = document.getElementById("loginButton");
+    const loaderContainer = document.getElementById("loaderContainer");
+
+    if (camposValidos) {
+        // Mostrar el loader y desactivar el botón
+        loaderContainer.style.display = "inline-block";  // Mostrar el loader
+        loginButton.disabled = true;  // Desactivar el botón para evitar clics múltiples
+
+        try {
+            // Hacer la solicitud AJAX para el inicio de sesión
+            const response = await fetch(urlInicioSesion, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                // Ocultar el loader
+                loaderContainer.style.display = "none";  // Ocultar el loader
+                loginButton.disabled = false;  // Reactivar el botón
+
+                // Si la respuesta no es OK, mostrar el error
+                Swal.fire("Error", result.message || "Error al iniciar sesión", "error");
+                return;
+            }
+
+            // Obtener el token de la respuesta
+            const token = result.token;
+
+            // Almacenar el token en el localStorage
+            localStorage.setItem('authTokens', token);
+
+            // Verificar el estado del usuario
+            const estado = await checkUserStatus(token);
+
+            // Si la cuenta está inactiva, mostrar mensaje y eliminar el token
+            if (estado === 0) {
+                loaderContainer.style.display = "none";  // Ocultar el loader
+                loginButton.disabled = false;  // Reactivar el botón
+                Swal.fire("Error", "Su cuenta está inactiva. No puede iniciar sesión.", "error");
+                localStorage.removeItem('authTokens');
+                return;
+            }
+
+            // Si todo está bien, mostrar mensaje de bienvenida
+            Swal.fire({
+                title: "¡Bienvenido!",
+                text: "Inicio de sesión exitoso.",
+                icon: "success"
+            }).then(() => {
+                checkUserRole(token); // Verificar el rol después del login
+            });
+        } catch (error) {
+            // En caso de error en la solicitud
+            loaderContainer.style.display = "none";  // Ocultar el loader
+            loginButton.disabled = false;  // Reactivar el botón
+            Swal.fire("Error", "Hubo un problema al procesar tu solicitud.", "error");
+        }
+    } else {
+        // Si los campos no son válidos, mostrar error
+        Swal.fire({
+            title: "¡Error!",
+            text: "Por favor, complete todos los campos correctamente.",
+            icon: "error"
+        });
+    }
+}
+
 // Función para verificar el estado del usuario
 async function checkUserStatus(token) {
     try {
@@ -16,7 +100,6 @@ async function checkUserStatus(token) {
         }
 
         const data = await response.json();
-        console.log('Estado del usuario:', data); // Verificar la respuesta recibida
         const estado = data.estado; // Obtener el estado
 
         return estado === "cuenta_activa" ? 1 : 0; // Retornar 1 para "cuenta_activa" y 0 para "cuenta_inactiva"
@@ -27,79 +110,9 @@ async function checkUserStatus(token) {
     }
 }
 
-// Función de inicio de sesión
-async function login() {
-    let formData = {
-        "username": document.getElementById("username").value,
-        "password": document.getElementById("password").value
-    };
-
-    let camposValidos = validarCampos(formData);
-
-    if (camposValidos) {
-        $.ajax({
-            url: urlInicioSesion, // URL del login
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify(formData),
-            success: async function (result) {
-                const token = result.token; // Ajusta según tu respuesta de API
-                // Eliminar el token anterior si existe
-                localStorage.removeItem('authTokens');
-                // Almacenar el nuevo token directamente
-                localStorage.setItem('authTokens', token);
-
-                // Verificar el estado del usuario
-                const estado = await checkUserStatus(token);
-                if (estado === 0) {
-                    Swal.fire("Error", "Su cuenta está inactiva. No puede iniciar sesión.", "error");
-                    localStorage.removeItem('authTokens'); // Eliminar token si está inactivo
-                    return; // No continuar con el inicio de sesión
-                }
-
-                Swal.fire({
-                    title: "¡Bienvenido!",
-                    text: "Inicio de sesión exitoso.",
-                    icon: "success"
-                }).then(() => {
-                    checkUserRole(token); // Verificar el rol después del login
-                });
-            },
-            error: function (error) {
-                Swal.fire("Error", "Credenciales incorrectas. Inténtalo de nuevo.", "error");
-            },
-        });
-    } else {
-        Swal.fire({
-            title: "¡Error!",
-            text: "Por favor, complete todos los campos correctamente.",
-            icon: "error"
-        });
-    }
-}
-
-// Función para verificar el rol del usuario y si necesita cambiar la contraseña
+// Función para verificar el rol del usuario y redirigir
 async function checkUserRole(token) {
     try {
-        // Verificar el estado de la contraseña
-        const verificarResponse = await fetch(urlBase + 'user/verificar-contrasena', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            }
-        });
-
-        if (!verificarResponse.ok) {
-            const errorData = await verificarResponse.json();
-            Swal.fire("Error", errorData.message, "error");
-            return;
-        }
-
-        const verificarData = await verificarResponse.json();
-        const verificarContrasena = verificarData.verificar_contrasena; // Obtener el estado de la contraseña
-
-        // Obtener el rol del usuario
         const rolResponse = await fetch(urlBase + 'user/rol', {
             method: 'GET',
             headers: {
@@ -117,19 +130,14 @@ async function checkUserRole(token) {
         const rolData = await rolResponse.json();
         const userRole = rolData.role; // Obtener el rol del usuario
 
-        // Redirigir al usuario según el estado de verificar_contrasena y su rol
-        if (verificarContrasena) {
-            window.location.href = urlPaginaCambioContrasena; // Redirigir para cambiar la contraseña
-        } else {
-            if (userRole === "Administrador") {
-                window.location.href = urlRedireccionModuloAdmin; // Cambia a la página del administrador
-            } else if (userRole === "Usuario") {
-                window.location.href = urlRedireccionModuloUsuario; // Cambia a la página del usuario
-            }
+        if (userRole === "Administrador") {
+            window.location.href = urlRedireccionModuloAdmin; // Cambia a la página del administrador
+        } else if (userRole === "Usuario") {
+            window.location.href = urlRedireccionModuloUsuario; // Cambia a la página del usuario
         }
     } catch (error) {
-        console.error('Error al verificar el rol o el estado de la contraseña:', error);
-        Swal.fire("Error", "Error al verificar la información del usuario: " + error.message, "error");
+        console.error('Error al verificar el rol del usuario:', error);
+        Swal.fire("Error", "Error al verificar el rol del usuario: " + error.message, "error");
     }
 }
 
@@ -163,20 +171,4 @@ togglePassword.addEventListener("click", function () {
     this.classList.toggle("fa-eye-slash");
 });
 
-// Función para cerrar sesión
-function cerrarSesion() {
-    // Eliminar el token de autenticación
-    localStorage.removeItem("authTokens");
 
-    // Limpiar el historial de navegación
-    history.pushState(null, null, urlRedireccionInicioSesion); // Redirige al login
-
-    // Desactivar retroceso
-    window.addEventListener("popstate", function (event) {
-        history.pushState(null, null, urlRedireccionInicioSesion);
-    });
-
-    // Redirigir al inicio de sesión
-    window.location.href = urlRedireccionInicioSesion;
-}
- 
