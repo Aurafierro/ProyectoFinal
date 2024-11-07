@@ -3,6 +3,7 @@ document.getElementById("numero_documento").addEventListener("keypress", soloNum
 document.getElementById("nombre_completo").addEventListener("keypress", soloLetras);
 document.getElementById("username").addEventListener("keypress", letrasNumerosCaracteres);
 
+// Función para solo permitir letras
 function soloLetras(event) {
     const letrasPermitidas = [
         "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "u", "v", "x", "y", "w", "o", "z", "ñ", "Ñ",
@@ -15,6 +16,7 @@ function soloLetras(event) {
     }
 }
 
+// Función para permitir letras, números y caracteres especiales (como @, _, -, .)
 function letrasNumerosCaracteres(event) {
     const letrasPermitidas = [
         "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "u", "v", "x", "y", "w", "o", "z", "ñ", "Ñ",
@@ -29,6 +31,7 @@ function letrasNumerosCaracteres(event) {
     }
 }
 
+// Función para solo permitir números
 function soloNumeros(event) {
     const numeroPermitidos = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 
@@ -37,8 +40,21 @@ function soloNumeros(event) {
     }
 }
 
+// Función para mostrar u ocultar el loader
+function mostrarLoader(activar) {
+    const loader = document.querySelector('.loader');
+    if (activar) {
+        loader.style.display = 'flex';  // Muestra el loader
+    } else {
+        loader.style.display = 'none';  // Oculta el loader
+    }
+}
+
 // Función para crear cuenta
-function crearCuenta(){
+function crearCuenta() {
+    // Muestra el loader al iniciar la creación de la cuenta
+    mostrarLoader(true);
+
     let formData = {
         "tipo_documento": document.getElementById("tipo_documento").value,
         "numero_documento": document.getElementById("numero_documento").value,
@@ -71,9 +87,13 @@ function crearCuenta(){
                 });
 
                 limpiarFormulario();
+                // Ocultamos el loader después de la respuesta exitosa
+                mostrarLoader(false);
             },
             error: function (error) {
                 Swal.fire("Error", "Error al guardar, " + error.responseText, "error");
+                // Ocultamos el loader en caso de error
+                mostrarLoader(false);
             },
         });
     } else {
@@ -82,10 +102,12 @@ function crearCuenta(){
             text: "Llene todos los campos correctamente",
             icon: "error"
         });
+        // Ocultamos el loader si hay error en la validación de campos
+        mostrarLoader(false);
     }
 }
 
-// Validación de campos
+// Función para validar los campos
 function validarCampos(formData) {
     let camposRequeridos = [
         "tipo_documento",
@@ -106,7 +128,6 @@ function validarCampos(formData) {
             errorElemento.classList.add('error-message');
             camposValidos = false;
         }
-        
     });
 
     let numeroDocumento = document.getElementById("numero_documento").value.trim();
@@ -144,6 +165,7 @@ function limpiarFormulario() {
         el.classList.remove('error-message');
     });
 }
+
 // Validación en tiempo real
 document.querySelectorAll('.form-control, .form-select').forEach(function(el) {
     el.addEventListener('input', function() {
@@ -156,6 +178,8 @@ document.querySelectorAll('.form-control, .form-select').forEach(function(el) {
         });
     });
 });
+
+// Función para cerrar sesión
 function cerrarSesion() {
     Swal.fire({
         title: "Cerrar sesión",
@@ -181,5 +205,4 @@ function cerrarSesion() {
           window.location.href = urlRedireccionInicioSesion;
         }
     });
-  }
-  
+}

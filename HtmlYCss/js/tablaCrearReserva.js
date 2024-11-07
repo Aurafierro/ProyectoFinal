@@ -4,7 +4,32 @@
 //document.getElementById("hora_entrada").addEventListener("keypress", numerosYcaracteres);
 //document.getElementById("hora_salida").addEventListener("keypress", numerosYcaracteres);
 
+function cerrarSesion() {
+  Swal.fire({
+      title: "Cerrar sesión",
+      text: "¿Estás seguro de que deseas cerrar sesión?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sí, salir",
+      cancelButtonText: "Cancelar"
+  }).then(result => {
+      if (result.isConfirmed) {
+        // Eliminar el token de autenticación
+        localStorage.removeItem('authTokens');
+        
+        // Manejar el retroceso del navegador
+        history.pushState(null, null, urlRedireccionInicioSesion); // Redirige al login
 
+        // Desactivar retroceso en el navegador
+        window.addEventListener('popstate', function (event) {
+            history.pushState(null, null, urlRedireccionInicioSesion); // Desactiva el retroceso
+        });
+
+        // Redirigir al inicio de sesión
+        window.location.href = urlRedireccionInicioSesion;
+      }
+  });
+}
 function soloLetras(event) {
   console.log("Llave presionada: " + event.key);
   console.log("Código tecla: " + event.keyCode);
@@ -340,47 +365,6 @@ function tablaReservas() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  const authToken = localStorage.getItem('authTokens');
-
-  // Si no hay un token, redirige al inicio de sesión
-  if (!authToken) {
-    window.location.href = urlRedireccionInicioSesion;
-  }
-
-  // Evitar que el usuario vuelva a la página anterior después de cerrar sesión
-  window.history.replaceState(null, null, window.location.href); // Reemplaza el estado actual con la URL actual
-  window.onpopstate = function () {
-    window.location.href = urlRedireccionInicioSesion; // Siempre redirige al inicio de sesión al retroceder
-  };
-});
-
-function cerrarSesion() {
-  Swal.fire({
-      title: "Cerrar sesión",
-      text: "¿Estás seguro de que deseas cerrar sesión?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Sí, salir",
-      cancelButtonText: "Cancelar"
-  }).then(result => {
-      if (result.isConfirmed) {
-        // Eliminar el token de autenticación
-        localStorage.removeItem('authTokens');
-        
-        // Manejar el retroceso del navegador
-        history.pushState(null, null, urlRedireccionInicioSesion); // Redirige al login
-
-        // Desactivar retroceso en el navegador
-        window.addEventListener('popstate', function (event) {
-            history.pushState(null, null, urlRedireccionInicioSesion); // Desactiva el retroceso
-        });
-
-        // Redirigir al inicio de sesión
-        window.location.href = urlRedireccionInicioSesion;
-      }
-  });
-}
 
 
 
@@ -799,3 +783,4 @@ document.querySelector('.menu-toggle').addEventListener('click', function () {
     contenedorContenido.style.marginLeft = '0'; // Restaura el margen original
   }
 });
+

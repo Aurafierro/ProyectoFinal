@@ -47,6 +47,17 @@ document.querySelector('.button-contrasena').addEventListener('click', (event) =
     event.preventDefault(); // Previene el comportamiento por defecto del formulario
     cambiarContrasena();
 });
+
+  
+
+// Add event listeners for the eye icons
+document.querySelectorAll('.toggle-password').forEach(icon => {
+    icon.addEventListener('click', function () {
+        const inputId = this.getAttribute('data-input');
+        togglePasswordVisibility(inputId, this);
+    });
+});
+
 function cerrarSesion() {
     Swal.fire({
         title: "Cerrar sesión",
@@ -73,12 +84,3 @@ function cerrarSesion() {
         }
     });
   }
-  
-
-// Add event listeners for the eye icons
-document.querySelectorAll('.toggle-password').forEach(icon => {
-    icon.addEventListener('click', function () {
-        const inputId = this.getAttribute('data-input');
-        togglePasswordVisibility(inputId, this);
-    });
-});
